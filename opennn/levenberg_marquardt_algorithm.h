@@ -34,384 +34,408 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 /// This concrete class represents a Levenberg-Marquardt Algorithm training
 /// algorithm for the sum squared error performance functional for a multilayer perceptron.
 
-class LevenbergMarquardtAlgorithm : public TrainingAlgorithm
-{
+    class LevenbergMarquardtAlgorithm : public TrainingAlgorithm {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit LevenbergMarquardtAlgorithm(void);
+        explicit LevenbergMarquardtAlgorithm(void);
 
-   // PERFORMANCE FUNCTIONAL CONSTRUCTOR
+        // PERFORMANCE FUNCTIONAL CONSTRUCTOR
 
-   explicit LevenbergMarquardtAlgorithm(PerformanceFunctional*);
+        explicit LevenbergMarquardtAlgorithm(PerformanceFunctional *);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit LevenbergMarquardtAlgorithm(const tinyxml2::XMLDocument&);
+        explicit LevenbergMarquardtAlgorithm(const tinyxml2::XMLDocument &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~LevenbergMarquardtAlgorithm(void);
+        virtual ~LevenbergMarquardtAlgorithm(void);
 
-   // STRUCTURES
+        // STRUCTURES
 
-   ///
-   /// This structure contains the training results for the Levenberg-Marquardt algorithm. 
-   ///
+        ///
+        /// This structure contains the training results for the Levenberg-Marquardt algorithm.
+        ///
 
-   struct LevenbergMarquardtAlgorithmResults : public TrainingAlgorithm::TrainingAlgorithmResults
-   {
-       /// Default constructor.
+        struct LevenbergMarquardtAlgorithmResults : public TrainingAlgorithm::TrainingAlgorithmResults {
+            /// Default constructor.
 
-       LevenbergMarquardtAlgorithmResults(void)
-       {
-           Levenberg_Marquardt_algorithm_pointer = NULL;
-       }
+            LevenbergMarquardtAlgorithmResults(void)
+            {
+                Levenberg_Marquardt_algorithm_pointer = NULL;
+            }
 
-       /// Random search constructor.
+            /// Random search constructor.
 
-       LevenbergMarquardtAlgorithmResults(LevenbergMarquardtAlgorithm* new_Levenberg_Marquardt_algorithm_pointer)
-       {
-           Levenberg_Marquardt_algorithm_pointer = new_Levenberg_Marquardt_algorithm_pointer;
-       }
+            LevenbergMarquardtAlgorithmResults(LevenbergMarquardtAlgorithm *new_Levenberg_Marquardt_algorithm_pointer)
+            {
+                Levenberg_Marquardt_algorithm_pointer = new_Levenberg_Marquardt_algorithm_pointer;
+            }
 
-       /// Destructor.
+            /// Destructor.
 
-       virtual ~LevenbergMarquardtAlgorithmResults(void)
-       {
-       }
+            virtual ~LevenbergMarquardtAlgorithmResults(void)
+            {
+            }
 
-       /// Pointer to the Levenberg-Marquardt algorithm object for which the training results are to be stored.
+            /// Pointer to the Levenberg-Marquardt algorithm object for which the training results are to be stored.
 
-      LevenbergMarquardtAlgorithm* Levenberg_Marquardt_algorithm_pointer;
+            LevenbergMarquardtAlgorithm *Levenberg_Marquardt_algorithm_pointer;
 
-      // Training history
+            // Training history
 
-      /// History of the neural network parameters over the training iterations. 
+            /// History of the neural network parameters over the training iterations.
 
-      Vector< Vector<double> > parameters_history;
+            Vector<Vector<double> > parameters_history;
 
-      /// History of the parameters norm over the training iterations. 
+            /// History of the parameters norm over the training iterations.
 
-      Vector<double> parameters_norm_history;
+            Vector<double> parameters_norm_history;
 
-      /// History of the performance function performance over the training iterations.
+            /// History of the performance function performance over the training iterations.
 
-      Vector<double> performance_history;
+            Vector<double> performance_history;
 
-      /// History of the selection performance over the training iterations.
+            /// History of the selection performance over the training iterations.
 
-      Vector<double> selection_performance_history;
+            Vector<double> selection_performance_history;
 
-      /// History of the performance function gradient over the training iterations. 
+            /// History of the performance function gradient over the training iterations.
 
-      Vector< Vector<double> > gradient_history;
+            Vector<Vector<double> > gradient_history;
 
-      /// History of the gradient norm over the training iterations. 
+            /// History of the gradient norm over the training iterations.
 
-      Vector<double> gradient_norm_history;
+            Vector<double> gradient_norm_history;
 
-      /// History of the Hessian approximation over the training iterations. 
+            /// History of the Hessian approximation over the training iterations.
 
-      Vector< Matrix<double> > Hessian_approximation_history;
+            Vector<Matrix<double> > Hessian_approximation_history;
 
-      /// History of the damping parameter over the training iterations. 
+            /// History of the damping parameter over the training iterations.
 
-      Vector<double> damping_parameter_history;
+            Vector<double> damping_parameter_history;
 
-      /// History of the elapsed time over the training iterations. 
+            /// History of the elapsed time over the training iterations.
 
-      Vector<double> elapsed_time_history;
+            Vector<double> elapsed_time_history;
 
-      // Final values
+            // Final values
 
-      /// Final neural network parameters vector. 
+            /// Final neural network parameters vector.
 
-      Vector<double> final_parameters;
+            Vector<double> final_parameters;
 
-      /// Final neural network parameters norm. 
+            /// Final neural network parameters norm.
 
-      double final_parameters_norm;
+            double final_parameters_norm;
 
-      /// Final performance function evaluation.
+            /// Final performance function evaluation.
 
-      double final_performance;
+            double final_performance;
 
-      /// Final selection performance.
+            /// Final selection performance.
 
-      double final_selection_performance;
+            double final_selection_performance;
 
-      /// Final performance function gradient. 
+            /// Final performance function gradient.
 
-      Vector<double> final_gradient;
+            Vector<double> final_gradient;
 
-      /// Final gradient norm.
+            /// Final gradient norm.
 
-      double final_gradient_norm;
+            double final_gradient_norm;
 
-      /// Elapsed time of the training process. 
+            /// Elapsed time of the training process.
 
-      double elapsed_time;
+            double elapsed_time;
 
-      /// Maximum number of training iterations.
+            /// Maximum number of training iterations.
 
-      size_t iterations_number;
+            size_t iterations_number;
 
-      void resize_training_history(const size_t&);
-      std::string to_string(void) const;
+            void resize_training_history(const size_t &);
 
-      Matrix<std::string> write_final_results(const size_t& precision = 3) const;
+            std::string to_string(void) const;
 
-   };
+            Matrix<std::string> write_final_results(const size_t &precision = 3) const;
 
-   // METHODS
+        };
 
-   // Get methods
+        // METHODS
 
-   // Training parameters
+        // Get methods
 
-   const double& get_warning_parameters_norm(void) const;
-   const double& get_warning_gradient_norm(void) const;
+        // Training parameters
 
-   const double& get_error_parameters_norm(void) const;
-   const double& get_error_gradient_norm(void) const;
+        const double &get_warning_parameters_norm(void) const;
 
-   // Stopping criteria
+        const double &get_warning_gradient_norm(void) const;
 
-   const double& get_minimum_parameters_increment_norm(void) const;
+        const double &get_error_parameters_norm(void) const;
 
-   const double& get_minimum_performance_increase(void) const;
-   const double& get_performance_goal(void) const;
-   const double& get_gradient_norm_goal(void) const;
-   const size_t& get_maximum_selection_performance_decreases(void) const;
+        const double &get_error_gradient_norm(void) const;
 
-   const size_t& get_maximum_iterations_number(void) const;
-   const double& get_maximum_time(void) const;
+        // Stopping criteria
 
-   // Reserve training history
+        const double &get_minimum_parameters_increment_norm(void) const;
 
-   const bool& get_reserve_parameters_history(void) const;
-   const bool& get_reserve_parameters_norm_history(void) const;
+        const double &get_minimum_performance_increase(void) const;
 
-   const bool& get_reserve_performance_history(void) const;
-   const bool& get_reserve_gradient_history(void) const;
-   const bool& get_reserve_gradient_norm_history(void) const;
-   const bool& get_reserve_Hessian_approximation_history(void) const;
-   const bool& get_reserve_selection_performance_history(void) const;
+        const double &get_performance_goal(void) const;
 
-   const bool& get_reserve_elapsed_time_history(void) const;
+        const double &get_gradient_norm_goal(void) const;
 
-   // Utilities
+        const size_t &get_maximum_selection_performance_decreases(void) const;
 
-   const double& get_damping_parameter(void) const;
+        const size_t &get_maximum_iterations_number(void) const;
 
-   const double& get_damping_parameter_factor(void) const;
+        const double &get_maximum_time(void) const;
 
-   const double& get_minimum_damping_parameter(void) const;
-   const double& get_maximum_damping_parameter(void) const;
+        // Reserve training history
 
-   const bool& get_reserve_damping_parameter_history(void) const;
+        const bool &get_reserve_parameters_history(void) const;
 
-   const Vector<double>& get_damping_parameter_history(void) const;
+        const bool &get_reserve_parameters_norm_history(void) const;
 
-   // Set methods
+        const bool &get_reserve_performance_history(void) const;
 
-   void set_default(void);
+        const bool &get_reserve_gradient_history(void) const;
 
-   void set_damping_parameter(const double&);
+        const bool &get_reserve_gradient_norm_history(void) const;
 
-   void set_damping_parameter_factor(const double&);
+        const bool &get_reserve_Hessian_approximation_history(void) const;
 
-   void set_minimum_damping_parameter(const double&);
-   void set_maximum_damping_parameter(const double&);
+        const bool &get_reserve_selection_performance_history(void) const;
 
-   void set_reserve_damping_parameter_history(const bool&);
+        const bool &get_reserve_elapsed_time_history(void) const;
 
-   // Training parameters
+        // Utilities
 
-   void set_warning_parameters_norm(const double&);
-   void set_warning_gradient_norm(const double&);
+        const double &get_damping_parameter(void) const;
 
-   void set_error_parameters_norm(const double&);
-   void set_error_gradient_norm(const double&);
+        const double &get_damping_parameter_factor(void) const;
 
-   // Stopping criteria
+        const double &get_minimum_damping_parameter(void) const;
 
-   void set_minimum_parameters_increment_norm(const double&);
+        const double &get_maximum_damping_parameter(void) const;
 
-   void set_minimum_performance_increase(const double&);
-   void set_performance_goal(const double&);
-   void set_gradient_norm_goal(const double&);
-   void set_maximum_selection_performance_decreases(const size_t&);
+        const bool &get_reserve_damping_parameter_history(void) const;
 
-   void set_maximum_iterations_number(const size_t&);
-   void set_maximum_time(const double&);
+        const Vector<double> &get_damping_parameter_history(void) const;
 
-   // Reserve training history
+        // Set methods
 
-   void set_reserve_parameters_history(const bool&);
-   void set_reserve_parameters_norm_history(const bool&);
+        void set_default(void);
 
-   void set_reserve_performance_history(const bool&);
-   void set_reserve_gradient_history(const bool&);
-   void set_reserve_gradient_norm_history(const bool&);
-   void set_reserve_Hessian_approximation_history(const bool&);
-   void set_reserve_selection_performance_history(const bool&);
+        void set_damping_parameter(const double &);
 
-   void set_reserve_elapsed_time_history(const bool&);
+        void set_damping_parameter_factor(const double &);
 
-   /// Makes the training history of all variables to be reseved or not in memory.
+        void set_minimum_damping_parameter(const double &);
 
-   virtual void set_reserve_all_training_history(const bool&);
+        void set_maximum_damping_parameter(const double &);
 
-   // Utilities
+        void set_reserve_damping_parameter_history(const bool &);
 
-   void set_display_period(const size_t&);
+        // Training parameters
 
-   // Training methods
+        void set_warning_parameters_norm(const double &);
 
-   void check(void) const;
+        void set_warning_gradient_norm(const double &);
 
-   double calculate_performance(const Vector<double>&) const;
-   Vector<double> calculate_gradient(const Vector<double>&, const Matrix<double>&) const;
-   Matrix<double> calculate_Hessian_approximation(const Matrix<double>&) const;
+        void set_error_parameters_norm(const double &);
 
-   LevenbergMarquardtAlgorithmResults* perform_training(void);
+        void set_error_gradient_norm(const double &);
 
-   std::string write_training_algorithm_type(void) const;
+        // Stopping criteria
 
-   // Serialization methods
+        void set_minimum_parameters_increment_norm(const double &);
 
-   Matrix<std::string> to_string_matrix(void) const;
+        void set_minimum_performance_increase(const double &);
 
-   tinyxml2::XMLDocument* to_XML(void) const;
+        void set_performance_goal(const double &);
 
-   void from_XML(const tinyxml2::XMLDocument&);
+        void set_gradient_norm_goal(const double &);
 
-   Vector<double> perform_Householder_QR_decomposition(const Matrix<double>&, const Vector<double>&) const;
+        void set_maximum_selection_performance_decreases(const size_t &);
 
-   void testCUDA(double*, double*, double*, double*, double*, const int, const int);
+        void set_maximum_iterations_number(const size_t &);
 
-private:
+        void set_maximum_time(const double &);
 
-   // MEMBERS
+        // Reserve training history
 
-   /// Initial Levenberg-Marquardt parameter.
+        void set_reserve_parameters_history(const bool &);
 
-   double damping_parameter;
+        void set_reserve_parameters_norm_history(const bool &);
 
-   /// Minimum Levenberg-Marquardt parameter.
+        void set_reserve_performance_history(const bool &);
 
-   double minimum_damping_parameter;
+        void set_reserve_gradient_history(const bool &);
 
-   /// Maximum Levenberg-Marquardt parameter.
+        void set_reserve_gradient_norm_history(const bool &);
 
-   double maximum_damping_parameter;
+        void set_reserve_Hessian_approximation_history(const bool &);
 
-   /// Damping parameter increase/decrease factor.
+        void set_reserve_selection_performance_history(const bool &);
 
-   double damping_parameter_factor;
+        void set_reserve_elapsed_time_history(const bool &);
 
-   /// True if the damping parameter history vector is to be reserved, false otherwise.  
+        /// Makes the training history of all variables to be reseved or not in memory.
 
-   bool reserve_damping_parameter_history;
+        virtual void set_reserve_all_training_history(const bool &);
 
-   /// Vector containing the damping parameter history over the training iterations.
+        // Utilities
 
-   Vector<double> damping_parameter_history;
+        void set_display_period(const size_t &);
 
+        // Training methods
 
-   /// Value for the parameters norm at which a warning message is written to the screen. 
+        void check(void) const;
 
-   double warning_parameters_norm;
+        double calculate_performance(const Vector<double> &) const;
 
-   /// Value for the gradient norm at which a warning message is written to the screen. 
+        Vector<double> calculate_gradient(const Vector<double> &, const Matrix<double> &) const;
 
-   double warning_gradient_norm;   
+        Matrix<double> calculate_Hessian_approximation(const Matrix<double> &) const;
 
-   /// Value for the parameters norm at which the training process is assumed to fail. 
-   
-   double error_parameters_norm;
+        LevenbergMarquardtAlgorithmResults *perform_training(void);
 
-   /// Value for the gradient norm at which the training process is assumed to fail. 
+        std::string write_training_algorithm_type(void) const;
 
-   double error_gradient_norm;
+        // Serialization methods
 
+        Matrix<std::string> to_string_matrix(void) const;
 
-   // STOPPING CRITERIA
+        tinyxml2::XMLDocument *to_XML(void) const;
 
-   /// Norm of the parameters increment vector at which training stops.
+        void from_XML(const tinyxml2::XMLDocument &);
 
-   double minimum_parameters_increment_norm;
+        Vector<double> perform_Householder_QR_decomposition(const Matrix<double> &, const Vector<double> &) const;
 
-   /// Minimum performance improvement between two successive iterations. It is used as a stopping criterion.
+        void testCUDA(double *, double *, double *, double *, double *, const int, const int);
 
-   double minimum_performance_increase;
+    private:
 
-   /// Goal value for the performance. It is used as a stopping criterion.
+        // MEMBERS
 
-   double performance_goal;
+        /// Initial Levenberg-Marquardt parameter.
 
-   /// Goal value for the norm of the objective function gradient. It is used as a stopping criterion.
+        double damping_parameter;
 
-   double gradient_norm_goal;
+        /// Minimum Levenberg-Marquardt parameter.
 
-   /// Maximum number of iterations at which the selection performance decreases.
-   /// This is an early stopping method for improving selection.
+        double minimum_damping_parameter;
 
-   size_t maximum_selection_performance_decreases;
+        /// Maximum Levenberg-Marquardt parameter.
 
-   /// Maximum number of iterations to perform_training. It is used as a stopping criterion.
+        double maximum_damping_parameter;
 
-   size_t maximum_iterations_number;
+        /// Damping parameter increase/decrease factor.
 
-   /// Maximum training time. It is used as a stopping criterion.
+        double damping_parameter_factor;
 
-   double maximum_time;
+        /// True if the damping parameter history vector is to be reserved, false otherwise.
 
-   // TRAINING HISTORY
+        bool reserve_damping_parameter_history;
 
-   /// True if the parameters history matrix is to be reserved, false otherwise.
+        /// Vector containing the damping parameter history over the training iterations.
 
-   bool reserve_parameters_history;
+        Vector<double> damping_parameter_history;
 
-   /// True if the parameters norm history vector is to be reserved, false otherwise.
 
-   bool reserve_parameters_norm_history;
+        /// Value for the parameters norm at which a warning message is written to the screen.
 
-   /// True if the performance history vector is to be reserved, false otherwise.
+        double warning_parameters_norm;
 
-   bool reserve_performance_history;
+        /// Value for the gradient norm at which a warning message is written to the screen.
 
-   /// True if the gradient history matrix is to be reserved, false otherwise.
+        double warning_gradient_norm;
 
-   bool reserve_gradient_history;
+        /// Value for the parameters norm at which the training process is assumed to fail.
 
-   /// True if the gradient norm history vector is to be reserved, false otherwise.
+        double error_parameters_norm;
 
-   bool reserve_gradient_norm_history;
+        /// Value for the gradient norm at which the training process is assumed to fail.
 
-   /// True if the Hessian history vector of matrices is to be reserved, false otherwise.
+        double error_gradient_norm;
 
-   bool reserve_Hessian_approximation_history;
 
-   /// True if the elapsed time history vector is to be reserved, false otherwise.
+        // STOPPING CRITERIA
 
-   bool reserve_elapsed_time_history;
+        /// Norm of the parameters increment vector at which training stops.
 
-   /// True if the Selection performance history vector is to be reserved, false otherwise.
+        double minimum_parameters_increment_norm;
 
-   bool reserve_selection_performance_history;
+        /// Minimum performance improvement between two successive iterations. It is used as a stopping criterion.
 
-};
+        double minimum_performance_increase;
+
+        /// Goal value for the performance. It is used as a stopping criterion.
+
+        double performance_goal;
+
+        /// Goal value for the norm of the objective function gradient. It is used as a stopping criterion.
+
+        double gradient_norm_goal;
+
+        /// Maximum number of iterations at which the selection performance decreases.
+        /// This is an early stopping method for improving selection.
+
+        size_t maximum_selection_performance_decreases;
+
+        /// Maximum number of iterations to perform_training. It is used as a stopping criterion.
+
+        size_t maximum_iterations_number;
+
+        /// Maximum training time. It is used as a stopping criterion.
+
+        double maximum_time;
+
+        // TRAINING HISTORY
+
+        /// True if the parameters history matrix is to be reserved, false otherwise.
+
+        bool reserve_parameters_history;
+
+        /// True if the parameters norm history vector is to be reserved, false otherwise.
+
+        bool reserve_parameters_norm_history;
+
+        /// True if the performance history vector is to be reserved, false otherwise.
+
+        bool reserve_performance_history;
+
+        /// True if the gradient history matrix is to be reserved, false otherwise.
+
+        bool reserve_gradient_history;
+
+        /// True if the gradient norm history vector is to be reserved, false otherwise.
+
+        bool reserve_gradient_norm_history;
+
+        /// True if the Hessian history vector of matrices is to be reserved, false otherwise.
+
+        bool reserve_Hessian_approximation_history;
+
+        /// True if the elapsed time history vector is to be reserved, false otherwise.
+
+        bool reserve_elapsed_time_history;
+
+        /// True if the Selection performance history vector is to be reserved, false otherwise.
+
+        bool reserve_selection_performance_history;
+
+    };
 
 }
 
@@ -430,7 +454,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

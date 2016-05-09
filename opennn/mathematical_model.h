@@ -5,7 +5,7 @@
 /*                                                                                                              */
 /*   M A T H E M A T I C A L   M O D E L   C L A S S   H E A D E R                                              */
 /*                                                                                                              */
-/*   Roberto Lopez                                                                                              */ 
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -29,106 +29,108 @@
 #include "vector.h"
 #include "matrix.h"
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// 
+///
 /// This class represents the concept of mathematical model.
-/// A mathematical model is the base for learning in some types of problems, such as optimal control and inverse problems. 
-/// 
+/// A mathematical model is the base for learning in some types of problems, such as optimal control and inverse problems.
+///
 
-class MathematicalModel
-{
+    class MathematicalModel {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit MathematicalModel(void);
+        explicit MathematicalModel(void);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit MathematicalModel(const tinyxml2::XMLDocument&);
+        explicit MathematicalModel(const tinyxml2::XMLDocument &);
 
-   // FILE CONSTRUCTOR
+        // FILE CONSTRUCTOR
 
-   explicit MathematicalModel(const std::string&);
+        explicit MathematicalModel(const std::string &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   MathematicalModel(const MathematicalModel&);
+        MathematicalModel(const MathematicalModel &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~MathematicalModel(void);
+        virtual ~MathematicalModel(void);
 
-   // ASSIGNMENT OPERATOR
+        // ASSIGNMENT OPERATOR
 
-   virtual MathematicalModel& operator = (const MathematicalModel&);
+        virtual MathematicalModel &operator=(const MathematicalModel &);
 
-   // EQUAL TO OPERATOR
+        // EQUAL TO OPERATOR
 
-   virtual bool operator == (const MathematicalModel&) const;
+        virtual bool operator==(const MathematicalModel &) const;
 
-   // METHODS
+        // METHODS
 
-   // Get methods
+        // Get methods
 
-   const size_t& get_independent_variables_number(void) const;
-   const size_t& get_dependent_variables_number(void) const;
+        const size_t &get_independent_variables_number(void) const;
 
-   size_t count_variables_number(void) const;
+        const size_t &get_dependent_variables_number(void) const;
 
-   const bool& get_display(void) const;
+        size_t count_variables_number(void) const;
 
-   // Set methods
+        const bool &get_display(void) const;
 
-   void set(const MathematicalModel&);
+        // Set methods
 
-   void set_independent_variables_number(const size_t&);
-   void set_dependent_variables_number(const size_t&);
+        void set(const MathematicalModel &);
 
-   void set_display(const bool&);
+        void set_independent_variables_number(const size_t &);
 
-   virtual void set_default(void);
+        void set_dependent_variables_number(const size_t &);
 
-   // Mathematical model
+        void set_display(const bool &);
 
-   virtual Matrix<double> calculate_solutions(const NeuralNetwork&) const;
+        virtual void set_default(void);
 
-   virtual Vector<double> calculate_final_solutions(const NeuralNetwork&) const;
+        // Mathematical model
 
-   virtual Matrix<double> calculate_dependent_variables(const NeuralNetwork&, const Matrix<double>&) const;  
+        virtual Matrix<double> calculate_solutions(const NeuralNetwork &) const;
+
+        virtual Vector<double> calculate_final_solutions(const NeuralNetwork &) const;
+
+        virtual Matrix<double> calculate_dependent_variables(const NeuralNetwork &, const Matrix<double> &) const;
 
 
-   // Serialization methods
+        // Serialization methods
 
-   virtual std::string to_string(void) const;
+        virtual std::string to_string(void) const;
 
-   void print(void) const;
+        void print(void) const;
 
-   virtual tinyxml2::XMLDocument* to_XML(void) const;   
-   virtual void from_XML(const tinyxml2::XMLDocument&);
+        virtual tinyxml2::XMLDocument *to_XML(void) const;
 
-   void save(const std::string&) const;
-   void load(const std::string&);
+        virtual void from_XML(const tinyxml2::XMLDocument &);
 
-   virtual void save_data(const NeuralNetwork&, const std::string&) const;
+        void save(const std::string &) const;
 
-protected: 
+        void load(const std::string &);
 
-   /// Number of independent variables defining the mathematical model. 
+        virtual void save_data(const NeuralNetwork &, const std::string &) const;
 
-   size_t independent_variables_number;
+    protected:
 
-   /// Number of dependent variables defining the mathematical model. 
+        /// Number of independent variables defining the mathematical model.
 
-   size_t dependent_variables_number;
+        size_t independent_variables_number;
 
-   /// Flag for displaying warnings. 
+        /// Number of dependent variables defining the mathematical model.
 
-   bool display;
-};
+        size_t dependent_variables_number;
+
+        /// Flag for displaying warnings.
+
+        bool display;
+    };
 
 }
 
@@ -147,7 +149,7 @@ protected:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

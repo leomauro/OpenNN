@@ -37,110 +37,109 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 ///
 /// This concrete class represents a incremental algorithm for the order selection of a neural network.
 ///
 
-class ROCCurveOptimizationThreshold : public ThresholdSelectionAlgorithm
-{
-public:
-    // DEFAULT CONSTRUCTOR
+    class ROCCurveOptimizationThreshold : public ThresholdSelectionAlgorithm {
+    public:
+        // DEFAULT CONSTRUCTOR
 
-    explicit ROCCurveOptimizationThreshold(void);
+        explicit ROCCurveOptimizationThreshold(void);
 
-    // TRAINING STRATEGY CONSTRUCTOR
+        // TRAINING STRATEGY CONSTRUCTOR
 
-    explicit ROCCurveOptimizationThreshold(TrainingStrategy*);
+        explicit ROCCurveOptimizationThreshold(TrainingStrategy *);
 
-    // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-    explicit ROCCurveOptimizationThreshold(const tinyxml2::XMLDocument&);
+        explicit ROCCurveOptimizationThreshold(const tinyxml2::XMLDocument &);
 
-    // FILE CONSTRUCTOR
+        // FILE CONSTRUCTOR
 
-    explicit ROCCurveOptimizationThreshold(const std::string&);
+        explicit ROCCurveOptimizationThreshold(const std::string &);
 
-    // DESTRUCTOR
+        // DESTRUCTOR
 
-    virtual ~ROCCurveOptimizationThreshold(void);
+        virtual ~ROCCurveOptimizationThreshold(void);
 
 
-    // STRUCTURES
+        // STRUCTURES
 
-    ///
-    /// This structure contains the training results for the incremental order method.
-    ///
+        ///
+        /// This structure contains the training results for the incremental order method.
+        ///
 
-    struct ROCCurveOptimizationThresholdResults : public ThresholdSelectionAlgorithm::ThresholdSelectionResults
-    {
-        /// Default constructor.
+        struct ROCCurveOptimizationThresholdResults : public ThresholdSelectionAlgorithm::ThresholdSelectionResults {
+            /// Default constructor.
 
-        explicit ROCCurveOptimizationThresholdResults(void) : ThresholdSelectionAlgorithm::ThresholdSelectionResults()
-        {
-        }
+            explicit ROCCurveOptimizationThresholdResults(void)
+                    : ThresholdSelectionAlgorithm::ThresholdSelectionResults()
+            {
+            }
 
-        /// Destructor.
+            /// Destructor.
 
-        virtual ~ROCCurveOptimizationThresholdResults(void)
-        {
-        }
+            virtual ~ROCCurveOptimizationThresholdResults(void)
+            {
+            }
 
+
+        };
+
+        // METHODS
+
+        // Get methods
+
+        const double &get_minimum_threshold(void) const;
+
+        const double &get_maximum_threshold(void) const;
+
+        const double &get_step(void) const;
+
+        // Set methods
+
+        void set_default(void);
+
+        void set_minimum_threshold(const double &);
+
+        void set_maximum_threshold(const double &);
+
+        void set_step(const double &);
+
+        // Order selection methods
+
+        ROCCurveOptimizationThresholdResults *perform_threshold_selection(void);
+
+        // Serialization methods
+
+        Matrix<std::string> to_string_matrix(void) const;
+
+        tinyxml2::XMLDocument *to_XML(void) const;
+
+        void from_XML(const tinyxml2::XMLDocument &);
+
+        void save(const std::string &) const;
+
+        void load(const std::string &);
+
+    private:
+
+        /// Minimum threshold to be evaluated.
+
+        double minimum_threshold;
+
+        /// Maximum threshold to be evaluated.
+
+        double maximum_threshold;
+
+        /// Difference in the thresholds between two consecutive iterations.
+
+        double step;
 
     };
-
-    // METHODS
-
-    // Get methods
-
-    const double& get_minimum_threshold(void) const;
-
-    const double& get_maximum_threshold(void) const;
-
-    const double& get_step(void) const;
-
-    // Set methods
-
-    void set_default(void);
-
-    void set_minimum_threshold(const double&);
-
-    void set_maximum_threshold(const double&);
-
-    void set_step(const double&);
-
-    // Order selection methods
-
-    ROCCurveOptimizationThresholdResults* perform_threshold_selection(void);
-
-    // Serialization methods
-
-    Matrix<std::string> to_string_matrix(void) const;
-
-    tinyxml2::XMLDocument* to_XML(void) const;
-
-    void from_XML(const tinyxml2::XMLDocument&);
-
-    void save(const std::string&) const;
-    void load(const std::string&);
-
-private:
-
-    /// Minimum threshold to be evaluated.
-
-    double minimum_threshold;
-
-    /// Maximum threshold to be evaluated.
-
-    double maximum_threshold;
-
-    /// Difference in the thresholds between two consecutive iterations.
-
-    double step;
-
-};
 
 }
 
@@ -158,7 +157,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

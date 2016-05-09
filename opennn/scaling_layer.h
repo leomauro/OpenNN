@@ -32,176 +32,198 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 /// This class represents a layer of scaling neurons.
-/// Scaling layers are included in the definition of a neural network. 
-/// They are used to normalize variables so they are in an appropriate range for computer processing.  
+/// Scaling layers are included in the definition of a neural network.
+/// They are used to normalize variables so they are in an appropriate range for computer processing.
 
-class ScalingLayer
-{
+    class ScalingLayer {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit ScalingLayer(void);
+        explicit ScalingLayer(void);
 
-   // INPUTS NUMBER CONSTRUCTOR
+        // INPUTS NUMBER CONSTRUCTOR
 
-   explicit ScalingLayer(const size_t&);
+        explicit ScalingLayer(const size_t &);
 
-   // STATISTICS CONSTRUCTOR
+        // STATISTICS CONSTRUCTOR
 
-   explicit ScalingLayer(const Vector< Statistics<double> >&);
+        explicit ScalingLayer(const Vector<Statistics<double> > &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   ScalingLayer(const ScalingLayer&);
+        ScalingLayer(const ScalingLayer &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~ScalingLayer(void);
+        virtual ~ScalingLayer(void);
 
-   // ASSIGNMENT OPERATOR
+        // ASSIGNMENT OPERATOR
 
-   ScalingLayer& operator = (const ScalingLayer&);
+        ScalingLayer &operator=(const ScalingLayer &);
 
-   // EQUAL TO OPERATOR
+        // EQUAL TO OPERATOR
 
-   bool operator == (const ScalingLayer&) const;
+        bool operator==(const ScalingLayer &) const;
 
-   // ENUMERATIONS
+        // ENUMERATIONS
 
-   /// Enumeration of available methods for scaling the input variables.  
-   
-   enum ScalingMethod{NoScaling, MinimumMaximum, MeanStandardDeviation};
+        /// Enumeration of available methods for scaling the input variables.
 
-   // GET METHODS
+        enum ScalingMethod {
+            NoScaling, MinimumMaximum, MeanStandardDeviation
+        };
 
-   size_t get_scaling_neurons_number(void) const;
+        // GET METHODS
 
-   // Inputs statistics
+        size_t get_scaling_neurons_number(void) const;
 
-   Vector< Statistics<double> > get_statistics(void) const;
-   Statistics<double> get_statistics(const size_t&) const;
+        // Inputs statistics
 
-   Matrix<double> arrange_statistics(void) const;
+        Vector<Statistics<double> > get_statistics(void) const;
 
-   Vector<double> arrange_means(void) const;
-   Vector<double> arrange_standard_deviations(void) const;
+        Statistics<double> get_statistics(const size_t &) const;
 
-   // Variables scaling and unscaling
+        Matrix<double> arrange_statistics(void) const;
 
-   const ScalingMethod& get_scaling_method(void) const;
+        Vector<double> arrange_means(void) const;
 
-   std::string write_scaling_method(void) const;
-   std::string write_scaling_method_text(void) const;
+        Vector<double> arrange_standard_deviations(void) const;
 
-   // Display messages
+        // Variables scaling and unscaling
 
-   const bool& get_display(void) const;
+        const ScalingMethod &get_scaling_method(void) const;
 
-   // SET METHODS
+        std::string write_scaling_method(void) const;
 
-   void set(void);
-   void set(const size_t&);
-   void set(const Vector< Statistics<double> >&);
-   void set(const tinyxml2::XMLDocument&);
-   void set(const ScalingLayer&);
+        std::string write_scaling_method_text(void) const;
 
-   virtual void set_default(void);
+        // Display messages
 
-   // Statistics
+        const bool &get_display(void) const;
 
-   void set_statistics(const Vector< Statistics<double> >&);
-   void set_item_statistics(const size_t&, const Statistics<double>&);
+        // SET METHODS
 
-   void set_minimum(const size_t&, const double&);
-   void set_maximum(const size_t&, const double&);
-   void set_mean(const size_t&, const double&);
-   void set_standard_deviation(const size_t&, const double&);
+        void set(void);
 
-   // Scaling method
+        void set(const size_t &);
 
-   void set_scaling_method(const ScalingMethod&);
-   void set_scaling_method(const std::string&);
+        void set(const Vector<Statistics<double> > &);
 
-   // Display messages
+        void set(const tinyxml2::XMLDocument &);
 
-   void set_display(const bool&);
+        void set(const ScalingLayer &);
 
-   // Pruning and growing
+        virtual void set_default(void);
 
-   void grow_scaling_neuron(const Statistics<double>& new_statistics = Statistics<double>());
+        // Statistics
 
-   void prune_scaling_neuron(const size_t&);
+        void set_statistics(const Vector<Statistics<double> > &);
 
-   // Check methods
+        void set_item_statistics(const size_t &, const Statistics<double> &);
 
-   bool is_empty(void) const;
+        void set_minimum(const size_t &, const double &);
 
-   // Inputs scaling function
+        void set_maximum(const size_t &, const double &);
 
-   void initialize_random(void);
+        void set_mean(const size_t &, const double &);
 
-   void check_range(const Vector<double>&) const;
+        void set_standard_deviation(const size_t &, const double &);
 
-   Vector<double> calculate_outputs(const Vector<double>&) const;
-   Vector<double> calculate_derivatives(const Vector<double>&) const;
-   Vector<double> calculate_second_derivatives(const Vector<double>&) const;
+        // Scaling method
 
-   Vector<double> calculate_minimum_maximum_outputs(const Vector<double>&) const;
-   Vector<double> calculate_minimum_maximum_derivatives(const Vector<double>&) const;
-   Vector<double> calculate_minimum_maximum_second_derivatives(const Vector<double>&) const;
+        void set_scaling_method(const ScalingMethod &);
 
-   Vector<double> calculate_mean_standard_deviation_outputs(const Vector<double>&) const;
-   Vector<double> calculate_mean_standard_deviation_derivatives(const Vector<double>&) const;
-   Vector<double> calculate_mean_standard_deviation_second_derivatives(const Vector<double>&) const;
+        void set_scaling_method(const std::string &);
 
-   Matrix<double> arrange_Jacobian(const Vector<double>&) const;
-   Vector< Matrix<double> > arrange_Hessian_form(const Vector<double>&) const;
+        // Display messages
 
-   // Expression methods
+        void set_display(const bool &);
 
-   std::string write_no_scaling_expression(const Vector<std::string>&, const Vector<std::string>&) const;
+        // Pruning and growing
 
-   std::string write_minimum_maximum_expression(const Vector<std::string>&, const Vector<std::string>&) const;
+        void grow_scaling_neuron(const Statistics<double> &new_statistics = Statistics<double>());
 
-   std::string write_mean_standard_deviation_expression(const Vector<std::string>&, const Vector<std::string>&) const;
+        void prune_scaling_neuron(const size_t &);
 
-   std::string write_expression(const Vector<std::string>&, const Vector<std::string>&) const;
+        // Check methods
 
-   // Serialization methods
+        bool is_empty(void) const;
 
-   std::string to_string(void) const;
+        // Inputs scaling function
 
-   tinyxml2::XMLDocument* to_XML(void) const;
-   virtual void from_XML(const tinyxml2::XMLDocument&);
+        void initialize_random(void);
 
-   void write_XML(tinyxml2::XMLPrinter&);
+        void check_range(const Vector<double> &) const;
 
-   // PMML Methods
-   void to_PMML(tinyxml2::XMLElement*, const Vector<std::string>&) ;
-   void from_PMML(const tinyxml2::XMLElement*, const Vector<std::string>&);
+        Vector<double> calculate_outputs(const Vector<double> &) const;
 
-protected:
+        Vector<double> calculate_derivatives(const Vector<double> &) const;
 
-   // MEMBERS
+        Vector<double> calculate_second_derivatives(const Vector<double> &) const;
 
-   /// Statistics of input variables.
+        Vector<double> calculate_minimum_maximum_outputs(const Vector<double> &) const;
 
-   Vector< Statistics<double> > statistics;
+        Vector<double> calculate_minimum_maximum_derivatives(const Vector<double> &) const;
 
-   /// Method for scaling the input variables.
+        Vector<double> calculate_minimum_maximum_second_derivatives(const Vector<double> &) const;
 
-   ScalingMethod scaling_method;
+        Vector<double> calculate_mean_standard_deviation_outputs(const Vector<double> &) const;
 
-   /// Display warning messages to screen. 
+        Vector<double> calculate_mean_standard_deviation_derivatives(const Vector<double> &) const;
 
-   bool display;
-};
+        Vector<double> calculate_mean_standard_deviation_second_derivatives(const Vector<double> &) const;
+
+        Matrix<double> arrange_Jacobian(const Vector<double> &) const;
+
+        Vector<Matrix<double> > arrange_Hessian_form(const Vector<double> &) const;
+
+        // Expression methods
+
+        std::string write_no_scaling_expression(const Vector<std::string> &, const Vector<std::string> &) const;
+
+        std::string write_minimum_maximum_expression(const Vector<std::string> &, const Vector<std::string> &) const;
+
+        std::string write_mean_standard_deviation_expression(const Vector<std::string> &,
+                                                             const Vector<std::string> &) const;
+
+        std::string write_expression(const Vector<std::string> &, const Vector<std::string> &) const;
+
+        // Serialization methods
+
+        std::string to_string(void) const;
+
+        tinyxml2::XMLDocument *to_XML(void) const;
+
+        virtual void from_XML(const tinyxml2::XMLDocument &);
+
+        void write_XML(tinyxml2::XMLPrinter &);
+
+        // PMML Methods
+        void to_PMML(tinyxml2::XMLElement *, const Vector<std::string> &);
+
+        void from_PMML(const tinyxml2::XMLElement *, const Vector<std::string> &);
+
+    protected:
+
+        // MEMBERS
+
+        /// Statistics of input variables.
+
+        Vector<Statistics<double> > statistics;
+
+        /// Method for scaling the input variables.
+
+        ScalingMethod scaling_method;
+
+        /// Display warning messages to screen.
+
+        bool display;
+    };
 
 }
 
@@ -220,9 +242,7 @@ protected:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
-
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-

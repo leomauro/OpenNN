@@ -47,318 +47,395 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 /// This class represents the concept of neural network in the OpenNN library.
-/// A neural network here is defined as a multilayer perceptron extended with a scaling layer, an unscaling layer, 
-/// a bounding layer, a probabilistic layer, a conditions layer and a set of independent parameters. 
-/// This neural network is used to span a function space for the variational problem at hand. 
+/// A neural network here is defined as a multilayer perceptron extended with a scaling layer, an unscaling layer,
+/// a bounding layer, a probabilistic layer, a conditions layer and a set of independent parameters.
+/// This neural network is used to span a function space for the variational problem at hand.
 
-class NeuralNetwork
-{
+    class NeuralNetwork {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit NeuralNetwork(void);
+        explicit NeuralNetwork(void);
 
-   // MULTILAYER PERCEPTRON CONSTRUCTOR
+        // MULTILAYER PERCEPTRON CONSTRUCTOR
 
-   explicit NeuralNetwork(const MultilayerPerceptron&);
+        explicit NeuralNetwork(const MultilayerPerceptron &);
 
-   // MULTILAYER PERCEPTRON ARCHITECTURE CONSTRUCTOR
+        // MULTILAYER PERCEPTRON ARCHITECTURE CONSTRUCTOR
 
-   explicit NeuralNetwork(const Vector<size_t>&);
+        explicit NeuralNetwork(const Vector<size_t> &);
 
-   // ONE PERCEPTRON LAYER CONSTRUCTOR 
+        // ONE PERCEPTRON LAYER CONSTRUCTOR
 
-   explicit NeuralNetwork(const size_t&, const size_t&);
+        explicit NeuralNetwork(const size_t &, const size_t &);
 
-   // TWO PERCEPTRON LAYERS CONSTRUCTOR 
+        // TWO PERCEPTRON LAYERS CONSTRUCTOR
 
-   explicit NeuralNetwork(const size_t&, const size_t&, const size_t&);
+        explicit NeuralNetwork(const size_t &, const size_t &, const size_t &);
 
-   // INDEPENDENT PARAMETERS CONSTRUCTOR
+        // INDEPENDENT PARAMETERS CONSTRUCTOR
 
-   //explicit NeuralNetwork(const IndependentParameters&);
+        //explicit NeuralNetwork(const IndependentParameters&);
 
-   // INDEPENDENT PARAMETERS NUMBER CONSTRUCTOR
+        // INDEPENDENT PARAMETERS NUMBER CONSTRUCTOR
 
-   explicit NeuralNetwork(const size_t&);
+        explicit NeuralNetwork(const size_t &);
 
-   // MULTILAYER PERCEPTRON AND INDEPENDENT PARAMETERS CONSTRUCTOR
+        // MULTILAYER PERCEPTRON AND INDEPENDENT PARAMETERS CONSTRUCTOR
 
-   //explicit NeuralNetwork(const MultilayerPerceptron&, const IndependentParameters&);
+        //explicit NeuralNetwork(const MultilayerPerceptron&, const IndependentParameters&);
 
-   // MULTILAYER PERCEPTRON ARCHITECTURE AND INDEPENDENT PARAMETERS NUMBER CONSTRUCTOR
+        // MULTILAYER PERCEPTRON ARCHITECTURE AND INDEPENDENT PARAMETERS NUMBER CONSTRUCTOR
 
-   //explicit NeuralNetwork(const Vector<size_t>&, const size_t&);
+        //explicit NeuralNetwork(const Vector<size_t>&, const size_t&);
 
-   // FILE CONSTRUCTOR
+        // FILE CONSTRUCTOR
 
-   explicit NeuralNetwork(const std::string&);
+        explicit NeuralNetwork(const std::string &);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit NeuralNetwork(const tinyxml2::XMLDocument&);
+        explicit NeuralNetwork(const tinyxml2::XMLDocument &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   NeuralNetwork(const NeuralNetwork&);
+        NeuralNetwork(const NeuralNetwork &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~NeuralNetwork(void);
+        virtual ~NeuralNetwork(void);
 
-   // ASSIGNMENT OPERATOR
+        // ASSIGNMENT OPERATOR
 
-   NeuralNetwork& operator = (const NeuralNetwork&);
+        NeuralNetwork &operator=(const NeuralNetwork &);
 
-   // EQUAL TO OPERATOR
+        // EQUAL TO OPERATOR
 
-   bool operator == (const NeuralNetwork&) const;
+        bool operator==(const NeuralNetwork &) const;
 
 
-   // GET METHODS
+        // GET METHODS
 
-   bool has_multilayer_perceptron(void) const;
-   bool has_inputs(void) const;
-   bool has_outputs(void) const;
-   bool has_scaling_layer(void) const;
-   bool has_principal_components_layer(void) const;
-   bool has_unscaling_layer(void) const;
-   bool has_bounding_layer(void) const;
-   bool has_probabilistic_layer(void) const;
-   bool has_conditions_layer(void) const;
-   bool has_independent_parameters(void) const;
+        bool has_multilayer_perceptron(void) const;
 
-   MultilayerPerceptron* get_multilayer_perceptron_pointer(void) const;
-   Inputs* get_inputs_pointer(void) const;
-   Outputs* get_outputs_pointer(void) const;
-   ScalingLayer* get_scaling_layer_pointer(void) const;
-   PrincipalComponentsLayer* get_principal_components_layer_pointer(void) const;
-   UnscalingLayer* get_unscaling_layer_pointer(void) const;   
-   BoundingLayer* get_bounding_layer_pointer(void) const;
-   ProbabilisticLayer* get_probabilistic_layer_pointer(void) const;
-   ConditionsLayer* get_conditions_layer_pointer(void) const;
-   IndependentParameters* get_independent_parameters_pointer(void) const;
+        bool has_inputs(void) const;
 
-   const bool& get_display(void) const;
+        bool has_outputs(void) const;
 
-   // SET METHODS
+        bool has_scaling_layer(void) const;
 
-   void set(void);
+        bool has_principal_components_layer(void) const;
 
-   void set(const MultilayerPerceptron&);
-   void set(const Vector<size_t>&);
-   void set(const size_t&, const size_t&);
-   void set(const size_t&, const size_t&, const size_t&);
+        bool has_unscaling_layer(void) const;
+
+        bool has_bounding_layer(void) const;
+
+        bool has_probabilistic_layer(void) const;
+
+        bool has_conditions_layer(void) const;
+
+        bool has_independent_parameters(void) const;
+
+        MultilayerPerceptron *get_multilayer_perceptron_pointer(void) const;
+
+        Inputs *get_inputs_pointer(void) const;
+
+        Outputs *get_outputs_pointer(void) const;
+
+        ScalingLayer *get_scaling_layer_pointer(void) const;
+
+        PrincipalComponentsLayer *get_principal_components_layer_pointer(void) const;
+
+        UnscalingLayer *get_unscaling_layer_pointer(void) const;
+
+        BoundingLayer *get_bounding_layer_pointer(void) const;
+
+        ProbabilisticLayer *get_probabilistic_layer_pointer(void) const;
+
+        ConditionsLayer *get_conditions_layer_pointer(void) const;
+
+        IndependentParameters *get_independent_parameters_pointer(void) const;
+
+        const bool &get_display(void) const;
+
+        // SET METHODS
+
+        void set(void);
+
+        void set(const MultilayerPerceptron &);
+
+        void set(const Vector<size_t> &);
+
+        void set(const size_t &, const size_t &);
+
+        void set(const size_t &, const size_t &, const size_t &);
 
 //   void set(const IndependentParameters&);
-   void set(const size_t&);
+        void set(const size_t &);
 
-   void set(const std::string&);
-   void set(const NeuralNetwork&);
+        void set(const std::string &);
 
-   virtual void set_default(void);
+        void set(const NeuralNetwork &);
 
-   void set_multilayer_perceptron_pointer(MultilayerPerceptron*);
-   void set_scaling_layer_pointer(ScalingLayer*);
-   void set_principal_components_layer_pointer(PrincipalComponentsLayer*);
-   void set_unscaling_layer_pointer(UnscalingLayer*);
-   void set_bounding_layer_pointer(BoundingLayer*);
-   void set_probabilistic_layer_pointer(ProbabilisticLayer*);
-   void set_conditions_layer_pointer(ConditionsLayer*);
-   void set_inputs_pointer(Inputs*);
-   void set_outputs_pointer(Outputs*);
-   void set_independent_parameters_pointer(IndependentParameters*);
+        virtual void set_default(void);
 
-   void set_scaling_layer(ScalingLayer&);
+        void set_multilayer_perceptron_pointer(MultilayerPerceptron *);
 
-   void set_display(const bool&);
+        void set_scaling_layer_pointer(ScalingLayer *);
 
-   // Growing and pruning
+        void set_principal_components_layer_pointer(PrincipalComponentsLayer *);
 
-   void grow_input(const Statistics<double>& new_statistics = Statistics<double>());
+        void set_unscaling_layer_pointer(UnscalingLayer *);
 
-   void prune_input(const size_t&);
-   void prune_output(const size_t&);
+        void set_bounding_layer_pointer(BoundingLayer *);
 
-   void resize_inputs_number(const size_t&);
-   void resize_outputs_number(const size_t&);
+        void set_probabilistic_layer_pointer(ProbabilisticLayer *);
 
-   // Pointer methods
+        void set_conditions_layer_pointer(ConditionsLayer *);
 
-   void construct_multilayer_perceptron(void);
-   void construct_scaling_layer(void);
-   void construct_principal_components_layer(void);
-   void construct_unscaling_layer(void);
-   void construct_bounding_layer(void);
-   void construct_probabilistic_layer(void);
-   void construct_conditions_layer(void);
-   void construct_inputs(void);
-   void construct_outputs(void);
-   void construct_independent_parameters(void);
+        void set_inputs_pointer(Inputs *);
 
-   void destruct_multilayer_perceptron(void);
-   void destruct_scaling_layer(void);
-   void destruct_unscaling_layer(void);
-   void destruct_bounding_layer(void);
-   void destruct_probabilistic_layer(void);
-   void destruct_conditions_layer(void);
-   void destruct_inputs(void);
-   void destruct_outputs(void);
-   void destruct_independent_parameters(void);
+        void set_outputs_pointer(Outputs *);
 
-   void delete_pointers(void);
+        void set_independent_parameters_pointer(IndependentParameters *);
 
-   // Initialization methods
+        void set_scaling_layer(ScalingLayer &);
 
-   void initialize_random(void);
+        void set_display(const bool &);
 
-   // Layers 
+        // Growing and pruning
 
-   size_t get_layers_number(void);
+        void grow_input(const Statistics<double> &new_statistics = Statistics<double>());
 
-   // Architecture
+        void prune_input(const size_t &);
 
-   size_t get_inputs_number(void) const;
-   size_t get_outputs_number(void) const;
+        void prune_output(const size_t &);
 
-   Vector<size_t> arrange_architecture(void) const;
+        void resize_inputs_number(const size_t &);
 
-   // Parameters
+        void resize_outputs_number(const size_t &);
 
-   size_t count_parameters_number(void) const;
-   Vector<double> arrange_parameters(void) const;      
+        // Pointer methods
 
-   void set_parameters(const Vector<double>&);
+        void construct_multilayer_perceptron(void);
 
-   // Parameters initialization methods
+        void construct_scaling_layer(void);
 
-   void initialize_parameters(const double&);
+        void construct_principal_components_layer(void);
 
-   void randomize_parameters_uniform(void);
-   void randomize_parameters_uniform(const double&, const double&);
-   void randomize_parameters_uniform(const Vector<double>&, const Vector<double>&);
-   void randomize_parameters_uniform(const Vector< Vector<double> >&);
+        void construct_unscaling_layer(void);
 
-   void randomize_parameters_normal(void);
-   void randomize_parameters_normal(const double&, const double&);
-   void randomize_parameters_normal(const Vector<double>&, const Vector<double>&);
-   void randomize_parameters_normal(const Vector< Vector<double> >&);
+        void construct_bounding_layer(void);
 
-   // Parameters
+        void construct_probabilistic_layer(void);
 
-   double calculate_parameters_norm(void) const;
-   Statistics<double> calculate_parameters_statistics(void) const;
-   Histogram<double> calculate_parameters_histogram(const size_t& = 10) const;
+        void construct_conditions_layer(void);
 
-   void perturbate_parameters(const double&);
+        void construct_inputs(void);
 
-   // Output 
+        void construct_outputs(void);
 
-   Vector<double> calculate_outputs(const Vector<double>&) const;
-   Matrix<double> calculate_Jacobian(const Vector<double>&) const;
-   Vector< Matrix<double> > calculate_Hessian_form(const Vector<double>&) const;
+        void construct_independent_parameters(void);
 
-   Matrix<double> calculate_directional_input_data(const size_t&, const Vector<double>&, const double&, const double&, const size_t& = 101) const;
+        void destruct_multilayer_perceptron(void);
 
-   Vector<double> calculate_outputs(const Vector<double>&, const Vector<double>&) const;
-   Matrix<double> calculate_Jacobian(const Vector<double>&, const Vector<double>&) const;
-   Vector< Matrix<double> > calculate_Hessian_form(const Vector<double>&, const Vector<double>&) const;
+        void destruct_scaling_layer(void);
 
-   Matrix<double> calculate_output_data(const Matrix<double>&) const;
-   Matrix<double> calculate_output_data_missing_values(const Matrix<double>&/*, const double& missing_values_flag = -123.456*/) const;
+        void destruct_unscaling_layer(void);
 
-   Vector< Matrix<double> > calculate_Jacobian_data(const Matrix<double>&) const;
+        void destruct_bounding_layer(void);
 
-   Vector< Histogram<double> > calculate_outputs_histograms(const size_t& = 1000, const size_t& = 10) const;
-   Vector< Histogram<double> > calculate_outputs_histograms(const Matrix<double>&, const size_t& = 10) const;
+        void destruct_probabilistic_layer(void);
 
+        void destruct_conditions_layer(void);
 
-   // Serialization methods
+        void destruct_inputs(void);
 
-   std::string to_string(void) const;
- 
-   virtual tinyxml2::XMLDocument* to_XML(void) const;
-   virtual void from_XML(const tinyxml2::XMLDocument&);
+        void destruct_outputs(void);
 
-   void print(void) const;
-   void save(const std::string&) const;
-   void save_parameters(const std::string&) const;
+        void destruct_independent_parameters(void);
 
-   virtual void load(const std::string&);
-   void load_parameters(const std::string&);
+        void delete_pointers(void);
 
-   void save_data(const std::string&) const;
+        // Initialization methods
 
-   // Expression methods
+        void initialize_random(void);
 
-   std::string write_expression(void) const;
-   std::string write_expression_python(void) const;
-   std::string write_expression_R(void) const;
+        // Layers
 
-   void save_expression(const std::string&);
-   void save_expression_python(const std::string&);
-   void save_expression_R(const std::string&);
+        size_t get_layers_number(void);
 
-   // PMML methods
+        // Architecture
 
-   virtual tinyxml2::XMLDocument* to_PMML(void) const;
-   virtual void from_PMML(const tinyxml2::XMLDocument&);
+        size_t get_inputs_number(void) const;
 
+        size_t get_outputs_number(void) const;
 
-protected:
+        Vector<size_t> arrange_architecture(void) const;
 
-   // MEMBERS
+        // Parameters
 
-   /// Pointer to a multilayer perceptron object.
+        size_t count_parameters_number(void) const;
 
-   MultilayerPerceptron* multilayer_perceptron_pointer;
+        Vector<double> arrange_parameters(void) const;
 
-   /// Pointer to a scaling layer object.
+        void set_parameters(const Vector<double> &);
 
-   ScalingLayer* scaling_layer_pointer;
+        // Parameters initialization methods
 
-   /// Pointer to a principal components layer object.
+        void initialize_parameters(const double &);
 
-   PrincipalComponentsLayer* principal_components_layer_pointer;
+        void randomize_parameters_uniform(void);
 
-   /// Pointer to an unscaling layer object.
+        void randomize_parameters_uniform(const double &, const double &);
 
-   UnscalingLayer* unscaling_layer_pointer;
+        void randomize_parameters_uniform(const Vector<double> &, const Vector<double> &);
 
-   /// Pointer to a bounding layer object.
+        void randomize_parameters_uniform(const Vector<Vector<double> > &);
 
-   BoundingLayer* bounding_layer_pointer;
+        void randomize_parameters_normal(void);
 
-   /// Pointer to a probabilistic layer.
+        void randomize_parameters_normal(const double &, const double &);
 
-   ProbabilisticLayer* probabilistic_layer_pointer;
+        void randomize_parameters_normal(const Vector<double> &, const Vector<double> &);
 
-   /// Pointer to a conditions object.
+        void randomize_parameters_normal(const Vector<Vector<double> > &);
 
-   ConditionsLayer* conditions_layer_pointer;
+        // Parameters
 
-   /// Pointer to an inputs object.
+        double calculate_parameters_norm(void) const;
 
-   Inputs* inputs_pointer;
+        Statistics<double> calculate_parameters_statistics(void) const;
 
-   /// Pointer to an outputs object.
+        Histogram<double> calculate_parameters_histogram(const size_t & = 10) const;
 
-   Outputs* outputs_pointer;
+        void perturbate_parameters(const double &);
 
-   /// Pointer to an independent parameters object
+        // Output
 
-   IndependentParameters* independent_parameters_pointer;
+        Vector<double> calculate_outputs(const Vector<double> &) const;
 
-   /// Display messages to screen. 
+        Matrix<double> calculate_Jacobian(const Vector<double> &) const;
 
-   bool display;
-};
+        Vector<Matrix<double> > calculate_Hessian_form(const Vector<double> &) const;
+
+        Matrix<double> calculate_directional_input_data(const size_t &,
+                                                        const Vector<double> &,
+                                                        const double &,
+                                                        const double &,
+                                                        const size_t & = 101) const;
+
+        Vector<double> calculate_outputs(const Vector<double> &, const Vector<double> &) const;
+
+        Matrix<double> calculate_Jacobian(const Vector<double> &, const Vector<double> &) const;
+
+        Vector<Matrix<double> > calculate_Hessian_form(const Vector<double> &, const Vector<double> &) const;
+
+        Matrix<double> calculate_output_data(const Matrix<double> &) const;
+
+        Matrix<double> calculate_output_data_missing_values(const Matrix<double> &/*, const double& missing_values_flag = -123.456*/) const;
+
+        Vector<Matrix<double> > calculate_Jacobian_data(const Matrix<double> &) const;
+
+        Vector<Histogram<double> > calculate_outputs_histograms(const size_t & = 1000, const size_t & = 10) const;
+
+        Vector<Histogram<double> > calculate_outputs_histograms(const Matrix<double> &, const size_t & = 10) const;
+
+
+        // Serialization methods
+
+        std::string to_string(void) const;
+
+        virtual tinyxml2::XMLDocument *to_XML(void) const;
+
+        virtual void from_XML(const tinyxml2::XMLDocument &);
+
+        void print(void) const;
+
+        void save(const std::string &) const;
+
+        void save_parameters(const std::string &) const;
+
+        virtual void load(const std::string &);
+
+        void load_parameters(const std::string &);
+
+        void save_data(const std::string &) const;
+
+        // Expression methods
+
+        std::string write_expression(void) const;
+
+        std::string write_expression_python(void) const;
+
+        std::string write_expression_R(void) const;
+
+        void save_expression(const std::string &);
+
+        void save_expression_python(const std::string &);
+
+        void save_expression_R(const std::string &);
+
+        // PMML methods
+
+        virtual tinyxml2::XMLDocument *to_PMML(void) const;
+
+        virtual void from_PMML(const tinyxml2::XMLDocument &);
+
+
+    protected:
+
+        // MEMBERS
+
+        /// Pointer to a multilayer perceptron object.
+
+        MultilayerPerceptron *multilayer_perceptron_pointer;
+
+        /// Pointer to a scaling layer object.
+
+        ScalingLayer *scaling_layer_pointer;
+
+        /// Pointer to a principal components layer object.
+
+        PrincipalComponentsLayer *principal_components_layer_pointer;
+
+        /// Pointer to an unscaling layer object.
+
+        UnscalingLayer *unscaling_layer_pointer;
+
+        /// Pointer to a bounding layer object.
+
+        BoundingLayer *bounding_layer_pointer;
+
+        /// Pointer to a probabilistic layer.
+
+        ProbabilisticLayer *probabilistic_layer_pointer;
+
+        /// Pointer to a conditions object.
+
+        ConditionsLayer *conditions_layer_pointer;
+
+        /// Pointer to an inputs object.
+
+        Inputs *inputs_pointer;
+
+        /// Pointer to an outputs object.
+
+        Outputs *outputs_pointer;
+
+        /// Pointer to an independent parameters object
+
+        IndependentParameters *independent_parameters_pointer;
+
+        /// Display messages to screen.
+
+        bool display;
+    };
 
 }
 
@@ -377,9 +454,7 @@ protected:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
-
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-

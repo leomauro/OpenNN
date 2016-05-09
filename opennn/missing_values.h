@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   M I S S I N G   V A L U E S   C L A S S   H E A D E R                                                      */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -37,216 +37,225 @@
 #include <tinyxml2.h>
 
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 /// Missing values are those elements which are not present in the data set."
 /// Therefore, they represent a lack of information about several variables in several instances.;
 /// This class is used to store information about the missing values of a data set.
 
-class MissingValues
-{
+    class MissingValues {
 
-public:  
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit MissingValues(void);
+        explicit MissingValues(void);
 
-   // MISSING VALUES NUMBER CONSTRUCTOR
+        // MISSING VALUES NUMBER CONSTRUCTOR
 
-   explicit MissingValues(const size_t&, const size_t&);
+        explicit MissingValues(const size_t &, const size_t &);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit MissingValues(const tinyxml2::XMLDocument&);
+        explicit MissingValues(const tinyxml2::XMLDocument &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   MissingValues(const MissingValues&);
-
-
-   // DESTRUCTOR
-
-   virtual ~MissingValues(void);
-
-   // ASSIGNMENT OPERATOR
-
-   MissingValues& operator = (const MissingValues&);
-
-   // EQUAL TO OPERATOR
-
-   bool operator == (const MissingValues&) const;
+        MissingValues(const MissingValues &);
 
 
-   // ENUMERATIONS
+        // DESTRUCTOR
 
-   /// Enumeration of available activation functions for the perceptron neuron model.
+        virtual ~MissingValues(void);
 
-   enum ScrubbingMethod{Unuse, Mean, NoScrubbing};
+        // ASSIGNMENT OPERATOR
 
-   // STRUCTURES
+        MissingValues &operator=(const MissingValues &);
 
-   ///
-   /// This structure contains the information of a single missing value,
-   /// which is defined by its instance and variable indices.
-   ///
+        // EQUAL TO OPERATOR
 
-   struct Item
-   {
-       /// Default constructor.
-
-       Item(void)
-       {
-       }
-
-       /// Indices constructor.
-
-       Item(const size_t& new_instance_index, const size_t& new_variable_index)
-       {
-           //std::cout << instances_number;
+        bool operator==(const MissingValues &) const;
 
 
-           instance_index = new_instance_index;
-           variable_index = new_variable_index;
-       }
+        // ENUMERATIONS
 
-       /// Destructor.
+        /// Enumeration of available activation functions for the perceptron neuron model.
 
-       virtual ~Item(void)
-       {
-       }
+        enum ScrubbingMethod {
+            Unuse, Mean, NoScrubbing
+        };
 
-       /// Returns true if this item is equal to another item.
-       /// other_item Other item to be compared with.
+        // STRUCTURES
 
-       bool operator == (const Item& other_item) const
-       {
-            if(other_item.instance_index == instance_index && other_item.variable_index == variable_index)
+        ///
+        /// This structure contains the information of a single missing value,
+        /// which is defined by its instance and variable indices.
+        ///
+
+        struct Item {
+            /// Default constructor.
+
+            Item(void)
             {
-                return(true);
             }
-            else
+
+            /// Indices constructor.
+
+            Item(const size_t &new_instance_index, const size_t &new_variable_index)
             {
-                return(false);
+                //std::cout << instances_number;
+
+
+                instance_index = new_instance_index;
+                variable_index = new_variable_index;
             }
-       }
 
-       /// Row index for missing value.
+            /// Destructor.
 
-       size_t instance_index;
+            virtual ~Item(void)
+            {
+            }
 
-       /// Column index for missing value.
+            /// Returns true if this item is equal to another item.
+            /// other_item Other item to be compared with.
 
-       size_t variable_index;
-   };
+            bool operator==(const Item &other_item) const
+            {
+                if (other_item.instance_index == instance_index && other_item.variable_index == variable_index) {
+                    return (true);
+                }
+                else {
+                    return (false);
+                }
+            }
+
+            /// Row index for missing value.
+
+            size_t instance_index;
+
+            /// Column index for missing value.
+
+            size_t variable_index;
+        };
 
 
-   // METHODS
+        // METHODS
 
-   size_t get_instances_number(void) const;
+        size_t get_instances_number(void) const;
 
-   size_t get_variables_number(void) const;
+        size_t get_variables_number(void) const;
 
 
-   /// Returns the number of missing values in the data set.
+        /// Returns the number of missing values in the data set.
 
-   inline size_t get_missing_values_number(void) const
-   {
-      return(items.size());
-   }
+        inline size_t get_missing_values_number(void) const
+        {
+            return (items.size());
+        }
 
-   Vector<size_t> get_missing_values_numbers(void) const;
+        Vector<size_t> get_missing_values_numbers(void) const;
 
-   const Vector<Item>& get_items(void) const;
-   const Item& get_item(const size_t&) const;
+        const Vector<Item> &get_items(void) const;
 
-   ScrubbingMethod get_scrubbing_method(void) const;
+        const Item &get_item(const size_t &) const;
 
-   std::string write_scrubbing_method(void) const;
-   std::string write_scrubbing_method_text(void) const;
+        ScrubbingMethod get_scrubbing_method(void) const;
 
-   const bool& get_display(void) const;
+        std::string write_scrubbing_method(void) const;
 
-   // Set methods
+        std::string write_scrubbing_method_text(void) const;
 
-   void set(void);
-   void set(const size_t&, const size_t&);
-   void set(const tinyxml2::XMLDocument&);
+        const bool &get_display(void) const;
 
-   void set_instances_number(const size_t&);
-   void set_variables_number(const size_t&);
+        // Set methods
 
-   void set_default(void);
+        void set(void);
 
-   void set_missing_values_number(const size_t&);
+        void set(const size_t &, const size_t &);
 
-   void set_scrubbing_method(const ScrubbingMethod&);
-   void set_scrubbing_method(const std::string&);
+        void set(const tinyxml2::XMLDocument &);
 
-   // Missing values methods
+        void set_instances_number(const size_t &);
 
-   void set_display(const bool&);
+        void set_variables_number(const size_t &);
 
-   void set_items(const Vector<Item>&);
-   void set_item(const size_t&, const size_t&, const size_t&);
+        void set_default(void);
 
-   void append(const size_t&, const size_t&);
+        void set_missing_values_number(const size_t &);
 
-   bool has_missing_values(void) const;
-   bool has_missing_values(const size_t&) const;
-   bool has_missing_values(const size_t&, const Vector<size_t>&) const;
+        void set_scrubbing_method(const ScrubbingMethod &);
 
-   bool is_missing_value(const size_t&, const size_t&) const;
+        void set_scrubbing_method(const std::string &);
 
-   Vector<size_t> arrange_missing_instances(void) const;
+        // Missing values methods
 
-   size_t count_missing_instances(void) const;
+        void set_display(const bool &);
 
-   Vector<size_t> arrange_missing_variables(void) const;
+        void set_items(const Vector<Item> &);
 
-   Vector< Vector<size_t> > arrange_missing_indices(void) const;
+        void set_item(const size_t &, const size_t &, const size_t &);
 
-   void convert_time_series(const size_t&);
-   void convert_autoassociation(void);
+        void append(const size_t &, const size_t &);
 
-   // Serialization methods
+        bool has_missing_values(void) const;
 
-   std::string to_string(void) const;
+        bool has_missing_values(const size_t &) const;
 
-   void print(void) const;
+        bool has_missing_values(const size_t &, const Vector<size_t> &) const;
 
-   tinyxml2::XMLDocument* to_XML(void) const;
-   void from_XML(const tinyxml2::XMLDocument&);
+        bool is_missing_value(const size_t &, const size_t &) const;
 
-private:
+        Vector<size_t> arrange_missing_instances(void) const;
 
-   // MEMBERS
+        size_t count_missing_instances(void) const;
 
-   /// Number of instances.
+        Vector<size_t> arrange_missing_variables(void) const;
 
-   size_t instances_number;
+        Vector<Vector<size_t> > arrange_missing_indices(void) const;
 
-   /// Number of variables.
+        void convert_time_series(const size_t &);
 
-   size_t variables_number;
+        void convert_autoassociation(void);
 
-   /// Method for handling missing values.
+        // Serialization methods
 
-   ScrubbingMethod scrubbing_method;
+        std::string to_string(void) const;
 
-   /// Missing values.
+        void print(void) const;
 
-   Vector<Item> items;
+        tinyxml2::XMLDocument *to_XML(void) const;
 
-   /// Display messages to screen.
-   
-   bool display;
-};
+        void from_XML(const tinyxml2::XMLDocument &);
+
+    private:
+
+        // MEMBERS
+
+        /// Number of instances.
+
+        size_t instances_number;
+
+        /// Number of variables.
+
+        size_t variables_number;
+
+        /// Method for handling missing values.
+
+        ScrubbingMethod scrubbing_method;
+
+        /// Missing values.
+
+        Vector<Item> items;
+
+        /// Display messages to screen.
+
+        bool display;
+    };
 
 }
 
 #endif
+
 
 // OpenNN: Open Neural Networks Library.
 // Copyright (c) 2005-2016 Roberto Lopez.
@@ -260,7 +269,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

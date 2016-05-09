@@ -31,78 +31,80 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class represents the neural parameters norm performance term. 
+/// This class represents the neural parameters norm performance term.
 /// This performance term is very useful as a regularization functional in data modeling, optimal control or inverse problems.
 
-class NeuralParametersNorm : public PerformanceTerm
-{
+    class NeuralParametersNorm : public PerformanceTerm {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit NeuralParametersNorm(void);
+        explicit NeuralParametersNorm(void);
 
-   // NEURAL NETWORK CONSTRUCTOR
+        // NEURAL NETWORK CONSTRUCTOR
 
-   explicit NeuralParametersNorm(NeuralNetwork*);
+        explicit NeuralParametersNorm(NeuralNetwork *);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit NeuralParametersNorm(const tinyxml2::XMLDocument&);
+        explicit NeuralParametersNorm(const tinyxml2::XMLDocument &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~NeuralParametersNorm(void);    
+        virtual ~NeuralParametersNorm(void);
 
-   // METHODS
+        // METHODS
 
-   // Get methods
+        // Get methods
 
-   const double& get_neural_parameters_norm_weight(void) const;
+        const double &get_neural_parameters_norm_weight(void) const;
 
-   // Set methods
+        // Set methods
 
-   void set_neural_parameters_norm_weight(const double&);
+        void set_neural_parameters_norm_weight(const double &);
 
-   void set_default(void);
+        void set_default(void);
 
-   // Checking methods
+        // Checking methods
 
-   void check(void) const;
+        void check(void) const;
 
-   // performance methods
+        // performance methods
 
-   double calculate_performance(void) const;   
-   Vector<double> calculate_gradient(void) const;
-   Matrix<double> calculate_Hessian(void) const;
+        double calculate_performance(void) const;
 
-   double calculate_performance(const Vector<double>&) const;
-   Vector<double> calculate_gradient(const Vector<double>&) const;
-   Matrix<double> calculate_Hessian(const Vector<double>&) const;
+        Vector<double> calculate_gradient(void) const;
+
+        Matrix<double> calculate_Hessian(void) const;
+
+        double calculate_performance(const Vector<double> &) const;
+
+        Vector<double> calculate_gradient(const Vector<double> &) const;
+
+        Matrix<double> calculate_Hessian(const Vector<double> &) const;
 
 //   double calculate_selection_performance(void) const;
 
-   std::string write_performance_term_type(void) const;
+        std::string write_performance_term_type(void) const;
 
-   std::string write_information(void) const;
+        std::string write_information(void) const;
 
-   // Serialization methods
+        // Serialization methods
 
-   tinyxml2::XMLDocument* to_XML(void) const;   
+        tinyxml2::XMLDocument *to_XML(void) const;
 
-   void from_XML(const tinyxml2::XMLDocument&);
+        void from_XML(const tinyxml2::XMLDocument &);
 
-private:
+    private:
 
-   /// Weight value for the neural parameters norm regularization term.
+        /// Weight value for the neural parameters norm regularization term.
 
-   double neural_parameters_norm_weight;
+        double neural_parameters_norm_weight;
 
-};
+    };
 
 }
 
@@ -121,7 +123,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

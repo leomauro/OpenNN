@@ -32,103 +32,106 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class represents the sum squared peformance term functional. 
-/// This is used as the performance term in data modeling problems, such as function regression, 
+/// This class represents the sum squared peformance term functional.
+/// This is used as the performance term in data modeling problems, such as function regression,
 /// pattern recognition or time series prediction.
 
-class SumSquaredError : public PerformanceTerm
-{
+    class SumSquaredError : public PerformanceTerm {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit SumSquaredError(void);
+        explicit SumSquaredError(void);
 
-   // NEURAL NETWORK CONSTRUCTOR
+        // NEURAL NETWORK CONSTRUCTOR
 
-   explicit SumSquaredError(NeuralNetwork*);
+        explicit SumSquaredError(NeuralNetwork *);
 
-   // DATA SET CONSTRUCTOR
+        // DATA SET CONSTRUCTOR
 
-   explicit SumSquaredError(DataSet*);
+        explicit SumSquaredError(DataSet *);
 
-   // GENERAL CONSTRUCTOR
+        // GENERAL CONSTRUCTOR
 
-   explicit SumSquaredError(NeuralNetwork*, DataSet*);
+        explicit SumSquaredError(NeuralNetwork *, DataSet *);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit SumSquaredError(const tinyxml2::XMLDocument&);
+        explicit SumSquaredError(const tinyxml2::XMLDocument &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   SumSquaredError(const SumSquaredError&);
+        SumSquaredError(const SumSquaredError &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~SumSquaredError(void);    
+        virtual ~SumSquaredError(void);
 
-   // METHODS
+        // METHODS
 
-   // Get methods
+        // Get methods
 
-   // Set methods
+        // Set methods
 
-   // Checking methods
+        // Checking methods
 
-   void check(void) const;
+        void check(void) const;
 
-   // performance methods
+        // performance methods
 
-   double calculate_performance(void) const;   
+        double calculate_performance(void) const;
 
-   double calculate_selection_performance(void) const;
+        double calculate_selection_performance(void) const;
 
-   Vector<double> calculate_output_gradient(const Vector<double>&, const Vector<double>&) const;
+        Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
 
-   Vector<double> calculate_gradient(void) const;
+        Vector<double> calculate_gradient(void) const;
 
-   Matrix<double> calculate_Hessian(void) const;
+        Matrix<double> calculate_Hessian(void) const;
 
-   Matrix<double> calculate_single_hidden_layer_Hessian(void) const;
+        Matrix<double> calculate_single_hidden_layer_Hessian(void) const;
 
-   double calculate_performance(const Vector<double>&) const;
+        double calculate_performance(const Vector<double> &) const;
 
-   double calculate_performance_combination(const size_t&, const Vector<double>&) const;
-   double calculate_performance_combinations(const size_t&, const Vector<double>&, const size_t&, const Vector<double>&) const;
+        double calculate_performance_combination(const size_t &, const Vector<double> &) const;
 
-   Vector<double> calculate_gradient(const Vector<double>&) const;
+        double calculate_performance_combinations(const size_t &,
+                                                  const Vector<double> &,
+                                                  const size_t &,
+                                                  const Vector<double> &) const;
 
-   Matrix<double> calculate_output_Hessian(const Vector<double>&, const Vector<double>&) const;
+        Vector<double> calculate_gradient(const Vector<double> &) const;
 
-   Matrix<double> calculate_Hessian(const Vector<double>&) const;
+        Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
 
-   // Objective terms methods
+        Matrix<double> calculate_Hessian(const Vector<double> &) const;
 
-   Vector<double> calculate_terms(void) const;
-   Vector<double> calculate_terms(const Vector<double>&) const;
+        // Objective terms methods
 
-   Matrix<double> calculate_terms_Jacobian(void) const;
+        Vector<double> calculate_terms(void) const;
 
-   PerformanceTerm::FirstOrderTerms calculate_first_order_terms(void) const;
+        Vector<double> calculate_terms(const Vector<double> &) const;
 
-   // Squared errors methods
+        Matrix<double> calculate_terms_Jacobian(void) const;
 
-   Vector<double> calculate_squared_errors(void) const;
+        PerformanceTerm::FirstOrderTerms calculate_first_order_terms(void) const;
 
-   std::string write_performance_term_type(void) const;
+        // Squared errors methods
 
-   // Serialization methods
+        Vector<double> calculate_squared_errors(void) const;
 
-   tinyxml2::XMLDocument* to_XML(void) const;   
+        std::string write_performance_term_type(void) const;
 
-   void from_XML(const tinyxml2::XMLDocument&);
+        // Serialization methods
 
-};
+        tinyxml2::XMLDocument *to_XML(void) const;
+
+        void from_XML(const tinyxml2::XMLDocument &);
+
+    };
 
 }
 
@@ -147,7 +150,7 @@ public:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

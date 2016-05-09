@@ -1,14 +1,14 @@
 /****************************************************************************************************************/
-/*                                                                                                              */ 
+/*                                                                                                              */
 /*   OpenNN: Open Neural Networks Library                                                                       */
 /*   www.artelnics.com/opennn                                                                                   */
 /*                                                                                                              */
 /*   I R I S   P L A N T   A P P L I C A T I O N                                                                */
 /*                                                                                                              */
-/*   Roberto Lopez                                                                                              */ 
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
-/*                                                                                                              */  
+/*                                                                                                              */
 /****************************************************************************************************************/
 
 // This is a classical pattern recognition problem.
@@ -18,161 +18,130 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <string>
 #include <cstring>
-#include <time.h>
 
 // OpenNN includes
 
-#include "../../opennn/opennn.h"
+#include "opennn.h"
 
 using namespace OpenNN;
 
 int main(void)
 {
-   try
-   {
-      std::cout << "OpenNN. Iris Plant Application." << std::endl;	
+    try {
+        std::cout << "OpenNN. Iris Plant Application." << std::endl;
+        srand((unsigned) time(NULL));
 
-      srand((unsigned)time(NULL));
+        // Data set
 
-      // Data set 
-  
-      DataSet data_set;
+        DataSet data_set;
+        data_set.set_data_file_name("data/iris_plant.dat");
+        data_set.set_separator("Space");
+        data_set.load_data();
 
-      data_set.set_data_file_name("../data/iris_plant.dat");
+        // Variables
 
-      data_set.set_separator("Space");
+        Variables *variables_pointer = data_set.get_variables_pointer();
+        variables_pointer->set_name(0, "sepal_length");
+        variables_pointer->set_units(0, "centimeters");
+        variables_pointer->set_use(0, Variables::Input);
+        variables_pointer->set_name(1, "sepal_width");
+        variables_pointer->set_units(1, "centimeters");
+        variables_pointer->set_use(1, Variables::Input);
+        variables_pointer->set_name(2, "petal_length");
+        variables_pointer->set_units(2, "centimeters");
+        variables_pointer->set_use(2, Variables::Input);
+        variables_pointer->set_name(3, "petal_width");
+        variables_pointer->set_units(3, "centimeters");
+        variables_pointer->set_use(3, Variables::Input);
+        variables_pointer->set_name(4, "iris_setosa");
+        variables_pointer->set_use(4, Variables::Target);
+        variables_pointer->set_name(5, "iris_versicolour");
+        variables_pointer->set_use(5, Variables::Target);
+        variables_pointer->set_name(6, "iris_virginica");
+        variables_pointer->set_use(6, Variables::Target);
 
-      data_set.load_data();
+        const Matrix<std::string> inputs_information = variables_pointer->arrange_inputs_information();
+        const Matrix<std::string> targets_information = variables_pointer->arrange_targets_information();
 
-      // Variables
+        // Instances
 
-      Variables* variables_pointer = data_set.get_variables_pointer(); 
+        Instances *instances_pointer = data_set.get_instances_pointer();
+        instances_pointer->split_random_indices();
 
-      variables_pointer->set_name(0, "sepal_length");
-      variables_pointer->set_units(0, "centimeters");
-      variables_pointer->set_use(0, Variables::Input);
+        const Vector<Statistics<double> > inputs_statistics = data_set.scale_inputs_minimum_maximum();
 
-      variables_pointer->set_name(1, "sepal_width");
-      variables_pointer->set_units(1, "centimeters");
-      variables_pointer->set_use(1, Variables::Input);
+        // Neural network
 
-      variables_pointer->set_name(2, "petal_length");
-      variables_pointer->set_units(2, "centimeters");
-      variables_pointer->set_use(2, Variables::Input);
+        NeuralNetwork neural_network(4, 6, 3);
 
-      variables_pointer->set_name(3, "petal_width");
-      variables_pointer->set_units(3, "centimeters");
-      variables_pointer->set_use(3, Variables::Input);
+        Inputs *inputs_pointer = neural_network.get_inputs_pointer();
+        inputs_pointer->set_information(inputs_information);
 
-      variables_pointer->set_name(4, "iris_setosa");
-      variables_pointer->set_use(4, Variables::Target);
+        Outputs *outputs_pointer = neural_network.get_outputs_pointer();
+        outputs_pointer->set_information(targets_information);
 
-      variables_pointer->set_name(5, "iris_versicolour");
-      variables_pointer->set_use(5, Variables::Target);
+        neural_network.construct_scaling_layer();
+        ScalingLayer *scaling_layer_pointer = neural_network.get_scaling_layer_pointer();
+        scaling_layer_pointer->set_statistics(inputs_statistics);
+        scaling_layer_pointer->set_scaling_method(ScalingLayer::NoScaling);
 
-      variables_pointer->set_name(6, "iris_virginica");
-      variables_pointer->set_use(6, Variables::Target);
+        neural_network.construct_probabilistic_layer();
+        ProbabilisticLayer *probabilistic_layer_pointer = neural_network.get_probabilistic_layer_pointer();
+        probabilistic_layer_pointer->set_probabilistic_method(ProbabilisticLayer::Softmax);
 
-      const Matrix<std::string> inputs_information = variables_pointer->arrange_inputs_information();
-      const Matrix<std::string> targets_information = variables_pointer->arrange_targets_information();
+        // Performance functional
 
-	  // Instances 
-    
-      Instances* instances_pointer = data_set.get_instances_pointer(); 
+        PerformanceFunctional performance_functional(&neural_network, &data_set);
 
-      instances_pointer->split_random_indices();
-   
-      const Vector< Statistics<double> > inputs_statistics = data_set.scale_inputs_minimum_maximum();
+        // Training strategy
 
-      // Neural network
+        TrainingStrategy training_strategy(&performance_functional);
+        training_strategy.set_main_type(TrainingStrategy::QUASI_NEWTON_METHOD);
 
-      NeuralNetwork neural_network(4, 6, 3);
+        QuasiNewtonMethod *quasi_Newton_method_pointer = training_strategy.get_quasi_Newton_method_pointer();
+        quasi_Newton_method_pointer->set_minimum_performance_increase(1.0e-6);
+        quasi_Newton_method_pointer->set_display(false);
 
-      Inputs* inputs_pointer = neural_network.get_inputs_pointer();
+        // Model selection
 
-      inputs_pointer->set_information(inputs_information);
+        ModelSelection model_selection(&training_strategy);
+        model_selection.set_order_selection_type(ModelSelection::GOLDEN_SECTION);
 
-      Outputs* outputs_pointer = neural_network.get_outputs_pointer();
+        GoldenSectionOrder *golden_section_order_pointer = model_selection.get_golden_section_order_pointer();
+        golden_section_order_pointer->set_tolerance(1.0e-7);
 
-      outputs_pointer->set_information(targets_information);
+        ModelSelection::ModelSelectionResults model_selection_results;
+        model_selection_results = model_selection.perform_order_selection();
 
-      neural_network.construct_scaling_layer();
+        // Testing analysis
 
-	  ScalingLayer* scaling_layer_pointer = neural_network.get_scaling_layer_pointer();
+        TestingAnalysis testing_analysis(&neural_network, &data_set);
+        const Matrix<size_t> confusion = testing_analysis.calculate_confusion();
 
-      scaling_layer_pointer->set_statistics(inputs_statistics);
+        // Save results
 
-      scaling_layer_pointer->set_scaling_method(ScalingLayer::NoScaling);
+        scaling_layer_pointer->set_scaling_method(ScalingLayer::MinimumMaximum);
 
-      neural_network.construct_probabilistic_layer();
+        data_set.save("data/data_set.xml");
 
-      ProbabilisticLayer* probabilistic_layer_pointer = neural_network.get_probabilistic_layer_pointer();
+        neural_network.save("data/neural_network.xml");
+        neural_network.save_expression("data/expression.txt");
 
-      probabilistic_layer_pointer->set_probabilistic_method(ProbabilisticLayer::Softmax);
+        training_strategy.save("data/training_strategy.xml");
 
-      // Performance functional
+        model_selection.save("data/model_selection.xml");
+        model_selection_results.save("data/model_selection_results.dat");
 
-      PerformanceFunctional performance_functional(&neural_network, &data_set);
+        confusion.save("data/confusion.dat");
 
-      // Training strategy
-
-      TrainingStrategy training_strategy(&performance_functional);
-
-      training_strategy.set_main_type(TrainingStrategy::QUASI_NEWTON_METHOD);
-
-      QuasiNewtonMethod* quasi_Newton_method_pointer = training_strategy.get_quasi_Newton_method_pointer();
-
-      quasi_Newton_method_pointer->set_minimum_performance_increase(1.0e-6);
-
-      quasi_Newton_method_pointer->set_display(false);
-
-      // Model selection
-
-      ModelSelection model_selection(&training_strategy);
-
-      model_selection.set_order_selection_type(ModelSelection::GOLDEN_SECTION);
-
-      GoldenSectionOrder* golden_section_order_pointer = model_selection.get_golden_section_order_pointer();
-
-      golden_section_order_pointer->set_tolerance(1.0e-7);
-
-      ModelSelection::ModelSelectionResults model_selection_results;
-
-      model_selection_results = model_selection.perform_order_selection();
-
-      // Testing analysis
-
-      TestingAnalysis testing_analysis(&neural_network, &data_set);
-
-      const Matrix<size_t> confusion = testing_analysis.calculate_confusion();
-
-      // Save results
-
-      scaling_layer_pointer->set_scaling_method(ScalingLayer::MinimumMaximum);
-
-      data_set.save("../data/data_set.xml");
-
-      neural_network.save("../data/neural_network.xml");
-      neural_network.save_expression("../data/expression.txt");
-
-      training_strategy.save("../data/training_strategy.xml");
-
-      model_selection.save("../data/model_selection.xml");
-      model_selection_results.save("../data/model_selection_results.dat");
-
-      confusion.save("../data/confusion.dat");
-
-      return(0);
-   }
-   catch(std::exception& e)
-   {
-      std::cout << e.what() << std::endl;
-
-      return(1);
-   }
-}  
+        return 0;
+    }
+    catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+        return 1;
+    }
+}
 
 
 // OpenNN: Open Neural Networks Library.
@@ -187,7 +156,7 @@ int main(void)
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

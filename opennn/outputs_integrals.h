@@ -32,86 +32,88 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class represents the outputs integrals performance term. 
+/// This class represents the outputs integrals performance term.
 /// It is defined as the weighted sum of the integrals of the neural network outputs.
-/// The neural network here must have only one input. 
-/// This performance term might be used in optimal control as an objective or a regularization terms. 
+/// The neural network here must have only one input.
+/// This performance term might be used in optimal control as an objective or a regularization terms.
 
-class OutputsIntegrals : public PerformanceTerm
-{
+    class OutputsIntegrals : public PerformanceTerm {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit OutputsIntegrals(void);
+        explicit OutputsIntegrals(void);
 
-   // NEURAL NETWORK CONSTRUCTOR
+        // NEURAL NETWORK CONSTRUCTOR
 
-   explicit OutputsIntegrals(NeuralNetwork*);
+        explicit OutputsIntegrals(NeuralNetwork *);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit OutputsIntegrals(const tinyxml2::XMLDocument&);
+        explicit OutputsIntegrals(const tinyxml2::XMLDocument &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~OutputsIntegrals(void);    
+        virtual ~OutputsIntegrals(void);
 
-   // METHODS
+        // METHODS
 
-   // Get methods
+        // Get methods
 
-   const NumericalIntegration& get_numerical_integration(void) const;
-   NumericalIntegration* get_numerical_integration_pointer(void);
+        const NumericalIntegration &get_numerical_integration(void) const;
 
-   const Vector<double>& get_outputs_integrals_weights(void) const;
-   const double& get_output_integral_weight(const size_t&) const;
+        NumericalIntegration *get_numerical_integration_pointer(void);
 
-   // Set methods
+        const Vector<double> &get_outputs_integrals_weights(void) const;
 
-   void set_numerical_integration(const NumericalIntegration&);
+        const double &get_output_integral_weight(const size_t &) const;
 
-   void set_outputs_integrals_weights(const Vector<double>&);
-   void set_output_integral_weight(const size_t&, const double&);
+        // Set methods
 
-   void set_default(void);
+        void set_numerical_integration(const NumericalIntegration &);
 
-   // Checking methods
+        void set_outputs_integrals_weights(const Vector<double> &);
 
-   void check(void) const;
+        void set_output_integral_weight(const size_t &, const double &);
 
-   // Regularization methods
+        void set_default(void);
 
-   double calculate_performance(void) const;   
-   double calculate_performance(const Vector<double>&) const;
+        // Checking methods
 
-   Vector<double> calculate_gradient(void) const;
+        void check(void) const;
 
-   Matrix<double> calculate_Hessian(void) const;
+        // Regularization methods
 
-   std::string write_performance_term_type(void) const;
+        double calculate_performance(void) const;
 
-   // Serialization methods
+        double calculate_performance(const Vector<double> &) const;
 
-   tinyxml2::XMLDocument* to_XML(void) const;   
+        Vector<double> calculate_gradient(void) const;
 
-   void from_XML(const tinyxml2::XMLDocument&);
+        Matrix<double> calculate_Hessian(void) const;
 
-private:
+        std::string write_performance_term_type(void) const;
 
-   /// Object for numerical integration of functions. 
+        // Serialization methods
 
-   NumericalIntegration numerical_integration;
+        tinyxml2::XMLDocument *to_XML(void) const;
 
-   /// Weigth for each output integral. 
+        void from_XML(const tinyxml2::XMLDocument &);
 
-   Vector<double> outputs_integrals_weights;
+    private:
 
-};
+        /// Object for numerical integration of functions.
+
+        NumericalIntegration numerical_integration;
+
+        /// Weigth for each output integral.
+
+        Vector<double> outputs_integrals_weights;
+
+    };
 
 }
 
@@ -130,7 +132,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

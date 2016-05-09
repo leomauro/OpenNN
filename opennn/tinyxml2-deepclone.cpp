@@ -16,7 +16,7 @@ namespace tinyxml2 {
             XMLNode *newNode2 = child->ShallowClone(DocDest);
             DeepClone(newNode2, child, DocDest, nodeSrc);
             newNode->InsertFirstChild(newNode2);
-            for (;;) {
+            for (; ;) {
                 XMLNode *lastClone = newNode2;
                 const XMLNode *child2 = child->NextSibling();
                 if (!child2) {

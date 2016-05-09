@@ -29,85 +29,90 @@
 
 #include "performance_term.h"
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class represents the concept of sum squared error for inverse problems. 
-/// It measures the difference between the outputs from a mathematical model and the targets in a data set. 
+/// This class represents the concept of sum squared error for inverse problems.
+/// It measures the difference between the outputs from a mathematical model and the targets in a data set.
 /// This performance term is used in inverse problems.
 
-class InverseSumSquaredError : public PerformanceTerm
-{
+    class InverseSumSquaredError : public PerformanceTerm {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit InverseSumSquaredError(void);
+        explicit InverseSumSquaredError(void);
 
-   // NEURAL NETWORK CONSTRUCTOR
+        // NEURAL NETWORK CONSTRUCTOR
 
-   explicit InverseSumSquaredError(NeuralNetwork*);
+        explicit InverseSumSquaredError(NeuralNetwork *);
 
-   // NEURAL NETWORK, MATHEMATICAL MODEL AND DATA SET CONSTRUCTOR
+        // NEURAL NETWORK, MATHEMATICAL MODEL AND DATA SET CONSTRUCTOR
 
-   explicit InverseSumSquaredError(NeuralNetwork*, MathematicalModel*, DataSet*);
+        explicit InverseSumSquaredError(NeuralNetwork *, MathematicalModel *, DataSet *);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit InverseSumSquaredError(const tinyxml2::XMLDocument&);
+        explicit InverseSumSquaredError(const tinyxml2::XMLDocument &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~InverseSumSquaredError(void);    
+        virtual ~InverseSumSquaredError(void);
 
-   // ENUMERATIONS
+        // ENUMERATIONS
 
-   /// Enumeration of the different methods for putting the unknowns into the mathematical model. 
+        /// Enumeration of the different methods for putting the unknowns into the mathematical model.
 
-   enum UnknownsMethod{LookUpTable, IndependentParametersValues};
+        enum UnknownsMethod {
+            LookUpTable, IndependentParametersValues
+        };
 
-   // STRUCTURES
+        // STRUCTURES
 
-   // METHODS
+        // METHODS
 
-   // Get methods
+        // Get methods
 
-   const UnknownsMethod& get_unknowns_method(void) const;
-   std::string write_unknowns_method(void) const;
+        const UnknownsMethod &get_unknowns_method(void) const;
 
-   // Set methods
+        std::string write_unknowns_method(void) const;
 
-   void set_unknowns_method(const UnknownsMethod&);
-   void set_unknowns_method(const std::string&);
+        // Set methods
 
-   void set_default(void);
+        void set_unknowns_method(const UnknownsMethod &);
 
-   // Checking methods
+        void set_unknowns_method(const std::string &);
 
-   void check(void) const;
+        void set_default(void);
 
-   // Objective methods
+        // Checking methods
 
-   double calculate_performance(void) const;   
-   double calculate_performance(const Vector<double>&) const;
-   double calculate_selection_performance(void) const;
+        void check(void) const;
 
-   std::string write_performance_term_type(void) const;
+        // Objective methods
 
-   // Serialization methods
+        double calculate_performance(void) const;
 
-   tinyxml2::XMLDocument* to_XML(void) const;   
-   void from_XML(const tinyxml2::XMLDocument&);   
+        double calculate_performance(const Vector<double> &) const;
 
-private:
+        double calculate_selection_performance(void) const;
 
-   // MEMBERS
+        std::string write_performance_term_type(void) const;
 
-   /// Variable containing the method for putting the unknowns into the mathematical model. 
+        // Serialization methods
 
-   UnknownsMethod unknowns_method;
-};
+        tinyxml2::XMLDocument *to_XML(void) const;
+
+        void from_XML(const tinyxml2::XMLDocument &);
+
+    private:
+
+        // MEMBERS
+
+        /// Variable containing the method for putting the unknowns into the mathematical model.
+
+        UnknownsMethod unknowns_method;
+    };
 
 }
 
@@ -126,7 +131,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

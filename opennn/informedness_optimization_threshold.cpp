@@ -22,11 +22,11 @@ namespace OpenNN {
 
 /// Default constructor.
 
-InformednessOptimizationThreshold::InformednessOptimizationThreshold(void)
-    : ThresholdSelectionAlgorithm()
-{
-    set_default();
-}
+    InformednessOptimizationThreshold::InformednessOptimizationThreshold(void)
+            : ThresholdSelectionAlgorithm()
+    {
+        set_default();
+    }
 
 
 // TRAINING STRATEGY CONSTRUCTOR
@@ -34,33 +34,33 @@ InformednessOptimizationThreshold::InformednessOptimizationThreshold(void)
 /// Training strategy constructor.
 /// @param new_training_strategy_pointer Pointer to a training strategy object.
 
-InformednessOptimizationThreshold::InformednessOptimizationThreshold(TrainingStrategy* new_training_strategy_pointer)
-    : ThresholdSelectionAlgorithm(new_training_strategy_pointer)
-{
-    set_default();
-}
+    InformednessOptimizationThreshold::InformednessOptimizationThreshold(TrainingStrategy *new_training_strategy_pointer)
+            : ThresholdSelectionAlgorithm(new_training_strategy_pointer)
+    {
+        set_default();
+    }
 
 // XML CONSTRUCTOR
 
 /// XML constructor.
 /// @param incremental_order_document Pointer to a TinyXML document containing the incremental order data.
 
-InformednessOptimizationThreshold::InformednessOptimizationThreshold(const tinyxml2::XMLDocument& incremental_order_document)
-    : ThresholdSelectionAlgorithm(incremental_order_document)
-{
-    from_XML(incremental_order_document);
-}
+    InformednessOptimizationThreshold::InformednessOptimizationThreshold(const tinyxml2::XMLDocument &incremental_order_document)
+            : ThresholdSelectionAlgorithm(incremental_order_document)
+    {
+        from_XML(incremental_order_document);
+    }
 
 // FILE CONSTRUCTOR
 
 /// File constructor.
 /// @param file_name Name of XML incremental order file.
 
-InformednessOptimizationThreshold::InformednessOptimizationThreshold(const std::string& file_name)
-    : ThresholdSelectionAlgorithm(file_name)
-{
-    load(file_name);
-}
+    InformednessOptimizationThreshold::InformednessOptimizationThreshold(const std::string &file_name)
+            : ThresholdSelectionAlgorithm(file_name)
+    {
+        load(file_name);
+    }
 
 
 
@@ -68,9 +68,9 @@ InformednessOptimizationThreshold::InformednessOptimizationThreshold(const std::
 
 /// Destructor.
 
-InformednessOptimizationThreshold::~InformednessOptimizationThreshold(void)
-{
-}
+    InformednessOptimizationThreshold::~InformednessOptimizationThreshold(void)
+    {
+    }
 
 // METHODS
 
@@ -79,30 +79,30 @@ InformednessOptimizationThreshold::~InformednessOptimizationThreshold(void)
 
 /// Returns the step for the sucesive iterations of the algorithm.
 
-const double& InformednessOptimizationThreshold::get_step(void) const
-{
-    return(step);
-}
+    const double &InformednessOptimizationThreshold::get_step(void) const
+    {
+        return (step);
+    }
 
 // const size_t& get_maximum_selection_failures(void) const method
 
 /// Returns the maximum number of selection failures in the model order selection algorithm.
 
-const size_t& InformednessOptimizationThreshold::get_maximum_selection_failures(void) const
-{
-    return(maximum_selection_failures);
-}
+    const size_t &InformednessOptimizationThreshold::get_maximum_selection_failures(void) const
+    {
+        return (maximum_selection_failures);
+    }
 
 // void set_default(void) method
 
 /// Sets the members of the model selection object to their default values:
 
-void InformednessOptimizationThreshold::set_default(void)
-{
-    step = 0.001;
+    void InformednessOptimizationThreshold::set_default(void)
+    {
+        step = 0.001;
 
-    maximum_selection_failures = 10;
-}
+        maximum_selection_failures = 10;
+    }
 
 
 // void set_step(const double&) method
@@ -110,232 +110,222 @@ void InformednessOptimizationThreshold::set_default(void)
 /// Sets the step between two iterations of the threshold selection algotihm.
 /// @param new_step Difference of threshold between two consecutive iterations.
 
-void InformednessOptimizationThreshold::set_step(const double& new_step)
-{
+    void InformednessOptimizationThreshold::set_step(const double &new_step)
+    {
 #ifdef __OPENNN_DEBUG__
 
-    if(new_step <= 0 || new_step >= 1)
-    {
-        std::ostringstream buffer;
+        if(new_step <= 0 || new_step >= 1)
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: InformednessOptimizationThreshold class.\n"
-               << "void set_step(const double&) method.\n"
-               << "Step must be between 0 and 1.\n";
+            buffer << "OpenNN Exception: InformednessOptimizationThreshold class.\n"
+                   << "void set_step(const double&) method.\n"
+                   << "Step must be between 0 and 1.\n";
 
-        throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
-    step = new_step;
-}
+        step = new_step;
+    }
 
 // void set_maximum_selection_failures(const size_t&) method
 
 /// Sets the maximum selection failures for the Incremental order selection algorithm.
 /// @param new_maximum_performance_failures Maximum number of selection failures in the Incremental order selection algorithm.
 
-void InformednessOptimizationThreshold::set_maximum_selection_failures(const size_t& new_maximum_performance_failures)
-{
+    void InformednessOptimizationThreshold::set_maximum_selection_failures(const size_t &new_maximum_performance_failures)
+    {
 #ifdef __OPENNN_DEBUG__
 
-    if(new_maximum_performance_failures <= 0)
-    {
-        std::ostringstream buffer;
+        if(new_maximum_performance_failures <= 0)
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: InformednessOptimizationThreshold class.\n"
-               << "void set_maximum_selection_failures(const size_t&) method.\n"
-               << "Maximum selection failures must be greater than 0.\n";
+            buffer << "OpenNN Exception: InformednessOptimizationThreshold class.\n"
+                   << "void set_maximum_selection_failures(const size_t&) method.\n"
+                   << "Maximum selection failures must be greater than 0.\n";
 
-        throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
-    maximum_selection_failures = new_maximum_performance_failures;
-}
+        maximum_selection_failures = new_maximum_performance_failures;
+    }
 
 // InformednessOptimizationThresholdResults* perform_order_selection(void) method
 
 /// Perform the decision threshold selection optimizing the informedness.
 
-InformednessOptimizationThreshold::InformednessOptimizationThresholdResults* InformednessOptimizationThreshold::perform_threshold_selection(void)
-{
+    InformednessOptimizationThreshold::InformednessOptimizationThresholdResults *InformednessOptimizationThreshold::perform_threshold_selection(
+            void)
+    {
 #ifdef __OPENNN_DEBUG__
 
-    check();
+        check();
 
 #endif
 
-    InformednessOptimizationThresholdResults* results = new InformednessOptimizationThresholdResults();
+        InformednessOptimizationThresholdResults *results = new InformednessOptimizationThresholdResults();
 
-    const PerformanceFunctional* performance_functional_pointer = training_strategy_pointer->get_performance_functional_pointer();
+        const PerformanceFunctional *performance_functional_pointer = training_strategy_pointer->get_performance_functional_pointer();
 
-    NeuralNetwork* neural_network_pointer = performance_functional_pointer->get_neural_network_pointer();
+        NeuralNetwork *neural_network_pointer = performance_functional_pointer->get_neural_network_pointer();
 
-    double current_threshold = step;
+        double current_threshold = step;
 
-    Matrix<size_t> current_confusion;
+        Matrix<size_t> current_confusion;
 
-    Vector<double> current_binary_classification_test;
+        Vector<double> current_binary_classification_test;
 
-    double current_informedness;
+        double current_informedness;
 
-    double optimum_threshold;
+        double optimum_threshold;
 
-    Vector<double> optimal_binary_classification_test(15,1);
+        Vector<double> optimal_binary_classification_test(15, 1);
 
-    double optimum_informedness = 0.0;
+        double optimum_informedness = 0.0;
 
-    size_t iterations = 0;
+        size_t iterations = 0;
 
-    bool end = false;
+        bool end = false;
 
-    while (!end)
-    {
-        current_confusion = calculate_confusion(current_threshold);
-        current_binary_classification_test = calculate_binary_classification_test(current_confusion);
+        while (!end) {
+            current_confusion = calculate_confusion(current_threshold);
+            current_binary_classification_test = calculate_binary_classification_test(current_confusion);
 
-        current_informedness = current_binary_classification_test[13];
+            current_informedness = current_binary_classification_test[13];
 
-        results->threshold_data.push_back(current_threshold);
+            results->threshold_data.push_back(current_threshold);
 
-        if(reserve_binary_classification_tests_data)
-        {
-            results->binary_classification_test_data.push_back(current_binary_classification_test);
-        }
-
-        if (current_informedness > optimum_informedness ||
-            (current_informedness == optimum_informedness && current_binary_classification_test[1] < optimal_binary_classification_test[1]))
-        {
-            optimum_informedness = current_informedness;
-            optimum_threshold = current_threshold;
-            optimal_binary_classification_test.set(current_binary_classification_test);
-        }
-
-        iterations++;
-
-        if (current_confusion(0,1) == 0 && current_confusion(1,0) == 0)
-        {
-            end = true;
-
-            if(display)
-            {
-                std::cout << "Perfect confusion matrix reached." << std::endl;
+            if (reserve_binary_classification_tests_data) {
+                results->binary_classification_test_data.push_back(current_binary_classification_test);
             }
 
-            results->stopping_condition = ThresholdSelectionAlgorithm::PerfectConfusionMatrix;
-        }else if (current_threshold == 1)
-        {
-            end = true;
-
-            if(display)
-            {
-                std::cout << "Algorithm finished \n";
+            if (current_informedness > optimum_informedness ||
+                (current_informedness == optimum_informedness && current_binary_classification_test[1] < optimal_binary_classification_test[1])) {
+                optimum_informedness = current_informedness;
+                optimum_threshold = current_threshold;
+                optimal_binary_classification_test.set(current_binary_classification_test);
             }
 
-            results->stopping_condition = ThresholdSelectionAlgorithm::AlgorithmFinished;
-        }else if (iterations >= maximum_iterations_number)
-        {
-            end = true;
+            iterations++;
 
-            if(display)
-            {
-                std::cout << "Maximum number of iterations reached." << std::endl;
+            if (current_confusion(0, 1) == 0 && current_confusion(1, 0) == 0) {
+                end = true;
+
+                if (display) {
+                    std::cout << "Perfect confusion matrix reached." << std::endl;
+                }
+
+                results->stopping_condition = ThresholdSelectionAlgorithm::PerfectConfusionMatrix;
+            } else if (current_threshold == 1) {
+                end = true;
+
+                if (display) {
+                    std::cout << "Algorithm finished \n";
+                }
+
+                results->stopping_condition = ThresholdSelectionAlgorithm::AlgorithmFinished;
+            } else if (iterations >= maximum_iterations_number) {
+                end = true;
+
+                if (display) {
+                    std::cout << "Maximum number of iterations reached." << std::endl;
+                }
+
+                results->stopping_condition = ThresholdSelectionAlgorithm::MaximumIterations;
             }
 
-            results->stopping_condition = ThresholdSelectionAlgorithm::MaximumIterations;
+            if (display) {
+                std::cout << "Iteration: " << iterations << std::endl;
+                std::cout << "Current threshold: " << current_threshold << std::endl;
+                std::cout << "Current error: " << current_binary_classification_test[1] << std::endl;
+                std::cout << "Current sensitivity: " << current_binary_classification_test[2] << std::endl;
+                std::cout << "Current specifity: " << current_binary_classification_test[3] << std::endl;
+                std::cout << "Current Informedness: " << current_binary_classification_test[13] << std::endl;
+                std::cout << "Confusion matrix: " << std::endl
+                << current_confusion << std::endl;
+                std::cout << std::endl;
+            }
+
+            current_threshold = fmin(1, current_threshold + step);
+
         }
 
-        if (display)
-        {
-            std::cout << "Iteration: " << iterations << std::endl;
-            std::cout << "Current threshold: " << current_threshold << std::endl;
-            std::cout << "Current error: " << current_binary_classification_test[1] << std::endl;
-            std::cout << "Current sensitivity: " << current_binary_classification_test[2] << std::endl;
-            std::cout << "Current specifity: " << current_binary_classification_test[3] << std::endl;
-            std::cout << "Current Informedness: " << current_binary_classification_test[13] << std::endl;
-            std::cout << "Confusion matrix: " << std::endl
-                      << current_confusion << std::endl;
-            std::cout << std::endl;
+        if (display) {
+            std::cout << "Optimum threshold: " << optimum_threshold << std::endl;
+            std::cout << "Optimal error: " << optimal_binary_classification_test[1] << std::endl;
         }
 
-        current_threshold = fmin(1, current_threshold + step);
+        results->iterations_number = iterations;
+        results->final_threshold = optimum_threshold;
+        results->final_binary_classification_test = optimal_binary_classification_test;
 
+        neural_network_pointer->get_probabilistic_layer_pointer()->set_decision_threshold(optimum_threshold);
+
+        return (results);
     }
-
-    if (display)
-    {
-        std::cout << "Optimum threshold: " << optimum_threshold << std::endl;
-        std::cout << "Optimal error: " << optimal_binary_classification_test[1] << std::endl;
-    }
-
-    results->iterations_number = iterations;
-    results->final_threshold = optimum_threshold;
-    results->final_binary_classification_test = optimal_binary_classification_test;
-
-    neural_network_pointer->get_probabilistic_layer_pointer()->set_decision_threshold(optimum_threshold);
-
-    return(results);
-}
 
 // Matrix<std::string> to_string_matrix(void) const method
 
 // the most representative
 
-Matrix<std::string> InformednessOptimizationThreshold::to_string_matrix(void) const
-{
-    std::ostringstream buffer;
+    Matrix<std::string> InformednessOptimizationThreshold::to_string_matrix(void) const
+    {
+        std::ostringstream buffer;
 
-    Vector<std::string> labels;
-    Vector<std::string> values;
+        Vector<std::string> labels;
+        Vector<std::string> values;
 
-   // Step
+        // Step
 
-   labels.push_back("Step");
+        labels.push_back("Step");
 
-   buffer.str("");
-   buffer << step;
+        buffer.str("");
+        buffer << step;
 
-   values.push_back(buffer.str());
+        values.push_back(buffer.str());
 
-   // Maximum selection failures
+        // Maximum selection failures
 
-   labels.push_back("Maximum selection failures");
+        labels.push_back("Maximum selection failures");
 
-   buffer.str("");
-   buffer << maximum_selection_failures;
+        buffer.str("");
+        buffer << maximum_selection_failures;
 
-   values.push_back(buffer.str());
+        values.push_back(buffer.str());
 
-   // Maximum iterations number
+        // Maximum iterations number
 
-   labels.push_back("Maximum iterations number");
+        labels.push_back("Maximum iterations number");
 
-   buffer.str("");
-   buffer << maximum_iterations_number;
+        buffer.str("");
+        buffer << maximum_iterations_number;
 
-   values.push_back(buffer.str());
+        values.push_back(buffer.str());
 
-   // Maximum time
+        // Maximum time
 
-   labels.push_back("Maximum time");
+        labels.push_back("Maximum time");
 
-   buffer.str("");
-   buffer << maximum_time;
+        buffer.str("");
+        buffer << maximum_time;
 
-   values.push_back(buffer.str());
+        values.push_back(buffer.str());
 
-   const size_t rows_number = labels.size();
-   const size_t columns_number = 2;
+        const size_t rows_number = labels.size();
+        const size_t columns_number = 2;
 
-   Matrix<std::string> string_matrix(rows_number, columns_number);
+        Matrix<std::string> string_matrix(rows_number, columns_number);
 
-   string_matrix.set_column(0, labels);
-   string_matrix.set_column(1, values);
+        string_matrix.set_column(0, labels);
+        string_matrix.set_column(1, values);
 
-    return(string_matrix);
-}
+        return (string_matrix);
+    }
 
 
 // tinyxml2::XMLDocument* to_XML(void) const method
@@ -343,34 +333,34 @@ Matrix<std::string> InformednessOptimizationThreshold::to_string_matrix(void) co
 /// Prints to the screen the incremental order parameters, the stopping criteria
 /// and other user stuff concerning the incremental order object.
 
-tinyxml2::XMLDocument* InformednessOptimizationThreshold::to_XML(void) const
-{
-   std::ostringstream buffer;
+    tinyxml2::XMLDocument *InformednessOptimizationThreshold::to_XML(void) const
+    {
+        std::ostringstream buffer;
 
-   tinyxml2::XMLDocument* document = new tinyxml2::XMLDocument;
+        tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
 
-   // Order Selection algorithm
+        // Order Selection algorithm
 
-   tinyxml2::XMLElement* root_element = document->NewElement("InformednessOptimizationThreshold");
+        tinyxml2::XMLElement *root_element = document->NewElement("InformednessOptimizationThreshold");
 
-   document->InsertFirstChild(root_element);
+        document->InsertFirstChild(root_element);
 
-   tinyxml2::XMLElement* element = NULL;
-   tinyxml2::XMLText* text = NULL;
+        tinyxml2::XMLElement *element = NULL;
+        tinyxml2::XMLText *text = NULL;
 
-   // Step
-   {
-   element = document->NewElement("Step");
-   root_element->LinkEndChild(element);
+        // Step
+        {
+            element = document->NewElement("Step");
+            root_element->LinkEndChild(element);
 
-   buffer.str("");
-   buffer << step;
+            buffer.str("");
+            buffer << step;
 
-   text = document->NewText(buffer.str().c_str());
-   element->LinkEndChild(text);
-   }
+            text = document->NewText(buffer.str().c_str());
+            element->LinkEndChild(text);
+        }
 
-   // Performance calculation method
+        // Performance calculation method
 //   {
 //   element = document->NewElement("PerformanceCalculationMethod");
 //   root_element->LinkEndChild(element);
@@ -379,7 +369,7 @@ tinyxml2::XMLDocument* InformednessOptimizationThreshold::to_XML(void) const
 //   element->LinkEndChild(text);
 //   }
 
-   // Reserve parameters data
+        // Reserve parameters data
 //   {
 //   element = document->NewElement("ReserveParametersData");
 //   root_element->LinkEndChild(element);
@@ -391,7 +381,7 @@ tinyxml2::XMLDocument* InformednessOptimizationThreshold::to_XML(void) const
 //   element->LinkEndChild(text);
 //   }
 
-   // Reserve minimal parameters
+        // Reserve minimal parameters
 //   {
 //   element = document->NewElement("ReserveMinimalParameters");
 //   root_element->LinkEndChild(element);
@@ -403,7 +393,7 @@ tinyxml2::XMLDocument* InformednessOptimizationThreshold::to_XML(void) const
 //   element->LinkEndChild(text);
 //   }
 
-   // Display
+        // Display
 //   {
 //   element = document->NewElement("Display");
 //   root_element->LinkEndChild(element);
@@ -416,7 +406,7 @@ tinyxml2::XMLDocument* InformednessOptimizationThreshold::to_XML(void) const
 //   }
 
 
-   // Maximum iterations
+        // Maximum iterations
 //   {
 //   element = document->NewElement("MaximumIterationsNumber");
 //   root_element->LinkEndChild(element);
@@ -428,163 +418,147 @@ tinyxml2::XMLDocument* InformednessOptimizationThreshold::to_XML(void) const
 //   element->LinkEndChild(text);
 //   }
 
-   // Maximum selection failures
-   {
-   element = document->NewElement("MaximumSelectionFailures");
-   root_element->LinkEndChild(element);
+        // Maximum selection failures
+        {
+            element = document->NewElement("MaximumSelectionFailures");
+            root_element->LinkEndChild(element);
 
-   buffer.str("");
-   buffer << maximum_selection_failures;
+            buffer.str("");
+            buffer << maximum_selection_failures;
 
-   text = document->NewText(buffer.str().c_str());
-   element->LinkEndChild(text);
-   }
+            text = document->NewText(buffer.str().c_str());
+            element->LinkEndChild(text);
+        }
 
-   // Maximum time
-   {
-   element = document->NewElement("MaximumTime");
-   root_element->LinkEndChild(element);
+        // Maximum time
+        {
+            element = document->NewElement("MaximumTime");
+            root_element->LinkEndChild(element);
 
-   buffer.str("");
-   buffer << maximum_time;
+            buffer.str("");
+            buffer << maximum_time;
 
-   text = document->NewText(buffer.str().c_str());
-   element->LinkEndChild(text);
-   }
+            text = document->NewText(buffer.str().c_str());
+            element->LinkEndChild(text);
+        }
 
 
-   return(document);
-}
+        return (document);
+    }
 
 // void from_XML(const tinyxml2::XMLDocument&) method
 
 /// Deserializes a TinyXML document into this incremental order object.
 /// @param document TinyXML document containing the member data.
 
-void InformednessOptimizationThreshold::from_XML(const tinyxml2::XMLDocument& document)
-{
-    const tinyxml2::XMLElement* root_element = document.FirstChildElement("InformednessOptimizationThreshold");
-
-    if(!root_element)
+    void InformednessOptimizationThreshold::from_XML(const tinyxml2::XMLDocument &document)
     {
-        std::ostringstream buffer;
+        const tinyxml2::XMLElement *root_element = document.FirstChildElement("InformednessOptimizationThreshold");
 
-        buffer << "OpenNN Exception: InformednessOptimizationThreshold class.\n"
-               << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
-               << "InformednessOptimizationThreshold element is NULL.\n";
+        if (!root_element) {
+            std::ostringstream buffer;
 
-        throw std::logic_error(buffer.str());
-    }
+            buffer << "OpenNN Exception: InformednessOptimizationThreshold class.\n"
+            << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
+            << "InformednessOptimizationThreshold element is NULL.\n";
 
-    // Step
-    {
-        const tinyxml2::XMLElement* element = root_element->FirstChildElement("Step");
+            throw std::logic_error(buffer.str());
+        }
 
-        if(element)
+        // Step
         {
-           const double new_step = atof(element->GetText());
+            const tinyxml2::XMLElement *element = root_element->FirstChildElement("Step");
 
-           try
-           {
-              set_step(new_step);
-           }
-           catch(const std::logic_error& e)
-           {
-              std::cout << e.what() << std::endl;
-           }
+            if (element) {
+                const double new_step = atof(element->GetText());
+
+                try {
+                    set_step(new_step);
+                }
+                catch (const std::logic_error &e) {
+                    std::cout << e.what() << std::endl;
+                }
+            }
+        }
+
+        // Display
+        {
+            const tinyxml2::XMLElement *element = root_element->FirstChildElement("Display");
+
+            if (element) {
+                const std::string new_display = element->GetText();
+
+                try {
+                    set_display(new_display != "0");
+                }
+                catch (const std::logic_error &e) {
+                    std::cout << e.what() << std::endl;
+                }
+            }
+        }
+
+        // Maximum iterations number
+        {
+            const tinyxml2::XMLElement *element = root_element->FirstChildElement("MaximumIterationsNumber");
+
+            if (element) {
+                const size_t new_maximum_iterations_number = atoi(element->GetText());
+
+                try {
+                    set_maximum_iterations_number(new_maximum_iterations_number);
+                }
+                catch (const std::logic_error &e) {
+                    std::cout << e.what() << std::endl;
+                }
+            }
+        }
+
+        // Maximum time
+        {
+            const tinyxml2::XMLElement *element = root_element->FirstChildElement("MaximumTime");
+
+            if (element) {
+                const double new_maximum_time = atoi(element->GetText());
+
+                try {
+                    set_maximum_time(new_maximum_time);
+                }
+                catch (const std::logic_error &e) {
+                    std::cout << e.what() << std::endl;
+                }
+            }
+        }
+
+        // Maximum selection failures
+        {
+            const tinyxml2::XMLElement *element = root_element->FirstChildElement("MaximumSelectionFailures");
+
+            if (element) {
+                const size_t new_maximum_selection_failures = atoi(element->GetText());
+
+                try {
+                    set_maximum_selection_failures(new_maximum_selection_failures);
+                }
+                catch (const std::logic_error &e) {
+                    std::cout << e.what() << std::endl;
+                }
+            }
         }
     }
-
-    // Display
-    {
-        const tinyxml2::XMLElement* element = root_element->FirstChildElement("Display");
-
-        if(element)
-        {
-           const std::string new_display = element->GetText();
-
-           try
-           {
-              set_display(new_display != "0");
-           }
-           catch(const std::logic_error& e)
-           {
-              std::cout << e.what() << std::endl;
-           }
-        }
-    }
-
-    // Maximum iterations number
-    {
-        const tinyxml2::XMLElement* element = root_element->FirstChildElement("MaximumIterationsNumber");
-
-        if(element)
-        {
-           const size_t new_maximum_iterations_number = atoi(element->GetText());
-
-           try
-           {
-              set_maximum_iterations_number(new_maximum_iterations_number);
-           }
-           catch(const std::logic_error& e)
-           {
-              std::cout << e.what() << std::endl;
-           }
-        }
-    }
-
-    // Maximum time
-    {
-        const tinyxml2::XMLElement* element = root_element->FirstChildElement("MaximumTime");
-
-        if(element)
-        {
-           const double new_maximum_time = atoi(element->GetText());
-
-           try
-           {
-              set_maximum_time(new_maximum_time);
-           }
-           catch(const std::logic_error& e)
-           {
-              std::cout << e.what() << std::endl;
-           }
-        }
-    }
-
-    // Maximum selection failures
-    {
-        const tinyxml2::XMLElement* element = root_element->FirstChildElement("MaximumSelectionFailures");
-
-        if(element)
-        {
-           const size_t new_maximum_selection_failures = atoi(element->GetText());
-
-           try
-           {
-              set_maximum_selection_failures(new_maximum_selection_failures);
-           }
-           catch(const std::logic_error& e)
-           {
-              std::cout << e.what() << std::endl;
-           }
-        }
-    }
-}
 
 // void save(const std::string&) const method
 
 /// Saves to a XML-type file the members of the incremental order object.
 /// @param file_name Name of incremental order XML-type file.
 
-void InformednessOptimizationThreshold::save(const std::string& file_name) const
-{
-   tinyxml2::XMLDocument* document = to_XML();
+    void InformednessOptimizationThreshold::save(const std::string &file_name) const
+    {
+        tinyxml2::XMLDocument *document = to_XML();
 
-   document->SaveFile(file_name.c_str());
+        document->SaveFile(file_name.c_str());
 
-   delete document;
-}
+        delete document;
+    }
 
 
 // void load(const std::string&) method
@@ -592,26 +566,24 @@ void InformednessOptimizationThreshold::save(const std::string& file_name) const
 /// Loads a incremental order object from a XML-type file.
 /// @param file_name Name of incremental order XML-type file.
 
-void InformednessOptimizationThreshold::load(const std::string& file_name)
-{
-   set_default();
+    void InformednessOptimizationThreshold::load(const std::string &file_name)
+    {
+        set_default();
 
-   tinyxml2::XMLDocument document;
+        tinyxml2::XMLDocument document;
 
-   if(document.LoadFile(file_name.c_str()))
-   {
-      std::ostringstream buffer;
+        if (document.LoadFile(file_name.c_str())) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: InformednessOptimizationThreshold class.\n"
-             << "void load(const std::string&) method.\n"
-             << "Cannot load XML file " << file_name << ".\n";
+            buffer << "OpenNN Exception: InformednessOptimizationThreshold class.\n"
+            << "void load(const std::string&) method.\n"
+            << "Cannot load XML file " << file_name << ".\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   from_XML(document);
-}
-
+        from_XML(document);
+    }
 
 
 }
@@ -628,7 +600,7 @@ void InformednessOptimizationThreshold::load(const std::string& file_name)
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

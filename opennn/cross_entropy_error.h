@@ -30,79 +30,81 @@
 #include <tinyxml2.h>
 
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class represents the cross entropy performance term. 
+/// This class represents the cross entropy performance term.
 /// This functional is used in pattern recognition problems.
 
-class CrossEntropyError : public PerformanceTerm
-{
+    class CrossEntropyError : public PerformanceTerm {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit CrossEntropyError(void);
+        explicit CrossEntropyError(void);
 
-   // NEURAL NETWORK CONSTRUCTOR
+        // NEURAL NETWORK CONSTRUCTOR
 
-   explicit CrossEntropyError(NeuralNetwork*);
+        explicit CrossEntropyError(NeuralNetwork *);
 
-   // DATA SET CONSTRUCTOR
+        // DATA SET CONSTRUCTOR
 
-   explicit CrossEntropyError(DataSet*);
+        explicit CrossEntropyError(DataSet *);
 
-   // GENERAL CONSTRUCTOR
+        // GENERAL CONSTRUCTOR
 
-   explicit CrossEntropyError(NeuralNetwork*, DataSet*);
+        explicit CrossEntropyError(NeuralNetwork *, DataSet *);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit CrossEntropyError(const tinyxml2::XMLDocument&);
+        explicit CrossEntropyError(const tinyxml2::XMLDocument &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   CrossEntropyError(const CrossEntropyError&);
+        CrossEntropyError(const CrossEntropyError &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~CrossEntropyError(void);
+        virtual ~CrossEntropyError(void);
 
-   // ASSIGNMENT OPERATOR
+        // ASSIGNMENT OPERATOR
 
-   CrossEntropyError& operator = (const CrossEntropyError&);
+        CrossEntropyError &operator=(const CrossEntropyError &);
 
-   // EQUAL TO OPERATOR
+        // EQUAL TO OPERATOR
 
-   bool operator == (const CrossEntropyError&) const;
+        bool operator==(const CrossEntropyError &) const;
 
-   // METHODS
+        // METHODS
 
-   // Checking methods
+        // Checking methods
 
-   void check(void) const;
+        void check(void) const;
 
-   // performance methods
+        // performance methods
 
-   double calculate_performance(void) const;
-   double calculate_performance(const Vector<double>&) const;
+        double calculate_performance(void) const;
 
-   double calculate_minimum_performance(void) const;
+        double calculate_performance(const Vector<double> &) const;
 
-   double calculate_selection_performance(void) const;
-   double calculate_minimum_selection_performance(void) const;
+        double calculate_minimum_performance(void) const;
 
-   Vector<double> calculate_gradient(void) const;
-   Matrix<double> calculate_Hessian(void) const;
+        double calculate_selection_performance(void) const;
 
-   std::string write_performance_term_type(void) const;
+        double calculate_minimum_selection_performance(void) const;
 
-   // Serialization methods
+        Vector<double> calculate_gradient(void) const;
 
-   tinyxml2::XMLDocument* to_XML(void) const;   
-   void from_XML(const tinyxml2::XMLDocument&);
-};
+        Matrix<double> calculate_Hessian(void) const;
+
+        std::string write_performance_term_type(void) const;
+
+        // Serialization methods
+
+        tinyxml2::XMLDocument *to_XML(void) const;
+
+        void from_XML(const tinyxml2::XMLDocument &);
+    };
 
 }
 
@@ -121,7 +123,7 @@ public:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

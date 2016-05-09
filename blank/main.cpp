@@ -20,7 +20,7 @@
 
 // OpenNN includes
 
-#include "../opennn/opennn.h"
+#include "opennn.h"
 
 using namespace OpenNN;
 
@@ -28,14 +28,12 @@ int main(void)
 {
     try {
         std::cout << "OpenNN. Blank Application." << std::endl;
-
         srand((unsigned) time(NULL));
-
-        return (0);
+        return 0;
     }
     catch (std::exception &e) {
         std::cout << e.what() << std::endl;
-        return (1);
+        return 1;
     }
 }
 
@@ -52,7 +50,7 @@ int main(void)
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

@@ -33,115 +33,119 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class represents the final solutions error constraints functional. 
-/// The final solutions error is measured on a mathematical model. 
+/// This class represents the final solutions error constraints functional.
+/// The final solutions error is measured on a mathematical model.
 /// This constraints functional often appears in optimal control problems.
-   
-class FinalSolutionsError : public PerformanceTerm
-{
 
-public:
+    class FinalSolutionsError : public PerformanceTerm {
 
-   // DEFAULT CONSTRUCTOR
+    public:
 
-   explicit FinalSolutionsError(void);
+        // DEFAULT CONSTRUCTOR
 
-   // NEURAL NETWORK CONSTRUCTOR
+        explicit FinalSolutionsError(void);
 
-   explicit FinalSolutionsError(NeuralNetwork*);
+        // NEURAL NETWORK CONSTRUCTOR
 
-   // MATHEMATICAL MODEL CONSTRUCTOR
+        explicit FinalSolutionsError(NeuralNetwork *);
 
-   explicit FinalSolutionsError(MathematicalModel*);
+        // MATHEMATICAL MODEL CONSTRUCTOR
 
-   // NEURAL NETWORK AND MATHEMATICAL MODEL CONSTRUCTOR
+        explicit FinalSolutionsError(MathematicalModel *);
 
-   explicit FinalSolutionsError(NeuralNetwork*, MathematicalModel*);
+        // NEURAL NETWORK AND MATHEMATICAL MODEL CONSTRUCTOR
 
-   // XML CONSTRUCTOR
+        explicit FinalSolutionsError(NeuralNetwork *, MathematicalModel *);
 
-   explicit FinalSolutionsError(const tinyxml2::XMLDocument&);
+        // XML CONSTRUCTOR
 
-   // COPY CONSTRUCTOR
+        explicit FinalSolutionsError(const tinyxml2::XMLDocument &);
 
-   FinalSolutionsError(const FinalSolutionsError&);
+        // COPY CONSTRUCTOR
 
-   // DESTRUCTOR
+        FinalSolutionsError(const FinalSolutionsError &);
 
-   virtual ~FinalSolutionsError(void);
+        // DESTRUCTOR
 
-   // ASSIGNMENT OPERATOR
+        virtual ~FinalSolutionsError(void);
 
-   FinalSolutionsError& operator = (const FinalSolutionsError&);
+        // ASSIGNMENT OPERATOR
 
-   // EQUAL TO OPERATOR
+        FinalSolutionsError &operator=(const FinalSolutionsError &);
 
-   bool operator == (const FinalSolutionsError&) const;
+        // EQUAL TO OPERATOR
 
-   // METHODS
+        bool operator==(const FinalSolutionsError &) const;
 
-   // Get methods
+        // METHODS
 
-   const Vector<double>& get_final_solutions_errors_weights(void) const;
+        // Get methods
 
-   const Vector<double>& get_target_final_solutions(void) const;
+        const Vector<double> &get_final_solutions_errors_weights(void) const;
 
-   // Set methods
+        const Vector<double> &get_target_final_solutions(void) const;
 
-   void set(void);
+        // Set methods
 
-   void set(NeuralNetwork*);
-   void set(MathematicalModel*);
-   void set(NeuralNetwork*, MathematicalModel*);
+        void set(void);
+
+        void set(NeuralNetwork *);
+
+        void set(MathematicalModel *);
+
+        void set(NeuralNetwork *, MathematicalModel *);
 
 //   void set(const FinalSolutionsError&);
 
-   void set_mathematical_model_pointer(MathematicalModel*);
+        void set_mathematical_model_pointer(MathematicalModel *);
 
-   void set_final_solutions_errors_weights(const Vector<double>&);
-   void set_final_solution_error_weight(const size_t&, const double&);
+        void set_final_solutions_errors_weights(const Vector<double> &);
 
-   void set_target_final_solutions(const Vector<double>&);
-   void set_target_final_solution(const size_t&, const double&);
+        void set_final_solution_error_weight(const size_t &, const double &);
 
-   void set_default(void);
+        void set_target_final_solutions(const Vector<double> &);
 
-   // Checking methods
+        void set_target_final_solution(const size_t &, const double &);
 
-   void check(void) const;
+        void set_default(void);
 
-   // Performance term methods
+        // Checking methods
 
-   double calculate_performance(void) const;
-   double calculate_performance(const Vector<double>&) const;
+        void check(void) const;
 
-   std::string write_performance_term_type(void) const;
+        // Performance term methods
 
-   std::string write_information(void) const;
-   
-   // Serialization methods
+        double calculate_performance(void) const;
 
-   tinyxml2::XMLDocument* to_XML(void) const;   
-   void from_XML(const tinyxml2::XMLDocument&);
+        double calculate_performance(const Vector<double> &) const;
 
-private:
+        std::string write_performance_term_type(void) const;
 
-   // MEMBERS
+        std::string write_information(void) const;
 
-   /// Desired final values for the dependent variables.
-   /// The size of this vector must be equal to the number of dependent variablese in the mathematical model. 
+        // Serialization methods
 
-   Vector<double> target_final_solutions;
+        tinyxml2::XMLDocument *to_XML(void) const;
 
-   /// Weight value for each error on the final solution. 
-   /// The size of this vector must be equal to the number of dependent variablese in the mathematical model. 
+        void from_XML(const tinyxml2::XMLDocument &);
 
-   Vector<double> final_solutions_errors_weights;
+    private:
 
-};
+        // MEMBERS
+
+        /// Desired final values for the dependent variables.
+        /// The size of this vector must be equal to the number of dependent variablese in the mathematical model.
+
+        Vector<double> target_final_solutions;
+
+        /// Weight value for each error on the final solution.
+        /// The size of this vector must be equal to the number of dependent variablese in the mathematical model.
+
+        Vector<double> final_solutions_errors_weights;
+
+    };
 
 }
 
@@ -160,7 +164,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

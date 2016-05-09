@@ -36,385 +36,421 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
-/// This class represents the concept of performance term. 
-/// A performance term is a summand in the performance functional expression. 
+namespace OpenNN {
+/// This class represents the concept of performance term.
+/// A performance term is a summand in the performance functional expression.
 /// Any derived class must implement the calculate_performance(void) method.
 
-class PerformanceTerm
-{
+    class PerformanceTerm {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit PerformanceTerm(void);
+        explicit PerformanceTerm(void);
 
-   // NEURAL NETWORK CONSTRUCTOR
+        // NEURAL NETWORK CONSTRUCTOR
 
-   explicit PerformanceTerm(NeuralNetwork*);
+        explicit PerformanceTerm(NeuralNetwork *);
 
-   // DATA SET CONSTRUCTOR
+        // DATA SET CONSTRUCTOR
 
-   explicit PerformanceTerm(DataSet*);
+        explicit PerformanceTerm(DataSet *);
 
-   // MATHEMATICAL MODEL CONSTRUCTOR
+        // MATHEMATICAL MODEL CONSTRUCTOR
 
-   explicit PerformanceTerm(MathematicalModel*);
+        explicit PerformanceTerm(MathematicalModel *);
 
-   // NEURAL NETWORK AND DATA SET CONSTRUCTOR
+        // NEURAL NETWORK AND DATA SET CONSTRUCTOR
 
-   explicit PerformanceTerm(NeuralNetwork*, DataSet*);
+        explicit PerformanceTerm(NeuralNetwork *, DataSet *);
 
-   // NEURAL NETWORK AND MATHEMATICAL MODEL CONSTRUCTOR
+        // NEURAL NETWORK AND MATHEMATICAL MODEL CONSTRUCTOR
 
-   explicit PerformanceTerm(NeuralNetwork*, MathematicalModel*);
+        explicit PerformanceTerm(NeuralNetwork *, MathematicalModel *);
 
-   // NEURAL NETWORK, MATHEMATICAL MODEL AND DATA SET CONSTRUCTOR
+        // NEURAL NETWORK, MATHEMATICAL MODEL AND DATA SET CONSTRUCTOR
 
-   explicit PerformanceTerm(NeuralNetwork*, MathematicalModel*, DataSet*);
+        explicit PerformanceTerm(NeuralNetwork *, MathematicalModel *, DataSet *);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit PerformanceTerm(const tinyxml2::XMLDocument&);
+        explicit PerformanceTerm(const tinyxml2::XMLDocument &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   PerformanceTerm(const PerformanceTerm&);
+        PerformanceTerm(const PerformanceTerm &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~PerformanceTerm(void);
+        virtual ~PerformanceTerm(void);
 
-   // ASSIGNMENT OPERATOR
+        // ASSIGNMENT OPERATOR
 
-   virtual PerformanceTerm& operator = (const PerformanceTerm&);
+        virtual PerformanceTerm &operator=(const PerformanceTerm &);
 
-   // EQUAL TO OPERATOR
+        // EQUAL TO OPERATOR
 
-   virtual bool operator == (const PerformanceTerm&) const;
+        virtual bool operator==(const PerformanceTerm &) const;
 
-   // STRUCTURES
+        // STRUCTURES
 
-   /// This structure contains the zero order performance quantities of a performance term. 
-   /// This only includes the performance itself.
+        /// This structure contains the zero order performance quantities of a performance term.
+        /// This only includes the performance itself.
 
-   struct ZerothOrderPerformance
-   {
-      /// Performance term evaluation.
+        struct ZerothOrderPerformance {
+            /// Performance term evaluation.
 
-      double performance;
-   };
+            double performance;
+        };
 
 
-   /// This structure contains the first order performance quantities of a performance term. 
-   /// This includes the performance itself and the gradient vector.
+        /// This structure contains the first order performance quantities of a performance term.
+        /// This includes the performance itself and the gradient vector.
 
-   struct FirstOrderPerformance
-   {
-      /// Performance term performance. 
+        struct FirstOrderPerformance {
+            /// Performance term performance.
 
-      double performance;
+            double performance;
 
-      /// Performance term gradient vector. 
+            /// Performance term gradient vector.
 
-      Vector<double> gradient;
-   };
-
-
-   /// This structure contains the second order performance quantities of a performance term. 
-   /// This includes the performance itself, the gradient vector and the Hessian matrix.
-
-   struct SecondOrderPerformance
-   {
-      /// Peformance term performance. 
-
-      double performance;
-
-      /// Performance term gradient vector. 
-
-      Vector<double> gradient;
-
-	  /// Performance term Hessian matrix. 
-
-      Matrix<double> Hessian;
-   };
+            Vector<double> gradient;
+        };
 
 
-   ///
-   /// This structure contains the zero order evaluation of the terms function.
-   ///
+        /// This structure contains the second order performance quantities of a performance term.
+        /// This includes the performance itself, the gradient vector and the Hessian matrix.
 
-   struct ZerothOrderTerms
-   {
-      /// Subterms performance vector.
+        struct SecondOrderPerformance {
+            /// Peformance term performance.
 
-      Vector<double> terms;
-   };
+            double performance;
 
-   /// Set of subterms vector and subterms Jacobian matrix of the performance term. 
-   /// A method returning this structure might be more efficient than calculating the objective terms and the terms Jacobian separately.
+            /// Performance term gradient vector.
 
-   struct FirstOrderTerms
-   {
-      /// Subterms performance vector. 
+            Vector<double> gradient;
 
-      Vector<double> terms;
+            /// Performance term Hessian matrix.
 
-      /// Subterms Jacobian matrix. 
-
-      Matrix<double> Jacobian;
-   };
+            Matrix<double> Hessian;
+        };
 
 
-   // METHODS
+        ///
+        /// This structure contains the zero order evaluation of the terms function.
+        ///
 
-   // Get methods
+        struct ZerothOrderTerms {
+            /// Subterms performance vector.
 
-   /// Returns a pointer to the neural network object associated to the performance term.
+            Vector<double> terms;
+        };
 
-   inline NeuralNetwork* get_neural_network_pointer(void) const 
-   {
-        #ifdef __OPENNN_DEBUG__
+        /// Set of subterms vector and subterms Jacobian matrix of the performance term.
+        /// A method returning this structure might be more efficient than calculating the objective terms and the terms Jacobian separately.
 
-        if(!neural_network_pointer)
+        struct FirstOrderTerms {
+            /// Subterms performance vector.
+
+            Vector<double> terms;
+
+            /// Subterms Jacobian matrix.
+
+            Matrix<double> Jacobian;
+        };
+
+
+        // METHODS
+
+        // Get methods
+
+        /// Returns a pointer to the neural network object associated to the performance term.
+
+        inline NeuralNetwork *get_neural_network_pointer(void) const
         {
-             std::ostringstream buffer;
+#ifdef __OPENNN_DEBUG__
 
-             buffer << "OpenNN Exception: PerformanceTerm class.\n"
-                    << "NeuralNetwork* get_neural_network_pointer(void) const method.\n"
-                    << "Neural network pointer is NULL.\n";
+            if(!neural_network_pointer)
+            {
+                 std::ostringstream buffer;
 
-             throw std::logic_error(buffer.str());
+                 buffer << "OpenNN Exception: PerformanceTerm class.\n"
+                        << "NeuralNetwork* get_neural_network_pointer(void) const method.\n"
+                        << "Neural network pointer is NULL.\n";
+
+                 throw std::logic_error(buffer.str());
+            }
+
+#endif
+
+            return (neural_network_pointer);
         }
 
-        #endif
 
-      return(neural_network_pointer);
-   }
+        /// Returns a pointer to the mathematical model object associated to the performance term.
 
-
-   /// Returns a pointer to the mathematical model object associated to the performance term.
-
-   inline MathematicalModel* get_mathemtaical_model_pointer(void) const 
-   {
-        #ifdef __OPENNN_DEBUG__
-
-        if(!mathematical_model_pointer)
+        inline MathematicalModel *get_mathemtaical_model_pointer(void) const
         {
-             std::ostringstream buffer;
+#ifdef __OPENNN_DEBUG__
 
-             buffer << "OpenNN Exception: PerformanceTerm class.\n"
-                    << "MathematicalModel* get_mathematical_model_pointer(void) const method.\n"
-                    << "MathematicalModel pointer is NULL.\n";
+            if(!mathematical_model_pointer)
+            {
+                 std::ostringstream buffer;
 
-             throw std::logic_error(buffer.str());
+                 buffer << "OpenNN Exception: PerformanceTerm class.\n"
+                        << "MathematicalModel* get_mathematical_model_pointer(void) const method.\n"
+                        << "MathematicalModel pointer is NULL.\n";
+
+                 throw std::logic_error(buffer.str());
+            }
+
+#endif
+
+
+            return (mathematical_model_pointer);
         }
 
-        #endif
 
+        /// Returns a pointer to the data set object associated to the performance term.
 
-      return(mathematical_model_pointer);
-   }
-
-
-   /// Returns a pointer to the data set object associated to the performance term.
-
-   inline DataSet* get_data_set_pointer(void) const 
-   {
-        #ifdef __OPENNN_DEBUG__
-
-        if(!data_set_pointer)
+        inline DataSet *get_data_set_pointer(void) const
         {
-             std::ostringstream buffer;
+#ifdef __OPENNN_DEBUG__
 
-             buffer << "OpenNN Exception: PerformanceTerm class.\n"
-                    << "DataSet* get_data_set_pointer(void) const method.\n"
-                    << "DataSet pointer is NULL.\n";
+            if(!data_set_pointer)
+            {
+                 std::ostringstream buffer;
 
-             throw std::logic_error(buffer.str());
+                 buffer << "OpenNN Exception: PerformanceTerm class.\n"
+                        << "DataSet* get_data_set_pointer(void) const method.\n"
+                        << "DataSet pointer is NULL.\n";
+
+                 throw std::logic_error(buffer.str());
+            }
+
+#endif
+
+            return (data_set_pointer);
         }
 
-        #endif
 
-      return(data_set_pointer);
-   }
+        /// Returns a pointer to the numerical differentiation object used in this performance term object.
 
-
-   /// Returns a pointer to the numerical differentiation object used in this performance term object. 
-
-   inline NumericalDifferentiation* get_numerical_differentiation_pointer(void) const
-   {
-        #ifdef __OPENNN_DEBUG__
-
-        if(!numerical_differentiation_pointer)
+        inline NumericalDifferentiation *get_numerical_differentiation_pointer(void) const
         {
-             std::ostringstream buffer;
+#ifdef __OPENNN_DEBUG__
 
-             buffer << "OpenNN Exception: PerformanceTerm class.\n"
-                    << "NumericalDifferentiation* get_numerical_differentiation_pointer(void) const method.\n"
-                    << "Numerical differentiation pointer is NULL.\n";
+            if(!numerical_differentiation_pointer)
+            {
+                 std::ostringstream buffer;
 
-             throw std::logic_error(buffer.str());
+                 buffer << "OpenNN Exception: PerformanceTerm class.\n"
+                        << "NumericalDifferentiation* get_numerical_differentiation_pointer(void) const method.\n"
+                        << "Numerical differentiation pointer is NULL.\n";
+
+                 throw std::logic_error(buffer.str());
+            }
+
+#endif
+
+            return (numerical_differentiation_pointer);
         }
 
-        #endif
+        const bool &get_display(void) const;
 
-      return(numerical_differentiation_pointer);
-   }
+        bool has_neural_network(void) const;
 
-   const bool& get_display(void) const;
+        bool has_mathematical_model(void) const;
 
-   bool has_neural_network(void) const;
-   bool has_mathematical_model(void) const;
-   bool has_data_set(void) const;
-   bool has_numerical_differentiation(void) const;
+        bool has_data_set(void) const;
+
+        bool has_numerical_differentiation(void) const;
 
 
-   // Set methods
+        // Set methods
 
-   virtual void set(void);
-   virtual void set(NeuralNetwork*);
-   virtual void set(DataSet*);
-   virtual void set(MathematicalModel*);
-   virtual void set(NeuralNetwork*, DataSet*);
-   virtual void set(NeuralNetwork*, MathematicalModel*);
-   virtual void set(NeuralNetwork*, MathematicalModel*, DataSet*);
+        virtual void set(void);
 
-   void set(const PerformanceTerm&);
+        virtual void set(NeuralNetwork *);
 
-   virtual void set_neural_network_pointer(NeuralNetwork*);
+        virtual void set(DataSet *);
 
-   virtual void set_mathematical_model_pointer(MathematicalModel*);
-   virtual void set_data_set_pointer(DataSet*);
+        virtual void set(MathematicalModel *);
 
-   void set_numerical_differentiation_pointer(NumericalDifferentiation*);
+        virtual void set(NeuralNetwork *, DataSet *);
 
-   virtual void set_default(void);
+        virtual void set(NeuralNetwork *, MathematicalModel *);
 
-   void set_display(const bool&);
+        virtual void set(NeuralNetwork *, MathematicalModel *, DataSet *);
 
-   // Pointer methods
+        void set(const PerformanceTerm &);
 
-   void construct_numerical_differentiation(void);
-   void delete_numerical_differentiation_pointer(void);
+        virtual void set_neural_network_pointer(NeuralNetwork *);
 
-   // Checking methods
+        virtual void set_mathematical_model_pointer(MathematicalModel *);
 
-   virtual void check(void) const;
+        virtual void set_data_set_pointer(DataSet *);
 
-   // Layers delta methods
-   
-   Vector< Vector<double> > calculate_layers_delta(const Vector< Vector<double> >&, const Vector<double>&) const;
-   Vector< Vector<double> > calculate_layers_delta(const Vector< Vector<double> >&, const Vector<double>&, const Vector<double>&) const;   
+        void set_numerical_differentiation_pointer(NumericalDifferentiation *);
 
-   // Interlayers Delta methods
+        virtual void set_default(void);
 
-   double calculate_performance_output_combinations(const Vector<double>& combinations) const;
+        void set_display(const bool &);
 
-   //Matrix< Matrix <double> > calculate_interlayers_Delta(void) const;
+        // Pointer methods
 
-   Matrix<double> calculate_output_interlayers_Delta(const Vector<double>&, const Vector<double>&, const Vector<double>&, const Matrix<double>&) const;
-   Matrix<double> calculate_interlayers_Delta(const size_t& ,const size_t& , const Vector<double>& , const Vector<double>&, const Vector<double>& , const Vector<double>&, const Vector< Vector<double> >&, const Vector<double>& , const Matrix<double>&, const Matrix<double>&, const Vector< Vector<double> >&) const;
+        void construct_numerical_differentiation(void);
 
-   Matrix< Matrix <double> > calculate_interlayers_Delta(const Vector< Vector<double> >&, const Vector< Vector<double> >&, const Matrix< Matrix<double> >&, const Vector<double>&, const Matrix<double>&, const Vector< Vector<double> >&) const;
+        void delete_numerical_differentiation_pointer(void);
 
-   // Point objective function methods
+        // Checking methods
 
-   Vector<double> calculate_point_gradient(const Vector<double>&, const Vector< Vector<double> >&, const Vector< Vector<double> >&) const;
-   Vector<double> calculate_point_gradient(const Vector< Matrix<double> >&, const Vector< Vector<double> >&) const;
+        virtual void check(void) const;
 
-   Matrix<double> calculate_point_Hessian(const Vector< Vector<double> >&, const Vector< Vector< Vector<double> > >&, const Matrix< Matrix<double> >&, const Vector< Vector<double> >&, const Matrix< Matrix<double> >&) const;
-   Matrix<double> calculate_single_hidden_layer_point_Hessian(const Vector< Vector<double> >&,
-                                                              const Vector< Vector<double> >&,
-                                                              const Vector< Vector< Vector<double> > >&,
-                                                              const Vector< Vector<double> >&,
-                                                              const Matrix<double>&) const;
+        // Layers delta methods
 
-   // Objective methods
+        Vector<Vector<double> > calculate_layers_delta(const Vector<Vector<double> > &, const Vector<double> &) const;
 
-   /// Returns the performance value of the performance term.
+        Vector<Vector<double> > calculate_layers_delta(const Vector<Vector<double> > &,
+                                                       const Vector<double> &,
+                                                       const Vector<double> &) const;
 
-   virtual double calculate_performance(void) const = 0;
+        // Interlayers Delta methods
 
-   /// Returns the default performance of a performance term for a given set of neural network parameters. 
+        double calculate_performance_output_combinations(const Vector<double> &combinations) const;
 
-   virtual double calculate_performance(const Vector<double>&) const = 0;
+        //Matrix< Matrix <double> > calculate_interlayers_Delta(void) const;
 
-   /// Returns an performance of the performance term for selection purposes.  
+        Matrix<double> calculate_output_interlayers_Delta(const Vector<double> &,
+                                                          const Vector<double> &,
+                                                          const Vector<double> &,
+                                                          const Matrix<double> &) const;
 
-   virtual double calculate_selection_performance(void) const
-   {
-      return(0.0);
-   }
+        Matrix<double> calculate_interlayers_Delta(const size_t &,
+                                                   const size_t &,
+                                                   const Vector<double> &,
+                                                   const Vector<double> &,
+                                                   const Vector<double> &,
+                                                   const Vector<double> &,
+                                                   const Vector<Vector<double> > &,
+                                                   const Vector<double> &,
+                                                   const Matrix<double> &,
+                                                   const Matrix<double> &,
+                                                   const Vector<Vector<double> > &) const;
 
-   /// Returns the performance term gradient.
+        Matrix<Matrix<double> > calculate_interlayers_Delta(const Vector<Vector<double> > &,
+                                                            const Vector<Vector<double> > &,
+                                                            const Matrix<Matrix<double> > &,
+                                                            const Vector<double> &,
+                                                            const Matrix<double> &,
+                                                            const Vector<Vector<double> > &) const;
 
-   virtual Vector<double> calculate_output_gradient(const Vector<double>&, const Vector<double>&) const
-   {
-        Vector<double> output_gradient;
-        return(output_gradient);
-   }
+        // Point objective function methods
 
-   virtual Vector<double> calculate_gradient(void) const; 
+        Vector<double> calculate_point_gradient(const Vector<double> &,
+                                                const Vector<Vector<double> > &,
+                                                const Vector<Vector<double> > &) const;
 
-   virtual Vector<double> calculate_gradient(const Vector<double>&) const;
+        Vector<double> calculate_point_gradient(const Vector<Matrix<double> > &, const Vector<Vector<double> > &) const;
 
-   /// Returns the performance term Hessian.
+        Matrix<double> calculate_point_Hessian(const Vector<Vector<double> > &,
+                                               const Vector<Vector<Vector<double> > > &,
+                                               const Matrix<Matrix<double> > &,
+                                               const Vector<Vector<double> > &,
+                                               const Matrix<Matrix<double> > &) const;
 
-   virtual Matrix<double> calculate_output_Hessian(const Vector<double>&, const Vector<double>&) const
-   {
-         Matrix<double> output_Hessian;
-         return(output_Hessian);
-   }
+        Matrix<double> calculate_single_hidden_layer_point_Hessian(const Vector<Vector<double> > &,
+                                                                   const Vector<Vector<double> > &,
+                                                                   const Vector<Vector<Vector<double> > > &,
+                                                                   const Vector<Vector<double> > &,
+                                                                   const Matrix<double> &) const;
 
-   virtual Matrix<double> calculate_Hessian(void) const; 
+        // Objective methods
 
-   virtual Matrix<double> calculate_Hessian(const Vector<double>&) const;
+        /// Returns the performance value of the performance term.
 
-   virtual Vector<double> calculate_terms(void) const;
-   virtual Vector<double> calculate_terms(const Vector<double>&) const;
+        virtual double calculate_performance(void) const = 0;
 
-   virtual Matrix<double> calculate_terms_Jacobian(void) const;
+        /// Returns the default performance of a performance term for a given set of neural network parameters.
 
-   virtual PerformanceTerm::FirstOrderTerms calculate_first_order_terms(void) const;
+        virtual double calculate_performance(const Vector<double> &) const = 0;
 
-   virtual std::string write_performance_term_type(void) const;
+        /// Returns an performance of the performance term for selection purposes.
 
-   virtual std::string write_information(void) const;
+        virtual double calculate_selection_performance(void) const
+        {
+            return (0.0);
+        }
 
-   // Serialization methods
+        /// Returns the performance term gradient.
 
-   virtual std::string to_string(void) const;
+        virtual Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const
+        {
+            Vector<double> output_gradient;
+            return (output_gradient);
+        }
 
-   virtual tinyxml2::XMLDocument* to_XML(void) const;   
-   virtual void from_XML(const tinyxml2::XMLDocument&);
+        virtual Vector<double> calculate_gradient(void) const;
 
-   size_t calculate_Kronecker_delta(const size_t&, const size_t&) const;
+        virtual Vector<double> calculate_gradient(const Vector<double> &) const;
 
-protected:
+        /// Returns the performance term Hessian.
 
-   /// Pointer to a multilayer perceptron object.
+        virtual Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const
+        {
+            Matrix<double> output_Hessian;
+            return (output_Hessian);
+        }
 
-   NeuralNetwork* neural_network_pointer;
+        virtual Matrix<double> calculate_Hessian(void) const;
 
-   /// Pointer to a data set object.
+        virtual Matrix<double> calculate_Hessian(const Vector<double> &) const;
 
-   DataSet* data_set_pointer;
+        virtual Vector<double> calculate_terms(void) const;
 
-   /// Pointer to a mathematical model object.
+        virtual Vector<double> calculate_terms(const Vector<double> &) const;
 
-   MathematicalModel* mathematical_model_pointer;
+        virtual Matrix<double> calculate_terms_Jacobian(void) const;
 
-   /// Numerical differentiation object.
+        virtual PerformanceTerm::FirstOrderTerms calculate_first_order_terms(void) const;
 
-   NumericalDifferentiation* numerical_differentiation_pointer;
+        virtual std::string write_performance_term_type(void) const;
 
-   /// Display messages to screen. 
+        virtual std::string write_information(void) const;
 
-   bool display;  
-};
+        // Serialization methods
+
+        virtual std::string to_string(void) const;
+
+        virtual tinyxml2::XMLDocument *to_XML(void) const;
+
+        virtual void from_XML(const tinyxml2::XMLDocument &);
+
+        size_t calculate_Kronecker_delta(const size_t &, const size_t &) const;
+
+    protected:
+
+        /// Pointer to a multilayer perceptron object.
+
+        NeuralNetwork *neural_network_pointer;
+
+        /// Pointer to a data set object.
+
+        DataSet *data_set_pointer;
+
+        /// Pointer to a mathematical model object.
+
+        MathematicalModel *mathematical_model_pointer;
+
+        /// Numerical differentiation object.
+
+        NumericalDifferentiation *numerical_differentiation_pointer;
+
+        /// Display messages to screen.
+
+        bool display;
+    };
 
 }
 
@@ -432,7 +468,7 @@ protected:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

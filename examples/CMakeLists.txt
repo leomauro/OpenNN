@@ -9,6 +9,3 @@ add_subdirectory(pima_indians_diabetes)
 add_subdirectory(urinary_inflammations_diagnosis)
 add_subdirectory(yacht_hydrodynamics_design)
 add_subdirectory(yacht_hydrodynamics_production)
-
-
-

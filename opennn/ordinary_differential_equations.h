@@ -5,7 +5,7 @@
 /*                                                                                                              */
 /*   O R D I N A R Y   D I F F E R E N T I A L   E Q U A T I O N S   C L A S S   H E A D E R                    */
 /*                                                                                                              */
-/*   Roberto Lopez                                                                                              */ 
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -35,163 +35,178 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// 
+///
 /// This class represents the concept of a mathematical model defined by ordinary differential equations.
-/// A mathematical model is the base for learning in some types of problems, such as optimal control and inverse problems. 
-/// 
+/// A mathematical model is the base for learning in some types of problems, such as optimal control and inverse problems.
+///
 
 
-class OrdinaryDifferentialEquations : public MathematicalModel
-{
+    class OrdinaryDifferentialEquations : public MathematicalModel {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit OrdinaryDifferentialEquations(void);
+        explicit OrdinaryDifferentialEquations(void);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit OrdinaryDifferentialEquations(const tinyxml2::XMLDocument&);
+        explicit OrdinaryDifferentialEquations(const tinyxml2::XMLDocument &);
 
-   // FILE CONSTRUCTOR
+        // FILE CONSTRUCTOR
 
-   explicit OrdinaryDifferentialEquations(const std::string&);
+        explicit OrdinaryDifferentialEquations(const std::string &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   OrdinaryDifferentialEquations(const OrdinaryDifferentialEquations&);
+        OrdinaryDifferentialEquations(const OrdinaryDifferentialEquations &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~OrdinaryDifferentialEquations(void);
+        virtual ~OrdinaryDifferentialEquations(void);
 
-   // ASSIGNMENT OPERATOR
+        // ASSIGNMENT OPERATOR
 
-   OrdinaryDifferentialEquations& operator = (const OrdinaryDifferentialEquations&);
+        OrdinaryDifferentialEquations &operator=(const OrdinaryDifferentialEquations &);
 
-   // EQUAL TO OPERATOR
+        // EQUAL TO OPERATOR
 
-   bool operator == (const OrdinaryDifferentialEquations&) const;
+        bool operator==(const OrdinaryDifferentialEquations &) const;
 
-   // Enumerations
+        // Enumerations
 
-   /// Enumeration of available methods for numerical integration of ordinary differential equations. 
+        /// Enumeration of available methods for numerical integration of ordinary differential equations.
 
-   enum SolutionMethod{RungeKutta, RungeKuttaFehlberg};
+        enum SolutionMethod {
+            RungeKutta, RungeKuttaFehlberg
+        };
 
 
-   // METHODS
+        // METHODS
 
-   // Get methods
+        // Get methods
 
-   const double& get_initial_independent_variable(void) const;
-   const double& get_final_independent_variable(void) const;
+        const double &get_initial_independent_variable(void) const;
 
-   const Vector<double>& get_initial_dependent_variables(void) const;
-   const double& get_initial_dependent_variable(const size_t&) const;
+        const double &get_final_independent_variable(void) const;
 
-   const SolutionMethod& get_solution_method(void) const;
-   std::string write_solution_method(void) const;
+        const Vector<double> &get_initial_dependent_variables(void) const;
 
-   const size_t& get_points_number(void) const;
+        const double &get_initial_dependent_variable(const size_t &) const;
 
-   const double& get_tolerance(void) const;
+        const SolutionMethod &get_solution_method(void) const;
 
-   const size_t& get_initial_size(void) const;
-   const size_t& get_warning_size(void) const;
-   const size_t& get_error_size(void) const;
+        std::string write_solution_method(void) const;
 
-   // Set methods
+        const size_t &get_points_number(void) const;
 
-   void set(const OrdinaryDifferentialEquations&);
+        const double &get_tolerance(void) const;
 
-   void set_initial_independent_variable(const double&);
-   void set_final_independent_variable(const double&);
+        const size_t &get_initial_size(void) const;
 
-   void set_initial_dependent_variables(const Vector<double>&);
-   void set_initial_dependent_variable(const size_t&, const double&);
+        const size_t &get_warning_size(void) const;
 
-   void set_solution_method(const SolutionMethod&);
-   void set_solution_method(const std::string&);
+        const size_t &get_error_size(void) const;
 
-   void set_points_number(const size_t&);
+        // Set methods
 
-   void set_tolerance(const double& );
+        void set(const OrdinaryDifferentialEquations &);
 
-   void set_initial_size(const size_t&);
-   void set_warning_size(const size_t&);
-   void set_error_size(const size_t&);
+        void set_initial_independent_variable(const double &);
 
-   virtual void set_default(void);
+        void set_final_independent_variable(const double &);
 
-   // Ordinary differential equations methods
+        void set_initial_dependent_variables(const Vector<double> &);
 
-   /// This pure virtual method calculates the derivatives of the dependent variables with respect to the independent variable. 
+        void set_initial_dependent_variable(const size_t &, const double &);
 
-   virtual Vector<double> calculate_dependent_variables_dots(const NeuralNetwork&, const Vector<double>&) const = 0;
+        void set_solution_method(const SolutionMethod &);
 
-   // Numerical solution methods
+        void set_solution_method(const std::string &);
 
-   Matrix<double> calculate_Runge_Kutta_solution(const NeuralNetwork&) const;
-   Vector<double> calculate_Runge_Kutta_final_solution(const NeuralNetwork&) const;
+        void set_points_number(const size_t &);
 
-   Matrix<double> calculate_Runge_Kutta_Fehlberg_solution(const NeuralNetwork&) const;
-   Vector<double> calculate_Runge_Kutta_Fehlberg_final_solution(const NeuralNetwork&) const;
+        void set_tolerance(const double &);
 
-   virtual Matrix<double> calculate_solutions(const NeuralNetwork&) const;
-   virtual Vector<double> calculate_final_solutions(const NeuralNetwork&) const;
+        void set_initial_size(const size_t &);
 
-   // Serialization methods
+        void set_warning_size(const size_t &);
 
-   std::string to_string(void) const;
-   
-   virtual tinyxml2::XMLDocument* to_XML(void) const;
-   virtual void from_XML(const tinyxml2::XMLDocument&);
+        void set_error_size(const size_t &);
 
-   virtual void save_data(const NeuralNetwork&, const std::string&) const;
+        virtual void set_default(void);
 
-protected: 
+        // Ordinary differential equations methods
 
-   /// Initial value for the only independent variable. 
+        /// This pure virtual method calculates the derivatives of the dependent variables with respect to the independent variable.
 
-   double initial_independent_variable;
+        virtual Vector<double> calculate_dependent_variables_dots(const NeuralNetwork &,
+                                                                  const Vector<double> &) const = 0;
 
-   /// Final value for the only independent variable. 
+        // Numerical solution methods
 
-   double final_independent_variable;
+        Matrix<double> calculate_Runge_Kutta_solution(const NeuralNetwork &) const;
 
-   /// Initial values for the dependent variables. 
+        Vector<double> calculate_Runge_Kutta_final_solution(const NeuralNetwork &) const;
 
-   Vector<double> initial_dependent_variables;
+        Matrix<double> calculate_Runge_Kutta_Fehlberg_solution(const NeuralNetwork &) const;
 
-   /// Numerical integration method (Runge-Kutta or Runge-Kutta-Fehlberg).
+        Vector<double> calculate_Runge_Kutta_Fehlberg_final_solution(const NeuralNetwork &) const;
 
-   SolutionMethod solution_method;
+        virtual Matrix<double> calculate_solutions(const NeuralNetwork &) const;
 
-   /// Number of points in the Runge-Kutta method. 
+        virtual Vector<double> calculate_final_solutions(const NeuralNetwork &) const;
 
-   size_t points_number;
+        // Serialization methods
 
-   /// Tolerance in the Runge-Kutta-Fehlberg method. 
+        std::string to_string(void) const;
 
-   double tolerance;
+        virtual tinyxml2::XMLDocument *to_XML(void) const;
 
-   /// Initial number of points in the Runge-Kutta-Fehlberg method. 
+        virtual void from_XML(const tinyxml2::XMLDocument &);
 
-   size_t initial_size;
+        virtual void save_data(const NeuralNetwork &, const std::string &) const;
 
-   /// Number of points at which the the Runge-Kutta-Fehlberg method displays a warning message. 
+    protected:
 
-   size_t warning_size;
+        /// Initial value for the only independent variable.
 
-   /// Number of points at which the the Runge-Kutta-Fehlberg method throws an exception. 
+        double initial_independent_variable;
 
-   size_t error_size;
-};
+        /// Final value for the only independent variable.
+
+        double final_independent_variable;
+
+        /// Initial values for the dependent variables.
+
+        Vector<double> initial_dependent_variables;
+
+        /// Numerical integration method (Runge-Kutta or Runge-Kutta-Fehlberg).
+
+        SolutionMethod solution_method;
+
+        /// Number of points in the Runge-Kutta method.
+
+        size_t points_number;
+
+        /// Tolerance in the Runge-Kutta-Fehlberg method.
+
+        double tolerance;
+
+        /// Initial number of points in the Runge-Kutta-Fehlberg method.
+
+        size_t initial_size;
+
+        /// Number of points at which the the Runge-Kutta-Fehlberg method displays a warning message.
+
+        size_t warning_size;
+
+        /// Number of points at which the the Runge-Kutta-Fehlberg method throws an exception.
+
+        size_t error_size;
+    };
 
 }
 
@@ -210,7 +225,7 @@ protected:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

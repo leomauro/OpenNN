@@ -32,97 +32,99 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class represents the mean squared error performance term. 
-/// The mean squared error measures the difference between the outputs from a neural network and the targets in a data set. 
-/// This functional is used in data modeling problems, such as function regression, 
+/// This class represents the mean squared error performance term.
+/// The mean squared error measures the difference between the outputs from a neural network and the targets in a data set.
+/// This functional is used in data modeling problems, such as function regression,
 /// pattern recognition and time series prediction.
 
-class MeanSquaredError : public PerformanceTerm
-{
+    class MeanSquaredError : public PerformanceTerm {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit MeanSquaredError(void);
+        explicit MeanSquaredError(void);
 
-   // NEURAL NETWORK CONSTRUCTOR
+        // NEURAL NETWORK CONSTRUCTOR
 
-   explicit MeanSquaredError(NeuralNetwork*);
+        explicit MeanSquaredError(NeuralNetwork *);
 
-   // DATA SET CONSTRUCTOR
+        // DATA SET CONSTRUCTOR
 
-   explicit MeanSquaredError(DataSet*);
+        explicit MeanSquaredError(DataSet *);
 
-   // GENERAL CONSTRUCTOR
+        // GENERAL CONSTRUCTOR
 
-   explicit MeanSquaredError(NeuralNetwork*, DataSet*);
+        explicit MeanSquaredError(NeuralNetwork *, DataSet *);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit MeanSquaredError(const tinyxml2::XMLDocument&);
+        explicit MeanSquaredError(const tinyxml2::XMLDocument &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   MeanSquaredError(const MeanSquaredError&);
+        MeanSquaredError(const MeanSquaredError &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~MeanSquaredError(void);
+        virtual ~MeanSquaredError(void);
 
-   // STRUCTURES
-
-
-   // METHODS
-
-   // Get methods
-
-   // Set methods
-
-   // Checking methods
-
-   void check(void) const;
-
-   // Objective methods
-
-   double calculate_performance(void) const;
-   double calculate_performance(const Vector<double>&) const;   
-   double calculate_selection_performance(void) const;
-
-   Vector<double> calculate_output_gradient(const Vector<double>&, const Vector<double>&) const;
-
-   Vector<double> calculate_gradient(void) const;
-
-   Matrix<double> calculate_output_Hessian(const Vector<double>&, const Vector<double>&) const;
-
-   Matrix<double> calculate_Hessian(void) const;
-
-   FirstOrderPerformance calculate_first_order_performance(void) const;
-   SecondOrderPerformance calculate_second_order_performance(void) const;
-
-   // Objective terms methods
-
-   Vector<double> calculate_terms(void) const;
-   Vector<double> calculate_terms(const Vector<double>&) const;
-
-   Matrix<double> calculate_terms_Jacobian(void) const;
-
-   FirstOrderTerms calculate_first_order_terms(void) const;
-
-   std::string write_performance_term_type(void) const;
-
-   // Serialization methods
-
-   tinyxml2::XMLDocument* to_XML(void) const;   
+        // STRUCTURES
 
 
-private:
+        // METHODS
+
+        // Get methods
+
+        // Set methods
+
+        // Checking methods
+
+        void check(void) const;
+
+        // Objective methods
+
+        double calculate_performance(void) const;
+
+        double calculate_performance(const Vector<double> &) const;
+
+        double calculate_selection_performance(void) const;
+
+        Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
+
+        Vector<double> calculate_gradient(void) const;
+
+        Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
+
+        Matrix<double> calculate_Hessian(void) const;
+
+        FirstOrderPerformance calculate_first_order_performance(void) const;
+
+        SecondOrderPerformance calculate_second_order_performance(void) const;
+
+        // Objective terms methods
+
+        Vector<double> calculate_terms(void) const;
+
+        Vector<double> calculate_terms(const Vector<double> &) const;
+
+        Matrix<double> calculate_terms_Jacobian(void) const;
+
+        FirstOrderTerms calculate_first_order_terms(void) const;
+
+        std::string write_performance_term_type(void) const;
+
+        // Serialization methods
+
+        tinyxml2::XMLDocument *to_XML(void) const;
 
 
-};
+    private:
+
+
+    };
 
 }
 
@@ -141,7 +143,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

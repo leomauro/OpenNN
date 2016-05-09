@@ -1,153 +1,133 @@
 /****************************************************************************************************************/
-/*                                                                                                              */ 
+/*                                                                                                              */
 /*   OpenNN: Open Neural Networks Library                                                                       */
 /*   www.artelnics.com/opennn                                                                                   */
 /*                                                                                                              */
 /*   Y A C H T   R E S I S T A N C E   D E S I G N   A P P L I C A T I O N                                      */
 /*                                                                                                              */
-/*   Roberto Lopez                                                                                              */ 
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   artelnics@artelnics.com                                                                                    */
-/*                                                                                                              */  
+/*                                                                                                              */
 /****************************************************************************************************************/
 
-// This is a function regression problem. 
+// This is a function regression problem.
 
 // System includes
 
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <string>
 #include <cstring>
-#include <time.h>
 
 // OpenNN includes
 
-#include "../../opennn/opennn.h"
+#include "opennn.h"
 
 using namespace OpenNN;
 
 int main(void)
 {
-   try            
-   {
-      std::cout << "OpenNN. Yacht Resistance Design Application." << std::endl;	
+    try {
+        std::cout << "OpenNN. Yacht Resistance Design Application." << std::endl;
+        srand((unsigned) time(NULL));
 
-      srand((unsigned)time(NULL));
+        // Data set
 
-      // Data set
+        DataSet data_set;
+        data_set.set_data_file_name("data/yachtresistance.dat");
+        data_set.load_data();
 
-      DataSet data_set;
+        // Variables
 
-      data_set.set_data_file_name("../data/yachtresistance.dat");
+        Variables *variables_pointer = data_set.get_variables_pointer();
+        variables_pointer->set_name(0, "longitudinal_center_buoyancy");
+        variables_pointer->set_name(1, "prismatic_coefficient");
+        variables_pointer->set_name(2, "length_displacement_ratio");
+        variables_pointer->set_name(3, "beam_draught_ratio");
+        variables_pointer->set_name(4, "length_beam_ratio");
+        variables_pointer->set_name(5, "froude_number");
+        variables_pointer->set_name(6, "residuary_resistance");
 
-      data_set.load_data();
+        const Matrix<std::string> inputs_information = variables_pointer->arrange_inputs_information();
+        const Matrix<std::string> targets_information = variables_pointer->arrange_targets_information();
 
-	  // Variables
+        // Instances
 
-	  Variables* variables_pointer = data_set.get_variables_pointer();
+        Instances *instances_pointer = data_set.get_instances_pointer();
 
-	  variables_pointer->set_name(0, "longitudinal_center_buoyancy");
-      variables_pointer->set_name(1, "prismatic_coefficient");
-	  variables_pointer->set_name(2, "length_displacement_ratio");
-	  variables_pointer->set_name(3, "beam_draught_ratio");
-	  variables_pointer->set_name(4, "length_beam_ratio");
-	  variables_pointer->set_name(5, "froude_number");
-	  variables_pointer->set_name(6, "residuary_resistance");
+        instances_pointer->split_random_indices();
 
-      const Matrix<std::string> inputs_information = variables_pointer->arrange_inputs_information();
-      const Matrix<std::string> targets_information = variables_pointer->arrange_targets_information();
+        const Vector<Statistics<double> > inputs_statistics = data_set.scale_inputs_minimum_maximum();
+        const Vector<Statistics<double> > targets_statistics = data_set.scale_targets_minimum_maximum();
 
-	  // Instances 
+        // Neural network
 
-	  Instances* instances_pointer = data_set.get_instances_pointer();
+        const size_t inputs_number = data_set.get_variables().count_inputs_number();
+        const size_t hidden_neurons_number = 30;
+        const size_t outputs_number = data_set.get_variables().count_targets_number();
 
-      instances_pointer->split_random_indices();
+        NeuralNetwork neural_network(inputs_number, hidden_neurons_number, outputs_number);
 
-      const Vector< Statistics<double> > inputs_statistics = data_set.scale_inputs_minimum_maximum();
-      const Vector< Statistics<double> > targets_statistics = data_set.scale_targets_minimum_maximum();
+        Inputs *inputs = neural_network.get_inputs_pointer();
+        inputs->set_information(inputs_information);
 
-      // Neural network
+        Outputs *outputs = neural_network.get_outputs_pointer();
+        outputs->set_information(targets_information);
 
-      const size_t inputs_number = data_set.get_variables().count_inputs_number();
-      const size_t hidden_neurons_number = 30;
-      const size_t outputs_number = data_set.get_variables().count_targets_number();
+        neural_network.construct_scaling_layer();
+        ScalingLayer *scaling_layer_pointer = neural_network.get_scaling_layer_pointer();
+        scaling_layer_pointer->set_statistics(inputs_statistics);
+        scaling_layer_pointer->set_scaling_method(ScalingLayer::NoScaling);
 
-      NeuralNetwork neural_network(inputs_number, hidden_neurons_number, outputs_number);
+        neural_network.construct_unscaling_layer();
+        UnscalingLayer *unscaling_layer_pointer = neural_network.get_unscaling_layer_pointer();
+        unscaling_layer_pointer->set_statistics(targets_statistics);
+        unscaling_layer_pointer->set_unscaling_method(UnscalingLayer::NoUnscaling);
 
-      Inputs* inputs = neural_network.get_inputs_pointer();
+        // Performance functional
 
-      inputs->set_information(inputs_information);
+        PerformanceFunctional performance_functional(&neural_network, &data_set);
 
-      Outputs* outputs = neural_network.get_outputs_pointer();
+        // Training strategy
 
-      outputs->set_information(targets_information);
+        TrainingStrategy training_strategy(&performance_functional);
 
-      neural_network.construct_scaling_layer();
+        QuasiNewtonMethod *quasi_Newton_method_pointer = training_strategy.get_quasi_Newton_method_pointer();
+        quasi_Newton_method_pointer->set_maximum_iterations_number(1000);
+        quasi_Newton_method_pointer->set_reserve_performance_history(true);
+        quasi_Newton_method_pointer->set_display_period(100);
 
-      ScalingLayer* scaling_layer_pointer = neural_network.get_scaling_layer_pointer();
+        TrainingStrategy::Results training_strategy_results = training_strategy.perform_training();
 
-      scaling_layer_pointer->set_statistics(inputs_statistics);
+        // Testing analysis
 
-      scaling_layer_pointer->set_scaling_method(ScalingLayer::NoScaling);
+        TestingAnalysis testing_analysis(&neural_network, &data_set);
 
-      neural_network.construct_unscaling_layer();
+        TestingAnalysis::LinearRegressionResults linear_regression_results = testing_analysis.perform_linear_regression_analysis();
 
-      UnscalingLayer* unscaling_layer_pointer = neural_network.get_unscaling_layer_pointer();
+        // Save results
 
-      unscaling_layer_pointer->set_statistics(targets_statistics);
+        scaling_layer_pointer->set_scaling_method(ScalingLayer::MinimumMaximum);
+        unscaling_layer_pointer->set_unscaling_method(UnscalingLayer::MinimumMaximum);
 
-      unscaling_layer_pointer->set_unscaling_method(UnscalingLayer::NoUnscaling);
+        data_set.save("data/data_set.xml");
 
-	  // Performance functional
+        neural_network.save("data/neural_network.xml");
+        neural_network.save_expression("data/expression.txt");
 
-      PerformanceFunctional performance_functional(&neural_network, &data_set);
+        training_strategy.save("data/training_strategy.xml");
+        training_strategy_results.save("data/training_strategy_results.dat");
 
-	  // Training strategy 
+        linear_regression_results.save("data/linear_regression_analysis_results.dat");
 
-	  TrainingStrategy training_strategy(&performance_functional);
-
-      QuasiNewtonMethod* quasi_Newton_method_pointer = training_strategy.get_quasi_Newton_method_pointer();
-
-      quasi_Newton_method_pointer->set_maximum_iterations_number(1000);
-
-      quasi_Newton_method_pointer->set_reserve_performance_history(true);
-
-      quasi_Newton_method_pointer->set_display_period(100);
-
-      TrainingStrategy::Results training_strategy_results = training_strategy.perform_training();
-
-	  // Testing analysis
-                  
-      TestingAnalysis testing_analysis(&neural_network, &data_set);
-
-      TestingAnalysis::LinearRegressionResults linear_regression_results = testing_analysis.perform_linear_regression_analysis();
-
-      // Save results
-
-      scaling_layer_pointer->set_scaling_method(ScalingLayer::MinimumMaximum);
-      unscaling_layer_pointer->set_unscaling_method(UnscalingLayer::MinimumMaximum);
-
-      data_set.save("../data/data_set.xml");
-
-      neural_network.save("../data/neural_network.xml");
-      neural_network.save_expression("../data/expression.txt");
-
-      training_strategy.save("../data/training_strategy.xml");
-      training_strategy_results.save("../data/training_strategy_results.dat");
-
-      linear_regression_results.save("../data/linear_regression_analysis_results.dat");
-
-      return(0);
-   }
-   catch(std::exception& e)
-   {
-      std::cerr << e.what() << std::endl;
-
-      return(1);
-   }
-}  
+        return 0;
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
+}
 
 
 // OpenNN: Open Neural Networks Library.
@@ -162,7 +142,7 @@ int main(void)
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

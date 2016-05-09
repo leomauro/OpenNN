@@ -30,543 +30,598 @@
 #include "training_algorithm.h"
 #include "performance_functional.h"
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 ///
 /// This concrete class represents an evolutionary training algorithm for a performance functional of a neural network.
 ///
 
-class EvolutionaryAlgorithm : public TrainingAlgorithm
-{
+    class EvolutionaryAlgorithm : public TrainingAlgorithm {
 
-public:
+    public:
 
-   // ENUMERATIONS
+        // ENUMERATIONS
 
-   /// Enumeration of the available training operators for fitness assignment.
+        /// Enumeration of the available training operators for fitness assignment.
 
-   enum FitnessAssignmentMethod{LinearRanking};
+        enum FitnessAssignmentMethod {
+            LinearRanking
+        };
 
-   /// Enumeration of the available training operators for selection. 
+        /// Enumeration of the available training operators for selection.
 
-   enum SelectionMethod{RouletteWheel};
+        enum SelectionMethod {
+            RouletteWheel
+        };
 
-   /// Enumeration of the available training operators for recombination.
+        /// Enumeration of the available training operators for recombination.
 
-   enum RecombinationMethod{Line, Intermediate};
+        enum RecombinationMethod {
+            Line, Intermediate
+        };
 
-   /// Enumeration of the available training operators for mutation.
+        /// Enumeration of the available training operators for mutation.
 
-   enum MutationMethod{Normal, Uniform};
+        enum MutationMethod {
+            Normal, Uniform
+        };
 
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit EvolutionaryAlgorithm(void);
+        explicit EvolutionaryAlgorithm(void);
 
-    // GENERAL CONSTRUCTOR
+        // GENERAL CONSTRUCTOR
 
-   explicit EvolutionaryAlgorithm(PerformanceFunctional*);
+        explicit EvolutionaryAlgorithm(PerformanceFunctional *);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit EvolutionaryAlgorithm(const tinyxml2::XMLDocument&);
+        explicit EvolutionaryAlgorithm(const tinyxml2::XMLDocument &);
 
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~EvolutionaryAlgorithm(void);
+        virtual ~EvolutionaryAlgorithm(void);
 
-      // STRUCTURES
+        // STRUCTURES
 
-   ///
-   /// This structure contains the training results for the evolutionary algorithm. 
-   ///
+        ///
+        /// This structure contains the training results for the evolutionary algorithm.
+        ///
 
-   struct EvolutionaryAlgorithmResults : public TrainingAlgorithm::TrainingAlgorithmResults
-   {  
-       /// Default constructor.
+        struct EvolutionaryAlgorithmResults : public TrainingAlgorithm::TrainingAlgorithmResults {
+            /// Default constructor.
 
-       EvolutionaryAlgorithmResults(void)
-       {
-           evolutionary_algorithm_pointer = NULL;
-       }
+            EvolutionaryAlgorithmResults(void)
+            {
+                evolutionary_algorithm_pointer = NULL;
+            }
 
-       /// Evolutionary algorithm constructor.
+            /// Evolutionary algorithm constructor.
 
-       EvolutionaryAlgorithmResults(EvolutionaryAlgorithm* new_evolutionary_algorithm_pointer)
-       {
-           evolutionary_algorithm_pointer = new_evolutionary_algorithm_pointer;
-       }
+            EvolutionaryAlgorithmResults(EvolutionaryAlgorithm *new_evolutionary_algorithm_pointer)
+            {
+                evolutionary_algorithm_pointer = new_evolutionary_algorithm_pointer;
+            }
 
-       /// Destructor.
+            /// Destructor.
 
-       virtual ~EvolutionaryAlgorithmResults(void)
-       {
-       }
+            virtual ~EvolutionaryAlgorithmResults(void)
+            {
+            }
 
-       /// Pointer to the evolutionary algorithm object for which the training results are to be stored.
+            /// Pointer to the evolutionary algorithm object for which the training results are to be stored.
 
-      EvolutionaryAlgorithm* evolutionary_algorithm_pointer;
+            EvolutionaryAlgorithm *evolutionary_algorithm_pointer;
 
-      // Training history
+            // Training history
 
-      /// History of the population matrix over the generations. 
+            /// History of the population matrix over the generations.
 
-      Vector< Matrix<double> > population_history;
+            Vector<Matrix<double> > population_history;
 
-      /// History of the best individual parameters over the generations. 
+            /// History of the best individual parameters over the generations.
 
-      Vector< Vector<double> > best_individual_history;
+            Vector<Vector<double> > best_individual_history;
 
-      /// History of the mean norm of the individuals over the generations. 
+            /// History of the mean norm of the individuals over the generations.
 
-      Vector<double> mean_norm_history;
+            Vector<double> mean_norm_history;
 
-      /// History of the standard deviation of the individuals norm over the generations. 
+            /// History of the standard deviation of the individuals norm over the generations.
 
-      Vector<double> standard_deviation_norm_history;
+            Vector<double> standard_deviation_norm_history;
 
-      /// History of the norm of the best individual over the generations. 
+            /// History of the norm of the best individual over the generations.
 
-      Vector<double> best_norm_history;
+            Vector<double> best_norm_history;
 
-      /// History of the population performance over the generations. 
+            /// History of the population performance over the generations.
 
-      Vector< Vector<double> > performance_history;
+            Vector<Vector<double> > performance_history;
 
-      /// History of the mean performance of the individuals over the generations. 
+            /// History of the mean performance of the individuals over the generations.
 
-      Vector<double> mean_performance_history;
+            Vector<double> mean_performance_history;
 
-      /// History of the standard deviation of the population performance over the generations. 
+            /// History of the standard deviation of the population performance over the generations.
 
-      Vector<double> standard_deviation_performance_history;
+            Vector<double> standard_deviation_performance_history;
 
-      /// History of the performance of the best individual over each generations. 
+            /// History of the performance of the best individual over each generations.
 
-      Vector<double> best_performance_history;
+            Vector<double> best_performance_history;
 
-      /// History of the selection performance of the best individual over each generations. 
+            /// History of the selection performance of the best individual over each generations.
 
-      Vector<double> selection_performance_history;
+            Vector<double> selection_performance_history;
 
-      /// History of the elapsed time over the generations.
+            /// History of the elapsed time over the generations.
 
-      Vector<double> elapsed_time_history;
+            Vector<double> elapsed_time_history;
 
-      // Final values
+            // Final values
 
-      /// Final mean norm of the population. 
+            /// Final mean norm of the population.
 
-      double final_mean_norm;
+            double final_mean_norm;
 
-      /// Final standard deviation of the population norm. 
+            /// Final standard deviation of the population norm.
 
-      double final_standard_deviation_norm;
+            double final_standard_deviation_norm;
 
-      /// Final norm of the best individual ever. 
+            /// Final norm of the best individual ever.
 
-      double final_best_norm;
+            double final_best_norm;
 
-      /// Final mean population performance. 
+            /// Final mean population performance.
 
-      double final_mean_performance;
+            double final_mean_performance;
 
-      /// Final standard deviation of the population performance. 
+            /// Final standard deviation of the population performance.
 
-      double final_standard_deviation_performance;
+            double final_standard_deviation_performance;
 
-      /// Performance of the best individual ever. 
+            /// Performance of the best individual ever.
 
-      double final_best_performance;
+            double final_best_performance;
 
-      /// Selection performance after training.
+            /// Selection performance after training.
 
-      double final_selection_performance;
+            double final_selection_performance;
 
-      /// Total elapsed time in the training process.
+            /// Total elapsed time in the training process.
 
-      double elapsed_time;
+            double elapsed_time;
 
-      /// Number of generations needed by the evolutionary algorithm.
+            /// Number of generations needed by the evolutionary algorithm.
 
-      size_t generations_number;
+            size_t generations_number;
 
-      void resize_training_history(const size_t&);
-      std::string to_string(void) const;
-      Matrix<std::string> write_final_results(const size_t& precision = 3) const;
-   };
+            void resize_training_history(const size_t &);
 
+            std::string to_string(void) const;
 
-   // METHODS
+            Matrix<std::string> write_final_results(const size_t &precision = 3) const;
+        };
 
-   // Get methods
 
-   // Training parameters
+        // METHODS
 
-   const double& get_warning_parameters_norm(void) const;
+        // Get methods
 
-   const double& get_error_parameters_norm(void) const;
+        // Training parameters
 
-   // Stopping criteria
+        const double &get_warning_parameters_norm(void) const;
 
-   const double& get_best_performance_goal(void) const;
-   const size_t& get_maximum_selection_performance_decreases(void) const;
+        const double &get_error_parameters_norm(void) const;
 
-   const size_t& get_maximum_generations_number(void) const;
-   const double& get_maximum_time(void) const;
+        // Stopping criteria
 
-   // Reserve training history
+        const double &get_best_performance_goal(void) const;
 
-   const bool& get_reserve_selection_performance_history(void) const;
+        const size_t &get_maximum_selection_performance_decreases(void) const;
 
-   const bool& get_reserve_elapsed_time_history(void) const;
+        const size_t &get_maximum_generations_number(void) const;
 
-   // Population methods
+        const double &get_maximum_time(void) const;
 
-   size_t get_population_size(void) const;
+        // Reserve training history
 
-   const Matrix<double>& get_population(void) const;
+        const bool &get_reserve_selection_performance_history(void) const;
 
-   // Training operators
+        const bool &get_reserve_elapsed_time_history(void) const;
 
-   const FitnessAssignmentMethod& get_fitness_assignment_method(void) const;
-   std::string write_fitness_assignment_method(void) const;
+        // Population methods
 
-   const SelectionMethod& get_selection_method(void) const;
-   std::string write_selection_method(void) const;
+        size_t get_population_size(void) const;
 
-   const RecombinationMethod& get_recombination_method(void) const;
-   std::string write_recombination_method(void) const;
+        const Matrix<double> &get_population(void) const;
 
-   const MutationMethod& get_mutation_method(void) const;
-   std::string write_mutation_method(void) const;
+        // Training operators
 
-   // Population values
+        const FitnessAssignmentMethod &get_fitness_assignment_method(void) const;
 
-   const Vector<double>& get_performance(void) const;
-   const Vector<double>& get_fitness(void) const;
-   const Vector<bool>& get_selection(void) const;
+        std::string write_fitness_assignment_method(void) const;
 
-   const size_t& get_elitism_size(void) const;
-   const double& get_selective_pressure(void) const;
+        const SelectionMethod &get_selection_method(void) const;
 
-   const double& get_recombination_size(void) const;
-   const double& get_mutation_rate(void) const;
-   const double& get_mutation_range(void) const;    
-   const double& get_mean_performance_goal(void) const;
-   const double& get_standard_deviation_performance_goal(void) const;
+        std::string write_selection_method(void) const;
 
-   const bool& get_reserve_population_history(void) const;
-   const bool& get_reserve_best_individual_history(void) const;
-   const bool& get_reserve_mean_norm_history(void) const;
-   const bool& get_reserve_standard_deviation_norm_history(void) const;
-   const bool& get_reserve_best_norm_history(void) const;
+        const RecombinationMethod &get_recombination_method(void) const;
 
-   const bool& get_reserve_mean_performance_history(void) const;
-   const bool& get_reserve_standard_deviation_performance_history(void) const;
-   const bool& get_reserve_best_performance_history(void) const;
+        std::string write_recombination_method(void) const;
 
-   // Set methods
+        const MutationMethod &get_mutation_method(void) const;
 
-   void set(void);
-   void set(PerformanceFunctional*);
+        std::string write_mutation_method(void) const;
 
-   void set_default(void);
+        // Population values
 
-   void set_fitness_assignment_method(const FitnessAssignmentMethod&);
-   void set_fitness_assignment_method(const std::string&);
+        const Vector<double> &get_performance(void) const;
 
-   void set_selection_method(const SelectionMethod&);
-   void set_selection_method(const std::string&);
+        const Vector<double> &get_fitness(void) const;
 
-   void set_recombination_method(const RecombinationMethod&);
-   void set_recombination_method(const std::string&);
+        const Vector<bool> &get_selection(void) const;
 
-   void set_mutation_method(const MutationMethod&);
-   void set_mutation_method(const std::string&);
+        const size_t &get_elitism_size(void) const;
 
-   void set_population_size(const size_t&);
+        const double &get_selective_pressure(void) const;
 
-   void set_population(const Matrix<double>&);
+        const double &get_recombination_size(void) const;
 
-   void set_performance(const Vector<double>&);
-   void set_fitness(const Vector<double>&);
-   void set_selection(const Vector<bool>&);
+        const double &get_mutation_rate(void) const;
 
-   void set_elitism_size(const size_t&);
-   void set_selective_pressure(const double&);
-   void set_recombination_size(const double&);
+        const double &get_mutation_range(void) const;
 
-   void set_mutation_rate(const double&);
-   void set_mutation_range(const double&);
+        const double &get_mean_performance_goal(void) const;
 
-   void set_maximum_generations_number(const size_t&);
-   void set_mean_performance_goal(const double&);
-   void set_standard_deviation_performance_goal(const double&);
+        const double &get_standard_deviation_performance_goal(void) const;
 
-   void set_reserve_population_history(const bool&);
+        const bool &get_reserve_population_history(void) const;
 
-   void set_reserve_best_individual_history(const bool&);
+        const bool &get_reserve_best_individual_history(void) const;
 
-   void set_reserve_mean_norm_history(const bool&);
-   void set_reserve_standard_deviation_norm_history(const bool&);
-   void set_reserve_best_norm_history(const bool&);
+        const bool &get_reserve_mean_norm_history(void) const;
 
-   void set_reserve_mean_performance_history(const bool&);
-   void set_reserve_standard_deviation_performance_history(const bool&);
-   void set_reserve_best_performance_history(const bool&);
+        const bool &get_reserve_standard_deviation_norm_history(void) const;
 
-   void set_reserve_all_training_history(const bool&);
+        const bool &get_reserve_best_norm_history(void) const;
 
-   // Training parameters
+        const bool &get_reserve_mean_performance_history(void) const;
 
-   void set_warning_parameters_norm(const double&);
+        const bool &get_reserve_standard_deviation_performance_history(void) const;
 
-   void set_error_parameters_norm(const double&);
+        const bool &get_reserve_best_performance_history(void) const;
 
-   // Stopping criteria
+        // Set methods
 
-   void set_best_performance_goal(const double&);
-   void set_maximum_selection_performance_decreases(const size_t&);
+        void set(void);
 
-   void set_maximum_time(const double&);
+        void set(PerformanceFunctional *);
 
-   // Reserve training history
+        void set_default(void);
 
-   void set_reserve_selection_performance_history(const bool&);
+        void set_fitness_assignment_method(const FitnessAssignmentMethod &);
 
-   void set_reserve_elapsed_time_history(const bool&);
+        void set_fitness_assignment_method(const std::string &);
 
-   // Utilities
+        void set_selection_method(const SelectionMethod &);
 
-   void set_display_period(const size_t&);
+        void set_selection_method(const std::string &);
 
-   // Population methods
+        void set_recombination_method(const RecombinationMethod &);
 
-   Vector<double> get_individual(const size_t&) const;
-   void set_individual(const size_t&, const Vector<double>&);
+        void set_recombination_method(const std::string &);
 
-   size_t calculate_best_individual_index(void) const;
+        void set_mutation_method(const MutationMethod &);
 
-   double calculate_mean_performance(void) const;
-   double calculate_standard_deviation_performance(void) const;
+        void set_mutation_method(const std::string &);
 
-   // Initialization methods
+        void set_population_size(const size_t &);
 
-   void initialize_population(const double&);
+        void set_population(const Matrix<double> &);
 
-   void randomize_population_uniform(void);
-   void randomize_population_uniform(const double&, const double&);
-   void randomize_population_uniform(const Vector<double>&, const Vector<double>&);
+        void set_performance(const Vector<double> &);
 
-   void randomize_population_normal(void);
-   void randomize_population_normal(const double&, const double&);
-   void randomize_population_normal(const Vector<double>&, const Vector<double>&);
-    
-   // Population norm methods
+        void set_fitness(const Vector<double> &);
 
-   Vector<double> calculate_population_norm(void) const;
+        void set_selection(const Vector<bool> &);
 
-   // Population performance methods
+        void set_elitism_size(const size_t &);
 
-   void perform_fitness_assignment(void);
-   void perform_selection(void);
-   void perform_recombination(void);
-   void perform_mutation(void);
+        void set_selective_pressure(const double &);
 
-   void evolve_population(void);
+        void set_recombination_size(const double &);
 
-   void evaluate_population(void);
+        void set_mutation_rate(const double &);
 
-   // Fitness assignment methods
+        void set_mutation_range(const double &);
 
-   void perform_linear_ranking_fitness_assignment(void);
+        void set_maximum_generations_number(const size_t &);
 
-   // Selection methods
+        void set_mean_performance_goal(const double &);
 
-   void perform_roulette_wheel_selection(void);
+        void set_standard_deviation_performance_goal(const double &);
 
-   // Recombination methods
+        void set_reserve_population_history(const bool &);
 
-   void perform_intermediate_recombination(void);
-   void perform_line_recombination(void);
+        void set_reserve_best_individual_history(const bool &);
 
-   // Mutation methods
+        void set_reserve_mean_norm_history(const bool &);
 
-   void perform_normal_mutation(void);
-   void perform_uniform_mutation(void);
+        void set_reserve_standard_deviation_norm_history(const bool &);
 
-   // Training methods
+        void set_reserve_best_norm_history(const bool &);
 
-   EvolutionaryAlgorithmResults* perform_training(void);
+        void set_reserve_mean_performance_history(const bool &);
 
-   std::string write_training_algorithm_type(void) const;
+        void set_reserve_standard_deviation_performance_history(const bool &);
 
-   // Serialization methods
+        void set_reserve_best_performance_history(const bool &);
 
-   Matrix<std::string> to_string_matrix(void) const;
+        void set_reserve_all_training_history(const bool &);
 
-   tinyxml2::XMLDocument* to_XML(void) const;
-   void from_XML(const tinyxml2::XMLDocument&);
+        // Training parameters
 
-   void initialize_random(void);
+        void set_warning_parameters_norm(const double &);
 
-private:
+        void set_error_parameters_norm(const double &);
 
-   // MEMBERS
+        // Stopping criteria
 
-   // Population stuff
+        void set_best_performance_goal(const double &);
 
-   /// Population matrix.
+        void set_maximum_selection_performance_decreases(const size_t &);
 
-   Matrix<double> population;
+        void set_maximum_time(const double &);
 
-   /// Performance of population.
+        // Reserve training history
 
-   Vector<double> performance;
+        void set_reserve_selection_performance_history(const bool &);
 
-   /// Fitness of population.
+        void set_reserve_elapsed_time_history(const bool &);
 
-   Vector<double> fitness;
+        // Utilities
 
-   /// Selected individuals in population.
+        void set_display_period(const size_t &);
 
-   Vector<bool> selection;
+        // Population methods
 
-   // Training operators
+        Vector<double> get_individual(const size_t &) const;
 
-   /// Fitness assignment training operators enumeration.
+        void set_individual(const size_t &, const Vector<double> &);
 
-   FitnessAssignmentMethod fitness_assignment_method;
+        size_t calculate_best_individual_index(void) const;
 
-   /// Selection training operators enumeration.
+        double calculate_mean_performance(void) const;
 
-   SelectionMethod selection_method;
+        double calculate_standard_deviation_performance(void) const;
 
-   /// Recombination training operators enumeration.
+        // Initialization methods
 
-   RecombinationMethod recombination_method;
+        void initialize_population(const double &);
 
-   /// Mutation training operators enumeration.
+        void randomize_population_uniform(void);
 
-   MutationMethod mutation_method;
-   
-   /// Elitism size.
-   /// It represents the number of individuals which will always be selected for recombination.
-   /// This is a parameter of the selection operator.
+        void randomize_population_uniform(const double &, const double &);
 
-   size_t elitism_size;
+        void randomize_population_uniform(const Vector<double> &, const Vector<double> &);
 
-   /// Selective pressure. 
-   /// Linear ranking allows values for the selective pressure greater than 0.
-   /// This is a parameter of the selection operator.
+        void randomize_population_normal(void);
 
-   double selective_pressure;
+        void randomize_population_normal(const double &, const double &);
 
-   /// Recombination size. 
-   /// The recombination size value must be equal or greater than 0.
-   /// This is a parameter of the recombination operator.
+        void randomize_population_normal(const Vector<double> &, const Vector<double> &);
 
-   double recombination_size;
+        // Population norm methods
 
-   /// Mutation rate.
-   /// The mutation rate value must be between 0 and 1.
-   /// This is a parameter of the mutation operator.
+        Vector<double> calculate_population_norm(void) const;
 
-   double mutation_rate;
+        // Population performance methods
 
-   /// Mutation range.
-   /// The mutation range value must be 0 or a positive number.
-   /// This is a parameter of the mutation operator.
+        void perform_fitness_assignment(void);
 
-   double mutation_range;
+        void perform_selection(void);
 
-   /// Value for the parameters norm at which a warning message is written to the screen. 
+        void perform_recombination(void);
 
-   double warning_parameters_norm;
+        void perform_mutation(void);
 
-   /// Value for the parameters norm at which the training process is assumed to fail. 
-   
-   double error_parameters_norm;
+        void evolve_population(void);
 
+        void evaluate_population(void);
 
-   // STOPPING CRITERIA
+        // Fitness assignment methods
 
-   /// Target value for the mean performance of the population.
-   /// It is used as a stopping criterion.
+        void perform_linear_ranking_fitness_assignment(void);
 
-   double mean_performance_goal;
+        // Selection methods
 
-   /// Target value for the standard deviation of the population performance.
-   /// It is used as a stopping criterion.
+        void perform_roulette_wheel_selection(void);
 
-   double standard_deviation_performance_goal;
+        // Recombination methods
 
-   /// Best goal value for the performance. It is used as a stopping criterion.
+        void perform_intermediate_recombination(void);
 
-   double best_performance_goal;
+        void perform_line_recombination(void);
 
-   /// Maximum number of generations to perform_training.
+        // Mutation methods
 
-   size_t maximum_generations_number;
+        void perform_normal_mutation(void);
 
-   /// Number of generations where the selection performance decreases.
-   /// This is an early stopping method for improving selection.
+        void perform_uniform_mutation(void);
 
-   size_t maximum_selection_performance_decreases;
+        // Training methods
 
-   /// Maximum training time. It is used as a stopping criterion.
+        EvolutionaryAlgorithmResults *perform_training(void);
 
-   double maximum_time;
+        std::string write_training_algorithm_type(void) const;
 
-   // Training history
+        // Serialization methods
 
-   /// True if the population history, which is a vector of matrices, is to be reserved, false otherwise.
-   /// Reserving the population history can be compuationally expensive if the number of parameters,
-   /// the population size and the number of generations are big numbers.
+        Matrix<std::string> to_string_matrix(void) const;
 
-   bool reserve_population_history;
+        tinyxml2::XMLDocument *to_XML(void) const;
 
-   /// True if the history of the best individual ever is to be reserved, and false otherwise.
-   /// The best individual history is a vector of vectors.
+        void from_XML(const tinyxml2::XMLDocument &);
 
-   bool reserve_best_individual_history;
+        void initialize_random(void);
 
-   /// True if the mean norm history vector is to be reserved, false otherwise.
+    private:
 
-   bool reserve_mean_norm_history;
+        // MEMBERS
 
-   /// True if the standard deviation of norm history vector is to be reserved, false otherwise.
+        // Population stuff
 
-   bool reserve_standard_deviation_norm_history;
+        /// Population matrix.
 
-   /// True if the best norm history vector is to be reserved, false otherwise.
+        Matrix<double> population;
 
-   bool reserve_best_norm_history;
+        /// Performance of population.
 
-   /// True if the mean performance history vector is to be reserved, false otherwise.
+        Vector<double> performance;
 
-   bool reserve_mean_performance_history;
+        /// Fitness of population.
 
-   /// True if the standard deviation of performance history vector is to be reserved, false otherwise.
+        Vector<double> fitness;
 
-   bool reserve_standard_deviation_performance_history;
+        /// Selected individuals in population.
 
-   /// True if the best performance history vector is to be reserved, false otherwise.
+        Vector<bool> selection;
 
-   bool reserve_best_performance_history;
+        // Training operators
 
-   /// True if the elapsed time history vector is to be reserved, false otherwise.
+        /// Fitness assignment training operators enumeration.
 
-   bool reserve_elapsed_time_history;
+        FitnessAssignmentMethod fitness_assignment_method;
 
-   /// True if the Selection performance history vector is to be reserved, false otherwise.
+        /// Selection training operators enumeration.
 
-   bool reserve_selection_performance_history;
-};
+        SelectionMethod selection_method;
+
+        /// Recombination training operators enumeration.
+
+        RecombinationMethod recombination_method;
+
+        /// Mutation training operators enumeration.
+
+        MutationMethod mutation_method;
+
+        /// Elitism size.
+        /// It represents the number of individuals which will always be selected for recombination.
+        /// This is a parameter of the selection operator.
+
+        size_t elitism_size;
+
+        /// Selective pressure.
+        /// Linear ranking allows values for the selective pressure greater than 0.
+        /// This is a parameter of the selection operator.
+
+        double selective_pressure;
+
+        /// Recombination size.
+        /// The recombination size value must be equal or greater than 0.
+        /// This is a parameter of the recombination operator.
+
+        double recombination_size;
+
+        /// Mutation rate.
+        /// The mutation rate value must be between 0 and 1.
+        /// This is a parameter of the mutation operator.
+
+        double mutation_rate;
+
+        /// Mutation range.
+        /// The mutation range value must be 0 or a positive number.
+        /// This is a parameter of the mutation operator.
+
+        double mutation_range;
+
+        /// Value for the parameters norm at which a warning message is written to the screen.
+
+        double warning_parameters_norm;
+
+        /// Value for the parameters norm at which the training process is assumed to fail.
+
+        double error_parameters_norm;
+
+
+        // STOPPING CRITERIA
+
+        /// Target value for the mean performance of the population.
+        /// It is used as a stopping criterion.
+
+        double mean_performance_goal;
+
+        /// Target value for the standard deviation of the population performance.
+        /// It is used as a stopping criterion.
+
+        double standard_deviation_performance_goal;
+
+        /// Best goal value for the performance. It is used as a stopping criterion.
+
+        double best_performance_goal;
+
+        /// Maximum number of generations to perform_training.
+
+        size_t maximum_generations_number;
+
+        /// Number of generations where the selection performance decreases.
+        /// This is an early stopping method for improving selection.
+
+        size_t maximum_selection_performance_decreases;
+
+        /// Maximum training time. It is used as a stopping criterion.
+
+        double maximum_time;
+
+        // Training history
+
+        /// True if the population history, which is a vector of matrices, is to be reserved, false otherwise.
+        /// Reserving the population history can be compuationally expensive if the number of parameters,
+        /// the population size and the number of generations are big numbers.
+
+        bool reserve_population_history;
+
+        /// True if the history of the best individual ever is to be reserved, and false otherwise.
+        /// The best individual history is a vector of vectors.
+
+        bool reserve_best_individual_history;
+
+        /// True if the mean norm history vector is to be reserved, false otherwise.
+
+        bool reserve_mean_norm_history;
+
+        /// True if the standard deviation of norm history vector is to be reserved, false otherwise.
+
+        bool reserve_standard_deviation_norm_history;
+
+        /// True if the best norm history vector is to be reserved, false otherwise.
+
+        bool reserve_best_norm_history;
+
+        /// True if the mean performance history vector is to be reserved, false otherwise.
+
+        bool reserve_mean_performance_history;
+
+        /// True if the standard deviation of performance history vector is to be reserved, false otherwise.
+
+        bool reserve_standard_deviation_performance_history;
+
+        /// True if the best performance history vector is to be reserved, false otherwise.
+
+        bool reserve_best_performance_history;
+
+        /// True if the elapsed time history vector is to be reserved, false otherwise.
+
+        bool reserve_elapsed_time_history;
+
+        /// True if the Selection performance history vector is to be reserved, false otherwise.
+
+        bool reserve_selection_performance_history;
+    };
 
 }
 
@@ -585,8 +640,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this OpenNN; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-

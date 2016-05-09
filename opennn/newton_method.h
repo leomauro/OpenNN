@@ -24,7 +24,7 @@
 #include <math.h>
 #include <time.h>
 
-// OpenNN includes 
+// OpenNN includes
 
 #include "performance_functional.h"
 
@@ -35,373 +35,404 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 ///
 /// This concrete class represents the Newton method training algorithm for a performance functional of a neural network.
 ///
 
-class NewtonMethod : public TrainingAlgorithm
-{
+    class NewtonMethod : public TrainingAlgorithm {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit NewtonMethod(void); 
+        explicit NewtonMethod(void);
 
-   // PERFORMANCE FUNCTIONAL CONSTRUCTOR
+        // PERFORMANCE FUNCTIONAL CONSTRUCTOR
 
-   explicit NewtonMethod(PerformanceFunctional*);
+        explicit NewtonMethod(PerformanceFunctional *);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit NewtonMethod(const tinyxml2::XMLDocument&); 
+        explicit NewtonMethod(const tinyxml2::XMLDocument &);
 
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~NewtonMethod(void);
+        virtual ~NewtonMethod(void);
 
 
-   // STRUCTURES
+        // STRUCTURES
 
-   ///
-   /// This structure contains the training results for the Newton method. 
-   ///
+        ///
+        /// This structure contains the training results for the Newton method.
+        ///
 
-   struct NewtonMethodResults : public TrainingAlgorithm::TrainingAlgorithmResults
-   {
-       /// Default constructor.
+        struct NewtonMethodResults : public TrainingAlgorithm::TrainingAlgorithmResults {
+            /// Default constructor.
 
-       NewtonMethodResults(void)
-       {
-           Newton_method_pointer = NULL;
-       }
+            NewtonMethodResults(void)
+            {
+                Newton_method_pointer = NULL;
+            }
 
-       /// Newton method constructor.
+            /// Newton method constructor.
 
-       NewtonMethodResults(NewtonMethod* new_Newton_method_pointer)
-       {
-           Newton_method_pointer = new_Newton_method_pointer;
-       }
+            NewtonMethodResults(NewtonMethod *new_Newton_method_pointer)
+            {
+                Newton_method_pointer = new_Newton_method_pointer;
+            }
 
-       /// Destructor.
+            /// Destructor.
 
-       virtual ~NewtonMethodResults(void)
-       {
-       }
+            virtual ~NewtonMethodResults(void)
+            {
+            }
 
-       /// Pointer to the Newton method object for which the training results are to be stored.
+            /// Pointer to the Newton method object for which the training results are to be stored.
 
-      NewtonMethod* Newton_method_pointer;
+            NewtonMethod *Newton_method_pointer;
 
-      // Training history
+            // Training history
 
-      /// History of the neural network parameters over the training iterations. 
+            /// History of the neural network parameters over the training iterations.
 
-      Vector< Vector<double> > parameters_history;
+            Vector<Vector<double> > parameters_history;
 
-      /// History of the parameters norm over the training iterations. 
+            /// History of the parameters norm over the training iterations.
 
-      Vector<double> parameters_norm_history;
+            Vector<double> parameters_norm_history;
 
-      /// History of the performance function performance over the training iterations. 
+            /// History of the performance function performance over the training iterations.
 
-      Vector<double> performance_history;
+            Vector<double> performance_history;
 
-      /// History of the selection performance over the training iterations. 
+            /// History of the selection performance over the training iterations.
 
-      Vector<double> selection_performance_history;
+            Vector<double> selection_performance_history;
 
-      /// History of the performance function gradient over the training iterations. 
+            /// History of the performance function gradient over the training iterations.
 
-      Vector< Vector<double> > gradient_history;
+            Vector<Vector<double> > gradient_history;
 
-      /// History of the gradient norm over the training iterations. 
+            /// History of the gradient norm over the training iterations.
 
-      Vector<double> gradient_norm_history;
+            Vector<double> gradient_norm_history;
 
-      /// History of the inverse Hessian over the training iterations. 
+            /// History of the inverse Hessian over the training iterations.
 
-      Vector< Matrix<double> > inverse_Hessian_history;
+            Vector<Matrix<double> > inverse_Hessian_history;
 
-      /// History of the random search training direction over the training iterations. 
+            /// History of the random search training direction over the training iterations.
 
-      Vector< Vector<double> > training_direction_history;
+            Vector<Vector<double> > training_direction_history;
 
-      /// History of the random search training rate over the training iterations. 
+            /// History of the random search training rate over the training iterations.
 
-      Vector<double> training_rate_history;
+            Vector<double> training_rate_history;
 
-      /// History of the elapsed time over the training iterations. 
+            /// History of the elapsed time over the training iterations.
 
-      Vector<double> elapsed_time_history;
+            Vector<double> elapsed_time_history;
 
-      // Final values
+            // Final values
 
-      /// Final neural network parameters vector. 
+            /// Final neural network parameters vector.
 
-      Vector<double> final_parameters;
+            Vector<double> final_parameters;
 
-      /// Final neural network parameters norm. 
+            /// Final neural network parameters norm.
 
-      double final_parameters_norm;
+            double final_parameters_norm;
 
-      /// Final performance function evaluation.
+            /// Final performance function evaluation.
 
-      double final_performance;
+            double final_performance;
 
-      /// Final selection performance. 
+            /// Final selection performance.
 
-      double final_selection_performance;
+            double final_selection_performance;
 
-      /// Final performance function gradient. 
+            /// Final performance function gradient.
 
-      Vector<double> final_gradient;
+            Vector<double> final_gradient;
 
-      /// Final gradient norm. 
+            /// Final gradient norm.
 
-      double final_gradient_norm;
+            double final_gradient_norm;
 
-      /// Final Newton method training direction. 
+            /// Final Newton method training direction.
 
-      Vector<double> final_training_direction;
+            Vector<double> final_training_direction;
 
-      /// Final Newton method training rate. 
+            /// Final Newton method training rate.
 
-      double final_training_rate;
+            double final_training_rate;
 
-      /// Elapsed time of the training process. 
+            /// Elapsed time of the training process.
 
-      double elapsed_time;
+            double elapsed_time;
 
-      /// Maximum number of training iterations.
+            /// Maximum number of training iterations.
 
-      size_t iterations_number;
+            size_t iterations_number;
 
-      void resize_training_history(const size_t&);
-      std::string to_string(void) const;
+            void resize_training_history(const size_t &);
 
-      Matrix<std::string> write_final_results(const size_t& precision = 3) const;
-   };
+            std::string to_string(void) const;
 
+            Matrix<std::string> write_final_results(const size_t &precision = 3) const;
+        };
 
-   // METHODS
 
-   const TrainingRateAlgorithm& get_training_rate_algorithm(void) const;
-   TrainingRateAlgorithm* get_training_rate_algorithm_pointer(void);
+        // METHODS
 
-   // Training parameters
+        const TrainingRateAlgorithm &get_training_rate_algorithm(void) const;
 
-   const double& get_warning_parameters_norm(void) const;
-   const double& get_warning_gradient_norm(void) const;
-   const double& get_warning_training_rate(void) const;
+        TrainingRateAlgorithm *get_training_rate_algorithm_pointer(void);
 
-   const double& get_error_parameters_norm(void) const;
-   const double& get_error_gradient_norm(void) const;
-   const double& get_error_training_rate(void) const;
+        // Training parameters
 
-   // Stopping criteria
+        const double &get_warning_parameters_norm(void) const;
 
-   const double& get_minimum_parameters_increment_norm(void) const;
+        const double &get_warning_gradient_norm(void) const;
 
-   const double& get_minimum_performance_increase(void) const;
-   const double& get_performance_goal(void) const;
-   const double& get_gradient_norm_goal(void) const;
-   const size_t& get_maximum_selection_performance_decreases(void) const;
+        const double &get_warning_training_rate(void) const;
 
-   const size_t& get_maximum_iterations_number(void) const;
-   const double& get_maximum_time(void) const;
+        const double &get_error_parameters_norm(void) const;
 
-   // Reserve training history
+        const double &get_error_gradient_norm(void) const;
 
-   const bool& get_reserve_parameters_history(void) const;
-   const bool& get_reserve_parameters_norm_history(void) const;
+        const double &get_error_training_rate(void) const;
 
-   const bool& get_reserve_performance_history(void) const;
-   const bool& get_reserve_gradient_history(void) const;
-   const bool& get_reserve_gradient_norm_history(void) const;
-   const bool& get_reserve_inverse_Hessian_history(void) const;
-   const bool& get_reserve_selection_performance_history(void) const;
+        // Stopping criteria
 
-   const bool& get_reserve_training_direction_history(void) const;
-   const bool& get_reserve_training_rate_history(void) const;
-   const bool& get_reserve_elapsed_time_history(void) const;
+        const double &get_minimum_parameters_increment_norm(void) const;
 
-   // Utilities
+        const double &get_minimum_performance_increase(void) const;
 
-   void set_performance_functional_pointer(PerformanceFunctional*);
+        const double &get_performance_goal(void) const;
 
-   void set_default(void);
+        const double &get_gradient_norm_goal(void) const;
 
-   // Training parameters
+        const size_t &get_maximum_selection_performance_decreases(void) const;
 
-   void set_warning_parameters_norm(const double&);
-   void set_warning_gradient_norm(const double&);
-   void set_warning_training_rate(const double&);
+        const size_t &get_maximum_iterations_number(void) const;
 
-   void set_error_parameters_norm(const double&);
-   void set_error_gradient_norm(const double&);
-   void set_error_training_rate(const double&);
+        const double &get_maximum_time(void) const;
 
-   // Stopping criteria
+        // Reserve training history
 
-   void set_minimum_parameters_increment_norm(const double&);
+        const bool &get_reserve_parameters_history(void) const;
 
-   void set_minimum_performance_increase(const double&);
-   void set_performance_goal(const double&);
-   void set_gradient_norm_goal(const double&);
-   void set_maximum_selection_performance_decreases(const size_t&);
+        const bool &get_reserve_parameters_norm_history(void) const;
 
-   void set_maximum_iterations_number(const size_t&);
-   void set_maximum_time(const double&);
+        const bool &get_reserve_performance_history(void) const;
 
-   // Reserve training history
+        const bool &get_reserve_gradient_history(void) const;
 
-   void set_reserve_parameters_history(const bool&);
-   void set_reserve_parameters_norm_history(const bool&);
+        const bool &get_reserve_gradient_norm_history(void) const;
 
-   void set_reserve_performance_history(const bool&);
-   void set_reserve_gradient_history(const bool&);
-   void set_reserve_gradient_norm_history(const bool&);
-   void set_reserve_inverse_Hessian_history(const bool&);
-   void set_reserve_selection_performance_history(const bool&);
+        const bool &get_reserve_inverse_Hessian_history(void) const;
 
-   void set_reserve_training_direction_history(const bool&);
-   void set_reserve_training_rate_history(const bool&);
-   void set_reserve_elapsed_time_history(const bool&);
+        const bool &get_reserve_selection_performance_history(void) const;
 
-   /// Makes the training history of all variables to be reseved or not in memory.
+        const bool &get_reserve_training_direction_history(void) const;
 
-   void set_reserve_all_training_history(const bool&);
+        const bool &get_reserve_training_rate_history(void) const;
 
-   // Utilities
+        const bool &get_reserve_elapsed_time_history(void) const;
 
-   void set_display_period(const size_t&);
+        // Utilities
 
-   // Training methods
+        void set_performance_functional_pointer(PerformanceFunctional *);
 
-   Vector<double> calculate_gradient_descent_training_direction(const Vector<double>&) const;
-   Vector<double> calculate_training_direction(const Vector<double>&, const Matrix<double>&) const;
+        void set_default(void);
 
-   NewtonMethodResults* perform_training(void);
+        // Training parameters
 
-   std::string write_training_algorithm_type(void) const;
+        void set_warning_parameters_norm(const double &);
 
-   // Serialization methods
+        void set_warning_gradient_norm(const double &);
 
-   Matrix<std::string> to_string_matrix(void) const;
+        void set_warning_training_rate(const double &);
 
-   tinyxml2::XMLDocument* to_XML(void) const;
-   void from_XML(const tinyxml2::XMLDocument&);
+        void set_error_parameters_norm(const double &);
 
-private:
+        void set_error_gradient_norm(const double &);
 
-   /// Training rate algorithm object.
-   /// It is used to calculate the step for the Newton training direction.
+        void set_error_training_rate(const double &);
 
-   TrainingRateAlgorithm training_rate_algorithm;
+        // Stopping criteria
 
-   /// Value for the parameters norm at which a warning message is written to the screen. 
+        void set_minimum_parameters_increment_norm(const double &);
 
-   double warning_parameters_norm;
+        void set_minimum_performance_increase(const double &);
 
-   /// Value for the gradient norm at which a warning message is written to the screen. 
+        void set_performance_goal(const double &);
 
-   double warning_gradient_norm;   
+        void set_gradient_norm_goal(const double &);
 
-   /// Training rate value at wich a warning message is written to the screen.
+        void set_maximum_selection_performance_decreases(const size_t &);
 
-   double warning_training_rate;
+        void set_maximum_iterations_number(const size_t &);
 
-   /// Value for the parameters norm at which the training process is assumed to fail. 
-   
-   double error_parameters_norm;
+        void set_maximum_time(const double &);
 
-   /// Value for the gradient norm at which the training process is assumed to fail. 
+        // Reserve training history
 
-   double error_gradient_norm;
+        void set_reserve_parameters_history(const bool &);
 
-   /// Training rate at wich the line minimization algorithm is assumed to be unable to bracket a minimum.
+        void set_reserve_parameters_norm_history(const bool &);
 
-   double error_training_rate;
+        void set_reserve_performance_history(const bool &);
 
+        void set_reserve_gradient_history(const bool &);
 
-   // STOPPING CRITERIA
+        void set_reserve_gradient_norm_history(const bool &);
 
-   /// Norm of the parameters increment vector at which training stops.
+        void set_reserve_inverse_Hessian_history(const bool &);
 
-   double minimum_parameters_increment_norm;
+        void set_reserve_selection_performance_history(const bool &);
 
-   /// Minimum performance improvement between two successive iterations. It is used as a stopping criterion.
+        void set_reserve_training_direction_history(const bool &);
 
-   double minimum_performance_increase;
+        void set_reserve_training_rate_history(const bool &);
 
-   /// Goal value for the performance. It is used as a stopping criterion.
+        void set_reserve_elapsed_time_history(const bool &);
 
-   double performance_goal;
+        /// Makes the training history of all variables to be reseved or not in memory.
 
-   /// Goal value for the norm of the objective function gradient. It is used as a stopping criterion.
+        void set_reserve_all_training_history(const bool &);
 
-   double gradient_norm_goal;
+        // Utilities
 
-   /// Maximum number of iterations at which the selection performance decreases.
-   /// This is an early stopping method for improving selection.
+        void set_display_period(const size_t &);
 
-   size_t maximum_selection_performance_decreases;
+        // Training methods
 
-   /// Maximum number of iterations to perform_training. It is used as a stopping criterion.
+        Vector<double> calculate_gradient_descent_training_direction(const Vector<double> &) const;
 
-   size_t maximum_iterations_number;
+        Vector<double> calculate_training_direction(const Vector<double> &, const Matrix<double> &) const;
 
-   /// Maximum training time. It is used as a stopping criterion.
+        NewtonMethodResults *perform_training(void);
 
-   double maximum_time;
+        std::string write_training_algorithm_type(void) const;
 
-   // TRAINING HISTORY
+        // Serialization methods
 
-   /// True if the parameters history matrix is to be reserved, false otherwise.
+        Matrix<std::string> to_string_matrix(void) const;
 
-   bool reserve_parameters_history;
+        tinyxml2::XMLDocument *to_XML(void) const;
 
-   /// True if the parameters norm history vector is to be reserved, false otherwise.
+        void from_XML(const tinyxml2::XMLDocument &);
 
-   bool reserve_parameters_norm_history;
+    private:
 
-   /// True if the performance history vector is to be reserved, false otherwise.
+        /// Training rate algorithm object.
+        /// It is used to calculate the step for the Newton training direction.
 
-   bool reserve_performance_history;
+        TrainingRateAlgorithm training_rate_algorithm;
 
-   /// True if the gradient history matrix is to be reserved, false otherwise.
+        /// Value for the parameters norm at which a warning message is written to the screen.
 
-   bool reserve_gradient_history;
+        double warning_parameters_norm;
 
-   /// True if the gradient norm history vector is to be reserved, false otherwise.
+        /// Value for the gradient norm at which a warning message is written to the screen.
 
-   bool reserve_gradient_norm_history;
+        double warning_gradient_norm;
 
-   /// True if the inverse Hessian history vector of matrices is to be reserved, false otherwise.
+        /// Training rate value at wich a warning message is written to the screen.
 
-   bool reserve_inverse_Hessian_history;
+        double warning_training_rate;
 
-   /// True if the training direction history matrix is to be reserved, false otherwise.
-   
-   bool reserve_training_direction_history;
+        /// Value for the parameters norm at which the training process is assumed to fail.
 
-   /// True if the training rate history vector is to be reserved, false otherwise.
+        double error_parameters_norm;
 
-   bool reserve_training_rate_history;
+        /// Value for the gradient norm at which the training process is assumed to fail.
 
-   /// True if the elapsed time history vector is to be reserved, false otherwise.
+        double error_gradient_norm;
 
-   bool reserve_elapsed_time_history;
+        /// Training rate at wich the line minimization algorithm is assumed to be unable to bracket a minimum.
 
-   /// True if the Selection performance history vector is to be reserved, false otherwise. 
+        double error_training_rate;
 
-   bool reserve_selection_performance_history;
-};
+
+        // STOPPING CRITERIA
+
+        /// Norm of the parameters increment vector at which training stops.
+
+        double minimum_parameters_increment_norm;
+
+        /// Minimum performance improvement between two successive iterations. It is used as a stopping criterion.
+
+        double minimum_performance_increase;
+
+        /// Goal value for the performance. It is used as a stopping criterion.
+
+        double performance_goal;
+
+        /// Goal value for the norm of the objective function gradient. It is used as a stopping criterion.
+
+        double gradient_norm_goal;
+
+        /// Maximum number of iterations at which the selection performance decreases.
+        /// This is an early stopping method for improving selection.
+
+        size_t maximum_selection_performance_decreases;
+
+        /// Maximum number of iterations to perform_training. It is used as a stopping criterion.
+
+        size_t maximum_iterations_number;
+
+        /// Maximum training time. It is used as a stopping criterion.
+
+        double maximum_time;
+
+        // TRAINING HISTORY
+
+        /// True if the parameters history matrix is to be reserved, false otherwise.
+
+        bool reserve_parameters_history;
+
+        /// True if the parameters norm history vector is to be reserved, false otherwise.
+
+        bool reserve_parameters_norm_history;
+
+        /// True if the performance history vector is to be reserved, false otherwise.
+
+        bool reserve_performance_history;
+
+        /// True if the gradient history matrix is to be reserved, false otherwise.
+
+        bool reserve_gradient_history;
+
+        /// True if the gradient norm history vector is to be reserved, false otherwise.
+
+        bool reserve_gradient_norm_history;
+
+        /// True if the inverse Hessian history vector of matrices is to be reserved, false otherwise.
+
+        bool reserve_inverse_Hessian_history;
+
+        /// True if the training direction history matrix is to be reserved, false otherwise.
+
+        bool reserve_training_direction_history;
+
+        /// True if the training rate history vector is to be reserved, false otherwise.
+
+        bool reserve_training_rate_history;
+
+        /// True if the elapsed time history vector is to be reserved, false otherwise.
+
+        bool reserve_elapsed_time_history;
+
+        /// True if the Selection performance history vector is to be reserved, false otherwise.
+
+        bool reserve_selection_performance_history;
+    };
 
 }
 
@@ -420,8 +451,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-

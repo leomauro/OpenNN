@@ -33,278 +33,282 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class is used by many different training algorithms to calculate the training rate given a training direction. 
-/// It implements the golden section method and the Brent's methods. 
-
-class TrainingRateAlgorithm
-{
+/// This class is used by many different training algorithms to calculate the training rate given a training direction.
+/// It implements the golden section method and the Brent's methods.
 
-public:
+    class TrainingRateAlgorithm {
 
-   // ENUMERATIONS
+    public:
 
-   /// Available training operators for obtaining the perform_training rate.
+        // ENUMERATIONS
 
-   enum TrainingRateMethod{Fixed, GoldenSection, BrentMethod};
+        /// Available training operators for obtaining the perform_training rate.
 
-   // DEFAULT CONSTRUCTOR
+        enum TrainingRateMethod {
+            Fixed, GoldenSection, BrentMethod
+        };
 
-   explicit TrainingRateAlgorithm(void);
+        // DEFAULT CONSTRUCTOR
 
-   // GENERAL CONSTRUCTOR
+        explicit TrainingRateAlgorithm(void);
 
-   explicit TrainingRateAlgorithm(PerformanceFunctional*);
+        // GENERAL CONSTRUCTOR
 
-   // XML CONSTRUCTOR
+        explicit TrainingRateAlgorithm(PerformanceFunctional *);
 
-   explicit TrainingRateAlgorithm(const tinyxml2::XMLDocument&);
+        // XML CONSTRUCTOR
 
-   // DESTRUCTOR
+        explicit TrainingRateAlgorithm(const tinyxml2::XMLDocument &);
 
-   virtual ~TrainingRateAlgorithm(void);
+        // DESTRUCTOR
 
-   ///
-   /// Defines a set of three points (A, U, B) for bracketing a directional minimum.
-   ///
+        virtual ~TrainingRateAlgorithm(void);
 
-   struct Triplet
-   {
-       /// Default constructor.
+        ///
+        /// Defines a set of three points (A, U, B) for bracketing a directional minimum.
+        ///
 
-       Triplet(void)
-       {
-           A.set(2, 0.0);
-           U.set(2, 0.0);
-           B.set(2, 0.0);
-       }
-
-       /// Destructor.
-
-       virtual ~Triplet(void)
-       {
-       }
+        struct Triplet {
+            /// Default constructor.
 
-       /// Equal to operator.
-       /// It compares this triplet with another triplet.
-       /// It returns true if both triplets have the same points A, U and B, and false otherwise.
-       /// @ param other_triplet Triplet to be compared with.
+            Triplet(void)
+            {
+                A.set(2, 0.0);
+                U.set(2, 0.0);
+                B.set(2, 0.0);
+            }
 
-       inline bool operator == (const Triplet& other_triplet) const
-       {
-          if(A == other_triplet.A
-          && U == other_triplet.U
-          && B == other_triplet.B)
-          {
-             return(true);
-          }
-          else
-          {
-             return(false);
-          }
-       }
+            /// Destructor.
 
-       /// Returns true if the length of the interval (A,B) is zero,
-       /// and false otherwise.
+            virtual ~Triplet(void)
+            {
+            }
 
-       inline bool has_length_zero(void) const
-       {
-           if(A[0] == B[0])
-           {
-              return(true);
-           }
-           else
-           {
-              return(false);
-           }
-       }
+            /// Equal to operator.
+            /// It compares this triplet with another triplet.
+            /// It returns true if both triplets have the same points A, U and B, and false otherwise.
+            /// @ param other_triplet Triplet to be compared with.
 
-       inline bool is_constant(void) const
-       {
-           if(A[1] == B[1])
-           {
-              return(true);
-           }
-           else
-           {
-              return(false);
-           }
-       }
+            inline bool operator==(const Triplet &other_triplet) const
+            {
+                if (A == other_triplet.A
+                    && U == other_triplet.U
+                    && B == other_triplet.B) {
+                    return (true);
+                }
+                else {
+                    return (false);
+                }
+            }
 
-       /// Writes a string with the values of A, U and B.
+            /// Returns true if the length of the interval (A,B) is zero,
+            /// and false otherwise.
 
-       inline std::string to_string(void) const
-       {
-           std::ostringstream buffer;
+            inline bool has_length_zero(void) const
+            {
+                if (A[0] == B[0]) {
+                    return (true);
+                }
+                else {
+                    return (false);
+                }
+            }
 
-           buffer << "A = (" << A[0] << "," << A[1] << ")\n"
-                  << "U = (" << U[0] << "," << U[1] << ")\n"
-                  << "B = (" << B[0] << "," << B[1] << ")" << std::endl;
+            inline bool is_constant(void) const
+            {
+                if (A[1] == B[1]) {
+                    return (true);
+                }
+                else {
+                    return (false);
+                }
+            }
 
-           return(buffer.str());
-       }
+            /// Writes a string with the values of A, U and B.
 
-       /// Prints the triplet points to the standard output.
+            inline std::string to_string(void) const
+            {
+                std::ostringstream buffer;
 
-       inline void print(void) const
-       {
-           std::cout << to_string();
-       }
+                buffer << "A = (" << A[0] << "," << A[1] << ")\n"
+                << "U = (" << U[0] << "," << U[1] << ")\n"
+                << "B = (" << B[0] << "," << B[1] << ")" << std::endl;
 
-       /// Checks that the points A, U and B define a minimum.
-       /// That is, a < u < b, fa > fu and fu < fb.
-       /// If some of that conditions is not satisfied, an exception is thrown.
+                return (buffer.str());
+            }
 
-       inline void check(void) const
-       {
-           std::ostringstream buffer;
+            /// Prints the triplet points to the standard output.
 
-           if(A[0] > U[0] || U[0] > B[0])
-           {
-              buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
-                     << "void check(void) const method.\n"
-                     << "Uncorrect triplet:\n"
-                     << to_string();
+            inline void print(void) const
+            {
+                std::cout << to_string();
+            }
 
-              throw std::logic_error(buffer.str());
-           }
+            /// Checks that the points A, U and B define a minimum.
+            /// That is, a < u < b, fa > fu and fu < fb.
+            /// If some of that conditions is not satisfied, an exception is thrown.
 
-           if(A[1] < U[1] || U[1] > B[1])
-           {
-              buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
-                     << "void check(void) const method.\n"
-                     << "Triplet does not satisfy minimum condition:\n"
-                     << to_string();
+            inline void check(void) const
+            {
+                std::ostringstream buffer;
 
-              throw std::logic_error(buffer.str());
-           }
-       }
+                if (A[0] > U[0] || U[0] > B[0]) {
+                    buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
+                    << "void check(void) const method.\n"
+                    << "Uncorrect triplet:\n"
+                    << to_string();
 
-       /// Left point of the triplet.
+                    throw std::logic_error(buffer.str());
+                }
 
-       Vector<double> A;
+                if (A[1] < U[1] || U[1] > B[1]) {
+                    buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
+                    << "void check(void) const method.\n"
+                    << "Triplet does not satisfy minimum condition:\n"
+                    << to_string();
 
-       /// Interior point of the triplet.
+                    throw std::logic_error(buffer.str());
+                }
+            }
 
-       Vector<double> U;
+            /// Left point of the triplet.
 
-       /// Right point of the triplet.
+            Vector<double> A;
 
-       Vector<double> B;
-   };
+            /// Interior point of the triplet.
 
+            Vector<double> U;
 
-   // METHODS
+            /// Right point of the triplet.
 
-   // Get methods
+            Vector<double> B;
+        };
 
-   PerformanceFunctional* get_performance_functional_pointer(void) const;
 
-   bool has_performance_functional(void) const;
+        // METHODS
 
-   // Training operators
+        // Get methods
 
-   const TrainingRateMethod& get_training_rate_method(void) const;
-   std::string write_training_rate_method(void) const;
+        PerformanceFunctional *get_performance_functional_pointer(void) const;
 
-   // Training parameters
+        bool has_performance_functional(void) const;
 
-   const double& get_bracketing_factor(void) const;   
-   const double& get_training_rate_tolerance(void) const;
+        // Training operators
 
-   const double& get_warning_training_rate(void) const;
+        const TrainingRateMethod &get_training_rate_method(void) const;
 
-   const double& get_error_training_rate(void) const;
-  
-   // Utilities
-   
-   const bool& get_display(void) const;
-  
-   // Set methods
+        std::string write_training_rate_method(void) const;
 
-   void set(void);
-   void set(PerformanceFunctional*);
+        // Training parameters
 
-   void set_performance_functional_pointer(PerformanceFunctional*);
+        const double &get_bracketing_factor(void) const;
 
-   // Training operators
+        const double &get_training_rate_tolerance(void) const;
 
-   void set_training_rate_method(const TrainingRateMethod&);
-   void set_training_rate_method(const std::string&);
+        const double &get_warning_training_rate(void) const;
 
-   // Training parameters
+        const double &get_error_training_rate(void) const;
 
-   void set_bracketing_factor(const double&);   
-   void set_training_rate_tolerance(const double&);
+        // Utilities
 
-   void set_warning_training_rate(const double&);
+        const bool &get_display(void) const;
 
-   void set_error_training_rate(const double&);
+        // Set methods
 
-   // Utilities
+        void set(void);
 
-   void set_display(const bool&);
+        void set(PerformanceFunctional *);
 
-   virtual void set_default(void);
+        void set_performance_functional_pointer(PerformanceFunctional *);
 
-   // Training rate method
+        // Training operators
 
-   double calculate_golden_section_training_rate(const Triplet&) const;
-   double calculate_Brent_method_training_rate(const Triplet&) const;
+        void set_training_rate_method(const TrainingRateMethod &);
 
-   Triplet calculate_bracketing_triplet(const double&, const Vector<double>&, const double&) const;
+        void set_training_rate_method(const std::string &);
 
-   Vector<double> calculate_fixed_directional_point(const double&, const Vector<double>&, const double&) const;
-   Vector<double> calculate_golden_section_directional_point(const double&, const Vector<double>&, const double&) const;
-   Vector<double> calculate_Brent_method_directional_point(const double&, const Vector<double>&, const double&) const;
+        // Training parameters
 
-   Vector<double> calculate_directional_point(const double&, const Vector<double>&, const double&) const;
+        void set_bracketing_factor(const double &);
 
-   // Serialization methods
+        void set_training_rate_tolerance(const double &);
 
-   tinyxml2::XMLDocument* to_XML(void) const;   
-   void from_XML(const tinyxml2::XMLDocument&);   
+        void set_warning_training_rate(const double &);
 
+        void set_error_training_rate(const double &);
 
-protected:
+        // Utilities
 
-   // FIELDS
+        void set_display(const bool &);
 
-   /// Pointer to an external performance functional object.
+        virtual void set_default(void);
 
-   PerformanceFunctional* performance_functional_pointer;
+        // Training rate method
 
+        double calculate_golden_section_training_rate(const Triplet &) const;
 
-   // TRAINING OPERATORS
+        double calculate_Brent_method_training_rate(const Triplet &) const;
 
-   /// Variable containing the actual method used to obtain a suitable perform_training rate. 
+        Triplet calculate_bracketing_triplet(const double &, const Vector<double> &, const double &) const;
 
-   TrainingRateMethod training_rate_method;
+        Vector<double> calculate_fixed_directional_point(const double &, const Vector<double> &, const double &) const;
 
-   /// Increase factor when bracketing a minimum.
+        Vector<double> calculate_golden_section_directional_point(const double &,
+                                                                  const Vector<double> &,
+                                                                  const double &) const;
 
-   double bracketing_factor;
+        Vector<double> calculate_Brent_method_directional_point(const double &,
+                                                                const Vector<double> &,
+                                                                const double &) const;
 
-   /// Maximum interval length for the training rate.
+        Vector<double> calculate_directional_point(const double &, const Vector<double> &, const double &) const;
 
-   double training_rate_tolerance;
+        // Serialization methods
 
-   /// Big training rate value at which the algorithm displays a warning. 
+        tinyxml2::XMLDocument *to_XML(void) const;
 
-   double warning_training_rate;
+        void from_XML(const tinyxml2::XMLDocument &);
 
-   /// Big training rate value at which the algorithm throws an exception. 
 
-   double error_training_rate;
+    protected:
 
-   // UTILITIES
+        // FIELDS
 
-   /// Display messages to screen.
+        /// Pointer to an external performance functional object.
 
-   bool display;
-};
+        PerformanceFunctional *performance_functional_pointer;
+
+
+        // TRAINING OPERATORS
+
+        /// Variable containing the actual method used to obtain a suitable perform_training rate.
+
+        TrainingRateMethod training_rate_method;
+
+        /// Increase factor when bracketing a minimum.
+
+        double bracketing_factor;
+
+        /// Maximum interval length for the training rate.
+
+        double training_rate_tolerance;
+
+        /// Big training rate value at which the algorithm displays a warning.
+
+        double warning_training_rate;
+
+        /// Big training rate value at which the algorithm throws an exception.
+
+        double error_training_rate;
+
+        // UTILITIES
+
+        /// Display messages to screen.
+
+        bool display;
+    };
 
 }
 
@@ -323,8 +327,7 @@ protected:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-

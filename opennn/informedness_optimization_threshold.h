@@ -37,104 +37,104 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 ///
 /// This concrete class represents a incremental algorithm for the order selection of a neural network.
 ///
 
-class InformednessOptimizationThreshold : public ThresholdSelectionAlgorithm
-{
-public:
-    // DEFAULT CONSTRUCTOR
+    class InformednessOptimizationThreshold : public ThresholdSelectionAlgorithm {
+    public:
+        // DEFAULT CONSTRUCTOR
 
-    explicit InformednessOptimizationThreshold(void);
+        explicit InformednessOptimizationThreshold(void);
 
-    // TRAINING STRATEGY CONSTRUCTOR
+        // TRAINING STRATEGY CONSTRUCTOR
 
-    explicit InformednessOptimizationThreshold(TrainingStrategy*);
+        explicit InformednessOptimizationThreshold(TrainingStrategy *);
 
-    // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-    explicit InformednessOptimizationThreshold(const tinyxml2::XMLDocument&);
+        explicit InformednessOptimizationThreshold(const tinyxml2::XMLDocument &);
 
-    // FILE CONSTRUCTOR
+        // FILE CONSTRUCTOR
 
-    explicit InformednessOptimizationThreshold(const std::string&);
+        explicit InformednessOptimizationThreshold(const std::string &);
 
-    // DESTRUCTOR
+        // DESTRUCTOR
 
-    virtual ~InformednessOptimizationThreshold(void);
+        virtual ~InformednessOptimizationThreshold(void);
 
 
-    // STRUCTURES
+        // STRUCTURES
 
-    ///
-    /// This structure contains the training results for the incremental order method.
-    ///
+        ///
+        /// This structure contains the training results for the incremental order method.
+        ///
 
-    struct InformednessOptimizationThresholdResults : public ThresholdSelectionAlgorithm::ThresholdSelectionResults
-    {
-        /// Default constructor.
+        struct InformednessOptimizationThresholdResults
+                : public ThresholdSelectionAlgorithm::ThresholdSelectionResults {
+            /// Default constructor.
 
-        explicit InformednessOptimizationThresholdResults(void) : ThresholdSelectionAlgorithm::ThresholdSelectionResults()
-        {
-        }
+            explicit InformednessOptimizationThresholdResults(void)
+                    : ThresholdSelectionAlgorithm::ThresholdSelectionResults()
+            {
+            }
 
-        /// Destructor.
+            /// Destructor.
 
-        virtual ~InformednessOptimizationThresholdResults(void)
-        {
-        }
+            virtual ~InformednessOptimizationThresholdResults(void)
+            {
+            }
 
+
+        };
+
+        // METHODS
+
+        // Get methods
+
+        const double &get_step(void) const;
+
+        const size_t &get_maximum_selection_failures(void) const;
+
+        // Set methods
+
+        void set_default(void);
+
+        void set_step(const double &);
+
+        void set_maximum_selection_failures(const size_t &);
+
+        // Order selection methods
+
+        InformednessOptimizationThresholdResults *perform_threshold_selection(void);
+
+        // Serialization methods
+
+        Matrix<std::string> to_string_matrix(void) const;
+
+        tinyxml2::XMLDocument *to_XML(void) const;
+
+        void from_XML(const tinyxml2::XMLDocument &);
+
+        void save(const std::string &) const;
+
+        void load(const std::string &);
+
+    private:
+
+        /// Difference in the thresholds between two consecutive iterations.
+
+        double step;
+
+        // STOPPING CRITERIA
+
+        /// Maximum number of iterations at which the selection performance increases.
+
+        size_t maximum_selection_failures;
 
     };
-
-    // METHODS
-
-    // Get methods
-
-    const double& get_step(void) const;
-
-    const size_t& get_maximum_selection_failures(void) const;
-
-    // Set methods
-
-    void set_default(void);
-
-    void set_step(const double&);
-
-    void set_maximum_selection_failures(const size_t&);
-
-    // Order selection methods
-
-    InformednessOptimizationThresholdResults* perform_threshold_selection(void);
-
-    // Serialization methods
-
-    Matrix<std::string> to_string_matrix(void) const;
-
-    tinyxml2::XMLDocument* to_XML(void) const;
-
-    void from_XML(const tinyxml2::XMLDocument&);
-
-    void save(const std::string&) const;
-    void load(const std::string&);
-
-private:
-
-    /// Difference in the thresholds between two consecutive iterations.
-
-    double step;
-
-   // STOPPING CRITERIA
-
-   /// Maximum number of iterations at which the selection performance increases.
-
-   size_t maximum_selection_failures;
-
-};
 
 }
 
@@ -152,7 +152,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

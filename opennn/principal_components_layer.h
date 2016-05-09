@@ -32,101 +32,107 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 /// This class represents the layer of principal component analysis.
 /// This layer is used to reduce the dimension of a dataset.
 
-class PrincipalComponentsLayer
-{
+    class PrincipalComponentsLayer {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit PrincipalComponentsLayer(void);
+        explicit PrincipalComponentsLayer(void);
 
-   // INPUTS NUMBER CONSTRUCTOR
+        // INPUTS NUMBER CONSTRUCTOR
 
-   explicit PrincipalComponentsLayer(const size_t&);
+        explicit PrincipalComponentsLayer(const size_t &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   PrincipalComponentsLayer(const PrincipalComponentsLayer&);
+        PrincipalComponentsLayer(const PrincipalComponentsLayer &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~PrincipalComponentsLayer(void);
+        virtual ~PrincipalComponentsLayer(void);
 
-   // ENUMERATIONS
+        // ENUMERATIONS
 
-   enum PrincipalComponentsState{NoPrincipalComponents, ActivatedPrincipalComponents};
+        enum PrincipalComponentsState {
+            NoPrincipalComponents, ActivatedPrincipalComponents
+        };
 
-   // GET METHODS
+        // GET METHODS
 
-   Matrix<double> get_eigenvectors(void) const;
-   Vector<double> get_means(void) const;
+        Matrix<double> get_eigenvectors(void) const;
 
-   // Inputs principal components function
+        Vector<double> get_means(void) const;
 
-    Vector<double> calculate_ouputs(const Vector<double>&) const;
+        // Inputs principal components function
 
-   // Display messages
+        Vector<double> calculate_ouputs(const Vector<double> &) const;
 
-   const bool& get_display(void) const;
+        // Display messages
 
-   // SET METHODS
+        const bool &get_display(void) const;
 
-   void set(void);
-   void set(const size_t&);
-   void set(const PrincipalComponentsLayer&);
+        // SET METHODS
 
-   void set_eigenvectors(const Matrix<double>&);
+        void set(void);
 
-   void set_means(const Vector<double>&);
-   void set_means(const size_t&, const double&);
+        void set(const size_t &);
 
-   virtual void set_default(void);
+        void set(const PrincipalComponentsLayer &);
 
-   // GET METHODS
+        void set_eigenvectors(const Matrix<double> &);
 
-   size_t get_principal_components_neurons_number(void) const;
+        void set_means(const Vector<double> &);
 
-   // Display messages
+        void set_means(const size_t &, const double &);
 
-   void set_display(const bool&);
+        virtual void set_default(void);
 
-   // Check methods
+        // GET METHODS
 
-   // Inputs principal components function
+        size_t get_principal_components_neurons_number(void) const;
 
-   Vector<double> calculate_outputs(const Vector<double>&) const;
-   Vector<double> calculate_derivatives(const Vector<double>&) const;
+        // Display messages
 
-   // Serialization methods
+        void set_display(const bool &);
 
-   std::string to_string(void) const;
+        // Check methods
 
-   tinyxml2::XMLDocument* to_XML(void) const;
-   virtual void from_XML(const tinyxml2::XMLDocument&);
+        // Inputs principal components function
 
-protected:
+        Vector<double> calculate_outputs(const Vector<double> &) const;
 
-   // MEMBERS
+        Vector<double> calculate_derivatives(const Vector<double> &) const;
 
-   /// Means of the input variables
+        // Serialization methods
 
-   Vector<double> means;
+        std::string to_string(void) const;
 
-   /// Eigenvectors of the variables in columns.
+        tinyxml2::XMLDocument *to_XML(void) const;
 
-   Matrix<double> eigenvectors;
+        virtual void from_XML(const tinyxml2::XMLDocument &);
 
-   /// Display warning messages to screen.
+    protected:
 
-   bool display;
-};
+        // MEMBERS
+
+        /// Means of the input variables
+
+        Vector<double> means;
+
+        /// Eigenvectors of the variables in columns.
+
+        Matrix<double> eigenvectors;
+
+        /// Display warning messages to screen.
+
+        bool display;
+    };
 
 }
 
@@ -144,7 +150,7 @@ protected:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

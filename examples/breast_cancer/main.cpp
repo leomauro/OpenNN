@@ -1,14 +1,14 @@
 /****************************************************************************************************************/
-/*                                                                                                              */ 
+/*                                                                                                              */
 /*   OpenNN: Open Neural Networks Library                                                                       */
 /*   www.artelnics.com/opennn                                                                                   */
 /*                                                                                                              */
 /*   B R E A S T   C A N C E R   A P P L I C A T I O N                                                          */
 /*                                                                                                              */
-/*   Roberto Lopez                                                                                              */ 
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
-/*                                                                                                              */  
+/*                                                                                                              */
 /****************************************************************************************************************/
 
 // This is a pattern recognition problem.
@@ -16,146 +16,123 @@
 // System includes
 
 #include <iostream>
-#include <time.h>
 
 // OpenNN includes
 
-#include "../../opennn/opennn.h"
+#include "opennn.h"
 
 using namespace OpenNN;
 
 int main(void)
 {
-   try
-   {
-      std::cout << "OpenNN. Breast Cancer Application." << std::endl;
+    try {
+        std::cout << "OpenNN. Breast Cancer Application." << std::endl;
+        srand((unsigned) time(NULL));
 
-      srand((unsigned)time(NULL));
+        // Data set
 
-      // Data set
+        DataSet data_set;
+        data_set.set_data_file_name("data/breast_cancer.dat");
+        data_set.load_data();
+        data_set.set_file_type("dat");
 
-      DataSet data_set;
+        // Variables
 
-      data_set.set_data_file_name("../data/breast_cancer.dat");
+        Variables *variables_pointer = data_set.get_variables_pointer();
+        variables_pointer->set_name(0, "clump_thickness");
+        variables_pointer->set_name(1, "cell_size_uniformity");
+        variables_pointer->set_name(2, "cell_shape_uniformity");
+        variables_pointer->set_name(3, "marginal_adhesion");
+        variables_pointer->set_name(4, "single_epithelial_cell_size");
+        variables_pointer->set_name(5, "bare_nuclei");
+        variables_pointer->set_name(6, "bland_chromatin");
+        variables_pointer->set_name(7, "normal_nucleoli");
+        variables_pointer->set_name(8, "mitoses");
+        variables_pointer->set_name(9, "diagnose");
 
-      data_set.load_data();
+        // Instances
 
-      data_set.set_file_type("dat");
+        Instances *instances_pointer = data_set.get_instances_pointer();
+        instances_pointer->split_random_indices();
 
-      // Variables
+        const Matrix<std::string> inputs_information = variables_pointer->arrange_inputs_information();
+        const Matrix<std::string> targets_information = variables_pointer->arrange_targets_information();
 
-      Variables* variables_pointer = data_set.get_variables_pointer();
+        const Vector<Statistics<double> > inputs_statistics = data_set.scale_inputs_minimum_maximum();
 
-      variables_pointer->set_name(0, "clump_thickness");
-      variables_pointer->set_name(1, "cell_size_uniformity");
-      variables_pointer->set_name(2, "cell_shape_uniformity");
-      variables_pointer->set_name(3, "marginal_adhesion");
-      variables_pointer->set_name(4, "single_epithelial_cell_size");
-      variables_pointer->set_name(5, "bare_nuclei");
-      variables_pointer->set_name(6, "bland_chromatin");
-      variables_pointer->set_name(7, "normal_nucleoli");
-      variables_pointer->set_name(8, "mitoses");
-      variables_pointer->set_name(9, "diagnose");
+        // Neural network
 
-      // Instances
+        NeuralNetwork neural_network(9, 6, 1);
 
-      Instances* instances_pointer = data_set.get_instances_pointer();
+        Inputs *inputs_pointer = neural_network.get_inputs_pointer();
+        inputs_pointer->set_information(inputs_information);
 
-      instances_pointer->split_random_indices();
+        Outputs *outputs_pointer = neural_network.get_outputs_pointer();
+        outputs_pointer->set_information(targets_information);
 
-      const Matrix<std::string> inputs_information = variables_pointer->arrange_inputs_information();
-      const Matrix<std::string> targets_information = variables_pointer->arrange_targets_information();
+        neural_network.construct_scaling_layer();
+        ScalingLayer *scaling_layer_pointer = neural_network.get_scaling_layer_pointer();
+        scaling_layer_pointer->set_statistics(inputs_statistics);
+        scaling_layer_pointer->set_scaling_method(ScalingLayer::NoScaling);
 
-      const Vector< Statistics<double> > inputs_statistics = data_set.scale_inputs_minimum_maximum();
+        neural_network.construct_probabilistic_layer();
+        ProbabilisticLayer *probabilistic_layer_pointer = neural_network.get_probabilistic_layer_pointer();
+        probabilistic_layer_pointer->set_probabilistic_method(ProbabilisticLayer::Probability);
 
-      // Neural network
-	  
-      NeuralNetwork neural_network(9, 6, 1);
+        // Performance functional
 
-      Inputs* inputs_pointer = neural_network.get_inputs_pointer();
+        PerformanceFunctional performance_functional(&neural_network, &data_set);
 
-      inputs_pointer->set_information(inputs_information);
+        // Training strategy
 
-      Outputs* outputs_pointer = neural_network.get_outputs_pointer();
+        TrainingStrategy training_strategy(&performance_functional);
+        QuasiNewtonMethod *quasi_Newton_method_pointer = training_strategy.get_quasi_Newton_method_pointer();
+        quasi_Newton_method_pointer->set_minimum_performance_increase(1.0e-6);
+        quasi_Newton_method_pointer->set_display(false);
 
-      outputs_pointer->set_information(targets_information);
+        // Model selection
 
-      neural_network.construct_scaling_layer();
+        ModelSelection model_selection(&training_strategy);
+        model_selection.set_order_selection_type(ModelSelection::SIMULATED_ANNEALING);
 
-      ScalingLayer* scaling_layer_pointer = neural_network.get_scaling_layer_pointer();
+        SimulatedAnnealingOrder *simulated_annealing_order_pointer = model_selection.get_simulated_annealing_order_pointer();
+        simulated_annealing_order_pointer->set_cooling_rate(0.9);
+        simulated_annealing_order_pointer->set_maximum_iterations_number(15);
 
-      scaling_layer_pointer->set_statistics(inputs_statistics);
+        ModelSelection::ModelSelectionResults model_selection_results = model_selection.perform_order_selection();
 
-      scaling_layer_pointer->set_scaling_method(ScalingLayer::NoScaling);
+        // Testing analysis
 
-      neural_network.construct_probabilistic_layer();
+        TestingAnalysis testing_analysis(&neural_network, &data_set);
 
-      ProbabilisticLayer* probabilistic_layer_pointer = neural_network.get_probabilistic_layer_pointer();
+        Matrix<size_t> confusion = testing_analysis.calculate_confusion();
 
-      probabilistic_layer_pointer->set_probabilistic_method(ProbabilisticLayer::Probability);
+        Vector<double> binary_classification_tests = testing_analysis.calculate_binary_classification_tests();
 
-      // Performance functional
+        // Save results
 
-      PerformanceFunctional performance_functional(&neural_network, &data_set);
+        scaling_layer_pointer->set_scaling_method(ScalingLayer::MinimumMaximum);
 
-      // Training strategy
+        data_set.save("data/data_set.xml");
 
-      TrainingStrategy training_strategy(&performance_functional);
+        neural_network.save("data/neural_network.xml");
+        neural_network.save_expression("data/expression.txt");
 
-      QuasiNewtonMethod* quasi_Newton_method_pointer = training_strategy.get_quasi_Newton_method_pointer();
+        training_strategy.save("data/training_strategy.xml");
 
-      quasi_Newton_method_pointer->set_minimum_performance_increase(1.0e-6);
+        model_selection.save("data/model_selection.xml");
+        model_selection_results.save("data/model_selection_results.dat");
 
-      quasi_Newton_method_pointer->set_display(false);
+        confusion.save("data/confusion.dat");
+        binary_classification_tests.save("data/binary_classification_tests.dat");
 
-      // Model selection
-      
-      ModelSelection model_selection(&training_strategy);
-      
-      model_selection.set_order_selection_type(ModelSelection::SIMULATED_ANNEALING);
-      
-      SimulatedAnnealingOrder* simulated_annealing_order_pointer = model_selection.get_simulated_annealing_order_pointer();
-
-      simulated_annealing_order_pointer->set_cooling_rate(0.9);
-
-      simulated_annealing_order_pointer->set_maximum_iterations_number(15);
-
-      ModelSelection::ModelSelectionResults model_selection_results = model_selection.perform_order_selection();
-      
-      // Testing analysis
-
-      TestingAnalysis testing_analysis(&neural_network, &data_set);
-
-      Matrix<size_t> confusion = testing_analysis.calculate_confusion();
-
-      Vector<double> binary_classification_tests = testing_analysis.calculate_binary_classification_tests();
-
-      // Save results
-
-      scaling_layer_pointer->set_scaling_method(ScalingLayer::MinimumMaximum);
-
-      data_set.save("../data/data_set.xml");
-
-      neural_network.save("../data/neural_network.xml");
-      neural_network.save_expression("../data/expression.txt");
-
-      training_strategy.save("../data/training_strategy.xml");
-
-      model_selection.save("../data/model_selection.xml");
-      model_selection_results.save("../data/model_selection_results.dat");
-
-      confusion.save("../data/confusion.dat");
-      binary_classification_tests.save("../data/binary_classification_tests.dat");
-
-      return(0);
-   }
-   catch(std::exception& e)
-   {
-      std::cerr << e.what() << std::endl;
-
-      return(1);
-   }
-}  
+        return 0;
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
+}
 
 
 // OpenNN: Open Neural Networks Library.
@@ -170,7 +147,7 @@ int main(void)
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

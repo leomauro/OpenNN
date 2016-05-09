@@ -31,85 +31,87 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class represents the Minkowski error performance term. 
-/// The Minkowski error measures the difference between the outputs of a neural network and the targets in a data set. 
+/// This class represents the Minkowski error performance term.
+/// The Minkowski error measures the difference between the outputs of a neural network and the targets in a data set.
 /// This performance term is used in data modeling problems.
-/// It can be more useful when the data set presents outliers. 
+/// It can be more useful when the data set presents outliers.
 
-class MinkowskiError : public PerformanceTerm
-{
+    class MinkowskiError : public PerformanceTerm {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit MinkowskiError(void);
+        explicit MinkowskiError(void);
 
-   // NEURAL NETWORK CONSTRUCTOR
+        // NEURAL NETWORK CONSTRUCTOR
 
-   explicit MinkowskiError(NeuralNetwork*);
+        explicit MinkowskiError(NeuralNetwork *);
 
-   // DATA SET CONSTRUCTOR
+        // DATA SET CONSTRUCTOR
 
-   explicit MinkowskiError(DataSet*);
+        explicit MinkowskiError(DataSet *);
 
-   // NEURAL NETWORK AND DATA SET CONSTRUCTOR
+        // NEURAL NETWORK AND DATA SET CONSTRUCTOR
 
-   explicit MinkowskiError(NeuralNetwork*, DataSet*);
+        explicit MinkowskiError(NeuralNetwork *, DataSet *);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit MinkowskiError(const tinyxml2::XMLDocument&);
+        explicit MinkowskiError(const tinyxml2::XMLDocument &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~MinkowskiError(void);
+        virtual ~MinkowskiError(void);
 
 
-   // METHODS
+        // METHODS
 
-   // Get methods
+        // Get methods
 
-   double get_Minkowski_parameter(void) const;
+        double get_Minkowski_parameter(void) const;
 
-   // Set methods
+        // Set methods
 
-   void set_default(void);
+        void set_default(void);
 
-   void set_Minkowski_parameter(const double&);
+        void set_Minkowski_parameter(const double &);
 
-   // Checking methods
+        // Checking methods
 
-   void check(void) const;
+        void check(void) const;
 
-   // performance methods
+        // performance methods
 
-   double calculate_performance(void) const;
-   double calculate_performance(const Vector<double>&) const;   
-   double calculate_selection_performance(void) const;   
+        double calculate_performance(void) const;
 
-   Vector<double> calculate_gradient(void) const;
-   Matrix<double> calculate_Hessian(void) const;
+        double calculate_performance(const Vector<double> &) const;
 
-   std::string write_performance_term_type(void) const;
+        double calculate_selection_performance(void) const;
 
-   // Serialization methods
+        Vector<double> calculate_gradient(void) const;
 
-   tinyxml2::XMLDocument* to_XML(void) const;   
-   void from_XML(const tinyxml2::XMLDocument&);   
+        Matrix<double> calculate_Hessian(void) const;
 
-private:
+        std::string write_performance_term_type(void) const;
 
-   // MEMBERS
+        // Serialization methods
 
-   /// Minkowski exponent value.
+        tinyxml2::XMLDocument *to_XML(void) const;
 
-   double Minkowski_parameter;
+        void from_XML(const tinyxml2::XMLDocument &);
 
-};
+    private:
+
+        // MEMBERS
+
+        /// Minkowski exponent value.
+
+        double Minkowski_parameter;
+
+    };
 
 }
 
@@ -128,7 +130,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   R A N D O M   S E A R C H   C L A S S   H E A D E R                                                        */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -30,340 +30,356 @@
 #include "performance_functional.h"
 
 #include "training_algorithm.h"
- 
+
 // TinyXml includes
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 ///
 /// This concrete class represents a random search training algorithm for a performance functional of a neural network.
 ///
 
-class RandomSearch : public TrainingAlgorithm
-{
+    class RandomSearch : public TrainingAlgorithm {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit RandomSearch(void); 
+        explicit RandomSearch(void);
 
 
-   // PERFORMANCE FUNCTIONAL CONSTRUCTOR
+        // PERFORMANCE FUNCTIONAL CONSTRUCTOR
 
-   explicit RandomSearch(PerformanceFunctional*); 
+        explicit RandomSearch(PerformanceFunctional *);
 
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit RandomSearch(const tinyxml2::XMLDocument&); 
+        explicit RandomSearch(const tinyxml2::XMLDocument &);
 
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~RandomSearch(void);
+        virtual ~RandomSearch(void);
 
-   // STRUCTURES
+        // STRUCTURES
 
-   ///
-   /// This structure contains the training results for the random search. 
-   ///
+        ///
+        /// This structure contains the training results for the random search.
+        ///
 
-   struct RandomSearchResults : public TrainingAlgorithm::TrainingAlgorithmResults
-   {  
-       /// Default constructor.
+        struct RandomSearchResults : public TrainingAlgorithm::TrainingAlgorithmResults {
+            /// Default constructor.
 
-       RandomSearchResults(void)
-       {
-           random_search_pointer = NULL;
-       }
+            RandomSearchResults(void)
+            {
+                random_search_pointer = NULL;
+            }
 
-       /// Random search constructor.
+            /// Random search constructor.
 
-       RandomSearchResults(RandomSearch* new_random_search_pointer)
-       {
-           random_search_pointer = new_random_search_pointer;
-       }
+            RandomSearchResults(RandomSearch *new_random_search_pointer)
+            {
+                random_search_pointer = new_random_search_pointer;
+            }
 
-       /// Destructor.
+            /// Destructor.
 
-       virtual ~RandomSearchResults(void)
-       {
-       }
+            virtual ~RandomSearchResults(void)
+            {
+            }
 
-        /// Pointer to the random search object for which the training results are to be stored.
+            /// Pointer to the random search object for which the training results are to be stored.
 
-      RandomSearch* random_search_pointer;
+            RandomSearch *random_search_pointer;
 
 
-      // TRAINING HISTORY
+            // TRAINING HISTORY
 
-      /// History of the neural network parameters over the training iterations. 
+            /// History of the neural network parameters over the training iterations.
 
-      Vector< Vector<double> > parameters_history;
+            Vector<Vector<double> > parameters_history;
 
-      /// History of the parameters norm over the training iterations. 
+            /// History of the parameters norm over the training iterations.
 
-      Vector<double> parameters_norm_history;
+            Vector<double> parameters_norm_history;
 
-      /// History of the performance function performance over the training iterations. 
+            /// History of the performance function performance over the training iterations.
 
-      Vector<double> performance_history;
+            Vector<double> performance_history;
 
-      /// History of the selection performance over the training iterations. 
+            /// History of the selection performance over the training iterations.
 
-      Vector<double> selection_performance_history;
+            Vector<double> selection_performance_history;
 
-      /// History of the random search training direction over the training iterations. 
+            /// History of the random search training direction over the training iterations.
 
-      Vector< Vector<double> > training_direction_history;
+            Vector<Vector<double> > training_direction_history;
 
-      /// History of the norm of the training direction over the training iterations.
+            /// History of the norm of the training direction over the training iterations.
 
-      Vector<double> training_direction_norm_history;
+            Vector<double> training_direction_norm_history;
 
-      /// History of the random search training rate over the training iterations. 
+            /// History of the random search training rate over the training iterations.
 
-      Vector<double> training_rate_history;
+            Vector<double> training_rate_history;
 
-      /// History of the elapsed time over the training iterations. 
+            /// History of the elapsed time over the training iterations.
 
-      Vector<double> elapsed_time_history;
+            Vector<double> elapsed_time_history;
 
-      // FINAL VALUES
+            // FINAL VALUES
 
-      /// Final neural network parameters vector. 
+            /// Final neural network parameters vector.
 
-      Vector<double> final_parameters;
+            Vector<double> final_parameters;
 
-      /// Final neural network parameters norm. 
+            /// Final neural network parameters norm.
 
-      double final_parameters_norm;
+            double final_parameters_norm;
 
-      /// Final performance function evaluation.
+            /// Final performance function evaluation.
 
-      double final_performance;
+            double final_performance;
 
-      /// Final selection performance. 
+            /// Final selection performance.
 
-      double final_selection_performance;
+            double final_selection_performance;
 
-      /// Final random search training direction. 
+            /// Final random search training direction.
 
-      Vector<double> final_training_direction;
+            Vector<double> final_training_direction;
 
-      /// Final random search training rate. 
+            /// Final random search training rate.
 
-      double final_training_rate;
+            double final_training_rate;
 
-      /// Elapsed time of the training process. 
+            /// Elapsed time of the training process.
 
-      double elapsed_time;
+            double elapsed_time;
 
-      /// Maximum number of training iterations.
+            /// Maximum number of training iterations.
 
-      size_t iterations_number;
+            size_t iterations_number;
 
-      // METHODS
+            // METHODS
 
-      void resize_training_history(const size_t&);
+            void resize_training_history(const size_t &);
 
-      std::string to_string(void) const;
+            std::string to_string(void) const;
 
-      Matrix<std::string> write_final_results(const size_t& precision = 3) const;
-  };
+            Matrix<std::string> write_final_results(const size_t &precision = 3) const;
+        };
 
 
-   // METHODS
+        // METHODS
 
-   // Get methods
+        // Get methods
 
-   const double& get_training_rate_reduction_factor(void) const;
-   const size_t& get_training_rate_reduction_period(void) const;
+        const double &get_training_rate_reduction_factor(void) const;
 
-   const bool& get_reserve_parameters_history(void) const;
-   const bool& get_reserve_parameters_norm_history(void) const;
+        const size_t &get_training_rate_reduction_period(void) const;
 
-   const bool& get_reserve_performance_history(void) const;
+        const bool &get_reserve_parameters_history(void) const;
 
-   // Training parameters
+        const bool &get_reserve_parameters_norm_history(void) const;
 
-   const double& get_warning_parameters_norm(void) const;
-   const double& get_warning_training_rate(void) const;
+        const bool &get_reserve_performance_history(void) const;
 
-   const double& get_error_parameters_norm(void) const;
-   const double& get_error_training_rate(void) const;
+        // Training parameters
 
-   // Stopping criteria
+        const double &get_warning_parameters_norm(void) const;
 
-   const double& get_performance_goal(void) const;
-   const size_t& get_maximum_selection_performance_decreases(void) const;
+        const double &get_warning_training_rate(void) const;
 
-   const size_t& get_maximum_iterations_number(void) const;
-   const double& get_maximum_time(void) const;
+        const double &get_error_parameters_norm(void) const;
 
-   // Reserve training history
+        const double &get_error_training_rate(void) const;
 
-   const bool& get_reserve_selection_performance_history(void) const;
+        // Stopping criteria
 
-   const bool& get_reserve_training_direction_history(void) const;
-   const bool& get_reserve_training_rate_history(void) const;
-   const bool& get_reserve_elapsed_time_history(void) const;
+        const double &get_performance_goal(void) const;
 
-   // Set methods
+        const size_t &get_maximum_selection_performance_decreases(void) const;
 
-   void set_default(void);
+        const size_t &get_maximum_iterations_number(void) const;
 
-   void set_first_training_rate(const double&);
-   void set_training_rate_reduction_factor(const double&);
-   void set_training_rate_reduction_period(const size_t&);
+        const double &get_maximum_time(void) const;
 
-   void set_reserve_parameters_history(const bool&);
-   void set_reserve_parameters_norm_history(const bool&);
+        // Reserve training history
 
-   void set_reserve_performance_history(const bool&);
+        const bool &get_reserve_selection_performance_history(void) const;
 
-   // Training parameters
+        const bool &get_reserve_training_direction_history(void) const;
 
-   void set_warning_parameters_norm(const double&);
-   void set_warning_training_rate(const double&);
+        const bool &get_reserve_training_rate_history(void) const;
 
-   void set_error_parameters_norm(const double&);
-   void set_error_training_rate(const double&);
+        const bool &get_reserve_elapsed_time_history(void) const;
 
-   // Stopping criteria
+        // Set methods
 
-   void set_performance_goal(const double&);
-   void set_maximum_selection_performance_decreases(const size_t&);
+        void set_default(void);
 
-   void set_maximum_iterations_number(const size_t&);
-   void set_maximum_time(const double&);
+        void set_first_training_rate(const double &);
 
-   // Reserve training history
+        void set_training_rate_reduction_factor(const double &);
 
-   void set_reserve_selection_performance_history(const bool&);
+        void set_training_rate_reduction_period(const size_t &);
 
-   void set_reserve_training_direction_history(const bool&);
-   void set_reserve_training_direction_norm_history(const bool&);
-   void set_reserve_training_rate_history(const bool&);
-   void set_reserve_elapsed_time_history(const bool&);
+        void set_reserve_parameters_history(const bool &);
 
-   /// Makes the training history of all variables to be reseved or not in memory.
+        void set_reserve_parameters_norm_history(const bool &);
 
-   virtual void set_reserve_all_training_history(const bool&);
+        void set_reserve_performance_history(const bool &);
 
-   // Utilities
+        // Training parameters
 
-   void set_display_period(const size_t&);
+        void set_warning_parameters_norm(const double &);
 
-   // Training methods
+        void set_warning_training_rate(const double &);
 
-   Vector<double> calculate_training_direction(void) const;
+        void set_error_parameters_norm(const double &);
 
-   RandomSearchResults* perform_training(void);
+        void set_error_training_rate(const double &);
 
-   std::string write_training_algorithm_type(void) const;
+        // Stopping criteria
 
-   // Serialization methods
+        void set_performance_goal(const double &);
 
-   Matrix<std::string> to_string_matrix(void) const;
+        void set_maximum_selection_performance_decreases(const size_t &);
 
-   tinyxml2::XMLDocument* to_XML(void) const;
-   void from_XML(const tinyxml2::XMLDocument&);
+        void set_maximum_iterations_number(const size_t &);
 
-private: 
+        void set_maximum_time(const double &);
 
-   // MEMBERS
+        // Reserve training history
 
-   // TRAINING PARAMETERS
+        void set_reserve_selection_performance_history(const bool &);
 
-   /// Initial training rate following a random training direction.
+        void set_reserve_training_direction_history(const bool &);
 
-   double first_training_rate;
+        void set_reserve_training_direction_norm_history(const bool &);
 
-   /// Factor which reduces the training rate.
-   /// It must be greater than zero and less than one.
+        void set_reserve_training_rate_history(const bool &);
 
-   double training_rate_reduction_factor;
+        void set_reserve_elapsed_time_history(const bool &);
 
-   /// Iterations interval at which the training rate is reduced.
+        /// Makes the training history of all variables to be reseved or not in memory.
 
-   size_t training_rate_reduction_period;
+        virtual void set_reserve_all_training_history(const bool &);
 
-   /// Value for the parameters norm at which a warning message is written to the screen. 
+        // Utilities
 
-   double warning_parameters_norm;
+        void set_display_period(const size_t &);
 
-   /// Training rate value at wich a warning message is written to the screen.
+        // Training methods
 
-   double warning_training_rate;
+        Vector<double> calculate_training_direction(void) const;
 
-   /// Value for the parameters norm at which the training process is assumed to fail. 
-   
-   double error_parameters_norm;
+        RandomSearchResults *perform_training(void);
 
-   /// Training rate at wich the line minimization algorithm is assumed to be unable to bracket a minimum.
+        std::string write_training_algorithm_type(void) const;
 
-   double error_training_rate;
+        // Serialization methods
 
+        Matrix<std::string> to_string_matrix(void) const;
 
-   // STOPPING CRITERIA
+        tinyxml2::XMLDocument *to_XML(void) const;
 
-   /// Goal value for the performance. It is used as a stopping criterion.
+        void from_XML(const tinyxml2::XMLDocument &);
 
-   double performance_goal;
+    private:
 
-   /// Maximum number of iterations at which the selection performance decreases.
-   /// This is an early stopping method for improving selection.
+        // MEMBERS
 
-   size_t maximum_selection_performance_decreases;
+        // TRAINING PARAMETERS
 
-   /// Maximum number of iterations to perform_training. It is used as a stopping criterion.
+        /// Initial training rate following a random training direction.
 
-   size_t maximum_iterations_number;
+        double first_training_rate;
 
-   /// Maximum training time. It is used as a stopping criterion.
+        /// Factor which reduces the training rate.
+        /// It must be greater than zero and less than one.
 
-   double maximum_time;
+        double training_rate_reduction_factor;
 
+        /// Iterations interval at which the training rate is reduced.
 
-   // TRAINING HISTORY
+        size_t training_rate_reduction_period;
 
-   /// True if the parameters history vector of vectors is to be reserved, false otherwise.
+        /// Value for the parameters norm at which a warning message is written to the screen.
 
-   bool reserve_parameters_history;
+        double warning_parameters_norm;
 
-   /// True if the parameters norm history vector is to be reserved, false otherwise.
+        /// Training rate value at wich a warning message is written to the screen.
 
-   bool reserve_parameters_norm_history;
+        double warning_training_rate;
 
-   /// True if the performance history vector is to be reserved, false otherwise.
+        /// Value for the parameters norm at which the training process is assumed to fail.
 
-   bool reserve_performance_history; 
+        double error_parameters_norm;
 
-   /// True if the Selection performance history vector is to be reserved, false otherwise. 
+        /// Training rate at wich the line minimization algorithm is assumed to be unable to bracket a minimum.
 
-   bool reserve_selection_performance_history;
+        double error_training_rate;
 
-   /// True if the training direction history matrix is to be reserved, false otherwise.
-   
-   bool reserve_training_direction_history;
 
-   /// True if the training direction norm history vector is to be reserved, false otherwise.
+        // STOPPING CRITERIA
 
-   bool reserve_training_direction_norm_history;
+        /// Goal value for the performance. It is used as a stopping criterion.
 
-   /// True if the training rate history vector is to be reserved, false otherwise.
+        double performance_goal;
 
-   bool reserve_training_rate_history;
+        /// Maximum number of iterations at which the selection performance decreases.
+        /// This is an early stopping method for improving selection.
 
-   /// True if the elapsed time history vector is to be reserved, false otherwise.
+        size_t maximum_selection_performance_decreases;
 
-   bool reserve_elapsed_time_history;
-};
+        /// Maximum number of iterations to perform_training. It is used as a stopping criterion.
+
+        size_t maximum_iterations_number;
+
+        /// Maximum training time. It is used as a stopping criterion.
+
+        double maximum_time;
+
+
+        // TRAINING HISTORY
+
+        /// True if the parameters history vector of vectors is to be reserved, false otherwise.
+
+        bool reserve_parameters_history;
+
+        /// True if the parameters norm history vector is to be reserved, false otherwise.
+
+        bool reserve_parameters_norm_history;
+
+        /// True if the performance history vector is to be reserved, false otherwise.
+
+        bool reserve_performance_history;
+
+        /// True if the Selection performance history vector is to be reserved, false otherwise.
+
+        bool reserve_selection_performance_history;
+
+        /// True if the training direction history matrix is to be reserved, false otherwise.
+
+        bool reserve_training_direction_history;
+
+        /// True if the training direction norm history vector is to be reserved, false otherwise.
+
+        bool reserve_training_direction_norm_history;
+
+        /// True if the training rate history vector is to be reserved, false otherwise.
+
+        bool reserve_training_rate_history;
+
+        /// True if the elapsed time history vector is to be reserved, false otherwise.
+
+        bool reserve_elapsed_time_history;
+    };
 
 }
 
@@ -382,7 +398,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

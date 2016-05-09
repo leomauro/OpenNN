@@ -1,14 +1,14 @@
 /****************************************************************************************************************/
-/*                                                                                                              */ 
+/*                                                                                                              */
 /*   OpenNN: Open Neural Networks Library                                                                       */
 /*   www.artelnics.com/opennn                                                                                   */
 /*                                                                                                              */
 /*   L O G I C A L   O P E R A T O R S   A P P L I C A T I O N                                                  */
 /*                                                                                                              */
-/*   Roberto Lopez                                                                                              */ 
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
-/*                                                                                                              */  
+/*                                                                                                              */
 /****************************************************************************************************************/
 
 // This is a classical learning problem.
@@ -16,123 +16,102 @@
 // System includes
 
 #include <iostream>
-#include <math.h>
-#include <time.h>
 
 // OpenNN includes
 
-#include "../../opennn/opennn.h"
+#include "opennn.h"
 
 using namespace OpenNN;
 
 int main(void)
 {
-   try
-   {
-      std::cout << "OpenNN. Logical Operations Application." << std::endl;	
+    try {
+        std::cout << "OpenNN. Logical Operations Application." << std::endl;
+        srand((unsigned) time(NULL));
 
-      srand((unsigned)time(NULL));
+        // Data set
 
-      // Data set
+        DataSet data_set;
+        data_set.set_data_file_name("data/logical_operations.dat");
+        data_set.load_data();
 
-      DataSet data_set;
+        Variables *variables_pointer = data_set.get_variables_pointer();
+        variables_pointer->set(2, 6);
+        variables_pointer->set_name(0, "X");
+        variables_pointer->set_name(1, "Y");
+        variables_pointer->set_name(2, "AND");
+        variables_pointer->set_name(3, "OR");
+        variables_pointer->set_name(4, "NAND");
+        variables_pointer->set_name(5, "NOR");
+        variables_pointer->set_name(6, "XNOR");
+        variables_pointer->set_name(7, "XNOR");
 
-      data_set.set_data_file_name("../data/logical_operations.dat");
+        const Matrix<std::string> inputs_information = variables_pointer->arrange_inputs_information();
+        const Matrix<std::string> targets_information = variables_pointer->arrange_targets_information();
 
-      data_set.load_data();
+        // Neural network
 
-	  Variables* variables_pointer = data_set.get_variables_pointer();
+        NeuralNetwork neural_network(2, 6, 6);
 
-	  variables_pointer->set(2, 6);
+        Inputs *inputs_pointer = neural_network.get_inputs_pointer();
+        inputs_pointer->set_information(inputs_information);
 
-      variables_pointer->set_name(0, "X");
-      variables_pointer->set_name(1, "Y");
-      variables_pointer->set_name(2, "AND");
-      variables_pointer->set_name(3, "OR");
-      variables_pointer->set_name(4, "NAND");
-      variables_pointer->set_name(5, "NOR");
-      variables_pointer->set_name(6, "XNOR");
-      variables_pointer->set_name(7, "XNOR");
+        Outputs *outputs_pointer = neural_network.get_outputs_pointer();
+        outputs_pointer->set_information(targets_information);
 
-      const Matrix<std::string> inputs_information = variables_pointer->arrange_inputs_information();
-      const Matrix<std::string> targets_information = variables_pointer->arrange_targets_information();
+        // Performance functional
 
-      // Neural network
+        PerformanceFunctional performance_functional(&neural_network, &data_set);
 
-      NeuralNetwork neural_network(2, 6, 6);
+        // Training strategy
 
-      Inputs* inputs_pointer = neural_network.get_inputs_pointer();
+        TrainingStrategy training_strategy(&performance_functional);
+        training_strategy.perform_training();
 
-      inputs_pointer->set_information(inputs_information);
+        // Save results
 
-      Outputs* outputs_pointer = neural_network.get_outputs_pointer();
+        data_set.save("data/data_set.xml");
 
-      outputs_pointer->set_information(targets_information);
+        neural_network.save("data/neural_network.xml");
 
-      // Performance functional
+        performance_functional.save("data/performance_functional.xml");
 
-      PerformanceFunctional performance_functional(&neural_network, &data_set);
+        training_strategy.save("data/training_strategy.xml");
 
-      // Training strategy
+        // Print results to screen
 
-      TrainingStrategy training_strategy(&performance_functional);
+        Vector<double> inputs(2, 0.0);
+        Vector<double> outputs(6, 0.0);
 
-      training_strategy.perform_training();
+        std::cout << "X Y AND OR NAND NOR XOR XNOR" << std::endl;
 
-      // Save results
+        inputs[0] = 1.0;
+        inputs[1] = 1.0;
+        outputs = neural_network.calculate_outputs(inputs);
+        std::cout << inputs.calculate_binary() << " " << outputs.calculate_binary() << std::endl;
 
-      data_set.save("../data/data_set.xml");
+        inputs[0] = 1.0;
+        inputs[1] = 0.0;
+        outputs = neural_network.calculate_outputs(inputs);
+        std::cout << inputs.calculate_binary() << " " << outputs.calculate_binary() << std::endl;
 
-      neural_network.save("../data/neural_network.xml");
+        inputs[0] = 0.0;
+        inputs[1] = 1.0;
+        outputs = neural_network.calculate_outputs(inputs);
+        std::cout << inputs.calculate_binary() << " " << outputs.calculate_binary() << std::endl;
 
-      performance_functional.save("../data/performance_functional.xml");
+        inputs[0] = 0.0;
+        inputs[1] = 0.0;
+        outputs = neural_network.calculate_outputs(inputs);
+        std::cout << inputs.calculate_binary() << " " << outputs.calculate_binary() << std::endl;
 
-      training_strategy.save("../data/training_strategy.xml");
-
-      // Print results to screen
-
-      Vector<double> inputs(2, 0.0);
-      Vector<double> outputs(6, 0.0);
-
-      std::cout << "X Y AND OR NAND NOR XOR XNOR" << std::endl;
-
-      inputs[0] = 1.0;
-      inputs[1] = 1.0;
-
-      outputs = neural_network.calculate_outputs(inputs);
-
-	  std::cout << inputs.calculate_binary() << " " << outputs.calculate_binary() << std::endl;
-
-      inputs[0] = 1.0;
-      inputs[1] = 0.0;
-
-      outputs = neural_network.calculate_outputs(inputs);
-
-	  std::cout << inputs.calculate_binary() << " " << outputs.calculate_binary() << std::endl;
-
-      inputs[0] = 0.0;
-      inputs[1] = 1.0;
-
-      outputs = neural_network.calculate_outputs(inputs);
-
-	  std::cout << inputs.calculate_binary() << " " << outputs.calculate_binary() << std::endl;
-
-      inputs[0] = 0.0;
-      inputs[1] = 0.0;
-
-      outputs = neural_network.calculate_outputs(inputs);
-
-	  std::cout << inputs.calculate_binary() << " " << outputs.calculate_binary() << std::endl;
-
-      return(0);
-   }
-   catch(std::exception& e)
-   {
-      std::cerr << e.what() << std::endl;
-
-      return(1);
-   }
-}  
+        return 0;
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
+}
 
 
 // OpenNN: Open Neural Networks Library.
@@ -147,7 +126,7 @@ int main(void)
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

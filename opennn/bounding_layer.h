@@ -33,130 +33,141 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class represents a layer of bounding neurons. 
-/// A bounding layer is used to ensure that variables will never fall below or above given values. 
+/// This class represents a layer of bounding neurons.
+/// A bounding layer is used to ensure that variables will never fall below or above given values.
 
-class BoundingLayer
-{
+    class BoundingLayer {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit BoundingLayer(void);
+        explicit BoundingLayer(void);
 
-   // BOUNDING NEURONS NUMBER CONSTRUCTOR
+        // BOUNDING NEURONS NUMBER CONSTRUCTOR
 
-   explicit BoundingLayer(const size_t&);
+        explicit BoundingLayer(const size_t &);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit BoundingLayer(const tinyxml2::XMLDocument&);
+        explicit BoundingLayer(const tinyxml2::XMLDocument &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   BoundingLayer(const BoundingLayer&);
+        BoundingLayer(const BoundingLayer &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~BoundingLayer(void);
+        virtual ~BoundingLayer(void);
 
-   // ASSIGNMENT OPERATOR
+        // ASSIGNMENT OPERATOR
 
-   BoundingLayer& operator = (const BoundingLayer&);
+        BoundingLayer &operator=(const BoundingLayer &);
 
-   // EQUAL TO OPERATOR
+        // EQUAL TO OPERATOR
 
-   bool operator == (const BoundingLayer&) const;
+        bool operator==(const BoundingLayer &) const;
 
-   // ENUMERATIONS
+        // ENUMERATIONS
 
-   /// Enumeration of available methods for bounding the output variables.
+        /// Enumeration of available methods for bounding the output variables.
 
-   enum BoundingMethod{NoBounding, Boundind};
+        enum BoundingMethod {
+            NoBounding, Boundind
+        };
 
-   // METHODS
+        // METHODS
 
-   bool is_empty(void) const;
+        bool is_empty(void) const;
 
-   size_t get_bounding_neurons_number(void) const;
+        size_t get_bounding_neurons_number(void) const;
 
-   // Variables bounds
+        // Variables bounds
 
-   const Vector<double>& get_lower_bounds(void) const;
-   double get_lower_bound(const size_t&) const;
+        const Vector<double> &get_lower_bounds(void) const;
 
-   const Vector<double>& get_upper_bounds(void) const;
-   double get_upper_bound(const size_t&) const;
+        double get_lower_bound(const size_t &) const;
 
-   Vector< Vector<double>* > get_bounds(void);
+        const Vector<double> &get_upper_bounds(void) const;
 
-   // Variables bounds
+        double get_upper_bound(const size_t &) const;
 
-   void set(void);
-   void set(const size_t&);
-   void set(const tinyxml2::XMLDocument&);
-   void set(const BoundingLayer&);
+        Vector<Vector<double> *> get_bounds(void);
 
-   void set_lower_bounds(const Vector<double>&);
-   void set_lower_bound(const size_t&, const double&);
+        // Variables bounds
 
-   void set_upper_bounds(const Vector<double>&);
-   void set_upper_bound(const size_t&, const double&);
+        void set(void);
 
-   void set_bounds(const Vector< Vector<double> >&);
+        void set(const size_t &);
 
-   void set_display(const bool&);
+        void set(const tinyxml2::XMLDocument &);
 
-   void set_default(void);
+        void set(const BoundingLayer &);
 
-   // Pruning and growing
+        void set_lower_bounds(const Vector<double> &);
 
-   void prune_bounding_neuron(const size_t&);
+        void set_lower_bound(const size_t &, const double &);
 
-   // Initialization
+        void set_upper_bounds(const Vector<double> &);
 
-   void initialize_random(void);
+        void set_upper_bound(const size_t &, const double &);
 
-   // Lower and upper bounds
+        void set_bounds(const Vector<Vector<double> > &);
 
-   Vector<double> calculate_outputs(const Vector<double>&) const;
-   Vector<double> calculate_derivative(const Vector<double>&) const;
-   Vector<double> calculate_second_derivative(const Vector<double>&) const;
+        void set_display(const bool &);
 
-   Matrix<double> arrange_Jacobian(const Vector<double>&) const;
-   Vector< Matrix<double> > arrange_Hessian_form(const Vector<double>&) const;
+        void set_default(void);
 
-   // Expression methods
+        // Pruning and growing
 
-   std::string write_expression(const Vector<std::string>&, const Vector<std::string>&) const;
+        void prune_bounding_neuron(const size_t &);
 
-   // Serialization methods
+        // Initialization
 
-   std::string to_string(void) const;
+        void initialize_random(void);
 
-   tinyxml2::XMLDocument* to_XML(void) const;
-   void from_XML(const tinyxml2::XMLDocument&);
+        // Lower and upper bounds
 
-protected:
+        Vector<double> calculate_outputs(const Vector<double> &) const;
 
-   // MEMBERS
+        Vector<double> calculate_derivative(const Vector<double> &) const;
 
-   /// Lower bounds of output variables
+        Vector<double> calculate_second_derivative(const Vector<double> &) const;
 
-   Vector<double> lower_bounds;
+        Matrix<double> arrange_Jacobian(const Vector<double> &) const;
 
-   /// Upper bounds of output variables
+        Vector<Matrix<double> > arrange_Hessian_form(const Vector<double> &) const;
 
-   Vector<double> upper_bounds;
+        // Expression methods
 
-   /// Display messages to screen. 
+        std::string write_expression(const Vector<std::string> &, const Vector<std::string> &) const;
 
-   bool display;
-};
+        // Serialization methods
+
+        std::string to_string(void) const;
+
+        tinyxml2::XMLDocument *to_XML(void) const;
+
+        void from_XML(const tinyxml2::XMLDocument &);
+
+    protected:
+
+        // MEMBERS
+
+        /// Lower bounds of output variables
+
+        Vector<double> lower_bounds;
+
+        /// Upper bounds of output variables
+
+        Vector<double> upper_bounds;
+
+        /// Display messages to screen.
+
+        bool display;
+    };
 
 }
 
@@ -175,9 +186,7 @@ protected:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
-
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-

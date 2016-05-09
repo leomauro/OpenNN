@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   V A R I A B L E S   C L A S S   H E A D E R                                                                */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -40,223 +40,253 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class is used to store information about the variables of a data set. 
+/// This class is used to store information about the variables of a data set.
 /// Variables in a data set can be used as inputs and targets.
 /// This class also stores information about the name, unit and description of all the variables.
 
-class Variables
-{
+    class Variables {
 
-public:  
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit Variables(void);
+        explicit Variables(void);
 
-   // VARIABLES NUMBER CONSTRUCTOR
+        // VARIABLES NUMBER CONSTRUCTOR
 
-   explicit Variables(const size_t&);
+        explicit Variables(const size_t &);
 
-   // INPUT AND TARGET VARIABLES NUMBER
+        // INPUT AND TARGET VARIABLES NUMBER
 
-   explicit Variables(const size_t&, const size_t&);
+        explicit Variables(const size_t &, const size_t &);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit Variables(const tinyxml2::XMLDocument&);
+        explicit Variables(const tinyxml2::XMLDocument &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   Variables(const Variables&);
+        Variables(const Variables &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~Variables(void);
+        virtual ~Variables(void);
 
-   // ASSIGNMENT OPERATOR
+        // ASSIGNMENT OPERATOR
 
-   Variables& operator = (const Variables&);
+        Variables &operator=(const Variables &);
 
-   // EQUAL TO OPERATOR
+        // EQUAL TO OPERATOR
 
-   bool operator == (const Variables&) const;
+        bool operator==(const Variables &) const;
 
-   // ENUMERATIONS
+        // ENUMERATIONS
 
-   /// This enumeration represents the possible uses of a variable (input, target or unused).
+        /// This enumeration represents the possible uses of a variable (input, target or unused).
 
-   enum Use{Input, Target, Unused};
+        enum Use {
+            Input, Target, Unused
+        };
 
-   // STRUCTURES
+        // STRUCTURES
 
-   ///
-   /// This structure contains the information of a single variable.
-   ///
+        ///
+        /// This structure contains the information of a single variable.
+        ///
 
-   struct Item
-   {
-       /// Name of a variable.
+        struct Item {
+            /// Name of a variable.
 
-       std::string name;
+            std::string name;
 
-       /// Units of a variable.
+            /// Units of a variable.
 
-       std::string units;
+            std::string units;
 
-       /// Description of a variable.
+            /// Description of a variable.
 
-       std::string description;
+            std::string description;
 
-       /// Use of a variable (none, input or target).
+            /// Use of a variable (none, input or target).
 
-       Use use;
-   };
+            Use use;
+        };
 
-   // METHODS
+        // METHODS
 
-   const Vector<Item>& get_items(void) const;
+        const Vector<Item> &get_items(void) const;
 
-   const Item& get_item(const size_t&) const;
+        const Item &get_item(const size_t &) const;
 
-   /// Returns the total number of variables in the data set.
+        /// Returns the total number of variables in the data set.
 
-   inline size_t get_variables_number(void) const
-   {
-      return(items.size());
-   }
+        inline size_t get_variables_number(void) const
+        {
+            return (items.size());
+        }
 
-   bool empty(void) const;
+        bool empty(void) const;
 
-   size_t count_used_variables_number(void) const;
-   size_t count_unused_variables_number(void) const;
-   size_t count_inputs_number(void) const;
-   size_t count_targets_number(void) const;
+        size_t count_used_variables_number(void) const;
 
-   Vector<size_t> count_uses(void) const;
+        size_t count_unused_variables_number(void) const;
 
-   // Variables methods
+        size_t count_inputs_number(void) const;
 
-   Vector<Use> arrange_uses(void) const;
-   Vector<std::string> write_uses(void) const;
+        size_t count_targets_number(void) const;
 
-   const Use& get_use(const size_t&) const;
-   std::string write_use(const size_t&) const;
+        Vector<size_t> count_uses(void) const;
 
-   bool is_input(const size_t&) const;
-   bool is_target(const size_t&) const;
-   bool is_unused(const size_t&) const;
+        // Variables methods
 
-   bool is_used(const size_t&) const;
+        Vector<Use> arrange_uses(void) const;
 
-   Vector<size_t> arrange_used_indices(void) const;
-   Vector<size_t> arrange_inputs_indices(void) const;
-   Vector<size_t> arrange_targets_indices(void) const;
-   Vector<size_t> arrange_unused_indices(void) const;
+        Vector<std::string> write_uses(void) const;
 
-   // Information methods
+        const Use &get_use(const size_t &) const;
 
-   Vector<std::string> arrange_names(void) const;
-   Vector<std::string> arrange_used_names(void) const;
-   const std::string& get_name(const size_t&) const;
+        std::string write_use(const size_t &) const;
 
-   bool has_names(void) const;
+        bool is_input(const size_t &) const;
 
-   Vector<std::string> arrange_units(void) const;
-   const std::string& get_unit(const size_t&) const;
+        bool is_target(const size_t &) const;
 
-   Vector<std::string> arrange_descriptions(void) const;
-   const std::string& get_description(const size_t&) const;
+        bool is_unused(const size_t &) const;
 
-   const bool& get_display(void) const;
+        bool is_used(const size_t &) const;
 
-   // Set methods
+        Vector<size_t> arrange_used_indices(void) const;
 
-   void set(void);
-   void set(const size_t&);
-   void set(const size_t&, const size_t&);
-   void set(const tinyxml2::XMLDocument&);
+        Vector<size_t> arrange_inputs_indices(void) const;
 
-   void set_default(void);
+        Vector<size_t> arrange_targets_indices(void) const;
 
-   // Data methods
+        Vector<size_t> arrange_unused_indices(void) const;
 
-   void set_variables_number(const size_t&);
+        // Information methods
 
-   // Variables methods
+        Vector<std::string> arrange_names(void) const;
 
-   void set_items(const Vector<Item>&);
+        Vector<std::string> arrange_used_names(void) const;
 
-   void set_uses(const Vector<Use>&); 
-   void set_uses(const Vector<std::string>&);
+        const std::string &get_name(const size_t &) const;
 
-   void set_use(const size_t&, const Use&);
-   void set_use(const size_t&, const std::string&);
+        bool has_names(void) const;
 
-   void set_input(void);
-   void set_target(void);
-   void set_unuse(void);
+        Vector<std::string> arrange_units(void) const;
 
-   void set_default_uses(void);
+        const std::string &get_unit(const size_t &) const;
 
-   // Information methods
+        Vector<std::string> arrange_descriptions(void) const;
 
-   void set_names(const Vector<std::string>&);
-   void set_name(const size_t&, const std::string&);
+        const std::string &get_description(const size_t &) const;
 
-   void set_units(const Vector<std::string>&);
-   void set_units(const size_t&, const std::string&);
+        const bool &get_display(void) const;
 
-   void set_descriptions(const Vector<std::string>&);
-   void set_description(const size_t&, const std::string&);
+        // Set methods
 
-   void set_names(const Vector<std::string>&, const Vector< Vector<std::string> >&);
+        void set(void);
 
-   void set_display(const bool&);
+        void set(const size_t &);
 
-   Matrix<std::string> arrange_information(void) const;
+        void set(const size_t &, const size_t &);
 
-   Vector<std::string> arrange_inputs_units(void) const;
-   Vector<std::string> arrange_targets_units(void) const;
+        void set(const tinyxml2::XMLDocument &);
 
-   Vector<std::string> arrange_inputs_name(void) const;
-   Vector<std::string> arrange_targets_name(void) const;
+        void set_default(void);
 
-   Vector<std::string> arrange_inputs_description(void) const;
-   Vector<std::string> arrange_targets_description(void) const;
+        // Data methods
 
-   Matrix<std::string> arrange_inputs_information(void) const;
-   Matrix<std::string> arrange_targets_information(void) const;
+        void set_variables_number(const size_t &);
 
-   void convert_time_series(const size_t&);
-   void convert_autoassociation(void);
+        // Variables methods
 
-   // Serialization methods
+        void set_items(const Vector<Item> &);
 
-   std::string to_string(void) const;
+        void set_uses(const Vector<Use> &);
 
-   tinyxml2::XMLDocument* to_XML(void) const;
-   void from_XML(const tinyxml2::XMLDocument&);
+        void set_uses(const Vector<std::string> &);
 
-private:
+        void set_use(const size_t &, const Use &);
 
-   static std::string unsigned_to_string(const size_t&);
-   static std::string prepend(const std::string&, const std::string&);
+        void set_use(const size_t &, const std::string &);
 
+        void set_input(void);
 
-   // MEMBERS
+        void set_target(void);
 
-   /// Vector of variable items.
-   /// Each item contains the name, units, description and use of a single variable.
+        void set_unuse(void);
 
-   Vector<Item> items;
+        void set_default_uses(void);
 
-   /// Display messages to screen.
-   
-   bool display;
-};
+        // Information methods
+
+        void set_names(const Vector<std::string> &);
+
+        void set_name(const size_t &, const std::string &);
+
+        void set_units(const Vector<std::string> &);
+
+        void set_units(const size_t &, const std::string &);
+
+        void set_descriptions(const Vector<std::string> &);
+
+        void set_description(const size_t &, const std::string &);
+
+        void set_names(const Vector<std::string> &, const Vector<Vector<std::string> > &);
+
+        void set_display(const bool &);
+
+        Matrix<std::string> arrange_information(void) const;
+
+        Vector<std::string> arrange_inputs_units(void) const;
+
+        Vector<std::string> arrange_targets_units(void) const;
+
+        Vector<std::string> arrange_inputs_name(void) const;
+
+        Vector<std::string> arrange_targets_name(void) const;
+
+        Vector<std::string> arrange_inputs_description(void) const;
+
+        Vector<std::string> arrange_targets_description(void) const;
+
+        Matrix<std::string> arrange_inputs_information(void) const;
+
+        Matrix<std::string> arrange_targets_information(void) const;
+
+        void convert_time_series(const size_t &);
+
+        void convert_autoassociation(void);
+
+        // Serialization methods
+
+        std::string to_string(void) const;
+
+        tinyxml2::XMLDocument *to_XML(void) const;
+
+        void from_XML(const tinyxml2::XMLDocument &);
+
+    private:
+
+        static std::string unsigned_to_string(const size_t &);
+
+        static std::string prepend(const std::string &, const std::string &);
+
+
+        // MEMBERS
+
+        /// Vector of variable items.
+        /// Each item contains the name, units, description and use of a single variable.
+
+        Vector<Item> items;
+
+        /// Display messages to screen.
+
+        bool display;
+    };
 
 }
 
@@ -274,7 +304,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

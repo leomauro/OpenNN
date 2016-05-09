@@ -33,126 +33,133 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class implements a performance term called solutions error. 
-/// This performance term is measured on a mathematical model. 
-/// It computes the difference between the solution from a mathematical model and a given target solution. 
-/// This type of functional is very used in optimal control problems, in which the neural network represents the control variables. 
-/// The first and second derivatives of this type of performance term are calculated with numerical differentiation. 
+/// This class implements a performance term called solutions error.
+/// This performance term is measured on a mathematical model.
+/// It computes the difference between the solution from a mathematical model and a given target solution.
+/// This type of functional is very used in optimal control problems, in which the neural network represents the control variables.
+/// The first and second derivatives of this type of performance term are calculated with numerical differentiation.
 
-class SolutionsError : public PerformanceTerm
-{
+    class SolutionsError : public PerformanceTerm {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit SolutionsError(void);
+        explicit SolutionsError(void);
 
-   // NEURAL NETWORK CONSTRUCTOR
+        // NEURAL NETWORK CONSTRUCTOR
 
-   explicit SolutionsError(NeuralNetwork*);
+        explicit SolutionsError(NeuralNetwork *);
 
-   // DATA SET CONSTRUCTOR
+        // DATA SET CONSTRUCTOR
 
-   explicit SolutionsError(MathematicalModel*);
+        explicit SolutionsError(MathematicalModel *);
 
-   // GENERAL CONSTRUCTOR
+        // GENERAL CONSTRUCTOR
 
-   explicit SolutionsError(NeuralNetwork*, MathematicalModel*);
+        explicit SolutionsError(NeuralNetwork *, MathematicalModel *);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit SolutionsError(const tinyxml2::XMLDocument&);
+        explicit SolutionsError(const tinyxml2::XMLDocument &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   SolutionsError(const SolutionsError&);
+        SolutionsError(const SolutionsError &);
 
-   // ASSIGNMENT OPERATOR
+        // ASSIGNMENT OPERATOR
 
-   SolutionsError& operator = (const SolutionsError&);
+        SolutionsError &operator=(const SolutionsError &);
 
-   // EQUAL TO OPERATOR
+        // EQUAL TO OPERATOR
 
-   bool operator == (const SolutionsError&) const;
+        bool operator==(const SolutionsError &) const;
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~SolutionsError(void);
+        virtual ~SolutionsError(void);
 
-   // ENUMERATIONS
+        // ENUMERATIONS
 
-   /// Enumeration of the different methods to compute the errors between the mathematical model solutions and the target solutions. 
+        /// Enumeration of the different methods to compute the errors between the mathematical model solutions and the target solutions.
 
-   enum SolutionsErrorMethod{SolutionsErrorSum, SolutionsErrorIntegral};
+        enum SolutionsErrorMethod {
+            SolutionsErrorSum, SolutionsErrorIntegral
+        };
 
-   // METHODS
+        // METHODS
 
-   // Get methods
+        // Get methods
 
-   const SolutionsErrorMethod& get_solutions_error_method(void) const;
-   std::string write_solutions_error_method(void) const;
+        const SolutionsErrorMethod &get_solutions_error_method(void) const;
 
-   const Vector<double>& get_solutions_errors_weights(void) const;
-   const double& get_solution_error_weight(const size_t&) const;
+        std::string write_solutions_error_method(void) const;
 
-   // Set methods
+        const Vector<double> &get_solutions_errors_weights(void) const;
+
+        const double &get_solution_error_weight(const size_t &) const;
+
+        // Set methods
 
 //   void set(const SolutionsError&);
 
-   void set_solutions_error_method(const SolutionsErrorMethod&);
-   void set_solutions_error_method(const std::string&);
+        void set_solutions_error_method(const SolutionsErrorMethod &);
 
-   void set_solutions_errors_weights(const Vector<double>&);
-   void set_solution_error_weight(const size_t&, const double&);
+        void set_solutions_error_method(const std::string &);
 
-   void set_default(void);
+        void set_solutions_errors_weights(const Vector<double> &);
 
-   // Target trajectories methods 
+        void set_solution_error_weight(const size_t &, const double &);
 
-   virtual Matrix<double> calculate_target_dependent_variables(const Matrix<double>&) const;
+        void set_default(void);
 
-   // Checking methods
+        // Target trajectories methods
 
-   void check(void) const;
+        virtual Matrix<double> calculate_target_dependent_variables(const Matrix<double> &) const;
 
-   // Constraints methods
+        // Checking methods
 
-   double calculate_solutions_error_sum(void) const;   
-   double calculate_solutions_error_integral(void) const;   
+        void check(void) const;
 
-   virtual double calculate_performance(void) const;   
-   virtual double calculate_performance(const Vector<double>&) const;   
+        // Constraints methods
 
-   std::string write_performance_term_type(void) const;
+        double calculate_solutions_error_sum(void) const;
 
-   std::string write_information(void) const;
+        double calculate_solutions_error_integral(void) const;
 
-   // Serialization methods
+        virtual double calculate_performance(void) const;
 
-   virtual void print(void) const;
+        virtual double calculate_performance(const Vector<double> &) const;
 
-   tinyxml2::XMLDocument* to_XML(void) const;   
-   void from_XML(const tinyxml2::XMLDocument&);
+        std::string write_performance_term_type(void) const;
 
-protected:
+        std::string write_information(void) const;
 
-   /// Numerical integration object. 
+        // Serialization methods
 
-   NumericalIntegration numerical_integration;
+        virtual void print(void) const;
 
-   /// Method used to compute the error between the mathematical model solutions and the target solutions. 
+        tinyxml2::XMLDocument *to_XML(void) const;
 
-   SolutionsErrorMethod solutions_error_method;
+        void from_XML(const tinyxml2::XMLDocument &);
 
-   /// Weights for the different dependent variables errors. 
+    protected:
 
-   Vector<double> solutions_errors_weights;
+        /// Numerical integration object.
 
-};
+        NumericalIntegration numerical_integration;
+
+        /// Method used to compute the error between the mathematical model solutions and the target solutions.
+
+        SolutionsErrorMethod solutions_error_method;
+
+        /// Weights for the different dependent variables errors.
+
+        Vector<double> solutions_errors_weights;
+
+    };
 
 }
 
@@ -171,7 +178,7 @@ protected:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

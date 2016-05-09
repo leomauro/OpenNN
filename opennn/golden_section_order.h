@@ -37,78 +37,77 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 ///
 /// This concrete class represents a golden section algorithm for the order selection of a neural network.
 ///
 
-class GoldenSectionOrder : public OrderSelectionAlgorithm
-{
-public:
-    // DEFAULT CONSTRUCTOR
+    class GoldenSectionOrder : public OrderSelectionAlgorithm {
+    public:
+        // DEFAULT CONSTRUCTOR
 
-    explicit GoldenSectionOrder(void);
+        explicit GoldenSectionOrder(void);
 
-    // TRAINING STRATEGY CONSTRUCTOR
+        // TRAINING STRATEGY CONSTRUCTOR
 
-    explicit GoldenSectionOrder(TrainingStrategy*);
+        explicit GoldenSectionOrder(TrainingStrategy *);
 
-    // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-    explicit GoldenSectionOrder(const tinyxml2::XMLDocument&);
+        explicit GoldenSectionOrder(const tinyxml2::XMLDocument &);
 
-    // FILE CONSTRUCTOR
+        // FILE CONSTRUCTOR
 
-    explicit GoldenSectionOrder(const std::string&);
+        explicit GoldenSectionOrder(const std::string &);
 
-    // DESTRUCTOR
+        // DESTRUCTOR
 
-    virtual ~GoldenSectionOrder(void);
+        virtual ~GoldenSectionOrder(void);
 
 
-    // STRUCTURES
+        // STRUCTURES
 
-    ///
-    /// This structure contains the training results for the golden section order method.
-    ///
+        ///
+        /// This structure contains the training results for the golden section order method.
+        ///
 
-    struct GoldenSectionOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults
-    {
-        /// Default constructor.
+        struct GoldenSectionOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults {
+            /// Default constructor.
 
-        explicit GoldenSectionOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
-        {
-        }
+            explicit GoldenSectionOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
+            {
+            }
 
-        /// Destructor.
+            /// Destructor.
 
-        virtual ~GoldenSectionOrderResults(void)
-        {
-        }
+            virtual ~GoldenSectionOrderResults(void)
+            {
+            }
+
+        };
+
+        // Order selection methods
+
+        GoldenSectionOrderResults *perform_order_selection(void);
+
+        // Serialization methods
+
+        tinyxml2::XMLDocument *to_XML(void) const;
+
+        void from_XML(const tinyxml2::XMLDocument &);
+
+        void save(const std::string &) const;
+
+        void load(const std::string &);
+
 
     };
-
-    // Order selection methods
-
-    GoldenSectionOrderResults* perform_order_selection(void);
-
-    // Serialization methods
-
-    tinyxml2::XMLDocument* to_XML(void) const;
-
-    void from_XML(const tinyxml2::XMLDocument&);
-
-    void save(const std::string&) const;
-    void load(const std::string&);
-
-
-};
 
 }
 
 #endif
+
 
 // OpenNN: Open Neural Networks Library.
 // Copyright (c) 2005-2016 Roberto Lopez.
@@ -122,7 +121,7 @@ public:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

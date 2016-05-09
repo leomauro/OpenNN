@@ -37,110 +37,109 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 ///
 /// This concrete class represents a incremental algorithm for the order selection of a neural network.
 ///
 
-class IncrementalOrder : public OrderSelectionAlgorithm
-{
-public:
-    // DEFAULT CONSTRUCTOR
+    class IncrementalOrder : public OrderSelectionAlgorithm {
+    public:
+        // DEFAULT CONSTRUCTOR
 
-    explicit IncrementalOrder(void);
+        explicit IncrementalOrder(void);
 
-    // TRAINING STRATEGY CONSTRUCTOR
+        // TRAINING STRATEGY CONSTRUCTOR
 
-    explicit IncrementalOrder(TrainingStrategy*);
+        explicit IncrementalOrder(TrainingStrategy *);
 
-    // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-    explicit IncrementalOrder(const tinyxml2::XMLDocument&);
+        explicit IncrementalOrder(const tinyxml2::XMLDocument &);
 
-    // FILE CONSTRUCTOR
+        // FILE CONSTRUCTOR
 
-    explicit IncrementalOrder(const std::string&);
+        explicit IncrementalOrder(const std::string &);
 
-    // DESTRUCTOR
+        // DESTRUCTOR
 
-    virtual ~IncrementalOrder(void);
+        virtual ~IncrementalOrder(void);
 
 
-    // STRUCTURES
+        // STRUCTURES
 
-    ///
-    /// This structure contains the training results for the incremental order method.
-    ///
+        ///
+        /// This structure contains the training results for the incremental order method.
+        ///
 
-    struct IncrementalOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults
-    {
-        /// Default constructor.
+        struct IncrementalOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults {
+            /// Default constructor.
 
-        explicit IncrementalOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
-        {
-        }
+            explicit IncrementalOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
+            {
+            }
 
-        /// Destructor.
+            /// Destructor.
 
-        virtual ~IncrementalOrderResults(void)
-        {
-        }
+            virtual ~IncrementalOrderResults(void)
+            {
+            }
 
+
+        };
+
+        // METHODS
+
+        // Get methods
+
+        const size_t &get_step(void) const;
+
+        const size_t &get_maximum_selection_failures(void) const;
+
+        // Set methods
+
+        void set_default(void);
+
+        void set_step(const size_t &);
+
+        void set_maximum_selection_failures(const size_t &);
+
+        // Order selection methods
+
+        IncrementalOrderResults *perform_order_selection(void);
+
+        // Serialization methods
+
+        Matrix<std::string> to_string_matrix(void) const;
+
+        tinyxml2::XMLDocument *to_XML(void) const;
+
+        void from_XML(const tinyxml2::XMLDocument &);
+
+        void save(const std::string &) const;
+
+        void load(const std::string &);
+
+    private:
+
+        // MEMBERS
+
+        /// Number of hidden perceptrons added in each iteration.
+
+        size_t step;
+
+        // STOPPING CRITERIA
+
+        /// Maximum number of iterations at which the selection performance increases.
+
+        size_t maximum_selection_failures;
 
     };
-
-    // METHODS
-
-    // Get methods
-
-    const size_t& get_step(void) const;
-
-    const size_t& get_maximum_selection_failures(void) const;
-
-    // Set methods
-
-    void set_default(void);
-
-    void set_step(const size_t&);
-
-    void set_maximum_selection_failures(const size_t&);
-
-    // Order selection methods
-
-    IncrementalOrderResults* perform_order_selection(void);
-
-    // Serialization methods
-
-    Matrix<std::string> to_string_matrix(void) const;
-
-    tinyxml2::XMLDocument* to_XML(void) const;
-
-    void from_XML(const tinyxml2::XMLDocument&);
-
-    void save(const std::string&) const;
-    void load(const std::string&);
-
-private:
-
-   // MEMBERS
-
-   /// Number of hidden perceptrons added in each iteration.
-
-   size_t step;
-
-   // STOPPING CRITERIA
-
-   /// Maximum number of iterations at which the selection performance increases.
-
-   size_t maximum_selection_failures;
-
-};
 
 }
 
 #endif
+
 
 // OpenNN: Open Neural Networks Library.
 // Copyright (c) 2005-2016 Roberto Lopez.
@@ -154,7 +153,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

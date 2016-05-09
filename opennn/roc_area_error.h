@@ -33,71 +33,69 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class represents the sum squared peformance term functional. 
-/// This is used as the performance term in data modeling problems, such as function regression, 
+/// This class represents the sum squared peformance term functional.
+/// This is used as the performance term in data modeling problems, such as function regression,
 /// pattern recognition or time series prediction.
 
-class RocAreaError : public PerformanceTerm
-{
+    class RocAreaError : public PerformanceTerm {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit RocAreaError(void);
+        explicit RocAreaError(void);
 
-   // NEURAL NETWORK CONSTRUCTOR
+        // NEURAL NETWORK CONSTRUCTOR
 
-   explicit RocAreaError(NeuralNetwork*);
+        explicit RocAreaError(NeuralNetwork *);
 
-   // DATA SET CONSTRUCTOR
+        // DATA SET CONSTRUCTOR
 
-   explicit RocAreaError(DataSet*);
+        explicit RocAreaError(DataSet *);
 
-   // GENERAL CONSTRUCTOR
+        // GENERAL CONSTRUCTOR
 
-   explicit RocAreaError(NeuralNetwork*, DataSet*);
+        explicit RocAreaError(NeuralNetwork *, DataSet *);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit RocAreaError(const tinyxml2::XMLDocument&);
+        explicit RocAreaError(const tinyxml2::XMLDocument &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   RocAreaError(const RocAreaError&);
+        RocAreaError(const RocAreaError &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~RocAreaError(void);
+        virtual ~RocAreaError(void);
 
-   // METHODS
+        // METHODS
 
-   // Get methods
+        // Get methods
 
-   // Set methods
+        // Set methods
 
-   // Checking methods
+        // Checking methods
 
-   void check(void) const;
+        void check(void) const;
 
-   // performance methods
+        // performance methods
 
-   double calculate_performance(void) const;   
+        double calculate_performance(void) const;
 
 //   double calculate_selection_performance(void) const;
 
-   Vector<double> calculate_output_gradient(const Vector<double>&, const Vector<double>&) const;
+        Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
 
-   Vector<double> calculate_gradient(void) const;
+        Vector<double> calculate_gradient(void) const;
 
 //   Matrix<double> calculate_Hessian(void) const;
 
 //   Matrix<double> calculate_single_hidden_layer_Hessian(void) const;
 
-   double calculate_performance(const Vector<double>&) const;
+        double calculate_performance(const Vector<double> &) const;
 
 //   double calculate_performance_combination(const size_t&, const Vector<double>&) const;
 //   double calculate_performance_combinations(const size_t&, const Vector<double>&, const size_t&, const Vector<double>&) const;
@@ -108,7 +106,7 @@ public:
 
 //   Matrix<double> calculate_Hessian(const Vector<double>&) const;
 
-   // Objective terms methods
+        // Objective terms methods
 
 //   Vector<double> calculate_terms(void) const;
 //   Vector<double> calculate_terms(const Vector<double>&) const;
@@ -117,24 +115,24 @@ public:
 
 //   PerformanceTerm::FirstOrderTerms calculate_first_order_terms(void) const;
 
-   // Squared errors methods
+        // Squared errors methods
 
 //   Vector<double> calculate_squared_errors(void) const;
 
 //   std::string write_performance_term_type(void) const;
 
-   // Serialization methods
+        // Serialization methods
 
 //   tinyxml2::XMLDocument* to_XML(void) const;
 
 //   void from_XML(const tinyxml2::XMLDocument&);
 
-private:
+    private:
 
-   NumericalIntegration numerical_integration;
+        NumericalIntegration numerical_integration;
 
 
-};
+    };
 
 }
 
@@ -153,7 +151,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

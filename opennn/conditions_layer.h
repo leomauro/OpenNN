@@ -32,193 +32,226 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class represents a layer of conditions. 
-/// Conditions are used to ensure that given outputs are provided for given inputs. 
-/// Note that this is quite a difficult topic in the field of neural networks. 
+/// This class represents a layer of conditions.
+/// Conditions are used to ensure that given outputs are provided for given inputs.
+/// Note that this is quite a difficult topic in the field of neural networks.
 
-class ConditionsLayer
-{
+    class ConditionsLayer {
 
-public:
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit ConditionsLayer(void);
+        explicit ConditionsLayer(void);
 
-   // INPUTS-CONDITIONS NUMBER CONSTRUCTOR
+        // INPUTS-CONDITIONS NUMBER CONSTRUCTOR
 
-   explicit ConditionsLayer(const size_t&, const size_t&);
+        explicit ConditionsLayer(const size_t &, const size_t &);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit ConditionsLayer(const tinyxml2::XMLDocument&);
+        explicit ConditionsLayer(const tinyxml2::XMLDocument &);
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   ConditionsLayer(const ConditionsLayer&);
+        ConditionsLayer(const ConditionsLayer &);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~ConditionsLayer(void);
+        virtual ~ConditionsLayer(void);
 
-   // ASSIGNMENT OPERATOR
+        // ASSIGNMENT OPERATOR
 
-   ConditionsLayer& operator = (const ConditionsLayer&);
+        ConditionsLayer &operator=(const ConditionsLayer &);
 
-   // EQUAL TO OPERATOR
+        // EQUAL TO OPERATOR
 
-   bool operator == (const ConditionsLayer&) const;
+        bool operator==(const ConditionsLayer &) const;
 
-   // ENUMERATIONS
+        // ENUMERATIONS
 
-   /// Enumeration of available methods for applying conditions.
-   
-   enum ConditionsMethod{NoConditions, OneCondition, TwoConditions, UserConditionsMethod};
+        /// Enumeration of available methods for applying conditions.
 
-   // GET METHODS
+        enum ConditionsMethod {
+            NoConditions, OneCondition, TwoConditions, UserConditionsMethod
+        };
 
-   const size_t& get_external_inputs_number(void) const;
-   const size_t& get_conditions_neurons_number(void) const;
+        // GET METHODS
 
-   const ConditionsMethod& get_conditions_method(void) const;
-   std::string write_conditions_method(void) const;
+        const size_t &get_external_inputs_number(void) const;
 
-   const Vector<double>& get_external_input_values(void) const;
-   const double& get_external_input_value(const size_t&) const;
-   
-   const Matrix<double>& get_output_values(void) const;
-   const double& get_output_value(const size_t&, const size_t&) const;
+        const size_t &get_conditions_neurons_number(void) const;
 
-   const bool& get_display(void) const;
+        const ConditionsMethod &get_conditions_method(void) const;
 
-   // SET METHODS
+        std::string write_conditions_method(void) const;
 
-   void set(void);
-   void set(const size_t&, const size_t&);
-   void set(const ConditionsLayer&);
+        const Vector<double> &get_external_input_values(void) const;
 
-   void set_external_inputs_number(const size_t&);
-   void set_conditions_neurons_number(const size_t&);
+        const double &get_external_input_value(const size_t &) const;
 
-   void set_conditions_method(const ConditionsMethod&);
-   void set_conditions_method(const std::string&);
+        const Matrix<double> &get_output_values(void) const;
 
-   void set_external_input_values(const Vector<double>&);
-   void set_external_input_value(const size_t&, const double&);
-   
-   void set_output_values(const Matrix<double>&);
-   void set_output_value(const size_t&, const size_t&, const double&);
+        const double &get_output_value(const size_t &, const size_t &) const;
 
-   void set_display(const bool&);
+        const bool &get_display(void) const;
 
-   void set_default(void);
+        // SET METHODS
 
-   // Conditions 
+        void set(void);
 
-   void initialize_random(void);
+        void set(const size_t &, const size_t &);
 
-   void check(void) const;
+        void set(const ConditionsLayer &);
 
-   // Particular solution
+        void set_external_inputs_number(const size_t &);
 
-   /// Returns the particular solution for applying boundary conditions.
-   virtual Vector<double> calculate_particular_solution(const Vector<double>&) const;
+        void set_conditions_neurons_number(const size_t &);
 
-   /// Returns the particular solution Jacobian for applying boundary conditions.
-   virtual Matrix<double> calculate_particular_solution_Jacobian(const Vector<double>&) const;
+        void set_conditions_method(const ConditionsMethod &);
 
-   virtual Vector< Matrix<double> > calculate_particular_solution_Hessian_form(const Vector<double>&) const;
+        void set_conditions_method(const std::string &);
 
-   // Homogeneous solution
+        void set_external_input_values(const Vector<double> &);
 
-   /// Returns the homogeneous solution for applying boundary conditions.
-   virtual Vector<double> calculate_homogeneous_solution(const Vector<double>&) const;
+        void set_external_input_value(const size_t &, const double &);
 
-   /// Returns the homogeneous solution Jacobian for applying boundary conditions.
-   virtual Matrix<double> calculate_homogeneous_solution_Jacobian(const Vector<double>&) const;
+        void set_output_values(const Matrix<double> &);
 
-   virtual Vector< Matrix<double> > calculate_homogeneous_solution_Hessian_form(const Vector<double>&) const;
+        void set_output_value(const size_t &, const size_t &, const double &);
 
-   Vector<double> calculate_outputs(const Vector<double>&, const Vector<double>&) const;
+        void set_display(const bool &);
 
-   Matrix<double> calculate_Jacobian(const Vector<double>&, const Vector<double>&, const Matrix<double>&) const;
+        void set_default(void);
 
-   Vector< Matrix<double> > calculate_Hessian_form(const Vector<double>&, const Vector<double>&) const;
+        // Conditions
 
-   // One condition methods
+        void initialize_random(void);
 
-   Vector<double> calculate_one_condition_particular_solution(const Vector<double>&) const;
-   Matrix<double> calculate_one_condition_particular_solution_Jacobian(const Vector<double>&) const;
-   Vector< Matrix<double> > calculate_one_condition_particular_solution_Hessian_form(const Vector<double>&) const;
+        void check(void) const;
 
-   Vector<double> calculate_one_condition_homogeneous_solution(const Vector<double>&) const;
-   Matrix<double> calculate_one_condition_homogeneous_solution_Jacobian(const Vector<double>&) const;
-   Vector< Matrix<double> > calculate_one_condition_homogeneous_solution_Hessian_form(const Vector<double>&) const;
+        // Particular solution
 
-   // Two conditions methods
+        /// Returns the particular solution for applying boundary conditions.
+        virtual Vector<double> calculate_particular_solution(const Vector<double> &) const;
 
-   Vector<double> calculate_two_conditions_particular_solution(const Vector<double>&) const;
-   Matrix<double> calculate_two_conditions_particular_solution_Jacobian(const Vector<double>&) const;
-   Vector< Matrix<double> > calculate_two_conditions_particular_solution_Hessian_form(const Vector<double>&) const;
+        /// Returns the particular solution Jacobian for applying boundary conditions.
+        virtual Matrix<double> calculate_particular_solution_Jacobian(const Vector<double> &) const;
 
-   Vector<double> calculate_two_conditions_homogeneous_solution(const Vector<double>&) const;
-   Matrix<double> calculate_two_conditions_homogeneous_solution_Jacobian(const Vector<double>&) const;
-   Vector< Matrix<double> > calculate_two_conditions_homogeneous_solution_Hessian_form(const Vector<double>&) const;
+        virtual Vector<Matrix<double> > calculate_particular_solution_Hessian_form(const Vector<double> &) const;
 
-   // Expression methods
+        // Homogeneous solution
 
-   virtual std::string write_particular_solution_expression(const Vector<std::string>&, const Vector<std::string>&) const;
-   virtual std::string write_homogeneous_solution_expression(const Vector<std::string>&, const Vector<std::string>&) const;
+        /// Returns the homogeneous solution for applying boundary conditions.
+        virtual Vector<double> calculate_homogeneous_solution(const Vector<double> &) const;
 
-   std::string write_one_condition_particular_solution_expression(const Vector<std::string>&, const Vector<std::string>&) const;
-   std::string write_one_condition_homogeneous_solution_expression(const Vector<std::string>&, const Vector<std::string>&) const;
-   
-   std::string write_two_conditions_particular_solution_expression(const Vector<std::string>&, const Vector<std::string>&) const;
-   std::string write_two_conditions_homogeneous_solution_expression(const Vector<std::string>&, const Vector<std::string>&) const;
+        /// Returns the homogeneous solution Jacobian for applying boundary conditions.
+        virtual Matrix<double> calculate_homogeneous_solution_Jacobian(const Vector<double> &) const;
 
-   std::string write_output_expression(const Vector<std::string>&, const Vector<std::string>&, const Vector<std::string>&, const Vector<std::string>&) const;
+        virtual Vector<Matrix<double> > calculate_homogeneous_solution_Hessian_form(const Vector<double> &) const;
 
-   std::string write_expression(const Vector<std::string>&, const Vector<std::string>&, const Vector<std::string>&) const;
+        Vector<double> calculate_outputs(const Vector<double> &, const Vector<double> &) const;
 
-   // Serialization methods
+        Matrix<double> calculate_Jacobian(const Vector<double> &, const Vector<double> &, const Matrix<double> &) const;
 
-   std::string to_string(void) const;
+        Vector<Matrix<double> > calculate_Hessian_form(const Vector<double> &, const Vector<double> &) const;
 
-   tinyxml2::XMLDocument* to_XML(void) const;
-   void from_XML(const tinyxml2::XMLDocument&);
+        // One condition methods
 
-protected:
+        Vector<double> calculate_one_condition_particular_solution(const Vector<double> &) const;
 
-   /// Number of inputs to the conditions layer. 
-   /// This will be the number of inputs to the neural network. 
+        Matrix<double> calculate_one_condition_particular_solution_Jacobian(const Vector<double> &) const;
 
-   size_t external_inputs_number;
+        Vector<Matrix<double> > calculate_one_condition_particular_solution_Hessian_form(const Vector<double> &) const;
 
-   /// Number of conditions neurons.
-   /// This will be the number of outputs from the neural network. 
+        Vector<double> calculate_one_condition_homogeneous_solution(const Vector<double> &) const;
 
-   size_t conditions_neurons_number;
+        Matrix<double> calculate_one_condition_homogeneous_solution_Jacobian(const Vector<double> &) const;
 
-   /// Conditions method (one or two conditions).
+        Vector<Matrix<double> > calculate_one_condition_homogeneous_solution_Hessian_form(const Vector<double> &) const;
 
-   ConditionsMethod conditions_method;
+        // Two conditions methods
 
-   /// Independent values of the conditions.
+        Vector<double> calculate_two_conditions_particular_solution(const Vector<double> &) const;
 
-   Vector<double> external_input_values;
+        Matrix<double> calculate_two_conditions_particular_solution_Jacobian(const Vector<double> &) const;
 
-   /// Dependent values of the conditions.
+        Vector<Matrix<double> > calculate_two_conditions_particular_solution_Hessian_form(const Vector<double> &) const;
 
-   Matrix<double> output_values;
+        Vector<double> calculate_two_conditions_homogeneous_solution(const Vector<double> &) const;
 
-   /// Display messages to screen. 
+        Matrix<double> calculate_two_conditions_homogeneous_solution_Jacobian(const Vector<double> &) const;
 
-   bool display;
+        Vector<Matrix<double> > calculate_two_conditions_homogeneous_solution_Hessian_form(const Vector<double> &) const;
 
-};
+        // Expression methods
+
+        virtual std::string write_particular_solution_expression(const Vector<std::string> &,
+                                                                 const Vector<std::string> &) const;
+
+        virtual std::string write_homogeneous_solution_expression(const Vector<std::string> &,
+                                                                  const Vector<std::string> &) const;
+
+        std::string write_one_condition_particular_solution_expression(const Vector<std::string> &,
+                                                                       const Vector<std::string> &) const;
+
+        std::string write_one_condition_homogeneous_solution_expression(const Vector<std::string> &,
+                                                                        const Vector<std::string> &) const;
+
+        std::string write_two_conditions_particular_solution_expression(const Vector<std::string> &,
+                                                                        const Vector<std::string> &) const;
+
+        std::string write_two_conditions_homogeneous_solution_expression(const Vector<std::string> &,
+                                                                         const Vector<std::string> &) const;
+
+        std::string write_output_expression(const Vector<std::string> &,
+                                            const Vector<std::string> &,
+                                            const Vector<std::string> &,
+                                            const Vector<std::string> &) const;
+
+        std::string write_expression(const Vector<std::string> &,
+                                     const Vector<std::string> &,
+                                     const Vector<std::string> &) const;
+
+        // Serialization methods
+
+        std::string to_string(void) const;
+
+        tinyxml2::XMLDocument *to_XML(void) const;
+
+        void from_XML(const tinyxml2::XMLDocument &);
+
+    protected:
+
+        /// Number of inputs to the conditions layer.
+        /// This will be the number of inputs to the neural network.
+
+        size_t external_inputs_number;
+
+        /// Number of conditions neurons.
+        /// This will be the number of outputs from the neural network.
+
+        size_t conditions_neurons_number;
+
+        /// Conditions method (one or two conditions).
+
+        ConditionsMethod conditions_method;
+
+        /// Independent values of the conditions.
+
+        Vector<double> external_input_values;
+
+        /// Dependent values of the conditions.
+
+        Matrix<double> output_values;
+
+        /// Display messages to screen.
+
+        bool display;
+
+    };
 
 }
 
@@ -237,9 +270,7 @@ protected:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
-
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-

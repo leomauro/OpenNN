@@ -11,128 +11,110 @@
 /*                                                                                                              */
 /****************************************************************************************************************/
 
-// This is a pattern recognition problem. 
+// This is a pattern recognition problem.
 
 // System includes
 
 #include <iostream>
 #include <sstream>
-#include <time.h>
-#include <stdexcept>
 
 // OpenNN includes
 
-#include "../../opennn/opennn.h"
+#include "opennn.h"
 
 using namespace OpenNN;
 
 int main(void)
 {
-   try
-   {
-      std::cout << "OpenNN. Simple Pattern Recognition Application." << std::endl;
+    try {
+        std::cout << "OpenNN. Simple Pattern Recognition Application." << std::endl;
+        srand((unsigned) time(NULL));
 
-      srand( (unsigned)time( NULL ) );
+        // Data set object
 
-      // Data set object
+        DataSet data_set;
+        data_set.set_data_file_name("data/simple_pattern_recognition.dat");
+        data_set.load_data();
 
-      DataSet data_set;
+        Variables *variables_pointer = data_set.get_variables_pointer();
+        variables_pointer->set_name(0, "x1");
+        variables_pointer->set_name(1, "x2");
+        variables_pointer->set_name(2, "y");
 
-      data_set.set_data_file_name("../data/simple_pattern_recognition.dat");
+        Instances *instances_pointer = data_set.get_instances_pointer();
+        instances_pointer->set_training();
 
-      data_set.load_data();
+        Matrix<std::string> inputs_information = variables_pointer->arrange_inputs_information();
+        Matrix<std::string> targets_information = variables_pointer->arrange_targets_information();
 
-      Variables* variables_pointer = data_set.get_variables_pointer();
+        const Vector<Statistics<double> > inputs_statistics = data_set.scale_inputs_minimum_maximum();
 
-      variables_pointer->set_name(0, "x1");
-      variables_pointer->set_name(1, "x2");
-      variables_pointer->set_name(2, "y");
+        // Neural network object
 
-      Instances* instances_pointer = data_set.get_instances_pointer();
+        NeuralNetwork neural_network(2, 2, 1);
 
-      instances_pointer->set_training();
+        Inputs *inputs_pointer = neural_network.get_inputs_pointer();
+        inputs_pointer->set_information(inputs_information);
+        neural_network.construct_scaling_layer();
 
-      Matrix<std::string> inputs_information = variables_pointer->arrange_inputs_information();
-      Matrix<std::string> targets_information = variables_pointer->arrange_targets_information();
+        ScalingLayer *scaling_layer_pointer = neural_network.get_scaling_layer_pointer();
+        scaling_layer_pointer->set_statistics(inputs_statistics);
+        scaling_layer_pointer->set_scaling_method(ScalingLayer::NoScaling);
 
-      const Vector< Statistics<double> > inputs_statistics = data_set.scale_inputs_minimum_maximum();
+        MultilayerPerceptron *multilayer_perceptron_pointer = neural_network.get_multilayer_perceptron_pointer();
+        multilayer_perceptron_pointer->set_layer_activation_function(1, Perceptron::Logistic);
 
-      // Neural network object
+        Outputs *outputs_pointer = neural_network.get_outputs_pointer();
+        outputs_pointer->set_information(targets_information);
 
-      NeuralNetwork neural_network(2, 2, 1);
+        // Performance functional
 
-      Inputs* inputs_pointer = neural_network.get_inputs_pointer();
+        PerformanceFunctional performance_functional(&neural_network, &data_set);
 
-      inputs_pointer->set_information(inputs_information);
+        // Training strategy
 
-      neural_network.construct_scaling_layer();
+        TrainingStrategy training_strategy(&performance_functional);
 
-      ScalingLayer* scaling_layer_pointer = neural_network.get_scaling_layer_pointer();
+        QuasiNewtonMethod *quasi_Newton_method_pointer = training_strategy.get_quasi_Newton_method_pointer();
+        quasi_Newton_method_pointer->set_minimum_performance_increase(1.0e-4);
 
-      scaling_layer_pointer->set_statistics(inputs_statistics);
+        TrainingStrategy::Results training_strategy_results = training_strategy.perform_training();
 
-      scaling_layer_pointer->set_scaling_method(ScalingLayer::NoScaling);
+        // Testing analysis
 
-      MultilayerPerceptron* multilayer_perceptron_pointer = neural_network.get_multilayer_perceptron_pointer();
+        instances_pointer->set_testing();
 
-      multilayer_perceptron_pointer->set_layer_activation_function(1, Perceptron::Logistic);
+        TestingAnalysis testing_analysis(&neural_network, &data_set);
 
-      Outputs* outputs_pointer = neural_network.get_outputs_pointer();
+        Vector<double> binary_classification_tests = testing_analysis.calculate_binary_classification_tests();
 
-      outputs_pointer->set_information(targets_information);
-
-      // Performance functional
- 
-      PerformanceFunctional performance_functional(&neural_network, &data_set);
-
-      // Training strategy
-
-      TrainingStrategy training_strategy(&performance_functional);
-
-      QuasiNewtonMethod* quasi_Newton_method_pointer = training_strategy.get_quasi_Newton_method_pointer();
-
-      quasi_Newton_method_pointer->set_minimum_performance_increase(1.0e-4);
-
-      TrainingStrategy::Results training_strategy_results = training_strategy.perform_training();
-
-      // Testing analysis
-
-      instances_pointer->set_testing();
-
-      TestingAnalysis testing_analysis(&neural_network, &data_set);
-
-      Vector<double> binary_classification_tests = testing_analysis.calculate_binary_classification_tests();
-
-      Matrix<size_t> confusion = testing_analysis.calculate_confusion();
+        Matrix<size_t> confusion = testing_analysis.calculate_confusion();
 
 //      Matrix<double> ROC_curve = testing_analysis.calculate_ROC_curve();
 
-      // Save results
+        // Save results
 
-      scaling_layer_pointer->set_scaling_method(ScalingLayer::MinimumMaximum);
+        scaling_layer_pointer->set_scaling_method(ScalingLayer::MinimumMaximum);
+        data_set.save("data/data_set.xml");
 
-      data_set.save("../data/data_set.xml");
+        neural_network.save("data/neural_network.xml");
+        neural_network.save_expression("data/expression.txt");
 
-      neural_network.save("../data/neural_network.xml");
-      neural_network.save_expression("../data/expression.txt");
+        performance_functional.save("data/performance_functional.xml");
 
-      performance_functional.save("../data/performance_functional.xml");
+        training_strategy.save("data/training_strategy.xml");
+        training_strategy_results.save("data/training_strategy_results.dat");
 
-      training_strategy.save("../data/training_strategy.xml");
-      training_strategy_results.save("../data/training_strategy_results.dat");
+        binary_classification_tests.save("data/binary_classification_tests.dat");
+        confusion.save("data/confusion.dat");
 
-      binary_classification_tests.save("../data/binary_classification_tests.dat");
-      confusion.save("../data/confusion.dat");
-
-      return(0);
-   }
-   catch(std::exception& e)
-   {
-      std::cerr << e.what() << std::endl;
-
-      return(1);
-   }
-}  
+        return 0;
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
+}
 
 
 // OpenNN: Open Neural Networks Library.
@@ -147,7 +129,7 @@ int main(void)
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

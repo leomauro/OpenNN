@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   I N S T A N C E S   C L A S S   H E A D E R                                                                */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -37,195 +37,223 @@
 #include <tinyxml2.h>
 
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-/// This class is used to store information about the instances of a data set. 
-/// Instances in a data set can be used for training, selection and testing.    
+/// This class is used to store information about the instances of a data set.
+/// Instances in a data set can be used for training, selection and testing.
 
-class Instances
-{
+    class Instances {
 
-public:  
+    public:
 
-   // DEFAULT CONSTRUCTOR
+        // DEFAULT CONSTRUCTOR
 
-   explicit Instances(void);
+        explicit Instances(void);
 
-   // INSTANCES NUMBER CONSTRUCTOR
+        // INSTANCES NUMBER CONSTRUCTOR
 
-   explicit Instances(const size_t&);
+        explicit Instances(const size_t &);
 
-   // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-   explicit Instances(const tinyxml2::XMLDocument&);
+        explicit Instances(const tinyxml2::XMLDocument &);
 
 
-   // COPY CONSTRUCTOR
+        // COPY CONSTRUCTOR
 
-   Instances(const Instances&);
+        Instances(const Instances &);
 
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~Instances(void);
+        virtual ~Instances(void);
 
-   // ASSIGNMENT OPERATOR
+        // ASSIGNMENT OPERATOR
 
-   Instances& operator = (const Instances&);
+        Instances &operator=(const Instances &);
 
-   // EQUAL TO OPERATOR
+        // EQUAL TO OPERATOR
 
-   bool operator == (const Instances&) const;
+        bool operator==(const Instances &) const;
 
-   // ENUMERATIONS
+        // ENUMERATIONS
 
-   /// This enumeration represents the possible uses of an instance
-   /// (no use, training, selection or testing).
+        /// This enumeration represents the possible uses of an instance
+        /// (no use, training, selection or testing).
 
-   enum Use{Unused, Training, Selection, Testing};
+        enum Use {
+            Unused, Training, Selection, Testing
+        };
 
-   /// This is an enumeration of the available methods for dividing the instances
-   /// into training, selection and testing subsets.
+        /// This is an enumeration of the available methods for dividing the instances
+        /// into training, selection and testing subsets.
 
-   enum SplittingMethod{Sequential, Random};
+        enum SplittingMethod {
+            Sequential, Random
+        };
 
-   // STRUCTURES
+        // STRUCTURES
 
-   ///
-   /// This structure contains the information of a single instance,
-   /// which is only its use (training, selection, testing or unused).
-   ///
+        ///
+        /// This structure contains the information of a single instance,
+        /// which is only its use (training, selection, testing or unused).
+        ///
 
-   struct Item
-   {
-       /// Default constructor.
+        struct Item {
+            /// Default constructor.
 
-       Item(void)
-       {
-           use = Training;
-       }
+            Item(void)
+            {
+                use = Training;
+            }
 
-       /// Use constructor.
+            /// Use constructor.
 
-       Item(const Use& new_use)
-       {
-           use = new_use;
-       }
+            Item(const Use &new_use)
+            {
+                use = new_use;
+            }
 
-       /// Destructor.
+            /// Destructor.
 
-       virtual ~Item(void)
-       {
-       }
+            virtual ~Item(void)
+            {
+            }
 
-       /// Use of an instance (training, selection, testing or unused).
+            /// Use of an instance (training, selection, testing or unused).
 
-       Use use;
-   };
+            Use use;
+        };
 
 
-   // METHODS
+        // METHODS
 
-   static SplittingMethod get_splitting_method(const std::string&);
+        static SplittingMethod get_splitting_method(const std::string &);
 
-   /// Returns the number of instances in the data set.
+        /// Returns the number of instances in the data set.
 
-   inline size_t get_instances_number(void) const
-   {
-      return(items.size());
-   }
+        inline size_t get_instances_number(void) const
+        {
+            return (items.size());
+        }
 
-   bool empty(void) const;
+        bool empty(void) const;
 
-   // Instances methods
+        // Instances methods
 
-   Vector<Use> arrange_uses(void) const;
-   Vector<std::string> write_uses(void) const;
-   Vector<std::string> write_abbreviated_uses(void) const;
+        Vector<Use> arrange_uses(void) const;
 
-   const Use& get_use(const size_t&) const;
-   std::string write_use(const size_t&) const;
+        Vector<std::string> write_uses(void) const;
 
-   bool is_used(const size_t&) const;
-   bool is_unused(const size_t&) const;
+        Vector<std::string> write_abbreviated_uses(void) const;
 
-   size_t count_training_instances_number(void) const;
-   size_t count_selection_instances_number(void) const;
-   size_t count_testing_instances_number(void) const;
-   size_t count_unused_instances_number(void) const;
-   size_t count_used_instances_number(void) const;
+        const Use &get_use(const size_t &) const;
 
-   Vector<size_t> count_uses(void) const;
+        std::string write_use(const size_t &) const;
 
-   Vector<size_t> arrange_used_indices(void)  const;
-   Vector<size_t> arrange_unused_indices(void) const;
-   Vector<size_t> arrange_training_indices(void) const;
-   Vector<size_t> arrange_selection_indices(void) const;
-   Vector<size_t> arrange_testing_indices(void) const;
+        bool is_used(const size_t &) const;
 
-   const bool& get_display(void) const;
+        bool is_unused(const size_t &) const;
 
-   // Set methods
+        size_t count_training_instances_number(void) const;
 
-   void set(void);
-   void set(const size_t&);
-   void set(const tinyxml2::XMLDocument&);
+        size_t count_selection_instances_number(void) const;
 
-   void set_default(void);
+        size_t count_testing_instances_number(void) const;
 
-   // Data methods
+        size_t count_unused_instances_number(void) const;
 
-   void set_instances_number(const size_t&);
+        size_t count_used_instances_number(void) const;
 
-   // Instances methods
+        Vector<size_t> count_uses(void) const;
 
-   void set_uses(const Vector<Use>&);
-   void set_uses(const Vector<std::string>&);
+        Vector<size_t> arrange_used_indices(void) const;
 
-   void set_use(const size_t&, const Use&);
-   void set_use(const size_t&, const std::string&);
+        Vector<size_t> arrange_unused_indices(void) const;
 
-   void set_unused(const Vector<size_t>&);
-   void set_training(void);
-   void set_selection(void);
-   void set_testing(void);
+        Vector<size_t> arrange_training_indices(void) const;
 
-   void set_display(const bool&);
+        Vector<size_t> arrange_selection_indices(void) const;
 
-   // Splitting methods
+        Vector<size_t> arrange_testing_indices(void) const;
 
-   void split_sequential_indices(const double& training_ratio = 0.6, const double& selection_ratio = 0.2, const double& testing_ratio = 0.2);
+        const bool &get_display(void) const;
 
-   void split_random_indices(const double& training_ratio = 0.6, const double& selection_ratio = 0.2, const double& testing_ratio = 0.2);
+        // Set methods
 
-   void split_instances(const SplittingMethod& splitting_method = Random, const double& training_ratio = 0.6, const double& selection_ratio = 0.2, const double& testing_ratio = 0.2);
+        void set(void);
 
-   Vector<double> calculate_uses_percentage(void) const;
+        void set(const size_t &);
 
-   void convert_time_series(const size_t&);
+        void set(const tinyxml2::XMLDocument &);
 
-   // Serialization methods
+        void set_default(void);
 
-   std::string to_string(void) const;
+        // Data methods
 
-   void print(void) const;
+        void set_instances_number(const size_t &);
 
-   tinyxml2::XMLDocument* to_XML(void) const;
-   void from_XML(const tinyxml2::XMLDocument&);
+        // Instances methods
 
-private:
+        void set_uses(const Vector<Use> &);
 
-   // MEMBERS
+        void set_uses(const Vector<std::string> &);
 
-   /// Uses of instances (none, training, selection or testing).
+        void set_use(const size_t &, const Use &);
 
-   Vector<Item> items;
+        void set_use(const size_t &, const std::string &);
 
-   /// Display messages to screen.
-   
-   bool display;
-};
+        void set_unused(const Vector<size_t> &);
+
+        void set_training(void);
+
+        void set_selection(void);
+
+        void set_testing(void);
+
+        void set_display(const bool &);
+
+        // Splitting methods
+
+        void split_sequential_indices(const double &training_ratio = 0.6,
+                                      const double &selection_ratio = 0.2,
+                                      const double &testing_ratio = 0.2);
+
+        void split_random_indices(const double &training_ratio = 0.6,
+                                  const double &selection_ratio = 0.2,
+                                  const double &testing_ratio = 0.2);
+
+        void split_instances(const SplittingMethod &splitting_method = Random,
+                             const double &training_ratio = 0.6,
+                             const double &selection_ratio = 0.2,
+                             const double &testing_ratio = 0.2);
+
+        Vector<double> calculate_uses_percentage(void) const;
+
+        void convert_time_series(const size_t &);
+
+        // Serialization methods
+
+        std::string to_string(void) const;
+
+        void print(void) const;
+
+        tinyxml2::XMLDocument *to_XML(void) const;
+
+        void from_XML(const tinyxml2::XMLDocument &);
+
+    private:
+
+        // MEMBERS
+
+        /// Uses of instances (none, training, selection or testing).
+
+        Vector<Item> items;
+
+        /// Display messages to screen.
+
+        bool display;
+    };
 
 }
 
@@ -243,8 +271,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-

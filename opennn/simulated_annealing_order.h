@@ -37,107 +37,105 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 ///
 /// This concrete class represents a simulated annealing algorithm for the order selection of a neural network.
 ///
 
-class SimulatedAnnealingOrder : public OrderSelectionAlgorithm
-{
-public:
-    // DEFAULT CONSTRUCTOR
+    class SimulatedAnnealingOrder : public OrderSelectionAlgorithm {
+    public:
+        // DEFAULT CONSTRUCTOR
 
-    explicit SimulatedAnnealingOrder(void);
+        explicit SimulatedAnnealingOrder(void);
 
-    // TRAINING STRATEGY CONSTRUCTOR
+        // TRAINING STRATEGY CONSTRUCTOR
 
-    explicit SimulatedAnnealingOrder(TrainingStrategy*);
+        explicit SimulatedAnnealingOrder(TrainingStrategy *);
 
-    // XML CONSTRUCTOR
+        // XML CONSTRUCTOR
 
-    explicit SimulatedAnnealingOrder(const tinyxml2::XMLDocument&);
+        explicit SimulatedAnnealingOrder(const tinyxml2::XMLDocument &);
 
-    // FILE CONSTRUCTOR
+        // FILE CONSTRUCTOR
 
-    explicit SimulatedAnnealingOrder(const std::string&);
+        explicit SimulatedAnnealingOrder(const std::string &);
 
-    // DESTRUCTOR
+        // DESTRUCTOR
 
-    virtual ~SimulatedAnnealingOrder(void);
+        virtual ~SimulatedAnnealingOrder(void);
 
 
-    // STRUCTURES
+        // STRUCTURES
 
-    ///
-    /// This structure contains the training results for the simulated annealing order method.
-    ///
+        ///
+        /// This structure contains the training results for the simulated annealing order method.
+        ///
 
-    struct SimulatedAnnealingOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults
-    {
-        /// Default constructor.
+        struct SimulatedAnnealingOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults {
+            /// Default constructor.
 
-        explicit SimulatedAnnealingOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
-        {
-        }
+            explicit SimulatedAnnealingOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
+            {
+            }
 
-        /// Destructor.
+            /// Destructor.
 
-        virtual ~SimulatedAnnealingOrderResults(void)
-        {
-        }
+            virtual ~SimulatedAnnealingOrderResults(void)
+            {
+            }
+
+        };
+
+        // METHODS
+
+        // Get methods
+
+        const double &get_cooling_rate(void) const;
+
+        const double &get_minimum_temperature(void) const;
+
+        // Set methods
+
+        void set_default(void);
+
+        void set_cooling_rate(const double &);
+
+        void set_minimum_temperature(const double &);
+
+        // Order selection methods
+
+        size_t get_optimal_selection_performance_index(void) const;
+
+        SimulatedAnnealingOrderResults *perform_order_selection(void);
+
+        // Serialization methods
+
+        Matrix<std::string> to_string_matrix(void) const;
+
+        tinyxml2::XMLDocument *to_XML(void) const;
+
+        void from_XML(const tinyxml2::XMLDocument &);
+
+        void save(const std::string &) const;
+
+        void load(const std::string &);
+
+    private:
+
+        // MEMBERS
+
+        /// Temperature reduction factor for the simulated annealing.
+
+        double cooling_rate;
+
+        // STOPPING CRITERIA
+
+        /// Minimum temperature reached in the simulated annealing algorithm.
+
+        double minimum_temperature;
 
     };
-
-    // METHODS
-
-    // Get methods
-
-    const double& get_cooling_rate(void) const;
-
-    const double& get_minimum_temperature(void) const;
-
-    // Set methods
-
-    void set_default(void);
-
-    void set_cooling_rate(const double&);
-
-    void set_minimum_temperature(const double&);
-
-    // Order selection methods
-
-    size_t get_optimal_selection_performance_index(void) const;
-
-    SimulatedAnnealingOrderResults* perform_order_selection(void);
-
-    // Serialization methods
-
-    Matrix<std::string> to_string_matrix(void) const;
-
-    tinyxml2::XMLDocument* to_XML(void) const;
-
-    void from_XML(const tinyxml2::XMLDocument&);
-
-    void save(const std::string&) const;
-    void load(const std::string&);
-
-private:
-
-   // MEMBERS
-
-   /// Temperature reduction factor for the simulated annealing.
-
-   double cooling_rate;
-
-   // STOPPING CRITERIA
-
-   /// Minimum temperature reached in the simulated annealing algorithm.
-
-   double minimum_temperature;
-
-};
 
 }
 
@@ -155,7 +153,7 @@ private:
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
