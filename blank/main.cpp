@@ -1,14 +1,14 @@
 /****************************************************************************************************************/
-/*                                                                                                              */ 
+/*                                                                                                              */
 /*   OpenNN: Open Neural Networks Library                                                                       */
 /*   www.artelnics.com/opennn                                                                                   */
 /*                                                                                                              */
 /*   B L A N K   A P P L I C A T I O N                                                                          */
 /*                                                                                                              */
-/*   Roberto Lopez                                                                                              */ 
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
-/*                                                                                                              */  
+/*                                                                                                              */
 /****************************************************************************************************************/
 
 // System includes
@@ -16,9 +16,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <string>
 #include <cstring>
-#include <time.h>
 
 // OpenNN includes
 
@@ -28,22 +26,18 @@ using namespace OpenNN;
 
 int main(void)
 {
-    try
-    {
+    try {
         std::cout << "OpenNN. Blank Application." << std::endl;
 
-        srand((unsigned)time(NULL));
+        srand((unsigned) time(NULL));
 
-        return(0);
+        return (0);
     }
-
-    catch(std::exception& e)
-    {
+    catch (std::exception &e) {
         std::cout << e.what() << std::endl;
-
-        return(1);
+        return (1);
     }
-}  
+}
 
 
 // OpenNN: Open Neural Networks Library.

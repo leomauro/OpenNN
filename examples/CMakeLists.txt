@@ -1,4 +1,3 @@
-
 add_subdirectory(simple_function_regression)
 add_subdirectory(simple_pattern_recognition)
 add_subdirectory(airfoil_self_noise)

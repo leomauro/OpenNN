@@ -1,4 +1,3 @@
-
 set(BLANK_SRCS
         main.cpp)
 
