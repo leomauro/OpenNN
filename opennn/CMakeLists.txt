@@ -66,7 +66,6 @@ set(OPENNN_HDRS
         youden_index_optimization_threshold.h
         kappa_coefficient_optimization_threshold.h
         roc_curve_optimization_threshold.h
-        informedness_optimization_threshold.h
         tinyxml2-deepclone.cpp
         )
 
@@ -135,7 +134,6 @@ set(OPENNN_SRCS
         youden_index_optimization_threshold.cpp
         kappa_coefficient_optimization_threshold.cpp
         roc_curve_optimization_threshold.cpp
-        informedness_optimization_threshold.cpp
         tinyxml2-deepclone.cpp
         )
 
