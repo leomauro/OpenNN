@@ -133,7 +133,8 @@ set(OPENNN_SRCS
         youden_index_optimization_threshold.cpp
         kappa_coefficient_optimization_threshold.cpp
         roc_curve_optimization_threshold.cpp
-        )
+        tinyxml2-deepclone.cpp
+        tinyxml2-deepclone.cpp)
 
-add_library(opennn ${OPENNN_SRCS})
+add_library(opennn SHARED ${OPENNN_SRCS})
 target_link_libraries(opennn tinyxml2)

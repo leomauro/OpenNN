@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   D A T A   S E T   C L A S S   H E A D E R                                                                  */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -38,19 +38,20 @@
 
 // TinyXml includes
 
-#include "../tinyxml2/tinyxml2.h"
+#include <tinyxml2.h>
+#include "tinyxml2-deepclone.h"
 
 namespace OpenNN
 {
 
-/// This class represents the concept of data set for data modelling problems, 
+/// This class represents the concept of data set for data modelling problems,
 /// such as function regression, pattern recognition and time series prediction.
-/// It basically consists of a data matrix plus a variables and an instances objects. 
+/// It basically consists of a data matrix plus a variables and an instances objects.
 
-class DataSet 
+class DataSet
 {
 
-public:  
+public:
 
     // DEFAULT CONSTRUCTOR
 
@@ -98,8 +99,8 @@ public:
 
    enum Separator{Space, Tab, Comma, Semicolon};
 
-   /// Enumeration of available methods for scaling and unscaling the data.  
-   
+   /// Enumeration of available methods for scaling and unscaling the data.
+
    enum ScalingUnscalingMethod{MinimumMaximum, MeanStandardDeviation};
 
    /// Enumeration of the units used for angular variables.
@@ -179,7 +180,7 @@ public:
    Matrix<double> arrange_target_data(void) const;
 
    Matrix<double> arrange_training_input_data(void) const;
-   Matrix<double> arrange_training_target_data(void) const;  
+   Matrix<double> arrange_training_target_data(void) const;
    Matrix<double> get_selection_input_data(void) const;
    Matrix<double> get_selection_target_data(void) const;
    Matrix<double> arrange_testing_input_data(void) const;
@@ -567,7 +568,7 @@ private:
    MissingValues missing_values;
 
    /// Display messages to screen.
-   
+
    bool display;
 
    // METHODS
