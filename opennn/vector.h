@@ -38,11 +38,11 @@
 
 // Eigen includes
 
-#include "../eigen/Eigen"
+#include <Eigen/Eigen>
 
 namespace OpenNN {
 
-// Forward declarations
+    // Forward declarations
 
     template<class T>
     class Matrix;
@@ -55,10 +55,13 @@ namespace OpenNN {
 
     template<class T>
     struct Histogram;
+
     template<class T>
     struct Statistics;
+
     template<class T>
     struct LinearRegressionParameters;
+
     template<class T>
     struct LogisticRegressionParameters;
 

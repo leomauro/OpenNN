@@ -5,6 +5,9 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations")
 
+find_package(Eigen3 REQUIRED)
+include_directories("${EIGEN3_INCLUDE_DIR}")
+
 add_subdirectory(opennn)
 include_directories(opennn)
 
