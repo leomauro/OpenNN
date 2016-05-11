@@ -30,8 +30,8 @@
 
 namespace OpenNN {
 
-/// This template class defines a matrix for general purpose use.
-/// This matrix also implements some mathematical methods which can be useful.
+    /// This template class defines a matrix for general purpose use.
+    /// This matrix also implements some mathematical methods which can be useful.
 
     template<class T>
     class Matrix : public std::vector<T> {
@@ -374,7 +374,7 @@ namespace OpenNN {
 
         void operator/=(const Matrix<T> &);
 
-//    void sum_diagonal(const T&);
+//      void sum_diagonal(const T&);
 
         Vector<double> dot(const Vector<double> &) const;
 
@@ -450,9 +450,9 @@ namespace OpenNN {
     };
 
 
-// CONSTRUCTORS
+    // CONSTRUCTORS
 
-/// Default constructor. It creates a matrix with zero rows and zero columns.
+    /// Default constructor. It creates a matrix with zero rows and zero columns.
 
     template<class T>
     Matrix<T>::Matrix(void) : std::vector<T>()
@@ -462,9 +462,9 @@ namespace OpenNN {
     }
 
 
-/// Constructor. It creates a matrix with n rows and m columns, containing n*m copies of the default value for Type.
-/// @param new_rows_number Number of rows in matrix.
-/// @param new_columns_number Number of columns in matrix.
+    /// Constructor. It creates a matrix with n rows and m columns, containing n*m copies of the default value for Type.
+    /// @param new_rows_number Number of rows in matrix.
+    /// @param new_columns_number Number of columns in matrix.
 
     template<class T>
     Matrix<T>::Matrix(const size_t &new_rows_number, const size_t &new_columns_number)
@@ -498,11 +498,10 @@ namespace OpenNN {
         }
     }
 
-
-/// Constructor. It creates a matrix with n rows and m columns, containing n*m copies of the type value of Type.
-/// @param new_rows_number Number of rows in matrix.
-/// @param new_columns_number Number of columns in matrix.
-/// @param value Value of Type.
+    /// Constructor. It creates a matrix with n rows and m columns, containing n*m copies of the type value of Type.
+    /// @param new_rows_number Number of rows in matrix.
+    /// @param new_columns_number Number of columns in matrix.
+    /// @param value Value of Type.
 
     template<class T>
     Matrix<T>::Matrix(const size_t &new_rows_number, const size_t &new_columns_number, const T &value) : std::vector<T>(
@@ -540,9 +539,8 @@ namespace OpenNN {
         }
     }
 
-
-/// File constructor. It creates a matrix which members are loaded from a data file.
-/// @param file_name Name of matrix data file.
+    /// File constructor. It creates a matrix which members are loaded from a data file.
+    /// @param file_name Name of matrix data file.
 
     template<class T>
     Matrix<T>::Matrix(const std::string &file_name) : std::vector<T>()
@@ -553,9 +551,8 @@ namespace OpenNN {
         load(file_name);
     }
 
-
-/// Copy constructor. It creates a copy of an existing matrix.
-/// @param other_matrix Matrix to be copied.
+    /// Copy constructor. It creates a copy of an existing matrix.
+    /// @param other_matrix Matrix to be copied.
 
     template<class T>
     Matrix<T>::Matrix(const Matrix &other_matrix) : std::vector<T>(other_matrix.begin(), other_matrix.end())
@@ -564,21 +561,19 @@ namespace OpenNN {
         columns_number = other_matrix.columns_number;
     }
 
+    // DESTRUCTOR
 
-// DESTRUCTOR
-
-/// Destructor.
+    /// Destructor.
 
     template<class T>
     Matrix<T>::~Matrix(void)
     {
     }
 
+    // ASSIGNMENT OPERATORS
 
-// ASSIGNMENT OPERATORS
-
-/// Assignment operator. It assigns to self a copy of an existing matrix.
-/// @param other_matrix Matrix to be assigned.
+    /// Assignment operator. It assigns to self a copy of an existing matrix.
+    /// @param other_matrix Matrix to be assigned.
 
     template<class T>
     Matrix<T> &Matrix<T>::operator=(const Matrix<T> &other_matrix)
@@ -597,42 +592,40 @@ namespace OpenNN {
         return (*this);
     }
 
+    // REFERENCE OPERATORS
 
-// REFERENCE OPERATORS
+    /// Reference operator.
 
-/// Reference operator.
-
-/// Returns the element (i,j) of the matrix.
-/// @param row Index of row.
-/// @param column Index of column.
+    /// Returns the element (i,j) of the matrix.
+    /// @param row Index of row.
+    /// @param column Index of column.
 
     template<class T>
     inline T &Matrix<T>::operator()(const size_t &row, const size_t &column)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(row >= rows_number)
-   {
-      std::ostringstream buffer;
+        if (row >= rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "operator () (const size_t&, const size_t&).\n"
-             << "Row index (" << row << ") must be less than number of rows (" << rows_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "operator () (const size_t&, const size_t&).\n"
+                   << "Row index (" << row << ") must be less than number of rows (" << rows_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
-   else if(column >= columns_number)
-   {
-      std::ostringstream buffer;
+            throw std::logic_error(buffer.str());
+        }
+        else if(column >= columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "operator () (const size_t&, const size_t&).\n"
-             << "Column index (" << column << ") must be less than number of columns (" << columns_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "operator () (const size_t&, const size_t&).\n"
+                   << "Column index (" << column << ") must be less than number of columns (" << columns_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -641,55 +634,51 @@ namespace OpenNN {
         return ((*this)[rows_number * column + row]);
     }
 
+    /// Reference operator.
 
-/// Reference operator.
-
-/// Returns the element (i,j) of the matrix.
-/// @param row Index of row.
-/// @param column Index of column.
+    /// Returns the element (i,j) of the matrix.
+    /// @param row Index of row.
+    /// @param column Index of column.
 
     template<class T>
     inline const T &Matrix<T>::operator()(const size_t &row, const size_t &column) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(row >= rows_number)
-   {
-      std::ostringstream buffer;
+        if (row >= rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "operator () (const size_t&, const size_t&).\n"
-             << "Row index (" << row << ") must be less than number of rows (" << rows_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "operator () (const size_t&, const size_t&).\n"
+                   << "Row index (" << row << ") must be less than number of rows (" << rows_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
-   else if(column >= columns_number)
-   {
-      std::ostringstream buffer;
+            throw std::logic_error(buffer.str());
+        }
+        else if(column >= columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "operator () (const size_t&, const size_t&).\n"
-             << "Column index (" << column << ") must be less than number of columns (" << columns_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "operator () (const size_t&, const size_t&).\n"
+                   << "Column index (" << column << ") must be less than number of columns (" << columns_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
         // Return matrix element
 
         return ((*this)[rows_number * column + row]);
-
     }
 
+    // bool operator == (const Matrix<T>&) const
 
-// bool operator == (const Matrix<T>&) const
-
-/// Equivalent relational operator between this matrix and other matrix.
-/// It produces true if all the elements of the two matrices are equal, and false otherwise.
-/// @param other_matrix Matrix to be compared with.
+    /// Equivalent relational operator between this matrix and other matrix.
+    /// It produces true if all the elements of the two matrices are equal, and false otherwise.
+    /// @param other_matrix Matrix to be compared with.
 
     template<class T>
     bool Matrix<T>::operator==(const Matrix<T> &other_matrix) const
@@ -714,12 +703,11 @@ namespace OpenNN {
         return (true);
     }
 
+    // bool operator == (const T&)
 
-// bool operator == (const T&)
-
-/// Equivalent relational operator between this matrix and a Type value.
-/// It produces true if all the elements of this matrix are equal to the Type value, and false otherwise.
-/// @param value Type value to be compared with.
+    /// Equivalent relational operator between this matrix and a Type value.
+    /// It produces true if all the elements of this matrix are equal to the Type value, and false otherwise.
+    /// @param value Type value to be compared with.
 
     template<class T>
     bool Matrix<T>::operator==(const T &value) const
@@ -733,43 +721,41 @@ namespace OpenNN {
         return (true);
     }
 
+    // bool operator != (const Matrix<T>&)
 
-// bool operator != (const Matrix<T>&)
-
-/// Not equivalent relational operator between this matrix and other matrix.
-/// It produces true if the two matrices have any not equal element, and false otherwise.
-/// @param other_matrix Matrix to be compared with.
+    /// Not equivalent relational operator between this matrix and other matrix.
+    /// It produces true if the two matrices have any not equal element, and false otherwise.
+    /// @param other_matrix Matrix to be compared with.
 
     template<class T>
     bool Matrix<T>::operator!=(const Matrix<T> &other_matrix) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
-   const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_rows_number != rows_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool operator != (const Matrix<T>&) const.\n"
-             << "Both numbers of rows must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool operator != (const Matrix<T>&) const.\n"
+                   << "Both numbers of rows must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
-   else if(other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+            throw std::logic_error(buffer.str());
+        }
+        else if(other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool operator != (const Matrix<T>&) const.\n"
-             << "Both numbers of columns must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool operator != (const Matrix<T>&) const.\n"
+                   << "Both numbers of columns must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -782,12 +768,11 @@ namespace OpenNN {
         return (false);
     }
 
+    // bool operator != (const T&) const
 
-// bool operator != (const T&) const
-
-/// Not equivalent relational operator between this matrix and a Type value.
-/// It produces true if some element of this matrix is not equal to the Type value, and false otherwise.
-/// @param value Type value to be compared with.
+    /// Not equivalent relational operator between this matrix and a Type value.
+    /// It produces true if some element of this matrix is not equal to the Type value, and false otherwise.
+    /// @param value Type value to be compared with.
 
     template<class T>
     bool Matrix<T>::operator!=(const T &value) const
@@ -803,44 +788,42 @@ namespace OpenNN {
         return (false);
     }
 
+    // bool operator > (const Matrix<T>&) const
 
-// bool operator > (const Matrix<T>&) const
-
-/// Greater than relational operator between this matrix and other vector.
-/// It produces true if all the elements of this matrix are greater than the corresponding elements of the other matrix,
-/// and false otherwise.
-/// @param other_matrix matrix to be compared with.
+    /// Greater than relational operator between this matrix and other vector.
+    /// It produces true if all the elements of this matrix are greater than the corresponding elements of the other matrix,
+    /// and false otherwise.
+    /// @param other_matrix matrix to be compared with.
 
     template<class T>
     bool Matrix<T>::operator>(const Matrix<T> &other_matrix) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
-   const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_rows_number != rows_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool operator > (const Matrix<T>&) const.\n"
-             << "Both numbers of rows must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool operator > (const Matrix<T>&) const.\n"
+                   << "Both numbers of rows must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
-   else if(other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+            throw std::logic_error(buffer.str());
+        }
+        else if(other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool operator > (const Matrix<T>&) const.\n"
-             << "Both numbers of columns must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool operator > (const Matrix<T>&) const.\n"
+                   << "Both numbers of columns must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -853,12 +836,11 @@ namespace OpenNN {
         return (true);
     }
 
+    // bool operator > (const T&) const
 
-// bool operator > (const T&) const
-
-/// Greater than relational operator between this matrix and a Type value.
-/// It produces true if all the elements of this matrix are greater than the Type value, and false otherwise.
-/// @param value Type value to be compared with.
+    /// Greater than relational operator between this matrix and a Type value.
+    /// It produces true if all the elements of this matrix are greater than the Type value, and false otherwise.
+    /// @param value Type value to be compared with.
 
     template<class T>
     bool Matrix<T>::operator>(const T &value) const
@@ -872,44 +854,42 @@ namespace OpenNN {
         return (true);
     }
 
+    // bool operator < (const Matrix<T>&) const
 
-// bool operator < (const Matrix<T>&) const
-
-/// Less than relational operator between this matrix and other matrix.
-/// It produces true if all the elements of this matrix are less than the corresponding elements of the other matrix,
-/// and false otherwise.
-/// @param other_matrix Matrix to be compared with.
+    /// Less than relational operator between this matrix and other matrix.
+    /// It produces true if all the elements of this matrix are less than the corresponding elements of the other matrix,
+    /// and false otherwise.
+    /// @param other_matrix Matrix to be compared with.
 
     template<class T>
     bool Matrix<T>::operator<(const Matrix<T> &other_matrix) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
-   const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_rows_number != rows_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool operator < (const Matrix<T>&) const.\n"
-             << "Both numbers of rows must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool operator < (const Matrix<T>&) const.\n"
+                   << "Both numbers of rows must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
-   else if(other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+            throw std::logic_error(buffer.str());
+        }
+        else if(other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool operator < (const Matrix<T>&) const.\n"
-             << "Both numbers of columns must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool operator < (const Matrix<T>&) const.\n"
+                   << "Both numbers of columns must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -922,12 +902,11 @@ namespace OpenNN {
         return (true);
     }
 
+    // bool operator < (const T&) const
 
-// bool operator < (const T&) const
-
-/// Less than relational operator between this matrix and a Type value.
-/// It produces true if all the elements of this matrix are less than the Type value, and false otherwise.
-/// @param value Type value to be compared with.
+    /// Less than relational operator between this matrix and a Type value.
+    /// It produces true if all the elements of this matrix are less than the Type value, and false otherwise.
+    /// @param value Type value to be compared with.
 
     template<class T>
     bool Matrix<T>::operator<(const T &value) const
@@ -941,44 +920,42 @@ namespace OpenNN {
         return (true);
     }
 
+    // bool operator >= (const Matrix<T>&) const
 
-// bool operator >= (const Matrix<T>&) const
-
-/// Greater than or equal to relational operator between this matrix and other matrix.
-/// It produces true if all the elements of this matrix are greater than or equal to the corresponding elements of the
-/// other matrix, and false otherwise.
-/// @param other_matrix Matrix to be compared with.
+    /// Greater than or equal to relational operator between this matrix and other matrix.
+    /// It produces true if all the elements of this matrix are greater than or equal to the corresponding elements of the
+    /// other matrix, and false otherwise.
+    /// @param other_matrix Matrix to be compared with.
 
     template<class T>
     bool Matrix<T>::operator>=(const Matrix<T> &other_matrix) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
-   const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_rows_number != rows_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool operator >= (const Matrix<T>&) const.\n"
-             << "Both numbers of rows must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool operator >= (const Matrix<T>&) const.\n"
+                   << "Both numbers of rows must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
-   else if(other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+            throw std::logic_error(buffer.str());
+        }
+        else if(other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool operator >= (const Matrix<T>&) const.\n"
-             << "Both numbers of columns must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool operator >= (const Matrix<T>&) const.\n"
+                   << "Both numbers of columns must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -991,12 +968,11 @@ namespace OpenNN {
         return (true);
     }
 
+    // bool operator >= (const T&) const
 
-// bool operator >= (const T&) const
-
-/// Greater than or equal to than relational operator between this matrix and a Type value.
-/// It produces true if all the elements of this matrix are greater than or equal to the Type value, and false otherwise.
-/// @param value Type value to be compared with.
+    /// Greater than or equal to than relational operator between this matrix and a Type value.
+    /// It produces true if all the elements of this matrix are greater than or equal to the Type value, and false otherwise.
+    /// @param value Type value to be compared with.
 
     template<class T>
     bool Matrix<T>::operator>=(const T &value) const
@@ -1010,44 +986,42 @@ namespace OpenNN {
         return (true);
     }
 
+    // bool operator <= (const Matrix<T>&) const
 
-// bool operator <= (const Matrix<T>&) const
-
-/// Less than or equal to relational operator between this matrix and other matrix.
-/// It produces true if all the elements of this matrix are less than or equal to the corresponding elements of the
-/// other matrix, and false otherwise.
-/// @param other_matrix Matrix to be compared with.
+    /// Less than or equal to relational operator between this matrix and other matrix.
+    /// It produces true if all the elements of this matrix are less than or equal to the corresponding elements of the
+    /// other matrix, and false otherwise.
+    /// @param other_matrix Matrix to be compared with.
 
     template<class T>
     bool Matrix<T>::operator<=(const Matrix<T> &other_matrix) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
-   const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_rows_number != rows_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool operator >= (const Matrix<T>&) const.\n"
-             << "Both numbers of rows must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool operator >= (const Matrix<T>&) const.\n"
+                   << "Both numbers of rows must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
-   else if(other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+            throw std::logic_error(buffer.str());
+        }
+        else if(other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool operator >= (const Matrix<T>&) const.\n"
-             << "Both numbers of columns must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool operator >= (const Matrix<T>&) const.\n"
+                   << "Both numbers of columns must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1060,12 +1034,11 @@ namespace OpenNN {
         return (true);
     }
 
+    // bool operator <= (const T&) const
 
-// bool operator <= (const T&) const
-
-/// Less than or equal to than relational operator between this matrix and a Type value.
-/// It produces true if all the elements of this matrix are less than or equal to the Type value, and false otherwise.
-/// @param value Type value to be compared with.
+    /// Less than or equal to than relational operator between this matrix and a Type value.
+    /// It produces true if all the elements of this matrix are less than or equal to the Type value, and false otherwise.
+    /// @param value Type value to be compared with.
 
     template<class T>
     bool Matrix<T>::operator<=(const T &value) const
@@ -1079,12 +1052,11 @@ namespace OpenNN {
         return (true);
     }
 
+    // METHODS
 
-// METHODS
+    // size_t get_rows_number(void) const method
 
-// size_t get_rows_number(void) const method
-
-/// Returns the number of rows in the matrix.
+    /// Returns the number of rows in the matrix.
 
     template<class T>
     const size_t &Matrix<T>::get_rows_number(void) const
@@ -1092,10 +1064,9 @@ namespace OpenNN {
         return (rows_number);
     }
 
+    // size_t get_columns_number(void) const method
 
-// size_t get_columns_number(void) const method
-
-/// Returns the number of columns in the matrix.
+    /// Returns the number of columns in the matrix.
 
     template<class T>
     const size_t &Matrix<T>::get_columns_number(void) const
@@ -1103,10 +1074,9 @@ namespace OpenNN {
         return (columns_number);
     }
 
+    // void set(void) method
 
-// void set(void) method
-
-/// This method set the numbers of rows and columns of the matrix to zero.
+    /// This method set the numbers of rows and columns of the matrix to zero.
 
     template<class T>
     void Matrix<T>::set(void)
@@ -1116,16 +1086,16 @@ namespace OpenNN {
         this->clear();
     }
 
+    // void set(const size_t&, const size_t&) method
 
-// void set(const size_t&, const size_t&) method
-
-/// This method set new numbers of rows and columns in the matrix.
-/// @param new_rows_number Number of rows.
-/// @param new_columns_number Number of columns.
+    /// This method set new numbers of rows and columns in the matrix.
+    /// @param new_rows_number Number of rows.
+    /// @param new_columns_number Number of columns.
 
     template<class T>
     void Matrix<T>::set(const size_t &new_rows_number, const size_t &new_columns_number)
     {
+
         // Control sentence (if debug)
 
         if (new_rows_number == rows_number && new_columns_number == columns_number) {
@@ -1160,14 +1130,13 @@ namespace OpenNN {
         }
     }
 
+    // void set(const size_t&, const size_t&, const T&) method
 
-// void set(const size_t&, const size_t&, const T&) method
-
-/// This method set new numbers of rows and columns in the matrix.
-/// It also initializes all the matrix elements to a given value.
-/// @param new_rows_number Number of rows.
-/// @param new_columns_number Number of columns.
-/// @param value Initialization value.
+    /// This method set new numbers of rows and columns in the matrix.
+    /// It also initializes all the matrix elements to a given value.
+    /// @param new_rows_number Number of rows.
+    /// @param new_columns_number Number of columns.
+    /// @param value Initialization value.
 
     template<class T>
     void Matrix<T>::set(const size_t &new_rows_number, const size_t &new_columns_number, const T &value)
@@ -1199,11 +1168,10 @@ namespace OpenNN {
         }
     }
 
+    // void set(const Matrix&) method
 
-// void set(const Matrix&) method
-
-/// Sets all the members of the matrix to those of another matrix.
-/// @param other_matrix Setting matrix.
+    /// Sets all the members of the matrix to those of another matrix.
+    /// @param other_matrix Setting matrix.
 
     template<class T>
     void Matrix<T>::set(const Matrix<T> &other_matrix)
@@ -1218,11 +1186,10 @@ namespace OpenNN {
         }
     }
 
+    // void set(const std::string&) method
 
-// void set(const std::string&) method
-
-/// Sets the members of this object by loading them from a data file.
-/// @param file_name Name of data file.
+    /// Sets the members of this object by loading them from a data file.
+    /// @param file_name Name of data file.
 
     template<class T>
     void Matrix<T>::set(const std::string &file_name)
@@ -1230,11 +1197,10 @@ namespace OpenNN {
         load(file_name);
     }
 
+    // void set_identity(const size_t&) method
 
-// void set_identity(const size_t&) method
-
-/// Sets the matrix to be squared, with elements equal one in the diagonal and zero outside the diagonal.
-/// @param new_size New number of rows and columns in this matrix.
+    /// Sets the matrix to be squared, with elements equal one in the diagonal and zero outside the diagonal.
+    /// @param new_size New number of rows and columns in this matrix.
 
     template<class T>
     void Matrix<T>::set_identity(const size_t &new_size)
@@ -1243,11 +1209,10 @@ namespace OpenNN {
         initialize_identity();
     }
 
+    // void set_rows_number(const size_t&) method
 
-// void set_rows_number(const size_t&) method
-
-/// Sets a new number of rows in the matrix.
-/// @param new_rows_number Number of matrix rows.
+    /// Sets a new number of rows in the matrix.
+    /// @param new_rows_number Number of matrix rows.
 
     template<class T>
     void Matrix<T>::set_rows_number(const size_t &new_rows_number)
@@ -1257,11 +1222,10 @@ namespace OpenNN {
         }
     }
 
+    // void set_columns_number(const size_t&) method
 
-// void set_columns_number(const size_t&) method
-
-/// Sets a new number of columns in the matrix.
-/// @param new_columns_number Number of matrix columns.
+    /// Sets a new number of columns in the matrix.
+    /// @param new_columns_number Number of matrix columns.
 
     template<class T>
     void Matrix<T>::set_columns_number(const size_t &new_columns_number)
@@ -1271,13 +1235,12 @@ namespace OpenNN {
         }
     }
 
+    // void tuck_in(const size_t&, const size_t&, const Matrix<T>&) const method
 
-// void tuck_in(const size_t&, const size_t&, const Matrix<T>&) const method
-
-/// Tuck in another matrix starting from a given position.
-/// @param row_position Insertion row position.
-/// @param column_position Insertion row position.
-/// @param other_matrix Matrix to be inserted.
+    /// Tuck in another matrix starting from a given position.
+    /// @param row_position Insertion row position.
+    /// @param column_position Insertion row position.
+    /// @param other_matrix Matrix to be inserted.
 
     template<class T>
     void Matrix<T>::tuck_in(const size_t &row_position, const size_t &column_position, const Matrix<T> &other_matrix)
@@ -1289,27 +1252,25 @@ namespace OpenNN {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(row_position + other_rows_number > rows_number)
-   {
-      std::ostringstream buffer;
+        if (row_position + other_rows_number > rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void tuck_in(const size_t&, const size_t&, const Matrix<T>&) const method.\n"
-             << "Cannot tuck in matrix.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void tuck_in(const size_t&, const size_t&, const Matrix<T>&) const method.\n"
+                   << "Cannot tuck in matrix.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   if(column_position + other_columns_number > columns_number)
-   {
-      std::ostringstream buffer;
+        if (column_position + other_columns_number > columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void tuck_in(const size_t&, const size_t&, const Matrix<T>&) const method.\n"
-             << "Cannot tuck in matrix.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void tuck_in(const size_t&, const size_t&, const Matrix<T>&) const method.\n"
+                   << "Cannot tuck in matrix.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1320,27 +1281,26 @@ namespace OpenNN {
         }
     }
 
+    // size_t count_diagonal_elements(void) const method
 
-// size_t count_diagonal_elements(void) const method
-
-/// Returns the number of elements in the diagonal which are not zero.
-/// This method is only defined for square matrices.
+    /// Returns the number of elements in the diagonal which are not zero.
+    /// This method is only defined for square matrices.
 
     template<class T>
     size_t Matrix<T>::count_diagonal_elements(void) const
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(!is_square())
-    {
-       std::ostringstream buffer;
+        if (!is_square()) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "size_t count_diagonal_elements(void) const method.\n"
-              << "The matrix is not square.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "size_t count_diagonal_elements(void) const method.\n"
+                   << "The matrix is not square.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1357,27 +1317,26 @@ namespace OpenNN {
         return (count);
     }
 
+    // size_t count_off_diagonal_elements(void) const method
 
-// size_t count_off_diagonal_elements(void) const method
-
-/// Returns the number of elements outside the diagonal which are not zero.
-/// This method is only defined for square matrices.
+    /// Returns the number of elements outside the diagonal which are not zero.
+    /// This method is only defined for square matrices.
 
     template<class T>
     size_t Matrix<T>::count_off_diagonal_elements(void) const
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(!is_square())
-    {
-       std::ostringstream buffer;
+        if (!is_square()) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "size_t count_off_diagonal_elements(void) const method.\n"
-              << "The matrix is not square.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "size_t count_off_diagonal_elements(void) const method.\n"
+                   << "The matrix is not square.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1397,13 +1356,11 @@ namespace OpenNN {
         return (count);
     }
 
+    // Matrix<T> arrange_submatrix(const Vector<size_t>&, const Vector<size_t>&) const method
 
-
-// Matrix<T> arrange_submatrix(const Vector<size_t>&, const Vector<size_t>&) const method
-
-/// Returns a matrix with the values of given rows and columns from this matrix.
-/// @param row_indices Indices of matrix rows.
-/// @param column_indices Indices of matrix columns.
+    /// Returns a matrix with the values of given rows and columns from this matrix.
+    /// @param row_indices Indices of matrix rows.
+    /// @param column_indices Indices of matrix columns.
 
     template<class T>
     Matrix<T> Matrix<T>::arrange_submatrix(const Vector <size_t> &row_indices,
@@ -1430,11 +1387,10 @@ namespace OpenNN {
         return (sub_matrix);
     }
 
+    // Matrix<T> arrange_submatrix_rows(const Vector<size_t>&) const method
 
-// Matrix<T> arrange_submatrix_rows(const Vector<size_t>&) const method
-
-/// Returns a submatrix with the values of given rows from this matrix.
-/// @param row_indices Indices of matrix rows.
+    /// Returns a submatrix with the values of given rows from this matrix.
+    /// @param row_indices Indices of matrix rows.
 
     template<class T>
     Matrix<T> Matrix<T>::arrange_submatrix_rows(const Vector <size_t> &row_indices) const
@@ -1456,11 +1412,10 @@ namespace OpenNN {
         return (sub_matrix);
     }
 
+    // Matrix<T> arrange_submatrix_columns(const Vector<size_t>&) const method
 
-// Matrix<T> arrange_submatrix_columns(const Vector<size_t>&) const method
-
-/// Returns a submatrix with the values of given columns from this matrix.
-/// @param column_indices Indices of matrix columns.
+    /// Returns a submatrix with the values of given columns from this matrix.
+    /// @param column_indices Indices of matrix columns.
 
     template<class T>
     Matrix<T> Matrix<T>::arrange_submatrix_columns(const Vector <size_t> &column_indices) const
@@ -1482,29 +1437,28 @@ namespace OpenNN {
         return (sub_matrix);
     }
 
+    // Vector<T> arrange_row(const size_t&) const method
 
-// Vector<T> arrange_row(const size_t&) const method
-
-/// Returns the row i of the matrix.
-/// @param i Index of row.
+    /// Returns the row i of the matrix.
+    /// @param i Index of row.
 
     template<class T>
     Vector <T> Matrix<T>::arrange_row(const size_t &i) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(i >= rows_number)
-   {
-      std::ostringstream buffer;
+        if (i >= rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Vector<T> arrange_row(const size_t&) const method.\n"
-             << "Row index (" << i << ") must be less than number of rows (" << rows_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Vector<T> arrange_row(const size_t&) const method.\n"
+                   << "Row index (" << i << ") must be less than number of rows (" << rows_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1517,30 +1471,29 @@ namespace OpenNN {
         return (row);
     }
 
+    // Vector<T> arrange_row(const size_t&, const Vector<size_t>&) const method
 
-// Vector<T> arrange_row(const size_t&, const Vector<size_t>&) const method
-
-/// Returns the row i of the matrix, but only the elements specified by given indices.
-/// @param row_index Index of row.
-/// @param column_indices Column indices of row.
+    /// Returns the row i of the matrix, but only the elements specified by given indices.
+    /// @param row_index Index of row.
+    /// @param column_indices Column indices of row.
 
     template<class T>
     Vector <T> Matrix<T>::arrange_row(const size_t &row_index, const Vector <size_t> &column_indices) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(row_index >= rows_number)
-   {
-      std::ostringstream buffer;
+        if (row_index >= rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Vector<T> arrange_row(const size_t&, const Vector<size_t>&) const method.\n"
-             << "Row index (" << row_index << ") must be less than number of rows (" << rows_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Vector<T> arrange_row(const size_t&, const Vector<size_t>&) const method.\n"
+                   << "Row index (" << row_index << ") must be less than number of rows (" << rows_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1555,29 +1508,28 @@ namespace OpenNN {
         return (row);
     }
 
+    // Vector<T> arrange_column(const size_t&) const method
 
-// Vector<T> arrange_column(const size_t&) const method
-
-/// Returns the column j of the matrix.
-/// @param j Index of column.
+    /// Returns the column j of the matrix.
+    /// @param j Index of column.
 
     template<class T>
     Vector <T> Matrix<T>::arrange_column(const size_t &j) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(j >= columns_number)
-   {
-      std::ostringstream buffer;
+        if (j >= columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Vector<T> arrange_column(const size_t&) const method.\n"
-             << "Column index (" << j << ") must be less than number of columns (" << columns_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Vector<T> arrange_column(const size_t&) const method.\n"
+                   << "Column index (" << j << ") must be less than number of columns (" << columns_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1590,30 +1542,29 @@ namespace OpenNN {
         return (column);
     }
 
+    // Vector<T> arrange_column(const size_t&) const method
 
-// Vector<T> arrange_column(const size_t&) const method
-
-/// Returns the column j of the matrix, but only those elements specified by given indices.
-/// @param column_index Index of column.
-/// @param row_indices Row indices of column.
+    /// Returns the column j of the matrix, but only those elements specified by given indices.
+    /// @param column_index Index of column.
+    /// @param row_indices Row indices of column.
 
     template<class T>
     Vector <T> Matrix<T>::arrange_column(const size_t &column_index, const Vector <size_t> &row_indices) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(column_index >= columns_number)
-   {
-      std::ostringstream buffer;
+        if (column_index >= columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Vector<T> arrange_column(const size_t&) const method.\n"
-             << "Column index (" << column_index << ") must be less than number of rows (" << columns_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Vector<T> arrange_column(const size_t&) const method.\n"
+                   << "Column index (" << column_index << ") must be less than number of rows (" << columns_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1628,28 +1579,27 @@ namespace OpenNN {
         return (column);
     }
 
+    // Vector<T> get_diagonal(void) const method
 
-// Vector<T> get_diagonal(void) const method
-
-/// Returns the diagonal of the matrix.
+    /// Returns the diagonal of the matrix.
 
     template<class T>
     Vector <T> Matrix<T>::get_diagonal(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Vector<T> get_diagonal(void) const method.\n"
-             << "Matrix must be squared.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Vector<T> get_diagonal(void) const method.\n"
+                   << "Matrix must be squared.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1662,43 +1612,41 @@ namespace OpenNN {
         return (diagonal);
     }
 
+    // void set_row(const size_t&, const Vector<T>&) const method
 
-// void set_row(const size_t&, const Vector<T>&) const method
-
-/// Sets new values of a single row in the matrix.
-/// @param row_index Index of row.
-/// @param new_row New values of single row.
+    /// Sets new values of a single row in the matrix.
+    /// @param row_index Index of row.
+    /// @param new_row New values of single row.
 
     template<class T>
     void Matrix<T>::set_row(const size_t &row_index, const Vector <T> &new_row)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(row_index >= rows_number)
-   {
-      std::ostringstream buffer;
+        if (row_index >= rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "set_row(const size_t&, const Vector<T>&) method.\n"
-             << "Index must be less than number of rows.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "set_row(const size_t&, const Vector<T>&) method.\n"
+                   << "Index must be less than number of rows.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   const size_t size = new_row.size();
+        const size_t size = new_row.size();
 
-   if(size != columns_number)
-   {
-      std::ostringstream buffer;
+        if (size != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "set_row(const size_t&, const Vector<T>&) method.\n"
-             << "Size (" << size << ") must be equal to number of columns (" << columns_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "set_row(const size_t&, const Vector<T>&) method.\n"
+                   << "Size (" << size << ") must be equal to number of columns (" << columns_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1709,30 +1657,29 @@ namespace OpenNN {
         }
     }
 
+    // void set_row(const size_t&, const T&) method
 
-// void set_row(const size_t&, const T&) method
-
-/// Sets a new value of a single row in the matrix.
-/// @param row_index Index of row.
-/// @param value New value of single row.
+    /// Sets a new value of a single row in the matrix.
+    /// @param row_index Index of row.
+    /// @param value New value of single row.
 
     template<class T>
     void Matrix<T>::set_row(const size_t &row_index, const T &value)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(row_index >= rows_number)
-   {
-      std::ostringstream buffer;
+        if (row_index >= rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "set_row(const size_t&, const T&) method.\n"
-             << "Index must be less than number of rows.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "set_row(const size_t&, const T&) method.\n"
+                   << "Index must be less than number of rows.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1743,43 +1690,41 @@ namespace OpenNN {
         }
     }
 
+    // void set_column(const size_t&, const Vector<T>&) method
 
-// void set_column(const size_t&, const Vector<T>&) method
-
-/// Sets new values of a single column in the matrix.
-/// @param column_index Index of column.
-/// @param new_column New values of single column.
+    /// Sets new values of a single column in the matrix.
+    /// @param column_index Index of column.
+    /// @param new_column New values of single column.
 
     template<class T>
     void Matrix<T>::set_column(const size_t &column_index, const Vector <T> &new_column)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(column_index >= columns_number)
-   {
-      std::ostringstream buffer;
+        if (column_index >= columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "set_column(const size_t&, const Vector<T>&).\n"
-             << "Index (" << column_index << ") must be less than number of columns (" << columns_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "set_column(const size_t&, const Vector<T>&).\n"
+                   << "Index (" << column_index << ") must be less than number of columns (" << columns_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   const size_t size = new_column.size();
+        const size_t size = new_column.size();
 
-   if(size != rows_number)
-   {
-      std::ostringstream buffer;
+        if (size != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "set_column(const size_t&, const Vector<T>&).\n"
-             << "Size must be equal to number of rows.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "set_column(const size_t&, const Vector<T>&).\n"
+                   << "Size must be equal to number of rows.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1790,30 +1735,29 @@ namespace OpenNN {
         }
     }
 
+    // void set_column(const size_t&, const T&) method
 
-// void set_column(const size_t&, const T&) method
-
-/// Sets a new values of a single column in the matrix.
-/// @param column_index Index of column.
-/// @param value New value of single column.
+    /// Sets a new values of a single column in the matrix.
+    /// @param column_index Index of column.
+    /// @param value New value of single column.
 
     template<class T>
     void Matrix<T>::set_column(const size_t &column_index, const T &value)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(column_index >= columns_number)
-   {
-      std::ostringstream buffer;
+        if (column_index >= columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "set_column(const size_t&, const T&).\n"
-             << "Index must be less than number of columns.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "set_column(const size_t&, const T&).\n"
+                   << "Index must be less than number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1824,31 +1768,29 @@ namespace OpenNN {
         }
     }
 
+    // void set_diagonal(const T&) method
 
-// void set_diagonal(const T&) method
-
-
-/// Sets a new value for the diagonal elements in the matrix.
-/// The matrix must be square.
-/// @param new_diagonal New value of diagonal.
+    /// Sets a new value for the diagonal elements in the matrix.
+    /// The matrix must be square.
+    /// @param new_diagonal New value of diagonal.
 
     template<class T>
     void Matrix<T>::set_diagonal(const T &new_diagonal)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "set_diagonal(const T&).\n"
-             << "Matrix must be square.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "set_diagonal(const T&).\n"
+                   << "Matrix must be square.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1859,43 +1801,41 @@ namespace OpenNN {
         }
     }
 
+    // void set_diagonal(const Vector<T>&) method
 
-// void set_diagonal(const Vector<T>&) method
-
-/// Sets new values of the diagonal in the matrix.
-/// The matrix must be square.
-/// @param new_diagonal New values of diagonal.
+    /// Sets new values of the diagonal in the matrix.
+    /// The matrix must be square.
+    /// @param new_diagonal New values of diagonal.
 
     template<class T>
     void Matrix<T>::set_diagonal(const Vector <T> &new_diagonal)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "set_diagonal(const Vector<T>&) const.\n"
-             << "Matrix is not square.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "set_diagonal(const Vector<T>&) const.\n"
+                   << "Matrix is not square.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   const size_t size = new_diagonal.size();
+        const size_t size = new_diagonal.size();
 
-   if(size != rows_number)
-   {
-      std::ostringstream buffer;
+        if (size != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "set_diagonal(const Vector<T>&) const.\n"
-             << "Size of diagonal (" << size << ") is not equal to size of matrix (" << rows_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "set_diagonal(const Vector<T>&) const.\n"
+                   << "Size of diagonal (" << size << ") is not equal to size of matrix (" << rows_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1906,14 +1846,13 @@ namespace OpenNN {
         }
     }
 
+    // void initialize_diagonal(const size_t&, const T&) method
 
-// void initialize_diagonal(const size_t&, const T&) method
-
-/// Sets this matrix to be diagonal.
-/// A diagonal matrix is a square matrix in which the entries outside the main diagonal are all zero.
-/// It also initializes the elements on the main diagonal to a unique given value.
-/// @param new_size Number of rows and colums in the matrix.
-/// @param new_value Value of all the elements in the main diagonal.
+    /// Sets this matrix to be diagonal.
+    /// A diagonal matrix is a square matrix in which the entries outside the main diagonal are all zero.
+    /// It also initializes the elements on the main diagonal to a unique given value.
+    /// @param new_size Number of rows and colums in the matrix.
+    /// @param new_value Value of all the elements in the main diagonal.
 
     template<class T>
     void Matrix<T>::initialize_diagonal(const size_t &new_size, const T &new_value)
@@ -1922,34 +1861,33 @@ namespace OpenNN {
         set_diagonal(new_value);
     }
 
+    // void initialize_diagonal(const size_t&, const Vector<T>&) method
 
-// void initialize_diagonal(const size_t&, const Vector<T>&) method
-
-/// Sets this matrix to be diagonal.
-/// A diagonal matrix is a square matrix in which the entries outside the main diagonal are all zero.
-/// It also initializes the elements on the main diagonal to given values.
-/// @param new_size Number of rows and colums in the matrix.
-/// @param new_values Values of the elements in the main diagonal.
+    /// Sets this matrix to be diagonal.
+    /// A diagonal matrix is a square matrix in which the entries outside the main diagonal are all zero.
+    /// It also initializes the elements on the main diagonal to given values.
+    /// @param new_size Number of rows and colums in the matrix.
+    /// @param new_values Values of the elements in the main diagonal.
 
     template<class T>
     void Matrix<T>::initialize_diagonal(const size_t &new_size, const Vector <T> &new_values)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t new_values_size = new_values.size();
+        const size_t new_values_size = new_values.size();
 
-   if(new_values_size != new_size)
-   {
-      std::ostringstream buffer;
+        if (new_values_size != new_size) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "initialize_diagonal(const size_t&, const size_t&) const.\n"
-             << "Size of new values is not equal to size of square matrix.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "initialize_diagonal(const size_t&, const size_t&) const.\n"
+                   << "Size of new values is not equal to size of square matrix.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+       }
 
 #endif
 
@@ -1957,30 +1895,29 @@ namespace OpenNN {
         set_diagonal(new_values);
     }
 
+    // Matrix<T> sum_diagonal(const T&) const method
 
-// Matrix<T> sum_diagonal(const T&) const method
-
-/// This method sums a new value to the diagonal elements in the matrix.
-/// The matrix must be square.
-/// @param value New summing value.
+    /// This method sums a new value to the diagonal elements in the matrix.
+    /// The matrix must be square.
+    /// @param value New summing value.
 
     template<class T>
     Matrix<T> Matrix<T>::sum_diagonal(const T &value) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "sum_diagonal(const T&) const.\n"
-             << "Matrix must be square.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "sum_diagonal(const T&) const.\n"
+                   << "Matrix must be square.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1993,43 +1930,41 @@ namespace OpenNN {
         return (sum);
     }
 
+    // Matrix<T> sum_diagonal(const Vector<T>&) const method
 
-// Matrix<T> sum_diagonal(const Vector<T>&) const method
-
-/// This method sums new values to the diagonal in the matrix.
-/// The matrix must be square.
-/// @param new_summing_values Vector of summing values.
+    /// This method sums new values to the diagonal in the matrix.
+    /// The matrix must be square.
+    /// @param new_summing_values Vector of summing values.
 
     template<class T>
     Matrix<T> Matrix<T>::sum_diagonal(const Vector <T> &new_summing_values) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "sum_diagonal(const Vector<T>&) const.\n"
-             << "Matrix must be square.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "sum_diagonal(const Vector<T>&) const.\n"
+                   << "Matrix must be square.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   const size_t size = new_summing_values.size();
+        const size_t size = new_summing_values.size();
 
-   if(size != rows_number)
-   {
-      std::ostringstream buffer;
+        if (size != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "sum_diagonal(const Vector<T>&) const.\n"
-             << "Size must be equal to number of rows.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "sum_diagonal(const Vector<T>&) const.\n"
+                   << "Size must be equal to number of rows.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2042,31 +1977,30 @@ namespace OpenNN {
         return (sum);
     }
 
+    // void append_row(const Vector<T>&) const method
 
-// void append_row(const Vector<T>&) const method
-
-/// This method appends a new row to the matrix.
-/// The size of the row vector must be equal to the number of columns of the matrix.
-/// Note that resizing is necessary here and therefore this method can be very inefficient.
-/// @param new_row Row to be appended.
+    /// This method appends a new row to the matrix.
+    /// The size of the row vector must be equal to the number of columns of the matrix.
+    /// Note that resizing is necessary here and therefore this method can be very inefficient.
+    /// @param new_row Row to be appended.
 
     template<class T>
     void Matrix<T>::append_row(const Vector <T> &new_row)
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t size = new_row.size();
+        const size_t size = new_row.size();
 
-    if(size != columns_number)
-    {
-       std::ostringstream buffer;
+        if (size != columns_number) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "append_row(const Vector<T>&) const.\n"
-              << "Size (" << size << ") must be equal to number of columns (" << columns_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "append_row(const Vector<T>&) const.\n"
+                   << "Size (" << size << ") must be equal to number of columns (" << columns_number << ").\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2083,31 +2017,30 @@ namespace OpenNN {
         set_row(rows_number - 1, new_row);
     }
 
+    // void append_column(const Vector<T>&) const method
 
-// void append_column(const Vector<T>&) const method
-
-/// This method appends a new column to the matrix.
-/// The size of the column vector must be equal to the number of rows of the matrix.
-/// Note that resizing is necessary here and therefore this method can be very inefficient.
-/// @param new_column Column to be appended.
+    /// This method appends a new column to the matrix.
+    /// The size of the column vector must be equal to the number of rows of the matrix.
+    /// Note that resizing is necessary here and therefore this method can be very inefficient.
+    /// @param new_column Column to be appended.
 
     template<class T>
     void Matrix<T>::append_column(const Vector <T> &new_column)
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t size = new_column.size();
+        const size_t size = new_column.size();
 
-   if(size != rows_number)
-   {
-      std::ostringstream buffer;
+        if (size != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "append_column(const Vector<T>&) const.\n"
-             << "Size (" << size << ") must be equal to number of rows (" << rows_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "append_column(const Vector<T>&) const.\n"
+                   << "Size (" << size << ") must be equal to number of rows (" << rows_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2116,42 +2049,40 @@ namespace OpenNN {
         set_column(columns_number - 1, new_column);
     }
 
+    // void insert_row(const size_t&, const Vector<T>&) const method
 
-// void insert_row(const size_t&, const Vector<T>&) const method
-
-/// Inserts a new row in a given position.
-/// Note that this method resizes the matrix, which can be computationally expensive.
-/// @param position Index of new row.
-/// @param new_row Vector with the row contents.
+    /// Inserts a new row in a given position.
+    /// Note that this method resizes the matrix, which can be computationally expensive.
+    /// @param position Index of new row.
+    /// @param new_row Vector with the row contents.
 
     template<class T>
     void Matrix<T>::insert_row(const size_t &position, const Vector <T> &new_row)
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(position > rows_number)
-    {
-       std::ostringstream buffer;
+        if (position > rows_number) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "insert_row(const size_t&, const Vector<T>&) const.\n"
-              << "Position must be less or equal than number of rows.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "insert_row(const size_t&, const Vector<T>&) const.\n"
+                   << "Position must be less or equal than number of rows.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
-   const size_t size = new_row.size();
+        const size_t size = new_row.size();
 
-   if(size != columns_number)
-   {
-      std::ostringstream buffer;
+        if (size != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "insert_row(const size_t&, const Vector<T>&) const.\n"
-             << "Size must be equal to number of columns.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "insert_row(const size_t&, const Vector<T>&) const.\n"
+                   << "Size must be equal to number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2178,42 +2109,40 @@ namespace OpenNN {
         set(new_matrix);
     }
 
+    // void insert_column(const size_t&, const Vector<T>&) const method
 
-// void insert_column(const size_t&, const Vector<T>&) const method
-
-/// Inserts a new column in a given position.
-/// Note that this method resizes the matrix, which can be computationally expensive.
-/// @param position Index of new column.
-/// @param new_column Vector with the column contents.
+    /// Inserts a new column in a given position.
+    /// Note that this method resizes the matrix, which can be computationally expensive.
+    /// @param position Index of new column.
+    /// @param new_column Vector with the column contents.
 
     template<class T>
     void Matrix<T>::insert_column(const size_t &position, const Vector <T> &new_column)
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(position > columns_number)
-    {
-       std::ostringstream buffer;
+        if (position > columns_number) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "insert_column(const size_t&, const Vector<T>&) const.\n"
-              << "Position must be less or equal than number of columns.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "insert_column(const size_t&, const Vector<T>&) const.\n"
+                   << "Position must be less or equal than number of columns.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
-   const size_t size = (size_t)new_column.size();
+        const size_t size = (size_t)new_column.size();
 
-   if(size != rows_number)
-   {
-      std::ostringstream buffer;
+        if (size != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "insert_column(const size_t, const Vector<T>&) const.\n"
-             << "Size must be equal to number of rows.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "insert_column(const size_t, const Vector<T>&) const.\n"
+                   << "Size must be equal to number of rows.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2236,38 +2165,36 @@ namespace OpenNN {
         set(new_matrix);
     }
 
+    // void subtract_row(const size_t&) const method
 
-// void subtract_row(const size_t&) const method
-
-/// This method removes the row with given index.
-/// Note that resizing is here necessary and this method can be very inefficient.
-/// @param row_index Index of row to be removed.
+    /// This method removes the row with given index.
+    /// Note that resizing is here necessary and this method can be very inefficient.
+    /// @param row_index Index of row to be removed.
 
     template<class T>
     void Matrix<T>::subtract_row(const size_t &row_index)
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(row_index >= rows_number)
-   {
-      std::ostringstream buffer;
+        if (row_index >= rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "subtract_row(const size_t&) const.\n"
-             << "Index of row must be less than number of rows.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "subtract_row(const size_t&) const.\n"
+                   << "Index of row must be less than number of rows.\n";
 
-      throw std::logic_error(buffer.str());
-   }
-   else if(rows_number < 2)
-   {
-      std::ostringstream buffer;
+            throw std::logic_error(buffer.str());
+        }
+        else if(rows_number < 2) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "subtract_row(const size_t&) const.\n"
-             << "Number of rows must be equal or greater than two.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "subtract_row(const size_t&) const.\n"
+                   << "Number of rows must be equal or greater than two.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2288,38 +2215,36 @@ namespace OpenNN {
         *this = new_matrix;
     }
 
+    // void subtract_column(const size_t&) method
 
-// void subtract_column(const size_t&) method
-
-/// This method removes the column with given index.
-/// Note that resizing is here necessary and this method can be very inefficient.
-/// @param column_index Index of column to be removed.
+    /// This method removes the column with given index.
+    /// Note that resizing is here necessary and this method can be very inefficient.
+    /// @param column_index Index of column to be removed.
 
     template<class T>
     void Matrix<T>::subtract_column(const size_t &column_index)
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(column_index >= columns_number)
-   {
-      std::ostringstream buffer;
+        if (column_index >= columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "subtract_column(const size_t&) const.\n"
-             << "Index of column must be less than number of columns.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "subtract_column(const size_t&) const.\n"
+                   << "Index of column must be less than number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
-   else if(columns_number < 2)
-   {
-      std::ostringstream buffer;
+            throw std::logic_error(buffer.str());
+        }
+        else if (columns_number < 2) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "subtract_column(const size_t&) const.\n"
-             << "Number of columns must be equal or greater than two.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "subtract_column(const size_t&) const.\n"
+                   << "Number of columns must be equal or greater than two.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2340,29 +2265,28 @@ namespace OpenNN {
         *this = new_matrix;
     }
 
+    // Matrix<T> assemble_rows(const Matrix<T>&) const method
 
-// Matrix<T> assemble_rows(const Matrix<T>&) const method
-
-/// Assemble two matrices.
-/// @param other_matrix matrix to be get_assembled to this matrix.
+    /// Assemble two matrices.
+    /// @param other_matrix matrix to be get_assembled to this matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::assemble_rows(const Matrix<T> &other_matrix) const
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Matrix<T> assemble_rows(const Matrix<T>&) const method.\n"
-             << "Number of columns of other matrix (" << other_columns_number << ") must be equal to number of columns of this matrix (" << columns_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> assemble_rows(const Matrix<T>&) const method.\n"
+                   << "Number of columns of other matrix (" << other_columns_number << ") must be equal to number of columns of this matrix (" << columns_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2385,12 +2309,11 @@ namespace OpenNN {
         return (assembly);
     }
 
+    // Matrix<T> sort_less_rows(const size_t&) method
 
-// Matrix<T> sort_less_rows(const size_t&) method
-
-/// Sorts the rows of the matrix in descending order attending to the values of the column with given index.
-/// It returns a new sorted matrix, it does not change the original one.
-/// @param column_index Index of column to sort.
+    /// Sorts the rows of the matrix in descending order attending to the values of the column with given index.
+    /// It returns a new sorted matrix, it does not change the original one.
+    /// @param column_index Index of column to sort.
 
     template<class T>
     Matrix<T> Matrix<T>::sort_less_rows(const size_t &column_index) const
@@ -2416,19 +2339,17 @@ namespace OpenNN {
         return (sorted);
     }
 
-
     template<class T>
     bool compare(size_t a, size_t b, const Vector <T> &data)
     {
         return data[a] < data[b];
     }
 
+    // Matrix<T> sort_greater_rows(const size_t&) method
 
-// Matrix<T> sort_greater_rows(const size_t&) method
-
-/// Sorts the rows of the matrix in ascending order attending to the values of the column with given index.
-/// It returns a new sorted matrix, it does not change the original one.
-/// @param column_index Index of column to sort.
+    /// Sorts the rows of the matrix in ascending order attending to the values of the column with given index.
+    /// It returns a new sorted matrix, it does not change the original one.
+    /// @param column_index Index of column to sort.
 
     template<class T>
     Matrix<T> Matrix<T>::sort_greater_rows(const size_t &column_index) const
@@ -2437,18 +2358,17 @@ namespace OpenNN {
 
         const Vector<T> column = arrange_column(column_index);
 
-        //  std::sort(std::begin(indices), std::end(indices), [&data](size_t i1, size_t i2) {return data[i1] > data[i2];});
+//      std::sort(std::begin(indices), std::end(indices), [&data](size_t i1, size_t i2) {return data[i1] > data[i2];});
 
         const Vector<size_t> indices = column.sort_greater_indices();
 
-//    const Vector<size_t> sorted_indices = column.calculate_maximal_indices(rows_number);
+//      const Vector<size_t> sorted_indices = column.calculate_maximal_indices(rows_number);
 
-        //Vector<T> sorted_indices(*column);
+//      Vector<T> sorted_indices(*column);
 
-        //std::sort(sorted_vector.begin(), sorted_vector.end(), std::greater<double>());
+//      std::sort(sorted_vector.begin(), sorted_vector.end(), std::greater<double>());
 
-//    std::sort(column.begin(), column.end(), [](data const &a, data const &b) { return a.number < b.number; });
-
+//      std::sort(column.begin(), column.end(), [](data const &a, data const &b) { return a.number < b.number; });
 
         size_t index;
 
@@ -2465,29 +2385,28 @@ namespace OpenNN {
         return (sorted);
     }
 
+    // Matrix<T> assemble_columns(const Matrix<T>&) const method
 
-// Matrix<T> assemble_columns(const Matrix<T>&) const method
-
-/// Assemble two matrices.
-/// @param other_matrix matrix to be get_assemblyd to this matrix.
+    /// Assemble two matrices.
+    /// @param other_matrix matrix to be get_assemblyd to this matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::assemble_columns(const Matrix<T> &other_matrix) const
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
 
-   if(other_rows_number != rows_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Matrix<T> assemble_columns(const Matrix<T>&) const method.\n"
-             << "Number of rows of other matrix (" << other_rows_number << ") must be equal to number of rows of this matrix (" << rows_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> assemble_columns(const Matrix<T>&) const method.\n"
+                   << "Number of rows of other matrix (" << other_rows_number << ") must be equal to number of rows of this matrix (" << rows_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2507,7 +2426,6 @@ namespace OpenNN {
         return (assembly);
     }
 
-
 // void initialize(const T&) method
 
 /// Initializes all the elements of the matrix with a given value.
@@ -2519,31 +2437,30 @@ namespace OpenNN {
         std::fill((*this).begin(), (*this).end(), value);
     }
 
+    // void randomize_uniform(const double&, const double&) method
 
-// void randomize_uniform(const double&, const double&) method
-
-/// Initializes all the elements in the matrix with random values comprised between a minimum and a maximum
-/// values.
-/// @param minimum Minimum possible value.
-/// @param maximum Maximum possible value.
+    /// Initializes all the elements in the matrix with random values comprised between a minimum and a maximum
+    /// values.
+    /// @param minimum Minimum possible value.
+    /// @param maximum Maximum possible value.
 
     template<class T>
     void Matrix<T>::randomize_uniform(const double &minimum, const double &maximum)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(minimum > maximum)
-   {
-      std::ostringstream buffer;
+        if (minimum > maximum) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void randomize_uniform(const double&, const double&) const method.\n"
-             << "Minimum value must be less or equal than maximum value.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void randomize_uniform(const double&, const double&) const method.\n"
+                   << "Minimum value must be less or equal than maximum value.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2552,51 +2469,48 @@ namespace OpenNN {
         }
     }
 
+    // void randomize_uniform(const Vector<double>&, const Vector<double>&) const method
 
-// void randomize_uniform(const Vector<double>&, const Vector<double>&) const method
-
-/// @param minimum Minimum possible values.
-/// @param maximum Maximum possible values.
+    /// @param minimum Minimum possible values.
+    /// @param maximum Maximum possible values.
 
     template<class T>
     void Matrix<T>::randomize_uniform(const Vector<double> &minimums, const Vector<double> &maximums)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(minimums.size() != columns_number)
-   {
-      std::ostringstream buffer;
+        if (minimums.size() != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void randomize_uniform(const Vector<double>&, const Vector<double>&) const method.\n"
-             << "Size of minimums must be equal to number of columns.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void randomize_uniform(const Vector<double>&, const Vector<double>&) const method.\n"
+                   << "Size of minimums must be equal to number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   if(maximums.size() != columns_number)
-   {
-      std::ostringstream buffer;
+        if (maximums.size() != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void randomize_uniform(const Vector<double>&, const Vector<double>&) const method.\n"
-             << "Size of maximums must be equal to number of columns.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void randomize_uniform(const Vector<double>&, const Vector<double>&) const method.\n"
+                   << "Size of maximums must be equal to number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   if(minimums > maximums)
-   {
-      std::ostringstream buffer;
+        if (minimums > maximums) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void randomize_uniform(const Vector<double>&, const Vector<double>&) const method.\n"
-             << "Minimums must be less or equal than maximums.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void randomize_uniform(const Vector<double>&, const Vector<double>&) const method.\n"
+                   << "Minimums must be less or equal than maximums.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2609,65 +2523,62 @@ namespace OpenNN {
         }
     }
 
+    // void randomize_uniform(const Matrix<double>&, const Matrix<double>&) const method
 
-// void randomize_uniform(const Matrix<double>&, const Matrix<double>&) const method
-
-/// Initializes all the elements in the matrix with random values comprised between a minimum and a maximum
-/// values for each element.
-/// @param minimum Minimum possible values.
-/// @param maximum Maximum possible values.
+    /// Initializes all the elements in the matrix with random values comprised between a minimum and a maximum
+    /// values for each element.
+    /// @param minimum Minimum possible values.
+    /// @param maximum Maximum possible values.
 
     template<class T>
     void Matrix<T>::randomize_uniform(const Matrix<double> &minimum, const Matrix<double> &maximum)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(minimum > maximum)
-   {
-      std::ostringstream buffer;
+        if (minimum > maximum) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void randomize_uniform(const Matrix<double>&, const Matrix<double>&) const method.\n"
-             << "Minimum values must be less or equal than their respective maximum values.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void randomize_uniform(const Matrix<double>&, const Matrix<double>&) const method.\n"
+                   << "Minimum values must be less or equal than their respective maximum values.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
-
 
         for (size_t i = 0; i < this->size(); i++) {
             (*this)[i] = calculate_random_uniform(minimum[i], maximum[i]);
         }
     }
 
+    // void randomize_normal(const double&, const double&) method
 
-// void randomize_normal(const double&, const double&) method
-
-/// Assigns random values to each element in the matrix, taken from a normal distribution with
-/// a given mean and a given standard deviation.
-/// @param mean Mean value of uniform distribution.
-/// @param standard_deviation Standard deviation value of uniform distribution.
+    /// Assigns random values to each element in the matrix, taken from a normal distribution with
+    /// a given mean and a given standard deviation.
+    /// @param mean Mean value of uniform distribution.
+    /// @param standard_deviation Standard deviation value of uniform distribution.
 
     template<class T>
     void Matrix<T>::randomize_normal(const double &mean, const double &standard_deviation)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(standard_deviation < 0.0)
-   {
-      std::ostringstream buffer;
+        if (standard_deviation < 0.0) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void randomize_normal(const double&, const double&) method.\n"
-             << "Standard deviation must be equal or greater than zero.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void randomize_normal(const double&, const double&) method.\n"
+                   << "Standard deviation must be equal or greater than zero.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2676,48 +2587,45 @@ namespace OpenNN {
         }
     }
 
-
-// void randomize_normal(const Vector<double>&, const Vector<double>&) const method
+    // void randomize_normal(const Vector<double>&, const Vector<double>&) const method
 
     template<class T>
     void Matrix<T>::randomize_normal(const Vector<double> &means, const Vector<double> &standard_deviations)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(means.size() != columns_number)
-   {
-      std::ostringstream buffer;
+        if (means.size() != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void randomize_normal(const Vector<double>&, const Vector<double>&) const method.\n"
-             << "Size of means must be equal to number of columns.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void randomize_normal(const Vector<double>&, const Vector<double>&) const method.\n"
+                   << "Size of means must be equal to number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   if(standard_deviations.size() != columns_number)
-   {
-      std::ostringstream buffer;
+        if (standard_deviations.size() != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void randomize_normal(const Vector<double>&, const Vector<double>&) const method.\n"
-             << "Size of standard deviations must be equal to number of columns.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void randomize_normal(const Vector<double>&, const Vector<double>&) const method.\n"
+                   << "Size of standard deviations must be equal to number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   if(means < 0.0)
-   {
-      std::ostringstream buffer;
+        if (means < 0.0) {
+              std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void randomize_normal(const Vector<double>&, const Vector<double>&) const method.\n"
-             << "Means must be less or equal than zero.\n";
+              buffer << "OpenNN Exception: Matrix Template.\n"
+                     << "void randomize_normal(const Vector<double>&, const Vector<double>&) const method.\n"
+                     << "Means must be less or equal than zero.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+              throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2730,31 +2638,30 @@ namespace OpenNN {
         }
     }
 
+    // void randomize_normal(const Matrix<double>&, const Matrix<double>&) const method
 
-// void randomize_normal(const Matrix<double>&, const Matrix<double>&) const method
-
-/// Assigns random values to each element in the vector, taken from normal distributions with
-/// given means and standard deviations for each element.
-/// @param mean Mean values of uniform distributions.
-/// @param standard_deviation Standard deviation values of uniform distributions.
+    /// Assigns random values to each element in the vector, taken from normal distributions with
+    /// given means and standard deviations for each element.
+    /// @param mean Mean values of uniform distributions.
+    /// @param standard_deviation Standard deviation values of uniform distributions.
 
     template<class T>
     void Matrix<T>::randomize_normal(const Matrix<double> &mean, const Matrix<double> &standard_deviation)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(standard_deviation < 0.0)
-   {
-      std::ostringstream buffer;
+        if (standard_deviation < 0.0) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void randomize_normal(const Matrix<double>&, const Matrix<double>&) const method.\n"
-             << "Standard deviations must be equal or greater than zero.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void randomize_normal(const Matrix<double>&, const Matrix<double>&) const method.\n"
+                   << "Standard deviations must be equal or greater than zero.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2763,29 +2670,28 @@ namespace OpenNN {
         }
     }
 
+    // void initialize_identity(void) const method
 
-// void initialize_identity(void) const method
-
-/// Sets the diagonal elements in the matrix with ones and the rest elements with zeros. The matrix
-/// must be square.
+    /// Sets the diagonal elements in the matrix with ones and the rest elements with zeros. The matrix
+    /// must be square.
 
     template<class T>
     void Matrix<T>::initialize_identity(void)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      std::cout << "OpenNN Exception: Matrix Template.\n"
-                << "initialize_identity(void) const method.\n"
-                << "Matrix must be square.\n";
+            std::cout << "OpenNN Exception: Matrix Template.\n"
+                      << "initialize_identity(void) const method.\n"
+                      << "Matrix must be square.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2796,29 +2702,28 @@ namespace OpenNN {
         }
     }
 
+    // void initialize_diagonal(const T&) method
 
-// void initialize_diagonal(const T&) method
-
-/// Sets the diagonal elements in the matrix with a given value and the rest elements with zeros.
-/// The matrix must be square.
+    /// Sets the diagonal elements in the matrix with a given value and the rest elements with zeros.
+    /// The matrix must be square.
 
     template<class T>
     void Matrix<T>::initialize_diagonal(const T &value)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      std::cout << "OpenNN Exception: Matrix Template.\n"
-                << "initialize_diagonal(const T&) const method.\n"
-                << "Matrix must be square.\n";
+            std::cout << "OpenNN Exception: Matrix Template.\n"
+                      << "initialize_diagonal(const T&) const method.\n"
+                      << "Matrix must be square.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2834,10 +2739,9 @@ namespace OpenNN {
         }
     }
 
+    // T calculate_sum(void) const method
 
-// T calculate_sum(void) const method
-
-/// Returns the sum of all the elements in the matrix.
+    /// Returns the sum of all the elements in the matrix.
 
     template<class T>
     T Matrix<T>::calculate_sum(void) const
@@ -2851,28 +2755,27 @@ namespace OpenNN {
         return (sum);
     }
 
+    // Vector<T> calculate_rows_sum(void) const method
 
-// Vector<T> calculate_rows_sum(void) const method
-
-/// Returns the sum of all the rows in the matrix.
+    /// Returns the sum of all the rows in the matrix.
 
     template<class T>
     Vector <T> Matrix<T>::calculate_rows_sum(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this->empty())
-    {
-       std::ostringstream buffer;
+        if (this->empty()) {
+            std::ostringstream buffer;
 
-       std::cout << "OpenNN Exception: Matrix Template.\n"
-                 << "Vector<T> calculate_rows_sum(void) const method.\n"
-                 << "Matrix is empty.\n";
+            std::cout << "OpenNN Exception: Matrix Template.\n"
+                      << "Vector<T> calculate_rows_sum(void) const method.\n"
+                      << "Matrix is empty.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2887,29 +2790,28 @@ namespace OpenNN {
         return (rows_sum);
     }
 
+    // void sum_row(const size_t&, const Vector<T>&) method
 
-// void sum_row(const size_t&, const Vector<T>&) method
-
-/// Sums the values of a given row with the values of a given vector.
-/// The size of the vector must be equal to the number of columns.
+    /// Sums the values of a given row with the values of a given vector.
+    /// The size of the vector must be equal to the number of columns.
 
     template<class T>
     void Matrix<T>::sum_row(const size_t &row_index, const Vector <T> &vector)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(vector.size() != columns_number)
-    {
-       std::ostringstream buffer;
+        if (vector.size() != columns_number) {
+            std::ostringstream buffer;
 
-       std::cout << "OpenNN Exception: Matrix Template.\n"
-                 << "void sum_row(const size_t&, const Vector<T>&) method.\n"
-                 << "Size of vector must be equal to number of columns.\n";
+            std::cout << "OpenNN Exception: Matrix Template.\n"
+                      << "void sum_row(const size_t&, const Vector<T>&) method.\n"
+                      << "Size of vector must be equal to number of columns.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2918,29 +2820,28 @@ namespace OpenNN {
         }
     }
 
+    // double calculate_trace(void) const method
 
-// double calculate_trace(void) const method
-
-/// Returns the trace of the matrix, which is defined to be the sum of the main diagonal elements.
-/// The matrix must be square.
+    /// Returns the trace of the matrix, which is defined to be the sum of the main diagonal elements.
+    /// The matrix must be square.
 
     template<class T>
     double Matrix<T>::calculate_trace(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(!is_square())
-   {
-      std::ostringstream buffer;
+        if (!is_square()) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "double calculate_trace(void) const method.\n"
-             << "Matrix is not square.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "double calculate_trace(void) const method.\n"
+                   << "Matrix is not square.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2953,29 +2854,28 @@ namespace OpenNN {
         return (trace);
     }
 
+    // Vector<double> calculate_mean(void) const method
 
-// Vector<double> calculate_mean(void) const method
-
-/// Returns a vector with the mean values of all the matrix columns.
-/// The size is equal to the number of columns in the matrix.
+    /// Returns a vector with the mean values of all the matrix columns.
+    /// The size is equal to the number of columns in the matrix.
 
     template<class T>
     Vector<double> Matrix<T>::calculate_mean(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number == 0)
-   {
-      std::ostringstream buffer;
+        if (rows_number == 0) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector<double> calculate_mean(void) const method.\n"
-             << "Number of rows must be greater than one.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector<double> calculate_mean(void) const method.\n"
+                   << "Number of rows must be greater than one.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2994,40 +2894,38 @@ namespace OpenNN {
         return (mean);
     }
 
+    // double calculate_mean(const size_t&) const method
 
-// double calculate_mean(const size_t&) const method
-
-/// Returns a vector with the mean values of all the matrix columns.
-/// The size is equal to the number of columns in the matrix.
+    /// Returns a vector with the mean values of all the matrix columns.
+    /// The size is equal to the number of columns in the matrix.
 
     template<class T>
     double Matrix<T>::calculate_mean(const size_t &column_index) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number == 0)
-   {
-      std::ostringstream buffer;
+        if (rows_number == 0) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "double calculate_mean(const size_t&) const method.\n"
-             << "Number of rows must be greater than one.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "double calculate_mean(const size_t&) const method.\n"
+                   << "Number of rows must be greater than one.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   if(column_index >= columns_number)
-   {
-      std::ostringstream buffer;
+        if (column_index >= columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "double calculate_mean(const size_t&) const method.\n"
-             << "Index of column must be less than number of columns.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "double calculate_mean(const size_t&) const method.\n"
+                   << "Index of column must be less than number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -3044,12 +2942,11 @@ namespace OpenNN {
         return (mean);
     }
 
+    // Vector<double> calculate_mean(const Vector<size_t>&) const method
 
-// Vector<double> calculate_mean(const Vector<size_t>&) const method
-
-/// Returns a vector with the mean values of given columns.
-/// The size of the vector is equal to the size of the column indices vector.
-/// @param column_indices Indices of columns.
+    /// Returns a vector with the mean values of given columns.
+    /// The size of the vector is equal to the size of the column indices vector.
+    /// @param column_indices Indices of columns.
 
     template<class T>
     Vector<double> Matrix<T>::calculate_mean(const Vector <size_t> &column_indices) const
@@ -3075,13 +2972,12 @@ namespace OpenNN {
         return (mean);
     }
 
+    // Vector<double> calculate_mean(const Vector<size_t>&, const Vector<size_t>&) const method
 
-// Vector<double> calculate_mean(const Vector<size_t>&, const Vector<size_t>&) const method
-
-/// Returns a vector with the mean values of given columns for given rows.
-/// The size of the vector is equal to the size of the column indices vector.
-/// @param row_indices Indices of rows.
-/// @param column_indices Indices of columns.
+    /// Returns a vector with the mean values of given columns for given rows.
+    /// The size of the vector is equal to the size of the column indices vector.
+    /// @param row_indices Indices of rows.
+    /// @param column_indices Indices of columns.
 
     template<class T>
     Vector<double> Matrix<T>::calculate_mean(const Vector <size_t> &row_indices,
@@ -3094,70 +2990,63 @@ namespace OpenNN {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                // Rows check
+        // Rows check
 
-   if(row_indices_size > rows_number)
-   {
-      std::ostringstream buffer;
+        if (row_indices_size > rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector<double> calculate_mean(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
-             << "Size of row indices (" << row_indices_size << ") is greater than number of rows (" << rows_number << ").\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector<double> calculate_mean(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
+                   << "Size of row indices (" << row_indices_size << ") is greater than number of rows (" << rows_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   for(size_t i = 0; i < row_indices_size; i++)
-   {
-      if(row_indices[i] >= rows_number)
-      {
-         std::ostringstream buffer;
+        for (size_t i = 0; i < row_indices_size; i++) {
+            if (row_indices[i] >= rows_number) {
+                std::ostringstream buffer;
 
-         buffer << "OpenNN Exception: Matrix template.\n"
-                << "Vector<double> calculate_mean(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
-                << "Row index " << i << " must be less than rows number.\n";
+                buffer << "OpenNN Exception: Matrix template.\n"
+                       << "Vector<double> calculate_mean(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
+                       << "Row index " << i << " must be less than rows number.\n";
 
-         throw std::logic_error(buffer.str());
-      }
-   }
+                throw std::logic_error(buffer.str());
+            }
+        }
 
-   if(row_indices_size == 0)
-   {
-      std::ostringstream buffer;
+        if (row_indices_size == 0) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector<double> calculate_mean(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
-             << "Size of row indices must be greater than zero.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector<double> calculate_mean(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
+                   << "Size of row indices must be greater than zero.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   // Columns check
+        // Columns check
 
-   if(column_indices_size > columns_number)
-   {
-      std::ostringstream buffer;
+        if (column_indices_size > columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector<double> calculate_mean(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
-             << "Column indices size must be equal or less than columns number.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector<double> calculate_mean(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
+                   << "Column indices size must be equal or less than columns number.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   for(size_t i = 0; i < column_indices_size; i++)
-   {
-      if(column_indices[i] >= columns_number)
-      {
-         std::ostringstream buffer;
+        for (size_t i = 0; i < column_indices_size; i++) {
+            if (column_indices[i] >= columns_number) {
+                std::ostringstream buffer;
 
-         buffer << "OpenNN Exception: Matrix template.\n"
-                << "Vector<double> calculate_mean(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
-                << "Column index " << i << " must be less than columns number.\n";
+                buffer << "OpenNN Exception: Matrix template.\n"
+                       << "Vector<double> calculate_mean(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
+                       << "Column index " << i << " must be less than columns number.\n";
 
-         throw std::logic_error(buffer.str());
-      }
-   }
+                throw std::logic_error(buffer.str());
+            }
+        }
 
 #endif
 
@@ -3183,12 +3072,11 @@ namespace OpenNN {
         return (mean);
     }
 
+    // Vector<double> calculate_mean_missing_values(const Vector< Vector<size_t> >&) const method
 
-// Vector<double> calculate_mean_missing_values(const Vector< Vector<size_t> >&) const method
-
-/// Returns a vector with the mean values of given columns for given rows when the matrix has missing values.
-/// The size of the vector is equal to the size of the column indices vector.
-/// @param missing_indices Vector of vectors with the indices of the missing values.
+    /// Returns a vector with the mean values of given columns for given rows when the matrix has missing values.
+    /// The size of the vector is equal to the size of the column indices vector.
+    /// @param missing_indices Vector of vectors with the indices of the missing values.
 
     template<class T>
     Vector<double> Matrix<T>::calculate_mean_missing_values(const Vector <Vector<size_t>> &missing_indices) const
@@ -3199,14 +3087,13 @@ namespace OpenNN {
         return (calculate_mean_missing_values(row_indices, column_indices, missing_indices));
     }
 
+    // Vector<double> calculate_mean_missing_values(const Vector<size_t>&, const Vector<size_t>&, const Vector< Vector<size_t> >&) const method
 
-// Vector<double> calculate_mean_missing_values(const Vector<size_t>&, const Vector<size_t>&, const Vector< Vector<size_t> >&) const method
-
-/// Returns a vector with the mean values of given columns for given rows when the matrix has missing values.
-/// The size of the vector is equal to the size of the column indices vector.
-/// @param row_indices Indices of rows.
-/// @param column_indices Indices of columns.
-/// @param missing_indices Vector of vectors with the indices of the missing values.
+    /// Returns a vector with the mean values of given columns for given rows when the matrix has missing values.
+    /// The size of the vector is equal to the size of the column indices vector.
+    /// @param row_indices Indices of rows.
+    /// @param column_indices Indices of columns.
+    /// @param missing_indices Vector of vectors with the indices of the missing values.
 
     template<class T>
     Vector<double> Matrix<T>::calculate_mean_missing_values(const Vector <size_t> &row_indices,
@@ -3220,70 +3107,63 @@ namespace OpenNN {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                // Rows check
+        // Rows check
 
-   if(row_indices_size > rows_number)
-   {
-      std::ostringstream buffer;
+        if (row_indices_size > rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector<double> calculate_mean_missing_values(const Vector<size_t>&, const Vector<size_t>&, const Vector< Vector<size_t> >&) const method.\n"
-             << "Size of row indices (" << row_indices_size << ") is greater than number of rows (" << rows_number << ").\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector<double> calculate_mean_missing_values(const Vector<size_t>&, const Vector<size_t>&, const Vector< Vector<size_t> >&) const method.\n"
+                   << "Size of row indices (" << row_indices_size << ") is greater than number of rows (" << rows_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   for(size_t i = 0; i < row_indices_size; i++)
-   {
-      if(row_indices[i] >= rows_number)
-      {
-         std::ostringstream buffer;
+        for (size_t i = 0; i < row_indices_size; i++) {
+            if (row_indices[i] >= rows_number) {
+                std::ostringstream buffer;
 
-         buffer << "OpenNN Exception: Matrix template.\n"
-                << "Vector<double> calculate_mean_missing_values(const Vector<size_t>&, const Vector<size_t>&, Vector< Vector<size_t> >&) const method.\n"
-                << "Row index " << i << " must be less than rows number.\n";
+                buffer << "OpenNN Exception: Matrix template.\n"
+                       << "Vector<double> calculate_mean_missing_values(const Vector<size_t>&, const Vector<size_t>&, Vector< Vector<size_t> >&) const method.\n"
+                       << "Row index " << i << " must be less than rows number.\n";
 
-         throw std::logic_error(buffer.str());
-      }
-   }
+                throw std::logic_error(buffer.str());
+            }
+        }
 
-   if(row_indices_size == 0)
-   {
-      std::ostringstream buffer;
+        if (row_indices_size == 0) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector<double> calculate_mean_missing_values(const Vector<size_t>&, const Vector<size_t>&, const Vector< Vector<size_t> >&) const method.\n"
-             << "Size of row indices must be greater than zero.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector<double> calculate_mean_missing_values(const Vector<size_t>&, const Vector<size_t>&, const Vector< Vector<size_t> >&) const method.\n"
+                   << "Size of row indices must be greater than zero.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   // Columns check
+        // Columns check
 
-   if(column_indices_size > columns_number)
-   {
-      std::ostringstream buffer;
+        if (column_indices_size > columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector<double> calculate_mean_missing_values(const Vector<size_t>&, const Vector<size_t>&, const Vector< Vector<size_t> >&) const method.\n"
-             << "Column indices size must be equal or less than columns number.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector<double> calculate_mean_missing_values(const Vector<size_t>&, const Vector<size_t>&, const Vector< Vector<size_t> >&) const method.\n"
+                   << "Column indices size must be equal or less than columns number.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   for(size_t i = 0; i < column_indices_size; i++)
-   {
-      if(column_indices[i] >= columns_number)
-      {
-         std::ostringstream buffer;
+        for (size_t i = 0; i < column_indices_size; i++) {
+            if (column_indices[i] >= columns_number) {
+                std::ostringstream buffer;
 
-         buffer << "OpenNN Exception: Matrix template.\n"
-                << "Vector<double> calculate_mean_missing_values(const Vector<size_t>&, const Vector<size_t>&, const Vector< Vector<size_t> >&) const method.\n"
-                << "Column index " << i << " must be less than columns number.\n";
+                buffer << "OpenNN Exception: Matrix template.\n"
+                       << "Vector<double> calculate_mean_missing_values(const Vector<size_t>&, const Vector<size_t>&, const Vector< Vector<size_t> >&) const method.\n"
+                       << "Column index " << i << " must be less than columns number.\n";
 
-         throw std::logic_error(buffer.str());
-      }
-   }
+                throw std::logic_error(buffer.str());
+            }
+        }
 
 #endif
 
@@ -3316,30 +3196,29 @@ namespace OpenNN {
         return (mean);
     }
 
+    // Vector<double> calculate_mean_standard_deviation(void) const method
 
-// Vector<double> calculate_mean_standard_deviation(void) const method
-
-/// Returns a vector of vectors with the mean and standard deviation values of all the matrix columns.
-/// The size of the vector is two.
-/// The size of each element is equal to the number of columns in the matrix.
+    /// Returns a vector of vectors with the mean and standard deviation values of all the matrix columns.
+    /// The size of the vector is two.
+    /// The size of each element is equal to the number of columns in the matrix.
 
     template<class T>
     Vector <Vector<double>> Matrix<T>::calculate_mean_standard_deviation(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number == 0)
-   {
-      std::ostringstream buffer;
+        if (rows_number == 0) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector<double> calculate_mean_standard_deviation(void) const method.\n"
-             << "Number of rows must be greater than one.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector<double> calculate_mean_standard_deviation(void) const method.\n"
+                   << "Number of rows must be greater than one.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -3364,13 +3243,12 @@ namespace OpenNN {
         return (mean_standard_deviation);
     }
 
+    // Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&) const method
 
-// Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&) const method
-
-/// Returns a vector of vectors with the mean and standard deviation values of given columns.
-/// The size of the vector is two.
-/// The size of each element is equal to the size of the column indices vector.
-/// @param column_indices Indices of columns.
+    /// Returns a vector of vectors with the mean and standard deviation values of given columns.
+    /// The size of the vector is two.
+    /// The size of each element is equal to the size of the column indices vector.
+    /// @param column_indices Indices of columns.
 
     template<class T>
     Vector <Vector<double>> Matrix<T>::calculate_mean_standard_deviation(const Vector <size_t> &column_indices) const
@@ -3403,14 +3281,13 @@ namespace OpenNN {
         return (mean_standard_deviation);
     }
 
+    // Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&, const Vector<size_t>&) const method
 
-// Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&, const Vector<size_t>&) const method
-
-/// Returns a vector of vectors with the mean and standard deviation values of given columns for given rows.
-/// The size of the vector is two.
-/// The size of each element is equal to the size of the column indices vector.
-/// @param row_indices Indices of rows.
-/// @param column_indices Indices of columns.
+    /// Returns a vector of vectors with the mean and standard deviation values of given columns for given rows.
+    /// The size of the vector is two.
+    /// The size of each element is equal to the size of the column indices vector.
+    /// @param row_indices Indices of rows.
+    /// @param column_indices Indices of columns.
 
     template<class T>
     Vector <Vector<double>> Matrix<T>::calculate_mean_standard_deviation(const Vector <size_t> &row_indices,
@@ -3423,70 +3300,63 @@ namespace OpenNN {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                // Rows check
+        // Rows check
 
-   if(row_indices_size > rows_number)
-   {
-      std::ostringstream buffer;
+        if (row_indices_size > rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
-             << "Row indices size must be equal or less than rows number.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
+                   << "Row indices size must be equal or less than rows number.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   for(size_t i = 0; i < row_indices_size; i++)
-   {
-      if(row_indices[i] >= rows_number)
-      {
-         std::ostringstream buffer;
+        for (size_t i = 0; i < row_indices_size; i++) {
+            if (row_indices[i] >= rows_number) {
+                std::ostringstream buffer;
 
-         buffer << "OpenNN Exception: Matrix template.\n"
-                << "Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
-                << "Row index " << i << " must be less than rows number.\n";
+                buffer << "OpenNN Exception: Matrix template.\n"
+                       << "Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
+                       << "Row index " << i << " must be less than rows number.\n";
 
-         throw std::logic_error(buffer.str());
-      }
-   }
+                throw std::logic_error(buffer.str());
+            }
+        }
 
-   if(row_indices_size == 0)
-   {
-      std::ostringstream buffer;
+        if (row_indices_size == 0) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
-             << "Size of row indices must be greater than zero.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
+                   << "Size of row indices must be greater than zero.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   // Columns check
+        // Columns check
 
-   if(column_indices_size > columns_number)
-   {
-      std::ostringstream buffer;
+        if (column_indices_size > columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
-             << "Column indices size must be equal or less than columns number.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
+                   << "Column indices size must be equal or less than columns number.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   for(size_t i = 0; i < column_indices_size; i++)
-   {
-      if(column_indices[i] >= columns_number)
-      {
-         std::ostringstream buffer;
+        for (size_t i = 0; i < column_indices_size; i++) {
+            if (column_indices[i] >= columns_number) {
+                std::ostringstream buffer;
 
-         buffer << "OpenNN Exception: Matrix template.\n"
-                << "Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
-                << "Column index " << i << " must be less than columns number.\n";
+                buffer << "OpenNN Exception: Matrix template.\n"
+                       << "Vector<double> calculate_mean_standard_deviation(const Vector<size_t>&, const Vector<size_t>&) const method.\n"
+                       << "Column index " << i << " must be less than columns number.\n";
 
-         throw std::logic_error(buffer.str());
-      }
-   }
+                throw std::logic_error(buffer.str());
+            }
+        }
 
 #endif
 
@@ -3540,10 +3410,9 @@ namespace OpenNN {
         return (mean_standard_deviation);
     }
 
+    // Type calculate_minimum(void) const method
 
-// Type calculate_minimum(void) const method
-
-/// Returns the minimum value from all elements in the matrix.
+    /// Returns the minimum value from all elements in the matrix.
 
     template<class T>
     T Matrix<T>::calculate_minimum(void) const
@@ -3559,10 +3428,9 @@ namespace OpenNN {
         return (minimum);
     }
 
+    // Type calculate_maximum(void) const method
 
-// Type calculate_maximum(void) const method
-
-/// Returns the maximum value from all elements in the matrix.
+    /// Returns the maximum value from all elements in the matrix.
 
     template<class T>
     T Matrix<T>::calculate_maximum(void) const
@@ -3578,12 +3446,11 @@ namespace OpenNN {
         return (maximum);
     }
 
+    // Vector< Vector<T> > calculate_minimum_maximum(void) const method
 
-// Vector< Vector<T> > calculate_minimum_maximum(void) const method
-
-/// Returns a vector of vectors with the minimum and maximum values of all the matrix columns.
-/// The size of the vector is two.
-/// The size of each element is equal to the number of columns in the matrix.
+    /// Returns a vector of vectors with the minimum and maximum values of all the matrix columns.
+    /// The size of the vector is two.
+    /// The size of each element is equal to the number of columns in the matrix.
 
     template<class T>
     Vector <Vector<T>> Matrix<T>::calculate_minimum_maximum(void) const
@@ -3613,13 +3480,12 @@ namespace OpenNN {
         return (minimum_maximum);
     }
 
+    // Vector<double> calculate_minimum_maximum(const Vector<size_t>&) const method
 
-// Vector<double> calculate_minimum_maximum(const Vector<size_t>&) const method
-
-/// Returns a vector of vectors with the minimum and maximum values of given columns.
-/// The size of the vector is two.
-/// The size of each element is equal to the size of the column indices vector.
-/// @param column_indices Indices of columns.
+    /// Returns a vector of vectors with the minimum and maximum values of given columns.
+    /// The size of the vector is two.
+    /// The size of each element is equal to the size of the column indices vector.
+    /// @param column_indices Indices of columns.
 
     template<class T>
     Vector <Vector<T>> Matrix<T>::calculate_minimum_maximum(const Vector <size_t> &column_indices) const
@@ -3628,19 +3494,17 @@ namespace OpenNN {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                for(size_t i = 0; i < column_indices_size; i++)
-   {
-      if(column_indices[i] >= columns_number)
-      {
-         std::ostringstream buffer;
+        for (size_t i = 0; i < column_indices_size; i++) {
+            if(column_indices[i] >= columns_number) {
+                std::ostringstream buffer;
 
-         buffer << "OpenNN Exception: Matrix template."
-                << "Vector<T> calculate_minimum_maximum(const Vector<size_t>&) const method.\n"
-                << "Index of column must be less than number of columns.\n";
+                buffer << "OpenNN Exception: Matrix template."
+                       << "Vector<T> calculate_minimum_maximum(const Vector<size_t>&) const method.\n"
+                       << "Index of column must be less than number of columns.\n";
 
-         throw std::logic_error(buffer.str());
-      }
-   }
+                throw std::logic_error(buffer.str());
+            }
+        }
 
 #endif
 
@@ -3673,14 +3537,13 @@ namespace OpenNN {
         return (minimum_maximum);
     }
 
+    // Vector<double> calculate_minimum_maximum(const Vector<size_t>&, const Vector<size_t>&) const method
 
-// Vector<double> calculate_minimum_maximum(const Vector<size_t>&, const Vector<size_t>&) const method
-
-/// Returns a vector of vectors with the minimum and maximum values of given columns for given rows.
-/// The size of the vector is two.
-/// The size of each element is equal to the size of the column indices vector.
-/// @param row_indices Indices of rows.
-/// @param column_indices Indices of columns.
+    /// Returns a vector of vectors with the minimum and maximum values of given columns for given rows.
+    /// The size of the vector is two.
+    /// The size of each element is equal to the size of the column indices vector.
+    /// @param row_indices Indices of rows.
+    /// @param column_indices Indices of columns.
 
     template<class T>
     Vector <Vector<T>> Matrix<T>::calculate_minimum_maximum(const Vector <size_t> &row_indices,
@@ -3721,30 +3584,29 @@ namespace OpenNN {
         return (minimum_maximum);
     }
 
+    // Vector< Statistics<T> > calculate_statistics(void) const method
 
-// Vector< Statistics<T> > calculate_statistics(void) const method
-
-/// Returns the basic statistics of the columns.
-/// The format is a vector of statistics structures.
-/// The size of that vector is equal to the number of columns in this matrix.
+    /// Returns the basic statistics of the columns.
+    /// The format is a vector of statistics structures.
+    /// The size of that vector is equal to the number of columns in this matrix.
 
     template<class T>
     Vector <Statistics<T>> Matrix<T>::calculate_statistics(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number == 0)
-   {
-      std::ostringstream buffer;
+        if (rows_number == 0) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector< Statistics<double> > calculate_statistics(void) const method.\n"
-             << "Number of rows must be greater than one.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector< Statistics<double> > calculate_statistics(void) const method.\n"
+                   << "Number of rows must be greater than one.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -3761,42 +3623,40 @@ namespace OpenNN {
         return (statistics);
     }
 
+    // Vector< Statistics<T> > calculate_statistics_missing_values(const Vector< Vector<size_t> >&) const method
 
-// Vector< Statistics<T> > calculate_statistics_missing_values(const Vector< Vector<size_t> >&) const method
-
-/// Returns the basic statistics of the columns when the matrix has missing values.
-/// The format is a vector of statistics structures.
-/// The size of that vector is equal to the number of columns in this matrix.
-/// @param missing_indices Vector of vectors with the indices of the missing values.
+    /// Returns the basic statistics of the columns when the matrix has missing values.
+    /// The format is a vector of statistics structures.
+    /// The size of that vector is equal to the number of columns in this matrix.
+    /// @param missing_indices Vector of vectors with the indices of the missing values.
 
     template<class T>
     Vector <Statistics<T>> Matrix<T>::calculate_statistics_missing_values(const Vector <Vector<size_t>> &missing_indices) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number == 0)
-   {
-      std::ostringstream buffer;
+        if (rows_number == 0) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector< Statistics<double> > calculate_statistics_missing_values(const Vector< Vector<size_t> >&) const method.\n"
-             << "Number of rows must be greater than one.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector< Statistics<double> > calculate_statistics_missing_values(const Vector< Vector<size_t> >&) const method.\n"
+                   << "Number of rows must be greater than one.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   if(missing_indices.size() != columns_number)
-   {
-      std::ostringstream buffer;
+        if (missing_indices.size() != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector< Statistics<double> > calculate_statistics_missing_values(const Vector< Vector<size_t> >&) const method.\n"
-             << "Size of missing indices (" << missing_indices.size() << ") must be equal to to number of columns (" << columns_number << ").\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector< Statistics<double> > calculate_statistics_missing_values(const Vector< Vector<size_t> >&) const method.\n"
+                   << "Size of missing indices (" << missing_indices.size() << ") must be equal to to number of columns (" << columns_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -3813,14 +3673,13 @@ namespace OpenNN {
         return (statistics);
     }
 
+    // Vector< Statistics<T> > calculate_statistics(const Vector<size_t>&, const Vector<size_t>&) const method
 
-// Vector< Statistics<T> > calculate_statistics(const Vector<size_t>&, const Vector<size_t>&) const method
-
-/// Returns the basic statistics of given columns for given rows.
-/// The format is a vector of statistics structures.
-/// The size of that vector is equal to the number of given columns.
-/// @param row_indices Indices of the rows for which the statistics are to be computed.
-/// @param column_indices Indices of the columns for which the statistics are to be computed.
+    /// Returns the basic statistics of given columns for given rows.
+    /// The format is a vector of statistics structures.
+    /// The size of that vector is equal to the number of given columns.
+    /// @param row_indices Indices of the rows for which the statistics are to be computed.
+    /// @param column_indices Indices of the columns for which the statistics are to be computed.
 
     template<class T>
     Vector <Statistics<T>> Matrix<T>::calculate_statistics(const Vector <size_t> &row_indices,
@@ -3847,12 +3706,12 @@ namespace OpenNN {
     }
 
 
-// Vector< Statistics<T> > calculate_rows_statistics(const Vector<size_t>&) const method
+    // Vector< Statistics<T> > calculate_rows_statistics(const Vector<size_t>&) const method
 
-/// Returns the basic statistics of all the columns for given rows.
-/// The format is a vector of statistics structures.
-/// The size of that vector is equal to the number of columns in this matrix.
-/// @param row_indices Indices of the rows for which the statistics are to be computed.
+    /// Returns the basic statistics of all the columns for given rows.
+    /// The format is a vector of statistics structures.
+    /// The size of that vector is equal to the number of columns in this matrix.
+    /// @param row_indices Indices of the rows for which the statistics are to be computed.
 
     template<class T>
     Vector <Statistics<T>> Matrix<T>::calculate_rows_statistics(const Vector <size_t> &row_indices) const
@@ -3872,14 +3731,13 @@ namespace OpenNN {
         return statistics;
     }
 
+    // Vector< Statistics<T> > calculate_rows_statistics_missing_values(const Vector<size_t>&, const Vector< Vector<size_t> >&) const method
 
-// Vector< Statistics<T> > calculate_rows_statistics_missing_values(const Vector<size_t>&, const Vector< Vector<size_t> >&) const method
-
-/// Returns the basic statistics of all the columns for given rows when the matrix has missing values.
-/// The format is a vector of statistics structures.
-/// The size of that vector is equal to the number of columns in this matrix.
-/// @param row_indices Indices of the rows for which the statistics are to be computed.
-/// @param missing_indices Vector of vectors with the indices of the missing values.
+    /// Returns the basic statistics of all the columns for given rows when the matrix has missing values.
+    /// The format is a vector of statistics structures.
+    /// The size of that vector is equal to the number of columns in this matrix.
+    /// @param row_indices Indices of the rows for which the statistics are to be computed.
+    /// @param missing_indices Vector of vectors with the indices of the missing values.
 
     template<class T>
     Vector <Statistics<T>> Matrix<T>::calculate_rows_statistics_missing_values(const Vector <size_t> &row_indices,
@@ -3900,13 +3758,12 @@ namespace OpenNN {
         return statistics;
     }
 
+    // Vector< Statistics<T> > calculate_columns_statistics(const Vector<size_t>&) const method
 
-// Vector< Statistics<T> > calculate_columns_statistics(const Vector<size_t>&) const method
-
-/// Returns the basic statistics of given columns.
-/// The format is a vector of statistics structures.
-/// The size of that vector is equal to the number of given columns.
-/// @param column_indices Indices of the columns for which the statistics are to be computed.
+    /// Returns the basic statistics of given columns.
+    /// The format is a vector of statistics structures.
+    /// The size of that vector is equal to the number of given columns.
+    /// @param column_indices Indices of the columns for which the statistics are to be computed.
 
     template<class T>
     Vector <Statistics<T>> Matrix<T>::calculate_columns_statistics(const Vector <size_t> &column_indices) const
@@ -3929,14 +3786,13 @@ namespace OpenNN {
         return statistics;
     }
 
+    // Vector< Statistics<T> > calculate_columns_statistics_missing_values(const Vector<size_t>&, const Vector<size_t>&) const method
 
-// Vector< Statistics<T> > calculate_columns_statistics_missing_values(const Vector<size_t>&, const Vector<size_t>&) const method
-
-/// Returns the basic statistics of given columns when the matrix has missing values.
-/// The format is a vector of statistics structures.
-/// The size of that vector is equal to the number of given columns.
-/// @param column_indices Indices of the columns for which the statistics are to be computed.
-/// @param missing_indices Vector of vectors with the indices of the missing values.
+    /// Returns the basic statistics of given columns when the matrix has missing values.
+    /// The format is a vector of statistics structures.
+    /// The size of that vector is equal to the number of given columns.
+    /// @param column_indices Indices of the columns for which the statistics are to be computed.
+    /// @param missing_indices Vector of vectors with the indices of the missing values.
 
     template<class T>
     Vector <Statistics<T>> Matrix<T>::calculate_columns_statistics_missing_values(const Vector <size_t> &column_indices,
@@ -3960,30 +3816,29 @@ namespace OpenNN {
         return statistics;
     }
 
+    // Vector < Vector <double> > calculate_shape_parameters(void) const method
 
-// Vector < Vector <double> > calculate_shape_parameters(void) const method
-
-/// Returns the asymmetry and the kurtosis of the columns.
-/// The format is a vector of subvectors.
-/// The size of that vector is equal to the number of columns in this matrix.
+    /// Returns the asymmetry and the kurtosis of the columns.
+    /// The format is a vector of subvectors.
+    /// The size of that vector is equal to the number of columns in this matrix.
 
     template<class T>
     Vector <Vector<double>> Matrix<T>::calculate_shape_parameters(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number == 0)
-    {
-       std::ostringstream buffer;
+        if (rows_number == 0) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix template.\n"
-              << "Vector< Vector<double> > calculate_shape_parameters(void) const method.\n"
-              << "Number of rows must be greater than one.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector< Vector<double> > calculate_shape_parameters(void) const method.\n"
+                   << "Number of rows must be greater than one.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4000,42 +3855,40 @@ namespace OpenNN {
         return (shape_parameters);
     }
 
+    // Vector< Vector<double> > calculate_shape_parameters_missing_values(const Vector<size_t>&) const
 
-// Vector< Vector<double> > calculate_shape_parameters_missing_values(const Vector<size_t>&) const
-
-/// Returns the asymmetry and the kurtosis of the columns when the matrix has missing values.
-/// The format is a vector of subvectors.
-/// The size of that vector is equal to the number of columns in this matrix.
-/// @param missing_indices Vector of vectors with the indices of the missing values.
+    /// Returns the asymmetry and the kurtosis of the columns when the matrix has missing values.
+    /// The format is a vector of subvectors.
+    /// The size of that vector is equal to the number of columns in this matrix.
+    /// @param missing_indices Vector of vectors with the indices of the missing values.
 
     template<class T>
     Vector <Vector<double>> Matrix<T>::calculate_shape_parameters_missing_values(const Vector <Vector<size_t>> &missing_indices) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number == 0)
-   {
-      std::ostringstream buffer;
+        if (rows_number == 0) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector< Vector<double> > calculate_shape_parameters_missing_values(const Vector< Vector<size_t> >&) const method.\n"
-             << "Number of rows must be greater than one.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector< Vector<double> > calculate_shape_parameters_missing_values(const Vector< Vector<size_t> >&) const method.\n"
+                   << "Number of rows must be greater than one.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   if(missing_indices.size() != columns_number)
-   {
-      std::ostringstream buffer;
+        if (missing_indices.size() != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template.\n"
-             << "Vector< Vector<double> > calculate_shape_parameters_missing_values(const Vector< Vector<size_t> >&) const method.\n"
-             << "Size of missing indices (" << missing_indices.size() << ") must be equal to to number of columns (" << columns_number << ").\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "Vector< Vector<double> > calculate_shape_parameters_missing_values(const Vector< Vector<size_t> >&) const method.\n"
+                   << "Size of missing indices (" << missing_indices.size() << ") must be equal to to number of columns (" << columns_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4052,14 +3905,13 @@ namespace OpenNN {
         return (shape_parameters);
     }
 
+    // Vector< Vector<double> > calculate_shape_parameters(const Vector<size_t>&, const Vector<size_t>&) const method
 
-// Vector< Vector<double> > calculate_shape_parameters(const Vector<size_t>&, const Vector<size_t>&) const method
-
-/// Returns the asymmetry and the kurtosis of given columns for given rows.
-/// The format is a vector of subvectors.
-/// The size of that vector is equal to the number of given columns.
-/// @param row_indices Indices of the rows for which the statistics are to be computed.
-/// @param column_indices Indices of the columns for which the statistics are to be computed.
+    /// Returns the asymmetry and the kurtosis of given columns for given rows.
+    /// The format is a vector of subvectors.
+    /// The size of that vector is equal to the number of given columns.
+    /// @param row_indices Indices of the rows for which the statistics are to be computed.
+    /// @param column_indices Indices of the columns for which the statistics are to be computed.
 
     template<class T>
     Vector <Vector<double>> Matrix<T>::calculate_shape_parameters(const Vector <size_t> &row_indices,
@@ -4085,13 +3937,12 @@ namespace OpenNN {
         return shape_parameters;
     }
 
+    // Vector< Vector<double> > calculate_rows_statistics(const Vector<size_t>&) const method
 
-// Vector< Vector<double> > calculate_rows_statistics(const Vector<size_t>&) const method
-
-/// Returns the asymmetry and the kurtosis of all the columns for given rows.
-/// The format is a vector of subvectors.
-/// The size of that vector is equal to the number of columns in this matrix.
-/// @param row_indices Indices of the rows for which the statistics are to be computed.
+    /// Returns the asymmetry and the kurtosis of all the columns for given rows.
+    /// The format is a vector of subvectors.
+    /// The size of that vector is equal to the number of columns in this matrix.
+    /// @param row_indices Indices of the rows for which the statistics are to be computed.
 
     template<class T>
     Vector <Vector<double>> Matrix<T>::calculate_rows_shape_parameters(const Vector <size_t> &row_indices) const
@@ -4111,14 +3962,13 @@ namespace OpenNN {
         return shape_parameters;
     }
 
+    // Vector< Vector<double> > calculate_rows_shape_parameters_missing_values(const Vector<size_t>&, const Vector< Vector<size_t> >&) const method
 
-// Vector< Vector<double> > calculate_rows_shape_parameters_missing_values(const Vector<size_t>&, const Vector< Vector<size_t> >&) const method
-
-/// Returns the asymmetry and the kurtosis of all the columns for given rows when the matrix has missing values.
-/// The format is a vector of subvectors.
-/// The size of that vector is equal to the number of columns in this matrix.
-/// @param row_indices Indices of the rows for which the statistics are to be computed.
-/// @param missing_indices Vector of vectors with the indices of the missing values.
+    /// Returns the asymmetry and the kurtosis of all the columns for given rows when the matrix has missing values.
+    /// The format is a vector of subvectors.
+    /// The size of that vector is equal to the number of columns in this matrix.
+    /// @param row_indices Indices of the rows for which the statistics are to be computed.
+    /// @param missing_indices Vector of vectors with the indices of the missing values.
 
     template<class T>
     Vector <Vector<double>> Matrix<T>::calculate_rows_shape_parameters_missing_values(const Vector <size_t> &row_indices,
@@ -4139,13 +3989,12 @@ namespace OpenNN {
         return shape_parameters;
     }
 
+    // Vector< Vector<double> > calculate_columns_shape_parameters(const Vector<size_t>&) const method
 
-// Vector< Vector<double> > calculate_columns_shape_parameters(const Vector<size_t>&) const method
-
-/// Returns the asymmetry and the kurtosis of given columns.
-/// The format is a vector of subvectors.
-/// The size of that vector is equal to the number of given columns.
-/// @param column_indices Indices of the columns for which the statistics are to be computed.
+    /// Returns the asymmetry and the kurtosis of given columns.
+    /// The format is a vector of subvectors.
+    /// The size of that vector is equal to the number of given columns.
+    /// @param column_indices Indices of the columns for which the statistics are to be computed.
 
     template<class T>
     Vector <Vector<double>> Matrix<T>::calculate_columns_shape_parameters(const Vector <size_t> &column_indices) const
@@ -4168,14 +4017,13 @@ namespace OpenNN {
         return shape_parameters;
     }
 
+    // Vector< Vector<double> > calculate_columns_shape_parameters_missing_values(const Vector<size_t>&, const Vector< Vector<size_t> >&) const method
 
-// Vector< Vector<double> > calculate_columns_shape_parameters_missing_values(const Vector<size_t>&, const Vector< Vector<size_t> >&) const method
-
-/// Returns the asymmetry and the kurtosis of given columns when the matrix has missing values.
-/// The format is a vector of subvectors.
-/// The size of that vector is equal to the number of given columns.
-/// @param column_indices Indices of the columns for which the statistics are to be computed.
-/// @param missing_indices Vector of vectors with the indices of the missing values.
+    /// Returns the asymmetry and the kurtosis of given columns when the matrix has missing values.
+    /// The format is a vector of subvectors.
+    /// The size of that vector is equal to the number of given columns.
+    /// @param column_indices Indices of the columns for which the statistics are to be computed.
+    /// @param missing_indices Vector of vectors with the indices of the missing values.
 
     template<class T>
     Vector <Vector<double>> Matrix<T>::calculate_columns_shape_parameters_missing_values(const Vector <size_t> &column_indices,
@@ -4199,11 +4047,10 @@ namespace OpenNN {
         return shape_parameters;
     }
 
+    // Matrix<double> calculate_covariance_matrix(void) const method
 
-// Matrix<double> calculate_covariance_matrix(void) const method
-
-/// Retruns the covariance matrix of this matrix.
-/// The number of columns and rows of the matrix is equal to the number of columns of this matrix.
+    /// Retruns the covariance matrix of this matrix.
+    /// The number of columns and rows of the matrix is equal to the number of columns of this matrix.
 
     template<class T>
     Matrix<double> Matrix<T>::calculate_covariance_matrix(void) const
@@ -4212,16 +4059,15 @@ namespace OpenNN {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(size == 0)
-    {
-       std::ostringstream buffer;
+        if (size == 0) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix template."
-              << "void calculate_covariance_matrix(void) const method.\n"
-              << "Number of columns must be greater than zero.\n";
+            buffer << "OpenNN Exception: Matrix template."
+                   << "void calculate_covariance_matrix(void) const method.\n"
+                   << "Number of columns must be greater than zero.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4244,14 +4090,13 @@ namespace OpenNN {
         return covariance_matrix;
     }
 
+    // Vector<Histogram<T> > calculate_histograms(const size_t&) const method
 
-// Vector<Histogram<T> > calculate_histograms(const size_t&) const method
-
-/// Calculates a histogram for each column, each having a given number of bins.
-/// It returns a vector of vectors of vectors.
-/// The size of the main vector is the number of columns.
-/// Each subvector contains the frequencies and centers of that colums.
-/// @param bins_number Number of bins for each histogram.
+    /// Calculates a histogram for each column, each having a given number of bins.
+    /// It returns a vector of vectors of vectors.
+    /// The size of the main vector is the number of columns.
+    /// Each subvector contains the frequencies and centers of that colums.
+    /// @param bins_number Number of bins for each histogram.
 
     template<class T>
     Vector <Histogram<T>> Matrix<T>::calculate_histograms(const size_t &bins_number) const
@@ -4269,15 +4114,14 @@ namespace OpenNN {
         return (histograms);
     }
 
+    // Vector<Histogram<T> > calculate_histograms_missing_values(const Vector<size_t>&, const size_t&) const method
 
-// Vector<Histogram<T> > calculate_histograms_missing_values(const Vector<size_t>&, const size_t&) const method
-
-/// Calculates a histogram for each column, each having a given number of bins, when the data has missing values.
-/// It returns a vector of vectors of vectors.
-/// The size of the main vector is the number of columns.
-/// Each subvector contains the frequencies and centers of that colums.
-/// @param bins_number Number of bins for each histogram.
-/// @param missing_indices Vector of vectors with the indices of the missing values.
+    /// Calculates a histogram for each column, each having a given number of bins, when the data has missing values.
+    /// It returns a vector of vectors of vectors.
+    /// The size of the main vector is the number of columns.
+    /// Each subvector contains the frequencies and centers of that colums.
+    /// @param bins_number Number of bins for each histogram.
+    /// @param missing_indices Vector of vectors with the indices of the missing values.
 
     template<class T>
     Vector <Histogram<T>> Matrix<T>::calculate_histograms_missing_values(const Vector <Vector<size_t>> &missing_indices,
@@ -4296,11 +4140,10 @@ namespace OpenNN {
         return (histograms);
     }
 
+    // Matrix<size_t> calculate_less_than_indices(const T&) const method
 
-// Matrix<size_t> calculate_less_than_indices(const T&) const method
-
-/// Returns the matrix indices at which the elements are less than some given value.
-/// @param value Value.
+    /// Returns the matrix indices at which the elements are less than some given value.
+    /// @param value Value.
 
     template<class T>
     Matrix<size_t> Matrix<T>::calculate_less_than_indices(const T &value) const
@@ -4332,10 +4175,10 @@ namespace OpenNN {
     }
 
 
-// Matrix<size_t> calculate_greater_than_indices(const T&) const method
+    // Matrix<size_t> calculate_greater_than_indices(const T&) const method
 
-/// Returns the matrix indices at which the elements are greater than some given value.
-/// @param value Value.
+    /// Returns the matrix indices at which the elements are greater than some given value.
+    /// @param value Value.
 
     template<class T>
     Matrix<size_t> Matrix<T>::calculate_greater_than_indices(const T &value) const
@@ -4366,32 +4209,30 @@ namespace OpenNN {
         return (indices);
     }
 
+    // void scale_mean_standard_deviation(const Vector< Statistics<T> >&) method
 
-
-// void scale_mean_standard_deviation(const Vector< Statistics<T> >&) method
-
-/// Scales the matrix elements with the mean and standard deviation method.
-/// It updates the data in the matrix.
-/// @param statistics Vector of statistics structures conatining the mean and standard deviation values for the scaling.
-/// The size of that vector must be equal to the number of columns in this matrix.
+    /// Scales the matrix elements with the mean and standard deviation method.
+    /// It updates the data in the matrix.
+    /// @param statistics Vector of statistics structures conatining the mean and standard deviation values for the scaling.
+    /// The size of that vector must be equal to the number of columns in this matrix.
 
     template<class T>
     void Matrix<T>::scale_mean_standard_deviation(const Vector <Statistics<T>> &statistics)
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t size = statistics.size();
+        const size_t size = statistics.size();
 
-   if(size != columns_number)
-   {
-      std::ostringstream buffer;
+       if (size != columns_number) {
+           std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template."
-             << "void scale_mean_standard_deviation(const Vector< Statistics<T> >&) const method.\n"
-             << "Size of statistics vector must be equal to number of columns.\n";
+           buffer << "OpenNN Exception: Matrix template."
+                  << "void scale_mean_standard_deviation(const Vector< Statistics<T> >&) const method.\n"
+                  << "Size of statistics vector must be equal to number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+           throw std::logic_error(buffer.str());
+       }
 
 #endif
 
@@ -4409,12 +4250,11 @@ namespace OpenNN {
         }
     }
 
+    // Vector< Statistics<T> > scale_mean_standard_deviation(void) method
 
-// Vector< Statistics<T> > scale_mean_standard_deviation(void) method
-
-/// Scales the data using the mean and standard deviation method and
-/// the mean and standard deviation values calculated from the matrix.
-/// It also returns the statistics of all the columns.
+    /// Scales the data using the mean and standard deviation method and
+    /// the mean and standard deviation values calculated from the matrix.
+    /// It also returns the statistics of all the columns.
 
     template<class T>
     Vector <Statistics<T>> Matrix<T>::scale_mean_standard_deviation(void)
@@ -4426,33 +4266,32 @@ namespace OpenNN {
         return (statistics);
     }
 
+    // void scale_rows_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) const
 
-// void scale_rows_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) const
-
-/// Scales given rows from the matrix using the mean and standard deviation method.
-/// @param statistics Vector of statistics for all the columns.
-/// @param row_indices Indices of rows to be scaled.
+    /// Scales given rows from the matrix using the mean and standard deviation method.
+    /// @param statistics Vector of statistics for all the columns.
+    /// @param row_indices Indices of rows to be scaled.
 
     template<class T>
     void Matrix<T>::scale_rows_mean_standard_deviation(const Vector <Statistics<T>> &statistics,
                                                        const Vector <size_t> &row_indices)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t statistics_size = statistics.size();
+        const size_t statistics_size = statistics.size();
 
-    if(statistics_size != columns_number)
-    {
-       std::ostringstream buffer;
+        if (statistics_size != columns_number) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Vector template.\n"
-              << "void scale_rows_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) method.\n"
-              << "Size of statistics must be equal to number of columns.\n";
+            buffer << "OpenNN Exception: Vector template.\n"
+                   << "void scale_rows_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) method.\n"
+                   << "Size of statistics must be equal to number of columns.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4475,14 +4314,13 @@ namespace OpenNN {
         }
     }
 
+    // void scale_columns_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) method
 
-// void scale_columns_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) method
-
-/// Scales given columns of this matrix with the mean and standard deviation method.
-/// @param statistics Vector of statistics structure containing the mean and standard deviation values for the scaling.
-/// The size of that vector must be equal to the number of columns to be scaled.
-/// @param columns_indices Vector of indices with the columns to be scaled.
-/// The size of that vector must be equal to the number of columns to be scaled.
+    /// Scales given columns of this matrix with the mean and standard deviation method.
+    /// @param statistics Vector of statistics structure containing the mean and standard deviation values for the scaling.
+    /// The size of that vector must be equal to the number of columns to be scaled.
+    /// @param columns_indices Vector of indices with the columns to be scaled.
+    /// The size of that vector must be equal to the number of columns to be scaled.
 
     template<class T>
     void Matrix<T>::scale_columns_mean_standard_deviation(const Vector <Statistics<T>> &statistics,
@@ -4494,18 +4332,17 @@ namespace OpenNN {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t statistics_size = statistics.size();
+        const size_t statistics_size = statistics.size();
 
-   if(statistics_size != columns_indices_size)
-   {
-      std::ostringstream buffer;
+        if (statistics_size != columns_indices_size) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Vector template.\n"
-             << "void scale_columns_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) method.\n"
-             << "Size of statistics must be equal to size of columns indices.\n";
+            buffer << "OpenNN Exception: Vector template.\n"
+                   << "void scale_columns_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) method.\n"
+                   << "Size of statistics must be equal to size of columns indices.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4528,31 +4365,30 @@ namespace OpenNN {
         }
     }
 
+    // void scale_minimum_maximum(const Vector< Statistics<T> >&) method
 
-// void scale_minimum_maximum(const Vector< Statistics<T> >&) method
-
-/// Scales the matrix columns with the minimum and maximum method.
-/// It updates the data in the matrix.
-/// @param statistics Vector of statistics structures containing the minimum and maximum values for the scaling.
-/// The size of that vector must be equal to the number of columns in this matrix.
+    /// Scales the matrix columns with the minimum and maximum method.
+    /// It updates the data in the matrix.
+    /// @param statistics Vector of statistics structures containing the minimum and maximum values for the scaling.
+    /// The size of that vector must be equal to the number of columns in this matrix.
 
     template<class T>
     void Matrix<T>::scale_minimum_maximum(const Vector <Statistics<T>> &statistics)
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t size = statistics.size();
+        const size_t size = statistics.size();
 
-   if(size != columns_number)
-   {
-      std::ostringstream buffer;
+       if (size != columns_number) {
+           std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template."
-             << "void scale_minimum_maximum(const Vector< Statistics<T> >&) method.\n"
-             << "Size of statistics vector must be equal to number of columns.\n";
+           buffer << "OpenNN Exception: Matrix template."
+                  << "void scale_minimum_maximum(const Vector< Statistics<T> >&) method.\n"
+                  << "Size of statistics vector must be equal to number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+           throw std::logic_error(buffer.str());
+       }
 
 #endif
 
@@ -4571,12 +4407,11 @@ namespace OpenNN {
         }
     }
 
+    // Vector< Statistics<T> > scale_minimum_maximum(void) method
 
-// Vector< Statistics<T> > scale_minimum_maximum(void) method
-
-/// Scales the data using the minimum and maximum method and
-/// the minimum and maximum values calculated from the matrix.
-/// It also returns the statistics of all the columns.
+    /// Scales the data using the minimum and maximum method and
+    /// the minimum and maximum values calculated from the matrix.
+    /// It also returns the statistics of all the columns.
 
     template<class T>
     Vector <Statistics<T>> Matrix<T>::scale_minimum_maximum(void)
@@ -4588,35 +4423,34 @@ namespace OpenNN {
         return (statistics);
     }
 
+    // void scale_rows_minimum_maximum(const Vector< Statistics<T> >&, const Vector<size_t>&)
 
-// void scale_rows_minimum_maximum(const Vector< Statistics<T> >&, const Vector<size_t>&)
-
-/// Scales given rows from the matrix using the minimum and maximum method.
-/// @param statistics Vector of statistics for all the columns.
-/// @param row_indices Indices of rows to be scaled.
+    /// Scales given rows from the matrix using the minimum and maximum method.
+    /// @param statistics Vector of statistics for all the columns.
+    /// @param row_indices Indices of rows to be scaled.
 
     template<class T>
     void Matrix<T>::scale_rows_minimum_maximum(const Vector <Statistics<T>> &statistics,
                                                const Vector <size_t> &row_indices)
     {
+
         // Control sentence (if debug)
 
         const size_t row_indices_size = row_indices.size();
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t statistics_size = statistics.size();
+        const size_t statistics_size = statistics.size();
 
-    if(statistics_size != columns_number)
-    {
-       std::ostringstream buffer;
+        if (statistics_size != columns_number) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Vector template.\n"
-              << "void scale_rows_minimum_maximum(const Vector< Statistics<T> >&, const Vector<size_t>&) method.\n"
-              << "Size of statistics must be equal to number of columns.\n";
+            buffer << "OpenNN Exception: Vector template.\n"
+                   << "void scale_rows_minimum_maximum(const Vector< Statistics<T> >&, const Vector<size_t>&) method.\n"
+                   << "Size of statistics must be equal to number of columns.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4640,37 +4474,36 @@ namespace OpenNN {
         }
     }
 
+    // void scale_columns_minimum_maximum(const Vector< Statistics<T> >&, const Vector<size_t>&) method
 
-// void scale_columns_minimum_maximum(const Vector< Statistics<T> >&, const Vector<size_t>&) method
-
-/// Scales given columns of this matrix with the minimum and maximum method.
-/// @param statistics Vector of statistics structure containing the minimum and maximum values for the scaling.
-/// The size of that vector must be equal to the number of columns to be scaled.
-/// @param column_indices Vector of indices with the columns to be scaled.
-/// The size of that vector must be equal to the number of columns to be scaled.
+    /// Scales given columns of this matrix with the minimum and maximum method.
+    /// @param statistics Vector of statistics structure containing the minimum and maximum values for the scaling.
+    /// The size of that vector must be equal to the number of columns to be scaled.
+    /// @param column_indices Vector of indices with the columns to be scaled.
+    /// The size of that vector must be equal to the number of columns to be scaled.
 
     template<class T>
     void Matrix<T>::scale_columns_minimum_maximum(const Vector <Statistics<T>> &statistics,
                                                   const Vector <size_t> &column_indices)
     {
+
         // Control sentence (if debug)
 
         const size_t column_indices_size = column_indices.size();
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t statistics_size = statistics.size();
+        const size_t statistics_size = statistics.size();
 
-    if(statistics_size != column_indices_size)
-    {
-       std::ostringstream buffer;
+        if (statistics_size != column_indices_size) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Vector template.\n"
-              << "void scale_columns_minimum_maximum(const Vector< Statistics<T> >&, const Vector<size_t>&) method.\n"
-              << "Size of statistics must be equal to size of columns indices.\n";
+            buffer << "OpenNN Exception: Vector template.\n"
+                   << "void scale_columns_minimum_maximum(const Vector< Statistics<T> >&, const Vector<size_t>&) method.\n"
+                   << "Size of statistics must be equal to size of columns indices.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4694,31 +4527,30 @@ namespace OpenNN {
         }
     }
 
+    // void unscale_mean_standard_deviation(const Vector< Statistics<T> >&) method
 
-// void unscale_mean_standard_deviation(const Vector< Statistics<T> >&) method
-
-/// Unscales the matrix columns with the mean and standard deviation method.
-/// It updates the matrix elements.
-/// @param statistics Vector of statistics structures containing the mean and standard deviations for the unscaling.
-/// The size of that vector must be equal to the number of columns in this matrix.
+    /// Unscales the matrix columns with the mean and standard deviation method.
+    /// It updates the matrix elements.
+    /// @param statistics Vector of statistics structures containing the mean and standard deviations for the unscaling.
+    /// The size of that vector must be equal to the number of columns in this matrix.
 
     template<class T>
     void Matrix<T>::unscale_mean_standard_deviation(const Vector <Statistics<T>> &statistics)
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t size = statistics.size();
+        const size_t size = statistics.size();
 
-   if(size != columns_number)
-   {
-      std::ostringstream buffer;
+        if (size != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template."
-             << "void unscale_mean_standard_deviation(const Vector< Statistics<T> >&) const method.\n"
-             << "Size of statistics vector must be equal to number of columns.\n";
+            buffer << "OpenNN Exception: Matrix template."
+                   << "void unscale_mean_standard_deviation(const Vector< Statistics<T> >&) const method.\n"
+                   << "Size of statistics vector must be equal to number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4734,13 +4566,12 @@ namespace OpenNN {
         }
     }
 
+    // void unscale_rows_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) method
 
-// void unscale_rows_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) method
-
-/// Unscales given rows using the mean and standard deviation method.
-/// @param statistics Vector of statistics structures for all the columns.
-/// The size of this vector must be equal to the number of columns.
-/// @param row_indices Indices of rows to be unscaled.
+    /// Unscales given rows using the mean and standard deviation method.
+    /// @param statistics Vector of statistics structures for all the columns.
+    /// The size of this vector must be equal to the number of columns.
+    /// @param row_indices Indices of rows to be unscaled.
 
     template<class T>
     void Matrix<T>::unscale_rows_mean_standard_deviation(const Vector <Statistics<T>> &statistics,
@@ -4765,31 +4596,30 @@ namespace OpenNN {
         }
     }
 
+    // void unscale_columns_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) method
 
-// void unscale_columns_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) method
-
-/// Scales given columns of this matrix with the mean and standard deviation method.
-/// @param statistics Vector of statistics structure containing the mean and standard deviation values for the scaling.
-/// The size of that vector must be equal to the number of columns in the matrix.
-/// @param column_indices Vector of indices with the columns to be scaled.
-/// The size of that vector must be equal to the number of columns to be scaled.
+    /// Scales given columns of this matrix with the mean and standard deviation method.
+    /// @param statistics Vector of statistics structure containing the mean and standard deviation values for the scaling.
+    /// The size of that vector must be equal to the number of columns in the matrix.
+    /// @param column_indices Vector of indices with the columns to be scaled.
+    /// The size of that vector must be equal to the number of columns to be scaled.
 
     template<class T>
     void Matrix<T>::unscale_columns_mean_standard_deviation(const Vector <Statistics<T>> &statistics,
                                                             const Vector <size_t> &column_indices)
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(statistics.size() != columns_number)
-    {
-       std::ostringstream buffer;
+        if (statistics.size() != columns_number) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix template.\n"
-              << "void unscale_columns_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) const method.\n"
-              << "Size of statistics vector must be equal to number of columns.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "void unscale_columns_mean_standard_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) const method.\n"
+                   << "Size of statistics vector must be equal to number of columns.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4813,30 +4643,29 @@ namespace OpenNN {
         }
     }
 
+    // void unscale_minimum_maximum(const Vector< Statistics<T> >&) method
 
-// void unscale_minimum_maximum(const Vector< Statistics<T> >&) method
-
-/// Unscales the matrix columns with the minimum and maximum method.
-/// @param statistics Vector of statistics which contains the minimum and maximum scaling values.
-/// The size of that vector must be equal to the number of columns in this matrix.
+    /// Unscales the matrix columns with the minimum and maximum method.
+    /// @param statistics Vector of statistics which contains the minimum and maximum scaling values.
+    /// The size of that vector must be equal to the number of columns in this matrix.
 
     template<class T>
     void Matrix<T>::unscale_minimum_maximum(const Vector <Statistics<T>> &statistics)
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t size = statistics.size();
+        const size_t size = statistics.size();
 
-   if(size != columns_number)
-   {
-      std::ostringstream buffer;
+        if (size != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix template."
-             << "void unscale_minimum_maximum(const Vector< Statistics<T> >&) method.\n"
-             << "Size of minimum vector must be equal to number of columns.\n";
+            buffer << "OpenNN Exception: Matrix template."
+                   << "void unscale_minimum_maximum(const Vector< Statistics<T> >&) method.\n"
+                   << "Size of minimum vector must be equal to number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4859,13 +4688,12 @@ namespace OpenNN {
         }
     }
 
+    // void unscale_rows_minimum_maximum(const Vector< Statistics<T> >&, const Vector<size_t>&) method
 
-// void unscale_rows_minimum_maximum(const Vector< Statistics<T> >&, const Vector<size_t>&) method
-
-/// Unscales given rows using the minimum and maximum method.
-/// @param statistics Vector of statistics structures for all the columns.
-/// The size of this vector must be equal to the number of columns.
-/// @param row_indices Indices of rows to be unscaled.
+    /// Unscales given rows using the minimum and maximum method.
+    /// @param statistics Vector of statistics structures for all the columns.
+    /// The size of this vector must be equal to the number of columns.
+    /// @param row_indices Indices of rows to be unscaled.
 
     template<class T>
     void Matrix<T>::unscale_rows_minimum_maximum(const Vector <Statistics<T>> &statistics,
@@ -4891,31 +4719,30 @@ namespace OpenNN {
         }
     }
 
+    // void unscale_columns_minimum_maximum(const Vector< Statistics<T> >&, const Vector<size_t>&) method
 
-// void unscale_columns_minimum_maximum(const Vector< Statistics<T> >&, const Vector<size_t>&) method
-
-/// Unscales given columns in the matrix with the minimum and maximum method.
-/// @param statistics Vector of statistics structures containing the minimum and maximum values for the unscaling.
-/// The size of that vector must be equal to the number of columns in the matrix.
-/// @param column_indices Vector of indices of the columns to be unscaled.
-/// The size of that vector must be equal to the number of columns to be unscaled.
+    /// Unscales given columns in the matrix with the minimum and maximum method.
+    /// @param statistics Vector of statistics structures containing the minimum and maximum values for the unscaling.
+    /// The size of that vector must be equal to the number of columns in the matrix.
+    /// @param column_indices Vector of indices of the columns to be unscaled.
+    /// The size of that vector must be equal to the number of columns to be unscaled.
 
     template<class T>
     void Matrix<T>::unscale_columns_minimum_maximum(const Vector <Statistics<T>> &statistics,
                                                     const Vector <size_t> &column_indices)
     {
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(statistics.size() != columns_number)
-    {
-       std::ostringstream buffer;
+        if (statistics.size() != columns_number) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix template.\n"
-              << "void unscale_columns_minimum_maximum_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) const method.\n"
-              << "Size of statistics vector must be equal to number of columns.\n";
+            buffer << "OpenNN Exception: Matrix template.\n"
+                   << "void unscale_columns_minimum_maximum_deviation(const Vector< Statistics<T> >&, const Vector<size_t>&) const method.\n"
+                   << "Size of statistics vector must be equal to number of columns.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4940,10 +4767,9 @@ namespace OpenNN {
         }
     }
 
+    // Vector<size_t> calculate_minimal_indices(void) const method
 
-// Vector<size_t> calculate_minimal_indices(void) const method
-
-/// Returns the row and column indices corresponding to the entry with minimum value.
+    /// Returns the row and column indices corresponding to the entry with minimum value.
 
     template<class T>
     Vector <size_t> Matrix<T>::calculate_minimal_indices(void) const
@@ -4964,10 +4790,9 @@ namespace OpenNN {
         return (minimal_indices);
     }
 
+    // Vector<size_t> calculate_maximal_indices(void) const method
 
-// Vector<size_t> calculate_maximal_indices(void) const method
-
-/// Returns the row and column indices corresponding to the entry with maximum value.
+    /// Returns the row and column indices corresponding to the entry with maximum value.
 
     template<class T>
     Vector <size_t> Matrix<T>::calculate_maximal_indices(void) const
@@ -4989,13 +4814,12 @@ namespace OpenNN {
         return (maximal_indices);
     }
 
+    // Vector< Vector<size_t> > calculate_minimal_maximal_indices(void) const method
 
-// Vector< Vector<size_t> > calculate_minimal_maximal_indices(void) const method
-
-/// Returns the row and column indices corresponding to the entries with minimum and maximum values.
-/// The format is a vector of two vectors.
-/// Each subvector also has two elements.
-/// The first vector contains the minimal indices, and the second vector contains the maximal indices.
+    /// Returns the row and column indices corresponding to the entries with minimum and maximum values.
+    /// The format is a vector of two vectors.
+    /// Each subvector also has two elements.
+    /// The first vector contains the minimal indices, and the second vector contains the maximal indices.
 
     template<class T>
     Vector <Vector<size_t>> Matrix<T>::calculate_minimal_maximal_indices(void) const
@@ -5029,47 +4853,44 @@ namespace OpenNN {
         return (minimal_maximal_indices);
     }
 
+    // double calculate_sum_squared_error(const Matrix<double>&) const method
 
-// double calculate_sum_squared_error(const Matrix<double>&) const method
-
-/// Returns the sum squared error between the elements of this matrix and the elements of another matrix.
-/// @param other_matrix Other matrix.
+    /// Returns the sum squared error between the elements of this matrix and the elements of another matrix.
+    /// @param other_matrix Other matrix.
 
     template<class T>
     double Matrix<T>::calculate_sum_squared_error(const Matrix<double> &other_matrix) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
 
-   if(other_rows_number != rows_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "double calculate_sum_squared_error(const Matrix<double>&) const method.\n"
-             << "Other number of rows must be equal to this number of rows.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "double calculate_sum_squared_error(const Matrix<double>&) const method.\n"
+                   << "Other number of rows must be equal to this number of rows.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "double calculate_sum_squared_error(const Matrix<double>&) const method.\n"
-             << "Other number of columns must be equal to this number of columns.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "double calculate_sum_squared_error(const Matrix<double>&) const method.\n"
+                   << "Other number of columns must be equal to this number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
-
 
         double sum_squared_error = 0.0;
 
@@ -5080,32 +4901,31 @@ namespace OpenNN {
         return (sum_squared_error);
     }
 
+    // double calculate_sum_squared_error(const Vector<double>&) const method
 
-// double calculate_sum_squared_error(const Vector<double>&) const method
-
-/// This method retuns the sum squared error between the elements of this matrix and the elements of a vector, by columns.
-/// The size of the vector must be equal to the number of columns of this matrix.
-/// @param vector Vector to be compared to this matrix.
+    /// This method retuns the sum squared error between the elements of this matrix and the elements of a vector, by columns.
+    /// The size of the vector must be equal to the number of columns of this matrix.
+    /// @param vector Vector to be compared to this matrix.
 
     template<class T>
     double Matrix<T>::calculate_sum_squared_error(const Vector<double> &vector) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t size = vector.size();
+        const size_t size = vector.size();
 
-   if(size != columns_number)
-   {
-      std::ostringstream buffer;
+        if (size != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "double calculate_sum_squared_error(const Vector<double>&) const method.\n"
-             << "Size must be equal to number of columns.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "double calculate_sum_squared_error(const Vector<double>&) const method.\n"
+                   << "Size must be equal to number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5121,10 +4941,10 @@ namespace OpenNN {
     }
 
 
-// Vector<double> calculate_rows_norm(void) const method
+    // Vector<double> calculate_rows_norm(void) const method
 
-/// Returns a vector with the norm of each row.
-/// The size of that vector is the number of rows.
+    /// Returns a vector with the norm of each row.
+    /// The size of that vector is the number of rows.
 
     template<class T>
     Vector<double> Matrix<T>::calculate_rows_norm(void) const
@@ -5142,10 +4962,9 @@ namespace OpenNN {
         return (rows_norm);
     }
 
+    // Matrix<T> calculate_absolute_value(void) const method
 
-// Matrix<T> calculate_absolute_value(void) const method
-
-/// Returns a matrix with the absolute values of this matrix.
+    /// Returns a matrix with the absolute values of this matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::calculate_absolute_value(void) const
@@ -5164,11 +4983,9 @@ namespace OpenNN {
         return (absolute_value);
     }
 
+    // Matrix<T> calculate_transpose(void) const method
 
-
-// Matrix<T> calculate_transpose(void) const method
-
-/// Returns the transpose of the matrix.
+    /// Returns the transpose of the matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::calculate_transpose(void) const
@@ -5184,10 +5001,9 @@ namespace OpenNN {
         return (transpose);
     }
 
+    // Type calculate_determinant(void) const method
 
-// Type calculate_determinant(void) const method
-
-/// Returns the determinant of a square matrix.
+    /// Returns the determinant of a square matrix.
 
     template<class T>
     T Matrix<T>::calculate_determinant(void) const
@@ -5196,27 +5012,25 @@ namespace OpenNN {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(empty())
-    {
-       std::ostringstream buffer;
+        if (empty()) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "calculate_determinant(void) const method.\n"
-              << "Matrix is empty.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "calculate_determinant(void) const method.\n"
+                   << "Matrix is empty.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
-   if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "calculate_determinant(void) const method.\n"
-             << "Matrix must be square.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "calculate_determinant(void) const method.\n"
+                   << "Matrix must be square.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5261,10 +5075,9 @@ namespace OpenNN {
         return (determinant);
     }
 
+    // Matrix<T> calculate_cofactor(void) const method
 
-// Matrix<T> calculate_cofactor(void) const method
-
-/// Returns the cofactor matrix.
+    /// Returns the cofactor matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::calculate_cofactor(void) const
@@ -5307,40 +5120,38 @@ namespace OpenNN {
         return (cofactor);
     }
 
+    // Matrix<T> calculate_inverse(void) const method
 
-// Matrix<T> calculate_inverse(void) const method
-
-/// Returns the inverse of a square matrix.
-/// An error message is printed if the matrix is singular.
+    /// Returns the inverse of a square matrix.
+    /// An error message is printed if the matrix is singular.
 
     template<class T>
     Matrix<T> Matrix<T>::calculate_inverse(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(empty())
-    {
-       std::ostringstream buffer;
+        if (empty()) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "calculate_inverse(void) const method.\n"
-              << "Matrix is empty.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "calculate_inverse(void) const method.\n"
+                   << "Matrix is empty.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
-   if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "calculate_inverse(void) const method.\n"
-             << "Matrix must be square.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "calculate_inverse(void) const method.\n"
+                   << "Matrix must be square.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5377,40 +5188,38 @@ namespace OpenNN {
         return (inverse);
     }
 
+    // Matrix<T> calculate_LU_inverse(void) const method
 
-// Matrix<T> calculate_LU_inverse(void) const method
-
-/// Returns the inverse of a square matrix using the LU decomposition method.
-/// The given matrix must be invertible.
+    /// Returns the inverse of a square matrix using the LU decomposition method.
+    /// The given matrix must be invertible.
 
     template<class T>
     Matrix<T> Matrix<T>::calculate_LU_inverse(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(empty())
-    {
-       std::ostringstream buffer;
+        if (empty()) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "calculate_LU_inverse(void) const method.\n"
-              << "Matrix is empty.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "calculate_LU_inverse(void) const method.\n"
+                   << "Matrix is empty.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
-   if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "calculate_LU_inverse(void) const method.\n"
-             << "Matrix must be square.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "calculate_LU_inverse(void) const method.\n"
+                   << "Matrix must be square.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5424,28 +5233,27 @@ namespace OpenNN {
         return (inverse);
     }
 
+    // double calculate_distances(const size_t&, const size_t&) const
 
-// double calculate_distances(const size_t&, const size_t&) const
-
-/// Calculates the distance between two rows in the matix
+    /// Calculates the distance between two rows in the matix
 
     template<class T>
     double Matrix<T>::calculate_distance(const size_t &first_index, const size_t &second_index) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(empty())
-     {
-        std::ostringstream buffer;
+        if (empty()) {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: Matrix Template.\n"
-               << "calculate_distance(const size_t&, const size_t&) const method.\n"
-               << "Matrix is empty.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "calculate_distance(const size_t&, const size_t&) const method.\n"
+                   << "Matrix is empty.\n";
 
-        throw std::logic_error(buffer.str());
-     }
+            throw std::logic_error(buffer.str());
+         }
 
 #endif
 
@@ -5455,11 +5263,10 @@ namespace OpenNN {
         return (first_row.calculate_distance(second_row));
     }
 
+    // Matrix<T> operator + (const T&) const method
 
-// Matrix<T> operator + (const T&) const method
-
-/// Sum matrix+scalar arithmetic operator.
-/// @param scalar Scalar value to be added to this matrix.
+    /// Sum matrix+scalar arithmetic operator.
+    /// @param scalar Scalar value to be added to this matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::operator+(const T &scalar) const
@@ -5471,31 +5278,30 @@ namespace OpenNN {
         return (sum);
     }
 
+    // Matrix<T> operator + (const Vector<T>&) const method
 
-// Matrix<T> operator + (const Vector<T>&) const method
-
-/// Sum matrix+vector arithmetic operator.
-/// @param vector Vector to be added to this matrix.
+    /// Sum matrix+vector arithmetic operator.
+    /// @param vector Vector to be added to this matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::operator+(const Vector <T> &vector) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t size = vector.size();
+        const size_t size = vector.size();
 
-   if(size != rows_number)
-   {
-      std::ostringstream buffer;
+        if (size != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Matrix<T> operator + (const Vector<T>&) const.\n"
-             << "Size of vector must be equal to number of rows.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> operator + (const Vector<T>&) const.\n"
+                   << "Size of vector must be equal to number of rows.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5510,7 +5316,6 @@ namespace OpenNN {
         return (sum);
     }
 
-
 // Matrix<T> operator + (const Matrix<T>&) const method
 
 /// Sum matrix+matrix arithmetic operator.
@@ -5519,23 +5324,23 @@ namespace OpenNN {
     template<class T>
     Matrix<T> Matrix<T>::operator+(const Matrix<T> &other_matrix) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
-   const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_rows_number != rows_number || other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number || other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Matrix<T> operator + (const Matrix<T>&) const.\n"
-             << "Sizes of other matrix (" << other_rows_number << "," << other_columns_number << ") must be the same than sizes of this matrix (" << rows_number << "," << columns_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> operator + (const Matrix<T>&) const.\n"
+                   << "Sizes of other matrix (" << other_rows_number << "," << other_columns_number << ") must be the same than sizes of this matrix (" << rows_number << "," << columns_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5546,11 +5351,10 @@ namespace OpenNN {
         return (sum);
     }
 
+    // Matrix<T> operator - (const T&) const method
 
-// Matrix<T> operator - (const T&) const method
-
-/// Difference matrix-scalar arithmetic operator.
-/// @param scalar Scalar value to be subtracted to this matrix.
+    /// Difference matrix-scalar arithmetic operator.
+    /// @param scalar Scalar value to be subtracted to this matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::operator-(const T &scalar) const
@@ -5562,31 +5366,30 @@ namespace OpenNN {
         return (difference);
     }
 
+    // Matrix<T> operator - (const Vector<T>&) const method
 
-// Matrix<T> operator - (const Vector<T>&) const method
-
-/// Sum matrix-vector arithmetic operator.
-/// @param vector Vector to be subtracted to this matrix.
+    /// Sum matrix-vector arithmetic operator.
+    /// @param vector Vector to be subtracted to this matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::operator-(const Vector <T> &vector) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t size = vector.size();
+        const size_t size = vector.size();
 
-   if(size != rows_number)
-   {
-      std::ostringstream buffer;
+       if (size != rows_number) {
+           std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Matrix<T> operator - (const Vector<T>&) const.\n"
-             << "Size of vector must be equal to number of rows.\n";
+           buffer << "OpenNN Exception: Matrix Template.\n"
+                  << "Matrix<T> operator - (const Vector<T>&) const.\n"
+                  << "Size of vector must be equal to number of rows.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+           throw std::logic_error(buffer.str());
+       }
 
 #endif
 
@@ -5601,32 +5404,31 @@ namespace OpenNN {
         return (difference);
     }
 
+    // Matrix<T> operator - (const Matrix<T>&) const method
 
-// Matrix<T> operator - (const Matrix<T>&) const method
-
-/// Difference matrix-matrix arithmetic operator.
-/// @param other_matrix Matrix to be subtracted to this matrix.
+    /// Difference matrix-matrix arithmetic operator.
+    /// @param other_matrix Matrix to be subtracted to this matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::operator-(const Matrix<T> &other_matrix) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
-   const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_rows_number != rows_number || other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number || other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Matrix<T> operator - (const Matrix<T>&) const method.\n"
-             << "Sizes of other matrix (" << other_rows_number << "," << other_columns_number << ") must be equal to sizes of this matrix ("<< rows_number << "," << columns_number <<").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> operator - (const Matrix<T>&) const method.\n"
+                   << "Sizes of other matrix (" << other_rows_number << "," << other_columns_number << ") must be equal to sizes of this matrix ("<< rows_number << "," << columns_number <<").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5637,11 +5439,10 @@ namespace OpenNN {
         return (difference);
     }
 
+    // Matrix<T> operator * (const T&) const method
 
-// Matrix<T> operator * (const T&) const method
-
-/// Product matrix*scalar arithmetic operator.
-/// @param scalar Scalar value to be multiplied to this matrix.
+    /// Product matrix*scalar arithmetic operator.
+    /// @param scalar Scalar value to be multiplied to this matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::operator*(const T &scalar) const
@@ -5655,31 +5456,30 @@ namespace OpenNN {
         return (product);
     }
 
+    // Matrix<T> operator * (const Vector<T>&) const  method
 
-// Matrix<T> operator * (const Vector<T>&) const  method
-
-/// Row by element matrix*row arithmetic operator.
-/// @param vector vector to be multiplied to this matrix.
+    /// Row by element matrix*row arithmetic operator.
+    /// @param vector vector to be multiplied to this matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::operator*(const Vector <T> &vector) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t size = vector.size();
+        const size_t size = vector.size();
 
-   if(size != rows_number)
-   {
-      std::ostringstream buffer;
+        if (size != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Matrix<T> operator * (const Vector<T>&) const method.\n"
-             << "Vector size (" << size << ")  must be equal to number of matrix rows (" << rows_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> operator * (const Vector<T>&) const method.\n"
+                   << "Vector size (" << size << ")  must be equal to number of matrix rows (" << rows_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5694,32 +5494,31 @@ namespace OpenNN {
         return (product);
     }
 
+    // Matrix<T> operator * (const Matrix<T>&) const  method
 
-// Matrix<T> operator * (const Matrix<T>&) const  method
-
-/// Product matrix*matrix arithmetic operator.
-/// @param other_matrix Matrix to be multiplied to this matrix.
+    /// Product matrix*matrix arithmetic operator.
+    /// @param other_matrix Matrix to be multiplied to this matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::operator*(const Matrix<T> &other_matrix) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
-   const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_rows_number != rows_number || other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number || other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Matrix<T> operator * (const Matrix<T>&) const method.\n"
-             << "Sizes of other matrix (" << other_rows_number << "," << other_columns_number << ") must be equal to sizes of this matrix (" << rows_number << "," << columns_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> operator * (const Matrix<T>&) const method.\n"
+                   << "Sizes of other matrix (" << other_rows_number << "," << other_columns_number << ") must be equal to sizes of this matrix (" << rows_number << "," << columns_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5732,11 +5531,10 @@ namespace OpenNN {
         return (product);
     }
 
+    // Matrix<T> operator / (const T&) const method
 
-// Matrix<T> operator / (const T&) const method
-
-/// Cocient Matrix/scalar arithmetic operator.
-/// @param scalar Value of scalar.
+    /// Cocient Matrix/scalar arithmetic operator.
+    /// @param scalar Value of scalar.
 
     template<class T>
     Matrix<T> Matrix<T>::operator/(const T &scalar) const
@@ -5750,31 +5548,30 @@ namespace OpenNN {
         return (results);
     }
 
+    // Matrix<T> operator / (const Vector<T>&) const method
 
-// Matrix<T> operator / (const Vector<T>&) const method
-
-/// Cocient matrix/vector arithmetic operator.
-/// @param vector Vector to be divided to this matrix.
+    /// Cocient matrix/vector arithmetic operator.
+    /// @param vector Vector to be divided to this matrix.
 
     template<class T>
     Matrix<T> Matrix<T>::operator/(const Vector <T> &vector) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t size = vector.size();
+        const size_t size = vector.size();
 
-   if(size != columns_number)
-   {
-      std::ostringstream buffer;
+        if (size != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Matrix<T> operator / (const Vector<T>&) const.\n"
-             << "Size of vector must be equal to number of columns.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> operator / (const Vector<T>&) const.\n"
+                   << "Size of vector must be equal to number of columns.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5789,7 +5586,6 @@ namespace OpenNN {
         return (cocient);
     }
 
-
 // Matrix<T> operator / (const Matrix<T>&) const  method
 
 /// Cocient matrix/matrix arithmetic operator.
@@ -5798,23 +5594,23 @@ namespace OpenNN {
     template<class T>
     Matrix<T> Matrix<T>::operator/(const Matrix<T> &other_matrix) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
-   const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_rows_number != rows_number || other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number || other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Matrix<T> operator / (const Matrix<T>&) const method.\n"
-             << "Both matrix sizes must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> operator / (const Matrix<T>&) const method.\n"
+                   << "Both matrix sizes must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5827,11 +5623,10 @@ namespace OpenNN {
         return (cocient);
     }
 
+    // void operator += (const T&)
 
-// void operator += (const T&)
-
-/// Scalar sum and assignment operator.
-/// @param value Scalar value to be added to this matrix.
+    /// Scalar sum and assignment operator.
+    /// @param value Scalar value to be added to this matrix.
 
     template<class T>
     void Matrix<T>::operator+=(const T &value)
@@ -5843,44 +5638,42 @@ namespace OpenNN {
         }
     }
 
+    // void operator += (const Matrix<T>&)
 
-// void operator += (const Matrix<T>&)
-
-/// Matrix sum and assignment operator.
-/// @param other_matrix Matrix to be added to this matrix.
+    /// Matrix sum and assignment operator.
+    /// @param other_matrix Matrix to be added to this matrix.
 
     template<class T>
     void Matrix<T>::operator+=(const Matrix<T> &other_matrix)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
 
-   if(other_rows_number != rows_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void operator += (const Matrix<T>&).\n"
-             << "Both numbers of rows must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void operator += (const Matrix<T>&).\n"
+                   << "Both numbers of rows must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void operator += (const Matrix<T>&).\n"
-             << "Both numbers of columns must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void operator += (const Matrix<T>&).\n"
+                   << "Both numbers of columns must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5891,11 +5684,10 @@ namespace OpenNN {
         }
     }
 
+    // void operator -= (const T&)
 
-// void operator -= (const T&)
-
-/// Scalar rest and assignment operator.
-/// @param value Scalar value to be subtracted to this matrix.
+    /// Scalar rest and assignment operator.
+    /// @param value Scalar value to be subtracted to this matrix.
 
     template<class T>
     void Matrix<T>::operator-=(const T &value)
@@ -5907,44 +5699,42 @@ namespace OpenNN {
         }
     }
 
+    // void operator -= (const Matrix<T>&)
 
-// void operator -= (const Matrix<T>&)
-
-/// Matrix rest and assignment operator.
-/// @param other_matrix Matrix to be subtracted to this matrix.
+    /// Matrix rest and assignment operator.
+    /// @param other_matrix Matrix to be subtracted to this matrix.
 
     template<class T>
     void Matrix<T>::operator-=(const Matrix<T> &other_matrix)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
 
-   if(other_rows_number != rows_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void operator -= (const Matrix<T>&).\n"
-             << "Both numbers of rows must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void operator -= (const Matrix<T>&).\n"
+                   << "Both numbers of rows must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void operator -= (const Matrix<T>&).\n"
-             << "Both numbers of columns must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void operator -= (const Matrix<T>&).\n"
+                   << "Both numbers of columns must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5955,11 +5745,10 @@ namespace OpenNN {
         }
     }
 
+    // void operator *= (const T&)
 
-// void operator *= (const T&)
-
-/// Scalar product and assignment operator.
-/// @param value Scalar value to be multiplied to this matrix.
+    /// Scalar product and assignment operator.
+    /// @param value Scalar value to be multiplied to this matrix.
 
     template<class T>
     void Matrix<T>::operator*=(const T &value)
@@ -5971,34 +5760,33 @@ namespace OpenNN {
         }
     }
 
+    // void operator *= (const Matrix<T>&)
 
-// void operator *= (const Matrix<T>&)
-
-/// Matrix product and assignment operator.
-/// @param other_matrix Matrix to be multiplied to this matrix.
+    /// Matrix product and assignment operator.
+    /// @param other_matrix Matrix to be multiplied to this matrix.
 
     template<class T>
     void Matrix<T>::operator*=(const Matrix<T> &other_matrix)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
 
-   const size_t rows_number = get_rows_number();
+        const size_t rows_number = get_rows_number();
 
-   if(other_rows_number != rows_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void operator *= (const Matrix<T>&).\n"
-             << "The number of rows in the other matrix (" << other_rows_number << ")"
-             << " is not equal to the number of rows in this matrix (" << rows_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void operator *= (const Matrix<T>&).\n"
+                   << "The number of rows in the other matrix (" << other_rows_number << ")"
+                   << " is not equal to the number of rows in this matrix (" << rows_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -6009,11 +5797,10 @@ namespace OpenNN {
         }
     }
 
+    // void operator /= (const T&)
 
-// void operator /= (const T&)
-
-/// Scalar division and assignment operator.
-/// @param value Scalar value to be divided to this matrix.
+    /// Scalar division and assignment operator.
+    /// @param value Scalar value to be divided to this matrix.
 
     template<class T>
     void Matrix<T>::operator/=(const T &value)
@@ -6025,44 +5812,42 @@ namespace OpenNN {
         }
     }
 
+    // void operator /= (const Matrix<T>&)
 
-// void operator /= (const Matrix<T>&)
-
-/// Matrix division and assignment operator.
-/// @param other_matrix Matrix to be divided to this matrix.
+    /// Matrix division and assignment operator.
+    /// @param other_matrix Matrix to be divided to this matrix.
 
     template<class T>
     void Matrix<T>::operator/=(const Matrix<T> &other_matrix)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_rows_number = other_matrix.get_rows_number();
+        const size_t other_rows_number = other_matrix.get_rows_number();
 
-   if(other_rows_number != rows_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != rows_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void operator /= (const Matrix<T>&).\n"
-             << "Both numbers of rows must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void operator /= (const Matrix<T>&).\n"
+                   << "Both numbers of rows must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
-   const size_t other_columns_number = other_matrix.get_columns_number();
+        const size_t other_columns_number = other_matrix.get_columns_number();
 
-   if(other_columns_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (other_columns_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "void operator /= (const Matrix<T>&).\n"
-             << "Both numbers of columns must be the same.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void operator /= (const Matrix<T>&).\n"
+                   << "Both numbers of columns must be the same.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -6073,61 +5858,59 @@ namespace OpenNN {
         }
     }
 
-
-// void sum_diagonal(const T&) method
-/*
-template <class T>
-void Matrix<T>::sum_diagonal(const T& value)
-{
-    // Control sentence (if debug)
-
-    #ifdef __OPENNN_DEBUG__
-
-    if(!is_square())
+    // void sum_diagonal(const T&) method
+    /*
+    template <class T>
+    void Matrix<T>::sum_diagonal(const T& value)
     {
-       std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "void sum_diagonal(const T&) method.\n"
-              << "Matrix must be squared.\n";
-
-       throw std::logic_error(buffer.str());
-    }
-
-    #endif
-
-    for(size_t i = 0; i < rows_number; i++)
-    {
-        (*this)(i,i) += value;
-    }
-}
-*/
-
-// Vector<double> dot(const Vector<double>&) const method
-
-/// Returns the dot product of this matrix with a vector.
-/// The size of the vector must be equal to the number of columns of the matrix.
-/// @param vector Vector to be multiplied to this matrix.
-
-    template<class T>
-    Vector<double> Matrix<T>::dot(const Vector<double> &vector) const
-    {
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t size = vector.size();
+        if (!is_square()) {
+            std::ostringstream buffer;
 
-   if(size != columns_number)
-   {
-      std::ostringstream buffer;
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void sum_diagonal(const T&) method.\n"
+                   << "Matrix must be squared.\n";
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Vector<T> dot(const Vector<T>&) const method.\n"
-             << "Vector size must be equal to matrix number of columns.\n";
+            throw std::logic_error(buffer.str());
+        }
 
-      throw std::logic_error(buffer.str());
-   }
+#endif
+
+        for(size_t i = 0; i < rows_number; i++) {
+            (*this)(i,i) += value;
+        }
+    }
+    */
+
+    // Vector<double> dot(const Vector<double>&) const method
+
+    /// Returns the dot product of this matrix with a vector.
+    /// The size of the vector must be equal to the number of columns of the matrix.
+    /// @param vector Vector to be multiplied to this matrix.
+
+    template<class T>
+    Vector<double> Matrix<T>::dot(const Vector<double> &vector) const
+    {
+
+        // Control sentence (if debug)
+
+#ifdef __OPENNN_DEBUG__
+
+        const size_t size = vector.size();
+
+        if (size != columns_number) {
+            std::ostringstream buffer;
+
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Vector<T> dot(const Vector<T>&) const method.\n"
+                   << "Vector size must be equal to matrix number of columns.\n";
+
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -6135,15 +5918,13 @@ void Matrix<T>::sum_diagonal(const T& value)
 
         Vector<double> product(rows_number);
 
-//   for(size_t i = 0; i < rows_number; i++)
-//   {
-//       product[i] = 0;
-
-//      for(size_t j = 0; j < columns_number; j++)
-//      {
-//         product[i] += vector[j]*(*this)(i,j);
+//      for (size_t i = 0; i < rows_number; i++) {
+//          product[i] = 0;
+//
+//          for (size_t j = 0; j < columns_number; j++) {
+//              product[i] += vector[j] * (*this)(i,j);
+//          }
 //      }
-//   }
 
         const Eigen::Map<Eigen::MatrixXd> matrix_eigen((double *) this->data(), rows_number, columns_number);
         const Eigen::Map<Eigen::VectorXd> vector_eigen((double *) vector.data(), columns_number);
@@ -6154,11 +5935,10 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (product);
     }
 
+    // Matrix<double> dot(const Matrix<double>&) const method
 
-// Matrix<double> dot(const Matrix<double>&) const method
-
-/// Returns the dot product of this matrix with another matrix.
-/// @param other_matrix Matrix to be multiplied to this matrix.
+    /// Returns the dot product of this matrix with another matrix.
+    /// @param other_matrix Matrix to be multiplied to this matrix.
 
     template<class T>
     Matrix<double> Matrix<T>::dot(const Matrix<double> &other_matrix) const
@@ -6170,28 +5950,27 @@ void Matrix<T>::sum_diagonal(const T& value)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(other_rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (other_rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "Matrix<T> dot(const Matrix<T>&) const method.\n"
-             << "The number of rows of the other matrix (" << other_rows_number << ") must be equal to the number of columns of this matrix (" << columns_number << ").\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> dot(const Matrix<T>&) const method.\n"
+                   << "The number of rows of the other matrix (" << other_rows_number << ") must be equal to the number of columns of this matrix (" << columns_number << ").\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
         Matrix<T> product(rows_number, other_columns_number);
 
-//   for(size_t i = 0; i < rows_number; i++) {
-//     for(size_t j = 0; j < other_columns_number; j++) {
-//       for(size_t k = 0; k < columns_number; k++) {
-//         product(i,j) += (*this)(i,k)*other_matrix(k,j);
-//       }
-//     }
-//   }
+//      for (size_t i = 0; i < rows_number; i++) {
+//          for (size_t j = 0; j < other_columns_number; j++) {
+//              for (size_t k = 0; k < columns_number; k++) {
+//                  product(i, j) += (*this)(i, k) * other_matrix(k, j);
+//              }
+//          }
+//      }
 
         const Eigen::Map<Eigen::MatrixXd> this_eigen((double *) this->data(), rows_number, columns_number);
         const Eigen::Map<Eigen::MatrixXd> other_eigen((double *) other_matrix.data(),
@@ -6204,59 +5983,56 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (product);
     }
 
+    // Matrix<double> calculate_eigen_values(void) const method
 
-// Matrix<double> calculate_eigen_values(void) const method
-
-/// Calculates the eigen values of this matrix, which must be squared.
-/// Returns a matrix with only one column and rows the same as this matrix with the eigenvalues.
+    /// Calculates the eigen values of this matrix, which must be squared.
+    /// Returns a matrix with only one column and rows the same as this matrix with the eigenvalues.
 
     template<class T>
     Matrix<double> Matrix<T>::calculate_eigenvalues(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if((*this).get_columns_number() == 0)
-    {
-       std::ostringstream buffer;
+        if ((*this).get_columns_number() == 0) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "Matrix<T> calculate_eigen_values(void) const method.\n"
-              << "Number of columns must be greater than zero.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> calculate_eigen_values(void) const method.\n"
+                   << "Number of columns must be greater than zero.\n";
 
-       throw std::logic_error(buffer.str());
-    }
-
-#endif
-
-#ifdef __OPENNN_DEBUG__
-
-                                                                                                                                if((*this).get_rows_number() == 0)
-    {
-       std::ostringstream buffer;
-
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "Matrix<T> calculate_eigen_values(void) const method.\n"
-              << "Number of rows must be greater than zero.\n";
-
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if((*this).get_columns_number() != (*this).get_rows_number())
-    {
-       std::ostringstream buffer;
+        if ((*this).get_rows_number() == 0) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "Matrix<T> calculate_eigen_values(void) const method.\n"
-              << "The matrix must be squared.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> calculate_eigen_values(void) const method.\n"
+                   << "Number of rows must be greater than zero.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
+
+#endif
+
+#ifdef __OPENNN_DEBUG__
+
+        if ((*this).get_columns_number() != (*this).get_rows_number()) {
+            std::ostringstream buffer;
+
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> calculate_eigen_values(void) const method.\n"
+                   << "The matrix must be squared.\n";
+
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -6271,59 +6047,56 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (eigenvalues);
     }
 
+    // Matrix<double> calculate_eigenvectors(void) const method
 
-// Matrix<double> calculate_eigenvectors(void) const method
-
-/// Calculates the eigenvectors of this matrix, which must be squared.
-/// Returns a matrix whose columns are the eigenvectors.
+    /// Calculates the eigenvectors of this matrix, which must be squared.
+    /// Returns a matrix whose columns are the eigenvectors.
 
     template<class T>
     Matrix<double> Matrix<T>::calculate_eigenvectors(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if((*this).get_columns_number() == 0)
-    {
-       std::ostringstream buffer;
+        if ((*this).get_columns_number() == 0) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "Matrix<T> calculate_eigen_values(void) const method.\n"
-              << "Number of columns must be greater than zero.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> calculate_eigen_values(void) const method.\n"
+                   << "Number of columns must be greater than zero.\n";
 
-       throw std::logic_error(buffer.str());
-    }
-
-#endif
-
-#ifdef __OPENNN_DEBUG__
-
-                                                                                                                                if((*this).get_rows_number() == 0)
-    {
-       std::ostringstream buffer;
-
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "Matrix<T> calculate_eigen_values(void) const method.\n"
-              << "Number of rows must be greater than zero.\n";
-
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if((*this).get_columns_number() != (*this).get_rows_number())
-    {
-       std::ostringstream buffer;
+        if ((*this).get_rows_number() == 0) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "Matrix<T> calculate_eigen_values(void) const method.\n"
-              << "The matrix must be squared.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> calculate_eigen_values(void) const method.\n"
+                   << "Number of rows must be greater than zero.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
+
+#endif
+
+#ifdef __OPENNN_DEBUG__
+
+        if ((*this).get_columns_number() != (*this).get_rows_number()) {
+            std::ostringstream buffer;
+
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "Matrix<T> calculate_eigen_values(void) const method.\n"
+                   << "The matrix must be squared.\n";
+
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -6338,12 +6111,11 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (eigenvectors);
     }
 
+    // Matrix<T> direct(const Matrix<T>&) const method
 
-// Matrix<T> direct(const Matrix<T>&) const method
-
-/// Calculates the direct product of this matrix with another matrix.
-/// This product is also known as the Kronecker product.
-/// @param other_matrix Second product term.
+    /// Calculates the direct product of this matrix with another matrix.
+    /// This product is also known as the Kronecker product.
+    /// @param other_matrix Second product term.
 
     template<class T>
     Matrix<T> Matrix<T>::direct(const Matrix<T> &other_matrix) const
@@ -6372,10 +6144,9 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (direct);
     }
 
+    // bool empty(void) const method
 
-// bool empty(void) const method
-
-/// Returns true if number of rows and columns is zero.
+    /// Returns true if number of rows and columns is zero.
 
     template<class T>
     bool Matrix<T>::empty(void) const
@@ -6388,11 +6159,10 @@ void Matrix<T>::sum_diagonal(const T& value)
         }
     }
 
+    // bool is_square(void) const method
 
-// bool is_square(void) const method
-
-/// Returns true if this matrix is square.
-/// A square matrix has the same numbers of rows and columns.
+    /// Returns true if this matrix is square.
+    /// A square matrix has the same numbers of rows and columns.
 
     template<class T>
     bool Matrix<T>::is_square(void) const
@@ -6405,7 +6175,6 @@ void Matrix<T>::sum_diagonal(const T& value)
         }
     }
 
-
 // bool is_symmetric(void) const method
 
 /// Returns true if this matrix is symmetric.
@@ -6414,20 +6183,20 @@ void Matrix<T>::sum_diagonal(const T& value)
     template<class T>
     bool Matrix<T>::is_symmetric(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool is_symmetric(void) const method.\n"
-             << "Matrix must be squared.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool is_symmetric(void) const method.\n"
+                   << "Matrix must be squared.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -6441,29 +6210,28 @@ void Matrix<T>::sum_diagonal(const T& value)
         }
     }
 
+    // bool is_antisymmetric(void) const method
 
-// bool is_antisymmetric(void) const method
-
-/// Returns true if this matrix is antysymmetric.
-/// A symmetric matrix is a squared matrix which its opposed is equal to its transpose.
+    /// Returns true if this matrix is antysymmetric.
+    /// A symmetric matrix is a squared matrix which its opposed is equal to its transpose.
 
     template<class T>
     bool Matrix<T>::is_antisymmetric(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool is_antisymmetric(void) const method.\n"
-             << "Matrix must be squared.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool is_antisymmetric(void) const method.\n"
+                   << "Matrix must be squared.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -6477,29 +6245,28 @@ void Matrix<T>::sum_diagonal(const T& value)
         }
     }
 
+    // bool is_diagonal(void) const method
 
-// bool is_diagonal(void) const method
-
-/// Returns true if this matrix is diagonal.
-/// A diagonal matrix is which the entries outside the main diagonal are zero.
+    /// Returns true if this matrix is diagonal.
+    /// A diagonal matrix is which the entries outside the main diagonal are zero.
 
     template<class T>
     bool Matrix<T>::is_diagonal(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool is_diagonal(void) const method.\n"
-             << "Matrix must be squared.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool is_diagonal(void) const method.\n"
+                   << "Matrix must be squared.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -6514,29 +6281,28 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (true);
     }
 
+    // bool is_scalar(void) const method
 
-// bool is_scalar(void) const method
-
-/// Returns true if this matrix is scalar.
-/// A scalar matrix is a diagonal matrix whose diagonal elements all contain the same scalar.
+    /// Returns true if this matrix is scalar.
+    /// A scalar matrix is a diagonal matrix whose diagonal elements all contain the same scalar.
 
     template<class T>
     bool Matrix<T>::is_scalar(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool is_scalar(void) const method.\n"
-             << "Matrix must be squared.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool is_scalar(void) const method.\n"
+                   << "Matrix must be squared.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -6545,27 +6311,26 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (false);
     }
 
-
-/// Returns true if this matrix is the identity.
-/// The identity matrix or unit matrix is a square matrix with ones on the main diagonal and zeros elsewhere.
+    /// Returns true if this matrix is the identity.
+    /// The identity matrix or unit matrix is a square matrix with ones on the main diagonal and zeros elsewhere.
 
     template<class T>
     bool Matrix<T>::is_identity(void) const
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number != columns_number)
-   {
-      std::ostringstream buffer;
+        if (rows_number != columns_number) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Matrix Template.\n"
-             << "bool is_unity(void) const method.\n"
-             << "Matrix must be squared.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "bool is_unity(void) const method.\n"
+                   << "Matrix must be squared.\n";
 
-      throw std::logic_error(buffer.str());
-   }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -6583,10 +6348,9 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (true);
     }
 
+    // bool is_binary(void) const method
 
-// bool is_binary(void) const method
-
-/// Returns true if this matrix has binary values.
+    /// Returns true if this matrix has binary values.
 
     template<class T>
     bool Matrix<T>::is_binary(void) const
@@ -6600,13 +6364,12 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (true);
     }
 
+    // Matrix<T> filter(const size_t&, const T&, const T&) const method
 
-// Matrix<T> filter(const size_t&, const T&, const T&) const method
-
-/// Returns a new matrix where a given column has been filtered.
-/// @param column_index Index of column.
-/// @param minimum Minimum filtering value.
-/// @param maximum Maximum filtering value.
+    /// Returns a new matrix where a given column has been filtered.
+    /// @param column_index Index of column.
+    /// @param minimum Minimum filtering value.
+    /// @param maximum Maximum filtering value.
 
     template<class T>
     Matrix<T> Matrix<T>::filter(const size_t &column_index, const T &minimum, const T &maximum) const
@@ -6635,12 +6398,12 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (new_matrix);
     }
 
-// void convert_time_series(const size_t&) method
+    // void convert_time_series(const size_t&) method
 
-/// Arranges a time series data matrix in a proper format for forecasting.
-/// Note that this method sets new numbers of rows and columns in the matrix.
-/// @param lags_number Number of lags for the prediction.
-/// @todo
+    /// Arranges a time series data matrix in a proper format for forecasting.
+    /// Note that this method sets new numbers of rows and columns in the matrix.
+    /// @param lags_number Number of lags for the prediction.
+    /// @todo
 
     template<class T>
     void Matrix<T>::convert_time_series(const size_t &lags_number)
@@ -6665,12 +6428,10 @@ void Matrix<T>::sum_diagonal(const T& value)
         set(new_matrix);
     }
 
+    // void convert_autoassociation(void) method
 
-
-// void convert_autoassociation(void) method
-
-/// Arranges the matrix in a proper format for autoassociation.
-/// Note that this method sets new numbers of columns in the matrix.
+    /// Arranges the matrix in a proper format for autoassociation.
+    /// Note that this method sets new numbers of columns in the matrix.
 
     template<class T>
     void Matrix<T>::convert_autoassociation(void)
@@ -6680,30 +6441,29 @@ void Matrix<T>::sum_diagonal(const T& value)
         set(copy.assemble_columns(copy));
     }
 
+    // void convert_angular_variables_degrees(const size_t&) method
 
-// void convert_angular_variables_degrees(const size_t&) method
-
-/// Converts a given column, representing angles in degrees, to two different columns with the sinus and the cosinus of the corresponding angles.
-/// Note that this method sets a new number of columns in the matrix.
-/// @param column_index Index of column to be converted.
+    /// Converts a given column, representing angles in degrees, to two different columns with the sinus and the cosinus of the corresponding angles.
+    /// Note that this method sets a new number of columns in the matrix.
+    /// @param column_index Index of column to be converted.
 
     template<class T>
     void Matrix<T>::convert_angular_variables_degrees(const size_t &column_index)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(column_index >= columns_number)
-    {
-       std::ostringstream buffer;
+        if (column_index >= columns_number) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "void convert_angular_variables_degrees(const size_t&) method.\n"
-              << "Index of column (" << column_index << ") must be less than number of columns.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void convert_angular_variables_degrees(const size_t&) method.\n"
+                   << "Index of column (" << column_index << ") must be less than number of columns.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -6731,30 +6491,29 @@ void Matrix<T>::sum_diagonal(const T& value)
         insert_column(column_index + 1, cos_angle);
     }
 
+    // void convert_angular_variables_radians(const size_t&) method
 
-// void convert_angular_variables_radians(const size_t&) method
-
-/// Converts a given column, representing angles in radians, to two different columns with the sinus and the cosinus of the corresponding angles.
-/// Note that this method sets a new number of columns in the matrix.
-/// @param column_index Index of column to be converted.
+    /// Converts a given column, representing angles in radians, to two different columns with the sinus and the cosinus of the corresponding angles.
+    /// Note that this method sets a new number of columns in the matrix.
+    /// @param column_index Index of column to be converted.
 
     template<class T>
     void Matrix<T>::convert_angular_variables_radians(const size_t &column_index)
     {
+
         // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(column_index >= columns_number)
-    {
-       std::ostringstream buffer;
+        if (column_index >= columns_number) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Matrix Template.\n"
-              << "void convert_angular_variables_radians(const size_t&) method.\n"
-              << "Index of column (" << column_index << ") must be less than number of columns.\n";
+            buffer << "OpenNN Exception: Matrix Template.\n"
+                   << "void convert_angular_variables_radians(const size_t&) method.\n"
+                   << "Index of column (" << column_index << ") must be less than number of columns.\n";
 
-       throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -6770,10 +6529,9 @@ void Matrix<T>::sum_diagonal(const T& value)
         insert_column(column_index + 1, cos_angle);
     }
 
+    // void print(void) const method
 
-// void print(void) const method
-
-/// Prints to the screen in the matrix object.
+    /// Prints to the screen in the matrix object.
 
     template<class T>
     void Matrix<T>::print(void) const
@@ -6781,11 +6539,10 @@ void Matrix<T>::sum_diagonal(const T& value)
         std::cout << *this;
     }
 
+    // void load(const std::string&) method
 
-// void load(const std::string&) method
-
-/// Loads the numbers of rows and columns and the values of the matrix from a data file.
-/// @param file_name File name.
+    /// Loads the numbers of rows and columns and the values of the matrix from a data file.
+    /// @param file_name File name.
 
     template<class T>
     void Matrix<T>::load(const std::string &file_name)
@@ -6866,11 +6623,10 @@ void Matrix<T>::sum_diagonal(const T& value)
         file.close();
     }
 
+    // void load_binary(const std::string&) method
 
-// void load_binary(const std::string&) method
-
-/// Loads the numbers of rows and columns and the values of the matrix from a binary file.
-/// @param file_name Name of binary file.
+    /// Loads the numbers of rows and columns and the values of the matrix from a binary file.
+    /// @param file_name Name of binary file.
 
     template<class T>
     void Matrix<T>::load_binary(const std::string &file_name)
@@ -6914,11 +6670,10 @@ void Matrix<T>::sum_diagonal(const T& value)
         file.close();
     }
 
+    // void save(const std::string&) const method
 
-// void save(const std::string&) const method
-
-/// Saves the values of the matrix to a data file separated by spaces.
-/// @param file_name File name.
+    /// Saves the values of the matrix to a data file separated by spaces.
+    /// @param file_name File name.
 
     template<class T>
     void Matrix<T>::save(const std::string &file_name) const
@@ -6950,11 +6705,10 @@ void Matrix<T>::sum_diagonal(const T& value)
         file.close();
     }
 
+    // void save_binary(const std::string&) const method
 
-// void save_binary(const std::string&) const method
-
-/// Saves the values of the matrix to a binary file.
-/// @param file_name File name.
+    /// Saves the values of the matrix to a binary file.
+    /// @param file_name File name.
 
     template<class T>
     void Matrix<T>::save_binary(const std::string &file_name) const
@@ -6996,12 +6750,10 @@ void Matrix<T>::sum_diagonal(const T& value)
         file.close();
     }
 
+    // void save_csv(const std::string&) const method
 
-
-// void save_csv(const std::string&) const method
-
-/// Saves the values of the matrix to a data file separated by commas.
-/// @param file_name File name.
+    /// Saves the values of the matrix to a data file separated by commas.
+    /// @param file_name File name.
 
     template<class T>
     void Matrix<T>::save_csv(const std::string &file_name) const
@@ -7047,12 +6799,11 @@ void Matrix<T>::sum_diagonal(const T& value)
         file.close();
     }
 
+    // void parse(const std::string&) method
 
-// void parse(const std::string&) method
-
-/// This method takes a string representation of a matrix and sets this matrix
-/// from that data.
-/// @param str String to be parsed.
+    /// This method takes a string representation of a matrix and sets this matrix
+    /// from that data.
+    /// @param str String to be parsed.
 
     template<class T>
     void Matrix<T>::parse(const std::string &str)
@@ -7103,12 +6854,11 @@ void Matrix<T>::sum_diagonal(const T& value)
         }
     }
 
+    // std::string to_string(const std::string&) const method
 
-// std::string to_string(const std::string&) const method
-
-/// Returns a string representation of this matrix.
-/// The elements are separated by spaces.
-/// The rows are separated by the character "\n".
+    /// Returns a string representation of this matrix.
+    /// The elements are separated by spaces.
+    /// The rows are separated by the character "\n".
 
     template<class T>
     std::string Matrix<T>::to_string(const std::string &separator) const
@@ -7127,10 +6877,9 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (buffer.str());
     }
 
+    // Matrix<std::string> write_string_matrix(const size_t&) const
 
-// Matrix<std::string> write_string_matrix(const size_t&) const
-
-/// Returns a new matrix in which each entry has been converted to a string.
+    /// Returns a new matrix in which each entry has been converted to a string.
 
     template<class T>
     Matrix<std::string> Matrix<T>::write_string_matrix(const size_t &precision) const
@@ -7151,12 +6900,11 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (string_matrix);
     }
 
+    // vector<T> to_std_vector(void) const
 
-// vector<T> to_std_vector(void) const
-
-/// Returns a std::vector representation of this matrix.
-/// The size of the new vector is equal to the number of elements of this matrix.
-/// The entries of the new vector are the entries of this matrix ordered by rows.
+    /// Returns a std::vector representation of this matrix.
+    /// The size of the new vector is equal to the number of elements of this matrix.
+    /// The entries of the new vector are the entries of this matrix ordered by rows.
 
     template<class T>
     std::vector<T> Matrix<T>::to_std_vector(void) const
@@ -7166,12 +6914,11 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (std_vector);
     }
 
+    // Vector<T> to_vector(void) const
 
-// Vector<T> to_vector(void) const
-
-/// Returns a vector representation of this matrix.
-/// The size of the new vector is equal to the number of elements of this matrix.
-/// The entries of the new vector are the entries of this matrix ordered by rows.
+    /// Returns a vector representation of this matrix.
+    /// The size of the new vector is equal to the number of elements of this matrix.
+    /// The entries of the new vector are the entries of this matrix ordered by rows.
 
     template<class T>
     Vector <T> Matrix<T>::to_vector(void) const
@@ -7185,11 +6932,10 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (vector);
     }
 
+    // void print_preview(void) const method
 
-// void print_preview(void) const method
-
-/// Prints to the sceen a preview of the matrix,
-/// i.e., the first, second and last rows
+    /// Prints to the sceen a preview of the matrix,
+    /// i.e., the first, second and last rows
 
     template<class T>
     void Matrix<T>::print_preview(void) const
@@ -7216,10 +6962,9 @@ void Matrix<T>::sum_diagonal(const T& value)
         }
     }
 
-
-/// This method re-writes the input operator >> for the Matrix template.
-/// @param is Input stream.
-/// @param m Input matrix.
+    /// This method re-writes the input operator >> for the Matrix template.
+    /// @param is Input stream.
+    /// @param m Input matrix.
 
     template<class T>
     std::istream &operator>>(std::istream &is, Matrix<T> &m)
@@ -7236,12 +6981,11 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (is);
     }
 
+    // Output operator
 
-// Output operator
-
-/// This method re-writes the output operator << for the Matrix template.
-/// @param os Output stream.
-/// @param m Output matrix.
+    /// This method re-writes the output operator << for the Matrix template.
+    /// @param os Output stream.
+    /// @param m Output matrix.
 
     template<class T>
     std::ostream &operator<<(std::ostream &os, const Matrix<T> &m)
@@ -7261,61 +7005,47 @@ void Matrix<T>::sum_diagonal(const T& value)
         return (os);
     }
 
+    // Output operator
 
-// Output operator
-
-/// This method re-writes the output operator << for matrices of vectors.
-/// @param os Output stream.
-/// @param m Output matrix of vectors.
+    /// This method re-writes the output operator << for matrices of vectors.
+    /// @param os Output stream.
+    /// @param m Output matrix of vectors.
 
     template<class T>
-    std::ostream &operator<<(std::ostream &os, const Matrix<Vector < T>
+    std::ostream &operator<<(std::ostream &os, const Matrix <Vector<T>> &m) {
+        const size_t rows_number = m.get_rows_number();
+        const size_t columns_number = m.get_columns_number();
 
-    >& m) {
-    const size_t rows_number = m.get_rows_number();
-    const size_t columns_number = m.get_columns_number();
-
-    for(
-    size_t i = 0;
-    i<rows_number;
-    i++) {
-    for(
-    size_t j = 0;
-    j<columns_number;
-    j++) {
-    os << "subvector_" << i << "_" << j << "\n"
-    <<
-    m(i, j
-    ) <<
-    std::endl;
-}
-}
-
-return(os);
-}
-
-
-// Output operator
-
-/// This method re-writes the output operator << for matrices of matrices.
-/// @param os Output stream.
-/// @param m Output matrix of matrices.
-
-template<class T>
-std::ostream &operator<<(std::ostream &os, const Matrix <Matrix<T>> &m)
-{
-    const size_t rows_number = m.get_rows_number();
-    const size_t columns_number = m.get_columns_number();
-
-    for (size_t i = 0; i < rows_number; i++) {
-        for (size_t j = 0; j < columns_number; j++) {
-            os << "submatrix_" << i << "_" << j << "\n"
-            << m(i, j);
+        for (size_t i = 0; i < rows_number; i++) {
+            for (size_t j = 0; j < columns_number; j++) {
+                os << "subvector_" << i << "_" << j << "\n"
+                   << m(i, j) << std::endl;
+            }
         }
+        return(os);
     }
 
-    return (os);
-}
+    // Output operator
+
+    /// This method re-writes the output operator << for matrices of matrices.
+    /// @param os Output stream.
+    /// @param m Output matrix of matrices.
+
+    template<class T>
+    std::ostream &operator<<(std::ostream &os, const Matrix <Matrix<T>> &m)
+    {
+        const size_t rows_number = m.get_rows_number();
+        const size_t columns_number = m.get_columns_number();
+
+        for (size_t i = 0; i < rows_number; i++) {
+            for (size_t j = 0; j < columns_number; j++) {
+                os << "submatrix_" << i << "_" << j << "\n"
+                << m(i, j);
+            }
+        }
+
+        return (os);
+    }
 
 } // end namespace
 

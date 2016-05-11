@@ -62,9 +62,9 @@ namespace OpenNN {
     template<class T>
     struct LogisticRegressionParameters;
 
-/// This template represents an array of any kind of numbers or objects.
-/// It inherits from the vector of the standard library, and implements
-/// additional utilities.
+    /// This template represents an array of any kind of numbers or objects.
+    /// It inherits from the vector of the standard library, and implements
+    /// additional utilities.
 
     template<typename T>
     class Vector : public std::vector<T> {
@@ -196,8 +196,7 @@ namespace OpenNN {
 
         T calculate_maximum_missing_values(const Vector<size_t> &) const;
 
-        Vector<T>
-                calculate_minimum_maximum_missing_values(const Vector<size_t> &) const;
+        Vector<T> calculate_minimum_maximum_missing_values(const Vector<size_t> &) const;
 
         Vector<T> calculate_explained_variance(void) const;
 
@@ -273,13 +272,11 @@ namespace OpenNN {
 
         Statistics<T> calculate_statistics(void) const;
 
-        Statistics<T>
-                calculate_statistics_missing_values(const Vector<size_t> &) const;
+        Statistics<T> calculate_statistics_missing_values(const Vector<size_t> &) const;
 
         Vector<double> calculate_shape_parameters(void) const;
 
-        Vector<double>
-                calculate_shape_parameters_missing_values(const Vector<size_t> &) const;
+        Vector<double> calculate_shape_parameters_missing_values(const Vector<size_t> &) const;
 
         Vector<double> calculate_box_and_whiskers(void) const;
 
@@ -321,8 +318,7 @@ namespace OpenNN {
         Vector<double> calculate_cross_correlation(const Vector<double> &,
                                                    const size_t & = 10) const;
 
-        LinearRegressionParameters<T>
-                calculate_linear_regression_parameters(const Vector<T> &) const;
+        LinearRegressionParameters<T> calculate_linear_regression_parameters(const Vector<T> &) const;
 
         Vector<T> calculate_absolute_value(void) const;
 
@@ -495,18 +491,18 @@ namespace OpenNN {
         Matrix<T> to_matrix(const size_t &, const size_t &) const;
     };
 
-// CONSTRUCTORS
+    // CONSTRUCTORS
 
-/// Default constructor. It creates a vector of size zero.
+    /// Default constructor. It creates a vector of size zero.
 
     template<class T>
     Vector<T>::Vector(void) : std::vector<T>()
     {
     }
 
-/// General constructor. It creates a vector of size n, containing n copies of
-/// the default value for Type.
-/// @param new_size Size of vector.
+    /// General constructor. It creates a vector of size n, containing n copies of
+    /// the default value for Type.
+    /// @param new_size Size of vector.
 
     template<class T>
     Vector<T>::Vector(const size_t &new_size)
@@ -514,11 +510,11 @@ namespace OpenNN {
     {
     }
 
-/// Constant reference initialization constructor.
-/// It creates a vector of size n, containing n copies of the type value of
-/// Type.
-/// @param new_size Size of Vector.
-/// @param value Initialization value of Type.
+    /// Constant reference initialization constructor.
+    /// It creates a vector of size n, containing n copies of the type value of
+    /// Type.
+    /// @param new_size Size of Vector.
+    /// @param value Initialization value of Type.
 
     template<class T>
     Vector<T>::Vector(const size_t &new_size, const T &value)
@@ -526,9 +522,9 @@ namespace OpenNN {
     {
     }
 
-/// File constructor. It creates a vector object by loading its members from a
-/// data file.
-/// @param file_name Name of vector data file.
+    /// File constructor. It creates a vector object by loading its members from a
+    /// data file.
+    /// @param file_name Name of vector data file.
 
     template<class T>
     Vector<T>::Vector(const std::string &file_name)
@@ -537,7 +533,7 @@ namespace OpenNN {
         load(file_name);
     }
 
-/// Sequential constructor.
+    /// Sequential constructor.
 
     template<class T>
     Vector<T>::Vector(const T &first, const double &step, const T &last)
@@ -546,7 +542,7 @@ namespace OpenNN {
         set(first, step, last);
     }
 
-/// Input iterators constructor
+    /// Input iterators constructor
 
     template<class T>
     template<class InputIterator>
@@ -555,8 +551,8 @@ namespace OpenNN {
     {
     }
 
-/// Copy constructor. It creates a copy of an existing Vector.
-/// @param other_vector Vector to be copied.
+    /// Copy constructor. It creates a copy of an existing Vector.
+    /// @param other_vector Vector to be copied.
 
     template<class T>
     Vector<T>::Vector(const Vector<T> &other_vector)
@@ -564,20 +560,20 @@ namespace OpenNN {
     {
     }
 
-// DESTRUCTOR
+    // DESTRUCTOR
 
-/// Destructor.
+    /// Destructor.
     template<class T>
     Vector<T>::~Vector(void)
     {
     }
 
-// bool  == (const T&) const
+    // bool  == (const T&) const
 
-/// Equal to operator between this vector and a Type value.
-/// It produces true if all the elements of this vector are equal to the Type
-/// value, and false otherwise.
-/// @param value Type value to be compared with.
+    /// Equal to operator between this vector and a Type value.
+    /// It produces true if all the elements of this vector are equal to the Type
+    /// value, and false otherwise.
+    /// @param value Type value to be compared with.
 
     template<class T>
     bool Vector<T>::operator==(const T &value) const
@@ -593,12 +589,12 @@ namespace OpenNN {
         return (true);
     }
 
-// bool operator != (const T&) const
+    // bool operator != (const T&) const
 
-/// Not equivalent relational operator between this vector and a Type value.
-/// It produces true if some element of this vector is not equal to the Type
-/// value, and false otherwise.
-/// @param value Type value to be compared with.
+    /// Not equivalent relational operator between this vector and a Type value.
+    /// It produces true if some element of this vector is not equal to the Type
+    /// value, and false otherwise.
+    /// @param value Type value to be compared with.
 
     template<class T>
     bool Vector<T>::operator!=(const T &value) const
@@ -614,12 +610,12 @@ namespace OpenNN {
         return (false);
     }
 
-// bool operator > (const T&) const
+    // bool operator > (const T&) const
 
-/// Greater than relational operator between this vector and a Type value.
-/// It produces true if all the elements of this vector are greater than the
-/// Type value, and false otherwise.
-/// @param value Type value to be compared with.
+    /// Greater than relational operator between this vector and a Type value.
+    /// It produces true if all the elements of this vector are greater than the
+    /// Type value, and false otherwise.
+    /// @param value Type value to be compared with.
 
     template<class T>
     bool Vector<T>::operator>(const T &value) const
@@ -635,12 +631,12 @@ namespace OpenNN {
         return (true);
     }
 
-// bool operator < (const T&) const
+    // bool operator < (const T&) const
 
-/// Less than relational operator between this vector and a Type value.
-/// It produces true if all the elements of this vector are less than the Type
-/// value, and false otherwise.
-/// @param value Type value to be compared with.
+    /// Less than relational operator between this vector and a Type value.
+    /// It produces true if all the elements of this vector are less than the Type
+    /// value, and false otherwise.
+    /// @param value Type value to be compared with.
 
     template<class T>
     bool Vector<T>::operator<(const T &value) const
@@ -656,13 +652,13 @@ namespace OpenNN {
         return (true);
     }
 
-// bool operator >= (const T&) const
+    // bool operator >= (const T&) const
 
-/// Greater than or equal to than relational operator between this vector and a
-/// Type value.
-/// It produces true if all the elements of this vector are greater than or
-/// equal to the Type value, and false otherwise.
-/// @param value Type value to be compared with.
+    /// Greater than or equal to than relational operator between this vector and a
+    /// Type value.
+    /// It produces true if all the elements of this vector are greater than or
+    /// equal to the Type value, and false otherwise.
+    /// @param value Type value to be compared with.
 
     template<class T>
     bool Vector<T>::operator>=(const T &value) const
@@ -678,13 +674,13 @@ namespace OpenNN {
         return (true);
     }
 
-// bool operator <= (const T&) const
+    // bool operator <= (const T&) const
 
-/// Less than or equal to than relational operator between this vector and a
-/// Type value.
-/// It produces true if all the elements of this vector are less than or equal
-/// to the Type value, and false otherwise.
-/// @param value Type value to be compared with.
+    /// Less than or equal to than relational operator between this vector and a
+    /// Type value.
+    /// It produces true if all the elements of this vector are less than or equal
+    /// to the Type value, and false otherwise.
+    /// @param value Type value to be compared with.
 
     template<class T>
     bool Vector<T>::operator<=(const T &value) const
@@ -700,11 +696,11 @@ namespace OpenNN {
         return (true);
     }
 
-// METHODS
+    // METHODS
 
-// void set(void) method
+    // void set(void) method
 
-/// Sets the size of a vector to zero.
+    /// Sets the size of a vector to zero.
 
     template<class T>
     void Vector<T>::set(void)
@@ -712,10 +708,10 @@ namespace OpenNN {
         this->resize(0);
     }
 
-// void set(const size_t&) method
+    // void set(const size_t&) method
 
-/// Sets a new size to the vector. It does not initialize the data.
-/// @param new_size Size for the vector.
+    /// Sets a new size to the vector. It does not initialize the data.
+    /// @param new_size Size for the vector.
 
     template<class T>
     void Vector<T>::set(const size_t &new_size)
@@ -723,12 +719,12 @@ namespace OpenNN {
         this->resize(new_size);
     }
 
-// void set(const size_t&, const T&) method
+    // void set(const size_t&, const T&) method
 
-/// Sets a new size to the vector and initializes all its elements with a given
-/// value.
-/// @param new_size Size for the vector.
-/// @param new_value Value for all the elements.
+    /// Sets a new size to the vector and initializes all its elements with a given
+    /// value.
+    /// @param new_size Size for the vector.
+    /// @param new_value Value for all the elements.
 
     template<class T>
     void Vector<T>::set(const size_t &new_size, const T &new_value)
@@ -738,11 +734,11 @@ namespace OpenNN {
         initialize(new_value);
     }
 
-// void set(const std::string&) method
+    // void set(const std::string&) method
 
-/// Sets all the members of a vector object by loading them from a data file.
-/// The format is specified in the OpenNN manual.
-/// @param file_name Name of vector data file.
+    /// Sets all the members of a vector object by loading them from a data file.
+    /// The format is specified in the OpenNN manual.
+    /// @param file_name Name of vector data file.
 
     template<class T>
     void Vector<T>::set(const std::string &file_name)
@@ -750,15 +746,15 @@ namespace OpenNN {
         load(file_name);
     }
 
-// void set(const T&, const double&, const T&) method
+    // void set(const T&, const double&, const T&) method
 
-/// Makes this vector to have elements starting from a given value, continuing
-/// with a step value and finishing with a given value.
-/// Depending on the starting, step and finishin values, this method can produce
-/// a variety of sizes and data.
-/// @param first Starting value.
-/// @param step Step value.
-/// @param last Finishing value.
+    /// Makes this vector to have elements starting from a given value, continuing
+    /// with a step value and finishing with a given value.
+    /// Depending on the starting, step and finishin values, this method can produce
+    /// a variety of sizes and data.
+    /// @param first Starting value.
+    /// @param step Step value.
+    /// @param last Finishing value.
 
     template<class T>
     void Vector<T>::set(const T &first, const double &step, const T &last)
@@ -778,10 +774,10 @@ namespace OpenNN {
         }
     }
 
-// void set(const Vector&) method
+    // void set(const Vector&) method
 
-/// Sets the members of this object with the values of another vector.
-/// @param other_vector Object to set this vector.
+    /// Sets the members of this object with the values of another vector.
+    /// @param other_vector Object to set this vector.
 
     template<class T>
     void Vector<T>::set(const Vector &other_vector)
@@ -789,10 +785,10 @@ namespace OpenNN {
         *this = other_vector;
     }
 
-// void initialize(const T&) method
+    // void initialize(const T&) method
 
-/// Initializes all the elements of the vector with a given value.
-/// @param value Type value.
+    /// Initializes all the elements of the vector with a given value.
+    /// @param value Type value.
 
     template<class T>
     void Vector<T>::initialize(const T &value)
@@ -800,9 +796,9 @@ namespace OpenNN {
         std::fill((*this).begin(), (*this).end(), value);
     }
 
-// void initialize_sequential(void) method
+    // void initialize_sequential(void) method
 
-/// Initializes all the elements of the vector in a sequential order.
+    /// Initializes all the elements of the vector in a sequential order.
 
     template<class T>
     void Vector<T>::initialize_sequential(void)
@@ -812,31 +808,32 @@ namespace OpenNN {
         }
     }
 
-// void randomize_uniform(const double&, const double&) method
+    // void randomize_uniform(const double&, const double&) method
 
-/// Assigns a random value comprised between a minimum value and a maximum value
-/// to each element in
-/// the vector.
-/// @param minimum Minimum initialization value.
-/// @param maximum Maximum initialization value.
+    /// Assigns a random value comprised between a minimum value and a maximum value
+    /// to each element in
+    /// the vector.
+    /// @param minimum Minimum initialization value.
+    /// @param maximum Maximum initialization value.
 
     template<class T>
     void Vector<T>::randomize_uniform(const double &minimum,
                                       const double &maximum)
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(minimum > maximum) {
-    std::ostringstream buffer;
+        if(minimum > maximum) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "void randomize_uniform(const double&, const double&) method.\n"
-           << "Minimum value must be less or equal than maximum value.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "void randomize_uniform(const double&, const double&) method.\n"
+                   << "Minimum value must be less or equal than maximum value.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -847,13 +844,13 @@ namespace OpenNN {
         }
     }
 
-// void randomize_uniform(const Vector<double>&, const Vector<double>&) method
+    // void randomize_uniform(const Vector<double>&, const Vector<double>&) method
 
-/// Assigns a random value comprised between given minimum and a maximum values
-/// to every element in the
-/// vector.
-/// @param minimums Minimum initialization values.
-/// @param maximums Maximum initialization values.
+    /// Assigns a random value comprised between given minimum and a maximum values
+    /// to every element in the
+    /// vector.
+    /// @param minimums Minimum initialization values.
+    /// @param maximums Maximum initialization values.
 
     template<class T>
     void Vector<T>::randomize_uniform(const Vector<double> &minimums,
@@ -861,35 +858,35 @@ namespace OpenNN {
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t minimums_size = minimums.size();
-  const size_t maximums_size = maximums.size();
+        const size_t minimums_size = minimums.size();
+        const size_t maximums_size = maximums.size();
 
-  if(minimums_size != this_size || maximums_size != this_size) {
-    std::ostringstream buffer;
+        if(minimums_size != this_size || maximums_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "void randomize_uniform(const Vector<double>&, const "
-              "Vector<double>&) method.\n"
-           << "Minimum and maximum sizes must be equal to vector size.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "void randomize_uniform(const Vector<double>&, const "
+                      "Vector<double>&) method.\n"
+                   << "Minimum and maximum sizes must be equal to vector size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  if(minimums > maximums) {
-    std::ostringstream buffer;
+        if(minimums > maximums) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "void randomize_uniform(const Vector<double>&, const "
-              "Vector<double>&) method.\n"
-           << "Minimum values must be less or equal than their corresponding "
-              "maximum values.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "void randomize_uniform(const Vector<double>&, const "
+                      "Vector<double>&) method.\n"
+                   << "Minimum values must be less or equal than their corresponding "
+                      "maximum values.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -898,31 +895,32 @@ namespace OpenNN {
         }
     }
 
-// void randomize_normal(const double&, const double&) method
+    // void randomize_normal(const double&, const double&) method
 
-/// Assigns random values to each element in the vector.
-/// These are taken from a normal distribution with single mean and standard
-/// deviation values for all the elements.
-/// @param mean Mean value of uniform distribution.
-/// @param standard_deviation Standard deviation value of uniform distribution.
+    /// Assigns random values to each element in the vector.
+    /// These are taken from a normal distribution with single mean and standard
+    /// deviation values for all the elements.
+    /// @param mean Mean value of uniform distribution.
+    /// @param standard_deviation Standard deviation value of uniform distribution.
 
     template<class T>
     void Vector<T>::randomize_normal(const double &mean,
                                      const double &standard_deviation)
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(standard_deviation < 0.0) {
-    std::ostringstream buffer;
+        if(standard_deviation < 0.0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "void randomize_normal(const double&, const double&) method.\n"
-           << "Standard deviation must be equal or greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "void randomize_normal(const double&, const double&) method.\n"
+                   << "Standard deviation must be equal or greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -933,13 +931,13 @@ namespace OpenNN {
         }
     }
 
-// void randomize_normal(const Vector<double>, const Vector<double>) method
+    // void randomize_normal(const Vector<double>, const Vector<double>) method
 
-/// Assigns random values to each element in the vector.
-/// These are taken from normal distributions with given means and standard
-/// deviations for each element.
-/// @param mean Mean values of normal distributions.
-/// @param standard_deviation Standard deviation values of normal distributions.
+    /// Assigns random values to each element in the vector.
+    /// These are taken from normal distributions with given means and standard
+    /// deviations for each element.
+    /// @param mean Mean values of normal distributions.
+    /// @param standard_deviation Standard deviation values of normal distributions.
 
     template<class T>
     void Vector<T>::randomize_normal(const Vector<double> &mean,
@@ -947,35 +945,35 @@ namespace OpenNN {
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t mean_size = mean.size();
-  const size_t standard_deviation_size = standard_deviation.size();
+        const size_t mean_size = mean.size();
+        const size_t standard_deviation_size = standard_deviation.size();
 
-  if(mean_size != this_size || standard_deviation_size != this_size) {
-    std::ostringstream buffer;
+        if (mean_size != this_size || standard_deviation_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer
-        << "OpenNN Exception: Vector Template.\n"
-        << "void randomize_normal(const Vector<double>&, const "
-           "Vector<double>&) method.\n"
-        << "Mean and standard deviation sizes must be equal to vector size.\n";
+            buffer
+                << "OpenNN Exception: Vector Template.\n"
+                << "void randomize_normal(const Vector<double>&, const "
+                   "Vector<double>&) method.\n"
+                << "Mean and standard deviation sizes must be equal to vector size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  if(standard_deviation < 0.0) {
-    std::ostringstream buffer;
+        if(standard_deviation < 0.0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "void randomize_normal(const Vector<double>&, const "
-              "Vector<double>&) method.\n"
-           << "Standard deviations must be equal or greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "void randomize_normal(const Vector<double>&, const "
+                      "Vector<double>&) method.\n"
+                   << "Standard deviations must be equal or greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -984,9 +982,9 @@ namespace OpenNN {
         }
     }
 
-// bool contains(const T&) const method
+    // bool contains(const T&) const method
 
-/// Returns true if the vector contains a certain value, and false otherwise.
+    /// Returns true if the vector contains a certain value, and false otherwise.
 
     template<class T>
     bool Vector<T>::contains(const T &value) const
@@ -1001,10 +999,11 @@ namespace OpenNN {
 
         return (false);
     }
-// bool contains(const Vector<T>&) const method
 
-/// Returns true if the vector contains a certain value from a given set, and
-/// false otherwise.
+    // bool contains(const Vector<T>&) const method
+
+    /// Returns true if the vector contains a certain value from a given set, and
+    /// false otherwise.
 
     template<class T>
     bool Vector<T>::contains(const Vector<T> &values) const
@@ -1028,12 +1027,12 @@ namespace OpenNN {
         return (false);
     }
 
-// bool is_in(const T&, const T&) const method
+    // bool is_in(const T&, const T&) const method
 
-/// Returns true if the value of all the elements fall in some given range,
-/// and false otherwise.
-/// @param minimum Minimum value of the range.
-/// @param maximum Maximum value of the range.
+    /// Returns true if the value of all the elements fall in some given range,
+    /// and false otherwise.
+    /// @param minimum Minimum value of the range.
+    /// @param maximum Maximum value of the range.
 
     template<class T>
     bool Vector<T>::is_in(const T &minimum, const T &maximum) const
@@ -1049,13 +1048,13 @@ namespace OpenNN {
         return (true);
     }
 
-// bool is_constant(const double&) const method
+    // bool is_constant(const double&) const method
 
-/// Returns true if all the elements have the same value within a defined
-/// tolerance ,
-/// and false otherwise.
-/// @param tolerance Tolerance value, so that if abs(max-min) <= tol, then the
-/// vector is considered constant.
+    /// Returns true if all the elements have the same value within a defined
+    /// tolerance ,
+    /// and false otherwise.
+    /// @param tolerance Tolerance value, so that if abs(max-min) <= tol, then the
+    /// vector is considered constant.
 
     template<class T>
     bool Vector<T>::is_constant(const double &tolerance) const
@@ -1076,10 +1075,10 @@ namespace OpenNN {
         }
     }
 
-// bool is_crescent(void) const method
+    // bool is_crescent(void) const method
 
-/// Returns true if all the elements in the vector have values which increase
-/// with the index, and false otherwise.
+    /// Returns true if all the elements in the vector have values which increase
+    /// with the index, and false otherwise.
 
     template<class T>
     bool Vector<T>::is_crescent(void) const
@@ -1093,10 +1092,10 @@ namespace OpenNN {
         return (true);
     }
 
-// bool is_decrescent(void) const method
+    // bool is_decrescent(void) const method
 
-/// Returns true if all the elements in the vector have values which decrease
-/// with the index, and false otherwise.
+    /// Returns true if all the elements in the vector have values which decrease
+    /// with the index, and false otherwise.
 
     template<class T>
     bool Vector<T>::is_decrescent(void) const
@@ -1110,9 +1109,9 @@ namespace OpenNN {
         return (true);
     }
 
-// size_t count_occurrences(const T&) const method
+    // size_t count_occurrences(const T&) const method
 
-/// Returns the number of times that a certain value is contained in the vector.
+    /// Returns the number of times that a certain value is contained in the vector.
 
     template<class T>
     size_t Vector<T>::count_occurrences(const T &value) const
@@ -1130,11 +1129,11 @@ namespace OpenNN {
         return (count);
     }
 
-// Vector<size_t> calculate_occurrence_indices(const T&) const method
+    // Vector<size_t> calculate_occurrence_indices(const T&) const method
 
-/// Returns the vector indices at which the vector elements take some given
-/// value.
-/// @param value Value.
+    /// Returns the vector indices at which the vector elements take some given
+    /// value.
+    /// @param value Value.
 
     template<class T>
     Vector<size_t> Vector<T>::calculate_occurrence_indices(const T &value) const
@@ -1157,10 +1156,10 @@ namespace OpenNN {
         return (occurrence_indices);
     }
 
-// size_t count_greater_than(const T&) const method
+    // size_t count_greater_than(const T&) const method
 
-/// Returns the number of elements which are greater than some given value.
-/// @param value Value.
+    /// Returns the number of elements which are greater than some given value.
+    /// @param value Value.
 
     template<class T>
     size_t Vector<T>::count_greater_than(const T &value) const
@@ -1178,10 +1177,10 @@ namespace OpenNN {
         return (count);
     }
 
-// size_t count_less_than(const T&) const method
+    // size_t count_less_than(const T&) const method
 
-/// Returns the number of elements which are less than some given value.
-/// @param value Value.
+    /// Returns the number of elements which are less than some given value.
+    /// @param value Value.
 
     template<class T>
     size_t Vector<T>::count_less_than(const T &value) const
@@ -1199,11 +1198,11 @@ namespace OpenNN {
         return (count);
     }
 
-// Vector<size_t> calculate_less_than_indices(const T&) const method
+    // Vector<size_t> calculate_less_than_indices(const T&) const method
 
-/// Returns the vector indices at which the vector elements are less than some
-/// given value.
-/// @param value Value.
+    /// Returns the vector indices at which the vector elements are less than some
+    /// given value.
+    /// @param value Value.
 
     template<class T>
     Vector<size_t> Vector<T>::calculate_less_than_indices(const T &value) const
@@ -1221,11 +1220,11 @@ namespace OpenNN {
         return (less_than_indices);
     }
 
-// Vector<size_t> calculate_greater_than_indices(const T&) const method
+    // Vector<size_t> calculate_greater_than_indices(const T&) const method
 
-/// Returns the vector indices at which the vector elements are greater than
-/// some given value.
-/// @param value Value.
+    /// Returns the vector indices at which the vector elements are greater than
+    /// some given value.
+    /// @param value Value.
 
     template<class T>
     Vector<size_t> Vector<T>::calculate_greater_than_indices(const T &value) const
@@ -1244,12 +1243,12 @@ namespace OpenNN {
         return (greater_than_indices);
     }
 
-// Vector<size_t> calculate_total_frequencies(const Vector< Histogram<T> >&)
-// const
+    // Vector<size_t> calculate_total_frequencies(const Vector< Histogram<T> >&)
+    // const
 
-/// Returns a vector containing the sum of the frequencies of the bins to which
-/// this vector belongs.
-/// @param histograms Used histograms.
+    /// Returns a vector containing the sum of the frequencies of the bins to which
+    /// this vector belongs.
+    /// @param histograms Used histograms.
 
     template<class T>
     Vector<size_t> Vector<T>::calculate_total_frequencies(
@@ -1266,14 +1265,14 @@ namespace OpenNN {
         return (total_frequencies);
     }
 
-// Vector<size_t> calculate_total_frequencies_missing_values(const
-// Vector<size_t> missing_values, const Vector< Histogram<T> >&);
+    // Vector<size_t> calculate_total_frequencies_missing_values(const
+    // Vector<size_t> missing_values, const Vector< Histogram<T> >&);
 
-/// Returns a vector containing the sum of the frequencies of the bins to which
-/// this vector
-/// blongs.
-/// @param instance_missing_values Missing values
-/// @param histograms Used histograms
+    /// Returns a vector containing the sum of the frequencies of the bins to which
+    /// this vector
+    /// blongs.
+    /// @param instance_missing_values Missing values
+    /// @param histograms Used histograms
 
     template<class T>
     Vector<size_t> Vector<T>::calculate_total_frequencies_missing_values(
@@ -1295,9 +1294,9 @@ namespace OpenNN {
         return (total_frequencies);
     }
 
-// T calculate_minimum(void) const method
+    // T calculate_minimum(void) const method
 
-/// Returns the smallest element in the vector.
+    /// Returns the smallest element in the vector.
 
     template<class T>
     T Vector<T>::calculate_minimum(void) const
@@ -1315,9 +1314,9 @@ namespace OpenNN {
         return (minimum);
     }
 
-// T calculate_maximum(void) const method
+    // T calculate_maximum(void) const method
 
-/// Returns the largest element in the vector.
+    /// Returns the largest element in the vector.
 
     template<class T>
     T Vector<T>::calculate_maximum(void) const
@@ -1341,10 +1340,10 @@ namespace OpenNN {
         return (maximum);
     }
 
-// Vector<T> calculate_minimum_maximum(void) const method
+    // Vector<T> calculate_minimum_maximum(void) const method
 
-/// Returns a vector containing the smallest and the largest elements in the
-/// vector.
+    /// Returns a vector containing the smallest and the largest elements in the
+    /// vector.
 
     template<class T>
     Vector<T> Vector<T>::calculate_minimum_maximum(void) const
@@ -1378,9 +1377,9 @@ namespace OpenNN {
         return (minimum_maximum);
     }
 
-// T calculate_minimum_missing_values(const Vector<size_t>&) const method
+    // T calculate_minimum_missing_values(const Vector<size_t>&) const method
 
-/// Returns the smallest element in the vector.
+    /// Returns the smallest element in the vector.
 
     template<class T>
     T Vector<T>::calculate_minimum_missing_values(
@@ -1401,9 +1400,9 @@ namespace OpenNN {
         return (minimum);
     }
 
-// T calculate_maximum_missing_values(const Vector<size_t>&) const method
+    // T calculate_maximum_missing_values(const Vector<size_t>&) const method
 
-/// Returns the largest element in the vector.
+    /// Returns the largest element in the vector.
 
     template<class T>
     T Vector<T>::calculate_maximum_missing_values(
@@ -1428,11 +1427,11 @@ namespace OpenNN {
         return (maximum);
     }
 
-// Vector<T> calculate_minimum_maximum_missing_values(const Vector<size_t>&)
-// const method
+    // Vector<T> calculate_minimum_maximum_missing_values(const Vector<size_t>&)
+    // const method
 
-/// Returns a vector containing the smallest and the largest elements in the
-/// vector.
+    /// Returns a vector containing the smallest and the largest elements in the
+    /// vector.
 
     template<class T>
     Vector<T> Vector<T>::calculate_minimum_maximum_missing_values(
@@ -1470,10 +1469,10 @@ namespace OpenNN {
     }
 
 
-// Vector<T> calculate_explained_variance(void) const method
+    // Vector<T> calculate_explained_variance(void) const method
 
-/// Calculates the explained variance for a given vector (principal components analysis).
-/// This method returns a vector whose size is the same as the size of the given vector.
+    /// Calculates the explained variance for a given vector (principal components analysis).
+    /// This method returns a vector whose size is the same as the size of the given vector.
 
     template<class T>
     Vector<T> Vector<T>::calculate_explained_variance(void) const
@@ -1482,15 +1481,15 @@ namespace OpenNN {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_size == 0) {
-        std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: Vector Template.\n"
-               << "Vector<T> calculate_explained_variance(void) const method.\n"
-               << "Size of the vector must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> calculate_explained_variance(void) const method.\n"
+                   << "Size of the vector must be greater than zero.\n";
 
-        throw std::logic_error(buffer.str());
-      }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1498,32 +1497,31 @@ namespace OpenNN {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_sum == 0) {
-        std::ostringstream buffer;
+        if (this_sum == 0) {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: Vector Template.\n"
-               << "Vector<T> calculate_explained_variance(void) const method.\n"
-               << "Sum of the members of the vector must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> calculate_explained_variance(void) const method.\n"
+                   << "Sum of the members of the vector must be greater than zero.\n";
 
-        throw std::logic_error(buffer.str());
-      }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_sum < 0) {
-        std::ostringstream buffer;
+        if (this_sum < 0) {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: Vector Template.\n"
-               << "Vector<T> calculate_explained_variance(void) const method.\n"
-               << "Sum of the members of the vector cannot be negative.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> calculate_explained_variance(void) const method.\n"
+                   << "Sum of the members of the vector cannot be negative.\n";
 
-        throw std::logic_error(buffer.str());
-      }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
-
 
         Vector<double> explained_variance(this_size);
 
@@ -1535,31 +1533,32 @@ namespace OpenNN {
     }
 
 
-// Histogram<T> calculate_histogram(const size_t&) const method
+    // Histogram<T> calculate_histogram(const size_t&) const method
 
-/// This method bins the elements of the vector into a given number of equally
-/// spaced containers.
-/// It returns a vector of two vectors.
-/// The size of both subvectors is the number of bins.
-/// The first subvector contains the frequency of the bins.
-/// The second subvector contains the center of the bins.
+    /// This method bins the elements of the vector into a given number of equally
+    /// spaced containers.
+    /// It returns a vector of two vectors.
+    /// The size of both subvectors is the number of bins.
+    /// The first subvector contains the frequency of the bins.
+    /// The second subvector contains the center of the bins.
 
     template<class T>
     Histogram<T> Vector<T>::calculate_histogram(const size_t &bins_number) const
     {
+
 // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(bins_number < 1) {
-    std::ostringstream buffer;
+        if (bins_number < 1) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Histogram<T> calculate_histogram(const size_t&) const method.\n"
-           << "Number of bins is less than one.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Histogram<T> calculate_histogram(const size_t&) const method.\n"
+                   << "Number of bins is less than one.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1612,33 +1611,34 @@ namespace OpenNN {
         return (histogram);
     }
 
-// Histogram<T> calculate_histogram_missing_values(const size_t&) const method
+    // Histogram<T> calculate_histogram_missing_values(const size_t&) const method
 
-/// This method bins the elements of the vector into a given number of equally
-/// spaced containers.
-/// It returns a vector of two vectors.
-/// The size of both subvectors is the number of bins.
-/// The first subvector contains the frequency of the bins.
-/// The second subvector contains the center of the bins.
+    /// This method bins the elements of the vector into a given number of equally
+    /// spaced containers.
+    /// It returns a vector of two vectors.
+    /// The size of both subvectors is the number of bins.
+    /// The first subvector contains the frequency of the bins.
+    /// The second subvector contains the center of the bins.
 
     template<class T>
     Histogram<T> Vector<T>::calculate_histogram_missing_values(
             const Vector<size_t> &missing_indices, const size_t &bins_number) const
     {
+
 // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(bins_number < 1) {
-    std::ostringstream buffer;
+        if (bins_number < 1) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Histogram<T> calculate_histogram_missing_values(const "
-              "Vector<size_t>&, const size_t&) const method.\n"
-           << "Number of bins is less than one.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Histogram<T> calculate_histogram_missing_values(const "
+                      "Vector<size_t>&, const size_t&) const method.\n"
+                   << "Number of bins is less than one.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -1694,9 +1694,9 @@ namespace OpenNN {
         return (histogram);
     }
 
-// size_t calculate_minimal_index(void) const method
+    // size_t calculate_minimal_index(void) const method
 
-/// Returns the index of the smallest element in the vector.
+    /// Returns the index of the smallest element in the vector.
 
     template<class T>
     size_t Vector<T>::calculate_minimal_index(void) const
@@ -1716,9 +1716,9 @@ namespace OpenNN {
         return (minimal_index);
     }
 
-// size_t calculate_maximal_index(void) const method
+    // size_t calculate_maximal_index(void) const method
 
-/// Returns the index of the largest element in the vector.
+    /// Returns the index of the largest element in the vector.
 
     template<class T>
     size_t Vector<T>::calculate_maximal_index(void) const
@@ -1738,10 +1738,10 @@ namespace OpenNN {
         return (maximal_index);
     }
 
-// Vector<size_t> calculate_minimal_indices(const size_t&) const method
+    // Vector<size_t> calculate_minimal_indices(const size_t&) const method
 
-/// Returns the indices of the smallest elements in the vector.
-/// @param number Number of minimal indices to be computed.
+    /// Returns the indices of the smallest elements in the vector.
+    /// @param number Number of minimal indices to be computed.
 
     template<class T>
     Vector<size_t>
@@ -1764,10 +1764,10 @@ namespace OpenNN {
         return (minimal_indices);
     }
 
-// Vector<size_t> calculate_maximal_indices(const size_t&) const method
+    // Vector<size_t> calculate_maximal_indices(const size_t&) const method
 
-/// Returns the indices of the largest elements in the vector.
-/// @param number Number of maximal indices to be computed.
+    /// Returns the indices of the largest elements in the vector.
+    /// @param number Number of maximal indices to be computed.
 
     template<class T>
     Vector<size_t>
@@ -1790,10 +1790,10 @@ namespace OpenNN {
         return (maximal_indices);
     }
 
-// Vector<size_t> calculate_minimal_maximal_index(void) const method
+    // Vector<size_t> calculate_minimal_maximal_index(void) const method
 
-/// Returns a vector with the indexes of the smallest and the largest elements
-/// in the vector.
+    /// Returns a vector with the indexes of the smallest and the largest elements
+    /// in the vector.
 
     template<class T>
     Vector<size_t> Vector<T>::calculate_minimal_maximal_index(void) const
@@ -1824,11 +1824,11 @@ namespace OpenNN {
         return (minimal_maximal_index);
     }
 
-// Vector<double> calculate_pow(const T&) const method
+    // Vector<double> calculate_pow(const T&) const method
 
-/// Returns a vector with the elements of this vector raised to a power
-/// exponent.
-/// @param exponent Pow exponent.
+    /// Returns a vector with the elements of this vector raised to a power
+    /// exponent.
+    /// @param exponent Pow exponent.
 
     template<class T>
     Vector<T> Vector<T>::calculate_pow(const T &exponent) const
@@ -1844,11 +1844,11 @@ namespace OpenNN {
         return (power);
     }
 
-// Vector<double> calculate_competitive(void) const method
+    // Vector<double> calculate_competitive(void) const method
 
-/// Returns the competitive vector of this vector,
-/// whose elements are one the bigest element of this vector, and zero for the
-/// other elements.
+    /// Returns the competitive vector of this vector,
+    /// whose elements are one the bigest element of this vector, and zero for the
+    /// other elements.
 
     template<class T>
     Vector<T> Vector<T>::calculate_competitive(void) const
@@ -1864,10 +1864,10 @@ namespace OpenNN {
         return (competitive);
     }
 
-// Vector<T> calculate_softmax(void) const method
+    // Vector<T> calculate_softmax(void) const method
 
-/// Returns the softmax vector of this vector,
-/// whose elements sum one, and can be interpreted as probabilities.
+    /// Returns the softmax vector of this vector,
+    /// whose elements sum one, and can be interpreted as probabilities.
 
     template<class T>
     Vector<T> Vector<T>::calculate_softmax(void) const
@@ -1889,9 +1889,9 @@ namespace OpenNN {
         return (softmax);
     }
 
-// Matrix<T> calculate_softmax_Jacobian(void) const method
+    // Matrix<T> calculate_softmax_Jacobian(void) const method
 
-/// Returns the softmax Jacobian of this vector.
+    /// Returns the softmax Jacobian of this vector.
 
     template<class T>
     Matrix<T> Vector<T>::calculate_softmax_Jacobian(void) const
@@ -1913,10 +1913,10 @@ namespace OpenNN {
         return (softmax_Jacobian);
     }
 
-// Vector<bool> calculate_binary(void) const method
+    // Vector<bool> calculate_binary(void) const method
 
-/// This method converts the values of the vector to be binary.
-/// The threshold value used is 0.5.
+    /// This method converts the values of the vector to be binary.
+    /// The threshold value used is 0.5.
 
     template<class T>
     Vector<bool> Vector<T>::calculate_binary(void) const
@@ -1936,10 +1936,10 @@ namespace OpenNN {
         return (binary);
     }
 
-// Vector<T> calculate_cumulative(void) const method
+    // Vector<T> calculate_cumulative(void) const method
 
-/// Return the cumulative vector of this vector,
-/// where each element is summed up with all the previous ones.
+    /// Return the cumulative vector of this vector,
+    /// where each element is summed up with all the previous ones.
 
     template<class T>
     Vector<T> Vector<T>::calculate_cumulative(void) const
@@ -1959,56 +1959,56 @@ namespace OpenNN {
         return (cumulative);
     }
 
-// size_t calculate_cumulative_index(const T&) const method
+    // size_t calculate_cumulative_index(const T&) const method
 
-/// This method applies only to cumulative vectors.
-/// It returns the index of the first element which is greater than a given
-/// value.
-/// @param value Value.
+    /// This method applies only to cumulative vectors.
+    /// It returns the index of the first element which is greater than a given
+    /// value.
+    /// @param value Value.
 
     template<class T>
     size_t Vector<T>::calculate_cumulative_index(const T &value) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_size == 0) {
-    std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "size_t calculate_cumulative_index(const T&) const.\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "size_t calculate_cumulative_index(const T&) const.\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  T cumulative_value = (*this)[this_size - 1];
+        T cumulative_value = (*this)[this_size - 1];
 
-  if(value > cumulative_value) {
-    std::ostringstream buffer;
+        if (value > cumulative_value) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "size_t calculate_cumulative_index(const T&) const.\n"
-           << "Value (" << value << ") must be less than cumulative value ("
-           << cumulative_value << ").\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "size_t calculate_cumulative_index(const T&) const.\n"
+                   << "Value (" << value << ") must be less than cumulative value ("
+                   << cumulative_value << ").\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  for (size_t i = 1; i < this_size; i++) {
-    if((*this)[i] < (*this)[i - 1]) {
-      std::ostringstream buffer;
+        for (size_t i = 1; i < this_size; i++) {
+            if((*this)[i] < (*this)[i - 1]) {
+                std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Vector Template.\n"
-             << "int calculate_cumulative_index(const T&) const.\n"
-             << "Vector elements must be crescent.\n";
+                buffer << "OpenNN Exception: Vector Template.\n"
+                       << "int calculate_cumulative_index(const T&) const.\n"
+                       << "Vector elements must be crescent.\n";
 
-      throw std::logic_error(buffer.str());
-    }
-  }
+                throw std::logic_error(buffer.str());
+            }
+        }
 
 #endif
 
@@ -2025,9 +2025,9 @@ namespace OpenNN {
         return (this_size - 1);
     }
 
-// size_t calculate_closest_index(const T&) const method
+    // size_t calculate_closest_index(const T&) const method
 
-/// Returns the index of the closest element in the vector to a given value.
+    /// Returns the index of the closest element in the vector to a given value.
 
     template<class T>
     size_t Vector<T>::calculate_closest_index(const T &value) const
@@ -2039,9 +2039,9 @@ namespace OpenNN {
         return (closest_index);
     }
 
-// T calculate_sum(void) const method
+    // T calculate_sum(void) const method
 
-/// Returns the sum of the elements in the vector.
+    /// Returns the sum of the elements in the vector.
 
     template<class T>
     T Vector<T>::calculate_sum(void) const
@@ -2057,10 +2057,10 @@ namespace OpenNN {
         return (sum);
     }
 
-// T calculate_partial_sum(const Vector<size_t>&) const method
+    // T calculate_partial_sum(const Vector<size_t>&) const method
 
-/// Returns the sum of the elements with the given indices.
-/// @param indices Indices of the elementes to sum.
+    /// Returns the sum of the elements with the given indices.
+    /// @param indices Indices of the elementes to sum.
 
     template<class T>
     T Vector<T>::calculate_partial_sum(const Vector<size_t> &indices) const
@@ -2078,9 +2078,9 @@ namespace OpenNN {
         return (sum);
     }
 
-// T calculate_sum_missing_values(const Vector<size_t>&) const method
+    // T calculate_sum_missing_values(const Vector<size_t>&) const method
 
-/// Returns the sum of the elements in the vector.
+    /// Returns the sum of the elements in the vector.
 
     template<class T>
     T Vector<T>::calculate_sum_missing_values(
@@ -2099,9 +2099,9 @@ namespace OpenNN {
         return (sum);
     }
 
-// T calculate_product(void) const method
+    // T calculate_product(void) const method
 
-/// Returns the product of the elements in the vector.
+    /// Returns the product of the elements in the vector.
 
     template<class T>
     T Vector<T>::calculate_product(void) const
@@ -2117,28 +2117,28 @@ namespace OpenNN {
         return (product);
     }
 
-// double calculate_mean(void) const method
+    // double calculate_mean(void) const method
 
-/// Returns the mean of the elements in the vector.
+    /// Returns the mean of the elements in the vector.
 
     template<class T>
     double Vector<T>::calculate_mean(void) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_size == 0) {
-    std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_mean(void) const method.\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_mean(void) const method.\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2149,28 +2149,28 @@ namespace OpenNN {
         return (mean);
     }
 
-// double calculate_variance(void) method
+    // double calculate_variance(void) method
 
-/// Returns the variance of the elements in the vector.
+    /// Returns the variance of the elements in the vector.
 
     template<class T>
     double Vector<T>::calculate_variance(void) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_size == 0) {
-    std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_variance(void) const method.\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_variance(void) const method.\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2193,9 +2193,9 @@ namespace OpenNN {
     }
 
 
-// double calculate_covariance(const Vector<double>&) const method
+    // double calculate_covariance(const Vector<double>&) const method
 
-/// Returns the covariance of this vector and other vector
+    /// Returns the covariance of this vector and other vector
 
     template<class T>
     double Vector<T>::calculate_covariance(const Vector<double> &other_vector) const
@@ -2206,15 +2206,15 @@ namespace OpenNN {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_size == 0) {
-       std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-       buffer << "OpenNN Exception: Vector Template.\n"
-              << "double calculate_covariance(const Vector<double>&) const method.\n"
-              << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_covariance(const Vector<double>&) const method.\n"
+                   << "Size must be greater than zero.\n";
 
-       throw std::logic_error(buffer.str());
-     }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2222,15 +2222,15 @@ namespace OpenNN {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_size != other_vector.size()) {
-             std::ostringstream buffer;
+        if (this_size != other_vector.size()) {
+            std::ostringstream buffer;
 
-             buffer << "OpenNN Exception: Vector Template.\n"
-                    << "double calculate_covariance(const Vector<double>&) const method.\n"
-                    << "Size of this vectro must be equal to size of other vector.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_covariance(const Vector<double>&) const method.\n"
+                   << "Size of this vectro must be equal to size of other vector.\n";
 
-             throw std::logic_error(buffer.str());
-         }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2252,56 +2252,57 @@ namespace OpenNN {
     }
 
 
-// double calculate_standard_deviation(void) const method
+    // double calculate_standard_deviation(void) const method
 
-/// Returns the variance of the elements in the vector.
+    /// Returns the variance of the elements in the vector.
 
     template<class T>
     double Vector<T>::calculate_standard_deviation(void) const
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t this_size = this->size();
+        const size_t this_size = this->size();
 
-  if(this_size == 0) {
-    std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_standard_deviation(void) const method.\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_standard_deviation(void) const method.\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
         return (sqrt(calculate_variance()));
     }
 
-// double calculate_asymmetry(void) const method
+    // double calculate_asymmetry(void) const method
 
-/// Returns the asymmetry of the elements in the vector
+    /// Returns the asymmetry of the elements in the vector
 
     template<class T>
     double Vector<T>::calculate_asymmetry(void) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_size == 0) {
-    std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_asymmetry(void) const method.\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_asymmetry(void) const method.\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2326,28 +2327,28 @@ namespace OpenNN {
         return (numerator / denominator);
     }
 
-// double calculate_kurtosis(void) const method
+    // double calculate_kurtosis(void) const method
 
-/// Returns the kurtosis value of the elements in the vector.
+    /// Returns the kurtosis value of the elements in the vector.
 
     template<class T>
     double Vector<T>::calculate_kurtosis(void) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_size == 0) {
-    std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_kurtosis(void) const method.\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_kurtosis(void) const method.\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2371,28 +2372,29 @@ namespace OpenNN {
         return ((numerator / denominator) - 3.0);
     }
 
-// Vector<double> calculate_mean_standard_deviation(void) const method
+    // Vector<double> calculate_mean_standard_deviation(void) const method
 
-/// Returns the mean and the standard deviation of the elements in the vector.
+    /// Returns the mean and the standard deviation of the elements in the vector.
 
     template<class T>
     Vector<double> Vector<T>::calculate_mean_standard_deviation(void) const
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t this_size = this->size();
+        const size_t this_size = this->size();
 
-  if(this_size == 0) {
-    std::ostringstream buffer;
+        if(this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_mean_standard_deviation(void).\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_mean_standard_deviation(void).\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2406,9 +2408,9 @@ namespace OpenNN {
         return (mean_standard_deviation);
     }
 
-// double calculate_median(void) const
+    // double calculate_median(void) const
 
-/// Returns the median of the elements in the vector
+    /// Returns the median of the elements in the vector
 
     template<class T>
     double Vector<T>::calculate_median(void) const
@@ -2432,9 +2434,9 @@ namespace OpenNN {
         }
     }
 
-// Vector<double> calculate_quartiles(void) const
+    // Vector<double> calculate_quartiles(void) const
 
-/// Returns the quarters of the elements in the vector.
+    /// Returns the quarters of the elements in the vector.
 
     template<class T>
     Vector<double> Vector<T>::calculate_quartiles(void) const
@@ -2467,30 +2469,29 @@ namespace OpenNN {
         return (quartiles);
     }
 
-// double calculate_mean_missing_values(const Vector<size_t>&) const method
+    // double calculate_mean_missing_values(const Vector<size_t>&) const method
 
-/// Returns the mean of the elements in the vector.
+    /// Returns the mean of the elements in the vector.
 
     template<class T>
-    double Vector<T>::calculate_mean_missing_values(
-            const Vector<size_t> &missing_indices) const
+    double Vector<T>::calculate_mean_missing_values(const Vector<size_t> &missing_indices) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_size == 0) {
-    std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_mean_missing_values(const Vector<size_t>&) "
-              "const method.\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_mean_missing_values(const Vector<size_t>&) "
+                      "const method.\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2510,9 +2511,9 @@ namespace OpenNN {
         return (mean);
     }
 
-// double calculate_variance_missing_values(const Vector<size_t>&) method
+    // double calculate_variance_missing_values(const Vector<size_t>&) method
 
-/// Returns the variance of the elements in the vector.
+    /// Returns the variance of the elements in the vector.
 
     template<class T>
     double Vector<T>::calculate_variance_missing_values(
@@ -2520,20 +2521,20 @@ namespace OpenNN {
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_size == 0) {
-    std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_variance_missing_values(const Vector<size_t>&) "
-              "const method.\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_variance_missing_values(const Vector<size_t>&) "
+                      "const method.\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2562,31 +2563,32 @@ namespace OpenNN {
     }
 
 
-// double calculate_standard_deviation_missing_values(const Vector<size_t>&)
-// method
+    // double calculate_standard_deviation_missing_values(const Vector<size_t>&)
+    // method
 
-/// Returns the standard deviation of the elements in the vector.
+    /// Returns the standard deviation of the elements in the vector.
 
     template<class T>
     double Vector<T>::calculate_standard_deviation_missing_values(
             const Vector<size_t> &missing_indices) const
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t this_size = this->size();
+        const size_t this_size = this->size();
 
-  if(this_size == 0) {
-    std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_standard_deviation_missing_values(const "
-              "Vector<size_t>&) const method.\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_standard_deviation_missing_values(const "
+                      "Vector<size_t>&) const method.\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2599,25 +2601,24 @@ namespace OpenNN {
 /// Returns the asymmetry of the elements in the vector.
 
     template<class T>
-    double Vector<T>::calculate_asymmetry_missing_values(
-            const Vector<size_t> &missing_indices) const
+    double Vector<T>::calculate_asymmetry_missing_values(const Vector<size_t> &missing_indices) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_size == 0) {
-    std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_asymmetry_missing_values(const "
-              "Vector<size_t>&) const method.\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_asymmetry_missing_values(const "
+                      "Vector<size_t>&) const method.\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2644,9 +2645,9 @@ namespace OpenNN {
         return (numerator / denominator);
     }
 
-// double calculate_kurtosis_missing_values(Vector<size_t>&) const method
+    // double calculate_kurtosis_missing_values(Vector<size_t>&) const method
 
-/// Returns the kurtosis of the elements in the vector.
+    /// Returns the kurtosis of the elements in the vector.
 
     template<class T>
     double Vector<T>::calculate_kurtosis_missing_values(
@@ -2654,20 +2655,20 @@ namespace OpenNN {
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(this_size == 0) {
-    std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_kurtosis_missing_values(const Vector<size_t>&) "
-              "const method.\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_kurtosis_missing_values(const Vector<size_t>&) "
+                      "const method.\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2693,29 +2694,30 @@ namespace OpenNN {
         return ((numerator / denominator) - 3.0);
     }
 
-// Statistics<T> calculate_statistics(void) const method
+    // Statistics<T> calculate_statistics(void) const method
 
-/// Returns the minimum, maximum, mean and standard deviation of the elements in
-/// the vector.
+    /// Returns the minimum, maximum, mean and standard deviation of the elements in
+    /// the vector.
 
     template<class T>
     Statistics<T> Vector<T>::calculate_statistics(void) const
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t this_size = this->size();
+        const size_t this_size = this->size();
 
-  if(this_size == 0) {
-    std::ostringstream buffer;
+        if(this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_statistics(void).\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_statistics(void).\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2729,32 +2731,33 @@ namespace OpenNN {
         return (statistics);
     }
 
-// Statistics<T> calculate_statistics_missing_values(const Vector<size_t>&)
-// const method
+    // Statistics<T> calculate_statistics_missing_values(const Vector<size_t>&)
+    // const method
 
-/// Returns the minimum, maximum, mean and standard deviation of the elements in
-/// the vector.
+    /// Returns the minimum, maximum, mean and standard deviation of the elements in
+    /// the vector.
 
     template<class T>
     Statistics<T> Vector<T>::calculate_statistics_missing_values(
             const Vector<size_t> &missing_indices) const
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t this_size = this->size();
+        const size_t this_size = this->size();
 
-  if(this_size == 0) {
-    std::ostringstream buffer;
+        if(this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_statistics_missing_values(const "
-              "Vector<size_t>&).\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_statistics_missing_values(const "
+                      "Vector<size_t>&).\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2769,29 +2772,30 @@ namespace OpenNN {
         return (statistics);
     }
 
-// Vector<double> calculate_shape_parameters(void) const
+    // Vector<double> calculate_shape_parameters(void) const
 
-/// Returns a vector with the asymmetry and the kurtosis values of the elements
-/// in the vector.
+    /// Returns a vector with the asymmetry and the kurtosis values of the elements
+    /// in the vector.
 
     template<class T>
     Vector<double> Vector<T>::calculate_shape_parameters(void) const
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t this_size = this->size();
+        const size_t this_size = this->size();
 
-  if(this_size == 0) {
-    std::ostringstream buffer;
+        if (this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Vector<double> calculate_shape_parameters(void).\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<double> calculate_shape_parameters(void).\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2803,32 +2807,33 @@ namespace OpenNN {
         return (shape_parameters);
     }
 
-// Vector<double> calculate_shape_parameters_missing_values(const
-// Vector<size_t>&) const
+    // Vector<double> calculate_shape_parameters_missing_values(const
+    // Vector<size_t>&) const
 
-/// Returns a vector with the asymmetry and the kurtosis values of the elements
-/// in the vector.
+    /// Returns a vector with the asymmetry and the kurtosis values of the elements
+    /// in the vector.
 
     template<class T>
     Vector<double> Vector<T>::calculate_shape_parameters_missing_values(
             const Vector<size_t> &missing_values) const
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t this_size = this->size();
+        const size_t this_size = this->size();
 
-  if(this_size == 0) {
-    std::ostringstream buffer;
+        if(this_size == 0) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_shape_parameters_missing_values(const "
-              "Vector<size_t>&).\n"
-           << "Size must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_shape_parameters_missing_values(const "
+                      "Vector<size_t>&).\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2840,9 +2845,9 @@ namespace OpenNN {
         return (shape_parameters);
     }
 
-// Vector<double> calculate_box_and_whiskers(void) const
+    // Vector<double> calculate_box_and_whiskers(void) const
 
-/// Returns the box and whispers for a vector.
+    /// Returns the box and whispers for a vector.
 
     template<class T>
     Vector<double> Vector<T>::calculate_box_and_whiskers(void) const
@@ -2860,9 +2865,9 @@ namespace OpenNN {
         return (box_and_whispers);
     }
 
-// double calculate_norm(void) const method
+    // double calculate_norm(void) const method
 
-/// Returns the vector norm.
+    /// Returns the vector norm.
 
     template<class T>
     double Vector<T>::calculate_norm(void) const
@@ -2882,9 +2887,9 @@ namespace OpenNN {
         return (norm);
     }
 
-// Vector<T> calculate_norm_gradient(void) const method
+    // Vector<T> calculate_norm_gradient(void) const method
 
-/// Returns the gradient of the vector norm.
+    /// Returns the gradient of the vector norm.
 
     template<class T>
     Vector<T> Vector<T>::calculate_norm_gradient(void) const
@@ -2906,9 +2911,9 @@ namespace OpenNN {
         return (gradient);
     }
 
-// Matrix<T> calculate_norm_Hessian(void) const method
+    // Matrix<T> calculate_norm_Hessian(void) const method
 
-/// Returns the Hessian of the vector norm.
+    /// Returns the Hessian of the vector norm.
 
     template<class T>
     Matrix<T> Vector<T>::calculate_norm_Hessian(void) const
@@ -2931,26 +2936,27 @@ namespace OpenNN {
         return (Hessian);
     }
 
-// double calculate_p_norm(const double&) const method
+    // double calculate_p_norm(const double&) const method
 
-/// Returns the vector p-norm.
+    /// Returns the vector p-norm.
 
     template<class T>
     double Vector<T>::calculate_p_norm(const double &p) const
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                std::ostringstream buffer;
+        if(p <= 0) {
+            std::ostringstream buffer;
 
-  if(p <= 0) {
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_p_norm(const double&) const method.\n"
-           << "p value must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_p_norm(const double&) const method.\n"
+                   << "p value must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -2969,27 +2975,28 @@ namespace OpenNN {
         return (norm);
     }
 
-// Vector<double> calculate_p_norm_gradient(const double&) const method
+    // Vector<double> calculate_p_norm_gradient(const double&) const method
 
-/// Returns the gradient of the vector norm.
+    /// Returns the gradient of the vector norm.
 
     template<class T>
     Vector<double> Vector<T>::calculate_p_norm_gradient(const double &p) const
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                std::ostringstream buffer;
+        if(p <= 0) {
+            std::ostringstream buffer;
 
-  if(p <= 0) {
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Vector<double> calculate_p_norm_gradient(const double&) const "
-              "method.\n"
-           << "p value must be greater than zero.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<double> calculate_p_norm_gradient(const double&) const "
+                      "method.\n"
+                   << "p value must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -3015,9 +3022,9 @@ namespace OpenNN {
         return (gradient);
     }
 
-// double calculate_normalized(void) const method
+    // double calculate_normalized(void) const method
 
-/// Returns this vector divided by its norm.
+    /// Returns this vector divided by its norm.
 
     template<class T>
     Vector<T> Vector<T>::calculate_normalized(void) const
@@ -3036,43 +3043,46 @@ namespace OpenNN {
 
         return (normalized);
     }
-/*
-// double calculate_distance(const Vector<double>&) const method
 
-/// Returns the distance between the elements of this vector and the elements of
-/// another vector.
-/// @param other_vector Other vector.
+    /*
+    // double calculate_distance(const Vector<double>&) const method
 
-template <class T>
-double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
-  return (sqrt(calculate_sum_squared_error(other_vector)));
-}
-*/
-// double calculate_distance(const Vector<double>&) const method
+    /// Returns the distance between the elements of this vector and the elements of
+    /// another vector.
+    /// @param other_vector Other vector.
 
-/// Returns the distance between the elements of this vector and the elements of
-/// another vector.
-/// @param other_vector Other vector.
+    template <class T>
+    double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
+        return (sqrt(calculate_sum_squared_error(other_vector)));
+    }
+    */
+
+    // double calculate_distance(const Vector<double>&) const method
+
+    /// Returns the distance between the elements of this vector and the elements of
+    /// another vector.
+    /// @param other_vector Other vector.
 
     template<class T>
     double Vector<T>::calculate_distance(const Vector<T> &other_vector) const
     {
 
         const size_t this_size = this->size();
+
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other_vector.size();
+        const size_t other_size = other_vector.size();
 
-  if(other_size != this_size) {
-    std::ostringstream buffer;
+        if(other_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_distance(const Vector<T>&) const "
-              "method.\n"
-           << "Size must be equal to this size.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_distance(const Vector<T>&) const "
+                      "method.\n"
+                   << "Size must be equal to this size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
         double distance = 0.0;
@@ -3087,11 +3097,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (sqrt(distance));
     }
 
-// double calculate_sum_squared_error(const Vector<double>&) const method
+    // double calculate_sum_squared_error(const Vector<double>&) const method
 
-/// Returns the sum squared error between the elements of this vector and the
-/// elements of another vector.
-/// @param other_vector Other vector.
+    /// Returns the sum squared error between the elements of this vector and the
+    /// elements of another vector.
+    /// @param other_vector Other vector.
 
     template<class T>
     double Vector<T>::calculate_sum_squared_error(
@@ -3099,22 +3109,22 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other_vector.size();
+        const size_t other_size = other_vector.size();
 
-  if(other_size != this_size) {
-    std::ostringstream buffer;
+        if(other_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_sum_squared_error(const Vector<double>&) const "
-              "method.\n"
-           << "Size must be equal to this size.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_sum_squared_error(const Vector<double>&) const "
+                      "method.\n"
+                   << "Size must be equal to this size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -3130,11 +3140,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (sum_squared_error);
     }
 
-// double calculate_sum_squared_error(const Vector<double>&) const method
+    // double calculate_sum_squared_error(const Vector<double>&) const method
 
-/// Returns the sum squared error between the elements of this vector and the
-/// elements of another vector.
-/// @param other_vector Other vector.
+    /// Returns the sum squared error between the elements of this vector and the
+    /// elements of another vector.
+    /// @param other_vector Other vector.
 
     template<class T>
     double Vector<T>::calculate_sum_squared_error(
@@ -3142,25 +3152,23 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
             const Vector<size_t> &column_indices) const
     {
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
-                                                                                                                                /*
-   const size_t this_size = this->size();
-   const size_t other_size = other_vector.size();
+        /*
+        const size_t this_size = this->size();
+        const size_t other_size = other_vector.size();
 
-   if(other_size != this_size)
-   {
-      std::ostringstream buffer;
+        if (other_size != this_size) {
+            std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Vector Template.\n"
-             << "double calculate_sum_squared_error(const Vector<double>&) const
-   method.\n"
-             << "Size must be equal to this size.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_sum_squared_error(const Vector<double>&) const method.\n"
+                   << "Size must be equal to this size.\n";
 
-      throw std::logic_error(buffer.str());
-   }
-*/
+            throw std::logic_error(buffer.str());
+        }
+        */
 #endif
 
         double sum_squared_error = 0.0;
@@ -3177,12 +3185,12 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (sum_squared_error);
     }
 
-// double calculate_Minkowski_error(const Vector<double>&) const method
+    // double calculate_Minkowski_error(const Vector<double>&) const method
 
-/// Returns the Minkowski squared error between the elements of this vector and
-/// the elements of another vector.
-/// @param other_vector Other vector.
-/// @param Minkowski_parameter Minkowski exponent.
+    /// Returns the Minkowski squared error between the elements of this vector and
+    /// the elements of another vector.
+    /// @param other_vector Other vector.
+    /// @param Minkowski_parameter Minkowski exponent.
 
     template<class T>
     double
@@ -3191,42 +3199,42 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                std::ostringstream buffer;
+        std::ostringstream buffer;
 
-  if(this_size == 0) {
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_Minkowski_error(const Vector<double>&) const "
-              "method.\n"
-           << "Size must be greater than zero.\n";
+        if (this_size == 0) {
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_Minkowski_error(const Vector<double>&) const "
+                      "method.\n"
+                   << "Size must be greater than zero.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  const size_t other_size = other_vector.size();
+        const size_t other_size = other_vector.size();
 
-  if(other_size != this_size) {
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_Minkowski_error(const Vector<double>&) const "
-              "method.\n"
-           << "Other size must be equal to this size.\n";
+        if (other_size != this_size) {
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_Minkowski_error(const Vector<double>&) const "
+                      "method.\n"
+                   << "Other size must be equal to this size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  // Control sentence
+        // Control sentence
 
-  if(Minkowski_parameter < 1.0 || Minkowski_parameter > 2.0) {
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "double calculate_Minkowski_error(const Vector<double>&) const "
-              "method.\n"
-           << "The Minkowski parameter must be comprised between 1 and 2\n";
+        if (Minkowski_parameter < 1.0 || Minkowski_parameter > 2.0) {
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "double calculate_Minkowski_error(const Vector<double>&) const "
+                      "method.\n"
+                   << "The Minkowski parameter must be comprised between 1 and 2\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -3242,32 +3250,32 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (Minkowski_error);
     }
 
-// T calculate_linear_correlation(const Vector<T>&) const method
+    // T calculate_linear_correlation(const Vector<T>&) const method
 
-/// Calculates the linear correlation coefficient (R-value) between another
-/// vector and this vector.
-/// @param other Vector for computing the linear correlation with this vector.
+    /// Calculates the linear correlation coefficient (R-value) between another
+    /// vector and this vector.
+    /// @param other Vector for computing the linear correlation with this vector.
 
     template<class T>
     T Vector<T>::calculate_linear_correlation(const Vector<T> &other) const
     {
         const size_t n = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other.size();
+        const size_t other_size = other.size();
 
-  std::ostringstream buffer;
+        if(other_size != n) {
+            std::ostringstream buffer;
 
-  if(other_size != n) {
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "T calculate_linear_correlation(const Vector<T>&) const method.\n"
-           << "Other size must be equal to this size.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "T calculate_linear_correlation(const Vector<T>&) const method.\n"
+                   << "Other size must be equal to this size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -3314,35 +3322,35 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (linear_correlation);
     }
 
-// T calculate_linear_correlation_missing_values(const Vector<T>&, const
-// Vector<size_t>&) const method
+    // T calculate_linear_correlation_missing_values(const Vector<T>&, const
+    // Vector<size_t>&) const method
 
-/// Calculates the linear correlation coefficient (R-value) between another
-/// vector and this vector when there are missing values in the data.
-/// @param other Vector for computing the linear correlation with this vector.
-/// @param missing_indices Vector with the indices of the missing values.
+    /// Calculates the linear correlation coefficient (R-value) between another
+    /// vector and this vector when there are missing values in the data.
+    /// @param other Vector for computing the linear correlation with this vector.
+    /// @param missing_indices Vector with the indices of the missing values.
 
     template<class T>
-    T Vector<T>::calculate_linear_correlation_missing_values(
-            const Vector<T> &other, const Vector<size_t> &missing_indices) const
+    T Vector<T>::calculate_linear_correlation_missing_values(const Vector<T> &other,
+                                                             const Vector<size_t> &missing_indices) const
     {
         const size_t n = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other.size();
+        const size_t other_size = other.size();
 
-  std::ostringstream buffer;
+        if(other_size != n) {
+            std::ostringstream buffer;
 
-  if(other_size != n) {
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "T calculate_linear_correlation(const Vector<T>&) const method.\n"
-           << "Other size must be equal to this size.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "T calculate_linear_correlation(const Vector<T>&) const method.\n"
+                   << "Other size must be equal to this size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -3389,10 +3397,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (linear_correlation);
     }
 
-// Vector<double> calculate_autocorrelation(const size_t&) const
+    // Vector<double> calculate_autocorrelation(const size_t&) const
 
-/// Calculates autocorrelation for a given number of maximum lags.
-/// @param lags_number Maximum lags number.
+    /// Calculates autocorrelation for a given number of maximum lags.
+    /// @param lags_number Maximum lags number.
 
     template<class T>
     Vector<double>
@@ -3429,14 +3437,14 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return autocorrelation;
     }
 
-// Vector<double> calculate_cross_correlation(cosnt Vector<double>&, const
-// size_t&) const
+    // Vector<double> calculate_cross_correlation(cosnt Vector<double>&, const
+    // size_t&) const
 
-/// Calculates the cross-correlation between this vector and another given
-/// vector.
-/// @param other Other vector.
-/// @param maximum_lags_number Maximum lags for which cross-correlation is
-/// calculated.
+    /// Calculates the cross-correlation between this vector and another given
+    /// vector.
+    /// @param other Other vector.
+    /// @param maximum_lags_number Maximum lags for which cross-correlation is
+    /// calculated.
 
     template<class T>
     Vector<double> Vector<T>::calculate_cross_correlation(
@@ -3446,9 +3454,9 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
             std::ostringstream buffer;
 
             buffer << "OpenNN Exception: Vector Template.\n"
-            << "Vector<double calculate_cross_correlation(const "
+                   << "Vector<double calculate_cross_correlation(const "
                     "Vector<double>&) method.\n"
-            << "Both vectors must have the same size.\n";
+                   << "Both vectors must have the same size.\n";
 
             throw std::logic_error(buffer.str());
         }
@@ -3492,13 +3500,13 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (cross_correlation);
     }
 
-// LinearRegressionParameters<T> calculate_linear_regression_parameters(const
-// Vector<T>&) const method
+    // LinearRegressionParameters<T> calculate_linear_regression_parameters(const
+    // Vector<T>&) const method
 
-/// Calculates the linear regression parameters (intercept, slope and
-/// correlation) between another vector and this vector.
-/// It returns a linear regression parameters structure.
-/// @param other Other vector for the linear regression analysis.
+    /// Calculates the linear regression parameters (intercept, slope and
+    /// correlation) between another vector and this vector.
+    /// It returns a linear regression parameters structure.
+    /// @param other Other vector for the linear regression analysis.
 
     template<class T>
     LinearRegressionParameters<T> Vector<T>::calculate_linear_regression_parameters(
@@ -3506,23 +3514,23 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
     {
         const size_t n = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other.size();
+        const size_t other_size = other.size();
 
-  std::ostringstream buffer;
+        if(other_size != n) {
+            std::ostringstream buffer;
 
-  if(other_size != n) {
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "LinearRegressionParameters<T> "
-              "calculate_linear_regression_parameters(const Vector<T>&) const "
-              "method.\n"
-           << "Other size must be equal to this size.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "LinearRegressionParameters<T> "
+                      "calculate_linear_regression_parameters(const Vector<T>&) const "
+                      "method.\n"
+                   << "Other size must be equal to this size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -3567,9 +3575,9 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (linear_regression_parameters);
     }
 
-// void calculate_absolute_value(void) const method
+    // void calculate_absolute_value(void) const method
 
-/// Returns a vector with the absolute values of the current vector.
+    /// Returns a vector with the absolute values of the current vector.
 
     template<class T>
     Vector<T> Vector<T>::calculate_absolute_value(void) const
@@ -3589,9 +3597,9 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (absolute_value);
     }
 
-// void apply_absolute_value(void) method
+    // void apply_absolute_value(void) method
 
-/// Sets the elements of the vector to their absolute values.
+    /// Sets the elements of the vector to their absolute values.
 
     template<class T>
     void Vector<T>::apply_absolute_value(void)
@@ -3605,10 +3613,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// Vector<T> calculate_lower_bounded(const T&) const method
+    // Vector<T> calculate_lower_bounded(const T&) const method
 
-/// Returns a vector with the bounded elements from below of the current vector.
-/// @param lower_bound Lower bound values.
+    /// Returns a vector with the bounded elements from below of the current vector.
+    /// @param lower_bound Lower bound values.
 
     template<class T>
     Vector<T> Vector<T>::calculate_lower_bounded(const T &lower_bound) const
@@ -3628,10 +3636,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (bounded_vector);
     }
 
-// Vector<T> calculate_lower_bounded(const Vector<T>&) const method
+    // Vector<T> calculate_lower_bounded(const Vector<T>&) const method
 
-/// Returns a vector with the bounded elements from above of the current vector.
-/// @param lower_bound Lower bound values.
+    /// Returns a vector with the bounded elements from above of the current vector.
+    /// @param lower_bound Lower bound values.
 
     template<class T>
     Vector<T>
@@ -3639,22 +3647,22 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t lower_bound_size = lower_bound.size();
+        const size_t lower_bound_size = lower_bound.size();
 
-  if(lower_bound_size != this_size) {
-    std::ostringstream buffer;
+        if(lower_bound_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer
-        << "OpenNN Exception: Vector Template.\n"
-        << "Vector<T> calculate_lower_bounded(const Vector<T>&) const method.\n"
-        << "Lower bound size must be equal to vector size.\n";
+            buffer
+                << "OpenNN Exception: Vector Template.\n"
+                << "Vector<T> calculate_lower_bounded(const Vector<T>&) const method.\n"
+                << "Lower bound size must be equal to vector size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -3673,11 +3681,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (bounded_vector);
     }
 
-// Vector<T> calculate_upper_bounded(const T&) const method
+    // Vector<T> calculate_upper_bounded(const T&) const method
 
-/// This method bounds the elements of the vector if they fall above an upper
-/// bound value.
-/// @param upper_bound Upper bound value.
+    /// This method bounds the elements of the vector if they fall above an upper
+    /// bound value.
+    /// @param upper_bound Upper bound value.
 
     template<class T>
     Vector<T> Vector<T>::calculate_upper_bounded(const T &upper_bound) const
@@ -3697,11 +3705,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (bounded_vector);
     }
 
-// Vector<T> calculate_upper_bounded(const Vector<T>&) const method
+    // Vector<T> calculate_upper_bounded(const Vector<T>&) const method
 
-/// This method bounds the elements of the vector if they fall above their
-/// corresponding upper bound values.
-/// @param upper_bound Upper bound values.
+    /// This method bounds the elements of the vector if they fall above their
+    /// corresponding upper bound values.
+    /// @param upper_bound Upper bound values.
 
     template<class T>
     Vector<T>
@@ -3709,22 +3717,22 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t upper_bound_size = upper_bound.size();
+        const size_t upper_bound_size = upper_bound.size();
 
-  if(upper_bound_size != this_size) {
-    std::ostringstream buffer;
+        if (upper_bound_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer
-        << "OpenNN Exception: Vector Template.\n"
-        << "Vector<T> calculate_upper_bounded(const Vector<T>&) const method.\n"
-        << "Upper bound size must be equal to vector size.\n";
+            buffer
+                << "OpenNN Exception: Vector Template.\n"
+                << "Vector<T> calculate_upper_bounded(const Vector<T>&) const method.\n"
+                << "Upper bound size must be equal to vector size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -3743,13 +3751,13 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (bounded_vector);
     }
 
-// Vector<T> calculate_lower_upper_bounded(const T&, const T&) const method
+    // Vector<T> calculate_lower_upper_bounded(const T&, const T&) const method
 
-/// This method bounds the elements of the vector if they fall above or below
-/// their lower or upper
-/// bound values, respectively.
-/// @param lower_bound Lower bound value.
-/// @param upper_bound Upper bound value.
+    /// This method bounds the elements of the vector if they fall above or below
+    /// their lower or upper
+    /// bound values, respectively.
+    /// @param lower_bound Lower bound value.
+    /// @param upper_bound Upper bound value.
 
     template<class T>
     Vector<T> Vector<T>::calculate_lower_upper_bounded(const T &lower_bound,
@@ -3772,14 +3780,14 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (bounded_vector);
     }
 
-// Vector<T> calculate_lower_upper_bounded(const Vector<T>&, const Vector<T>&)
-// const method
+    // Vector<T> calculate_lower_upper_bounded(const Vector<T>&, const Vector<T>&)
+    // const method
 
-/// This method bounds the elements of the vector if they fall above or below
-/// their corresponding lower or upper
-/// bound values, respectively.
-/// @param lower_bound Lower bound values.
-/// @param upper_bound Upper bound values.
+    /// This method bounds the elements of the vector if they fall above or below
+    /// their corresponding lower or upper
+    /// bound values, respectively.
+    /// @param lower_bound Lower bound values.
+    /// @param upper_bound Upper bound values.
 
     template<class T>
     Vector<T>
@@ -3788,23 +3796,23 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t lower_bound_size = lower_bound.size();
-  const size_t upper_bound_size = upper_bound.size();
+        const size_t lower_bound_size = lower_bound.size();
+        const size_t upper_bound_size = upper_bound.size();
 
-  if(lower_bound_size != this_size || upper_bound_size != this_size) {
-    std::ostringstream buffer;
+        if (lower_bound_size != this_size || upper_bound_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Vector<T> calculate_lower_upper_bounded(const Vector<T>&, const "
-              "Vector<T>&) const method.\n"
-           << "Lower and upper bound sizes must be equal to vector size.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> calculate_lower_upper_bounded(const Vector<T>&, const "
+                      "Vector<T>&) const method.\n"
+                   << "Lower and upper bound sizes must be equal to vector size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -3825,11 +3833,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (bounded_vector);
     }
 
-// void apply_lower_bound(const T&) method
+    // void apply_lower_bound(const T&) method
 
-/// Sets the elements of the vector to a given value if they fall below that
-/// value.
-/// @param lower_bound Lower bound value.
+    /// Sets the elements of the vector to a given value if they fall below that
+    /// value.
+    /// @param lower_bound Lower bound value.
 
     template<class T>
     void Vector<T>::apply_lower_bound(const T &lower_bound)
@@ -3843,11 +3851,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void apply_lower_bound(const Vector<T>&) method
+    // void apply_lower_bound(const Vector<T>&) method
 
-/// Sets the elements of the vector to given values if they fall below that
-/// values.
-/// @param lower_bound Lower bound values.
+    /// Sets the elements of the vector to given values if they fall below that
+    /// values.
+    /// @param lower_bound Lower bound values.
 
     template<class T>
     void Vector<T>::apply_lower_bound(const Vector<T> &lower_bound)
@@ -3861,11 +3869,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void apply_upper_bound(const T&) method
+    // void apply_upper_bound(const T&) method
 
-/// Sets the elements of the vector to a given value if they fall above that
-/// value.
-/// @param upper_bound Upper bound value.
+    /// Sets the elements of the vector to a given value if they fall above that
+    /// value.
+    /// @param upper_bound Upper bound value.
 
     template<class T>
     void Vector<T>::apply_upper_bound(const T &upper_bound)
@@ -3879,11 +3887,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void apply_upper_bound(const Vector<T>&) method
+    // void apply_upper_bound(const Vector<T>&) method
 
-/// Sets the elements of the vector to given values if they fall above that
-/// values.
-/// @param upper_bound Upper bound values.
+    /// Sets the elements of the vector to given values if they fall above that
+    /// values.
+    /// @param upper_bound Upper bound values.
 
     template<class T>
     void Vector<T>::apply_upper_bound(const Vector<T> &upper_bound)
@@ -3897,13 +3905,13 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void apply_lower_upper_bounds(const T&, const T&) method
+    // void apply_lower_upper_bounds(const T&, const T&) method
 
-/// Sets the elements of the vector to a given lower bound value if they fall
-/// below that value,
-/// or to a given upper bound value if they fall above that value.
-/// @param lower_bound Lower bound value.
-/// @param upper_bound Upper bound value.
+    /// Sets the elements of the vector to a given lower bound value if they fall
+    /// below that value,
+    /// or to a given upper bound value if they fall above that value.
+    /// @param lower_bound Lower bound value.
+    /// @param upper_bound Upper bound value.
 
     template<class T>
     void Vector<T>::apply_lower_upper_bounds(const T &lower_bound,
@@ -3920,13 +3928,13 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void apply_lower_upper_bounds(const Vector<T>&, const Vector<T>&) method
+    // void apply_lower_upper_bounds(const Vector<T>&, const Vector<T>&) method
 
-/// Sets the elements of the vector to given lower bound values if they fall
-/// below that values,
-/// or to given upper bound values if they fall above that values.
-/// @param lower_bound Lower bound values.
-/// @param upper_bound Upper bound values.
+    /// Sets the elements of the vector to given lower bound values if they fall
+    /// below that values,
+    /// or to given upper bound values if they fall above that values.
+    /// @param lower_bound Lower bound values.
+    /// @param upper_bound Upper bound values.
 
     template<class T>
     void Vector<T>::apply_lower_upper_bounds(const Vector<T> &lower_bound,
@@ -3944,7 +3952,7 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
     }
 
 
-// Vector<size_t> sort_less_indices(void) const method
+    // Vector<size_t> sort_less_indices(void) const method
 
     template<class T>
     Vector<size_t> Vector<T>::sort_less_indices(void) const
@@ -3953,12 +3961,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
 
 #ifdef __Cpp11__
 
-                                                                                                                                const Vector<size_t> less_rank = this->calculate_less_rank();
+        const Vector<size_t> less_rank = this->calculate_less_rank();
 
-    for (size_t i = 0; i < this->size(); i++)
-    {
-        indices[less_rank[i]] = i;
-    }
+        for (size_t i = 0; i < this->size(); i++) {
+            indices[less_rank[i]] = i;
+        }
 
 #else
 
@@ -3971,7 +3978,7 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
     }
 
 
-// Vector<size_t> sort_greater_indices(void) const method
+    // Vector<size_t> sort_greater_indices(void) const method
 
     template<class T>
     Vector<size_t> Vector<T>::sort_greater_indices(void) const
@@ -3980,12 +3987,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
 
 #ifdef __Cpp11__
 
-                                                                                                                                const Vector<size_t> greater_rank = this->calculate_greater_rank();
+        const Vector<size_t> greater_rank = this->calculate_greater_rank();
 
-    for (size_t i = 0; i < this->size(); i++)
-    {
-        indices[greater_rank[i]] = i;
-    }
+        for (size_t i = 0; i < this->size(); i++) {
+            indices[greater_rank[i]] = i;
+        }
 
 #else
 
@@ -3998,12 +4004,12 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
     }
 
 
-// Vector<size_t> calculate_less_rank(void) const method
+    // Vector<size_t> calculate_less_rank(void) const method
 
-/// Returns a vector with the rank of the elements of this vector.
-/// The smallest element will have rank 0, and the greatest element will have
-/// size-1.
-/// That is, small values correspond with small ranks.
+    /// Returns a vector with the rank of the elements of this vector.
+    /// The smallest element will have rank 0, and the greatest element will have
+    /// size-1.
+    /// That is, small values correspond with small ranks.
 
     template<class T>
     Vector<size_t> Vector<T>::calculate_less_rank(void) const
@@ -4038,12 +4044,12 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (rank);
     }
 
-// Vector<size_t> calculate_greater_rank(void) const method
+    // Vector<size_t> calculate_greater_rank(void) const method
 
-/// Returns a vector with the rank of the elements of this vector.
-/// The smallest element will have rank size-1, and the greatest element will
-/// have 0.
-/// That is, small values correspond to big ranks.
+    /// Returns a vector with the rank of the elements of this vector.
+    /// The smallest element will have rank size-1, and the greatest element will
+    /// have 0.
+    /// That is, small values correspond to big ranks.
 
     template<class T>
     Vector<size_t> Vector<T>::calculate_greater_rank(void) const
@@ -4078,10 +4084,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (rank);
     }
 
-// Vector<T> operator + (const T&) const method
+    // Vector<T> operator + (const T&) const method
 
-/// Sum vector+scalar arithmetic operator.
-/// @param scalar Scalar value to be added to this vector.
+    /// Sum vector+scalar arithmetic operator.
+    /// @param scalar Scalar value to be added to this vector.
 
     template<class T>
     inline Vector<T> Vector<T>::operator+(const T &scalar) const
@@ -4096,32 +4102,32 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (sum);
     }
 
-// Vector<T> operator + (const Vector<T>&) const method
+    // Vector<T> operator + (const Vector<T>&) const method
 
-/// Sum vector+vector arithmetic operator.
-/// @param other_vector Vector to be added to this vector.
+    /// Sum vector+vector arithmetic operator.
+    /// @param other_vector Vector to be added to this vector.
 
     template<class T>
     inline Vector<T> Vector<T>::operator+(const Vector<T> &other_vector) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other_vector.size();
+        const size_t other_size = other_vector.size();
 
-  if(other_size != this_size) {
-    std::ostringstream buffer;
+        if(other_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Vector<T> operator + (const Vector<T>) const.\n"
-           << "Size of vectors is " << this_size << " and " << other_size
-           << " and they must be the same.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> operator + (const Vector<T>) const.\n"
+                   << "Size of vectors is " << this_size << " and " << other_size
+                   << " and they must be the same.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4133,10 +4139,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (sum);
     }
 
-// Vector<T> operator - (const T&) const method
+    // Vector<T> operator - (const T&) const method
 
-/// Difference vector-scalar arithmetic operator.
-/// @param scalar Scalar value to be subtracted to this vector.
+    /// Difference vector-scalar arithmetic operator.
+    /// @param scalar Scalar value to be subtracted to this vector.
 
     template<class T>
     inline Vector<T> Vector<T>::operator-(const T &scalar) const
@@ -4151,32 +4157,32 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (difference);
     }
 
-// Vector<T> operator - (const Vector<T>&) const method
+    // Vector<T> operator - (const Vector<T>&) const method
 
-/// Difference vector-vector arithmetic operator.
-/// @param other_vector vector to be subtracted to this vector.
+    /// Difference vector-vector arithmetic operator.
+    /// @param other_vector vector to be subtracted to this vector.
 
     template<class T>
     inline Vector<T> Vector<T>::operator-(const Vector<T> &other_vector) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other_vector.size();
+        const size_t other_size = other_vector.size();
 
-  if(other_size != this_size) {
-    std::ostringstream buffer;
+        if (other_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Vector<T> operator - (const Vector<T>&) const.\n"
-           << "Size of vectors is " << this_size << " and " << other_size
-           << " and they must be the same.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> operator - (const Vector<T>&) const.\n"
+                   << "Size of vectors is " << this_size << " and " << other_size
+                   << " and they must be the same.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4188,10 +4194,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (difference);
     }
 
-// Vector<T> operator * (const T&) const method
+    // Vector<T> operator * (const T&) const method
 
-/// Product vector*scalar arithmetic operator.
-/// @param scalar Scalar value to be multiplied to this vector.
+    /// Product vector*scalar arithmetic operator.
+    /// @param scalar Scalar value to be multiplied to this vector.
 
     template<class T>
     Vector<T> Vector<T>::operator*(const T &scalar) const
@@ -4206,32 +4212,32 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (product);
     }
 
-// Type operator * (const Vector<T>&) const method
+    // Type operator * (const Vector<T>&) const method
 
-/// Element by element product vector*vector arithmetic operator.
-/// @param other_vector vector to be multiplied to this vector.
+    /// Element by element product vector*vector arithmetic operator.
+    /// @param other_vector vector to be multiplied to this vector.
 
     template<class T>
     inline Vector<T> Vector<T>::operator*(const Vector<T> &other_vector) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other_vector.size();
+        const size_t other_size = other_vector.size();
 
-  if(other_size != this_size) {
-    std::ostringstream buffer;
+        if(other_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Vector<T> operator * (const Vector<T>&) const.\n"
-           << "Size of other vector (" << other_size
-           << ") must be equal to size of this vector (" << this_size << ").\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> operator * (const Vector<T>&) const.\n"
+                   << "Size of other vector (" << other_size
+                   << ") must be equal to size of this vector (" << this_size << ").\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4243,10 +4249,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (product);
     }
 
-// Matrix<T> operator * (const Matrix<T>&) const method
+    // Matrix<T> operator * (const Matrix<T>&) const method
 
-/// Element by row product vector*matrix arithmetic operator.
-/// @param matrix matrix to be multiplied to this vector.
+    /// Element by row product vector*matrix arithmetic operator.
+    /// @param matrix matrix to be multiplied to this vector.
 
     template<class T>
     Matrix<T> Vector<T>::operator*(const Matrix<T> &matrix) const
@@ -4254,22 +4260,22 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         const size_t rows_number = matrix.get_rows_number();
         const size_t columns_number = matrix.get_columns_number();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t this_size = this->size();
+        const size_t this_size = this->size();
 
-  if(rows_number != this_size) {
-    std::ostringstream buffer;
+        if(rows_number != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Vector<T> operator * (const Matrix<T>&) const.\n"
-           << "Number of matrix rows (" << rows_number
-           << ") must be equal to vector size (" << this_size << ").\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> operator * (const Matrix<T>&) const.\n"
+                   << "Number of matrix rows (" << rows_number
+                   << ") must be equal to vector size (" << this_size << ").\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4284,11 +4290,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (product);
     }
 
-// Vector<T> dot(const Matrix<T>&) const method
+    // Vector<T> dot(const Matrix<T>&) const method
 
-/// Returns the dot product of this vector with a matrix.
-/// The number of rows of the matrix must be equal to the size of the vector.
-/// @param matrix matrix to be multiplied to this vector.
+    /// Returns the dot product of this vector with a matrix.
+    /// The number of rows of the matrix must be equal to the size of the vector.
+    /// @param matrix matrix to be multiplied to this vector.
 
     template<class T>
     Vector<double> Vector<T>::dot(const Matrix<T> &matrix) const
@@ -4297,19 +4303,19 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         const size_t columns_number = matrix.get_columns_number();
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(rows_number != this_size) {
-    std::ostringstream buffer;
+        if (rows_number != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Vector<T> dot(const Matrix<T>&) const method.\n"
-           << "Matrix number of rows must be equal to vector size.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> dot(const Matrix<T>&) const method.\n"
+                   << "Matrix number of rows must be equal to vector size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4336,31 +4342,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (product);
     }
 
-// Vector<T> dot(const Vector<T>&) const method
+    // Vector<T> dot(const Vector<T>&) const method
 
-/// Dot product vector*vector arithmetic operator.
-/// @param other_vector vector to be multiplied to this vector.
+    /// Dot product vector*vector arithmetic operator.
+    /// @param other_vector vector to be multiplied to this vector.
 
     template<class T>
     inline double Vector<T>::dot(const Vector<double> &other_vector) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other_vector.size();
+        const size_t other_size = other_vector.size();
 
-  if(other_size != this_size) {
-    std::ostringstream buffer;
+        if (other_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Type dot(const Vector<T>&) const method.\n"
-           << "Both vector sizes must be the same.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Type dot(const Vector<T>&) const method.\n"
+                   << "Both vector sizes must be the same.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4380,31 +4386,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (dot_product);
     }
 
-// Matrix<T> direct(const Vector<T>&) const method
+    // Matrix<T> direct(const Vector<T>&) const method
 
-/// Outer product vector*vector arithmetic operator.
-/// @param other_vector vector to be multiplied to this vector.
+    /// Outer product vector*vector arithmetic operator.
+    /// @param other_vector vector to be multiplied to this vector.
 
     template<class T>
     Matrix<T> Vector<T>::direct(const Vector<T> &other_vector) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other_vector.size();
+        const size_t other_size = other_vector.size();
 
-  if(other_size != this_size) {
-    std::ostringstream buffer;
+        if(other_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Matrix<T> direct(const Vector<T>&) const method.\n"
-           << "Both vector sizes must be the same.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Matrix<T> direct(const Vector<T>&) const method.\n"
+                   << "Both vector sizes must be the same.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4419,10 +4425,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (direct);
     }
 
-// Vector<T> operator / (const T&) const method
+    // Vector<T> operator / (const T&) const method
 
-/// Cocient vector/scalar arithmetic operator.
-/// @param scalar Scalar value to be divided to this vector.
+    /// Cocient vector/scalar arithmetic operator.
+    /// @param scalar Scalar value to be divided to this vector.
 
     template<class T>
     Vector<T> Vector<T>::operator/(const T &scalar) const
@@ -4437,31 +4443,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (cocient);
     }
 
-// Vector<T> operator / (const Vector<T>&) const method
+    // Vector<T> operator / (const Vector<T>&) const method
 
-/// Cocient vector/vector arithmetic operator.
-/// @param other_vector vector to be divided to this vector.
+    /// Cocient vector/vector arithmetic operator.
+    /// @param other_vector vector to be divided to this vector.
 
     template<class T>
     Vector<T> Vector<T>::operator/(const Vector<T> &other_vector) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other_vector.size();
+        const size_t other_size = other_vector.size();
 
-  if(other_size != this_size) {
-    std::ostringstream buffer;
+        if (other_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Vector<T> operator / (const Vector<T>&) const.\n"
-           << "Both vector sizes must be the same.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> operator / (const Vector<T>&) const.\n"
+                   << "Both vector sizes must be the same.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4473,10 +4479,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (cocient);
     }
 
-// void operator += (const T&)
+    // void operator += (const T&)
 
-/// Scalar sum and assignment operator.
-/// @param value Scalar value to be added to this vector.
+    /// Scalar sum and assignment operator.
+    /// @param value Scalar value to be added to this vector.
 
     template<class T>
     void Vector<T>::operator+=(const T &value)
@@ -4488,31 +4494,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void operator += (const Vector<T>&)
+    // void operator += (const Vector<T>&)
 
-/// Vector sum and assignment operator.
-/// @param other_vector Vector to be added to this vector.
+    /// Vector sum and assignment operator.
+    /// @param other_vector Vector to be added to this vector.
 
     template<class T>
     void Vector<T>::operator+=(const Vector<T> &other_vector)
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other_vector.size();
+        const size_t other_size = other_vector.size();
 
-  if(other_size != this_size) {
-    std::ostringstream buffer;
+        if (other_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "void operator += (const Vector<T>&).\n"
-           << "Both vector sizes must be the same.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "void operator += (const Vector<T>&).\n"
+                   << "Both vector sizes must be the same.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4521,10 +4527,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void operator -= (const T&)
+    // void operator -= (const T&)
 
-/// Scalar rest and assignment operator.
-/// @param value Scalar value to be subtracted to this vector.
+    /// Scalar rest and assignment operator.
+    /// @param value Scalar value to be subtracted to this vector.
 
     template<class T>
     void Vector<T>::operator-=(const T &value)
@@ -4536,31 +4542,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void operator -= (const Vector<T>&)
+    // void operator -= (const Vector<T>&)
 
-/// Vector rest and assignment operator.
-/// @param other_vector Vector to be subtracted to this vector.
+    /// Vector rest and assignment operator.
+    /// @param other_vector Vector to be subtracted to this vector.
 
     template<class T>
     void Vector<T>::operator-=(const Vector<T> &other_vector)
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other_vector.size();
+        const size_t other_size = other_vector.size();
 
-  if(other_size != this_size) {
-    std::ostringstream buffer;
+        if(other_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "void operator -= (const Vector<T>&).\n"
-           << "Both vector sizes must be the same.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "void operator -= (const Vector<T>&).\n"
+                   << "Both vector sizes must be the same.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4569,10 +4575,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void operator *= (const T&)
+    // void operator *= (const T&)
 
-/// Scalar product and assignment operator.
-/// @param value Scalar value to be multiplied to this vector.
+    /// Scalar product and assignment operator.
+    /// @param value Scalar value to be multiplied to this vector.
 
     template<class T>
     void Vector<T>::operator*=(const T &value)
@@ -4584,31 +4590,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void operator *= (const Vector<T>&)
+    // void operator *= (const Vector<T>&)
 
-/// Vector product and assignment operator.
-/// @param other_vector Vector to be multiplied to this vector.
+    /// Vector product and assignment operator.
+    /// @param other_vector Vector to be multiplied to this vector.
 
     template<class T>
     void Vector<T>::operator*=(const Vector<T> &other_vector)
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other_vector.size();
+        const size_t other_size = other_vector.size();
 
-  if(other_size != this_size) {
-    std::ostringstream buffer;
+        if (other_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "void operator *= (const Vector<T>&).\n"
-           << "Both vector sizes must be the same.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "void operator *= (const Vector<T>&).\n"
+                   << "Both vector sizes must be the same.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4617,10 +4623,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void operator /= (const T&)
+    // void operator /= (const T&)
 
-/// Scalar division and assignment operator.
-/// @param value Scalar value to be divided to this vector.
+    /// Scalar division and assignment operator.
+    /// @param value Scalar value to be divided to this vector.
 
     template<class T>
     void Vector<T>::operator/=(const T &value)
@@ -4632,31 +4638,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void operator /= (const Vector<T>&)
+    // void operator /= (const Vector<T>&)
 
-/// Vector division and assignment operator.
-/// @param other_vector Vector to be divided to this vector.
+    /// Vector division and assignment operator.
+    /// @param other_vector Vector to be divided to this vector.
 
     template<class T>
     void Vector<T>::operator/=(const Vector<T> &other_vector)
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t other_size = other_vector.size();
+        const size_t other_size = other_vector.size();
 
-  if(other_size != this_size) {
-    std::ostringstream buffer;
+        if(other_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "void operator /= (const Vector<T>&).\n"
-           << "Both vector sizes must be the same.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "void operator /= (const Vector<T>&).\n"
+                   << "Both vector sizes must be the same.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4665,9 +4671,9 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void filter_positive(void) method
+    // void filter_positive(void) method
 
-/// Sets all the negative elements in the vector to zero.
+    /// Sets all the negative elements in the vector to zero.
 
     template<class T>
     void Vector<T>::filter_positive(void)
@@ -4679,9 +4685,9 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void filter_negative(void) method
+    // void filter_negative(void) method
 
-/// Sets all the positive elements in the vector to zero.
+    /// Sets all the positive elements in the vector to zero.
 
     template<class T>
     void Vector<T>::filter_negative(void)
@@ -4693,11 +4699,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void scale_minimum_maximum(const T&, const T&) method
+    // void scale_minimum_maximum(const T&, const T&) method
 
-/// Normalizes the elements of this vector using the minimum and maximum method.
-/// @param minimum Minimum value for the scaling.
-/// @param maximum Maximum value for the scaling.
+    /// Normalizes the elements of this vector using the minimum and maximum method.
+    /// @param minimum Minimum value for the scaling.
+    /// @param maximum Maximum value for the scaling.
 
     template<class T>
     void Vector<T>::scale_minimum_maximum(const T &minimum, const T &maximum)
@@ -4713,11 +4719,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void scale_minimum_maximum(const Statistics<T>&) method
+    // void scale_minimum_maximum(const Statistics<T>&) method
 
-/// Normalizes the elements of this vector using the minimum and maximum method.
-/// @param statistics Statistics structure, which contains the minimum and
-/// maximum values for the scaling.
+    /// Normalizes the elements of this vector using the minimum and maximum method.
+    /// @param statistics Statistics structure, which contains the minimum and
+    /// maximum values for the scaling.
 
     template<class T>
     void Vector<T>::scale_minimum_maximum(const Statistics<T> &statistics)
@@ -4725,11 +4731,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         scale_minimum_maximum(statistics.minimum, statistics.maximum);
     }
 
-// Statistics<T> scale_minimum_maximum(void) method
+    // Statistics<T> scale_minimum_maximum(void) method
 
-/// Normalizes the elements of the vector with the minimum and maximum method.
-/// The minimum and maximum values used are those calculated from the vector.
-/// It also returns the statistics from the vector.
+    /// Normalizes the elements of the vector with the minimum and maximum method.
+    /// The minimum and maximum values used are those calculated from the vector.
+    /// It also returns the statistics from the vector.
 
     template<class T>
     Statistics<T> Vector<T>::scale_minimum_maximum(void)
@@ -4741,12 +4747,12 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (statistics);
     }
 
-// void scale_mean_standard_deviation(const T&, const T&) method
+    // void scale_mean_standard_deviation(const T&, const T&) method
 
-/// Normalizes the elements of this vector using the mean and standard deviation
-/// method.
-/// @param mean Mean value for the scaling.
-/// @param standard_deviation Standard deviation value for the scaling.
+    /// Normalizes the elements of this vector using the mean and standard deviation
+    /// method.
+    /// @param mean Mean value for the scaling.
+    /// @param standard_deviation Standard deviation value for the scaling.
 
     template<class T>
     void Vector<T>::scale_mean_standard_deviation(const T &mean,
@@ -4763,12 +4769,12 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void scale_mean_standard_deviation(const Statistics<T>&) method
+    // void scale_mean_standard_deviation(const Statistics<T>&) method
 
-/// Normalizes the elements of this vector using the mean and standard deviation
-/// method.
-/// @param statistics Statistics structure,
-/// which contains the mean and standard deviation values for the scaling.
+    /// Normalizes the elements of this vector using the mean and standard deviation
+    /// method.
+    /// @param statistics Statistics structure,
+    /// which contains the mean and standard deviation values for the scaling.
 
     template<class T>
     void Vector<T>::scale_mean_standard_deviation(const Statistics<T> &statistics)
@@ -4776,12 +4782,12 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         scale_mean_standard_deviation(statistics.mean, statistics.standard_deviation);
     }
 
-// Statistics<T> scale_mean_standard_deviation(void) method
+    // Statistics<T> scale_mean_standard_deviation(void) method
 
-/// Normalizes the elements of the vector with the mean and standard deviation
-/// method.
-/// The values used are those calculated from the vector.
-/// It also returns the statistics from the vector.
+    /// Normalizes the elements of the vector with the mean and standard deviation
+    /// method.
+    /// The values used are those calculated from the vector.
+    /// It also returns the statistics from the vector.
 
     template<class T>
     Statistics<T> Vector<T>::scale_mean_standard_deviation(void)
@@ -4793,14 +4799,14 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (statistics);
     }
 
-// void scale_minimum_maximum(const Vector<T>&, const Vector<T>&) method
+    // void scale_minimum_maximum(const Vector<T>&, const Vector<T>&) method
 
-/// Scales the vectir elements with given minimum and maximum values.
-/// It updates the data in the vector.
-/// The size of the minimum and maximum vectors must be equal to the size of the
-/// vector.
-/// @param minimum Minimum values.
-/// @param maximum Maximum values.
+    /// Scales the vectir elements with given minimum and maximum values.
+    /// It updates the data in the vector.
+    /// The size of the minimum and maximum vectors must be equal to the size of the
+    /// vector.
+    /// @param minimum Minimum values.
+    /// @param maximum Maximum values.
 
     template<class T>
     void Vector<T>::scale_minimum_maximum(const Vector<T> &minimum,
@@ -4810,31 +4816,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t minimum_size = minimum.size();
+        const size_t minimum_size = minimum.size();
 
-  if(minimum_size != this_size) {
-    std::ostringstream buffer;
+        if (minimum_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template."
-           << "void scale_minimum_maximum(const Vector<T>&, const Vector<T>&) "
-              "method.\n"
-           << "Size of minimum vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template."
+                   << "void scale_minimum_maximum(const Vector<T>&, const Vector<T>&) "
+                      "method.\n"
+                   << "Size of minimum vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  const size_t maximum_size = maximum.size();
+        const size_t maximum_size = maximum.size();
 
-  if(maximum_size != this_size) {
-    std::ostringstream buffer;
+        if (maximum_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template."
-           << "void scale_minimum_maximum(const Vector<T>&, const Vector<T>&) "
-              "method.\n"
-           << "Size of maximum vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template."
+                   << "void scale_minimum_maximum(const Vector<T>&, const Vector<T>&) "
+                      "method.\n"
+                   << "Size of maximum vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4857,14 +4863,14 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void scale_mean_standard_deviation(const Vector<T>&, const Vector<T>&) method
+    // void scale_mean_standard_deviation(const Vector<T>&, const Vector<T>&) method
 
-/// Scales the vector elements with given mean and standard deviation values.
-/// It updates the data in the vector.
-/// The size of the mean and standard deviation vectors must be equal to the
-/// size of the vector.
-/// @param mean Mean values.
-/// @param standard_deviation Standard deviation values.
+    /// Scales the vector elements with given mean and standard deviation values.
+    /// It updates the data in the vector.
+    /// The size of the mean and standard deviation vectors must be equal to the
+    /// size of the vector.
+    /// @param mean Mean values.
+    /// @param standard_deviation Standard deviation values.
 
     template<class T>
     void
@@ -4875,31 +4881,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t mean_size = mean.size();
+        const size_t mean_size = mean.size();
 
-  if(mean_size != this_size) {
-    std::ostringstream buffer;
+        if (mean_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template."
-           << "void scale_mean_standard_deviation(const Vector<T>&, const "
-              "Vector<T>&) method.\n"
-           << "Size of mean vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template."
+                   << "void scale_mean_standard_deviation(const Vector<T>&, const "
+                      "Vector<T>&) method.\n"
+                   << "Size of mean vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  const size_t standard_deviation_size = standard_deviation.size();
+        const size_t standard_deviation_size = standard_deviation.size();
 
-  if(standard_deviation_size != this_size) {
-    std::ostringstream buffer;
+        if (standard_deviation_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template."
-           << "void scale_mean_standard_deviation(const Vector<T>&, const "
-              "Vector<T>&) method.\n"
-           << "Size of standard deviation vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template."
+                   << "void scale_mean_standard_deviation(const Vector<T>&, const "
+                      "Vector<T>&) method.\n"
+                   << "Size of standard deviation vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4920,15 +4926,15 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// Vector<T> calculate_scaled_minimum_maximum(const Vector<T>&, const
-// Vector<T>&) const method
+    // Vector<T> calculate_scaled_minimum_maximum(const Vector<T>&, const
+    // Vector<T>&) const method
 
-/// Returns a vector with the scaled elements of this vector acording to the
-/// minimum and maximum method.
-/// The size of the minimum and maximum vectors must be equal to the size of the
-/// vector.
-/// @param minimum Minimum values.
-/// @param maximum Maximum values.
+    /// Returns a vector with the scaled elements of this vector acording to the
+    /// minimum and maximum method.
+    /// The size of the minimum and maximum vectors must be equal to the size of the
+    /// vector.
+    /// @param minimum Minimum values.
+    /// @param maximum Maximum values.
 
     template<class T>
     Vector<T>
@@ -4939,31 +4945,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t minimum_size = minimum.size();
+        const size_t minimum_size = minimum.size();
 
-  if(minimum_size != this_size) {
-    std::ostringstream buffer;
+        if (minimum_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template."
-           << "Vector<T> calculate_scaled_minimum_maximum(const Vector<T>&, "
-              "const Vector<T>&) const method.\n"
-           << "Size of minimum vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template."
+                   << "Vector<T> calculate_scaled_minimum_maximum(const Vector<T>&, "
+                      "const Vector<T>&) const method.\n"
+                   << "Size of minimum vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  const size_t maximum_size = maximum.size();
+        const size_t maximum_size = maximum.size();
 
-  if(maximum_size != this_size) {
-    std::ostringstream buffer;
+        if (maximum_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template."
-           << "Vector<T> calculate_scaled_minimum_maximum(const Vector<T>&, "
-              "const Vector<T>&) const method.\n"
-           << "Size of maximum vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template."
+                   << "Vector<T> calculate_scaled_minimum_maximum(const Vector<T>&, "
+                      "const Vector<T>&) const method.\n"
+                   << "Size of maximum vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -4990,15 +4996,15 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (scaled_minimum_maximum);
     }
 
-// Vector<T> calculate_scaled_mean_standard_deviation(const Vector<T>&, const
-// Vector<T>&) const method
+    // Vector<T> calculate_scaled_mean_standard_deviation(const Vector<T>&, const
+    // Vector<T>&) const method
 
-/// Returns a vector with the scaled elements of this vector acording to the
-/// mean and standard deviation method.
-/// The size of the mean and standard deviation vectors must be equal to the
-/// size of the vector.
-/// @param mean Mean values.
-/// @param standard_deviation Standard deviation values.
+    /// Returns a vector with the scaled elements of this vector acording to the
+    /// mean and standard deviation method.
+    /// The size of the mean and standard deviation vectors must be equal to the
+    /// size of the vector.
+    /// @param mean Mean values.
+    /// @param standard_deviation Standard deviation values.
 
     template<class T>
     Vector<T> Vector<T>::calculate_scaled_mean_standard_deviation(
@@ -5008,29 +5014,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                std::ostringstream buffer;
+        const size_t mean_size = mean.size();
 
-  const size_t mean_size = mean.size();
+        if (mean_size != this_size) {
+            std::ostringstream buffer;
 
-  if(mean_size != this_size) {
-    buffer << "OpenNN Exception: Vector template."
-           << "Vector<T> calculate_scaled_mean_standard_deviation(const "
-              "Vector<T>&, const Vector<T>&) const method.\n"
-           << "Size of mean vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template."
+                   << "Vector<T> calculate_scaled_mean_standard_deviation(const "
+                      "Vector<T>&, const Vector<T>&) const method.\n"
+                   << "Size of mean vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  const size_t standard_deviation_size = standard_deviation.size();
+        const size_t standard_deviation_size = standard_deviation.size();
 
-  if(standard_deviation_size != this_size) {
-    buffer << "OpenNN Exception: Vector template.\n"
-           << "Vector<T> calculate_scaled_mean_standard_deviation(const "
-              "Vector<T>&, const Vector<T>&) const method.\n"
-           << "Size of standard deviation vector must be equal to size.\n";
+        if (standard_deviation_size != this_size) {
+            std::ostringstream buffer;
 
-    throw std::logic_error(buffer.str());
-  }
+            buffer << "OpenNN Exception: Vector template.\n"
+                   << "Vector<T> calculate_scaled_mean_standard_deviation(const "
+                      "Vector<T>&, const Vector<T>&) const method.\n"
+                   << "Size of standard deviation vector must be equal to size.\n";
+
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5054,15 +5062,15 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (scaled_mean_standard_deviation);
     }
 
-// Vector<T> calculate_unscaled_minimum_maximum(const Vector<T>&, const
-// Vector<T>&) const method
+    // Vector<T> calculate_unscaled_minimum_maximum(const Vector<T>&, const
+    // Vector<T>&) const method
 
-/// Returns a vector with the unscaled elements of this vector acording to the
-/// minimum and maximum method.
-/// The size of the minimum and maximum vectors must be equal to the size of the
-/// vector.
-/// @param minimum Minimum values.
-/// @param maximum Maximum values.
+    /// Returns a vector with the unscaled elements of this vector acording to the
+    /// minimum and maximum method.
+    /// The size of the minimum and maximum vectors must be equal to the size of the
+    /// vector.
+    /// @param minimum Minimum values.
+    /// @param maximum Maximum values.
 
     template<class T>
     Vector<T>
@@ -5073,31 +5081,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t minimum_size = minimum.size();
+        const size_t minimum_size = minimum.size();
 
-  if(minimum_size != this_size) {
-    std::ostringstream buffer;
+        if (minimum_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template."
-           << "Vector<T> calculate_unscaled_minimum_maximum(const Vector<T>&, "
-              "const Vector<T>&) const method.\n"
-           << "Size of minimum vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template."
+                   << "Vector<T> calculate_unscaled_minimum_maximum(const Vector<T>&, "
+                      "const Vector<T>&) const method.\n"
+                   << "Size of minimum vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  const size_t maximum_size = maximum.size();
+        const size_t maximum_size = maximum.size();
 
-  if(maximum_size != this_size) {
-    std::ostringstream buffer;
+        if (maximum_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template."
-           << "Vector<T> calculate_unscaled_minimum_maximum(const Vector<T>&, "
-              "const Vector<T>&) const method.\n"
-           << "Size of maximum vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template."
+                   << "Vector<T> calculate_unscaled_minimum_maximum(const Vector<T>&, "
+                      "const Vector<T>&) const method.\n"
+                   << "Size of maximum vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5122,49 +5130,49 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (unscaled_minimum_maximum);
     }
 
-// Vector<T> calculate_unscaled_mean_standard_deviation(const Vector<T>&, const
-// Vector<T>&) const method
+    // Vector<T> calculate_unscaled_mean_standard_deviation(const Vector<T>&, const
+    // Vector<T>&) const method
 
-/// Returns a vector with the unscaled elements of this vector acording to the
-/// mean and standard deviation method.
-/// The size of the mean and standard deviation vectors must be equal to the
-/// size of the vector.
-/// @param mean Mean values.
-/// @param standard_deviation Standard deviation values.
+    /// Returns a vector with the unscaled elements of this vector acording to the
+    /// mean and standard deviation method.
+    /// The size of the mean and standard deviation vectors must be equal to the
+    /// size of the vector.
+    /// @param mean Mean values.
+    /// @param standard_deviation Standard deviation values.
 
     template<class T>
-    Vector<T> Vector<T>::calculate_unscaled_mean_standard_deviation(
-            const Vector<T> &mean, const Vector<T> &standard_deviation) const
+    Vector<T> Vector<T>::calculate_unscaled_mean_standard_deviation(const Vector<T> &mean,
+                                                                    const Vector<T> &standard_deviation) const
     {
         const size_t this_size = this->size();
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t mean_size = mean.size();
+        const size_t mean_size = mean.size();
 
-  if(mean_size != this_size) {
-    std::ostringstream buffer;
+        if (mean_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template."
-           << "Vector<T> calculate_unscaled_mean_standard_deviation(const "
-              "Vector<T>&, const Vector<T>&) const method.\n"
-           << "Size of mean vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template."
+                   << "Vector<T> calculate_unscaled_mean_standard_deviation(const "
+                      "Vector<T>&, const Vector<T>&) const method.\n"
+                   << "Size of mean vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  const size_t standard_deviation_size = standard_deviation.size();
+        const size_t standard_deviation_size = standard_deviation.size();
 
-  if(standard_deviation_size != this_size) {
-    std::ostringstream buffer;
+        if (standard_deviation_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template.\n"
-           << "Vector<T> calculate_unscaled_mean_standard_deviation(const "
-              "Vector<T>&, const Vector<T>&) const method.\n"
-           << "Size of standard deviation vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template.\n"
+                   << "Vector<T> calculate_unscaled_mean_standard_deviation(const "
+                      "Vector<T>&, const Vector<T>&) const method.\n"
+                   << "Size of standard deviation vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5188,14 +5196,14 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (unscaled_mean_standard_deviation);
     }
 
-// void unscale_minimum_maximum(const Vector<T>&, const Vector<T>&) method
+    // void unscale_minimum_maximum(const Vector<T>&, const Vector<T>&) method
 
-/// Unscales the vector elements with given minimum and maximum values.
-/// It updates the vector elements.
-/// The size of the minimum and maximum vectors must be equal to the size of the
-/// vector.
-/// @param minimum Minimum values.
-/// @param maximum Maximum deviation values.
+    /// Unscales the vector elements with given minimum and maximum values.
+    /// It updates the vector elements.
+    /// The size of the minimum and maximum vectors must be equal to the size of the
+    /// vector.
+    /// @param minimum Minimum values.
+    /// @param maximum Maximum deviation values.
 
     template<class T>
     void Vector<T>::unscale_minimum_maximum(const Vector<T> &minimum,
@@ -5205,31 +5213,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t minimum_size = minimum.size();
+        const size_t minimum_size = minimum.size();
 
-  if(minimum_size != this_size) {
-    std::ostringstream buffer;
+        if (minimum_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template."
-           << "void unscale_minimum_maximum(const Vector<T>&, const "
-              "Vector<T>&) method.\n"
-           << "Size of minimum vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template."
+                   << "void unscale_minimum_maximum(const Vector<T>&, const "
+                      "Vector<T>&) method.\n"
+                   << "Size of minimum vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  const size_t maximum_size = maximum.size();
+        const size_t maximum_size = maximum.size();
 
-  if(maximum_size != this_size) {
-    std::ostringstream buffer;
+        if (maximum_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template."
-           << "void unscale_minimum_maximum(const Vector<T>&, const "
-              "Vector<T>&) method.\n"
-           << "Size of maximum vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template."
+                   << "void unscale_minimum_maximum(const Vector<T>&, const "
+                      "Vector<T>&) method.\n"
+                   << "Size of maximum vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5250,15 +5258,15 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// void unscale_mean_standard_deviation(const Vector<T>&, const Vector<T>&)
-// method
+    // void unscale_mean_standard_deviation(const Vector<T>&, const Vector<T>&)
+    // method
 
-/// Unscales the vector elements with given mean and standard deviation values.
-/// It updates the vector elements.
-/// The size of the mean and standard deviation vectors must be equal to the
-/// size of the vector.
-/// @param mean Mean values.
-/// @param standard_deviation Standard deviation values.
+    /// Unscales the vector elements with given mean and standard deviation values.
+    /// It updates the vector elements.
+    /// The size of the mean and standard deviation vectors must be equal to the
+    /// size of the vector.
+    /// @param mean Mean values.
+    /// @param standard_deviation Standard deviation values.
 
     template<class T>
     void Vector<T>::unscale_mean_standard_deviation(
@@ -5268,31 +5276,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t mean_size = mean.size();
+        const size_t mean_size = mean.size();
 
-  if(mean_size != this_size) {
-    std::ostringstream buffer;
+        if (mean_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template."
-           << "void unscale_mean_standard_deviation(const Vector<T>&, const "
-              "Vector<T>&) method.\n"
-           << "Size of mean vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template."
+                   << "void unscale_mean_standard_deviation(const Vector<T>&, const "
+                      "Vector<T>&) method.\n"
+                   << "Size of mean vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
-  const size_t standard_deviation_size = standard_deviation.size();
+        const size_t standard_deviation_size = standard_deviation.size();
 
-  if(standard_deviation_size != this_size) {
-    std::ostringstream buffer;
+        if (standard_deviation_size != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector template.\n"
-           << "void unscale_mean_standard_deviation(const Vector<T>&, const "
-              "Vector<T>&) method.\n"
-           << "Size of standard deviation vector must be equal to size.\n";
+            buffer << "OpenNN Exception: Vector template.\n"
+                   << "void unscale_mean_standard_deviation(const Vector<T>&, const "
+                      "Vector<T>&) method.\n"
+                   << "Size of standard deviation vector must be equal to size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5311,12 +5319,12 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// Matrix<T> arrange_diagonal_matrix(void) const method
+    // Matrix<T> arrange_diagonal_matrix(void) const method
 
-/// Returns a squared matrix in which the entries outside the main diagonal are
-/// all zero.
-/// The elements in the diagonal are the elements in this vector.
-/// @todo
+    /// Returns a squared matrix in which the entries outside the main diagonal are
+    /// all zero.
+    /// The elements in the diagonal are the elements in this vector.
+    /// @todo
 
     template<class T>
     Matrix<T> Vector<T>::arrange_diagonal_matrix(void) const
@@ -5332,34 +5340,34 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (matrix);
     }
 
-// Vector<T> arrange_subvector(const Vector<size_t>&) const
+    // Vector<T> arrange_subvector(const Vector<size_t>&) const
 
-/// Returns another vector whose elements are given by some elements of this
-/// vector.
-/// @param indices Indices of this vector whose elements are required.
+    /// Returns another vector whose elements are given by some elements of this
+    /// vector.
+    /// @param indices Indices of this vector whose elements are required.
 
     template<class T>
     Vector<T> Vector<T>::arrange_subvector(const Vector<size_t> &indices) const
     {
         const size_t new_size = indices.size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t this_size = this->size();
+        const size_t this_size = this->size();
 
-  for (size_t i = 0; i < new_size; i++) {
-    if(indices[i] > this_size) {
-      std::ostringstream buffer;
+        for (size_t i = 0; i < new_size; i++) {
+            if(indices[i] > this_size) {
+              std::ostringstream buffer;
 
-      buffer << "OpenNN Exception: Vector Template.\n"
-             << "Vector<T> arrange_subvector(const Vector<T>&) const method.\n"
-             << "Index is equal or greater than this size.\n";
+              buffer << "OpenNN Exception: Vector Template.\n"
+                     << "Vector<T> arrange_subvector(const Vector<T>&) const method.\n"
+                     << "Index is equal or greater than this size.\n";
 
-      throw std::logic_error(buffer.str());
-    }
-  }
+              throw std::logic_error(buffer.str());
+            }
+        }
 
 #endif
 
@@ -5372,30 +5380,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (subvector);
     }
 
-// Vector<T> arrange_subvector_first(const size_t&) const method
+    // Vector<T> arrange_subvector_first(const size_t&) const method
 
-/// Returns a vector with the first n elements of this vector.
-/// @param elements_number Size of the new vector.
+    /// Returns a vector with the first n elements of this vector.
+    /// @param elements_number Size of the new vector.
 
     template<class T>
     Vector<T>
     Vector<T>::arrange_subvector_first(const size_t &elements_number) const
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t this_size = this->size();
+        const size_t this_size = this->size();
 
-  if(elements_number > this_size) {
-    std::ostringstream buffer;
+        if (elements_number > this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Vector<T> arrange_subvector_first(const size_t&) const method.\n"
-           << "Number of elements must be equal or greater than this size.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> arrange_subvector_first(const size_t&) const method.\n"
+                   << "Number of elements must be equal or greater than this size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5408,10 +5417,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (subvector);
     }
 
-// Vector<T> arrange_subvector_last(const size_t&) const method
+    // Vector<T> arrange_subvector_last(const size_t&) const method
 
-/// Returns a vector with the last n elements of this vector.
-/// @param elements_number Size of the new vector.
+    /// Returns a vector with the last n elements of this vector.
+    /// @param elements_number Size of the new vector.
 
     template<class T>
     Vector<T>
@@ -5419,19 +5428,19 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(elements_number > this_size) {
-    std::ostringstream buffer;
+        if (elements_number > this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Vector<T> arrange_subvector_last(const size_t&) const method.\n"
-           << "Number of elements must be equal or greater than this size.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> arrange_subvector_last(const size_t&) const method.\n"
+                   << "Number of elements must be equal or greater than this size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5444,20 +5453,18 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (subvector);
     }
 
-// void load(const std::string&) method
+    // void load(const std::string&) method
 
-/// Loads the members of a vector from an data file.
-/// Please be careful with the file format, which is specified in the OpenNN
-/// manual.
-/// @param file_name Name of vector file.
+    /// Loads the members of a vector from an data file.
+    /// Please be careful with the file format, which is specified in the OpenNN
+    /// manual.
+    /// @param file_name Name of vector file.
 
     template<class T>
     void Vector<T>::load(const std::string &file_name)
     {
         std::ifstream file(file_name.c_str());
-
         std::stringstream buffer;
-
         std::string line;
 
         while (file.good()) {
@@ -5487,12 +5494,12 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         file.close();
     }
 
-// void save(const std::string&) const method
+    // void save(const std::string&) const method
 
-/// Saves to a data file the elements of the vector.
-/// The file format is as follows:
-/// element_0 element_1 ... element_N-1
-/// @param file_name Name of vector data file.
+    /// Saves to a data file the elements of the vector.
+    /// The file format is as follows:
+    /// element_0 element_1 ... element_N-1
+    /// @param file_name Name of vector data file.
 
     template<class T>
     void Vector<T>::save(const std::string &file_name) const
@@ -5530,32 +5537,32 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         file.close();
     }
 
-// void tuck_in(const size_t&, const Vector<T>&) const method
+    // void tuck_in(const size_t&, const Vector<T>&) const method
 
-/// Insert another vector starting from a given position.
-/// @param position Insertion position.
-/// @param other_vector Vector to be inserted.
+    /// Insert another vector starting from a given position.
+    /// @param position Insertion position.
+    /// @param other_vector Vector to be inserted.
 
     template<class T>
     void Vector<T>::tuck_in(const size_t &position, const Vector<T> &other_vector)
     {
         const size_t other_size = other_vector.size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t this_size = this->size();
+        const size_t this_size = this->size();
 
-  if(position + other_size > this_size) {
-    std::ostringstream buffer;
+        if(position + other_size > this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "void tuck_in(const size_t&, const Vector<T>&) const method.\n"
-           << "Cannot tuck in vector.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "void tuck_in(const size_t&, const Vector<T>&) const method.\n"
+                   << "Cannot tuck in vector.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5564,31 +5571,32 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// Vector<T> take_out(const size_t&, const size_t&) method
+    // Vector<T> take_out(const size_t&, const size_t&) method
 
-/// Extract a vector of a given size from a given position
-/// @param position Extraction position.
-/// @param other_size Size of vector to be extracted.
+    /// Extract a vector of a given size from a given position
+    /// @param position Extraction position.
+    /// @param other_size Size of vector to be extracted.
 
     template<class T>
     Vector<T> Vector<T>::take_out(const size_t &position,
                                   const size_t &other_size) const
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t this_size = this->size();
+        const size_t this_size = this->size();
 
-  if(position + other_size > this_size) {
-    std::ostringstream buffer;
+        if(position + other_size > this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Vector<T> take_out(const size_t&, const size_t&) method.\n"
-           << "Cannot take out vector.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> take_out(const size_t&, const size_t&) method.\n"
+                   << "Cannot take out vector.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5603,31 +5611,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (other_vector);
     }
 
-// void insert_element(const size_t& index, const T& value) method
+    // void insert_element(const size_t& index, const T& value) method
 
-/// Returns a new vector with a new element inserted.
-/// @param index Position of the new element.
-/// @param value Value of the new element.
+    /// Returns a new vector with a new element inserted.
+    /// @param index Position of the new element.
+    /// @param value Value of the new element.
 
     template<class T>
     Vector<T> Vector<T>::insert_element(const size_t &index, const T &value) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(index > this_size) {
-    std::ostringstream buffer;
+        if (index > this_size) {
+            std::ostringstream buffer;
 
-    buffer
-        << "OpenNN Exception: Vector Template.\n"
-        << "void insert_element(const size_t& index, const T& value) method.\n"
-        << "Index is greater than vector size.\n";
+            buffer
+                << "OpenNN Exception: Vector Template.\n"
+                << "void insert_element(const size_t& index, const T& value) method.\n"
+                << "Index is greater than vector size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5647,31 +5655,31 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (other_vector);
     }
 
-// Vector<T> remove_element(const size_t) const
+    // Vector<T> remove_element(const size_t) const
 
-/// Returns a new vector which is a copy of this vector but with a given element
-/// removed.
-/// Therefore, the size of the new vector is the size of this vector minus one.
-/// @param index Index of element to be removed.
+    /// Returns a new vector which is a copy of this vector but with a given element
+    /// removed.
+    /// Therefore, the size of the new vector is the size of this vector minus one.
+    /// @param index Index of element to be removed.
 
     template<class T>
     Vector<T> Vector<T>::remove_element(const size_t &index) const
     {
         const size_t this_size = this->size();
 
-// Control sentence (if debug)
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                if(index >= this_size) {
-    std::ostringstream buffer;
+        if (index >= this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Vector<T> remove_element(const size_t&) const method.\n"
-           << "Index is equal or greater than vector size.\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Vector<T> remove_element(const size_t&) const method.\n"
+                   << "Index is equal or greater than vector size.\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5688,11 +5696,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (other_vector);
     }
 
-// Vector<T> remove_value(const T&) const
+    // Vector<T> remove_value(const T&) const
 
-/// Construct a copy of this vector but without a certain value.
-/// Note that the new vector might have a different size than this vector.
-/// @param value Value of elements to be removed.
+    /// Construct a copy of this vector but without a certain value.
+    /// Note that the new vector might have a different size than this vector.
+    /// @param value Value of elements to be removed.
 
     template<class T>
     Vector<T> Vector<T>::remove_value(const T &value) const
@@ -5728,10 +5736,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// Vector<T> assemble(const Vector<T>&) const method
+    // Vector<T> assemble(const Vector<T>&) const method
 
-/// Assemble two vectors.
-/// @param other_vector Vector to be get_assemblyd to this vector.
+    /// Assemble two vectors.
+    /// @param other_vector Vector to be get_assemblyd to this vector.
 
     template<class T>
     Vector<T> Vector<T>::assemble(const Vector<T> &other_vector) const
@@ -5762,9 +5770,9 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// std::vector<T> to_std_vector(void) const method
+    // std::vector<T> to_std_vector(void) const method
 
-/// Returns a std vector with the size and elements of this OpenNN vector.
+    /// Returns a std vector with the size and elements of this OpenNN vector.
 
     template<class T>
     std::vector<T> Vector<T>::to_std_vector(void) const
@@ -5780,10 +5788,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (std_vector);
     }
 
-// Matrix<T> to_row_matrix(void) const method
+    // Matrix<T> to_row_matrix(void) const method
 
-/// Returns a row matrix with number of rows equal to one
-/// and number of columns equal to the size of this vector.
+    /// Returns a row matrix with number of rows equal to one
+    /// and number of columns equal to the size of this vector.
 
     template<class T>
     Matrix<T> Vector<T>::to_row_matrix(void) const
@@ -5799,10 +5807,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (matrix);
     }
 
-// Matrix<T> to_column_matrix(void) const method
+    // Matrix<T> to_column_matrix(void) const method
 
-/// Returns a column matrix with number of rows equal to the size of this vector
-/// and number of columns equal to one.
+    /// Returns a column matrix with number of rows equal to the size of this vector
+    /// and number of columns equal to one.
 
     template<class T>
     Matrix<T> Vector<T>::to_column_matrix(void) const
@@ -5818,11 +5826,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (matrix);
     }
 
-// void parse(const std::string&) method
+    // void parse(const std::string&) method
 
-/// This method takes a string representation of a vector and sets this vector
-/// to have size equal to the number of words and values equal to that words.
-/// @param str String to be parsed.
+    /// This method takes a string representation of a vector and sets this vector
+    /// to have size equal to the number of words and values equal to that words.
+    /// @param str String to be parsed.
 
     template<class T>
     void Vector<T>::parse(const std::string &str)
@@ -5852,9 +5860,9 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// std::string to_string(const std::string&)
+    // std::string to_string(const std::string&)
 
-/// Returns a string representation of this vector.
+    /// Returns a string representation of this vector.
 
     template<class T>
     std::string Vector<T>::to_string(const std::string &separator) const
@@ -5874,10 +5882,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (buffer.str());
     }
 
-// std::string to_text()
+    // std::string to_text()
 
-/// Returns a string representation of this vector which can be inserted in a
-/// text.
+    /// Returns a string representation of this vector which can be inserted in a
+    /// text.
 
     template<class T>
     std::string Vector<T>::to_text() const
@@ -5901,11 +5909,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (buffer.str());
     }
 
-// Vector<std::string> write_string_vector(const size_t& precision) const
+    // Vector<std::string> write_string_vector(const size_t& precision) const
 
-/// This method retuns a vector of strings with size equal to the size of this
-/// vector and elements equal to string representations of the elements of this
-/// vector.
+    /// This method retuns a vector of strings with size equal to the size of this
+    /// vector and elements equal to string representations of the elements of this
+    /// vector.
 
     template<class T>
     Vector<std::string>
@@ -5927,37 +5935,38 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (string_vector);
     }
 
-// Matrix<T> to_matrix(const size_t&, const size_t&) method
+    // Matrix<T> to_matrix(const size_t&, const size_t&) method
 
-/// Returns a matrix with given numbers of rows and columns and with the
-/// elements of this vector ordered by rows.
-/// The number of rows multiplied by the number of columns must be equal to the
-/// size of this vector.
-/// @param rows_number Number of rows in the new matrix.
-/// @param columns_number Number of columns in the new matrix.
+    /// Returns a matrix with given numbers of rows and columns and with the
+    /// elements of this vector ordered by rows.
+    /// The number of rows multiplied by the number of columns must be equal to the
+    /// size of this vector.
+    /// @param rows_number Number of rows in the new matrix.
+    /// @param columns_number Number of columns in the new matrix.
 
     template<class T>
     Matrix<T> Vector<T>::to_matrix(const size_t &rows_number,
                                    const size_t &columns_number) const
     {
-// Control sentence (if debug)
+
+        // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-                                                                                                                                const size_t this_size = this->size();
+        const size_t this_size = this->size();
 
-  if(rows_number * columns_number != this_size) {
-    std::ostringstream buffer;
+        if (rows_number * columns_number != this_size) {
+            std::ostringstream buffer;
 
-    buffer << "OpenNN Exception: Vector Template.\n"
-           << "Matrix<T> to_matrix(const size_t&, const size_t&) method.\n"
-           << "The number of rows (" << rows_number
-           << ") times the number of colums (" << columns_number
-           << ") must be equal to the size of the vector (" << this_size
-           << ").\n";
+            buffer << "OpenNN Exception: Vector Template.\n"
+                   << "Matrix<T> to_matrix(const size_t&, const size_t&) method.\n"
+                   << "The number of rows (" << rows_number
+                   << ") times the number of colums (" << columns_number
+                   << ") must be equal to the size of the vector (" << this_size
+                   << ").\n";
 
-    throw std::logic_error(buffer.str());
-  }
+            throw std::logic_error(buffer.str());
+        }
 
 #endif
 
@@ -5975,11 +5984,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (matrix);
     }
 
-// Vector input operator
+    // Vector input operator
 
-/// This method re-writes the inputs operator >> for the Vector template.
-/// @param is Input stream.
-/// @param v Input vector.
+    /// This method re-writes the inputs operator >> for the Vector template.
+    /// @param is Input stream.
+    /// @param v Input vector.
 
     template<class T>
     std::istream &operator>>(std::istream &is, Vector<T> &v)
@@ -5993,11 +6002,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (is);
     }
 
-// Vector output operator
+    // Vector output operator
 
-/// This method re-writes the output operator << for the Vector template.
-/// @param os Output stream.
-/// @param v Output vector.
+    /// This method re-writes the output operator << for the Vector template.
+    /// @param os Output stream.
+    /// @param v Output vector.
 
     template<class T>
     std::ostream &operator<<(std::ostream &os, const Vector<T> &v)
@@ -6017,11 +6026,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (os);
     }
 
-// Vector of vectors output operator
+    // Vector of vectors output operator
 
-/// This method re-writes the output operator << for vectors of vectors.
-/// @param os Output stream.
-/// @param v Output vector of vectors.
+    /// This method re-writes the output operator << for vectors of vectors.
+    /// @param os Output stream.
+    /// @param v Output vector of vectors.
 
     template<class T>
     std::ostream &operator<<(std::ostream &os, const Vector<Vector<T> > &v)
@@ -6033,11 +6042,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (os);
     }
 
-// Vector of matrices output operator
+    // Vector of matrices output operator
 
-/// This method re-writes the output operator << for vectors of matrices.
-/// @param os Output stream.
-/// @param v Output vector of matrices.
+    /// This method re-writes the output operator << for vectors of matrices.
+    /// @param os Output stream.
+    /// @param v Output vector of matrices.
 
     template<class T>
     std::ostream &operator<<(std::ostream &os, const Vector<Matrix<T> > &v)
@@ -6049,11 +6058,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (os);
     }
 
-// double calculate_random_uniform(const double&, const double&) method
+    // double calculate_random_uniform(const double&, const double&) method
 
-/// Returns a random number chosen from a uniform distribution.
-/// @param minimum Minimum value.
-/// @param maximum Maximum value.
+    /// Returns a random number chosen from a uniform distribution.
+    /// @param minimum Minimum value.
+    /// @param maximum Maximum value.
 
     template<class T>
     T calculate_random_uniform(const T &minimum, const T &maximum)
@@ -6065,11 +6074,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (random_uniform);
     }
 
-// double calculate_random_normal(const double&, const double&) method
+    // double calculate_random_normal(const double&, const double&) method
 
-/// Returns a random number chosen from a normal distribution.
-/// @param mean Mean value of normal distribution.
-/// @param standard_deviation Standard deviation value of normal distribution.
+    /// Returns a random number chosen from a normal distribution.
+    /// @param mean Mean value of normal distribution.
+    /// @param standard_deviation Standard deviation value of normal distribution.
 
     template<class T>
     T calculate_random_normal(const T &mean, const T &standard_deviation)
@@ -6095,8 +6104,8 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (random_normal);
     }
 
-/// This structure contains the simplest statistics for a set, variable, etc.
-/// It includes the minimum, maximum, mean and standard deviation variables.
+    /// This structure contains the simplest statistics for a set, variable, etc.
+    /// It includes the minimum, maximum, mean and standard deviation variables.
 
     template<class T>
     struct Statistics {
@@ -6158,7 +6167,7 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         standard_deviation = (T) 1.0;
     }
 
-/// Values constructor.
+    /// Values constructor.
 
     template<class T>
     Statistics<T>::Statistics(const T &new_minimum, const T &new_maximum,
@@ -6170,15 +6179,15 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         standard_deviation = new_standard_deviation;
     }
 
-/// Destructor.
+    /// Destructor.
 
     template<class T>
     Statistics<T>::~Statistics(void)
     {
     }
 
-/// Sets a new minimum value in the statistics structure.
-/// @param new_minimum Minimum value.
+    /// Sets a new minimum value in the statistics structure.
+    /// @param new_minimum Minimum value.
 
     template<class T>
     void Statistics<T>::set_minimum(const double &new_minimum)
@@ -6186,8 +6195,8 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         minimum = new_minimum;
     }
 
-/// Sets a new maximum value in the statistics structure.
-/// @param new_maximum Maximum value.
+    /// Sets a new maximum value in the statistics structure.
+    /// @param new_maximum Maximum value.
 
     template<class T>
     void Statistics<T>::set_maximum(const double &new_maximum)
@@ -6195,8 +6204,8 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         maximum = new_maximum;
     }
 
-/// Sets a new mean value in the statistics structure.
-/// @param new_mean Mean value.
+    /// Sets a new mean value in the statistics structure.
+    /// @param new_mean Mean value.
 
     template<class T>
     void Statistics<T>::set_mean(const double &new_mean)
@@ -6204,8 +6213,8 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         mean = new_mean;
     }
 
-/// Sets a new standard deviation value in the statistics structure.
-/// @param new_standard_deviation Standard deviation value.
+    /// Sets a new standard deviation value in the statistics structure.
+    /// @param new_standard_deviation Standard deviation value.
 
     template<class T>
     void
@@ -6214,10 +6223,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         standard_deviation = new_standard_deviation;
     }
 
-/// Returns all the statistical parameters contained in a single vector.
-/// The size of that vector is seven.
-/// The elements correspond to the minimum, maximum, mean and standard deviation
-/// values respectively.
+    /// Returns all the statistical parameters contained in a single vector.
+    /// The size of that vector is seven.
+    /// The elements correspond to the minimum, maximum, mean and standard deviation
+    /// values respectively.
 
     template<class T>
     Vector<T> Statistics<T>::to_vector(void) const
@@ -6231,9 +6240,9 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (statistics_vector);
     }
 
-/// Initializes the statistics structure with a random
-/// minimum (between -1 and 1), maximum (between 0 and 1),
-/// mean (between -1 and 1), standard deviation (between 0 and 1).
+    /// Initializes the statistics structure with a random
+    /// minimum (between -1 and 1), maximum (between 0 and 1),
+    /// mean (between -1 and 1), standard deviation (between 0 and 1).
 
     template<class T>
     void Statistics<T>::initialize_random(void)
@@ -6244,8 +6253,8 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         standard_deviation = calculate_random_uniform(0.0, 1.0);
     }
 
-/// Returns true if the minimum value is -1 and the maximum value is +1,
-/// and false otherwise.
+    /// Returns true if the minimum value is -1 and the maximum value is +1,
+    /// and false otherwise.
 
     template<class T>
     bool Statistics<T>::has_minimum_minus_one_maximum_one(void)
@@ -6258,8 +6267,8 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-/// Returns true if the mean value is 0 and the standard deviation value is 1,
-/// and false otherwise.
+    /// Returns true if the mean value is 0 and the standard deviation value is 1,
+    /// and false otherwise.
 
     template<class T>
     bool Statistics<T>::has_mean_zero_standard_deviation_one(void)
@@ -6272,10 +6281,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-/// Saves to a file the minimum, maximum, standard deviation, asymmetry and
-/// kurtosis values
-/// of the statistics structure.
-/// @param file_name Name of statistics data file.
+    /// Saves to a file the minimum, maximum, standard deviation, asymmetry and
+    /// kurtosis values
+    /// of the statistics structure.
+    /// @param file_name Name of statistics data file.
 
     template<class T>
     void Statistics<T>::save(const std::string &file_name) const
@@ -6303,11 +6312,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         file.close();
     }
 
-// Statistics output operator
+    // Statistics output operator
 
-/// This method re-writes the output operator << for the Statistics template.
-/// @param os Output stream.
-/// @param v Output vector.
+    /// This method re-writes the output operator << for the Statistics template.
+    /// @param os Output stream.
+    /// @param v Output vector.
 
     template<class T>
     std::ostream &operator<<(std::ostream &os, const Statistics<T> &statistics)
@@ -6321,9 +6330,9 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (os);
     }
 
-///
-/// This template contains the data needed to represent a histogram.
-///
+    ///
+    /// This template contains the data needed to represent a histogram.
+    ///
 
     template<class T>
     struct Histogram {
@@ -6378,15 +6387,15 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
     {
     }
 
-/// Destructor.
+    /// Destructor.
 
     template<class T>
     Histogram<T>::~Histogram(void)
     {
     }
 
-/// Bins number constructor.
-/// @param bins_number Number of bins in the histogram.
+    /// Bins number constructor.
+    /// @param bins_number Number of bins in the histogram.
 
     template<class T>
     Histogram<T>::Histogram(const size_t &bins_number)
@@ -6395,9 +6404,9 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         frequencies.resize(bins_number);
     }
 
-/// Values constructor.
-/// @param new_centers Center values for the bins.
-/// @param new_frequencies Number of variates in each bin.
+    /// Values constructor.
+    /// @param new_centers Center values for the bins.
+    /// @param new_frequencies Number of variates in each bin.
 
     template<class T>
     Histogram<T>::Histogram(const Vector<T> &new_centers,
@@ -6407,7 +6416,7 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         frequencies = new_frequencies;
     }
 
-/// Returns the number of bins in the histogram.
+    /// Returns the number of bins in the histogram.
 
     template<class T>
     size_t Histogram<T>::get_bins_number(void) const
@@ -6415,7 +6424,7 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (centers.size());
     }
 
-/// Returns the number of bins with zero variates.
+    /// Returns the number of bins with zero variates.
 
     template<class T>
     size_t Histogram<T>::count_empty_bins(void) const
@@ -6423,7 +6432,7 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (frequencies.count_occurrences(0));
     }
 
-/// Returns the number of variates in the less populated bin.
+    /// Returns the number of variates in the less populated bin.
 
     template<class T>
     size_t Histogram<T>::calculate_minimum_frequency(void) const
@@ -6431,7 +6440,7 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (frequencies.calculate_minimum());
     }
 
-/// Returns the number of variates in the most populated bin.
+    /// Returns the number of variates in the most populated bin.
 
     template<class T>
     size_t Histogram<T>::calculate_maximum_frequency(void) const
@@ -6439,8 +6448,7 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (frequencies.calculate_maximum());
     }
 
-
-/// Retuns the index of the most populated bin.
+    /// Retuns the index of the most populated bin.
 
     template<class T>
     size_t Histogram<T>::calculate_most_populated_bin(void) const
@@ -6448,8 +6456,7 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (frequencies.calculate_maximal_index());
     }
 
-
-/// Returns a vector with the centers of the less populated bins.
+    /// Returns a vector with the centers of the less populated bins.
 
     template<class T>
     Vector<T> Histogram<T>::calculate_minimal_centers(void) const
@@ -6462,7 +6469,7 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (centers.arrange_subvector(minimal_indices));
     }
 
-/// Returns a vector with the centers of the most populated bins.
+    /// Returns a vector with the centers of the most populated bins.
 
     template<class T>
     Vector<T> Histogram<T>::calculate_maximal_centers(void) const
@@ -6475,10 +6482,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (centers.arrange_subvector(maximal_indices));
     }
 
-// Vector<size_t> Histogram<T>::calculate_bin(const T&) const
+    // Vector<size_t> Histogram<T>::calculate_bin(const T&) const
 
-/// Returns the number of the bin to which a given value belongs to.
-/// @param value Value for which we want to get the bin.
+    /// Returns the number of the bin to which a given value belongs to.
+    /// @param value Value for which we want to get the bin.
 
     template<class T>
     size_t Histogram<T>::calculate_bin(const T &value) const
@@ -6520,10 +6527,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         }
     }
 
-// size_t Histogram<T>::calculate_frequency(const T&) const
+    // size_t Histogram<T>::calculate_frequency(const T&) const
 
-/// Returns the frequency of the bin to which a given value bolongs to.
-/// @param value Value for which we want to get the frequency.
+    /// Returns the frequency of the bin to which a given value bolongs to.
+    /// @param value Value for which we want to get the frequency.
 
     template<class T>
     size_t Histogram<T>::calculate_frequency(const T &value) const
@@ -6535,11 +6542,11 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (frequency);
     }
 
-// Histogram output operator
+    // Histogram output operator
 
-/// This method re-writes the output operator << for the Histogram template.
-/// @param os Output stream.
-/// @param v Output vector.
+    /// This method re-writes the output operator << for the Histogram template.
+    /// @param os Output stream.
+    /// @param v Output vector.
 
     template<class T>
     std::ostream &operator<<(std::ostream &os, const Histogram<T> &histogram)
@@ -6551,10 +6558,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (os);
     }
 
-///
-/// This template defines the parameters of a linear regression analysis between
-/// two sets x-y.
-///
+    ///
+    /// This template defines the parameters of a linear regression analysis between
+    /// two sets x-y.
+    ///
 
     template<class T>
     struct LinearRegressionParameters {
@@ -6585,10 +6592,10 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
         return (os);
     }
 
-///
-/// This template defines the parameters of a logistic regression analysis
-/// between two sets x-y.
-///
+    ///
+    /// This template defines the parameters of a logistic regression analysis
+    /// between two sets x-y.
+    ///
 
     template<class T>
     struct LogisticRegressionParameters {
@@ -6622,6 +6629,7 @@ double Vector<T>::calculate_distance(const Vector<double> &other_vector) const {
 } // end namespace OpenNN
 
 #endif
+
 
 // OpenNN: Open Neural Networks Library.
 // Copyright (c) 2005-2016 Roberto Lopez.
