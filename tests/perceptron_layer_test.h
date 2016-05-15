@@ -21,8 +21,7 @@
 using namespace OpenNN;
 
 
-class PerceptronLayerTest : public UnitTesting
-{
+class PerceptronLayerTest : public UnitTesting {
 
 #define STRING(x) #x
 #define TOSTRING(x) STRING(x)
@@ -30,146 +29,168 @@ class PerceptronLayerTest : public UnitTesting
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit PerceptronLayerTest(void);
+    explicit PerceptronLayerTest(void);
 
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~PerceptronLayerTest(void);
+    virtual ~PerceptronLayerTest(void);
 
-   // METHODS
+    // METHODS
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Assignment operators methods
+    void test_destructor(void);
 
-   void test_assignment_operator(void);
+    // Assignment operators methods
 
-   // Get methods
+    void test_assignment_operator(void);
 
-   // PerceptronLayer arrangement
+    // Get methods
 
-   void test_is_empty(void);
+    // PerceptronLayer arrangement
 
-   void test_count_inputs_number(void);
-   void test_get_perceptrons_number(void);
+    void test_is_empty(void);
 
-   void test_get_perceptrons(void);
-   void test_get_perceptron(void);
+    void test_count_inputs_number(void);
 
-   // Parameters
+    void test_get_perceptrons_number(void);
 
-   void test_arrange_biases(void);
-   void test_arrange_synaptic_weights(void);
+    void test_get_perceptrons(void);
 
-   void test_count_parameters_number(void);
-   void test_arrange_parameters(void);
-   void test_calculate_parameters_norm(void);
+    void test_get_perceptron(void);
 
-   void test_count_cumulative_parameters_number(void);
+    // Parameters
 
-   // Activation functions
+    void test_arrange_biases(void);
 
-   void test_get_activation_function(void);
-   void test_get_activation_function_name(void);
-   
-   // Display messages
+    void test_arrange_synaptic_weights(void);
 
-   void test_get_display(void);
+    void test_count_parameters_number(void);
 
-   // SET METHODS
+    void test_arrange_parameters(void);
 
-   void test_set(void);
-   void test_set_default(void);
+    void test_calculate_parameters_norm(void);
 
-   // Architecture
+    void test_count_cumulative_parameters_number(void);
 
-   void test_set_size(void);
+    // Activation functions
 
-   // Parameters
+    void test_get_activation_function(void);
 
-   void test_set_biases(void);
-   void test_set_synaptic_weights(void);
-   void test_set_parameters(void);
+    void test_get_activation_function_name(void);
 
-   // Activation functions
+    // Display messages
 
-   void test_set_activation_function(void);
+    void test_get_display(void);
 
-   // Display messages
+    // SET METHODS
 
-   void test_set_display(void);
+    void test_set(void);
 
-   // Growing and pruning
+    void test_set_default(void);
 
-   void test_grow_inputs(void);
-   void test_grow_perceptrons(void);
+    // Architecture
 
-   void test_prune_input(void);
-   void test_prune_perceptron(void);
+    void test_set_size(void);
 
-   // Initialization methods
+    // Parameters
 
-   void test_initialize_random(void);
+    void test_set_biases(void);
 
-   // Parameters initialization methods
+    void test_set_synaptic_weights(void);
 
-   void test_initialize_parameters(void);
+    void test_set_parameters(void);
 
-   void test_initialize_biases(void);    
-   void test_initialize_synaptic_weights(void);
-   void test_randomize_parameters_uniform(void);
-   void test_randomize_parameters_normal(void);
+    // Activation functions
 
-   // PerceptronLayer combination
+    void test_set_activation_function(void);
 
-   void test_calculate_combination(void);
+    // Display messages
 
-   void test_calculate_combination_Jacobian(void);
-   void test_calculate_combination_Hessian_form(void);
+    void test_set_display(void);
 
-   void test_calculate_combination_parameters_Jacobian(void);
-   void test_calculate_combination_parameters_Hessian_form(void);
+    // Growing and pruning
 
-   // PerceptronLayer activation 
+    void test_grow_inputs(void);
 
-   void test_calculate_activation(void);
-   void test_calculate_activation_derivative(void);
-   void test_calculate_activation_second_derivative(void);
+    void test_grow_perceptrons(void);
 
-   // PerceptronLayer outputs 
+    void test_prune_input(void);
 
-   void test_calculate_outputs(void);
+    void test_prune_perceptron(void);
 
-   void test_calculate_Jacobian(void);   
-   void test_calculate_Hessian_form(void);
+    // Initialization methods
 
-   void test_calculate_parameters_Jacobian(void);
-   void test_calculate_parameters_Hessian_form(void);
+    void test_initialize_random(void);
 
-   // Expression methods
+    // Parameters initialization methods
 
-   void test_get_activation_function_expression(void);
+    void test_initialize_parameters(void);
 
-   void test_write_expression(void);
+    void test_initialize_biases(void);
 
-   void test_get_network_architecture_expression(void);
+    void test_initialize_synaptic_weights(void);
 
-   void test_get_inputs_scaling_expression(void);
-   void test_get_outputs_unscaling_expression(void);
+    void test_randomize_parameters_uniform(void);
 
-   void test_get_boundary_conditions_expression(void);
+    void test_randomize_parameters_normal(void);
 
-   void test_get_bounded_output_expression(void);
+    // PerceptronLayer combination
 
-   // Unit testing methods
+    void test_calculate_combination(void);
 
-   void run_test_case(void);
+    void test_calculate_combination_Jacobian(void);
+
+    void test_calculate_combination_Hessian_form(void);
+
+    void test_calculate_combination_parameters_Jacobian(void);
+
+    void test_calculate_combination_parameters_Hessian_form(void);
+
+    // PerceptronLayer activation
+
+    void test_calculate_activation(void);
+
+    void test_calculate_activation_derivative(void);
+
+    void test_calculate_activation_second_derivative(void);
+
+    // PerceptronLayer outputs
+
+    void test_calculate_outputs(void);
+
+    void test_calculate_Jacobian(void);
+
+    void test_calculate_Hessian_form(void);
+
+    void test_calculate_parameters_Jacobian(void);
+
+    void test_calculate_parameters_Hessian_form(void);
+
+    // Expression methods
+
+    void test_get_activation_function_expression(void);
+
+    void test_write_expression(void);
+
+    void test_get_network_architecture_expression(void);
+
+    void test_get_inputs_scaling_expression(void);
+
+    void test_get_outputs_unscaling_expression(void);
+
+    void test_get_boundary_conditions_expression(void);
+
+    void test_get_bounded_output_expression(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

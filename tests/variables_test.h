@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   V A R I A B L E S   T E S T   C L A S S   H E A D E R                                                      */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -20,105 +20,119 @@
 
 using namespace OpenNN;
 
-class VariablesTest : public UnitTesting
-{
+class VariablesTest : public UnitTesting {
 
 #define STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
-public:  
+public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit VariablesTest(void);
+    explicit VariablesTest(void);
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~VariablesTest(void);
+    virtual ~VariablesTest(void);
 
     // METHODS
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Assignment operators methods
+    void test_destructor(void);
 
-   void test_assignment_operator(void);
+    // Assignment operators methods
 
-   // Get methods
+    void test_assignment_operator(void);
 
-   void test_get_variables_number(void);
+    // Get methods
 
-   // Variables methods
+    void test_get_variables_number(void);
 
-   void test_count_inputs_number(void);
-   void test_count_targets_number(void);
+    // Variables methods
 
-   void test_arrange_inputs_indices(void);
-   void test_arrange_targets_indices(void);
-   void test_arrange_used_indices(void);
+    void test_count_inputs_number(void);
 
-   // Information methods 
+    void test_count_targets_number(void);
 
-   void test_arrange_names(void);
-   void test_get_name(void);
+    void test_arrange_inputs_indices(void);
 
-   void test_arrange_inputs_name(void);
-   void test_arrange_targets_name(void);
+    void test_arrange_targets_indices(void);
 
-   void test_arrange_units(void);
-   void test_get_unit(void);
+    void test_arrange_used_indices(void);
 
-   void test_arrange_inputs_units(void);
-   void test_arrange_targets_units(void);
+    // Information methods
 
-   void test_arrange_descriptions(void);
-   void test_get_description(void);
+    void test_arrange_names(void);
 
-   void test_arrange_inputs_description(void);
-   void test_arrange_target_descriptions(void);
+    void test_get_name(void);
 
-   void test_arrange_information(void);
+    void test_arrange_inputs_name(void);
 
-   void test_get_display(void);
+    void test_arrange_targets_name(void);
 
-   // Set methods
+    void test_arrange_units(void);
 
-   void test_set(void);
+    void test_get_unit(void);
 
-   void test_set_variables_number(void);
+    void test_arrange_inputs_units(void);
 
-   // Variables methods
+    void test_arrange_targets_units(void);
 
-   void test_set_input(void);
-   void test_set_target(void);
+    void test_arrange_descriptions(void);
 
-   // Information methods
+    void test_get_description(void);
 
-   void test_set_names(void);
-   void test_set_name(void);
+    void test_arrange_inputs_description(void);
 
-   void test_set_units(void);
-   void test_set_unit(void);
+    void test_arrange_target_descriptions(void);
 
-   void test_set_descriptions(void);
-   void test_set_description(void);
+    void test_arrange_information(void);
 
-   void test_set_display(void);
+    void test_get_display(void);
 
-   void test_convert_time_series(void);
+    // Set methods
 
-   // Serialization methods
+    void test_set(void);
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    void test_set_variables_number(void);
 
-   // Unit testing methods
+    // Variables methods
 
-   void run_test_case(void);
+    void test_set_input(void);
+
+    void test_set_target(void);
+
+    // Information methods
+
+    void test_set_names(void);
+
+    void test_set_name(void);
+
+    void test_set_units(void);
+
+    void test_set_unit(void);
+
+    void test_set_descriptions(void);
+
+    void test_set_description(void);
+
+    void test_set_display(void);
+
+    void test_convert_time_series(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 #endif

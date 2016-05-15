@@ -37,104 +37,79 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 ///
 /// This concrete class represents a incremental algorithm for the order selection of a neural network.
 ///
+class IncrementalOrder : public OrderSelectionAlgorithm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit IncrementalOrder(void);
 
-    class IncrementalOrder : public OrderSelectionAlgorithm {
-    public:
-        // DEFAULT CONSTRUCTOR
+    // TRAINING STRATEGY CONSTRUCTOR
+    explicit IncrementalOrder(TrainingStrategy *);
 
-        explicit IncrementalOrder(void);
+    // XML CONSTRUCTOR
+    explicit IncrementalOrder(const tinyxml2::XMLDocument &);
 
-        // TRAINING STRATEGY CONSTRUCTOR
+    // FILE CONSTRUCTOR
+    explicit IncrementalOrder(const std::string &);
 
-        explicit IncrementalOrder(TrainingStrategy *);
+    // DESTRUCTOR
+    virtual ~IncrementalOrder(void);
 
-        // XML CONSTRUCTOR
+    ///
+    /// This structure contains the training results for the incremental order method.
+    ///
+    struct IncrementalOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults {
+        /// Default constructor.
+        explicit IncrementalOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
+        {
+        }
 
-        explicit IncrementalOrder(const tinyxml2::XMLDocument &);
-
-        // FILE CONSTRUCTOR
-
-        explicit IncrementalOrder(const std::string &);
-
-        // DESTRUCTOR
-
-        virtual ~IncrementalOrder(void);
-
-
-        // STRUCTURES
-
-        ///
-        /// This structure contains the training results for the incremental order method.
-        ///
-
-        struct IncrementalOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults {
-            /// Default constructor.
-
-            explicit IncrementalOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
-            {
-            }
-
-            /// Destructor.
-
-            virtual ~IncrementalOrderResults(void)
-            {
-            }
-
-
-        };
-
-        // METHODS
-
-        // Get methods
-
-        const size_t &get_step(void) const;
-
-        const size_t &get_maximum_selection_failures(void) const;
-
-        // Set methods
-
-        void set_default(void);
-
-        void set_step(const size_t &);
-
-        void set_maximum_selection_failures(const size_t &);
-
-        // Order selection methods
-
-        IncrementalOrderResults *perform_order_selection(void);
-
-        // Serialization methods
-
-        Matrix<std::string> to_string_matrix(void) const;
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-        void save(const std::string &) const;
-
-        void load(const std::string &);
-
-    private:
-
-        // MEMBERS
-
-        /// Number of hidden perceptrons added in each iteration.
-
-        size_t step;
-
-        // STOPPING CRITERIA
-
-        /// Maximum number of iterations at which the selection performance increases.
-
-        size_t maximum_selection_failures;
-
+        /// Destructor.
+        virtual ~IncrementalOrderResults(void)
+        {
+        }
     };
+
+    // Get methods
+    const size_t &get_step(void) const;
+
+    const size_t &get_maximum_selection_failures(void) const;
+
+    // Set methods
+    void set_default(void);
+
+    void set_step(const size_t &);
+
+    void set_maximum_selection_failures(const size_t &);
+
+    // Order selection methods
+    IncrementalOrderResults *perform_order_selection(void);
+
+    // Serialization methods
+    Matrix<std::string> to_string_matrix(void) const;
+
+    tinyxml2::XMLDocument *to_XML(void) const;
+
+    void from_XML(const tinyxml2::XMLDocument &);
+
+    void save(const std::string &) const;
+
+    void load(const std::string &);
+
+private:
+    /// Number of hidden perceptrons added in each iteration.
+    size_t step;
+
+    /// Maximum number of iterations at which the selection performance increases.
+    size_t maximum_selection_failures;
+};
+
 
 }
 

@@ -22,93 +22,143 @@
 using namespace OpenNN;
 
 
-class OrdinaryDifferentialEquationsTest : public UnitTesting 
-{
+class OrdinaryDifferentialEquationsTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // CONSTRUCTOR
+    // CONSTRUCTOR
 
-   explicit OrdinaryDifferentialEquationsTest(void);
+    explicit OrdinaryDifferentialEquationsTest(void);
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~OrdinaryDifferentialEquationsTest(void);
+    virtual ~OrdinaryDifferentialEquationsTest(void);
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Get methods
+    void test_destructor(void);
 
-   void test_get_points_number(void);
+    // Get methods
 
-   void test_get_tolerance(void);
-   void test_get_initial_size(void);
-   void test_get_warning_size(void);
-   void test_get_error_size(void);
+    void test_get_points_number(void);
 
-   void test_get_display(void);
+    void test_get_tolerance(void);
 
-   // Set methods
+    void test_get_initial_size(void);
 
-   void test_set_default(void);
+    void test_get_warning_size(void);
 
-   void test_set_points_number(void);
+    void test_get_error_size(void);
 
-   void test_set_tolerance(void);
-   void test_set_initial_size(void);
-   void test_set_warning_size(void);
-   void test_set_error_size(void);
+    void test_get_display(void);
 
-   void test_set_display(void);
+    // Set methods
 
-   // Runge-Kutta methods
+    void test_set_default(void);
 
-   void test_calculate_Runge_Kutta_integral_1(void);
-   void test_calculate_Runge_Kutta_integral_2(void);
-   void test_calculate_Runge_Kutta_integral_3(void);
-   void test_calculate_Runge_Kutta_integral_4(void);
-   void test_calculate_Runge_Kutta_integral_5(void);
+    void test_set_points_number(void);
 
-   // Runge-Kutta-Fehlberg methods
+    void test_set_tolerance(void);
 
-   void test_calculate_Runge_Kutta_Fehlberg_integral_1(void);
-   void test_calculate_Runge_Kutta_Fehlberg_integral_2(void);
-   void test_calculate_Runge_Kutta_Fehlberg_integral_3(void);
-   void test_calculate_Runge_Kutta_Fehlberg_integral_4(void);
-   void test_calculate_Runge_Kutta_Fehlberg_integral_5(void);
+    void test_set_initial_size(void);
 
-   double calculate_zero_dot(const NeuralNetwork&, const double&, const double&) const;
-   double calculate_zero_dot(const NeuralNetwork&, const double&, const double&, const double&) const;
-   double calculate_zero_dot(const NeuralNetwork&, const double&, const double&, const double&, const double&) const;
-   double calculate_zero_dot(const NeuralNetwork&, const double&, const double&, const double&, const double&, const double&) const;
-   double calculate_zero_dot(const NeuralNetwork&, const double&, const double&, const double&, const double&, const double&, const double&) const;
+    void test_set_warning_size(void);
 
-   double calculate_x_dot(const NeuralNetwork&, const double&, const double&) const;
-   double calculate_x_dot(const NeuralNetwork&, const double&, const double&, const double&) const;
-   double calculate_x_dot(const NeuralNetwork&, const double&, const double&, const double&, const double&) const;
-   double calculate_x_dot(const NeuralNetwork&, const double&, const double&, const double&, const double&, const double&) const;
-   double calculate_x_dot(const NeuralNetwork&, const double&, const double&, const double&, const double&, const double&, const double&) const;
+    void test_set_error_size(void);
 
-   double calculate_x_squared_dot(const NeuralNetwork&, const double&, const double&) const;
+    void test_set_display(void);
 
-   // Serialization methods
+    // Runge-Kutta methods
 
-   void test_to_XML(void);   
-   void test_from_XML(void);   
+    void test_calculate_Runge_Kutta_integral_1(void);
 
-   void test_save(void);
-   void test_load(void);
+    void test_calculate_Runge_Kutta_integral_2(void);
 
-   // Unit testing methods
+    void test_calculate_Runge_Kutta_integral_3(void);
 
-   void run_test_case(void);
+    void test_calculate_Runge_Kutta_integral_4(void);
+
+    void test_calculate_Runge_Kutta_integral_5(void);
+
+    // Runge-Kutta-Fehlberg methods
+
+    void test_calculate_Runge_Kutta_Fehlberg_integral_1(void);
+
+    void test_calculate_Runge_Kutta_Fehlberg_integral_2(void);
+
+    void test_calculate_Runge_Kutta_Fehlberg_integral_3(void);
+
+    void test_calculate_Runge_Kutta_Fehlberg_integral_4(void);
+
+    void test_calculate_Runge_Kutta_Fehlberg_integral_5(void);
+
+    double calculate_zero_dot(const NeuralNetwork &, const double &, const double &) const;
+
+    double calculate_zero_dot(const NeuralNetwork &, const double &, const double &, const double &) const;
+
+    double calculate_zero_dot(const NeuralNetwork &,
+                              const double &,
+                              const double &,
+                              const double &,
+                              const double &) const;
+
+    double calculate_zero_dot(const NeuralNetwork &,
+                              const double &,
+                              const double &,
+                              const double &,
+                              const double &,
+                              const double &) const;
+
+    double calculate_zero_dot(const NeuralNetwork &,
+                              const double &,
+                              const double &,
+                              const double &,
+                              const double &,
+                              const double &,
+                              const double &) const;
+
+    double calculate_x_dot(const NeuralNetwork &, const double &, const double &) const;
+
+    double calculate_x_dot(const NeuralNetwork &, const double &, const double &, const double &) const;
+
+    double calculate_x_dot(const NeuralNetwork &, const double &, const double &, const double &, const double &) const;
+
+    double calculate_x_dot(const NeuralNetwork &,
+                           const double &,
+                           const double &,
+                           const double &,
+                           const double &,
+                           const double &) const;
+
+    double calculate_x_dot(const NeuralNetwork &,
+                           const double &,
+                           const double &,
+                           const double &,
+                           const double &,
+                           const double &,
+                           const double &) const;
+
+    double calculate_x_squared_dot(const NeuralNetwork &, const double &, const double &) const;
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    void test_save(void);
+
+    void test_load(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

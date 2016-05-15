@@ -21,52 +21,53 @@
 using namespace OpenNN;
 
 
-class OutputsIntegralsTest : public UnitTesting 
-{
+class OutputsIntegralsTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit OutputsIntegralsTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~OutputsIntegralsTest(void);
+    explicit OutputsIntegralsTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~OutputsIntegralsTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void);
 
-   // Get methods
+    // METHODS
 
-   // Set methods
+    // Constructor and destructor methods
 
-   // Objective methods
+    void test_constructor(void);
 
-   void test_calculate_performance(void); 
+    void test_destructor(void);
 
-   void test_calculate_gradient(void);
+    // Get methods
 
-   void test_calculate_Hessian(void);
+    // Set methods
 
-   // Serialization methods
+    // Objective methods
 
-   void test_to_XML(void);   
-   void test_from_XML(void);
+    void test_calculate_performance(void);
 
-   // Unit testing methods
+    void test_calculate_gradient(void);
 
-   void run_test_case(void);
+    void test_calculate_Hessian(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

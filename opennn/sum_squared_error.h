@@ -32,106 +32,87 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This class represents the sum squared peformance term functional.
 /// This is used as the performance term in data modeling problems, such as function regression,
 /// pattern recognition or time series prediction.
+class SumSquaredError : public PerformanceTerm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit SumSquaredError(void);
 
-    class SumSquaredError : public PerformanceTerm {
+    // NEURAL NETWORK CONSTRUCTOR
+    explicit SumSquaredError(NeuralNetwork *);
 
-    public:
+    // DATA SET CONSTRUCTOR
+    explicit SumSquaredError(DataSet *);
 
-        // DEFAULT CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
+    explicit SumSquaredError(NeuralNetwork *, DataSet *);
 
-        explicit SumSquaredError(void);
+    // XML CONSTRUCTOR
+    explicit SumSquaredError(const tinyxml2::XMLDocument &);
 
-        // NEURAL NETWORK CONSTRUCTOR
+    // COPY CONSTRUCTOR
+    SumSquaredError(const SumSquaredError &);
 
-        explicit SumSquaredError(NeuralNetwork *);
+    // DESTRUCTOR
+    virtual ~SumSquaredError(void);
 
-        // DATA SET CONSTRUCTOR
+    // Checking methods
+    void check(void) const;
 
-        explicit SumSquaredError(DataSet *);
+    // performance methods
+    double calculate_performance(void) const;
 
-        // GENERAL CONSTRUCTOR
+    double calculate_selection_performance(void) const;
 
-        explicit SumSquaredError(NeuralNetwork *, DataSet *);
+    Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
 
-        // XML CONSTRUCTOR
+    Vector<double> calculate_gradient(void) const;
 
-        explicit SumSquaredError(const tinyxml2::XMLDocument &);
+    Matrix<double> calculate_Hessian(void) const;
 
-        // COPY CONSTRUCTOR
+    Matrix<double> calculate_single_hidden_layer_Hessian(void) const;
 
-        SumSquaredError(const SumSquaredError &);
+    double calculate_performance(const Vector<double> &) const;
 
-        // DESTRUCTOR
+    double calculate_performance_combination(const size_t &, const Vector<double> &) const;
 
-        virtual ~SumSquaredError(void);
+    double calculate_performance_combinations(const size_t &,
+                                              const Vector<double> &,
+                                              const size_t &,
+                                              const Vector<double> &) const;
 
-        // METHODS
+    Vector<double> calculate_gradient(const Vector<double> &) const;
 
-        // Get methods
+    Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
 
-        // Set methods
+    Matrix<double> calculate_Hessian(const Vector<double> &) const;
 
-        // Checking methods
+    // Objective terms methods
+    Vector<double> calculate_terms(void) const;
 
-        void check(void) const;
+    Vector<double> calculate_terms(const Vector<double> &) const;
 
-        // performance methods
+    Matrix<double> calculate_terms_Jacobian(void) const;
 
-        double calculate_performance(void) const;
+    PerformanceTerm::FirstOrderTerms calculate_first_order_terms(void) const;
 
-        double calculate_selection_performance(void) const;
+    // Squared errors methods
+    Vector<double> calculate_squared_errors(void) const;
 
-        Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
+    std::string write_performance_term_type(void) const;
 
-        Vector<double> calculate_gradient(void) const;
+    // Serialization methods
+    tinyxml2::XMLDocument *to_XML(void) const;
 
-        Matrix<double> calculate_Hessian(void) const;
+    void from_XML(const tinyxml2::XMLDocument &);
+};
 
-        Matrix<double> calculate_single_hidden_layer_Hessian(void) const;
-
-        double calculate_performance(const Vector<double> &) const;
-
-        double calculate_performance_combination(const size_t &, const Vector<double> &) const;
-
-        double calculate_performance_combinations(const size_t &,
-                                                  const Vector<double> &,
-                                                  const size_t &,
-                                                  const Vector<double> &) const;
-
-        Vector<double> calculate_gradient(const Vector<double> &) const;
-
-        Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
-
-        Matrix<double> calculate_Hessian(const Vector<double> &) const;
-
-        // Objective terms methods
-
-        Vector<double> calculate_terms(void) const;
-
-        Vector<double> calculate_terms(const Vector<double> &) const;
-
-        Matrix<double> calculate_terms_Jacobian(void) const;
-
-        PerformanceTerm::FirstOrderTerms calculate_first_order_terms(void) const;
-
-        // Squared errors methods
-
-        Vector<double> calculate_squared_errors(void) const;
-
-        std::string write_performance_term_type(void) const;
-
-        // Serialization methods
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-    };
 
 }
 

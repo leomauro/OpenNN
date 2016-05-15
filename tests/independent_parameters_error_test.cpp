@@ -20,14 +20,14 @@ using namespace OpenNN;
 
 // GENERAL CONSTRUCTOR
 
-IndependentParametersErrorTest::IndependentParametersErrorTest(void) : UnitTesting() 
+IndependentParametersErrorTest::IndependentParametersErrorTest(void) : UnitTesting()
 {
 }
 
 
 // DESTRUCTOR
 
-IndependentParametersErrorTest::~IndependentParametersErrorTest(void) 
+IndependentParametersErrorTest::~IndependentParametersErrorTest(void)
 {
 }
 
@@ -36,44 +36,44 @@ IndependentParametersErrorTest::~IndependentParametersErrorTest(void)
 
 void IndependentParametersErrorTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 
-   // Default
+    // Default
 
-   IndependentParametersError ipe1;
+    IndependentParametersError ipe1;
 
-   assert_true(ipe1.has_neural_network() == false, LOG);
+    assert_true(ipe1.has_neural_network() == false, LOG);
 
-   // Neural network
+    // Neural network
 
-   NeuralNetwork nn2;
-   IndependentParametersError ipe2(&nn2);
+    NeuralNetwork nn2;
+    IndependentParametersError ipe2(&nn2);
 
-   assert_true(ipe2.get_neural_network_pointer() != NULL, LOG);
+    assert_true(ipe2.get_neural_network_pointer() != NULL, LOG);
 
 }
 
 
 void IndependentParametersErrorTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 
 // @todo
 
-void IndependentParametersErrorTest::test_calculate_performance(void)   
+void IndependentParametersErrorTest::test_calculate_performance(void)
 {
-   message += "test_calculate_performance\n";
+    message += "test_calculate_performance\n";
 
 //   NeuralNetwork nn;
-//   Vector<double> parameters; 
+//   Vector<double> parameters;
 
 //   IndependentParametersError ipe(&nn);
 
 //   double performance;
 
-   // Test
+    // Test
 
 //   nn.set(1);
 //   nn.initialize_parameters(0.0);
@@ -82,7 +82,7 @@ void IndependentParametersErrorTest::test_calculate_performance(void)
 
 //   assert_true(performance == 0.0, LOG);
 
-   // Test
+    // Test
 
 //   nn.set(1, 1, 1);
 //   nn.initialize_parameters(0.0);
@@ -93,13 +93,13 @@ void IndependentParametersErrorTest::test_calculate_performance(void)
 }
 
 
-void IndependentParametersErrorTest::test_to_XML(void)   
+void IndependentParametersErrorTest::test_to_XML(void)
 {
-	message += "test_to_XML\n"; 
+    message += "test_to_XML\n";
 
     IndependentParametersError ipe;
 
-    tinyxml2::XMLDocument* document;
+    tinyxml2::XMLDocument *document;
 
     // Test
 
@@ -122,27 +122,27 @@ void IndependentParametersErrorTest::test_from_XML(void)
 
 void IndependentParametersErrorTest::run_test_case(void)
 {
-   message += "Running independent parameters error test case...\n";
+    message += "Running independent parameters error test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Get methods
+    // Get methods
 
-   // Set methods
+    // Set methods
 
-   // Objective methods
+    // Objective methods
 
-   test_calculate_performance();   
+    test_calculate_performance();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();   
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
-   message += "End of independent parameters error test case.\n";
+    message += "End of independent parameters error test case.\n";
 }
 
 

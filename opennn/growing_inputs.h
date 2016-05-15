@@ -37,99 +37,79 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 ///
 /// This concrete class represents a growing algorithm for the inputs selection of a neural network.
 ///
+class GrowingInputs : public InputsSelectionAlgorithm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit GrowingInputs(void);
 
-    class GrowingInputs : public InputsSelectionAlgorithm {
-    public:
-        // DEFAULT CONSTRUCTOR
+    // TRAINING STRATEGY CONSTRUCTOR
+    explicit GrowingInputs(TrainingStrategy *);
 
-        explicit GrowingInputs(void);
+    // XML CONSTRUCTOR
+    explicit GrowingInputs(const tinyxml2::XMLDocument &);
 
-        // TRAINING STRATEGY CONSTRUCTOR
+    // FILE CONSTRUCTOR
+    explicit GrowingInputs(const std::string &);
 
-        explicit GrowingInputs(TrainingStrategy *);
+    // DESTRUCTOR
+    virtual ~GrowingInputs(void);
 
-        // XML CONSTRUCTOR
+    ///
+    /// This structure contains the training results for the growing inputs method.
+    ///
+    struct GrowingInputsResults : public InputsSelectionAlgorithm::InputsSelectionResults {
+        /// Default constructor.
+        explicit GrowingInputsResults(void) : InputsSelectionAlgorithm::InputsSelectionResults()
+        {
+        }
 
-        explicit GrowingInputs(const tinyxml2::XMLDocument &);
-
-        // FILE CONSTRUCTOR
-
-        explicit GrowingInputs(const std::string &);
-
-        // DESTRUCTOR
-
-        virtual ~GrowingInputs(void);
-
-        // STRUCTURES
-
-        ///
-        /// This structure contains the training results for the growing inputs method.
-        ///
-
-        struct GrowingInputsResults : public InputsSelectionAlgorithm::InputsSelectionResults {
-            /// Default constructor.
-
-            explicit GrowingInputsResults(void) : InputsSelectionAlgorithm::InputsSelectionResults()
-            {
-            }
-
-            /// Destructor.
-
-            virtual ~GrowingInputsResults(void)
-            {
-            }
-
-        };
-
-        // METHODS
-
-        // Get methods
-
-        const size_t &get_maximum_inputs_number(void) const;
-
-        const size_t &get_maximum_selection_failures(void) const;
-
-        // Set methods
-
-        void set_default(void);
-
-        void set_maximum_inputs_number(const size_t &);
-
-        void set_maximum_selection_failures(const size_t &);
-
-        // Order selection methods
-
-        GrowingInputsResults *perform_inputs_selection(void);
-
-        // Serialization methods
-
-        Matrix<std::string> to_string_matrix(void) const;
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-        void save(const std::string &) const;
-
-        void load(const std::string &);
-
-    private:
-
-        // STOPPING CRITERIA
-
-        /// Maximum number of inputs in the neural network.
-
-        size_t maximum_inputs_number;
-
-        /// Maximum number of iterations at which the selection performance increases.
-
-        size_t maximum_selection_failures;
+        /// Destructor.
+        virtual ~GrowingInputsResults(void)
+        {
+        }
     };
+
+    // Get methods
+    const size_t &get_maximum_inputs_number(void) const;
+
+    const size_t &get_maximum_selection_failures(void) const;
+
+    // Set methods
+    void set_default(void);
+
+    void set_maximum_inputs_number(const size_t &);
+
+    void set_maximum_selection_failures(const size_t &);
+
+    // Order selection methods
+    GrowingInputsResults *perform_inputs_selection(void);
+
+    // Serialization methods
+    Matrix<std::string> to_string_matrix(void) const;
+
+    tinyxml2::XMLDocument *to_XML(void) const;
+
+    void from_XML(const tinyxml2::XMLDocument &);
+
+    void save(const std::string &) const;
+
+    void load(const std::string &);
+
+private:
+    /// Maximum number of inputs in the neural network.
+    size_t maximum_inputs_number;
+
+    /// Maximum number of iterations at which the selection performance increases.
+    size_t maximum_selection_failures;
+};
+
 
 }
 

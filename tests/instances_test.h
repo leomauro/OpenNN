@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   I N S T A N C E S   T E S T    C L A S S   H E A D E R                                                     */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -20,82 +20,91 @@
 
 using namespace OpenNN;
 
-class InstancesTest : public UnitTesting 
-{
+class InstancesTest : public UnitTesting {
 
 #define STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
-public:  
+public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit InstancesTest(void);
+    explicit InstancesTest(void);
 
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~InstancesTest(void);
+    virtual ~InstancesTest(void);
 
 
     // METHODS
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Assignment operators methods
+    void test_destructor(void);
 
-   void test_assignment_operator(void);
+    // Assignment operators methods
 
-   // Get methods
+    void test_assignment_operator(void);
 
-   void test_get_instances_number(void);
+    // Get methods
 
-   // Instances methods 
+    void test_get_instances_number(void);
 
-   void test_count_training_instances_number(void);
-   void test_count_selection_instances_number(void);
-   void test_count_testing_instances_number(void);
+    // Instances methods
 
-   void test_arrange_selection_indices(void);
-   void test_arrange_training_indices(void);
-   void test_arrange_testing_indices(void);
-   void test_arrange_used_indices(void);
+    void test_count_training_instances_number(void);
 
-   void test_get_display(void);
+    void test_count_selection_instances_number(void);
 
-   // Set methods
+    void test_count_testing_instances_number(void);
 
-   void test_set(void);
+    void test_arrange_selection_indices(void);
 
-   void test_set_instances_number(void);
+    void test_arrange_training_indices(void);
 
-   // Instances methods
+    void test_arrange_testing_indices(void);
 
-   void test_set_training(void);
-   void test_set_selection(void);
-   void test_set_testing(void);
+    void test_arrange_used_indices(void);
 
-   void test_set_unused(void);
+    void test_get_display(void);
 
-   void test_set_display(void);
+    // Set methods
 
-   // Splitting methods
+    void test_set(void);
 
-   void test_split_random_indices(void);
-   void test_split_sequential_indices(void);
+    void test_set_instances_number(void);
 
-   // Serialization methods
+    // Instances methods
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    void test_set_training(void);
 
-   // Unit testing methods
+    void test_set_selection(void);
 
-   void run_test_case(void);
+    void test_set_testing(void);
+
+    void test_set_unused(void);
+
+    void test_set_display(void);
+
+    // Splitting methods
+
+    void test_split_random_indices(void);
+
+    void test_split_sequential_indices(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 #endif

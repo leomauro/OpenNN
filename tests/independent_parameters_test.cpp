@@ -38,181 +38,181 @@ IndependentParametersTest::~IndependentParametersTest(void)
 
 void IndependentParametersTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 
-   // Default constructor
+    // Default constructor
 
-   IndependentParameters mlp1;
+    IndependentParameters mlp1;
 
-   assert_true(mlp1.get_parameters_number() == 0, LOG);
+    assert_true(mlp1.get_parameters_number() == 0, LOG);
 
-   // Independent parameters constructor
+    // Independent parameters constructor
 
-   IndependentParameters mlp4(1);
+    IndependentParameters mlp4(1);
 
-   assert_true(mlp4.get_parameters_number() == 1, LOG);
+    assert_true(mlp4.get_parameters_number() == 1, LOG);
 
-   // Copy constructor
+    // Copy constructor
 
 }
 
 
 void IndependentParametersTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 
 void IndependentParametersTest::test_assignment_operator(void)
 {
-   message += "test_assignment_operator\n";
+    message += "test_assignment_operator\n";
 
-   IndependentParameters mlp_1;
-   IndependentParameters mlp_2 = mlp_1;
+    IndependentParameters mlp_1;
+    IndependentParameters mlp_2 = mlp_1;
 
-   assert_true(mlp_2.get_parameters_number() == 0, LOG);
+    assert_true(mlp_2.get_parameters_number() == 0, LOG);
 }
 
 
 void IndependentParametersTest::test_set(void)
 {
-   message += "test_set\n";
+    message += "test_set\n";
 }
 
 
 void IndependentParametersTest::test_set_default(void)
 {
-   message += "test_set_default\n";
+    message += "test_set_default\n";
 }
 
 
 void IndependentParametersTest::test_count_parameters_number(void)
 {
-   message += "test_count_parameters_number\n";
+    message += "test_count_parameters_number\n";
 }
 
 
-void IndependentParametersTest::test_get_parameters(void)   
+void IndependentParametersTest::test_get_parameters(void)
 {
-   message += "test_get_parameters\n";
+    message += "test_get_parameters\n";
 }
 
 
-void IndependentParametersTest::test_get_parameter(void)   
+void IndependentParametersTest::test_get_parameter(void)
 {
-   message += "test_get_parameter\n";
+    message += "test_get_parameter\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_name(void)
 {
-   message += "test_get_parameters_name\n";
+    message += "test_get_parameters_name\n";
 }
 
 
 void IndependentParametersTest::test_get_parameter_name(void)
 {
-   message += "test_get_parameter_name\n";
+    message += "test_get_parameter_name\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_units(void)
 {
-   message += "test_get_parameters_units\n";
+    message += "test_get_parameters_units\n";
 }
 
 
 void IndependentParametersTest::test_get_parameter_units(void)
 {
-   message += "test_get_parameter_units\n";
+    message += "test_get_parameter_units\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_information(void)
 {
-   message += "test_get_parameters_information\n";
+    message += "test_get_parameters_information\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_description(void)
 {
-   message += "test_get_parameters_description\n";
+    message += "test_get_parameters_description\n";
 }
 
 
 void IndependentParametersTest::test_get_parameter_description(void)
 {
-   message += "test_get_parameter_description\n";
+    message += "test_get_parameter_description\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_mean(void)
 {
-   message += "test_get_parameters_mean\n";
+    message += "test_get_parameters_mean\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_standard_deviation(void)
 {
-   message += "test_get_parameters_standard_deviation\n";
+    message += "test_get_parameters_standard_deviation\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_mean_standard_deviation(void)
 {
-   message += "test_get_parameters_mean_standard_deviation\n";
+    message += "test_get_parameters_mean_standard_deviation\n";
 }
 
 
 void IndependentParametersTest::test_get_parameter_mean(void)
 {
-   message += "test_get_parameter_mean\n";
+    message += "test_get_parameter_mean\n";
 }
 
 
 void IndependentParametersTest::test_get_parameter_standard_deviation(void)
 {
-   message += "test_get_parameter_standard_deviation\n";
+    message += "test_get_parameter_standard_deviation\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_minimum(void)
 {
-   message += "test_get_parameters_minimum\n";
+    message += "test_get_parameters_minimum\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_maximum(void)
 {
-   message += "test_get_parameters_maximum\n";
+    message += "test_get_parameters_maximum\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_minimum_maximum(void)
 {
-   message += "test_get_parameters_minimum_maximum\n";
+    message += "test_get_parameters_minimum_maximum\n";
 }
 
 
 void IndependentParametersTest::test_get_parameter_minimum(void)
 {
-   message += "test_get_parameter_minimum\n";
+    message += "test_get_parameter_minimum\n";
 }
 
 
 void IndependentParametersTest::test_get_parameter_maximum(void)
 {
-   message += "test_get_parameter_maximum\n";
+    message += "test_get_parameter_maximum\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_statistics(void)
 {
-   message += "test_get_parameters_statistics\n";
+    message += "test_get_parameters_statistics\n";
 
-   IndependentParameters ip;
+    IndependentParameters ip;
 
-   // Test
+    // Test
 
 //   Vector< Statistics<double> > statistics = ip.arrange_statistics();
 
@@ -222,598 +222,598 @@ void IndependentParametersTest::test_get_parameters_statistics(void)
 
 void IndependentParametersTest::test_get_parameters_lower_bound(void)
 {
-   message += "test_get_parameters_lower_bound\n";
+    message += "test_get_parameters_lower_bound\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_upper_bound(void)
 {
-   message += "test_get_parameters_upper_bound\n";
+    message += "test_get_parameters_upper_bound\n";
 }
 
 
 void IndependentParametersTest::test_get_parameter_lower_bound(void)
 {
-   message += "test_get_parameter_lower_bound\n";
+    message += "test_get_parameter_lower_bound\n";
 }
 
 
 void IndependentParametersTest::test_get_parameter_upper_bound(void)
 {
-   message += "test_get_parameter_upper_bound\n";
+    message += "test_get_parameter_upper_bound\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_bounds(void)
 {
-   message += "test_get_parameters_bounds\n";
+    message += "test_get_parameters_bounds\n";
 }
 
 
 void IndependentParametersTest::test_get_display(void)
 {
-   message += "test_get_display\n";
+    message += "test_get_display\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_scaling_method(void)
 {
-   message += "test_set_parameters_scaling_method\n";
+    message += "test_set_parameters_scaling_method\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_number(void)
 {
-   message += "test_set_parameters_number\n";
+    message += "test_set_parameters_number\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters(void)
 {
-   message += "test_set_parameters\n";
+    message += "test_set_parameters\n";
 }
 
 
 void IndependentParametersTest::test_set_parameter(void)
 {
-   message += "test_set_parameter\n";
+    message += "test_set_parameter\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_name(void)
 {
-   message += "test_set_parameters_name\n";
+    message += "test_set_parameters_name\n";
 }
 
 
 void IndependentParametersTest::test_set_parameter_name(void)
 {
-   message += "test_set_parameter_name\n";
+    message += "test_set_parameter_name\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_units(void)
 {
-   message += "test_set_parameters_units\n";
+    message += "test_set_parameters_units\n";
 }
 
 
 void IndependentParametersTest::test_set_parameter_units(void)
 {
-   message += "test_set_parameter_units\n";
+    message += "test_set_parameter_units\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_description(void)
 {
-   message += "test_set_parameters_description\n";
+    message += "test_set_parameters_description\n";
 }
 
 
 void IndependentParametersTest::test_set_parameter_description(void)
 {
-   message += "test_set_parameter_description\n";
+    message += "test_set_parameter_description\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_mean(void)
 {
-   message += "test_set_parameters_mean\n";
+    message += "test_set_parameters_mean\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_standard_deviation(void)
 {
-   message += "test_set_parameters_standard_deviation\n";
+    message += "test_set_parameters_standard_deviation\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_mean_standard_deviation(void)
 {
-   message += "test_set_parameters_mean_standard_deviation\n";
+    message += "test_set_parameters_mean_standard_deviation\n";
 }
 
 
 void IndependentParametersTest::test_set_parameter_mean(void)
 {
-   message += "test_set_parameter_mean\n";
+    message += "test_set_parameter_mean\n";
 }
 
 
 void IndependentParametersTest::test_set_parameter_standard_deviation(void)
 {
-   message += "test_set_parameter_standard_deviation\n";
+    message += "test_set_parameter_standard_deviation\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_minimum(void)
 {
-   message += "test_set_parameters_minimum\n";
+    message += "test_set_parameters_minimum\n";
 }
 
 
 void IndependentParametersTest::test_set_parameter_minimum(void)
 {
-   message += "test_set_parameter_minimum\n";
+    message += "test_set_parameter_minimum\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_maximum(void)
 {
-   message += "test_set_parameters_maximum\n";
+    message += "test_set_parameters_maximum\n";
 }
 
 
 void IndependentParametersTest::test_set_parameter_maximum(void)
 {
-   message += "test_set_parameter_maximum\n";
+    message += "test_set_parameter_maximum\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_minimum_maximum(void)
 {
-   message += "test_set_parameters_minimum_maximum\n";
+    message += "test_set_parameters_minimum_maximum\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_statistics(void)
 {
-   message += "test_set_parameters_statistics\n";
+    message += "test_set_parameters_statistics\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_lower_bound(void)
 {
-   message += "test_set_parameters_lower_bound\n";
+    message += "test_set_parameters_lower_bound\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_upper_bound(void)
 {
-   message += "test_set_parameters_upper_bound\n";
+    message += "test_set_parameters_upper_bound\n";
 }
 
 
 void IndependentParametersTest::test_set_parameters_bounds(void)
 {
-   message += "test_set_parameters_bounds\n";
+    message += "test_set_parameters_bounds\n";
 }
 
 
 void IndependentParametersTest::test_set_parameter_lower_bound(void)
 {
-   message += "test_set_parameter_lower_bounds\n";
+    message += "test_set_parameter_lower_bounds\n";
 }
 
 
 void IndependentParametersTest::test_set_parameter_upper_bound(void)
 {
-   message += "test_set_parameter_upper_bound\n";
+    message += "test_set_parameter_upper_bound\n";
 }
 
 
 void IndependentParametersTest::test_set_display(void)
 {
-   message += "test_set_display\n";
+    message += "test_set_display\n";
 }
 
 
 void IndependentParametersTest::test_initialize_random(void)
 {
-   message += "test_initialize_random\n";
+    message += "test_initialize_random\n";
 
-   IndependentParameters ip;
+    IndependentParameters ip;
 
-   size_t parameters_number;
+    size_t parameters_number;
 
-   // Test
+    // Test
 
-   ip.initialize_random();
+    ip.initialize_random();
 
-   parameters_number = ip.get_parameters_number();
+    parameters_number = ip.get_parameters_number();
 
-   assert_true(parameters_number >= 1 && parameters_number <= 10, LOG);
+    assert_true(parameters_number >= 1 && parameters_number <= 10, LOG);
 }
 
 
 void IndependentParametersTest::test_initialize_parameters(void)
-{      
-   message += "test_initialize_parameters\n";
+{
+    message += "test_initialize_parameters\n";
 
-   IndependentParameters ip;
-   Vector<double> independent_parameters;
+    IndependentParameters ip;
+    Vector<double> independent_parameters;
 
-   ip.set_parameters_number(1);
-   ip.initialize_parameters(0.0);
-   independent_parameters = ip.get_parameters();
-   assert_true(independent_parameters == 0.0, LOG);
+    ip.set_parameters_number(1);
+    ip.initialize_parameters(0.0);
+    independent_parameters = ip.get_parameters();
+    assert_true(independent_parameters == 0.0, LOG);
 }
 
 
 void IndependentParametersTest::test_randomize_parameters_uniform(void)
 {
-   message += "test_randomize_parameters_uniform\n";
-   IndependentParameters ip;
-   Vector<double> independent_parameters;
+    message += "test_randomize_parameters_uniform\n";
+    IndependentParameters ip;
+    Vector<double> independent_parameters;
 
-   // Test
+    // Test
 
-   ip.set_parameters_number(1);      
-   ip.randomize_parameters_uniform();
-   independent_parameters = ip.get_parameters();   
-   assert_true(independent_parameters >= -1.0, LOG);
-   assert_true(independent_parameters <=  1.0, LOG);
+    ip.set_parameters_number(1);
+    ip.randomize_parameters_uniform();
+    independent_parameters = ip.get_parameters();
+    assert_true(independent_parameters >= -1.0, LOG);
+    assert_true(independent_parameters <= 1.0, LOG);
 }
 
 
 void IndependentParametersTest::test_randomize_parameters_normal(void)
 {
-   message += "test_randomize_parameters_normal\n";
-   IndependentParameters ip;
-   Vector<double> independent_parameters;
+    message += "test_randomize_parameters_normal\n";
+    IndependentParameters ip;
+    Vector<double> independent_parameters;
 
-   // Test
+    // Test
 
-   ip.set_parameters_number(1);
-   ip.randomize_parameters_normal(1.0, 0.0);
-   independent_parameters = ip.get_parameters();
-   assert_true(independent_parameters == 1.0, LOG);
+    ip.set_parameters_number(1);
+    ip.randomize_parameters_normal(1.0, 0.0);
+    independent_parameters = ip.get_parameters();
+    assert_true(independent_parameters == 1.0, LOG);
 }
 
 
 void IndependentParametersTest::test_calculate_scaled_parameters(void)
 {
-   message += "test_calculate_scaled_parameters\n";
+    message += "test_calculate_scaled_parameters\n";
 
-   IndependentParameters ip;
-   Vector<double> independent_parameters;
-   Vector<double> scaled_parameters;
+    IndependentParameters ip;
+    Vector<double> independent_parameters;
+    Vector<double> scaled_parameters;
 
-   // Minimum and maximum scaling and unscaling
+    // Minimum and maximum scaling and unscaling
 
-   ip.set_parameters_number(1);
-   ip.initialize_parameters(0.0);
+    ip.set_parameters_number(1);
+    ip.initialize_parameters(0.0);
 
-   ip.set_scaling_method(IndependentParameters::MinimumMaximum);
+    ip.set_scaling_method(IndependentParameters::MinimumMaximum);
 
-   ip.set_minimum(0, -1.0);
-   ip.set_maximum(0,  1.0);
+    ip.set_minimum(0, -1.0);
+    ip.set_maximum(0, 1.0);
 
-   independent_parameters = ip.get_parameters();
+    independent_parameters = ip.get_parameters();
 
-   scaled_parameters = ip.calculate_scaled_parameters();
+    scaled_parameters = ip.calculate_scaled_parameters();
 
-   assert_true(scaled_parameters == independent_parameters, LOG);      
+    assert_true(scaled_parameters == independent_parameters, LOG);
 
-   // Mean and standard deviation scaling and unscaling
+    // Mean and standard deviation scaling and unscaling
 
-   ip.set_parameters_number(1);
-   ip.initialize_parameters(0.0);
+    ip.set_parameters_number(1);
+    ip.initialize_parameters(0.0);
 
-   ip.set_scaling_method(IndependentParameters::MeanStandardDeviation);
- 
-   ip.set_mean(0, 0.0);
-   ip.set_standard_deviation(0, 1.0);
+    ip.set_scaling_method(IndependentParameters::MeanStandardDeviation);
 
-   independent_parameters = ip.get_parameters();
+    ip.set_mean(0, 0.0);
+    ip.set_standard_deviation(0, 1.0);
 
-   scaled_parameters = ip.calculate_scaled_parameters();
+    independent_parameters = ip.get_parameters();
 
-   assert_true(scaled_parameters == independent_parameters, LOG);      
+    scaled_parameters = ip.calculate_scaled_parameters();
+
+    assert_true(scaled_parameters == independent_parameters, LOG);
 
 }
 
 
 void IndependentParametersTest::test_unscale_parameters(void)
 {
-   message += "test_unscale_parameters\n";
+    message += "test_unscale_parameters\n";
 
-   IndependentParameters ip;
-   Vector<double> scaled_parameters;
-   Vector<double> independent_parameters;
+    IndependentParameters ip;
+    Vector<double> scaled_parameters;
+    Vector<double> independent_parameters;
 
-   // Minimum and maximum scaling and unscaling
+    // Minimum and maximum scaling and unscaling
 
-   ip.set_parameters_number(1);
-   ip.initialize_parameters(0.0);
+    ip.set_parameters_number(1);
+    ip.initialize_parameters(0.0);
 
-   ip.set_scaling_method(IndependentParameters::MinimumMaximum);
+    ip.set_scaling_method(IndependentParameters::MinimumMaximum);
 
-   ip.set_minimum(0, -1.0);
-   ip.set_maximum(0,  1.0);
+    ip.set_minimum(0, -1.0);
+    ip.set_maximum(0, 1.0);
 
-   scaled_parameters = ip.calculate_scaled_parameters();
+    scaled_parameters = ip.calculate_scaled_parameters();
 
-   ip.unscale_parameters(scaled_parameters);
+    ip.unscale_parameters(scaled_parameters);
 
-   independent_parameters = ip.get_parameters();
+    independent_parameters = ip.get_parameters();
 
-   assert_true(independent_parameters == scaled_parameters, LOG);
+    assert_true(independent_parameters == scaled_parameters, LOG);
 
-   // Mean and standard deviation scaling and unscaling
+    // Mean and standard deviation scaling and unscaling
 
-   ip.set_parameters_number(1);
-   ip.initialize_parameters(0.0);
+    ip.set_parameters_number(1);
+    ip.initialize_parameters(0.0);
 
-   ip.set_scaling_method(IndependentParameters::MeanStandardDeviation);
+    ip.set_scaling_method(IndependentParameters::MeanStandardDeviation);
 
-   ip.set_mean(0, 0.0);
-   ip.set_standard_deviation(0, 1.0);
+    ip.set_mean(0, 0.0);
+    ip.set_standard_deviation(0, 1.0);
 
-   scaled_parameters = ip.calculate_scaled_parameters();
+    scaled_parameters = ip.calculate_scaled_parameters();
 
-   ip.unscale_parameters(scaled_parameters);
+    ip.unscale_parameters(scaled_parameters);
 
-   independent_parameters = ip.get_parameters();
+    independent_parameters = ip.get_parameters();
 
-   assert_true(independent_parameters == scaled_parameters, LOG);
+    assert_true(independent_parameters == scaled_parameters, LOG);
 }
 
 
 void IndependentParametersTest::test_bound_parameters(void)
 {
-   message += "test_bound_parameters\n";
+    message += "test_bound_parameters\n";
 
-   IndependentParameters ip;
+    IndependentParameters ip;
 
-   Vector<double> independent_parameters;
-   Vector<double> bounded_parameters;
+    Vector<double> independent_parameters;
+    Vector<double> bounded_parameters;
 
-   // Test
+    // Test
 
 }
 
 
 void IndependentParametersTest::test_bound_parameter(void)
 {
-   message += "test_bound_parameter\n";
+    message += "test_bound_parameter\n";
 }
 
 
 void IndependentParametersTest::test_get_parameters_scaling_method(void)
 {
-   message += "test_get_parameters_scaling_method\n";
+    message += "test_get_parameters_scaling_method\n";
 
-   IndependentParameters ip;
+    IndependentParameters ip;
 
-   ip.set_scaling_method(IndependentParameters::MeanStandardDeviation);
+    ip.set_scaling_method(IndependentParameters::MeanStandardDeviation);
 
-   assert_true(ip.get_scaling_method() == IndependentParameters::MeanStandardDeviation, LOG);
+    assert_true(ip.get_scaling_method() == IndependentParameters::MeanStandardDeviation, LOG);
 
-   ip.set_scaling_method(IndependentParameters::MinimumMaximum);
+    ip.set_scaling_method(IndependentParameters::MinimumMaximum);
 
-   assert_true(ip.get_scaling_method() == IndependentParameters::MinimumMaximum, LOG);
+    assert_true(ip.get_scaling_method() == IndependentParameters::MinimumMaximum, LOG);
 }
 
 
 void IndependentParametersTest::test_get_parameters_scaling_method_name(void)
 {
-   message += "test_get_parameters_scaling_method_name\n";
+    message += "test_get_parameters_scaling_method_name\n";
 }
 
 
 void IndependentParametersTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 
-   IndependentParameters  ip;
+    IndependentParameters ip;
 
-   tinyxml2::XMLDocument* element = ip.to_XML();
+    tinyxml2::XMLDocument *element = ip.to_XML();
 
-   assert_true(element != NULL, LOG);
+    assert_true(element != NULL, LOG);
 }
 
 
 void IndependentParametersTest::test_from_XML(void)
 {
-   message += "test_from_XML\n";
+    message += "test_from_XML\n";
 
-   IndependentParameters  ip;
+    IndependentParameters ip;
 
-   tinyxml2::XMLDocument* document;
+    tinyxml2::XMLDocument *document;
 
-   // Test
+    // Test
 
-   document = ip.to_XML();
-   
-   ip.from_XML(*document);
+    document = ip.to_XML();
 
-   delete document;
+    ip.from_XML(*document);
+
+    delete document;
 }
 
 
 void IndependentParametersTest::run_test_case(void)
 {
-   message += "Running independent parameters test case...\n";
+    message += "Running independent parameters test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Assignment operators methods
+    // Assignment operators methods
 
-   test_assignment_operator();
+    test_assignment_operator();
 
-   // Get methods
+    // Get methods
 
-   // Independent parameters
+    // Independent parameters
 
-   test_count_parameters_number();
-   
-   test_get_parameters();   
-   test_get_parameter();   
+    test_count_parameters_number();
 
-   // Independent parameters information
+    test_get_parameters();
+    test_get_parameter();
 
-   test_get_parameters_name();
-   test_get_parameter_name();
+    // Independent parameters information
 
-   test_get_parameters_units();
-   test_get_parameter_units();
+    test_get_parameters_name();
+    test_get_parameter_name();
 
-   test_get_parameters_description();
-   test_get_parameter_description();
+    test_get_parameters_units();
+    test_get_parameter_units();
 
-   test_get_parameters_information();
+    test_get_parameters_description();
+    test_get_parameter_description();
 
-   // Independent parameters statistics
+    test_get_parameters_information();
 
-   test_get_parameters_minimum();
-   test_get_parameter_minimum();
+    // Independent parameters statistics
 
-   test_get_parameters_maximum();
-   test_get_parameter_maximum();
+    test_get_parameters_minimum();
+    test_get_parameter_minimum();
 
-   test_get_parameters_mean();
-   test_get_parameter_mean();
+    test_get_parameters_maximum();
+    test_get_parameter_maximum();
 
-   test_get_parameters_standard_deviation();
-   test_get_parameter_standard_deviation();
+    test_get_parameters_mean();
+    test_get_parameter_mean();
 
-   test_get_parameters_mean_standard_deviation();
-   test_get_parameters_minimum_maximum();
+    test_get_parameters_standard_deviation();
+    test_get_parameter_standard_deviation();
 
-   test_get_parameters_statistics();
+    test_get_parameters_mean_standard_deviation();
+    test_get_parameters_minimum_maximum();
 
-   // Independent parameters scaling and unscaling
+    test_get_parameters_statistics();
 
-   test_get_parameters_scaling_method();
-   test_get_parameters_scaling_method_name();
+    // Independent parameters scaling and unscaling
 
-   // Independent parameters bounds
+    test_get_parameters_scaling_method();
+    test_get_parameters_scaling_method_name();
 
-   test_get_parameters_lower_bound();
-   test_get_parameter_lower_bound();
+    // Independent parameters bounds
 
-   test_get_parameters_upper_bound();
-   test_get_parameter_upper_bound();
+    test_get_parameters_lower_bound();
+    test_get_parameter_lower_bound();
 
-   test_get_parameters_bounds();
+    test_get_parameters_upper_bound();
+    test_get_parameter_upper_bound();
 
-   // Parameters methods
+    test_get_parameters_bounds();
 
-   test_count_parameters_number();
-   test_get_parameters();   
+    // Parameters methods
 
-   // Display messages
+    test_count_parameters_number();
+    test_get_parameters();
 
-   test_get_display();
+    // Display messages
 
-   // Set methods
+    test_get_display();
 
-   test_set();
-   test_set_default();
+    // Set methods
 
-   // Independent parameters
+    test_set();
+    test_set_default();
 
-   test_set_parameters_number();
-   test_set_parameters();
+    // Independent parameters
 
-   test_set_parameter();
+    test_set_parameters_number();
+    test_set_parameters();
 
-   // Independent parameters information
+    test_set_parameter();
 
-   test_set_parameters_name();
-   test_set_parameter_name();
+    // Independent parameters information
 
-   test_set_parameters_units();
-   test_set_parameter_units();
+    test_set_parameters_name();
+    test_set_parameter_name();
 
-   test_set_parameters_description();
-   test_set_parameter_description();
+    test_set_parameters_units();
+    test_set_parameter_units();
 
-   // Independent parameters statistics
+    test_set_parameters_description();
+    test_set_parameter_description();
 
-   test_set_parameters_minimum();
-   test_set_parameter_minimum();
+    // Independent parameters statistics
 
-   test_set_parameters_maximum();
-   test_set_parameter_maximum();
+    test_set_parameters_minimum();
+    test_set_parameter_minimum();
 
-   test_set_parameters_mean();
-   test_set_parameter_mean();
+    test_set_parameters_maximum();
+    test_set_parameter_maximum();
 
-   test_set_parameters_standard_deviation();
-   test_set_parameter_standard_deviation();
-   
-   test_set_parameters_minimum_maximum();
-   test_set_parameters_mean_standard_deviation();
+    test_set_parameters_mean();
+    test_set_parameter_mean();
 
-   test_set_parameters_statistics();
+    test_set_parameters_standard_deviation();
+    test_set_parameter_standard_deviation();
 
-   // Independent parameters scaling and unscaling
+    test_set_parameters_minimum_maximum();
+    test_set_parameters_mean_standard_deviation();
 
-   test_set_parameters_scaling_method();
+    test_set_parameters_statistics();
 
-   // Independent parameters bounds
+    // Independent parameters scaling and unscaling
 
-   test_set_parameters_lower_bound();
-   test_set_parameter_lower_bound();
+    test_set_parameters_scaling_method();
 
-   test_set_parameters_upper_bound();
-   test_set_parameter_upper_bound();
+    // Independent parameters bounds
 
-   test_set_parameters_bounds();
+    test_set_parameters_lower_bound();
+    test_set_parameter_lower_bound();
 
-   // Parameters methods
+    test_set_parameters_upper_bound();
+    test_set_parameter_upper_bound();
 
-   test_set_parameters();
+    test_set_parameters_bounds();
 
-   // Display messages
+    // Parameters methods
 
-   test_set_display();
+    test_set_parameters();
 
-   // Neural network initialization methods
+    // Display messages
 
-   test_initialize_random();
+    test_set_display();
 
-   // Independent parameters initialization methods
+    // Neural network initialization methods
 
-   test_initialize_parameters();
-   test_randomize_parameters_uniform();
-   test_randomize_parameters_normal();
+    test_initialize_random();
 
-   // Parameters initialization methods
+    // Independent parameters initialization methods
 
-   test_initialize_parameters();
-   test_randomize_parameters_uniform();
-   test_randomize_parameters_normal();
+    test_initialize_parameters();
+    test_randomize_parameters_uniform();
+    test_randomize_parameters_normal();
 
-   // Independent parameters methods   
+    // Parameters initialization methods
 
-   test_calculate_scaled_parameters();
-   test_unscale_parameters();
+    test_initialize_parameters();
+    test_randomize_parameters_uniform();
+    test_randomize_parameters_normal();
 
-   test_bound_parameters();
-   test_bound_parameter();
+    // Independent parameters methods
 
-   // Serialization methods
+    test_calculate_scaled_parameters();
+    test_unscale_parameters();
 
-   test_to_XML();
-   test_from_XML();
+    test_bound_parameters();
+    test_bound_parameter();
 
-   message += "End of independent parameters test case.\n";
+    // Serialization methods
+
+    test_to_XML();
+    test_from_XML();
+
+    message += "End of independent parameters test case.\n";
 }
 
 

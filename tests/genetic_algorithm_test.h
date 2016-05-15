@@ -21,67 +21,67 @@
 using namespace OpenNN;
 
 
-class GeneticAlgorithmTest : public UnitTesting
-{
+class GeneticAlgorithmTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // CONSTRUCTOR
+    // CONSTRUCTOR
 
-   explicit GeneticAlgorithmTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~GeneticAlgorithmTest(void);
+    explicit GeneticAlgorithmTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~GeneticAlgorithmTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void);
 
-   // Set methods
+    // METHODS
 
-   void test_set_default(void);
+    // Constructor and destructor methods
 
-   // Population methods
+    void test_constructor(void);
 
-   void test_initialize_population(void);
+    void test_destructor(void);
 
-   void test_calculate_fitness(void);
+    // Set methods
 
-   // Selection methods
+    void test_set_default(void);
 
-   void test_perform_selection(void);
+    // Population methods
 
-   // Crossover methods
+    void test_initialize_population(void);
 
-   void test_perform_crossover(void);
+    void test_calculate_fitness(void);
 
-   // Mutation methods
+    // Selection methods
 
-   void test_perform_mutation(void);
+    void test_perform_selection(void);
 
-   // Order selection methods
+    // Crossover methods
 
-   void test_perform_order_selection(void);
+    void test_perform_crossover(void);
 
-   // Serialization methods
+    // Mutation methods
 
-   void test_to_XML(void);
+    void test_perform_mutation(void);
 
-   void test_from_XML(void);
+    // Order selection methods
 
-   // Unit testing methods
+    void test_perform_order_selection(void);
 
-   void run_test_case(void);
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 
 };
 

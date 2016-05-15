@@ -19,7 +19,7 @@ using namespace OpenNN;
 
 // GENERAL CONSTRUCTOR
 
-CrossEntropyErrorTest::CrossEntropyErrorTest(void) : UnitTesting() 
+CrossEntropyErrorTest::CrossEntropyErrorTest(void) : UnitTesting()
 {
 }
 
@@ -38,129 +38,129 @@ CrossEntropyErrorTest::~CrossEntropyErrorTest(void)
 
 void CrossEntropyErrorTest::test_calculate_performance(void)
 {
-   message += "test_calculate_performance\n";
+    message += "test_calculate_performance\n";
 
-   NeuralNetwork nn;
-   Vector<double> parameters;
+    NeuralNetwork nn;
+    Vector<double> parameters;
 
-   MultilayerPerceptron* mlpp;
+    MultilayerPerceptron *mlpp;
 
-   DataSet ds;
-   
-   CrossEntropyError cee(&nn, &ds);
+    DataSet ds;
 
-   double cross_entropy_error;
+    CrossEntropyError cee(&nn, &ds);
 
-   // Test
+    double cross_entropy_error;
 
-   nn.set(1, 1);
+    // Test
 
-   mlpp = nn.get_multilayer_perceptron_pointer();
+    nn.set(1, 1);
 
-   mlpp->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
+    mlpp = nn.get_multilayer_perceptron_pointer();
 
-   nn.initialize_parameters(0.0);
-   parameters = nn.arrange_parameters();
-   
-   ds.set(1,1,1);
-   ds.initialize_data(0.0);
+    mlpp->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
 
-   cross_entropy_error = cee.calculate_performance();
+    nn.initialize_parameters(0.0);
+    parameters = nn.arrange_parameters();
 
-   assert_true(cross_entropy_error == cee.calculate_performance(parameters), LOG);
+    ds.set(1, 1, 1);
+    ds.initialize_data(0.0);
 
-   // Test
+    cross_entropy_error = cee.calculate_performance();
 
-   nn.set(1, 1);
+    assert_true(cross_entropy_error == cee.calculate_performance(parameters), LOG);
 
-   mlpp = nn.get_multilayer_perceptron_pointer();
+    // Test
 
-   mlpp->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
+    nn.set(1, 1);
 
-   nn.randomize_parameters_normal();
+    mlpp = nn.get_multilayer_perceptron_pointer();
 
-   parameters = nn.arrange_parameters();
+    mlpp->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
 
-   ds.set(1, 1, 1);
-   ds.randomize_data_normal();
+    nn.randomize_parameters_normal();
 
-   assert_true(cee.calculate_performance() == cee.calculate_performance(parameters), LOG);
+    parameters = nn.arrange_parameters();
 
-   // Test
+    ds.set(1, 1, 1);
+    ds.randomize_data_normal();
 
-   nn.set(1, 1);
+    assert_true(cee.calculate_performance() == cee.calculate_performance(parameters), LOG);
 
-   mlpp = nn.get_multilayer_perceptron_pointer();
+    // Test
 
-   mlpp->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
+    nn.set(1, 1);
 
-   nn.randomize_parameters_normal();
+    mlpp = nn.get_multilayer_perceptron_pointer();
 
-   parameters = nn.arrange_parameters();
+    mlpp->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
 
-   ds.set(1, 1, 1);
-   ds.randomize_data_normal();
+    nn.randomize_parameters_normal();
 
-   assert_true(cee.calculate_performance() != cee.calculate_performance(parameters*2.0), LOG);
+    parameters = nn.arrange_parameters();
 
-   // Test
+    ds.set(1, 1, 1);
+    ds.randomize_data_normal();
 
-   nn.set(3, 1);
+    assert_true(cee.calculate_performance() != cee.calculate_performance(parameters * 2.0), LOG);
 
-   mlpp = nn.get_multilayer_perceptron_pointer();
+    // Test
 
-   mlpp->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
+    nn.set(3, 1);
 
-   nn.randomize_parameters_normal();
+    mlpp = nn.get_multilayer_perceptron_pointer();
 
-   ds.set(50,3,1);
-   ds.randomize_data_normal();
+    mlpp->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
 
-   assert_true(cee.calculate_performance() > 0, LOG);
+    nn.randomize_parameters_normal();
 
-   // Test
+    ds.set(50, 3, 1);
+    ds.randomize_data_normal();
 
-   nn.set(3,3,3);
+    assert_true(cee.calculate_performance() > 0, LOG);
 
-   mlpp = nn.get_multilayer_perceptron_pointer();
+    // Test
 
-   mlpp->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
-   mlpp->get_layer_pointer(1)->set_activation_function(Perceptron::Logistic);
+    nn.set(3, 3, 3);
 
-   nn.initialize_parameters(0);
+    mlpp = nn.get_multilayer_perceptron_pointer();
 
-   ds.set(50,3,3);
-   ds.randomize_data_normal();
+    mlpp->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
+    mlpp->get_layer_pointer(1)->set_activation_function(Perceptron::Logistic);
 
-   assert_true(cee.calculate_performance() > 0, LOG);
+    nn.initialize_parameters(0);
+
+    ds.set(50, 3, 3);
+    ds.randomize_data_normal();
+
+    assert_true(cee.calculate_performance() > 0, LOG);
 
 }
 
 
-void CrossEntropyErrorTest::test_calculate_selection_performance(void)   
+void CrossEntropyErrorTest::test_calculate_selection_performance(void)
 {
-   message += "test_calculate_selection_performance\n";
+    message += "test_calculate_selection_performance\n";
 
-   NeuralNetwork nn;
-   DataSet ds;
-   
-   CrossEntropyError cee(&nn, &ds);
+    NeuralNetwork nn;
+    DataSet ds;
 
-   double selection_objective;
+    CrossEntropyError cee(&nn, &ds);
 
-   // Test
+    double selection_objective;
 
-   nn.set(1, 1);
-   nn.get_multilayer_perceptron_pointer()->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
-   nn.initialize_parameters(0.0);
-   
-   ds.set(1,1,1);
-   ds.get_instances_pointer()->set_selection();
-   ds.initialize_data(0.0);
-   
-   selection_objective = cee.calculate_selection_performance();
+    // Test
 
-   assert_true(selection_objective > 0.0, LOG);
+    nn.set(1, 1);
+    nn.get_multilayer_perceptron_pointer()->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
+    nn.initialize_parameters(0.0);
+
+    ds.set(1, 1, 1);
+    ds.get_instances_pointer()->set_selection();
+    ds.initialize_data(0.0);
+
+    selection_objective = cee.calculate_selection_performance();
+
+    assert_true(selection_objective > 0.0, LOG);
 }
 
 
@@ -182,8 +182,8 @@ void CrossEntropyErrorTest::test_calculate_minimum_performance(void)
     nn.get_multilayer_perceptron_pointer()->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
     nn.randomize_parameters_normal();
 
-    ds.set(20,1,1);
-    ds.randomize_data_uniform(0,1);
+    ds.set(20, 1, 1);
+    ds.randomize_data_uniform(0, 1);
 
     performance = cee.calculate_performance();
     minimum_performance = cee.calculate_minimum_performance();
@@ -210,9 +210,9 @@ void CrossEntropyErrorTest::test_calculate_minimum_selection_performance(void)
     nn.set(1, 1);
     nn.get_multilayer_perceptron_pointer()->get_layer_pointer(0)->set_activation_function(Perceptron::Logistic);
 
-    ds.set(20,1,1);
+    ds.set(20, 1, 1);
     ds.get_instances_pointer()->set_selection();
-    ds.randomize_data_uniform(0,1);
+    ds.randomize_data_uniform(0, 1);
 
     selection_performance = cee.calculate_selection_performance();
     minimum_selection_performance = cee.calculate_minimum_selection_performance();
@@ -224,187 +224,187 @@ void CrossEntropyErrorTest::test_calculate_minimum_selection_performance(void)
 
 void CrossEntropyErrorTest::test_calculate_gradient(void)
 {
-   message += "test_calculate_gradient\n";
+    message += "test_calculate_gradient\n";
 
-   NumericalDifferentiation nd;
+    NumericalDifferentiation nd;
 
-   NeuralNetwork nn;
-   Vector<size_t> architecture;
+    NeuralNetwork nn;
+    Vector<size_t> architecture;
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   DataSet ds;
+    DataSet ds;
 
-   CrossEntropyError cee(&nn, &ds);
+    CrossEntropyError cee(&nn, &ds);
 
-   Vector<double> gradient;
-   Vector<double> numerical_gradient;
+    Vector<double> gradient;
+    Vector<double> numerical_gradient;
 
-   // Test
+    // Test
 
-   nn.set(1, 1);
+    nn.set(1, 1);
 
-   nn.initialize_parameters(0.0);
+    nn.initialize_parameters(0.0);
 
-   ds.set(1,1,1);
+    ds.set(1, 1, 1);
 
-   ds.initialize_data(0.0);
+    ds.initialize_data(0.0);
 
-   gradient = cee.calculate_gradient();
+    gradient = cee.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
 
-   // Test 
+    // Test
 
-   nn.set(3, 4, 2);
+    nn.set(3, 4, 2);
 
-   nn.initialize_parameters(0.0);
+    nn.initialize_parameters(0.0);
 
-   ds.set(5,3,2);
-   cee.set(&nn, &ds);
-   ds.initialize_data(0.0);
+    ds.set(5, 3, 2);
+    cee.set(&nn, &ds);
+    ds.initialize_data(0.0);
 
-   gradient = cee.calculate_gradient();
+    gradient = cee.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
 
-   // Test
+    // Test
 
-   architecture.set(3);
-   architecture[0] = 2;
-   architecture[1] = 1;
-   architecture[2] = 3;
+    architecture.set(3);
+    architecture[0] = 2;
+    architecture[1] = 1;
+    architecture[2] = 3;
 
-   nn.set(architecture);
+    nn.set(architecture);
 
-   nn.initialize_parameters(0.0);
+    nn.initialize_parameters(0.0);
 
-   ds.set(5,2,3);
-   cee.set(&nn, &ds);
-   ds.initialize_data(0.0);
+    ds.set(5, 2, 3);
+    cee.set(&nn, &ds);
+    ds.initialize_data(0.0);
 
-   gradient = cee.calculate_gradient();
+    gradient = cee.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
 
-   // Test
+    // Test
 
-   nn.set(1, 1, 1);
+    nn.set(1, 1, 1);
 
-   nn.initialize_parameters(0.0);
+    nn.initialize_parameters(0.0);
 
-   ds.set(1,1,1);
+    ds.set(1, 1, 1);
 
-   ds.initialize_data(0.0);
+    ds.initialize_data(0.0);
 
-   gradient = cee.calculate_gradient();
+    gradient = cee.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
-
-
-   // Test 
-
-   nn.set(3,4,2);
-
-   nn.initialize_parameters(0.0);
-
-   ds.set(5,3,2);
-   cee.set(&nn, &ds);
-   ds.initialize_data(0.0);
-
-   gradient = cee.calculate_gradient();
-
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
 
 
-   // Test
+    // Test
 
-   architecture.set(3);
-   architecture[0] = 2;
-   architecture[1] = 1;
-   architecture[2] = 3;
+    nn.set(3, 4, 2);
 
-   nn.set(architecture);
-   nn.initialize_parameters(0.0);
+    nn.initialize_parameters(0.0);
 
-   ds.set(5,2,3);
-   cee.set(&nn, &ds);
-   ds.initialize_data(0.0);
+    ds.set(5, 3, 2);
+    cee.set(&nn, &ds);
+    ds.initialize_data(0.0);
 
-   gradient = cee.calculate_gradient();
+    gradient = cee.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
 
-   // Test
 
-   nn.set(1, 1);
+    // Test
 
-   nn.initialize_parameters(1.0);
-   parameters = nn.arrange_parameters();
+    architecture.set(3);
+    architecture[0] = 2;
+    architecture[1] = 1;
+    architecture[2] = 3;
 
-   ds.set(2,1,1);
-   ds.initialize_data(0.5);
+    nn.set(architecture);
+    nn.initialize_parameters(0.0);
 
-   gradient = cee.calculate_gradient();
-   numerical_gradient = nd.calculate_gradient(cee, &CrossEntropyError::calculate_performance, parameters);
+    ds.set(5, 2, 3);
+    cee.set(&nn, &ds);
+    ds.initialize_data(0.0);
 
-   assert_true((gradient - numerical_gradient).calculate_absolute_value() < 1.0e-3, LOG);
+    gradient = cee.calculate_gradient();
 
-   // Test
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
 
-   nn.set(1, 1);
+    // Test
 
-   nn.randomize_parameters_normal();
-   parameters = nn.arrange_parameters();
+    nn.set(1, 1);
 
-   ds.set(2,1,1);
-   ds.randomize_data_uniform(0.0, 1.0);
+    nn.initialize_parameters(1.0);
+    parameters = nn.arrange_parameters();
 
-   gradient = cee.calculate_gradient();
-   numerical_gradient = nd.calculate_gradient(cee, &CrossEntropyError::calculate_performance, parameters);
+    ds.set(2, 1, 1);
+    ds.initialize_data(0.5);
 
-   assert_true((gradient - numerical_gradient).calculate_absolute_value() < 1.0e-3, LOG);
+    gradient = cee.calculate_gradient();
+    numerical_gradient = nd.calculate_gradient(cee, &CrossEntropyError::calculate_performance, parameters);
+
+    assert_true((gradient - numerical_gradient).calculate_absolute_value() < 1.0e-3, LOG);
+
+    // Test
+
+    nn.set(1, 1);
+
+    nn.randomize_parameters_normal();
+    parameters = nn.arrange_parameters();
+
+    ds.set(2, 1, 1);
+    ds.randomize_data_uniform(0.0, 1.0);
+
+    gradient = cee.calculate_gradient();
+    numerical_gradient = nd.calculate_gradient(cee, &CrossEntropyError::calculate_performance, parameters);
+
+    assert_true((gradient - numerical_gradient).calculate_absolute_value() < 1.0e-3, LOG);
 }
 
 
 void CrossEntropyErrorTest::test_calculate_Hessian(void)
 {
-   message += "test_calculate_Hessian\n";
+    message += "test_calculate_Hessian\n";
 }
 
 
-void CrossEntropyErrorTest::test_to_XML(void)   
+void CrossEntropyErrorTest::test_to_XML(void)
 {
-	message += "test_to_XML\n"; 
+    message += "test_to_XML\n";
 }
 
 
 void CrossEntropyErrorTest::test_from_XML(void)
 {
-	message += "test_from_XML\n"; 
+    message += "test_from_XML\n";
 }
 
 
 void CrossEntropyErrorTest::run_test_case(void)
 {
-   // Get methods
+    // Get methods
 
-   // Set methods
+    // Set methods
 
-   // Objective methods
+    // Objective methods
 
-   test_calculate_performance();   
-   test_calculate_selection_performance();
+    test_calculate_performance();
+    test_calculate_selection_performance();
 
-   test_calculate_minimum_performance();
+    test_calculate_minimum_performance();
 
-   test_calculate_gradient();
-   test_calculate_Hessian();
+    test_calculate_gradient();
+    test_calculate_Hessian();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
 }
 

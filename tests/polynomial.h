@@ -18,46 +18,46 @@
 
 using namespace OpenNN;
 
-class Polynomial : public PerformanceTerm
-{
+class Polynomial : public PerformanceTerm {
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit Polynomial(NeuralNetwork*);
+    explicit Polynomial(NeuralNetwork *);
 
-   // DEFAULT CONSTRUCTOR
+    // DEFAULT CONSTRUCTOR
 
-   explicit Polynomial(void);
+    explicit Polynomial(void);
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~Polynomial(void);
+    virtual ~Polynomial(void);
 
 
-   // METHODS
+    // METHODS
 
-   // Get methods
+    // Get methods
 
-   const Vector<double>& get_coefficients(void) const;
+    const Vector<double> &get_coefficients(void) const;
 
-   // Set methods
+    // Set methods
 
-   void set_coefficients(const Vector<double>&);
+    void set_coefficients(const Vector<double> &);
 
-   // Output methods
+    // Output methods
 
-   double calculate_outputs(double) const;
+    double calculate_outputs(double) const;
 
-   // Objective function methods
+    // Objective function methods
 
-   double calculate_evaluation(void) const;
-   double calculate_evaluation(const Vector<double>&) const;
-   
+    double calculate_evaluation(void) const;
+
+    double calculate_evaluation(const Vector<double> &) const;
+
 private:
 
-   Vector<double> coefficients;
+    Vector<double> coefficients;
 };
 
 
@@ -65,7 +65,7 @@ private:
 
 
 // OpenNN: Open Neural Networks Library.
-// Copyright (C) 2005-2012 Roberto Lopez 
+// Copyright (C) 2005-2012 Roberto Lopez
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public

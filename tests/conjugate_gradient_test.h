@@ -20,65 +20,69 @@
 
 using namespace OpenNN;
 
-class ConjugateGradientTest : public UnitTesting 
-{
+class ConjugateGradientTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit ConjugateGradientTest(void); 
-
-
-   // DESTRUCTOR
-
-   virtual ~ConjugateGradientTest(void);
+    explicit ConjugateGradientTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~ConjugateGradientTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void);
 
-   // Get methods
+    // METHODS
 
-   void test_get_training_direction_method(void);
-   void test_get_training_direction_method_name(void);
+    // Constructor and destructor methods
 
-   // Set methods
+    void test_constructor(void);
 
-   void test_set_training_direction_method(void);
+    void test_destructor(void);
 
-   // Training methods
+    // Get methods
 
-   void test_calculate_PR_parameter(void);
-   void test_calculate_FR_parameter(void);
+    void test_get_training_direction_method(void);
 
-   void test_calculate_FR_training_direction(void);
-   void test_calculate_PR_training_direction(void);
+    void test_get_training_direction_method_name(void);
 
-   void test_calculate_training_direction(void);
+    // Set methods
 
-   void test_perform_training(void);
+    void test_set_training_direction_method(void);
 
-   // Training history methods
+    // Training methods
 
-   void test_set_reserve_all_training_history(void);
+    void test_calculate_PR_parameter(void);
 
-   // Serialization methods
+    void test_calculate_FR_parameter(void);
 
-   void test_to_XML(void);   
-   void test_from_XML(void);
+    void test_calculate_FR_training_direction(void);
 
-   // Unit testing methods
+    void test_calculate_PR_training_direction(void);
 
-   void run_test_case(void);
+    void test_calculate_training_direction(void);
+
+    void test_perform_training(void);
+
+    // Training history methods
+
+    void test_set_reserve_all_training_history(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 
 };
 

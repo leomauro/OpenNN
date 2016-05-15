@@ -18,9 +18,9 @@
 using namespace OpenNN;
 
 
-// GENERAL CONSTRUCTOR 
+// GENERAL CONSTRUCTOR
 
-TrainingStrategyTest::TrainingStrategyTest(void) : UnitTesting() 
+TrainingStrategyTest::TrainingStrategyTest(void) : UnitTesting()
 {
 }
 
@@ -36,81 +36,81 @@ TrainingStrategyTest::~TrainingStrategyTest(void)
 
 void TrainingStrategyTest::test_constructor(void)
 {
-   message += "test_constructor\n"; 
+    message += "test_constructor\n";
 
-   PerformanceFunctional pf;
+    PerformanceFunctional pf;
 
-   // Test
+    // Test
 
-   TrainingStrategy ts1(&pf); 
+    TrainingStrategy ts1(&pf);
 
-   assert_true(ts1.has_performance_functional() == true, LOG);
+    assert_true(ts1.has_performance_functional() == true, LOG);
 
-   // Test
+    // Test
 
-   TrainingStrategy ts2; 
+    TrainingStrategy ts2;
 
-   assert_true(ts2.has_performance_functional() == false, LOG);
+    assert_true(ts2.has_performance_functional() == false, LOG);
 }
 
 
 void TrainingStrategyTest::test_destructor(void)
 {
-   message += "test_destructor\n"; 
+    message += "test_destructor\n";
 
-   TrainingStrategy* ts = new TrainingStrategy(); 
+    TrainingStrategy *ts = new TrainingStrategy();
 
-   delete ts;
+    delete ts;
 }
 
 
 void TrainingStrategyTest::test_get_performance_functional_pointer(void)
 {
-   message += "test_get_performance_functional_pointer\n"; 
+    message += "test_get_performance_functional_pointer\n";
 
-   PerformanceFunctional pf;
-   
-   TrainingStrategy ts(&pf);
+    PerformanceFunctional pf;
 
-   PerformanceFunctional* pfp = ts.get_performance_functional_pointer();
+    TrainingStrategy ts(&pf);
 
-   assert_true(pfp != NULL, LOG);
+    PerformanceFunctional *pfp = ts.get_performance_functional_pointer();
+
+    assert_true(pfp != NULL, LOG);
 }
 
 
 void TrainingStrategyTest::test_get_display(void)
 {
-   message += "test_get_warning_gradient_norm\n"; 
+    message += "test_get_warning_gradient_norm\n";
 
-   TrainingStrategy ts;
+    TrainingStrategy ts;
 
-   ts.set_display(false);
+    ts.set_display(false);
 
-   assert_true(ts.get_display() == false, LOG);
+    assert_true(ts.get_display() == false, LOG);
 }
 
 
 void TrainingStrategyTest::test_set(void)
 {
-   message += "test_set\n"; 
+    message += "test_set\n";
 }
 
 
 void TrainingStrategyTest::test_set_default(void)
 {
-   message += "test_set_default\n"; 
+    message += "test_set_default\n";
 }
 
 
 void TrainingStrategyTest::test_set_performance_functional_pointer(void)
 {
-   message += "test_set_performance_functional_pointer\n"; 
+    message += "test_set_performance_functional_pointer\n";
 }
 
 
 void TrainingStrategyTest::test_set_display(void)
 {
-   message += "test_set_display\n"; 
+    message += "test_set_display\n";
 }
 
 
@@ -129,9 +129,9 @@ void TrainingStrategyTest::test_initialize_layers_autoencoding(void)
 
     // Test
 
-    ds.set(2,10,10);
+    ds.set(2, 10, 10);
 
-    architecture.set(10,10);
+    architecture.set(10, 10);
 
     nn.set(architecture);
 
@@ -151,80 +151,80 @@ void TrainingStrategyTest::test_initialize_layers_autoencoding(void)
 //    system("pause");
 
 //    assert_true(performance < old_performance, LOG);
- /*
-    // Minimum parameters increment norm
+    /*
+       // Minimum parameters increment norm
 
-    nn.initialize_parameters(3.1415927);
+       nn.initialize_parameters(3.1415927);
 
-    double minimum_parameters_increment_norm = 0.1;
+       double minimum_parameters_increment_norm = 0.1;
 
-    qnm.set_minimum_parameters_increment_norm(minimum_parameters_increment_norm);
-    qnm.set_performance_goal(0.0);
-    qnm.set_minimum_performance_increase(0.0);
-    qnm.set_gradient_norm_goal(0.0);
-    qnm.set_maximum_iterations_number(10);
-    qnm.set_maximum_time(1000.0);
+       qnm.set_minimum_parameters_increment_norm(minimum_parameters_increment_norm);
+       qnm.set_performance_goal(0.0);
+       qnm.set_minimum_performance_increase(0.0);
+       qnm.set_gradient_norm_goal(0.0);
+       qnm.set_maximum_iterations_number(10);
+       qnm.set_maximum_time(1000.0);
 
-    qnm.perform_training();
+       qnm.perform_training();
 
-    // Performance goal
+       // Performance goal
 
-    nn.initialize_parameters(3.1415927);
+       nn.initialize_parameters(3.1415927);
 
-    double performance_goal = 100.0;
+       double performance_goal = 100.0;
 
-    qnm.set_minimum_parameters_increment_norm(0.0);
-    qnm.set_performance_goal(performance_goal);
-    qnm.set_minimum_performance_increase(0.0);
-    qnm.set_gradient_norm_goal(0.0);
-    qnm.set_maximum_iterations_number(10);
-    qnm.set_maximum_time(1000.0);
+       qnm.set_minimum_parameters_increment_norm(0.0);
+       qnm.set_performance_goal(performance_goal);
+       qnm.set_minimum_performance_increase(0.0);
+       qnm.set_gradient_norm_goal(0.0);
+       qnm.set_maximum_iterations_number(10);
+       qnm.set_maximum_time(1000.0);
 
-    qnm.perform_training();
+       qnm.perform_training();
 
-    performance = pf.calculate_performance();
+       performance = pf.calculate_performance();
 
-    assert_true(performance < performance_goal, LOG);
+       assert_true(performance < performance_goal, LOG);
 
-    // Minimum evaluation improvement
+       // Minimum evaluation improvement
 
-    nn.initialize_parameters(3.1415927);
+       nn.initialize_parameters(3.1415927);
 
-    double minimum_performance_increase = 100.0;
+       double minimum_performance_increase = 100.0;
 
-    qnm.set_minimum_parameters_increment_norm(0.0);
-    qnm.set_performance_goal(0.0);
-    qnm.set_minimum_performance_increase(minimum_performance_increase);
-    qnm.set_gradient_norm_goal(0.0);
-    qnm.set_maximum_iterations_number(10);
-    qnm.set_maximum_time(1000.0);
+       qnm.set_minimum_parameters_increment_norm(0.0);
+       qnm.set_performance_goal(0.0);
+       qnm.set_minimum_performance_increase(minimum_performance_increase);
+       qnm.set_gradient_norm_goal(0.0);
+       qnm.set_maximum_iterations_number(10);
+       qnm.set_maximum_time(1000.0);
 
-    qnm.perform_training();
+       qnm.perform_training();
 
-    // Gradient norm goal
+       // Gradient norm goal
 
-    nn.initialize_parameters(3.1415927);
+       nn.initialize_parameters(3.1415927);
 
-    double gradient_norm_goal = 100.0;
+       double gradient_norm_goal = 100.0;
 
-    qnm.set_minimum_parameters_increment_norm(0.0);
-    qnm.set_performance_goal(0.0);
-    qnm.set_minimum_performance_increase(0.0);
-    qnm.set_gradient_norm_goal(gradient_norm_goal);
-    qnm.set_maximum_iterations_number(10);
-    qnm.set_maximum_time(1000.0);
+       qnm.set_minimum_parameters_increment_norm(0.0);
+       qnm.set_performance_goal(0.0);
+       qnm.set_minimum_performance_increase(0.0);
+       qnm.set_gradient_norm_goal(gradient_norm_goal);
+       qnm.set_maximum_iterations_number(10);
+       qnm.set_maximum_time(1000.0);
 
-    qnm.perform_training();
+       qnm.perform_training();
 
-    double gradient_norm = pf.calculate_gradient().calculate_norm();
-    assert_true(gradient_norm < gradient_norm_goal, LOG);
-*/
+       double gradient_norm = pf.calculate_gradient().calculate_norm();
+       assert_true(gradient_norm < gradient_norm_goal, LOG);
+   */
 }
 
 
 void TrainingStrategyTest::test_perform_training(void)
 {
-   message += "test_perform_training\n";
+    message += "test_perform_training\n";
 
     NeuralNetwork nn;
     DataSet ds;
@@ -234,13 +234,14 @@ void TrainingStrategyTest::test_perform_training(void)
     // Test
 
     nn.set(1, 1);
-    ds.set(1,1,2);
+    ds.set(1, 1, 2);
 
 //    ts.perform_training();
 
 }
 
 
+/*
 void TrainingStrategyTest::test_to_XML(void)
 {
    message += "test_to_XML\n";
@@ -260,8 +261,9 @@ void TrainingStrategyTest::test_to_XML(void)
    delete document;
 
 }
+*/
 
-
+/*
 void TrainingStrategyTest::test_from_XML(void)
 {
    message += "test_from_XML\n";
@@ -283,14 +285,15 @@ void TrainingStrategyTest::test_from_XML(void)
     assert_true(ts2.get_main_type() == TrainingStrategy::GRADIENT_DESCENT, LOG);
     assert_true(ts2.get_refinement_type() == TrainingStrategy::NEWTON_METHOD, LOG);
 }
+*/
 
 
 void TrainingStrategyTest::test_print(void)
 {
-   message += "test_print\n";
+    message += "test_print\n";
 }
 
-
+/*
 void TrainingStrategyTest::test_save(void)
 {
    message += "test_save\n";
@@ -306,22 +309,22 @@ void TrainingStrategyTest::test_save(void)
    ts.save(file_name);
 
 }
-
+*/
 
 void TrainingStrategyTest::test_load(void)
 {
-   message += "test_load\n";
+    message += "test_load\n";
 
-   std::string file_name = "../data/training_strategy.xml";
+    std::string file_name = "../data/training_strategy.xml";
 
-   TrainingStrategy ts;
+    TrainingStrategy ts;
 
-   // Test
+    // Test
 
-   ts.initialize_random();
+    ts.initialize_random();
 
-   ts.save(file_name);
-   ts.load(file_name);
+    ts.save(file_name);
+    ts.load(file_name);
 
 }
 
@@ -347,9 +350,9 @@ void TrainingStrategyTest::test_results_destructor(void)
 
 void TrainingStrategyTest::run_test_case(void)
 {
-   message += "Running training strategy test case...\n";
+    message += "Running training strategy test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 /*
    test_constructor();
    test_destructor();
@@ -359,13 +362,13 @@ void TrainingStrategyTest::run_test_case(void)
    test_get_performance_functional_pointer();
 
    // Utilities
-   
+
    test_get_display();
 
    // Set methods
 
    test_set();
-   test_set_default();   
+   test_set_default();
 
    test_set_performance_functional_pointer();
 
@@ -375,7 +378,7 @@ void TrainingStrategyTest::run_test_case(void)
 
    // Training methods
 */
-   test_initialize_layers_autoencoding();
+    test_initialize_layers_autoencoding();
 /*
    test_perform_training();
 
@@ -393,7 +396,7 @@ void TrainingStrategyTest::run_test_case(void)
    test_results_constructor();
    test_results_destructor();
 */
-   message += "End of training strategy test case.\n";
+    message += "End of training strategy test case.\n";
 }
 
 

@@ -29,82 +29,67 @@
 
 #include <tinyxml2.h>
 
-
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This class represents the cross entropy performance term.
 /// This functional is used in pattern recognition problems.
+class CrossEntropyError : public PerformanceTerm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit CrossEntropyError(void);
 
-    class CrossEntropyError : public PerformanceTerm {
+    // NEURAL NETWORK CONSTRUCTOR
+    explicit CrossEntropyError(NeuralNetwork *);
 
-    public:
+    // DATA SET CONSTRUCTOR
+    explicit CrossEntropyError(DataSet *);
 
-        // DEFAULT CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
+    explicit CrossEntropyError(NeuralNetwork *, DataSet *);
 
-        explicit CrossEntropyError(void);
+    // XML CONSTRUCTOR
+    explicit CrossEntropyError(const tinyxml2::XMLDocument &);
 
-        // NEURAL NETWORK CONSTRUCTOR
+    // COPY CONSTRUCTOR
+    CrossEntropyError(const CrossEntropyError &);
 
-        explicit CrossEntropyError(NeuralNetwork *);
+    // DESTRUCTOR
+    virtual ~CrossEntropyError(void);
 
-        // DATA SET CONSTRUCTOR
+    // ASSIGNMENT OPERATOR
+    CrossEntropyError &operator=(const CrossEntropyError &);
 
-        explicit CrossEntropyError(DataSet *);
+    // EQUAL TO OPERATOR
+    bool operator==(const CrossEntropyError &) const;
 
-        // GENERAL CONSTRUCTOR
+    // Checking methods
+    void check(void) const;
 
-        explicit CrossEntropyError(NeuralNetwork *, DataSet *);
+    // performance methods
+    double calculate_performance(void) const;
 
-        // XML CONSTRUCTOR
+    double calculate_performance(const Vector<double> &) const;
 
-        explicit CrossEntropyError(const tinyxml2::XMLDocument &);
+    double calculate_minimum_performance(void) const;
 
-        // COPY CONSTRUCTOR
+    double calculate_selection_performance(void) const;
 
-        CrossEntropyError(const CrossEntropyError &);
+    double calculate_minimum_selection_performance(void) const;
 
-        // DESTRUCTOR
+    Vector<double> calculate_gradient(void) const;
 
-        virtual ~CrossEntropyError(void);
+    Matrix<double> calculate_Hessian(void) const;
 
-        // ASSIGNMENT OPERATOR
+    std::string write_performance_term_type(void) const;
 
-        CrossEntropyError &operator=(const CrossEntropyError &);
+    // Serialization methods
+    tinyxml2::XMLDocument *to_XML(void) const;
 
-        // EQUAL TO OPERATOR
+    void from_XML(const tinyxml2::XMLDocument &);
+};
 
-        bool operator==(const CrossEntropyError &) const;
-
-        // METHODS
-
-        // Checking methods
-
-        void check(void) const;
-
-        // performance methods
-
-        double calculate_performance(void) const;
-
-        double calculate_performance(const Vector<double> &) const;
-
-        double calculate_minimum_performance(void) const;
-
-        double calculate_selection_performance(void) const;
-
-        double calculate_minimum_selection_performance(void) const;
-
-        Vector<double> calculate_gradient(void) const;
-
-        Matrix<double> calculate_Hessian(void) const;
-
-        std::string write_performance_term_type(void) const;
-
-        // Serialization methods
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-    };
 
 }
 

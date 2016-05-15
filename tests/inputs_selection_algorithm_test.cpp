@@ -58,7 +58,7 @@ void InputsSelectionAlgorithmTest::test_destructor(void)
 {
     message += "tes_destructor\n";
 
-    GrowingInputs* gi = new GrowingInputs;
+    GrowingInputs *gi = new GrowingInputs;
 
     delete gi;
 }
@@ -134,7 +134,7 @@ void InputsSelectionAlgorithmTest::test_set_neural_inputs(void)
 {
     message += "test_set_neural_inputs\n";
 
-    NeuralNetwork nn(2,6,1);
+    NeuralNetwork nn(2, 6, 1);
 
     PerformanceFunctional pf(&nn);
 
@@ -200,7 +200,7 @@ void InputsSelectionAlgorithmTest::run_test_case(void)
     // Constructor and destructor methods
 
     test_constructor();
-     test_destructor();
+    test_destructor();
 
     // Get methods
 

@@ -20,95 +20,112 @@
 
 using namespace OpenNN;
 
-class NumericalDifferentiationTest : public UnitTesting
-{
+class NumericalDifferentiationTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit NumericalDifferentiationTest(void);
+    explicit NumericalDifferentiationTest(void);
 
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~NumericalDifferentiationTest(void);
+    virtual ~NumericalDifferentiationTest(void);
 
-   // METHODS
+    // METHODS
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Derivative methods
+    void test_destructor(void);
 
-   void test_calculate_forward_differences_derivative(void);
-   void test_calculate_central_differences_derivative(void);
-   void test_calculate_derivative(void);
+    // Derivative methods
+
+    void test_calculate_forward_differences_derivative(void);
+
+    void test_calculate_central_differences_derivative(void);
+
+    void test_calculate_derivative(void);
 
 //   void test_calculate_forward_differences_derivative(void);
 //   void test_calculate_central_differences_derivative(void);
 //   void test_calculate_derivative(void);
 
-   // Second derivative methods
+    // Second derivative methods
 
-   void test_calculate_forward_differences_second_derivative(void);
-   void test_calculate_central_differences_second_derivative(void);
-   void test_calculate_second_derivative(void);
+    void test_calculate_forward_differences_second_derivative(void);
+
+    void test_calculate_central_differences_second_derivative(void);
+
+    void test_calculate_second_derivative(void);
 
 //   void test_calculate_forward_differences_second_derivative(void);
 //   void test_calculate_central_differences_second_derivative(void);
 //   void test_calculate_second_derivative(void);
 
-   // Gradient methods
+    // Gradient methods
 
-   void test_calculate_forward_differences_gradient(void);
-   void test_calculate_central_differences_gradient(void);
-   void test_calculate_gradient(void);
+    void test_calculate_forward_differences_gradient(void);
 
-   // Hessian methods
+    void test_calculate_central_differences_gradient(void);
 
-   void test_calculate_forward_differences_Hessian(void);
-   void test_calculate_central_differences_Hessian(void);
-   void test_calculate_Hessian(void);
+    void test_calculate_gradient(void);
 
-   // Jacobian methods
+    // Hessian methods
 
-   void test_calculate_forward_differences_Jacobian(void);
-   void test_calculate_central_differences_Jacobian(void);
-   void test_calculate_Jacobian(void);
+    void test_calculate_forward_differences_Hessian(void);
 
-   // Hessian methods
+    void test_calculate_central_differences_Hessian(void);
 
-   void test_calculate_forward_differences_Hessian_form(void);
-   void test_calculate_central_differences_Hessian_form(void);
-   void test_calculate_Hessian_form(void);
+    void test_calculate_Hessian(void);
 
-   // Unit testing methods
+    // Jacobian methods
 
-   void run_test_case(void);
+    void test_calculate_forward_differences_Jacobian(void);
+
+    void test_calculate_central_differences_Jacobian(void);
+
+    void test_calculate_Jacobian(void);
+
+    // Hessian methods
+
+    void test_calculate_forward_differences_Hessian_form(void);
+
+    void test_calculate_central_differences_Hessian_form(void);
+
+    void test_calculate_Hessian_form(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 
 private:
 
-   // Constant methods
+    // Constant methods
 
-   double f1(const double&) const ;
-   double f2(const Vector<double>&) const;
-   Vector<double> f3(const Vector<double>&) const;
-   double f7(const size_t&, const Vector<double>&, const size_t&, const Vector<double>&) const;
+    double f1(const double &) const;
 
-   // Non constant methods
+    double f2(const Vector<double> &) const;
 
-   double f4(const double&);
-   double f5(const Vector<double>&);
-   Vector<double> f6(const Vector<double>&);
+    Vector<double> f3(const Vector<double> &) const;
 
-   Vector<double> f8(const size_t&, const size_t&, const Vector<double>&) const;
+    double f7(const size_t &, const Vector<double> &, const size_t &, const Vector<double> &) const;
+
+    // Non constant methods
+
+    double f4(const double &);
+
+    double f5(const Vector<double> &);
+
+    Vector<double> f6(const Vector<double> &);
+
+    Vector<double> f8(const size_t &, const size_t &, const Vector<double> &) const;
 
 };
 

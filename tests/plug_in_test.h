@@ -20,70 +20,75 @@
 
 using namespace OpenNN;
 
-class PlugInTest : public UnitTesting 
-{
+class PlugInTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // CONSTRUCTOR
+    // CONSTRUCTOR
 
-   explicit PlugInTest(void);
+    explicit PlugInTest(void);
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~PlugInTest(void);
+    virtual ~PlugInTest(void);
 
-   // Get methods
-    
-   void test_get_template_file_name(void);
-   void test_get_input_file_name(void);
+    // Get methods
 
-   void test_get_script_file_name(void);
+    void test_get_template_file_name(void);
 
-   void test_get_output_file_name(void);
+    void test_get_input_file_name(void);
 
-   void test_get_input_flags(void);
-   void test_get_display(void);
+    void test_get_script_file_name(void);
 
-   // Set methods
+    void test_get_output_file_name(void);
 
-   void test_set_template_file_name(void);
-   void test_set_input_file_name(void);
+    void test_get_input_flags(void);
 
-   void test_set_script_file_name(void);
+    void test_get_display(void);
 
-   void test_set_output_file_name(void);
+    // Set methods
 
-   void test_set_input_flags(void);
-   void test_set_display(void);
+    void test_set_template_file_name(void);
 
-   // Plug-In methods
+    void test_set_input_file_name(void);
 
-   void test_write_input_file(void);
+    void test_set_script_file_name(void);
 
-   void test_run_script(void);
+    void test_set_output_file_name(void);
 
-   void test_read_output_file(void);
+    void test_set_input_flags(void);
 
-   void test_read_output_file_header(void);
+    void test_set_display(void);
 
-   void test_calculate_output_data(void);
+    // Plug-In methods
 
-   // Serialization methods
+    void test_write_input_file(void);
 
-   void test_to_XML(void);   
-   void test_from_XML(void);   
+    void test_run_script(void);
 
-   void test_save(void);
-   void test_load(void);
+    void test_read_output_file(void);
 
-   // Unit testing methods
+    void test_read_output_file_header(void);
 
-   void run_test_case(void);
+    void test_calculate_output_data(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    void test_save(void);
+
+    void test_load(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 
 };
 

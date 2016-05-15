@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   M O C K   T R A I N I N G   A L G O R I T H M   C L A S S   H E A D E R                                    */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -21,38 +21,36 @@
 using namespace OpenNN;
 
 
-class MockTrainingAlgorithm : public TrainingAlgorithm
-{
+class MockTrainingAlgorithm : public TrainingAlgorithm {
 
 public:
 
-   // DEFAULT CONSTRUCTOR
+    // DEFAULT CONSTRUCTOR
 
-   explicit MockTrainingAlgorithm(void); 
-
-
-   // GENERAL CONSTRUCTOR
-
-   explicit MockTrainingAlgorithm(PerformanceFunctional*); 
+    explicit MockTrainingAlgorithm(void);
 
 
-   // DESTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   virtual ~MockTrainingAlgorithm(void);
-
-
-   // STRUCTURES 
-
-   struct MockTrainingAlgorithmResults : public TrainingAlgorithmResults
-   {
-   };
+    explicit MockTrainingAlgorithm(PerformanceFunctional *);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Training methods
+    virtual ~MockTrainingAlgorithm(void);
 
-   MockTrainingAlgorithmResults* perform_training(void);
+
+    // STRUCTURES
+
+    struct MockTrainingAlgorithmResults : public TrainingAlgorithmResults {
+    };
+
+
+    // METHODS
+
+    // Training methods
+
+    MockTrainingAlgorithmResults *perform_training(void);
 
 
 };

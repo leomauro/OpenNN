@@ -22,59 +22,61 @@
 using namespace OpenNN;
 
 
-class MeanSquaredErrorTest : public UnitTesting 
-{
+class MeanSquaredErrorTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit MeanSquaredErrorTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~MeanSquaredErrorTest(void);
+    explicit MeanSquaredErrorTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~MeanSquaredErrorTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void);
 
-   // Get methods
+    // METHODS
 
-   // Set methods
+    // Constructor and destructor methods
 
-   // Objective methods
+    void test_constructor(void);
 
-   void test_calculate_performance(void);   
-   void test_calculate_selection_performance(void);
+    void test_destructor(void);
 
-   void test_calculate_gradient(void);
+    // Get methods
 
-   void test_calculate_Hessian(void);
+    // Set methods
 
-   // Objective terms methods 
+    // Objective methods
 
-   void test_calculate_terms(void);
+    void test_calculate_performance(void);
 
-   void test_calculate_terms_Jacobian(void);
+    void test_calculate_selection_performance(void);
 
-   // Serialization methods
+    void test_calculate_gradient(void);
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    void test_calculate_Hessian(void);
 
-   // Unit testing methods
+    // Objective terms methods
 
-   void run_test_case(void);
+    void test_calculate_terms(void);
+
+    void test_calculate_terms_Jacobian(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 
 };
 

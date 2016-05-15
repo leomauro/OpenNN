@@ -5,7 +5,7 @@
 /*                                                                                                              */
 /*   T E S T I N G   A N A L Y S I S   T E S T   C L A S S   H E A D E R                                        */
 /*                                                                                                              */
-/*   Roberto Lopez                                                                                              */ 
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -21,111 +21,125 @@
 using namespace OpenNN;
 
 
-class TestingAnalysisTest : public UnitTesting 
-{
+class TestingAnalysisTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
-public:  
+public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit TestingAnalysisTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~TestingAnalysisTest(void);
+    explicit TestingAnalysisTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~TestingAnalysisTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void);
 
-   // Get methods
+    // METHODS
 
-   void test_get_neural_network_pointer(void);
-   void test_get_data_set_pointer(void);
-   
-   void test_get_display(void);
+    // Constructor and destructor methods
 
-   // Set methods
+    void test_constructor(void);
 
-   void test_set_neural_network_pointer(void);
-   void test_set_data_set_pointer(void);
+    void test_destructor(void);
 
-   void test_set_display(void);
+    // Get methods
 
-   // Target and output data methods
+    void test_get_neural_network_pointer(void);
 
-   void test_calculate_target_output_data(void);
+    void test_get_data_set_pointer(void);
 
-   // Error data methods
+    void test_get_display(void);
 
-   void test_calculate_error_data(void);
+    // Set methods
 
-   void test_calculate_error_data_statistics(void);
-   void test_calculate_error_data_statistics_matrices(void);
+    void test_set_neural_network_pointer(void);
 
-   void test_calculate_error_data_histograms(void);
+    void test_set_data_set_pointer(void);
 
-   // Linear regression parameters methods
+    void test_set_display(void);
 
-   void test_calculate_linear_regression_parameters(void);
-   void test_print_linear_regression_parameters(void);
-   void test_save_linear_regression_parameters(void);
+    // Target and output data methods
 
-   void test_perform_linear_regression_parameters(void);
+    void test_calculate_target_output_data(void);
 
-   void test_print_linear_regression_analysis(void);
-   void test_save_linear_regression_analysis(void);
+    // Error data methods
 
-   // Binary classification test methods
+    void test_calculate_error_data(void);
 
-   void test_calculate_binary_classification_test(void);
-   void test_print_binary_classification_test(void);
+    void test_calculate_error_data_statistics(void);
 
-   // Confusion matrix methods
+    void test_calculate_error_data_statistics_matrices(void);
 
-   void test_calculate_confusion(void);
-   void test_print_confusion(void);
+    void test_calculate_error_data_histograms(void);
 
-   // ROC curve methods
+    // Linear regression parameters methods
 
-   void test_calculate_Wilcoxon_parameter(void);
+    void test_calculate_linear_regression_parameters(void);
 
-   void test_calculate_roc_curve(void);
-   void test_calculate_area_under_curve(void);
-   void test_calculate_optimal_threshold (void);
+    void test_print_linear_regression_parameters(void);
 
-   // Lift chart methods
+    void test_save_linear_regression_parameters(void);
 
-   void test_calculate_cumulative_gain(void);
-   void test_calculate_lift_chart(void);
+    void test_perform_linear_regression_parameters(void);
 
-   // Calibration plot
+    void test_print_linear_regression_analysis(void);
 
-   void test_calculate_calibration_plot(void);
+    void test_save_linear_regression_analysis(void);
 
-   // Binary classificaton rates
+    // Binary classification test methods
 
-   void test_calculate_true_positive_instances(void);
-   void test_calculate_false_positive_instances(void);
-   void test_calculate_false_negative_instances(void);
-   void test_calculate_true_negative_instances(void);
+    void test_calculate_binary_classification_test(void);
 
-   // Multiple classification rates
+    void test_print_binary_classification_test(void);
 
-   void test_calculate_multiple_classification_rates(void);
+    // Confusion matrix methods
 
-   // Unit testing methods
+    void test_calculate_confusion(void);
 
-   void run_test_case(void);
+    void test_print_confusion(void);
+
+    // ROC curve methods
+
+    void test_calculate_Wilcoxon_parameter(void);
+
+    void test_calculate_roc_curve(void);
+
+    void test_calculate_area_under_curve(void);
+
+    void test_calculate_optimal_threshold(void);
+
+    // Lift chart methods
+
+    void test_calculate_cumulative_gain(void);
+
+    void test_calculate_lift_chart(void);
+
+    // Calibration plot
+
+    void test_calculate_calibration_plot(void);
+
+    // Binary classificaton rates
+
+    void test_calculate_true_positive_instances(void);
+
+    void test_calculate_false_positive_instances(void);
+
+    void test_calculate_false_negative_instances(void);
+
+    void test_calculate_true_negative_instances(void);
+
+    // Multiple classification rates
+
+    void test_calculate_multiple_classification_rates(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 
 };
 

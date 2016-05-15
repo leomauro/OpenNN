@@ -31,80 +31,64 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This class represents the neural parameters norm performance term.
 /// This performance term is very useful as a regularization functional in data modeling, optimal control or inverse problems.
+class NeuralParametersNorm : public PerformanceTerm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit NeuralParametersNorm(void);
 
-    class NeuralParametersNorm : public PerformanceTerm {
+    // NEURAL NETWORK CONSTRUCTOR
+    explicit NeuralParametersNorm(NeuralNetwork *);
 
-    public:
+    // XML CONSTRUCTOR
+    explicit NeuralParametersNorm(const tinyxml2::XMLDocument &);
 
-        // DEFAULT CONSTRUCTOR
+    // DESTRUCTOR
+    virtual ~NeuralParametersNorm(void);
 
-        explicit NeuralParametersNorm(void);
+    // Get methods
+    const double &get_neural_parameters_norm_weight(void) const;
 
-        // NEURAL NETWORK CONSTRUCTOR
+    // Set methods
+    void set_neural_parameters_norm_weight(const double &);
 
-        explicit NeuralParametersNorm(NeuralNetwork *);
+    void set_default(void);
 
-        // XML CONSTRUCTOR
+    // Checking methods
+    void check(void) const;
 
-        explicit NeuralParametersNorm(const tinyxml2::XMLDocument &);
+    // performance methods
+    double calculate_performance(void) const;
 
-        // DESTRUCTOR
+    Vector<double> calculate_gradient(void) const;
 
-        virtual ~NeuralParametersNorm(void);
+    Matrix<double> calculate_Hessian(void) const;
 
-        // METHODS
+    double calculate_performance(const Vector<double> &) const;
 
-        // Get methods
+    Vector<double> calculate_gradient(const Vector<double> &) const;
 
-        const double &get_neural_parameters_norm_weight(void) const;
+    Matrix<double> calculate_Hessian(const Vector<double> &) const;
 
-        // Set methods
+    std::string write_performance_term_type(void) const;
 
-        void set_neural_parameters_norm_weight(const double &);
+    std::string write_information(void) const;
 
-        void set_default(void);
+    // Serialization methods
+    tinyxml2::XMLDocument *to_XML(void) const;
 
-        // Checking methods
+    void from_XML(const tinyxml2::XMLDocument &);
 
-        void check(void) const;
+private:
+    /// Weight value for the neural parameters norm regularization term.
+    double neural_parameters_norm_weight;
+};
 
-        // performance methods
-
-        double calculate_performance(void) const;
-
-        Vector<double> calculate_gradient(void) const;
-
-        Matrix<double> calculate_Hessian(void) const;
-
-        double calculate_performance(const Vector<double> &) const;
-
-        Vector<double> calculate_gradient(const Vector<double> &) const;
-
-        Matrix<double> calculate_Hessian(const Vector<double> &) const;
-
-//   double calculate_selection_performance(void) const;
-
-        std::string write_performance_term_type(void) const;
-
-        std::string write_information(void) const;
-
-        // Serialization methods
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-    private:
-
-        /// Weight value for the neural parameters norm regularization term.
-
-        double neural_parameters_norm_weight;
-
-    };
 
 }
 

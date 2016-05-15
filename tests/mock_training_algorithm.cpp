@@ -26,10 +26,10 @@ MockTrainingAlgorithm::MockTrainingAlgorithm(void) : TrainingAlgorithm()
 
 
 
-// GENERAL CONSTRUCTOR 
+// GENERAL CONSTRUCTOR
 
-MockTrainingAlgorithm::MockTrainingAlgorithm(PerformanceFunctional* new_performance_functional_pointer)
-: TrainingAlgorithm(new_performance_functional_pointer)
+MockTrainingAlgorithm::MockTrainingAlgorithm(PerformanceFunctional *new_performance_functional_pointer)
+        : TrainingAlgorithm(new_performance_functional_pointer)
 {
 }
 
@@ -45,11 +45,11 @@ MockTrainingAlgorithm::~MockTrainingAlgorithm(void)
 
 // MockTrainingAlgorithmResults* perform_training(void) method
 
-MockTrainingAlgorithm::MockTrainingAlgorithmResults* MockTrainingAlgorithm::perform_training(void)
+MockTrainingAlgorithm::MockTrainingAlgorithmResults *MockTrainingAlgorithm::perform_training(void)
 {
-   MockTrainingAlgorithmResults* mock_training_algorithm_training_results = new MockTrainingAlgorithmResults;
+    MockTrainingAlgorithmResults *mock_training_algorithm_training_results = new MockTrainingAlgorithmResults;
 
-   return(mock_training_algorithm_training_results);
+    return (mock_training_algorithm_training_results);
 }
 
 

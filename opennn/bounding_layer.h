@@ -23,7 +23,6 @@
 #include <string>
 #include <sstream>
 
-
 // OpenNN includes
 
 #include "vector.h"
@@ -33,141 +32,117 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This class represents a layer of bounding neurons.
 /// A bounding layer is used to ensure that variables will never fall below or above given values.
+class BoundingLayer
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit BoundingLayer(void);
 
-    class BoundingLayer {
+    // BOUNDING NEURONS NUMBER CONSTRUCTOR
+    explicit BoundingLayer(const size_t &);
 
-    public:
+    // XML CONSTRUCTOR
+    explicit BoundingLayer(const tinyxml2::XMLDocument &);
 
-        // DEFAULT CONSTRUCTOR
+    // COPY CONSTRUCTOR
+    BoundingLayer(const BoundingLayer &);
 
-        explicit BoundingLayer(void);
+    // DESTRUCTOR
+    virtual ~BoundingLayer(void);
 
-        // BOUNDING NEURONS NUMBER CONSTRUCTOR
+    // ASSIGNMENT OPERATOR
+    BoundingLayer &operator=(const BoundingLayer &);
 
-        explicit BoundingLayer(const size_t &);
+    // EQUAL TO OPERATOR
+    bool operator==(const BoundingLayer &) const;
 
-        // XML CONSTRUCTOR
-
-        explicit BoundingLayer(const tinyxml2::XMLDocument &);
-
-        // COPY CONSTRUCTOR
-
-        BoundingLayer(const BoundingLayer &);
-
-        // DESTRUCTOR
-
-        virtual ~BoundingLayer(void);
-
-        // ASSIGNMENT OPERATOR
-
-        BoundingLayer &operator=(const BoundingLayer &);
-
-        // EQUAL TO OPERATOR
-
-        bool operator==(const BoundingLayer &) const;
-
-        // ENUMERATIONS
-
-        /// Enumeration of available methods for bounding the output variables.
-
-        enum BoundingMethod {
-            NoBounding, Boundind
-        };
-
-        // METHODS
-
-        bool is_empty(void) const;
-
-        size_t get_bounding_neurons_number(void) const;
-
-        // Variables bounds
-
-        const Vector<double> &get_lower_bounds(void) const;
-
-        double get_lower_bound(const size_t &) const;
-
-        const Vector<double> &get_upper_bounds(void) const;
-
-        double get_upper_bound(const size_t &) const;
-
-        Vector<Vector<double> *> get_bounds(void);
-
-        // Variables bounds
-
-        void set(void);
-
-        void set(const size_t &);
-
-        void set(const tinyxml2::XMLDocument &);
-
-        void set(const BoundingLayer &);
-
-        void set_lower_bounds(const Vector<double> &);
-
-        void set_lower_bound(const size_t &, const double &);
-
-        void set_upper_bounds(const Vector<double> &);
-
-        void set_upper_bound(const size_t &, const double &);
-
-        void set_bounds(const Vector<Vector<double> > &);
-
-        void set_display(const bool &);
-
-        void set_default(void);
-
-        // Pruning and growing
-
-        void prune_bounding_neuron(const size_t &);
-
-        // Initialization
-
-        void initialize_random(void);
-
-        // Lower and upper bounds
-
-        Vector<double> calculate_outputs(const Vector<double> &) const;
-
-        Vector<double> calculate_derivative(const Vector<double> &) const;
-
-        Vector<double> calculate_second_derivative(const Vector<double> &) const;
-
-        Matrix<double> arrange_Jacobian(const Vector<double> &) const;
-
-        Vector<Matrix<double> > arrange_Hessian_form(const Vector<double> &) const;
-
-        // Expression methods
-
-        std::string write_expression(const Vector<std::string> &, const Vector<std::string> &) const;
-
-        // Serialization methods
-
-        std::string to_string(void) const;
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-    protected:
-
-        // MEMBERS
-
-        /// Lower bounds of output variables
-
-        Vector<double> lower_bounds;
-
-        /// Upper bounds of output variables
-
-        Vector<double> upper_bounds;
-
-        /// Display messages to screen.
-
-        bool display;
+    /// Enumeration of available methods for bounding the output variables.
+    enum BoundingMethod {
+        NoBounding, Boundind
     };
+
+    // METHODS
+    bool is_empty(void) const;
+
+    size_t get_bounding_neurons_number(void) const;
+
+    // Variables bounds
+    const Vector<double> &get_lower_bounds(void) const;
+
+    double get_lower_bound(const size_t &) const;
+
+    const Vector<double> &get_upper_bounds(void) const;
+
+    double get_upper_bound(const size_t &) const;
+
+    Vector<Vector<double> *> get_bounds(void);
+
+    // Variables bounds
+    void set(void);
+
+    void set(const size_t &);
+
+    void set(const tinyxml2::XMLDocument &);
+
+    void set(const BoundingLayer &);
+
+    void set_lower_bounds(const Vector<double> &);
+
+    void set_lower_bound(const size_t &, const double &);
+
+    void set_upper_bounds(const Vector<double> &);
+
+    void set_upper_bound(const size_t &, const double &);
+
+    void set_bounds(const Vector<Vector<double>> &);
+
+    void set_display(const bool &);
+
+    void set_default(void);
+
+    // Pruning and growing
+    void prune_bounding_neuron(const size_t &);
+
+    // Initialization
+    void initialize_random(void);
+
+    // Lower and upper bounds
+    Vector<double> calculate_outputs(const Vector<double> &) const;
+
+    Vector<double> calculate_derivative(const Vector<double> &) const;
+
+    Vector<double> calculate_second_derivative(const Vector<double> &) const;
+
+    Matrix<double> arrange_Jacobian(const Vector<double> &) const;
+
+    Vector<Matrix<double>> arrange_Hessian_form(const Vector<double> &) const;
+
+    // Expression methods
+    std::string write_expression(const Vector<std::string> &, const Vector<std::string> &) const;
+
+    // Serialization methods
+    std::string to_string(void) const;
+
+    tinyxml2::XMLDocument *to_XML(void) const;
+
+    void from_XML(const tinyxml2::XMLDocument &);
+
+protected:
+    /// Lower bounds of output variables
+    Vector<double> lower_bounds;
+
+    /// Upper bounds of output variables
+    Vector<double> upper_bounds;
+
+    /// Display messages to screen.
+    bool display;
+};
+
 
 }
 

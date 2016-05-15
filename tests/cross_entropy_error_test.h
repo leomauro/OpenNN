@@ -21,49 +21,51 @@
 
 using namespace OpenNN;
 
-class CrossEntropyErrorTest : public UnitTesting
-{
+class CrossEntropyErrorTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit CrossEntropyErrorTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~CrossEntropyErrorTest(void);
+    explicit CrossEntropyErrorTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Get methods
+    virtual ~CrossEntropyErrorTest(void);
 
-   // Set methods
 
-   // Objective methods
+    // METHODS
 
-   void test_calculate_performance(void);   
-   void test_calculate_selection_performance(void);
+    // Get methods
 
-   void test_calculate_minimum_performance(void);
-   void test_calculate_minimum_selection_performance(void);
+    // Set methods
 
-   void test_calculate_gradient(void);
+    // Objective methods
 
-   void test_calculate_Hessian(void);
+    void test_calculate_performance(void);
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    void test_calculate_selection_performance(void);
 
-   // Unit testing methods
+    void test_calculate_minimum_performance(void);
 
-   void run_test_case(void);
+    void test_calculate_minimum_selection_performance(void);
+
+    void test_calculate_gradient(void);
+
+    void test_calculate_Hessian(void);
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 #endif

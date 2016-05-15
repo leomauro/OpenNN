@@ -37,72 +37,58 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 ///
 /// This concrete class represents a golden section algorithm for the order selection of a neural network.
 ///
+class GoldenSectionOrder : public OrderSelectionAlgorithm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit GoldenSectionOrder(void);
 
-    class GoldenSectionOrder : public OrderSelectionAlgorithm {
-    public:
-        // DEFAULT CONSTRUCTOR
+    // TRAINING STRATEGY CONSTRUCTOR
+    explicit GoldenSectionOrder(TrainingStrategy *);
 
-        explicit GoldenSectionOrder(void);
+    // XML CONSTRUCTOR
+    explicit GoldenSectionOrder(const tinyxml2::XMLDocument &);
 
-        // TRAINING STRATEGY CONSTRUCTOR
+    // FILE CONSTRUCTOR
+    explicit GoldenSectionOrder(const std::string &);
 
-        explicit GoldenSectionOrder(TrainingStrategy *);
+    // DESTRUCTOR
+    virtual ~GoldenSectionOrder(void);
 
-        // XML CONSTRUCTOR
+    ///
+    /// This structure contains the training results for the golden section order method.
+    ///
+    struct GoldenSectionOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults {
+        /// Default constructor.
+        explicit GoldenSectionOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
+        {
+        }
 
-        explicit GoldenSectionOrder(const tinyxml2::XMLDocument &);
-
-        // FILE CONSTRUCTOR
-
-        explicit GoldenSectionOrder(const std::string &);
-
-        // DESTRUCTOR
-
-        virtual ~GoldenSectionOrder(void);
-
-
-        // STRUCTURES
-
-        ///
-        /// This structure contains the training results for the golden section order method.
-        ///
-
-        struct GoldenSectionOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults {
-            /// Default constructor.
-
-            explicit GoldenSectionOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
-            {
-            }
-
-            /// Destructor.
-
-            virtual ~GoldenSectionOrderResults(void)
-            {
-            }
-
-        };
-
-        // Order selection methods
-
-        GoldenSectionOrderResults *perform_order_selection(void);
-
-        // Serialization methods
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-        void save(const std::string &) const;
-
-        void load(const std::string &);
-
-
+        /// Destructor.
+        virtual ~GoldenSectionOrderResults(void)
+        {
+        }
     };
+
+    // Order selection methods
+    GoldenSectionOrderResults *perform_order_selection(void);
+
+    // Serialization methods
+    tinyxml2::XMLDocument *to_XML(void) const;
+
+    void from_XML(const tinyxml2::XMLDocument &);
+
+    void save(const std::string &) const;
+
+    void load(const std::string &);
+};
+
 
 }
 

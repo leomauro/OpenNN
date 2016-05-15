@@ -32,111 +32,91 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This class represents the layer of principal component analysis.
 /// This layer is used to reduce the dimension of a dataset.
+class PrincipalComponentsLayer
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit PrincipalComponentsLayer(void);
 
-    class PrincipalComponentsLayer {
+    // INPUTS NUMBER CONSTRUCTOR
+    explicit PrincipalComponentsLayer(const size_t &);
 
-    public:
+    // COPY CONSTRUCTOR
+    PrincipalComponentsLayer(const PrincipalComponentsLayer &);
 
-        // DEFAULT CONSTRUCTOR
+    // DESTRUCTOR
+    virtual ~PrincipalComponentsLayer(void);
 
-        explicit PrincipalComponentsLayer(void);
-
-        // INPUTS NUMBER CONSTRUCTOR
-
-        explicit PrincipalComponentsLayer(const size_t &);
-
-        // COPY CONSTRUCTOR
-
-        PrincipalComponentsLayer(const PrincipalComponentsLayer &);
-
-        // DESTRUCTOR
-
-        virtual ~PrincipalComponentsLayer(void);
-
-        // ENUMERATIONS
-
-        enum PrincipalComponentsState {
-            NoPrincipalComponents, ActivatedPrincipalComponents
-        };
-
-        // GET METHODS
-
-        Matrix<double> get_eigenvectors(void) const;
-
-        Vector<double> get_means(void) const;
-
-        // Inputs principal components function
-
-        Vector<double> calculate_ouputs(const Vector<double> &) const;
-
-        // Display messages
-
-        const bool &get_display(void) const;
-
-        // SET METHODS
-
-        void set(void);
-
-        void set(const size_t &);
-
-        void set(const PrincipalComponentsLayer &);
-
-        void set_eigenvectors(const Matrix<double> &);
-
-        void set_means(const Vector<double> &);
-
-        void set_means(const size_t &, const double &);
-
-        virtual void set_default(void);
-
-        // GET METHODS
-
-        size_t get_principal_components_neurons_number(void) const;
-
-        // Display messages
-
-        void set_display(const bool &);
-
-        // Check methods
-
-        // Inputs principal components function
-
-        Vector<double> calculate_outputs(const Vector<double> &) const;
-
-        Vector<double> calculate_derivatives(const Vector<double> &) const;
-
-        // Serialization methods
-
-        std::string to_string(void) const;
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        virtual void from_XML(const tinyxml2::XMLDocument &);
-
-    protected:
-
-        // MEMBERS
-
-        /// Means of the input variables
-
-        Vector<double> means;
-
-        /// Eigenvectors of the variables in columns.
-
-        Matrix<double> eigenvectors;
-
-        /// Display warning messages to screen.
-
-        bool display;
+    // ENUMERATIONS
+    enum PrincipalComponentsState {
+        NoPrincipalComponents, ActivatedPrincipalComponents
     };
+
+    // GET METHODS
+    Matrix<double> get_eigenvectors(void) const;
+
+    Vector<double> get_means(void) const;
+
+    // Inputs principal components function
+    Vector<double> calculate_ouputs(const Vector<double> &) const;
+
+    // Display messages
+    const bool &get_display(void) const;
+
+    // SET METHODS
+    void set(void);
+
+    void set(const size_t &);
+
+    void set(const PrincipalComponentsLayer &);
+
+    void set_eigenvectors(const Matrix<double> &);
+
+    void set_means(const Vector<double> &);
+
+    void set_means(const size_t &, const double &);
+
+    virtual void set_default(void);
+
+    // GET METHODS
+    size_t get_principal_components_neurons_number(void) const;
+
+    // Display messages
+    void set_display(const bool &);
+
+    // Inputs principal components function
+    Vector<double> calculate_outputs(const Vector<double> &) const;
+
+    Vector<double> calculate_derivatives(const Vector<double> &) const;
+
+    // Serialization methods
+    std::string to_string(void) const;
+
+    tinyxml2::XMLDocument *to_XML(void) const;
+
+    virtual void from_XML(const tinyxml2::XMLDocument &);
+
+protected:
+    /// Means of the input variables
+    Vector<double> means;
+
+    /// Eigenvectors of the variables in columns.
+    Matrix<double> eigenvectors;
+
+    /// Display warning messages to screen.
+    bool display;
+};
+
 
 }
 
 #endif
+
 
 // OpenNN: Open Neural Networks Library.
 // Copyright (c) 2005-2016 Roberto Lopez.

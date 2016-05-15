@@ -58,7 +58,7 @@ void OrderSelectionAlgorithmTest::test_destructor(void)
 {
     message += "tes_destructor\n";
 
-    IncrementalOrder* io = new IncrementalOrder;
+    IncrementalOrder *io = new IncrementalOrder;
 
     delete io;
 }
@@ -175,7 +175,7 @@ void OrderSelectionAlgorithmTest::run_test_case(void)
     // Constructor and destructor methods
 
     test_constructor();
-     test_destructor();
+    test_destructor();
 
     // Get methods
 

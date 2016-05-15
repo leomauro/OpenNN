@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   R A N D O M   S E A R C H   T E S T   C L A S S                                                            */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -18,7 +18,7 @@
 using namespace OpenNN;
 
 
-// GENERAL CONSTRUCTOR 
+// GENERAL CONSTRUCTOR
 
 RandomSearchTest::RandomSearchTest(void) : UnitTesting()
 {
@@ -37,209 +37,209 @@ RandomSearchTest::~RandomSearchTest(void)
 
 void RandomSearchTest::test_constructor(void)
 {
-   message += "test_constructor\n"; 
+    message += "test_constructor\n";
 
-   PerformanceFunctional pf;
+    PerformanceFunctional pf;
 
-   // Default constructor
+    // Default constructor
 
-   RandomSearch rs1; 
-   assert_true(rs1.has_performance_functional() == false, LOG);
+    RandomSearch rs1;
+    assert_true(rs1.has_performance_functional() == false, LOG);
 
-   // Performance functional constructor
+    // Performance functional constructor
 
-   RandomSearch rs2(&pf); 
-   assert_true(rs2.has_performance_functional() == true, LOG);
+    RandomSearch rs2(&pf);
+    assert_true(rs2.has_performance_functional() == true, LOG);
 }
 
 
 void RandomSearchTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 
 void RandomSearchTest::test_get_training_rate_reduction_factor(void)
 {
-   message += "test_get_training_rate_reduction_factor\n";
+    message += "test_get_training_rate_reduction_factor\n";
 }
 
 
 void RandomSearchTest::test_get_reserve_parameters_history(void)
 {
-   message += "test_get_reserve_parameters_history\n";
+    message += "test_get_reserve_parameters_history\n";
 }
 
 
 void RandomSearchTest::test_get_reserve_parameters_norm_history(void)
 {
-   message += "test_get_reserve_parameters_norm_history\n";
+    message += "test_get_reserve_parameters_norm_history\n";
 }
 
 
 void RandomSearchTest::test_get_reserve_performance_history(void)
 {
-   message += "test_get_reserve_performance_history\n";
+    message += "test_get_reserve_performance_history\n";
 }
 
 
 void RandomSearchTest::test_set_training_rate_reduction_factor(void)
 {
-   message += "test_set_training_rate_reduction_factor\n";
+    message += "test_set_training_rate_reduction_factor\n";
 }
 
 
 void RandomSearchTest::test_set_reserve_parameters_history(void)
 {
-   message += "test_set_reserve_parameters_history\n";
+    message += "test_set_reserve_parameters_history\n";
 }
 
 
 void RandomSearchTest::test_set_reserve_parameters_norm_history(void)
 {
-   message += "test_set_reserve_parameters_norm_history\n";
+    message += "test_set_reserve_parameters_norm_history\n";
 }
 
 
 void RandomSearchTest::test_set_reserve_performance_history(void)
 {
-   message += "test_set_reserve_performance_history\n";
+    message += "test_set_reserve_performance_history\n";
 }
 
 
 void RandomSearchTest::test_calculate_training_direction(void)
 {
-   message += "test_calculate_training_direction\n";
+    message += "test_calculate_training_direction\n";
 }
 
 
 void RandomSearchTest::test_perform_training(void)
 {
-   message += "test_perform_training\n";
+    message += "test_perform_training\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   PerformanceFunctional pf(&nn);
+    PerformanceFunctional pf(&nn);
 
-   RandomSearch rs(&pf);
+    RandomSearch rs(&pf);
 
-   RandomSearch::RandomSearchResults* rstr;
+    RandomSearch::RandomSearchResults *rstr;
 
-   // Test 
+    // Test
 
-   nn.set(1, 1);
-   
-   pf.destruct_all_terms();
-   pf.set_regularization_type(PerformanceFunctional::NEURAL_PARAMETERS_NORM_REGULARIZATION);
+    nn.set(1, 1);
 
-   rs.set_display(false);
-   rs.set_maximum_iterations_number(1),
+    pf.destruct_all_terms();
+    pf.set_regularization_type(PerformanceFunctional::NEURAL_PARAMETERS_NORM_REGULARIZATION);
 
-   rs.set_reserve_all_training_history(true);
+    rs.set_display(false);
+    rs.set_maximum_iterations_number(1),
 
-   rs.set_display_period(1);
-   
-   rstr = rs.perform_training();
+            rs.set_reserve_all_training_history(true);
 
-   assert_true(rstr != NULL, LOG);   
+    rs.set_display_period(1);
 
-   delete rstr;
+    rstr = rs.perform_training();
+
+    assert_true(rstr != NULL, LOG);
+
+    delete rstr;
 }
 
 
 void RandomSearchTest::test_set_reserve_all_training_history(void)
 {
-   message += "test_set_reserve_all_training_history\n";
+    message += "test_set_reserve_all_training_history\n";
 
-   RandomSearch rs;
-   rs.set_reserve_all_training_history(true);
+    RandomSearch rs;
+    rs.set_reserve_all_training_history(true);
 }
 
 
 void RandomSearchTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 
-   RandomSearch rs;
+    RandomSearch rs;
 
-   tinyxml2::XMLDocument* document = rs.to_XML();
+    tinyxml2::XMLDocument *document = rs.to_XML();
 
-   // Test
+    // Test
 
-   document = rs.to_XML();
+    document = rs.to_XML();
 
-   assert_true(document != NULL, LOG);
+    assert_true(document != NULL, LOG);
 
-   delete document;
+    delete document;
 }
 
 
 void RandomSearchTest::test_from_XML(void)
 {
-   message += "test_from_XML\n";
+    message += "test_from_XML\n";
 
-   RandomSearch rs1;
-   RandomSearch rs2;
+    RandomSearch rs1;
+    RandomSearch rs2;
 
-   tinyxml2::XMLDocument* document;
+    tinyxml2::XMLDocument *document;
 
-   // Test
+    // Test
 
-   rs1.initialize_random();
+    rs1.initialize_random();
 
-   document = rs1.to_XML();
+    document = rs1.to_XML();
 
-   rs2.from_XML(*document);
+    rs2.from_XML(*document);
 
-   delete document;
+    delete document;
 
-   assert_true(rs2 == rs1, LOG);
+    assert_true(rs2 == rs1, LOG);
 }
 
 
 void RandomSearchTest::run_test_case(void)
 {
-   message += "Running random search test case...\n";
+    message += "Running random search test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor(); 
+    test_constructor();
+    test_destructor();
 
-   // Get methods
+    // Get methods
 
-   test_get_training_rate_reduction_factor();
+    test_get_training_rate_reduction_factor();
 
-   test_get_reserve_parameters_history();
-   test_get_reserve_parameters_norm_history();
+    test_get_reserve_parameters_history();
+    test_get_reserve_parameters_norm_history();
 
-   test_get_reserve_performance_history();
+    test_get_reserve_performance_history();
 
-   // Set methods
+    // Set methods
 
-   test_set_training_rate_reduction_factor();
+    test_set_training_rate_reduction_factor();
 
-   test_set_reserve_parameters_history();
-   test_set_reserve_parameters_norm_history();
+    test_set_reserve_parameters_history();
+    test_set_reserve_parameters_norm_history();
 
-   test_set_reserve_performance_history();
+    test_set_reserve_performance_history();
 
-   // Training methods
+    // Training methods
 
-   test_calculate_training_direction();
+    test_calculate_training_direction();
 
-   test_perform_training();
+    test_perform_training();
 
-   // Training history methods
+    // Training history methods
 
-   test_set_reserve_all_training_history();
+    test_set_reserve_all_training_history();
 
-   // Utiltity methods
+    // Utiltity methods
 
-   test_to_XML();
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
-   message += "End of random search test case.\n";
+    message += "End of random search test case.\n";
 }
 
 

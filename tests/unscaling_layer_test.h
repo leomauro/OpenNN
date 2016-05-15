@@ -22,8 +22,7 @@
 using namespace OpenNN;
 
 
-class UnscalingLayerTest : public UnitTesting
-{
+class UnscalingLayerTest : public UnitTesting {
 
 #define STRING(x) #x
 #define TOSTRING(x) STRING(x)
@@ -31,119 +30,134 @@ class UnscalingLayerTest : public UnitTesting
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit UnscalingLayerTest(void);
+    explicit UnscalingLayerTest(void);
 
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~UnscalingLayerTest(void);
+    virtual ~UnscalingLayerTest(void);
 
-   // METHODS
+    // METHODS
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Assignment operators methods
+    void test_destructor(void);
 
-   void test_assignment_operator(void);
+    // Assignment operators methods
 
-   // Get methods
+    void test_assignment_operator(void);
 
-   // Multilayer perceptron architecture 
+    // Get methods
 
-   void test_get_unscaling_neurons_number(void);
+    // Multilayer perceptron architecture
 
-   // Statistics
+    void test_get_unscaling_neurons_number(void);
 
-   void test_arrange_minimums(void);
-   void test_get_minimum(void);
+    // Statistics
 
-   void test_arrange_maximums(void);
-   void test_get_maximum(void);
+    void test_arrange_minimums(void);
 
-   void test_arrange_means(void);
-   void test_get_mean(void);
+    void test_get_minimum(void);
 
-   void test_arrange_standard_deviations(void);
-   void test_get_standard_deviation(void);
+    void test_arrange_maximums(void);
 
-   void test_get_statistics(void);
+    void test_get_maximum(void);
 
-   // Variables scaling and unscaling
+    void test_arrange_means(void);
 
-   void test_get_unscaling_method(void);
-   void test_get_unscaling_method_name(void);
+    void test_get_mean(void);
 
-   // Display warning 
+    void test_arrange_standard_deviations(void);
 
-   void test_get_display_warning(void);
+    void test_get_standard_deviation(void);
 
-   // Display messages
+    void test_get_statistics(void);
 
-   void test_get_display(void);
+    // Variables scaling and unscaling
 
-   // SET METHODS
+    void test_get_unscaling_method(void);
 
-   void test_set(void);
-   void test_set_default(void);
+    void test_get_unscaling_method_name(void);
 
-   // Output variables statistics
+    // Display warning
 
-   void test_set_means(void);
-   void test_set_mean(void);
+    void test_get_display_warning(void);
 
-   void test_set_standard_deviations(void);
-   void test_set_standard_deviation(void);
+    // Display messages
 
-   void test_set_minimums(void);
-   void test_set_minimum(void);
+    void test_get_display(void);
 
-   void test_set_maximums(void);
-   void test_set_maximum(void);
+    // SET METHODS
 
-   // Statistics
+    void test_set(void);
 
-   void test_set_statistics(void);
+    void test_set_default(void);
 
-   // Variables scaling and unscaling
+    // Output variables statistics
 
-   void test_set_unscaling_method(void);
+    void test_set_means(void);
 
-   // Display messages
+    void test_set_mean(void);
 
-   void test_set_display_outputs_warning(void);
-   void test_set_display(void);
+    void test_set_standard_deviations(void);
 
-   // Initialization methods
+    void test_set_standard_deviation(void);
 
-   void test_initialize_random(void);
+    void test_set_minimums(void);
 
-   // Input range
+    void test_set_minimum(void);
 
-   void test_check_outputs_range(void);
+    void test_set_maximums(void);
 
-   // Outputs unscaling
+    void test_set_maximum(void);
 
-   void test_calculate_outputs(void);
-   void test_calculate_derivatives(void);
-   void test_calculate_second_derivatives(void);
+    // Statistics
 
-   // Expression methods
+    void test_set_statistics(void);
 
-   void test_write_expression(void);
+    // Variables scaling and unscaling
 
-   // Serialization methods
+    void test_set_unscaling_method(void);
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    // Display messages
 
-   // Unit testing methods
+    void test_set_display_outputs_warning(void);
 
-   void run_test_case(void);
+    void test_set_display(void);
+
+    // Initialization methods
+
+    void test_initialize_random(void);
+
+    // Input range
+
+    void test_check_outputs_range(void);
+
+    // Outputs unscaling
+
+    void test_calculate_outputs(void);
+
+    void test_calculate_derivatives(void);
+
+    void test_calculate_second_derivatives(void);
+
+    // Expression methods
+
+    void test_write_expression(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

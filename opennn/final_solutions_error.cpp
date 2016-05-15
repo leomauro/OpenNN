@@ -15,7 +15,8 @@
 
 #include "final_solutions_error.h"
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 // DEFAULT CONSTRUCTOR
 
@@ -23,13 +24,13 @@ namespace OpenNN {
 /// It creates a final solutions error performance term not associated to any neural network and not measured on any mathematical model.
 /// It also initializes all the rest of class members to their default values.
 
-    FinalSolutionsError::FinalSolutionsError(void)
-            : PerformanceTerm()
-    {
-        construct_numerical_differentiation();
+FinalSolutionsError::FinalSolutionsError(void)
+    : PerformanceTerm()
+{
+    construct_numerical_differentiation();
 
-        set_default();
-    }
+    set_default();
+}
 
 
 // NEURAL NETWORK CONSTRUCTOR
@@ -39,13 +40,13 @@ namespace OpenNN {
 /// It also initializes all the rest of class members to their default values.
 /// @param new_neural_network_pointer Pointer to a neural network object.
 
-    FinalSolutionsError::FinalSolutionsError(NeuralNetwork *new_neural_network_pointer)
-            : PerformanceTerm(new_neural_network_pointer)
-    {
-        construct_numerical_differentiation();
+FinalSolutionsError::FinalSolutionsError(NeuralNetwork *new_neural_network_pointer)
+    : PerformanceTerm(new_neural_network_pointer)
+{
+    construct_numerical_differentiation();
 
-        set_default();
-    }
+    set_default();
+}
 
 
 // MATHEMATICAL MODEL CONSTRUCTOR
@@ -55,13 +56,13 @@ namespace OpenNN {
 /// It also initializes all the rest of class members to their default values.
 /// @param new_mathematical_model_pointer Pointer to a mathematical model object.
 
-    FinalSolutionsError::FinalSolutionsError(MathematicalModel *new_mathematical_model_pointer)
-            : PerformanceTerm(new_mathematical_model_pointer)
-    {
-        construct_numerical_differentiation();
+FinalSolutionsError::FinalSolutionsError(MathematicalModel *new_mathematical_model_pointer)
+    : PerformanceTerm(new_mathematical_model_pointer)
+{
+    construct_numerical_differentiation();
 
-        set_default();
-    }
+    set_default();
+}
 
 
 // NEURAL NETWORK AND MATHEMATICAL MODEL CONSTRUCTOR
@@ -72,14 +73,14 @@ namespace OpenNN {
 /// @param new_neural_network_pointer Pointer to a neural network object.
 /// @param new_mathematical_model_pointer Pointer to a mathematical model object.
 
-    FinalSolutionsError::FinalSolutionsError(NeuralNetwork *new_neural_network_pointer,
-                                             MathematicalModel *new_mathematical_model_pointer)
-            : PerformanceTerm(new_neural_network_pointer, new_mathematical_model_pointer)
-    {
-        construct_numerical_differentiation();
+FinalSolutionsError::FinalSolutionsError(NeuralNetwork *new_neural_network_pointer,
+        MathematicalModel *new_mathematical_model_pointer)
+    : PerformanceTerm(new_neural_network_pointer, new_mathematical_model_pointer)
+{
+    construct_numerical_differentiation();
 
-        set_default();
-    }
+    set_default();
+}
 
 
 // XML CONSTRUCTOR
@@ -89,15 +90,15 @@ namespace OpenNN {
 /// It also sets the rest of members with values from a XML document.
 /// @param final_state_error_document Pointer to a TinyXML with the member data.
 
-    FinalSolutionsError::FinalSolutionsError(const tinyxml2::XMLDocument &final_state_error_document)
-            : PerformanceTerm(final_state_error_document)
-    {
-        construct_numerical_differentiation();
+FinalSolutionsError::FinalSolutionsError(const tinyxml2::XMLDocument &final_state_error_document)
+    : PerformanceTerm(final_state_error_document)
+{
+    construct_numerical_differentiation();
 
-        set_default();
+    set_default();
 
-        from_XML(final_state_error_document);
-    }
+    from_XML(final_state_error_document);
+}
 
 
 // COPY CONSTRUCTOR
@@ -106,37 +107,37 @@ namespace OpenNN {
 /// It creates a copy of an existing final solutions error object.
 /// @param other_final_solutions_error Final solutions error object to be copied.
 
-    FinalSolutionsError::FinalSolutionsError(const FinalSolutionsError &other_final_solutions_error)
-            : PerformanceTerm()
-    {
+FinalSolutionsError::FinalSolutionsError(const FinalSolutionsError &other_final_solutions_error)
+    : PerformanceTerm()
+{
 //   set(other_final_solutions_error);
 
-        neural_network_pointer = other_final_solutions_error.neural_network_pointer;
+    neural_network_pointer = other_final_solutions_error.neural_network_pointer;
 
-        data_set_pointer = other_final_solutions_error.data_set_pointer;
+    data_set_pointer = other_final_solutions_error.data_set_pointer;
 
-        mathematical_model_pointer = other_final_solutions_error.mathematical_model_pointer;
+    mathematical_model_pointer = other_final_solutions_error.mathematical_model_pointer;
 
-        if (other_final_solutions_error.numerical_differentiation_pointer) {
-            numerical_differentiation_pointer = new NumericalDifferentiation(*other_final_solutions_error.numerical_differentiation_pointer);
-        }
-
-        display = other_final_solutions_error.display;
-
-        final_solutions_errors_weights = other_final_solutions_error.final_solutions_errors_weights;
-
-        target_final_solutions = other_final_solutions_error.target_final_solutions;
-
+    if (other_final_solutions_error.numerical_differentiation_pointer) {
+        numerical_differentiation_pointer = new NumericalDifferentiation(*other_final_solutions_error.numerical_differentiation_pointer);
     }
+
+    display = other_final_solutions_error.display;
+
+    final_solutions_errors_weights = other_final_solutions_error.final_solutions_errors_weights;
+
+    target_final_solutions = other_final_solutions_error.target_final_solutions;
+
+}
 
 
 // DESTRUCTOR
 
 /// Destructor.
 
-    FinalSolutionsError::~FinalSolutionsError(void)
-    {
-    }
+FinalSolutionsError::~FinalSolutionsError(void)
+{
+}
 
 
 // ASSIGNMENT OPERATOR
@@ -145,21 +146,21 @@ namespace OpenNN {
 
 /// Assignment operator.
 
-    FinalSolutionsError &FinalSolutionsError::operator=(const FinalSolutionsError &other_final_solutions_error)
-    {
-        if (this != &other_final_solutions_error) {
-            *neural_network_pointer = *other_final_solutions_error.neural_network_pointer;
-            *data_set_pointer = *other_final_solutions_error.data_set_pointer;
-            *mathematical_model_pointer = *other_final_solutions_error.mathematical_model_pointer;
-            *numerical_differentiation_pointer = *other_final_solutions_error.numerical_differentiation_pointer;
-            display = other_final_solutions_error.display;
+FinalSolutionsError &FinalSolutionsError::operator=(const FinalSolutionsError &other_final_solutions_error)
+{
+    if (this != &other_final_solutions_error) {
+        *neural_network_pointer = *other_final_solutions_error.neural_network_pointer;
+        *data_set_pointer = *other_final_solutions_error.data_set_pointer;
+        *mathematical_model_pointer = *other_final_solutions_error.mathematical_model_pointer;
+        *numerical_differentiation_pointer = *other_final_solutions_error.numerical_differentiation_pointer;
+        display = other_final_solutions_error.display;
 
-            final_solutions_errors_weights = other_final_solutions_error.final_solutions_errors_weights;
-            target_final_solutions = other_final_solutions_error.target_final_solutions;
-        }
-
-        return (*this);
+        final_solutions_errors_weights = other_final_solutions_error.final_solutions_errors_weights;
+        target_final_solutions = other_final_solutions_error.target_final_solutions;
     }
+
+    return (*this);
+}
 
 
 // EQUAL TO OPERATOR
@@ -169,20 +170,19 @@ namespace OpenNN {
 /// Equal to operator.
 /// @todo
 
-    bool FinalSolutionsError::operator==(const FinalSolutionsError &other_final_solutions_error) const
-    {
-        if (*neural_network_pointer == *other_final_solutions_error.neural_network_pointer
+bool FinalSolutionsError::operator==(const FinalSolutionsError &other_final_solutions_error) const
+{
+    if (*neural_network_pointer == *other_final_solutions_error.neural_network_pointer
             && *mathematical_model_pointer == *other_final_solutions_error.mathematical_model_pointer
             && *numerical_differentiation_pointer == *other_final_solutions_error.numerical_differentiation_pointer
             && display == other_final_solutions_error.display
             && final_solutions_errors_weights == other_final_solutions_error.final_solutions_errors_weights
             && target_final_solutions == other_final_solutions_error.target_final_solutions) {
-            return (true);
-        }
-        else {
-            return (false);
-        }
+        return (true);
+    } else {
+        return (false);
     }
+}
 
 
 // METHODS
@@ -191,20 +191,20 @@ namespace OpenNN {
 
 /// Returns the weight values for each error in the final solutions.
 
-    const Vector<double> &FinalSolutionsError::get_final_solutions_errors_weights(void) const
-    {
-        return (final_solutions_errors_weights);
-    }
+const Vector<double> &FinalSolutionsError::get_final_solutions_errors_weights(void) const
+{
+    return (final_solutions_errors_weights);
+}
 
 
 // const Vector<double>& get_target_final_solutions(void) const method
 
 /// Returns the desired final state of each dependent variable.
 
-    const Vector<double> &FinalSolutionsError::get_target_final_solutions(void) const
-    {
-        return (target_final_solutions);
-    }
+const Vector<double> &FinalSolutionsError::get_target_final_solutions(void) const
+{
+    return (target_final_solutions);
+}
 
 
 // void set(void) method
@@ -213,45 +213,45 @@ namespace OpenNN {
 /// It also deletes the numerical differentiation pointer inside this class.
 /// Finally it sets the rest of members to their default values.
 
-    void FinalSolutionsError::set(void)
-    {
-        neural_network_pointer = NULL;
-        data_set_pointer = NULL;
-        mathematical_model_pointer = NULL;
+void FinalSolutionsError::set(void)
+{
+    neural_network_pointer = NULL;
+    data_set_pointer = NULL;
+    mathematical_model_pointer = NULL;
 
-        delete numerical_differentiation_pointer;
+    delete numerical_differentiation_pointer;
 
-        numerical_differentiation_pointer = NULL;
+    numerical_differentiation_pointer = NULL;
 
-        set_default();
-    }
+    set_default();
+}
 
 
 // void set(NeuralNetwork*) method
 
 /// @todo
 
-    void FinalSolutionsError::set(NeuralNetwork *)
-    {
-    }
+void FinalSolutionsError::set(NeuralNetwork *)
+{
+}
 
 
 // void set(MathematicalModel*) method
 
 /// @todo
 
-    void FinalSolutionsError::set(MathematicalModel *)
-    {
-    }
+void FinalSolutionsError::set(MathematicalModel *)
+{
+}
 
 
 // void set(NeuralNetwork*, MathematicalModel*) method
 
 /// @todo
 
-    void FinalSolutionsError::set(NeuralNetwork *, MathematicalModel *)
-    {
-    }
+void FinalSolutionsError::set(NeuralNetwork *, MathematicalModel *)
+{
+}
 
 
 // void set(const FinalSolutionsError&) method
@@ -285,18 +285,18 @@ namespace OpenNN {
 /// Associates this final solutions error object with a given mathematical model object.
 /// @param new_mathematical_model_pointer Pointer to a mathematical model object.
 
-    void FinalSolutionsError::set_mathematical_model_pointer(MathematicalModel *new_mathematical_model_pointer)
-    {
-        mathematical_model_pointer = new_mathematical_model_pointer;
+void FinalSolutionsError::set_mathematical_model_pointer(MathematicalModel *new_mathematical_model_pointer)
+{
+    mathematical_model_pointer = new_mathematical_model_pointer;
 
-        if (mathematical_model_pointer) {
-            const size_t dependent_variables_number = mathematical_model_pointer->get_dependent_variables_number();
+    if (mathematical_model_pointer) {
+        const size_t dependent_variables_number = mathematical_model_pointer->get_dependent_variables_number();
 
-            target_final_solutions.set(dependent_variables_number, 0.0);
+        target_final_solutions.set(dependent_variables_number, 0.0);
 
-            final_solutions_errors_weights.set(dependent_variables_number, 1.0);
-        }
+        final_solutions_errors_weights.set(dependent_variables_number, 1.0);
     }
+}
 
 
 // void set_final_solutions_errors_weights(const Vector<double>&) method
@@ -304,10 +304,10 @@ namespace OpenNN {
 /// Sets new weight values for each error in the final solutions.
 /// @param new_final_solutions_errors_weights Weight values. The size of this vector must be equal to the nuber of dependent variables in the mathematical model.
 
-    void FinalSolutionsError::set_final_solutions_errors_weights(const Vector<double> &new_final_solutions_errors_weights)
-    {
-        final_solutions_errors_weights = new_final_solutions_errors_weights;
-    }
+void FinalSolutionsError::set_final_solutions_errors_weights(const Vector<double> &new_final_solutions_errors_weights)
+{
+    final_solutions_errors_weights = new_final_solutions_errors_weights;
+}
 
 
 // void set_final_solution_error_weight(const size_t&, const double&) method
@@ -316,11 +316,11 @@ namespace OpenNN {
 /// @param i Index of dependent variable.
 /// @param new_final_solution_error_weight Weight value for the error of that dependent variable.
 
-    void FinalSolutionsError::set_final_solution_error_weight(const size_t &i,
-                                                              const double &new_final_solution_error_weight)
-    {
-        final_solutions_errors_weights[i] = new_final_solution_error_weight;
-    }
+void FinalSolutionsError::set_final_solution_error_weight(const size_t &i,
+        const double &new_final_solution_error_weight)
+{
+    final_solutions_errors_weights[i] = new_final_solution_error_weight;
+}
 
 
 // void set_target_final_solutions(const Vector<double>&) method
@@ -328,10 +328,10 @@ namespace OpenNN {
 /// Sets the desired final states for each dependent variable.
 /// @param new_target_final_solutions Desired final values. The size of this vector must be equal to the number of dependent variables in the mathematical model.
 
-    void FinalSolutionsError::set_target_final_solutions(const Vector<double> &new_target_final_solutions)
-    {
-        target_final_solutions = new_target_final_solutions;
-    }
+void FinalSolutionsError::set_target_final_solutions(const Vector<double> &new_target_final_solutions)
+{
+    target_final_solutions = new_target_final_solutions;
+}
 
 
 // void set_target_final_solution(const size_t& const double&) method
@@ -340,10 +340,10 @@ namespace OpenNN {
 /// @param i Index of dependent variable.
 /// @param new_target_final_solution Desired final value of that dependent variable.
 
-    void FinalSolutionsError::set_target_final_solution(const size_t &i, const double &new_target_final_solution)
-    {
-        target_final_solutions[i] = new_target_final_solution;
-    }
+void FinalSolutionsError::set_target_final_solution(const size_t &i, const double &new_target_final_solution)
+{
+    target_final_solutions[i] = new_target_final_solution;
+}
 
 
 // void set_default(void)
@@ -355,23 +355,22 @@ namespace OpenNN {
 /// <li> Display: True.
 /// </ul>
 
-    void FinalSolutionsError::set_default(void)
-    {
-        if (mathematical_model_pointer) {
-            const size_t dependent_variables_number = mathematical_model_pointer->get_dependent_variables_number();
+void FinalSolutionsError::set_default(void)
+{
+    if (mathematical_model_pointer) {
+        const size_t dependent_variables_number = mathematical_model_pointer->get_dependent_variables_number();
 
-            target_final_solutions.set(dependent_variables_number, 0.0);
+        target_final_solutions.set(dependent_variables_number, 0.0);
 
-            final_solutions_errors_weights.set(dependent_variables_number, 1.0);
-        }
-        else {
-            target_final_solutions.set();
+        final_solutions_errors_weights.set(dependent_variables_number, 1.0);
+    } else {
+        target_final_solutions.set();
 
-            final_solutions_errors_weights.set();
-        }
-
-        display = true;
+        final_solutions_errors_weights.set();
     }
+
+    display = true;
+}
 
 
 // void check(void) const method
@@ -380,203 +379,203 @@ namespace OpenNN {
 /// and that the number of dependent variables in the mathematical model is equal to the number of target final solutions in the performance term.
 /// If some of the above conditions is not hold, the method throws an exception.
 
-    void FinalSolutionsError::check(void) const
-    {
+void FinalSolutionsError::check(void) const
+{
+    std::ostringstream buffer;
+
+    // Neural network stuff
+
+    if (!neural_network_pointer) {
+        buffer << "OpenNN Exception: FinalSolutionsError class.\n"
+               << "void check(void) const method.\n"
+               << "Pointer to neural network is NULL.\n";
+
+        throw std::logic_error(buffer.str());
+    }
+
+    const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
+
+    if (!multilayer_perceptron_pointer) {
+        buffer << "OpenNN Exception: FinalSolutionsError class.\n"
+               << "void check(void) const method.\n"
+               << "Pointer to multilayer perceptron is NULL.\n";
+
+        throw std::logic_error(buffer.str());
+    }
+
+    const size_t inputs_number = multilayer_perceptron_pointer->get_inputs_number();
+    const size_t outputs_number = multilayer_perceptron_pointer->get_outputs_number();
+
+    if (inputs_number == 0) {
+        buffer << "OpenNN Exception: FinalSolutionsError class.\n"
+               << "void check(void) const method.\n"
+               << "Number of inputs in multilayer perceptron object is zero.\n";
+
+        throw std::logic_error(buffer.str());
+    }
+
+    if (outputs_number == 0) {
+        buffer << "OpenNN Exception: FinalSolutionsError class.\n"
+               << "void check(void) const method.\n"
+               << "Number of outputs in multilayer perceptron object is zero.\n";
+
+        throw std::logic_error(buffer.str());
+    }
+
+    // Mathematical model stuff
+
+    if (!mathematical_model_pointer) {
+        buffer << "OpenNN Exception: FinalSolutionsError class.\n"
+               << "void check(void) const method.\n"
+               << "Pointer to mathematical model is NULL.\n";
+
+        throw std::logic_error(buffer.str());
+    }
+
+    // Final solutions error stuff
+
+    const size_t dependent_variables_number = mathematical_model_pointer->get_dependent_variables_number();
+
+    const size_t target_final_solutions_size = target_final_solutions.size();
+
+    if (target_final_solutions_size != dependent_variables_number) {
         std::ostringstream buffer;
 
-        // Neural network stuff
+        buffer << "OpenNN Exception: FinalSolutionsError class." << std::endl
+               << "double calculate_performance(void) const method." << std::endl
+               << "Size of target final solutions must be equal to number of dependent variables." << std::endl;
 
-        if (!neural_network_pointer) {
-            buffer << "OpenNN Exception: FinalSolutionsError class.\n"
-            << "void check(void) const method.\n"
-            << "Pointer to neural network is NULL.\n";
-
-            throw std::logic_error(buffer.str());
-        }
-
-        const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
-
-        if (!multilayer_perceptron_pointer) {
-            buffer << "OpenNN Exception: FinalSolutionsError class.\n"
-            << "void check(void) const method.\n"
-            << "Pointer to multilayer perceptron is NULL.\n";
-
-            throw std::logic_error(buffer.str());
-        }
-
-        const size_t inputs_number = multilayer_perceptron_pointer->get_inputs_number();
-        const size_t outputs_number = multilayer_perceptron_pointer->get_outputs_number();
-
-        if (inputs_number == 0) {
-            buffer << "OpenNN Exception: FinalSolutionsError class.\n"
-            << "void check(void) const method.\n"
-            << "Number of inputs in multilayer perceptron object is zero.\n";
-
-            throw std::logic_error(buffer.str());
-        }
-
-        if (outputs_number == 0) {
-            buffer << "OpenNN Exception: FinalSolutionsError class.\n"
-            << "void check(void) const method.\n"
-            << "Number of outputs in multilayer perceptron object is zero.\n";
-
-            throw std::logic_error(buffer.str());
-        }
-
-        // Mathematical model stuff
-
-        if (!mathematical_model_pointer) {
-            buffer << "OpenNN Exception: FinalSolutionsError class.\n"
-            << "void check(void) const method.\n"
-            << "Pointer to mathematical model is NULL.\n";
-
-            throw std::logic_error(buffer.str());
-        }
-
-        // Final solutions error stuff
-
-        const size_t dependent_variables_number = mathematical_model_pointer->get_dependent_variables_number();
-
-        const size_t target_final_solutions_size = target_final_solutions.size();
-
-        if (target_final_solutions_size != dependent_variables_number) {
-            std::ostringstream buffer;
-
-            buffer << "OpenNN Exception: FinalSolutionsError class." << std::endl
-            << "double calculate_performance(void) const method." << std::endl
-            << "Size of target final solutions must be equal to number of dependent variables." << std::endl;
-
-            throw std::logic_error(buffer.str());
-        }
-
+        throw std::logic_error(buffer.str());
     }
+
+}
 
 
 // Vector<double> calculate_performance(void) const method
 
-    double FinalSolutionsError::calculate_performance(void) const
-    {
-        // Control sentence
+double FinalSolutionsError::calculate_performance(void) const
+{
+    // Control sentence
 
 #ifdef __OPENNN_DEBUG__
 
-        check();
+    check();
 
 #endif
 
-        // Final state error stuff
+    // Final state error stuff
 
-        const size_t independent_variables_number = mathematical_model_pointer->get_independent_variables_number();
-        const size_t dependent_variables_number = mathematical_model_pointer->get_dependent_variables_number();
+    const size_t independent_variables_number = mathematical_model_pointer->get_independent_variables_number();
+    const size_t dependent_variables_number = mathematical_model_pointer->get_dependent_variables_number();
 
-        const Vector<double> final_solutions = mathematical_model_pointer->calculate_final_solutions(*neural_network_pointer);
+    const Vector<double> final_solutions = mathematical_model_pointer->calculate_final_solutions(*neural_network_pointer);
 
-        const Vector<double> dependent_variables_final_solutions = final_solutions.take_out(independent_variables_number,
-                                                                                            dependent_variables_number);
+    const Vector<double> dependent_variables_final_solutions = final_solutions.take_out(independent_variables_number,
+            dependent_variables_number);
 
-        const Vector<double> final_solutions_errors = dependent_variables_final_solutions - target_final_solutions;
+    const Vector<double> final_solutions_errors = dependent_variables_final_solutions - target_final_solutions;
 
-        return ((final_solutions_errors_weights * final_solutions_errors * final_solutions_errors).calculate_sum());
-    }
+    return ((final_solutions_errors_weights * final_solutions_errors * final_solutions_errors).calculate_sum());
+}
 
 
 // double calculate_performance(const Vector<double>&) const method
 
-    double FinalSolutionsError::calculate_performance(const Vector<double> &) const
-    {
-        return (0.0);
-    }
+double FinalSolutionsError::calculate_performance(const Vector<double> &) const
+{
+    return (0.0);
+}
 
 
 // std::string write_performance_term_type(void) const method
 
 /// Returns a string with the name of the final solutions error performance type, "FINAL_SOLUTIONS_ERROR".
 
-    std::string FinalSolutionsError::write_performance_term_type(void) const
-    {
-        return ("FINAL_SOLUTIONS_ERROR");
-    }
+std::string FinalSolutionsError::write_performance_term_type(void) const
+{
+    return ("FINAL_SOLUTIONS_ERROR");
+}
 
 
 // std::string write_information(void) const method
 
-    std::string FinalSolutionsError::write_information(void) const
-    {
-        std::ostringstream buffer;
+std::string FinalSolutionsError::write_information(void) const
+{
+    std::ostringstream buffer;
 
-        const size_t independent_variables_number = mathematical_model_pointer->get_independent_variables_number();
-        const size_t dependent_variables_number = mathematical_model_pointer->get_dependent_variables_number();
+    const size_t independent_variables_number = mathematical_model_pointer->get_independent_variables_number();
+    const size_t dependent_variables_number = mathematical_model_pointer->get_dependent_variables_number();
 
-        const Vector<double> final_solutions = mathematical_model_pointer->calculate_final_solutions(*neural_network_pointer);
+    const Vector<double> final_solutions = mathematical_model_pointer->calculate_final_solutions(*neural_network_pointer);
 
-        const Vector<double> dependent_variables_final_solutions = final_solutions.take_out(independent_variables_number,
-                                                                                            dependent_variables_number);
+    const Vector<double> dependent_variables_final_solutions = final_solutions.take_out(independent_variables_number,
+            dependent_variables_number);
 
-        const Vector<double> final_solutions_errors = dependent_variables_final_solutions - target_final_solutions;
+    const Vector<double> final_solutions_errors = dependent_variables_final_solutions - target_final_solutions;
 
-        const double performance = (final_solutions_errors_weights * final_solutions_errors * final_solutions_errors).calculate_sum();
+    const double performance = (final_solutions_errors_weights * final_solutions_errors * final_solutions_errors).calculate_sum();
 
-        buffer << "Final solutions error\n"
-        << "Target final solutions: " << target_final_solutions << "\n"
-        << "Final solutions: " << dependent_variables_final_solutions << "\n"
-        << "Training performance: " << performance << "\n";
+    buffer << "Final solutions error\n"
+           << "Target final solutions: " << target_final_solutions << "\n"
+           << "Final solutions: " << dependent_variables_final_solutions << "\n"
+           << "Training performance: " << performance << "\n";
 
-        return (buffer.str());
-    }
+    return (buffer.str());
+}
 
 
 // tinyxml2::XMLDocument* to_XML(void) method method
 
 /// Returns a representation of the sum squared error object, in XML format.
 
-    tinyxml2::XMLDocument *FinalSolutionsError::to_XML(void) const
+tinyxml2::XMLDocument *FinalSolutionsError::to_XML(void) const
+{
+    std::ostringstream buffer;
+
+    tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
+
+    // Final solutions error
+
+    tinyxml2::XMLElement *final_solutions_error_element = document->NewElement("FinalSolutionsError");
+
+    document->InsertFirstChild(final_solutions_error_element);
+
+    // Numerical differentiation
     {
-        std::ostringstream buffer;
+        if (numerical_differentiation_pointer) {
+            tinyxml2::XMLElement *element = numerical_differentiation_pointer->to_XML()->FirstChildElement();
 
-        tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
-
-        // Final solutions error
-
-        tinyxml2::XMLElement *final_solutions_error_element = document->NewElement("FinalSolutionsError");
-
-        document->InsertFirstChild(final_solutions_error_element);
-
-        // Numerical differentiation
-        {
-            if (numerical_differentiation_pointer) {
-                tinyxml2::XMLElement *element = numerical_differentiation_pointer->to_XML()->FirstChildElement();
-
-                if (element) {
-                    final_solutions_error_element->LinkEndChild(element);
-                }
+            if (element) {
+                final_solutions_error_element->LinkEndChild(element);
             }
         }
+    }
 
-        // Final solutions errors weights
-        {
-            tinyxml2::XMLElement *element = document->NewElement("FinalSolutionsErrorsWeights");
-            final_solutions_error_element->LinkEndChild(element);
+    // Final solutions errors weights
+    {
+        tinyxml2::XMLElement *element = document->NewElement("FinalSolutionsErrorsWeights");
+        final_solutions_error_element->LinkEndChild(element);
 
-            buffer.str("");
-            buffer << final_solutions_errors_weights;
+        buffer.str("");
+        buffer << final_solutions_errors_weights;
 
-            tinyxml2::XMLText *text = document->NewText(buffer.str().c_str());
-            element->LinkEndChild(text);
-        }
+        tinyxml2::XMLText *text = document->NewText(buffer.str().c_str());
+        element->LinkEndChild(text);
+    }
 
-        // Target final solution
-        {
-            tinyxml2::XMLElement *element = document->NewElement("TargetFinalSolution");
-            final_solutions_error_element->LinkEndChild(element);
+    // Target final solution
+    {
+        tinyxml2::XMLElement *element = document->NewElement("TargetFinalSolution");
+        final_solutions_error_element->LinkEndChild(element);
 
-            buffer.str("");
-            buffer << target_final_solutions;
+        buffer.str("");
+        buffer << target_final_solutions;
 
-            tinyxml2::XMLText *text = document->NewText(buffer.str().c_str());
-            element->LinkEndChild(text);
-        }
+        tinyxml2::XMLText *text = document->NewText(buffer.str().c_str());
+        element->LinkEndChild(text);
+    }
 
-        // Display
+    // Display
 //   {
 //      tinyxml2::XMLElement* display_element = document->NewElement("Display");
 //      final_solutions_error_element->LinkEndChild(display_element);
@@ -588,8 +587,8 @@ namespace OpenNN {
 //      display_element->LinkEndChild(display_text);
 //   }
 
-        return (document);
-    }
+    return (document);
+}
 
 
 // void from_XML(const tinyxml2::XMLDocument&) method
@@ -597,36 +596,35 @@ namespace OpenNN {
 /// Loads a final solutions error object from a XML document.
 /// @todo
 
-    void FinalSolutionsError::from_XML(const tinyxml2::XMLDocument &document)
+void FinalSolutionsError::from_XML(const tinyxml2::XMLDocument &document)
+{
+    const tinyxml2::XMLElement *root_element = document.FirstChildElement("FinalSolutionsError");
+
+    if (!root_element) {
+        std::ostringstream buffer;
+
+        buffer << "OpenNN Exception: FinalSolutionsError class.\n"
+               << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
+               << "Final solutions error element is NULL.\n";
+
+        throw std::logic_error(buffer.str());
+    }
+
+    // Display
     {
-        const tinyxml2::XMLElement *root_element = document.FirstChildElement("FinalSolutionsError");
+        const tinyxml2::XMLElement *display_element = root_element->FirstChildElement("Display");
 
-        if (!root_element) {
-            std::ostringstream buffer;
+        if (display_element) {
+            const std::string new_display_string = display_element->GetText();
 
-            buffer << "OpenNN Exception: FinalSolutionsError class.\n"
-            << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
-            << "Final solutions error element is NULL.\n";
-
-            throw std::logic_error(buffer.str());
-        }
-
-        // Display
-        {
-            const tinyxml2::XMLElement *display_element = root_element->FirstChildElement("Display");
-
-            if (display_element) {
-                const std::string new_display_string = display_element->GetText();
-
-                try {
-                    set_display(new_display_string != "0");
-                }
-                catch (const std::logic_error &e) {
-                    std::cout << e.what() << std::endl;
-                }
+            try {
+                set_display(new_display_string != "0");
+            } catch (const std::logic_error &e) {
+                std::cout << e.what() << std::endl;
             }
         }
     }
+}
 
 
 }

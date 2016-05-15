@@ -33,99 +33,82 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This performance term measures the error between a set of independent parameteres and a set of targer parameters.
 /// This performance term can be used in optimal control problems.
-///	A typical example are those problems with free final time.
+/// A typical example are those problems with free final time.
+class IndependentParametersError : public PerformanceTerm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit IndependentParametersError(void);
 
-    class IndependentParametersError : public PerformanceTerm {
+    // NEURAL NETWORK CONSTRUCTOR
+    explicit IndependentParametersError(NeuralNetwork *);
 
-    public:
+    // XML CONSTRUCTOR
+    explicit IndependentParametersError(const tinyxml2::XMLDocument &);
 
-        // DEFAULT CONSTRUCTOR
+    // DESTRUCTOR
+    virtual ~IndependentParametersError(void);
 
-        explicit IndependentParametersError(void);
+    // ASSIGNMENT OPERATOR
+    IndependentParametersError &operator=(const IndependentParametersError &);
 
-        // NEURAL NETWORK CONSTRUCTOR
+    // EQUAL TO OPERATOR
+    bool operator==(const IndependentParametersError &) const;
 
-        explicit IndependentParametersError(NeuralNetwork *);
+    // Get methods
+    const Vector<double> &get_target_independent_parameters(void) const;
 
-        // XML CONSTRUCTOR
+    const double &get_target_independent_parameter(const size_t &) const;
 
-        explicit IndependentParametersError(const tinyxml2::XMLDocument &);
+    const Vector<double> &get_independent_parameters_errors_weights(void) const;
 
-        // DESTRUCTOR
+    const double &get_independent_parameter_error_weight(const size_t &) const;
 
-        virtual ~IndependentParametersError(void);
+    // Set methods
+    void set_target_independent_parameters(const Vector<double> &);
 
-        // ASSIGNMENT OPERATOR
+    void set_target_independent_parameter(const size_t &, const double &);
 
-        IndependentParametersError &operator=(const IndependentParametersError &);
+    void set_independent_parameters_errors_weights(const Vector<double> &);
 
-        // EQUAL TO OPERATOR
+    void set_independent_parameter_error_weight(const size_t &, const double &);
 
-        bool operator==(const IndependentParametersError &) const;
+    void set_default(void);
 
-        // METHODS
+    // Checking methods
+    void check(void) const;
 
-        // Get methods
+    // performance methods
+    double calculate_performance(void) const;
 
-        const Vector<double> &get_target_independent_parameters(void) const;
+    double calculate_performance(const Vector<double> &) const;
 
-        const double &get_target_independent_parameter(const size_t &) const;
+    Vector<double> calculate_gradient(void) const;
 
-        const Vector<double> &get_independent_parameters_errors_weights(void) const;
+    Matrix<double> calculate_Hessian(void) const;
 
-        const double &get_independent_parameter_error_weight(const size_t &) const;
+    std::string write_performance_term_type(void) const;
 
-        // Set methods
+    std::string write_information(void) const;
 
-        void set_target_independent_parameters(const Vector<double> &);
+    // Serialization methods
+    tinyxml2::XMLDocument *to_XML(void) const;
 
-        void set_target_independent_parameter(const size_t &, const double &);
+    void from_XML(const tinyxml2::XMLDocument &);
 
-        void set_independent_parameters_errors_weights(const Vector<double> &);
+private:
+    /// Desired independent parameter values.
+    Vector<double> target_independent_parameters;
 
-        void set_independent_parameter_error_weight(const size_t &, const double &);
+    /// Weight for each error between the actual independent parameters and their target values.
+    Vector<double> independent_parameters_errors_weights;
+};
 
-        void set_default(void);
-
-        // Checking methods
-
-        void check(void) const;
-
-        // performance methods
-
-        double calculate_performance(void) const;
-
-        double calculate_performance(const Vector<double> &) const;
-
-        Vector<double> calculate_gradient(void) const;
-
-        Matrix<double> calculate_Hessian(void) const;
-
-        std::string write_performance_term_type(void) const;
-
-        std::string write_information(void) const;
-
-        // Serialization methods
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-    private:
-
-        /// Desired independent parameter values.
-
-        Vector<double> target_independent_parameters;
-
-        /// Weight for each error between the actual independent parameters and their target values.
-
-        Vector<double> independent_parameters_errors_weights;
-
-    };
 
 }
 

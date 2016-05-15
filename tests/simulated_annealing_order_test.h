@@ -21,49 +21,49 @@
 using namespace OpenNN;
 
 
-class SimulatedAnnealingOrderTest : public UnitTesting
-{
+class SimulatedAnnealingOrderTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // CONSTRUCTOR
+    // CONSTRUCTOR
 
-   explicit SimulatedAnnealingOrderTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~SimulatedAnnealingOrderTest(void);
+    explicit SimulatedAnnealingOrderTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~SimulatedAnnealingOrderTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void);
 
-   // Set methods
+    // METHODS
 
-   void test_set_default(void);
+    // Constructor and destructor methods
 
-   // Order selection methods
+    void test_constructor(void);
 
-   void test_perform_order_selection(void);
+    void test_destructor(void);
 
-   // Serialization methods
+    // Set methods
 
-   void test_to_XML(void);
+    void test_set_default(void);
 
-   void test_from_XML(void);
+    // Order selection methods
 
-   // Unit testing methods
+    void test_perform_order_selection(void);
 
-   void run_test_case(void);
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 
 };
 

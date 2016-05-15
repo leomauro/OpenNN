@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   M I S S I N G   V A L U E S   T E S T    C L A S S   H E A D E R                                           */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -20,60 +20,61 @@
 
 using namespace OpenNN;
 
-class MissingValuesTest : public UnitTesting
-{
+class MissingValuesTest : public UnitTesting {
 
 #define STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
-public:  
+public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit MissingValuesTest(void);
+    explicit MissingValuesTest(void);
 
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~MissingValuesTest(void);
+    virtual ~MissingValuesTest(void);
 
 
     // METHODS
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Assignment operators methods
+    void test_destructor(void);
 
-   void test_assignment_operator(void);
+    // Assignment operators methods
 
-   // Get methods
+    void test_assignment_operator(void);
 
-   void test_get_missing_values_number(void);
+    // Get methods
 
-   void test_get_display(void);
+    void test_get_missing_values_number(void);
 
-   // Set methods
+    void test_get_display(void);
 
-   void test_set(void);
+    // Set methods
 
-   void test_set_missing_values_number(void);
+    void test_set(void);
 
-   void test_set_display(void);
+    void test_set_missing_values_number(void);
 
-   void test_convert_time_series(void);
+    void test_set_display(void);
 
-   // Serialization methods
+    void test_convert_time_series(void);
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    // Serialization methods
 
-   // Unit testing methods
+    void test_to_XML(void);
 
-   void run_test_case(void);
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 #endif

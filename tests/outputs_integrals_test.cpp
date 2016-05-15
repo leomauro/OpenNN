@@ -18,46 +18,46 @@
 using namespace OpenNN;
 
 
-OutputsIntegralsTest::OutputsIntegralsTest(void) : UnitTesting() 
+OutputsIntegralsTest::OutputsIntegralsTest(void) : UnitTesting()
 {
 }
 
 
-OutputsIntegralsTest::~OutputsIntegralsTest(void) 
+OutputsIntegralsTest::~OutputsIntegralsTest(void)
 {
 }
 
 
 void OutputsIntegralsTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 
-   // Default
+    // Default
 
-   OutputsIntegrals oi1;
+    OutputsIntegrals oi1;
 
-   assert_true(oi1.has_neural_network() == false, LOG);
+    assert_true(oi1.has_neural_network() == false, LOG);
 
-   // Neural network
+    // Neural network
 
-   NeuralNetwork nn2;
-   OutputsIntegrals oi2(&nn2);
+    NeuralNetwork nn2;
+    OutputsIntegrals oi2(&nn2);
 
-   assert_true(oi2.get_neural_network_pointer() != NULL, LOG);
+    assert_true(oi2.get_neural_network_pointer() != NULL, LOG);
 
 }
 
 
 void OutputsIntegralsTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 // @todo
 
-void OutputsIntegralsTest::test_calculate_performance(void)   
+void OutputsIntegralsTest::test_calculate_performance(void)
 {
-   message += "test_calculate_performance\n";
+    message += "test_calculate_performance\n";
 /*
    NeuralNetwork nn;
    Vector<double> network_parameters;
@@ -81,7 +81,7 @@ void OutputsIntegralsTest::test_calculate_performance(void)
 
 void OutputsIntegralsTest::test_calculate_gradient(void)
 {
-   message += "test_calculate_gradient\n";
+    message += "test_calculate_gradient\n";
 
 //   NumericalDifferentiation nd;
 //   NeuralNetwork nn;
@@ -94,7 +94,7 @@ void OutputsIntegralsTest::test_calculate_gradient(void)
 //   Vector<double> numerical_gradient;
 //   Vector<double> error;
 
-   // Test 
+    // Test
 
 //   nn.set(1, 1);
 //   nn.initialize_parameters(0.0);
@@ -104,7 +104,7 @@ void OutputsIntegralsTest::test_calculate_gradient(void)
 //   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
 //   assert_true(gradient == 0.0, LOG);
 
-   // Test 
+    // Test
 
 //   nn.set(1, 2);
 //   nn.initialize_parameters(0.0);
@@ -116,7 +116,7 @@ void OutputsIntegralsTest::test_calculate_gradient(void)
 //   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
 //   assert_true(gradient == 0.0, LOG);
 
-   // Test
+    // Test
 
 //   nn.set(1, 2);
 //   nn.initialize_parameters(1.0);
@@ -132,49 +132,49 @@ void OutputsIntegralsTest::test_calculate_gradient(void)
 
 void OutputsIntegralsTest::test_calculate_Hessian(void)
 {
-   message += "test_calculate_Hessian\n";
+    message += "test_calculate_Hessian\n";
 }
 
 
-void OutputsIntegralsTest::test_to_XML(void)   
+void OutputsIntegralsTest::test_to_XML(void)
 {
-	message += "test_to_XML\n"; 
+    message += "test_to_XML\n";
 }
 
 
 void OutputsIntegralsTest::test_from_XML(void)
 {
-	message += "test_from_XML\n"; 
+    message += "test_from_XML\n";
 }
 
 
 void OutputsIntegralsTest::run_test_case(void)
 {
-   message += "Running outputs integrals test case...\n";
+    message += "Running outputs integrals test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Get methods
+    // Get methods
 
-   // Set methods
+    // Set methods
 
-   // Evaluation methods
+    // Evaluation methods
 
-   test_calculate_performance();   
+    test_calculate_performance();
 
-   test_calculate_gradient();
+    test_calculate_gradient();
 
-   test_calculate_Hessian();
+    test_calculate_Hessian();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();   
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
-   message += "End of outputs integrals test case.\n";
+    message += "End of outputs integrals test case.\n";
 }
 
 

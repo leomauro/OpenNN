@@ -14,6 +14,7 @@
 #ifndef __MATHEMATICALMODEL_H__
 #define __MATHEMATICALMODEL_H__
 
+
 // System includes
 
 #include<fstream>
@@ -29,108 +30,90 @@
 #include "vector.h"
 #include "matrix.h"
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 ///
 /// This class represents the concept of mathematical model.
 /// A mathematical model is the base for learning in some types of problems, such as optimal control and inverse problems.
 ///
+class MathematicalModel
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit MathematicalModel(void);
 
-    class MathematicalModel {
+    // XML CONSTRUCTOR
+    explicit MathematicalModel(const tinyxml2::XMLDocument &);
 
-    public:
+    // FILE CONSTRUCTOR
+    explicit MathematicalModel(const std::string &);
 
-        // DEFAULT CONSTRUCTOR
+    // COPY CONSTRUCTOR
+    MathematicalModel(const MathematicalModel &);
 
-        explicit MathematicalModel(void);
+    // DESTRUCTOR
+    virtual ~MathematicalModel(void);
 
-        // XML CONSTRUCTOR
+    // ASSIGNMENT OPERATOR
+    virtual MathematicalModel &operator=(const MathematicalModel &);
 
-        explicit MathematicalModel(const tinyxml2::XMLDocument &);
+    // EQUAL TO OPERATOR
+    virtual bool operator==(const MathematicalModel &) const;
 
-        // FILE CONSTRUCTOR
+    // Get methods
+    const size_t &get_independent_variables_number(void) const;
 
-        explicit MathematicalModel(const std::string &);
+    const size_t &get_dependent_variables_number(void) const;
 
-        // COPY CONSTRUCTOR
+    size_t count_variables_number(void) const;
 
-        MathematicalModel(const MathematicalModel &);
+    const bool &get_display(void) const;
 
-        // DESTRUCTOR
+    // Set methods
+    void set(const MathematicalModel &);
 
-        virtual ~MathematicalModel(void);
+    void set_independent_variables_number(const size_t &);
 
-        // ASSIGNMENT OPERATOR
+    void set_dependent_variables_number(const size_t &);
 
-        virtual MathematicalModel &operator=(const MathematicalModel &);
+    void set_display(const bool &);
 
-        // EQUAL TO OPERATOR
+    virtual void set_default(void);
 
-        virtual bool operator==(const MathematicalModel &) const;
+    // Mathematical model
+    virtual Matrix<double> calculate_solutions(const NeuralNetwork &) const;
 
-        // METHODS
+    virtual Vector<double> calculate_final_solutions(const NeuralNetwork &) const;
 
-        // Get methods
+    virtual Matrix<double> calculate_dependent_variables(const NeuralNetwork &, const Matrix<double> &) const;
 
-        const size_t &get_independent_variables_number(void) const;
+    // Serialization methods
+    virtual std::string to_string(void) const;
 
-        const size_t &get_dependent_variables_number(void) const;
+    void print(void) const;
 
-        size_t count_variables_number(void) const;
+    virtual tinyxml2::XMLDocument *to_XML(void) const;
 
-        const bool &get_display(void) const;
+    virtual void from_XML(const tinyxml2::XMLDocument &);
 
-        // Set methods
+    void save(const std::string &) const;
 
-        void set(const MathematicalModel &);
+    void load(const std::string &);
 
-        void set_independent_variables_number(const size_t &);
+    virtual void save_data(const NeuralNetwork &, const std::string &) const;
 
-        void set_dependent_variables_number(const size_t &);
+protected:
+    /// Number of independent variables defining the mathematical model.
+    size_t independent_variables_number;
 
-        void set_display(const bool &);
+    /// Number of dependent variables defining the mathematical model.
+    size_t dependent_variables_number;
 
-        virtual void set_default(void);
+    /// Flag for displaying warnings.
+    bool display;
+};
 
-        // Mathematical model
-
-        virtual Matrix<double> calculate_solutions(const NeuralNetwork &) const;
-
-        virtual Vector<double> calculate_final_solutions(const NeuralNetwork &) const;
-
-        virtual Matrix<double> calculate_dependent_variables(const NeuralNetwork &, const Matrix<double> &) const;
-
-
-        // Serialization methods
-
-        virtual std::string to_string(void) const;
-
-        void print(void) const;
-
-        virtual tinyxml2::XMLDocument *to_XML(void) const;
-
-        virtual void from_XML(const tinyxml2::XMLDocument &);
-
-        void save(const std::string &) const;
-
-        void load(const std::string &);
-
-        virtual void save_data(const NeuralNetwork &, const std::string &) const;
-
-    protected:
-
-        /// Number of independent variables defining the mathematical model.
-
-        size_t independent_variables_number;
-
-        /// Number of dependent variables defining the mathematical model.
-
-        size_t dependent_variables_number;
-
-        /// Flag for displaying warnings.
-
-        bool display;
-    };
 
 }
 

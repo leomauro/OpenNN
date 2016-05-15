@@ -36,228 +36,190 @@
 
 #include <tinyxml2.h>
 
-
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This class is used to store information about the instances of a data set.
 /// Instances in a data set can be used for training, selection and testing.
+class Instances
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit Instances(void);
 
-    class Instances {
+    // INSTANCES NUMBER CONSTRUCTOR
+    explicit Instances(const size_t &);
 
-    public:
+    // XML CONSTRUCTOR
+    explicit Instances(const tinyxml2::XMLDocument &);
 
-        // DEFAULT CONSTRUCTOR
+    // COPY CONSTRUCTOR
+    Instances(const Instances &);
 
-        explicit Instances(void);
+    // DESTRUCTOR
+    virtual ~Instances(void);
 
-        // INSTANCES NUMBER CONSTRUCTOR
+    // ASSIGNMENT OPERATOR
+    Instances &operator=(const Instances &);
 
-        explicit Instances(const size_t &);
+    // EQUAL TO OPERATOR
+    bool operator==(const Instances &) const;
 
-        // XML CONSTRUCTOR
+    /// This enumeration represents the possible uses of an instance
+    /// (no use, training, selection or testing).
+    enum Use {
+        Unused, Training, Selection, Testing
+    };
 
-        explicit Instances(const tinyxml2::XMLDocument &);
+    /// This is an enumeration of the available methods for dividing the instances
+    /// into training, selection and testing subsets.
+    enum SplittingMethod {
+        Sequential, Random
+    };
 
-
-        // COPY CONSTRUCTOR
-
-        Instances(const Instances &);
-
-
-        // DESTRUCTOR
-
-        virtual ~Instances(void);
-
-        // ASSIGNMENT OPERATOR
-
-        Instances &operator=(const Instances &);
-
-        // EQUAL TO OPERATOR
-
-        bool operator==(const Instances &) const;
-
-        // ENUMERATIONS
-
-        /// This enumeration represents the possible uses of an instance
-        /// (no use, training, selection or testing).
-
-        enum Use {
-            Unused, Training, Selection, Testing
-        };
-
-        /// This is an enumeration of the available methods for dividing the instances
-        /// into training, selection and testing subsets.
-
-        enum SplittingMethod {
-            Sequential, Random
-        };
-
-        // STRUCTURES
-
-        ///
-        /// This structure contains the information of a single instance,
-        /// which is only its use (training, selection, testing or unused).
-        ///
-
-        struct Item {
-            /// Default constructor.
-
-            Item(void)
-            {
-                use = Training;
-            }
-
-            /// Use constructor.
-
-            Item(const Use &new_use)
-            {
-                use = new_use;
-            }
-
-            /// Destructor.
-
-            virtual ~Item(void)
-            {
-            }
-
-            /// Use of an instance (training, selection, testing or unused).
-
-            Use use;
-        };
-
-
-        // METHODS
-
-        static SplittingMethod get_splitting_method(const std::string &);
-
-        /// Returns the number of instances in the data set.
-
-        inline size_t get_instances_number(void) const
+    ///
+    /// This structure contains the information of a single instance,
+    /// which is only its use (training, selection, testing or unused).
+    ///
+    struct Item {
+        /// Default constructor.
+        Item(void)
         {
-            return (items.size());
+            use = Training;
         }
 
-        bool empty(void) const;
+        /// Use constructor.
+        Item(const Use &new_use)
+        {
+            use = new_use;
+        }
 
-        // Instances methods
+        /// Destructor.
+        virtual ~Item(void)
+        {
+        }
 
-        Vector<Use> arrange_uses(void) const;
+        /// Use of an instance (training, selection, testing or unused).
+        Use use;
+    };
 
-        Vector<std::string> write_uses(void) const;
+    static SplittingMethod get_splitting_method(const std::string &);
 
-        Vector<std::string> write_abbreviated_uses(void) const;
+    /// Returns the number of instances in the data set.
+    inline size_t get_instances_number(void) const
+    {
+        return items.size();
+    }
 
-        const Use &get_use(const size_t &) const;
+    bool empty(void) const;
 
-        std::string write_use(const size_t &) const;
+    Vector<Use> arrange_uses(void) const;
 
-        bool is_used(const size_t &) const;
+    Vector<std::string> write_uses(void) const;
 
-        bool is_unused(const size_t &) const;
+    Vector<std::string> write_abbreviated_uses(void) const;
 
-        size_t count_training_instances_number(void) const;
+    const Use &get_use(const size_t &) const;
 
-        size_t count_selection_instances_number(void) const;
+    std::string write_use(const size_t &) const;
 
-        size_t count_testing_instances_number(void) const;
+    bool is_used(const size_t &) const;
 
-        size_t count_unused_instances_number(void) const;
+    bool is_unused(const size_t &) const;
 
-        size_t count_used_instances_number(void) const;
+    size_t count_training_instances_number(void) const;
 
-        Vector<size_t> count_uses(void) const;
+    size_t count_selection_instances_number(void) const;
 
-        Vector<size_t> arrange_used_indices(void) const;
+    size_t count_testing_instances_number(void) const;
 
-        Vector<size_t> arrange_unused_indices(void) const;
+    size_t count_unused_instances_number(void) const;
 
-        Vector<size_t> arrange_training_indices(void) const;
+    size_t count_used_instances_number(void) const;
 
-        Vector<size_t> arrange_selection_indices(void) const;
+    Vector<size_t> count_uses(void) const;
 
-        Vector<size_t> arrange_testing_indices(void) const;
+    Vector<size_t> arrange_used_indices(void) const;
 
-        const bool &get_display(void) const;
+    Vector<size_t> arrange_unused_indices(void) const;
 
-        // Set methods
+    Vector<size_t> arrange_training_indices(void) const;
 
-        void set(void);
+    Vector<size_t> arrange_selection_indices(void) const;
 
-        void set(const size_t &);
+    Vector<size_t> arrange_testing_indices(void) const;
 
-        void set(const tinyxml2::XMLDocument &);
+    const bool &get_display(void) const;
 
-        void set_default(void);
+    // Set methods
+    void set(void);
 
-        // Data methods
+    void set(const size_t &);
 
-        void set_instances_number(const size_t &);
+    void set(const tinyxml2::XMLDocument &);
 
-        // Instances methods
+    void set_default(void);
 
-        void set_uses(const Vector<Use> &);
+    void set_instances_number(const size_t &);
 
-        void set_uses(const Vector<std::string> &);
+    void set_uses(const Vector<Use> &);
 
-        void set_use(const size_t &, const Use &);
+    void set_uses(const Vector<std::string> &);
 
-        void set_use(const size_t &, const std::string &);
+    void set_use(const size_t &, const Use &);
 
-        void set_unused(const Vector<size_t> &);
+    void set_use(const size_t &, const std::string &);
 
-        void set_training(void);
+    void set_unused(const Vector<size_t> &);
 
-        void set_selection(void);
+    void set_training(void);
 
-        void set_testing(void);
+    void set_selection(void);
 
-        void set_display(const bool &);
+    void set_testing(void);
 
-        // Splitting methods
+    void set_display(const bool &);
 
-        void split_sequential_indices(const double &training_ratio = 0.6,
-                                      const double &selection_ratio = 0.2,
-                                      const double &testing_ratio = 0.2);
-
-        void split_random_indices(const double &training_ratio = 0.6,
+    // Splitting methods
+    void split_sequential_indices(const double &training_ratio = 0.6,
                                   const double &selection_ratio = 0.2,
                                   const double &testing_ratio = 0.2);
 
-        void split_instances(const SplittingMethod &splitting_method = Random,
-                             const double &training_ratio = 0.6,
-                             const double &selection_ratio = 0.2,
-                             const double &testing_ratio = 0.2);
+    void split_random_indices(const double &training_ratio = 0.6,
+                              const double &selection_ratio = 0.2,
+                              const double &testing_ratio = 0.2);
 
-        Vector<double> calculate_uses_percentage(void) const;
+    void split_instances(const SplittingMethod &splitting_method = Random,
+                         const double &training_ratio = 0.6,
+                         const double &selection_ratio = 0.2,
+                         const double &testing_ratio = 0.2);
 
-        void convert_time_series(const size_t &);
+    Vector<double> calculate_uses_percentage(void) const;
 
-        // Serialization methods
+    void convert_time_series(const size_t &);
 
-        std::string to_string(void) const;
+    // Serialization methods
+    std::string to_string(void) const;
 
-        void print(void) const;
+    void print(void) const;
 
-        tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML(void) const;
 
-        void from_XML(const tinyxml2::XMLDocument &);
+    void from_XML(const tinyxml2::XMLDocument &);
 
-    private:
+private:
+    /// Uses of instances (none, training, selection or testing).
+    Vector<Item> items;
 
-        // MEMBERS
+    /// Display messages to screen.
+    bool display;
+};
 
-        /// Uses of instances (none, training, selection or testing).
-
-        Vector<Item> items;
-
-        /// Display messages to screen.
-
-        bool display;
-    };
 
 }
 
 #endif
+
 
 // OpenNN: Open Neural Networks Library.
 // Copyright (c) 2005-2016 Roberto Lopez.

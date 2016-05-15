@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   M I S S I N G   V A L U E S   T E S T   C L A S S                                                          */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -36,106 +36,106 @@ MissingValuesTest::~MissingValuesTest(void)
 
 void MissingValuesTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 
-   // Test
+    // Test
 
-   MissingValues mv0;
+    MissingValues mv0;
 
-   assert_true(mv0.get_missing_values_number() == 0, LOG);
+    assert_true(mv0.get_missing_values_number() == 0, LOG);
 
-   // Test
+    // Test
 
-   MissingValues mv2(1, 1);
-   mv2.set_display(false);
+    MissingValues mv2(1, 1);
+    mv2.set_display(false);
 
-   assert_true(mv2.get_display() == false, LOG);
+    assert_true(mv2.get_display() == false, LOG);
 
 }
 
 
 void MissingValuesTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 
-   MissingValues* iip = new MissingValues(1, 1);
+    MissingValues *iip = new MissingValues(1, 1);
 
-   delete iip;
+    delete iip;
 
 }
 
 
 void MissingValuesTest::test_assignment_operator(void)
 {
-   message += "test_assignment_operator\n";
+    message += "test_assignment_operator\n";
 
-   MissingValues mv1(1,1);
+    MissingValues mv1(1, 1);
 
-   mv1.append(0, 0);
+    mv1.append(0, 0);
 
-   MissingValues mv2 = mv1;
+    MissingValues mv2 = mv1;
 
-   assert_true(mv2.get_missing_values_number() == 1, LOG);
+    assert_true(mv2.get_missing_values_number() == 1, LOG);
 }
 
 
 void MissingValuesTest::test_get_missing_values_number(void)
 {
-   message += "test_get_missing_values_number\n";
+    message += "test_get_missing_values_number\n";
 
-   MissingValues mv;
+    MissingValues mv;
 
-   assert_true(mv.get_missing_values_number() == 0, LOG);
+    assert_true(mv.get_missing_values_number() == 0, LOG);
 }
 
 
 void MissingValuesTest::test_get_display(void)
 {
-   message += "test_get_display\n";
+    message += "test_get_display\n";
 
-   MissingValues mv;
+    MissingValues mv;
 
-   mv.set_display(true);
+    mv.set_display(true);
 
-   assert_true(mv.get_display() == true, LOG);
+    assert_true(mv.get_display() == true, LOG);
 
-   mv.set_display(false);
+    mv.set_display(false);
 
-   assert_true(mv.get_display() == false, LOG);
+    assert_true(mv.get_display() == false, LOG);
 }
 
 
 void MissingValuesTest::test_set(void)
 {
-   message += "test_set\n";
+    message += "test_set\n";
 
-   MissingValues mv;
+    MissingValues mv;
 
-   // Test
+    // Test
 
-   mv.set(1, 1);
+    mv.set(1, 1);
 
-   mv.append(0, 0);
+    mv.append(0, 0);
 
-   assert_true(mv.get_missing_values_number() == 1, LOG);
+    assert_true(mv.get_missing_values_number() == 1, LOG);
 }
 
 
 void MissingValuesTest::test_set_missing_values_number(void)
 {
-   message += "test_set_missing_values_number\n";
+    message += "test_set_missing_values_number\n";
 
-   MissingValues mv(1,1);
+    MissingValues mv(1, 1);
 
-   mv.set_missing_values_number(2);
+    mv.set_missing_values_number(2);
 
-   assert_true(mv.get_missing_values_number() == 2, LOG);
+    assert_true(mv.get_missing_values_number() == 2, LOG);
 }
 
 
 void MissingValuesTest::test_set_display(void)
 {
-   message += "test_set_display\n";
+    message += "test_set_display\n";
 }
 
 
@@ -155,7 +155,7 @@ void MissingValuesTest::test_convert_time_series(void)
 
     // Test
 
-    mv.set(1,1);
+    mv.set(1, 1);
 
     mv.append(0, 0);
 
@@ -180,29 +180,29 @@ void MissingValuesTest::test_convert_time_series(void)
 
 void MissingValuesTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 
-   MissingValues mv;
+    MissingValues mv;
 
-   tinyxml2::XMLDocument* document = mv.to_XML();
+    tinyxml2::XMLDocument *document = mv.to_XML();
 
-   assert_true(document != NULL, LOG);
+    assert_true(document != NULL, LOG);
 
-   // Test
+    // Test
 
-   mv.set(2, 2);
+    mv.set(2, 2);
 
-   mv.set_scrubbing_method(MissingValues::Mean);
+    mv.set_scrubbing_method(MissingValues::Mean);
 
-   document = mv.to_XML();
+    document = mv.to_XML();
 
-   mv.set();
+    mv.set();
 
-   mv.from_XML(*document);
+    mv.from_XML(*document);
 
-   assert_true(mv.get_instances_number() == 2, LOG);
-   assert_true(mv.get_variables_number() == 2, LOG);
-   assert_true(mv.get_scrubbing_method() == MissingValues::Mean, LOG);
+    assert_true(mv.get_instances_number() == 2, LOG);
+    assert_true(mv.get_variables_number() == 2, LOG);
+    assert_true(mv.get_scrubbing_method() == MissingValues::Mean, LOG);
 }
 
 
@@ -210,12 +210,12 @@ void MissingValuesTest::test_to_XML(void)
 
 void MissingValuesTest::test_from_XML(void)
 {
-   message += "test_from_XML\n";
+    message += "test_from_XML\n";
 
 //   MissingValues mv;
 
 //   tinyxml2::XMLDocument* document = i.to_XML();
-   
+
 //   i.from_XML(*document);
 
 }
@@ -223,39 +223,39 @@ void MissingValuesTest::test_from_XML(void)
 
 void MissingValuesTest::run_test_case(void)
 {
-   message += "Running missing values test case...\n";
+    message += "Running missing values test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Assignment operators methods
+    // Assignment operators methods
 
-   test_assignment_operator();
+    test_assignment_operator();
 
-   // Get methods
+    // Get methods
 
-   test_get_missing_values_number();
+    test_get_missing_values_number();
 
-   test_get_display();
+    test_get_display();
 
-   // Set methods
+    // Set methods
 
-   test_set();
+    test_set();
 
-   test_set_display();
+    test_set_display();
 
-   test_set_missing_values_number();
+    test_set_missing_values_number();
 
-   test_convert_time_series();
+    test_convert_time_series();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
-   message += "End of missing values test case.\n";
+    message += "End of missing values test case.\n";
 }
 
 

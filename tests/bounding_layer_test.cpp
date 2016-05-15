@@ -35,215 +35,215 @@ BoundingLayerTest::~BoundingLayerTest(void)
 
 void BoundingLayerTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 
-   // Default constructor
+    // Default constructor
 
-   BoundingLayer bl1;
+    BoundingLayer bl1;
 
-   assert_true(bl1.get_bounding_neurons_number() == 0, LOG);
+    assert_true(bl1.get_bounding_neurons_number() == 0, LOG);
 
-   // Copy constructor
+    // Copy constructor
 
 }
 
 
 void BoundingLayerTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 
 void BoundingLayerTest::test_assignment_operator(void)
 {
-   message += "test_assignment_operator\n";
+    message += "test_assignment_operator\n";
 
-   BoundingLayer bl_1;
-   BoundingLayer bl_2 = bl_1;
+    BoundingLayer bl_1;
+    BoundingLayer bl_2 = bl_1;
 
-   assert_true(bl_2.get_bounding_neurons_number() == 0, LOG);
+    assert_true(bl_2.get_bounding_neurons_number() == 0, LOG);
 }
 
 
 void BoundingLayerTest::test_get_bounding_neurons_number(void)
 {
-   message += "test_get_bounding_neurons_number\n";
+    message += "test_get_bounding_neurons_number\n";
 
-   BoundingLayer bl;
+    BoundingLayer bl;
 
-   // Test
+    // Test
 
-   bl.set();
-   assert_true(bl.get_bounding_neurons_number() == 0, LOG);
+    bl.set();
+    assert_true(bl.get_bounding_neurons_number() == 0, LOG);
 
-   // Test
+    // Test
 
-   bl.set(1);
-   assert_true(bl.get_bounding_neurons_number() == 1, LOG);
+    bl.set(1);
+    assert_true(bl.get_bounding_neurons_number() == 1, LOG);
 }
 
 
 void BoundingLayerTest::test_set(void)
 {
-   message += "test_set\n";
+    message += "test_set\n";
 }
 
 
 void BoundingLayerTest::test_set_default(void)
 {
-   message += "test_set_default\n";
+    message += "test_set_default\n";
 }
 
 
 void BoundingLayerTest::test_get_lower_bounds(void)
 {
-   message += "test_get_lower_bounds\n";
+    message += "test_get_lower_bounds\n";
 }
 
 
 void BoundingLayerTest::test_get_upper_bounds(void)
 {
-   message += "test_get_upper_bounds\n";
+    message += "test_get_upper_bounds\n";
 }
 
 
 void BoundingLayerTest::test_get_lower_bound(void)
 {
-   message += "test_get_lower_bound\n";
+    message += "test_get_lower_bound\n";
 }
 
 
 void BoundingLayerTest::test_get_upper_bound(void)
 {
-   message += "test_get_upper_bound\n";
+    message += "test_get_upper_bound\n";
 }
 
 
 void BoundingLayerTest::test_get_bounds(void)
 {
-   message += "test_get_bounds\n";
+    message += "test_get_bounds\n";
 }
 
 
 void BoundingLayerTest::test_get_display(void)
 {
-   message += "test_get_display\n";
+    message += "test_get_display\n";
 }
 
 
 void BoundingLayerTest::test_set_lower_bounds(void)
 {
-   message += "test_set_lower_bounds\n";
+    message += "test_set_lower_bounds\n";
 }
 
 
 void BoundingLayerTest::test_set_upper_bounds(void)
 {
-   message += "test_set_upper_bounds\n";
+    message += "test_set_upper_bounds\n";
 }
 
 
 void BoundingLayerTest::test_set_lower_bound(void)
 {
-   message += "test_set_lower_bound\n";
+    message += "test_set_lower_bound\n";
 }
 
 
 void BoundingLayerTest::test_set_upper_bound(void)
 {
-   message += "test_set_upper_bound\n";
+    message += "test_set_upper_bound\n";
 }
 
 
 void BoundingLayerTest::test_set_bounds(void)
 {
-   message += "test_set_bounds\n";
+    message += "test_set_bounds\n";
 }
 
 
 void BoundingLayerTest::test_set_display(void)
 {
-   message += "test_set_display\n";
+    message += "test_set_display\n";
 }
 
 
 void BoundingLayerTest::test_initialize_random(void)
 {
-   message += "test_initialize_random\n";
+    message += "test_initialize_random\n";
 
-   BoundingLayer bl;
+    BoundingLayer bl;
 
-   // Test
+    // Test
 
-   bl.initialize_random();
+    bl.initialize_random();
 }
 
 
 void BoundingLayerTest::test_calculate_outputs(void)
 {
-   message += "test_calculate_outputs\n";
+    message += "test_calculate_outputs\n";
 
-   BoundingLayer bl(1);
-   bl.set_lower_bound(0, -1.0);
-   bl.set_upper_bound(0,  1.0);
-   Vector<double> inputs(1);
+    BoundingLayer bl(1);
+    bl.set_lower_bound(0, -1.0);
+    bl.set_upper_bound(0, 1.0);
+    Vector<double> inputs(1);
 
-   // Test
+    // Test
 
-   Vector<double> outputs(1);
-   inputs[0] = -2.0; 
-   outputs = bl.calculate_outputs(inputs);
-   assert_true(outputs.size() == 1, LOG);
-   assert_true(outputs == -1.0, LOG);
+    Vector<double> outputs(1);
+    inputs[0] = -2.0;
+    outputs = bl.calculate_outputs(inputs);
+    assert_true(outputs.size() == 1, LOG);
+    assert_true(outputs == -1.0, LOG);
 
-   // Test
+    // Test
 
-   inputs[0] = 2.0;
-   outputs = bl.calculate_outputs(inputs);
-   assert_true(outputs.size() == 1, LOG);
-   assert_true(outputs == 1.0, LOG);
+    inputs[0] = 2.0;
+    outputs = bl.calculate_outputs(inputs);
+    assert_true(outputs.size() == 1, LOG);
+    assert_true(outputs == 1.0, LOG);
 }
 
 
 void BoundingLayerTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 
-   BoundingLayer bl;
+    BoundingLayer bl;
 
-   tinyxml2::XMLDocument* document;
+    tinyxml2::XMLDocument *document;
 
-   // Test
+    // Test
 
-   document = bl.to_XML();
+    document = bl.to_XML();
 
-   assert_true(document != NULL, LOG);
+    assert_true(document != NULL, LOG);
 
-   delete document;
+    delete document;
 
 }
 
 
 void BoundingLayerTest::test_from_XML(void)
 {
-   message += "test_from_XML\n";
+    message += "test_from_XML\n";
 
-   BoundingLayer bl;
+    BoundingLayer bl;
 
-   tinyxml2::XMLDocument* blep;
+    tinyxml2::XMLDocument *blep;
 
-   // Test
+    // Test
 
-   blep = bl.to_XML();
+    blep = bl.to_XML();
 
-   bl.from_XML(*blep);
+    bl.from_XML(*blep);
 
 }
 
 
 void BoundingLayerTest::test_write_expression(void)
 {
-   message += "test_write_expression\n";
+    message += "test_write_expression\n";
 
 
 }
@@ -251,74 +251,74 @@ void BoundingLayerTest::test_write_expression(void)
 
 void BoundingLayerTest::run_test_case(void)
 {
-   message += "Running bounding layer test case...\n";
+    message += "Running bounding layer test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Assignment operators methods
+    // Assignment operators methods
 
-   test_assignment_operator();
+    test_assignment_operator();
 
-   // Get methods
+    // Get methods
 
-   // Bounding layer architecture
+    // Bounding layer architecture
 
-   test_get_bounding_neurons_number();
+    test_get_bounding_neurons_number();
 
-   // Variables bounds
+    // Variables bounds
 
-   test_get_lower_bounds();
-   test_get_lower_bound();
+    test_get_lower_bounds();
+    test_get_lower_bound();
 
-   test_get_upper_bounds();
-   test_get_upper_bound();
+    test_get_upper_bounds();
+    test_get_upper_bound();
 
-   test_get_bounds();
+    test_get_bounds();
 
-   // Display messages
+    // Display messages
 
-   test_get_display();
+    test_get_display();
 
-   // Set methods
+    // Set methods
 
-   test_set();
-   test_set_default();
+    test_set();
+    test_set_default();
 
-   // Variables bounds
+    // Variables bounds
 
-   test_set_lower_bounds();
-   test_set_lower_bound();
+    test_set_lower_bounds();
+    test_set_lower_bound();
 
-   test_set_upper_bounds();
-   test_set_upper_bound();
+    test_set_upper_bounds();
+    test_set_upper_bound();
 
-   test_set_bounds();
+    test_set_bounds();
 
-   // Display messages
+    // Display messages
 
-   test_set_display();
+    test_set_display();
 
-   // Initialization methods
+    // Initialization methods
 
-   test_initialize_random();
+    test_initialize_random();
 
-   // Lower and upper bounds
+    // Lower and upper bounds
 
-   test_calculate_outputs();
+    test_calculate_outputs();
 
-   // Expression methods
+    // Expression methods
 
-   test_write_expression();
+    test_write_expression();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
-   message += "End of bounding layer test case.\n";
+    message += "End of bounding layer test case.\n";
 }
 
 

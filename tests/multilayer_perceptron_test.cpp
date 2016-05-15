@@ -37,369 +37,369 @@ MultilayerPerceptronTest::~MultilayerPerceptronTest(void)
 
 void MultilayerPerceptronTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 
-   Vector<size_t> architecture;
+    Vector<size_t> architecture;
 
-   // Default constructor
+    // Default constructor
 
-   MultilayerPerceptron n1;
+    MultilayerPerceptron n1;
 
-   assert_true(n1.get_layers_number() == 0, LOG);
+    assert_true(n1.get_layers_number() == 0, LOG);
 
-   // Network architecture constructor
+    // Network architecture constructor
 
-   architecture.set(2);
-   architecture[0] = 1;
-   architecture[1] = 2;
+    architecture.set(2);
+    architecture[0] = 1;
+    architecture[1] = 2;
 
-   MultilayerPerceptron n2(architecture);
+    MultilayerPerceptron n2(architecture);
 
-   assert_true(n2.get_inputs_number() == 1, LOG);
-   assert_true(n2.get_layers_number() == 1, LOG);
-   assert_true(n2.get_outputs_number() == 2, LOG);
+    assert_true(n2.get_inputs_number() == 1, LOG);
+    assert_true(n2.get_layers_number() == 1, LOG);
+    assert_true(n2.get_outputs_number() == 2, LOG);
 
-   // One layer constructor 
+    // One layer constructor
 
-   // Two layers constructor 
+    // Two layers constructor
 
-   MultilayerPerceptron n3(1, 2, 3);
+    MultilayerPerceptron n3(1, 2, 3);
 
-   assert_true(n3.get_inputs_number() == 1, LOG);
-   assert_true(n3.get_layers_number() == 2, LOG);
-   assert_true(n3.get_outputs_number() == 3, LOG);
+    assert_true(n3.get_inputs_number() == 1, LOG);
+    assert_true(n3.get_layers_number() == 2, LOG);
+    assert_true(n3.get_outputs_number() == 3, LOG);
 
-   // Copy constructor
+    // Copy constructor
 
 }
 
 
 void MultilayerPerceptronTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 
 void MultilayerPerceptronTest::test_assignment_operator(void)
 {
-   message += "test_assignment_operator\n";
+    message += "test_assignment_operator\n";
 
-   MultilayerPerceptron mlp_1;
-   MultilayerPerceptron mlp_2 = mlp_1;
+    MultilayerPerceptron mlp_1;
+    MultilayerPerceptron mlp_2 = mlp_1;
 
-   assert_true(mlp_2.get_inputs_number() == 0, LOG);
-   assert_true(mlp_2.get_layers_number() == 0, LOG);
-   assert_true(mlp_2.get_outputs_number() == 0, LOG);
+    assert_true(mlp_2.get_inputs_number() == 0, LOG);
+    assert_true(mlp_2.get_layers_number() == 0, LOG);
+    assert_true(mlp_2.get_outputs_number() == 0, LOG);
 
 }
 
 
 void MultilayerPerceptronTest::test_count_inputs_number(void)
 {
-   message += "test_count_inputs_number\n";
+    message += "test_count_inputs_number\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   // Test
+    // Test
 
-   n.set();
-   assert_true(n.get_inputs_number() == 0, LOG);
+    n.set();
+    assert_true(n.get_inputs_number() == 0, LOG);
 
-   // Test
+    // Test
 
-   n.set(1, 1, 1);
-   assert_true(n.get_inputs_number() == 1, LOG);
+    n.set(1, 1, 1);
+    assert_true(n.get_inputs_number() == 1, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_count_layers_perceptrons_number(void)
 {
-   message += "test_count_layers_perceptrons_number\n";
+    message += "test_count_layers_perceptrons_number\n";
 
-   MultilayerPerceptron n;
-   Vector<size_t> architecture;
+    MultilayerPerceptron n;
+    Vector<size_t> architecture;
 
-   // Test
+    // Test
 
-   n.set();
-   architecture = n.arrange_layers_perceptrons_numbers();
-   assert_true(architecture.size() == 0, LOG);
+    n.set();
+    architecture = n.arrange_layers_perceptrons_numbers();
+    assert_true(architecture.size() == 0, LOG);
 
-   // Test
+    // Test
 
-   n.set(1, 1, 1);
-   architecture = n.arrange_layers_perceptrons_numbers();
-   assert_true(architecture.size() == 2, LOG);
-   assert_true(architecture[0] == 1, LOG);
-   assert_true(architecture[1] == 1, LOG);
+    n.set(1, 1, 1);
+    architecture = n.arrange_layers_perceptrons_numbers();
+    assert_true(architecture.size() == 2, LOG);
+    assert_true(architecture[0] == 1, LOG);
+    assert_true(architecture[1] == 1, LOG);
 
 }
 
 
 void MultilayerPerceptronTest::test_count_outputs_number(void)
 {
-   message += "test_count_outputs_number\n";
+    message += "test_count_outputs_number\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   assert_true(n.get_outputs_number() == 0, LOG);
+    assert_true(n.get_outputs_number() == 0, LOG);
 
 }
 
 
 void MultilayerPerceptronTest::test_count_perceptrons_number(void)
 {
-   message += "test_count_perceptrons_number\n";
+    message += "test_count_perceptrons_number\n";
 
-   MultilayerPerceptron n;
-   Vector<size_t> architecture;
+    MultilayerPerceptron n;
+    Vector<size_t> architecture;
 
-   // Test
+    // Test
 
-   n.set();
-   assert_true(n.count_perceptrons_number() == 0, LOG);
+    n.set();
+    assert_true(n.count_perceptrons_number() == 0, LOG);
 
-   // Test
+    // Test
 
-   n.set(1,1,1);
-   assert_true(n.count_perceptrons_number() == 2, LOG);
+    n.set(1, 1, 1);
+    assert_true(n.count_perceptrons_number() == 2, LOG);
 
-   // Test
+    // Test
 
-   n.set(1,2,3);
-   assert_true(n.count_perceptrons_number() == 5, LOG);
+    n.set(1, 2, 3);
+    assert_true(n.count_perceptrons_number() == 5, LOG);
 
-   // Test
+    // Test
 
-   architecture.set(3,1);
-   n.set(architecture);
-   assert_true(n.count_perceptrons_number() == 2, LOG);
+    architecture.set(3, 1);
+    n.set(architecture);
+    assert_true(n.count_perceptrons_number() == 2, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_count_cumulative_perceptrons_number(void)
 {
-   message += "test_count_cumulative_perceptrons_number\n";
+    message += "test_count_cumulative_perceptrons_number\n";
 
-   MultilayerPerceptron n;
-   Vector<size_t> architecture;
+    MultilayerPerceptron n;
+    Vector<size_t> architecture;
 
-   Vector<size_t> cumulative_neurons_number;
+    Vector<size_t> cumulative_neurons_number;
 
-   // Test
+    // Test
 
-   n.set();
-   cumulative_neurons_number = n.count_cumulative_perceptrons_number();
-   assert_true(cumulative_neurons_number.size() == 0, LOG);
+    n.set();
+    cumulative_neurons_number = n.count_cumulative_perceptrons_number();
+    assert_true(cumulative_neurons_number.size() == 0, LOG);
 
-   // Test
+    // Test
 
-   n.set(1,1,1);
+    n.set(1, 1, 1);
 
-   cumulative_neurons_number = n.count_cumulative_perceptrons_number();
+    cumulative_neurons_number = n.count_cumulative_perceptrons_number();
 
-   assert_true(cumulative_neurons_number[0] == 1, LOG);
-   assert_true(cumulative_neurons_number[1] == 2, LOG);
+    assert_true(cumulative_neurons_number[0] == 1, LOG);
+    assert_true(cumulative_neurons_number[1] == 2, LOG);
 
-   // Test
+    // Test
 
-   n.set(1,2,3);
+    n.set(1, 2, 3);
 
-   cumulative_neurons_number = n.count_cumulative_perceptrons_number();
+    cumulative_neurons_number = n.count_cumulative_perceptrons_number();
 
-   assert_true(cumulative_neurons_number[0] == 2, LOG);
-   assert_true(cumulative_neurons_number[1] == 5, LOG);
+    assert_true(cumulative_neurons_number[0] == 2, LOG);
+    assert_true(cumulative_neurons_number[1] == 5, LOG);
 
-   // Test
+    // Test
 
-   architecture.set(3,1);
-   n.set(architecture);
+    architecture.set(3, 1);
+    n.set(architecture);
 
-   cumulative_neurons_number = n.count_cumulative_perceptrons_number();
+    cumulative_neurons_number = n.count_cumulative_perceptrons_number();
 
-   assert_true(cumulative_neurons_number[0] == 1, LOG);
-   assert_true(cumulative_neurons_number[1] == 2, LOG);
+    assert_true(cumulative_neurons_number[0] == 1, LOG);
+    assert_true(cumulative_neurons_number[1] == 2, LOG);
 
 }
 
 
 void MultilayerPerceptronTest::test_get_layers_activation_function(void)
 {
-   message += "test_get_layers_activation_function\n";
+    message += "test_get_layers_activation_function\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector<Perceptron::ActivationFunction> layers_activation_function;
+    Vector<Perceptron::ActivationFunction> layers_activation_function;
 
-   n.set_layers_activation_function(layers_activation_function);
+    n.set_layers_activation_function(layers_activation_function);
 
-   layers_activation_function = n.get_layers_activation_function();
+    layers_activation_function = n.get_layers_activation_function();
 
-   assert_true(layers_activation_function.size() == 0, LOG);
+    assert_true(layers_activation_function.size() == 0, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_get_layers_activation_function_name(void)
 {
-   message += "test_get_layers_activation_function_name\n";
+    message += "test_get_layers_activation_function_name\n";
 }
 
 
 void MultilayerPerceptronTest::test_get_layers(void)
 {
-   message += "test_get_layers\n";
+    message += "test_get_layers\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector<PerceptronLayer> layers;
-   
-   layers = n.get_layers();
+    Vector<PerceptronLayer> layers;
 
-   assert_true(layers.size() == 0, LOG);
+    layers = n.get_layers();
+
+    assert_true(layers.size() == 0, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_get_layer(void)
 {
-   message += "test_get_layer\n";
+    message += "test_get_layer\n";
 
-   MultilayerPerceptron n;
-   Vector<size_t> architecture;
+    MultilayerPerceptron n;
+    Vector<size_t> architecture;
 
-   // Test
+    // Test
 
-   architecture.set(3);
-   architecture[0] = 4;
-   architecture[1] = 2;
-   architecture[2] = 3;
+    architecture.set(3);
+    architecture[0] = 4;
+    architecture[1] = 2;
+    architecture[2] = 3;
 
-   n.set(architecture);
+    n.set(architecture);
 
-   const PerceptronLayer& layer_0 = n.get_layer(0);
-   assert_true(layer_0.get_perceptrons_number() == 2, LOG);
+    const PerceptronLayer &layer_0 = n.get_layer(0);
+    assert_true(layer_0.get_perceptrons_number() == 2, LOG);
 
-   const PerceptronLayer& layer_1 = n.get_layer(1);
-   assert_true(layer_1.get_perceptrons_number() == 3, LOG);
+    const PerceptronLayer &layer_1 = n.get_layer(1);
+    assert_true(layer_1.get_perceptrons_number() == 3, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_get_layers_number(void)
 {
-   message += "test_get_layers_number\n";
+    message += "test_get_layers_number\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector<size_t> architecture;
+    Vector<size_t> architecture;
 
-   // Test
+    // Test
 
-   n.set();
-   assert_true(n.get_layers_number() == 0, LOG);
+    n.set();
+    assert_true(n.get_layers_number() == 0, LOG);
 
-   // Test
+    // Test
 
-   architecture.set(3);
-   architecture[0] = 4;
-   architecture[1] = 2;
-   architecture[2] = 3;
+    architecture.set(3);
+    architecture[0] = 4;
+    architecture[1] = 2;
+    architecture[2] = 3;
 
-   n.set(architecture);
+    n.set(architecture);
 
-   assert_true(n.get_layers_number() == 2, LOG);
+    assert_true(n.get_layers_number() == 2, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_count_parameters_number(void)
 {
-   message += "test_count_parameters_number\n";
+    message += "test_count_parameters_number\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   // Test
+    // Test
 
-   n.set();
-   assert_true(n.count_parameters_number() == 0, LOG);
+    n.set();
+    assert_true(n.count_parameters_number() == 0, LOG);
 
-   // Test
+    // Test
 
-   n.set(2, 4, 3);
-   assert_true(n.count_parameters_number() == 27, LOG);
+    n.set(2, 4, 3);
+    assert_true(n.count_parameters_number() == 27, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_get_cumulative_parameters_number(void)
 {
-   message += "test_get_cumulative_parameters_number\n";
+    message += "test_get_cumulative_parameters_number\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   // Test
+    // Test
 }
 
 
 void MultilayerPerceptronTest::test_arrange_layers_parameters_number(void)
-{   
-   message += "test_arrange_layers_parameters_number\n";
-   
-   MultilayerPerceptron n;
-   Vector<size_t> layers_parameters_number;
-   Vector<size_t> architecture(3, 1);
+{
+    message += "test_arrange_layers_parameters_number\n";
 
-   // Test
+    MultilayerPerceptron n;
+    Vector<size_t> layers_parameters_number;
+    Vector<size_t> architecture(3, 1);
 
-   n.set();
-   layers_parameters_number = n.arrange_layers_parameters_number();
+    // Test
 
-   assert_true(layers_parameters_number.size() == 0, LOG);
+    n.set();
+    layers_parameters_number = n.arrange_layers_parameters_number();
 
-   // Test
+    assert_true(layers_parameters_number.size() == 0, LOG);
 
-   n.set(1, 1, 1);
-   layers_parameters_number = n.arrange_layers_parameters_number();
+    // Test
 
-   assert_true(layers_parameters_number.size() == 2, LOG);
-   assert_true(layers_parameters_number[0] == 2, LOG);
-   assert_true(layers_parameters_number[1] == 2, LOG);
+    n.set(1, 1, 1);
+    layers_parameters_number = n.arrange_layers_parameters_number();
 
-   // Test
+    assert_true(layers_parameters_number.size() == 2, LOG);
+    assert_true(layers_parameters_number[0] == 2, LOG);
+    assert_true(layers_parameters_number[1] == 2, LOG);
 
-   architecture.set(4, 1);
-   n.set(architecture);
+    // Test
 
-   layers_parameters_number = n.arrange_layers_parameters_number();
+    architecture.set(4, 1);
+    n.set(architecture);
 
-   assert_true(layers_parameters_number.size() == 3, LOG);
-   assert_true(layers_parameters_number[0] == 2, LOG);
-   assert_true(layers_parameters_number[1] == 2, LOG);
-   assert_true(layers_parameters_number[2] == 2, LOG);
+    layers_parameters_number = n.arrange_layers_parameters_number();
+
+    assert_true(layers_parameters_number.size() == 3, LOG);
+    assert_true(layers_parameters_number[0] == 2, LOG);
+    assert_true(layers_parameters_number[1] == 2, LOG);
+    assert_true(layers_parameters_number[2] == 2, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_set(void)
 {
-   message += "test_set\n";
+    message += "test_set\n";
 }
 
 
 void MultilayerPerceptronTest::test_set_default(void)
 {
-   message += "test_set_default\n";
+    message += "test_set_default\n";
 }
 
 
 void MultilayerPerceptronTest::test_set_parameters(void)
 {
-	message += "test_set_parameters\n";
+    message += "test_set_parameters\n";
 
-	MultilayerPerceptron n(1, 1, 1);
+    MultilayerPerceptron n(1, 1, 1);
 
     size_t parameters_number = n.count_parameters_number();
 
-	Vector<double> parameters(parameters_number);
-	
-	parameters.randomize_uniform();
+    Vector<double> parameters(parameters_number);
 
-	n.set_parameters(parameters);
+    parameters.randomize_uniform();
+
+    n.set_parameters(parameters);
 
     Vector<double> new_parameters = n.arrange_parameters();
 
@@ -409,376 +409,375 @@ void MultilayerPerceptronTest::test_set_parameters(void)
 
 void MultilayerPerceptronTest::test_arrange_layers_biases(void)
 {
-   message += "test_arrange_layers_biases\n";
+    message += "test_arrange_layers_biases\n";
 
-   MultilayerPerceptron n;
-   Vector< Vector<double> > layers_biases;
+    MultilayerPerceptron n;
+    Vector<Vector<double> > layers_biases;
 
-   // Test
+    // Test
 
-   n.set(1, 1, 1);
-   n.initialize_parameters(0.0);
+    n.set(1, 1, 1);
+    n.initialize_parameters(0.0);
 
-   layers_biases = n.arrange_layers_biases();
+    layers_biases = n.arrange_layers_biases();
 
-   assert_true(layers_biases.size() == 2, LOG);
-   assert_true(layers_biases[0].size() == 1, LOG);
-   assert_true(layers_biases[1].size() == 1, LOG);
+    assert_true(layers_biases.size() == 2, LOG);
+    assert_true(layers_biases[0].size() == 1, LOG);
+    assert_true(layers_biases[1].size() == 1, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_arrange_layers_synaptic_weights(void)
 {
-   message += "test_arrange_layers_synaptic_weights\n";
+    message += "test_arrange_layers_synaptic_weights\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector< Matrix<double> > layers_synaptic_weights;
+    Vector<Matrix<double> > layers_synaptic_weights;
 
-   // Test
+    // Test
 
-   n.set(1, 1, 1);
+    n.set(1, 1, 1);
 
-   n.initialize_parameters(0.0);
+    n.initialize_parameters(0.0);
 
-   layers_synaptic_weights = n.arrange_layers_synaptic_weights();
+    layers_synaptic_weights = n.arrange_layers_synaptic_weights();
 
-   assert_true(layers_synaptic_weights.size() == 2, LOG);
+    assert_true(layers_synaptic_weights.size() == 2, LOG);
 
-   assert_true(layers_synaptic_weights[0].get_rows_number() == 1, LOG);
-   assert_true(layers_synaptic_weights[0].get_columns_number() == 1, LOG);
-   assert_true(layers_synaptic_weights[0] == 0.0, LOG);
+    assert_true(layers_synaptic_weights[0].get_rows_number() == 1, LOG);
+    assert_true(layers_synaptic_weights[0].get_columns_number() == 1, LOG);
+    assert_true(layers_synaptic_weights[0] == 0.0, LOG);
 
-   assert_true(layers_synaptic_weights[1].get_rows_number() == 1, LOG);
-   assert_true(layers_synaptic_weights[1].get_columns_number() == 1, LOG);
-   assert_true(layers_synaptic_weights[1] == 0.0, LOG);
+    assert_true(layers_synaptic_weights[1].get_rows_number() == 1, LOG);
+    assert_true(layers_synaptic_weights[1].get_columns_number() == 1, LOG);
+    assert_true(layers_synaptic_weights[1] == 0.0, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_get_layers_parameters(void)
 {
-   message += "test_get_layers_parameters\n";
+    message += "test_get_layers_parameters\n";
 
-   Vector<size_t> architecture;
+    Vector<size_t> architecture;
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector< Vector<double> > layers_parameters;
+    Vector<Vector<double> > layers_parameters;
 
-   // Test
+    // Test
 
-   architecture.set(3, 1);
+    architecture.set(3, 1);
 
-   n.set(architecture);
+    n.set(architecture);
 
-   layers_parameters = n.get_layers_parameters();
-   assert_true(layers_parameters.size() == 2, LOG);
+    layers_parameters = n.get_layers_parameters();
+    assert_true(layers_parameters.size() == 2, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_get_parameter_indices(void)
 {
-   message += "test_get_parameter_indices\n";
+    message += "test_get_parameter_indices\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector<size_t> architecture;
+    Vector<size_t> architecture;
 
-   size_t parameters_number;
+    size_t parameters_number;
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   Vector<size_t> parameter_indices(3);
+    Vector<size_t> parameter_indices(3);
 
-   // Test
+    // Test
 
-   n.set(1, 1);
-   parameters_number = n.count_parameters_number();
+    n.set(1, 1);
+    parameters_number = n.count_parameters_number();
 
-   parameter_indices = n.arrange_parameter_indices(0);
-   assert_true(parameter_indices[0] == 0, LOG);
-   assert_true(parameter_indices[1] == 0, LOG);
-   assert_true(parameter_indices[2] == 0, LOG);
+    parameter_indices = n.arrange_parameter_indices(0);
+    assert_true(parameter_indices[0] == 0, LOG);
+    assert_true(parameter_indices[1] == 0, LOG);
+    assert_true(parameter_indices[2] == 0, LOG);
 
-   parameter_indices = n.arrange_parameter_indices(1);
-   assert_true(parameter_indices[0] == 0, LOG);
-   assert_true(parameter_indices[1] == 0, LOG);
-   assert_true(parameter_indices[2] == 1, LOG);
+    parameter_indices = n.arrange_parameter_indices(1);
+    assert_true(parameter_indices[0] == 0, LOG);
+    assert_true(parameter_indices[1] == 0, LOG);
+    assert_true(parameter_indices[2] == 1, LOG);
 
-   // Test 
+    // Test
 
-   n.set(1, 1, 1);
+    n.set(1, 1, 1);
 
-   parameter_indices = n.arrange_parameter_indices(0);
-   assert_true(parameter_indices[0] == 0, LOG);
-   assert_true(parameter_indices[1] == 0, LOG);
-   assert_true(parameter_indices[2] == 0, LOG);
+    parameter_indices = n.arrange_parameter_indices(0);
+    assert_true(parameter_indices[0] == 0, LOG);
+    assert_true(parameter_indices[1] == 0, LOG);
+    assert_true(parameter_indices[2] == 0, LOG);
 
-   parameter_indices = n.arrange_parameter_indices(1);
-   assert_true(parameter_indices[0] == 0, LOG);
-   assert_true(parameter_indices[1] == 0, LOG);
-   assert_true(parameter_indices[2] == 1, LOG);
+    parameter_indices = n.arrange_parameter_indices(1);
+    assert_true(parameter_indices[0] == 0, LOG);
+    assert_true(parameter_indices[1] == 0, LOG);
+    assert_true(parameter_indices[2] == 1, LOG);
 
-   parameter_indices = n.arrange_parameter_indices(2);
-   assert_true(parameter_indices[0] == 1, LOG);
-   assert_true(parameter_indices[1] == 0, LOG);
-   assert_true(parameter_indices[2] == 0, LOG);
+    parameter_indices = n.arrange_parameter_indices(2);
+    assert_true(parameter_indices[0] == 1, LOG);
+    assert_true(parameter_indices[1] == 0, LOG);
+    assert_true(parameter_indices[2] == 0, LOG);
 
-   parameter_indices = n.arrange_parameter_indices(3);
-   assert_true(parameter_indices[0] == 1, LOG);
-   assert_true(parameter_indices[1] == 0, LOG);
-   assert_true(parameter_indices[2] == 1, LOG);
+    parameter_indices = n.arrange_parameter_indices(3);
+    assert_true(parameter_indices[0] == 1, LOG);
+    assert_true(parameter_indices[1] == 0, LOG);
+    assert_true(parameter_indices[2] == 1, LOG);
 
-   // Test
+    // Test
 
-   n.set(2, 4, 3);
-   parameters_number = n.count_parameters_number();
+    n.set(2, 4, 3);
+    parameters_number = n.count_parameters_number();
 
-   parameter_indices = n.arrange_parameter_indices(0);
-   assert_true(parameter_indices[0] == 0, LOG);
-   assert_true(parameter_indices[1] == 0, LOG);
-   assert_true(parameter_indices[2] == 0, LOG);
+    parameter_indices = n.arrange_parameter_indices(0);
+    assert_true(parameter_indices[0] == 0, LOG);
+    assert_true(parameter_indices[1] == 0, LOG);
+    assert_true(parameter_indices[2] == 0, LOG);
 
-   parameter_indices = n.arrange_parameter_indices(parameters_number-1);
-   assert_true(parameter_indices[0] == 1, LOG);
-   assert_true(parameter_indices[1] == 2, LOG);
-   assert_true(parameter_indices[2] == 4, LOG);
+    parameter_indices = n.arrange_parameter_indices(parameters_number - 1);
+    assert_true(parameter_indices[0] == 1, LOG);
+    assert_true(parameter_indices[1] == 2, LOG);
+    assert_true(parameter_indices[2] == 4, LOG);
 
-   // Test
+    // Test
 
-   // Test
+    // Test
 
-   n.set(2, 4, 3);
+    n.set(2, 4, 3);
 
-   parameters.set(27);
+    parameters.set(27);
 
-   parameters[0]  =  0.85;
-   parameters[1]  = -0.04;
-   parameters[2]  =  0.87;
-   parameters[3]  = -0.25;
-   parameters[4]  =  0.25;
-   parameters[5]  = -0.27;
-   parameters[6]  =  0.29;
-   parameters[7]  = -0.57;
-   parameters[8]  =  0.15;
-   parameters[9]  = -0.77;
-   parameters[10] =  0.96;
-   parameters[11] = -0.48;
-   parameters[12] =  0.08;
-   parameters[13] = -0.06;
-   parameters[14] =  0.26;
-   parameters[15] = -0.15;
-   parameters[16] =  0.96;
-   parameters[17] = -0.33;
-   parameters[18] =  0.63;
-   parameters[19] = -0.32; 
-   parameters[20] =  0.89;
-   parameters[21] = -0.80;
-   parameters[22] =  0.80; 
-   parameters[23] = -0.03;
-   parameters[24] =  0.32;
-   parameters[25] =  0.06; 
-   parameters[26] = -0.38;
+    parameters[0] = 0.85;
+    parameters[1] = -0.04;
+    parameters[2] = 0.87;
+    parameters[3] = -0.25;
+    parameters[4] = 0.25;
+    parameters[5] = -0.27;
+    parameters[6] = 0.29;
+    parameters[7] = -0.57;
+    parameters[8] = 0.15;
+    parameters[9] = -0.77;
+    parameters[10] = 0.96;
+    parameters[11] = -0.48;
+    parameters[12] = 0.08;
+    parameters[13] = -0.06;
+    parameters[14] = 0.26;
+    parameters[15] = -0.15;
+    parameters[16] = 0.96;
+    parameters[17] = -0.33;
+    parameters[18] = 0.63;
+    parameters[19] = -0.32;
+    parameters[20] = 0.89;
+    parameters[21] = -0.80;
+    parameters[22] = 0.80;
+    parameters[23] = -0.03;
+    parameters[24] = 0.32;
+    parameters[25] = 0.06;
+    parameters[26] = -0.38;
 
-   n.set_parameters(parameters);   
+    n.set_parameters(parameters);
 
-   parameter_indices = n.arrange_parameter_indices(0);
-   assert_true(parameter_indices[0] == 0, LOG);
-   assert_true(parameter_indices[1] == 0, LOG);
-   assert_true(parameter_indices[2] == 0, LOG);
+    parameter_indices = n.arrange_parameter_indices(0);
+    assert_true(parameter_indices[0] == 0, LOG);
+    assert_true(parameter_indices[1] == 0, LOG);
+    assert_true(parameter_indices[2] == 0, LOG);
 
-   parameter_indices = n.arrange_parameter_indices(13);
-   assert_true(parameter_indices[0] == 1, LOG);
-   assert_true(parameter_indices[1] == 0, LOG);
-   assert_true(parameter_indices[2] == 1, LOG);
+    parameter_indices = n.arrange_parameter_indices(13);
+    assert_true(parameter_indices[0] == 1, LOG);
+    assert_true(parameter_indices[1] == 0, LOG);
+    assert_true(parameter_indices[2] == 1, LOG);
 
-   parameter_indices = n.arrange_parameter_indices(26);
-   assert_true(parameter_indices[0] == 1, LOG);
-   assert_true(parameter_indices[1] == 2, LOG);
-   assert_true(parameter_indices[2] == 4, LOG);
+    parameter_indices = n.arrange_parameter_indices(26);
+    assert_true(parameter_indices[0] == 1, LOG);
+    assert_true(parameter_indices[1] == 2, LOG);
+    assert_true(parameter_indices[2] == 4, LOG);
 
 }
 
 
 void MultilayerPerceptronTest::test_arrange_parameters_indices(void)
 {
-   message += "test_arrange_parameters_indices\n";
+    message += "test_arrange_parameters_indices\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector<size_t> architecture;
+    Vector<size_t> architecture;
 
-   size_t parameters_number;
+    size_t parameters_number;
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   Matrix<size_t> parameters_indices;
+    Matrix<size_t> parameters_indices;
 
-   // Test
+    // Test
 
-   n.set(1, 1);
-   parameters_number = n.count_parameters_number();
+    n.set(1, 1);
+    parameters_number = n.count_parameters_number();
 
-   parameters_indices = n.arrange_parameters_indices();
+    parameters_indices = n.arrange_parameters_indices();
 
-   assert_true(parameters_indices.get_rows_number() == parameters_number, LOG);
-   assert_true(parameters_indices.get_columns_number() == 3, LOG);
+    assert_true(parameters_indices.get_rows_number() == parameters_number, LOG);
+    assert_true(parameters_indices.get_columns_number() == 3, LOG);
 
-   assert_true(parameters_indices(0,0) == 0, LOG);
-   assert_true(parameters_indices(0,1) == 0, LOG);
-   assert_true(parameters_indices(0,2) == 0, LOG);
+    assert_true(parameters_indices(0, 0) == 0, LOG);
+    assert_true(parameters_indices(0, 1) == 0, LOG);
+    assert_true(parameters_indices(0, 2) == 0, LOG);
 
-   assert_true(parameters_indices(1,0) == 0, LOG);
-   assert_true(parameters_indices(1,1) == 0, LOG);
-   assert_true(parameters_indices(1,2) == 1, LOG);
+    assert_true(parameters_indices(1, 0) == 0, LOG);
+    assert_true(parameters_indices(1, 1) == 0, LOG);
+    assert_true(parameters_indices(1, 2) == 1, LOG);
 
-   // Test 
+    // Test
 
-   n.set(1, 1, 1);
-   parameters_number = n.count_parameters_number();
+    n.set(1, 1, 1);
+    parameters_number = n.count_parameters_number();
 
-   parameters_indices = n.arrange_parameters_indices();
+    parameters_indices = n.arrange_parameters_indices();
 
-   assert_true(parameters_indices.get_rows_number() == parameters_number, LOG);
-   assert_true(parameters_indices.get_columns_number() == 3, LOG);
+    assert_true(parameters_indices.get_rows_number() == parameters_number, LOG);
+    assert_true(parameters_indices.get_columns_number() == 3, LOG);
 
-   assert_true(parameters_indices(0,0) == 0, LOG);
-   assert_true(parameters_indices(0,1) == 0, LOG);
-   assert_true(parameters_indices(0,2) == 0, LOG);
+    assert_true(parameters_indices(0, 0) == 0, LOG);
+    assert_true(parameters_indices(0, 1) == 0, LOG);
+    assert_true(parameters_indices(0, 2) == 0, LOG);
 
-   assert_true(parameters_indices(1,0) == 0, LOG);
-   assert_true(parameters_indices(1,1) == 0, LOG);
-   assert_true(parameters_indices(1,2) == 1, LOG);
+    assert_true(parameters_indices(1, 0) == 0, LOG);
+    assert_true(parameters_indices(1, 1) == 0, LOG);
+    assert_true(parameters_indices(1, 2) == 1, LOG);
 
-   assert_true(parameters_indices(2,0) == 1, LOG);
-   assert_true(parameters_indices(2,1) == 0, LOG);
-   assert_true(parameters_indices(2,2) == 0, LOG);
+    assert_true(parameters_indices(2, 0) == 1, LOG);
+    assert_true(parameters_indices(2, 1) == 0, LOG);
+    assert_true(parameters_indices(2, 2) == 0, LOG);
 
-   assert_true(parameters_indices(3,0) == 1, LOG);
-   assert_true(parameters_indices(3,1) == 0, LOG);
-   assert_true(parameters_indices(3,2) == 1, LOG);
+    assert_true(parameters_indices(3, 0) == 1, LOG);
+    assert_true(parameters_indices(3, 1) == 0, LOG);
+    assert_true(parameters_indices(3, 2) == 1, LOG);
 }
-
 
 
 void MultilayerPerceptronTest::test_set_layers_biases(void)
 {
-   message += "test_set_layers_biases\n";
+    message += "test_set_layers_biases\n";
 
-   MultilayerPerceptron n;
-   Vector< Vector<double> > true_layers_biases;
-   Vector< Vector<double> > layers_biases;
+    MultilayerPerceptron n;
+    Vector<Vector<double> > true_layers_biases;
+    Vector<Vector<double> > layers_biases;
 
-   // Test
+    // Test
 
-   n.set(1, 1);
+    n.set(1, 1);
 
-   true_layers_biases.set(1);
-   true_layers_biases[0].set(1, 0.0);
+    true_layers_biases.set(1);
+    true_layers_biases[0].set(1, 0.0);
 
-   n.set_layers_biases(true_layers_biases);
+    n.set_layers_biases(true_layers_biases);
 
-   layers_biases = n.arrange_layers_biases();
+    layers_biases = n.arrange_layers_biases();
 
-   assert_true(layers_biases == true_layers_biases, LOG);
+    assert_true(layers_biases == true_layers_biases, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_set_layers_synaptic_weights(void)
 {
-   message += "test_set_layers_synaptic_weights\n";
+    message += "test_set_layers_synaptic_weights\n";
 
-   MultilayerPerceptron n;
-   Vector< Matrix<double> > layers_synaptic_weights;
+    MultilayerPerceptron n;
+    Vector<Matrix<double> > layers_synaptic_weights;
 
-   // Test
+    // Test
 
-   n.set(1, 1, 1);
-   n.initialize_synaptic_weights(0.0);
+    n.set(1, 1, 1);
+    n.initialize_synaptic_weights(0.0);
 
-   layers_synaptic_weights = n.arrange_layers_synaptic_weights();
+    layers_synaptic_weights = n.arrange_layers_synaptic_weights();
 
-   assert_true(layers_synaptic_weights.size() == 2, LOG);
-   assert_true(layers_synaptic_weights[0].get_rows_number() == 1, LOG);
-   assert_true(layers_synaptic_weights[0].get_columns_number() == 1, LOG);
-   assert_true(layers_synaptic_weights[0] == 0.0, LOG);
-   assert_true(layers_synaptic_weights[1].get_rows_number() == 1, LOG);
-   assert_true(layers_synaptic_weights[1].get_columns_number() == 1, LOG);
-   assert_true(layers_synaptic_weights[1] == 0.0, LOG);
+    assert_true(layers_synaptic_weights.size() == 2, LOG);
+    assert_true(layers_synaptic_weights[0].get_rows_number() == 1, LOG);
+    assert_true(layers_synaptic_weights[0].get_columns_number() == 1, LOG);
+    assert_true(layers_synaptic_weights[0] == 0.0, LOG);
+    assert_true(layers_synaptic_weights[1].get_rows_number() == 1, LOG);
+    assert_true(layers_synaptic_weights[1].get_columns_number() == 1, LOG);
+    assert_true(layers_synaptic_weights[1] == 0.0, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_set_layers_parameters(void)
 {
-   message += "test_set_layers_parameters\n";
+    message += "test_set_layers_parameters\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector< Vector<double> > layers_parameters;
-   Vector< Vector<double> > new_layers_parameters;
+    Vector<Vector<double> > layers_parameters;
+    Vector<Vector<double> > new_layers_parameters;
 
-   // Test
+    // Test
 
-   n.set(1, 1, 1);
+    n.set(1, 1, 1);
 
-   new_layers_parameters.set(2);
+    new_layers_parameters.set(2);
 
-   new_layers_parameters[0].set(2, 0.0);
-   new_layers_parameters[1].set(2, 1.0);
+    new_layers_parameters[0].set(2, 0.0);
+    new_layers_parameters[1].set(2, 1.0);
 
-   n.set_layers_parameters(new_layers_parameters);
+    n.set_layers_parameters(new_layers_parameters);
 
-   layers_parameters = n.get_layers_parameters();
+    layers_parameters = n.get_layers_parameters();
 
-   assert_true(layers_parameters == new_layers_parameters, LOG);
+    assert_true(layers_parameters == new_layers_parameters, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_get_display(void)
 {
-   message += "test_get_display\n";
+    message += "test_get_display\n";
 }
 
 
 void MultilayerPerceptronTest::test_set_layers_activation_function(void)
 {
-   message += "test_set_layers_activation_function\n";
+    message += "test_set_layers_activation_function\n";
 }
 
 
 void MultilayerPerceptronTest::test_set_display(void)
 {
-   message += "test_set_display\n";
+    message += "test_set_display\n";
 }
 
 
 void MultilayerPerceptronTest::test_is_empty(void)
 {
-   message += "test_is_empty\n";
+    message += "test_is_empty\n";
 
-   MultilayerPerceptron mlp;
+    MultilayerPerceptron mlp;
 
-   // Test
+    // Test
 
-   mlp.set();
+    mlp.set();
 
-   assert_true(mlp.is_empty(), LOG);
+    assert_true(mlp.is_empty(), LOG);
 
-   // Test
+    // Test
 
-   mlp.set(1, 1);
+    mlp.set(1, 1);
 
-   assert_true(!mlp.is_empty(), LOG);
+    assert_true(!mlp.is_empty(), LOG);
 }
 
 
 void MultilayerPerceptronTest::test_grow_input(void)
 {
-   message += "test_grow_input\n";
+    message += "test_grow_input\n";
 
 //   MultilayerPerceptron mlp;
 
-   // Test
+    // Test
 
 //   mlp.set();
 
@@ -790,546 +789,543 @@ void MultilayerPerceptronTest::test_grow_input(void)
 
 void MultilayerPerceptronTest::test_grow_layer(void)
 {
-   message += "test_grow_layer\n";
+    message += "test_grow_layer\n";
 
-   MultilayerPerceptron mlp;
+    MultilayerPerceptron mlp;
 
-   // Test
+    // Test
 }
 
 
 void MultilayerPerceptronTest::test_prune_input(void)
 {
-   message += "test_prune_input\n";
+    message += "test_prune_input\n";
 
-   MultilayerPerceptron mlp;
+    MultilayerPerceptron mlp;
 
-   // Test
+    // Test
 
-   mlp.set(1, 1);
+    mlp.set(1, 1);
 
-   mlp.prune_input(0);
+    mlp.prune_input(0);
 
-   assert_true(mlp.get_layers_number() == 1, LOG);
-   assert_true(mlp.get_inputs_number() == 0, LOG);
+    assert_true(mlp.get_layers_number() == 1, LOG);
+    assert_true(mlp.get_inputs_number() == 0, LOG);
 
-   // Test
+    // Test
 
-   mlp.set(2, 2, 2);
+    mlp.set(2, 2, 2);
 
-   mlp.prune_input(0);
+    mlp.prune_input(0);
 
-   assert_true(mlp.get_layers_number() == 2, LOG);
-   assert_true(mlp.get_inputs_number() == 1, LOG);
+    assert_true(mlp.get_layers_number() == 2, LOG);
+    assert_true(mlp.get_inputs_number() == 1, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_prune_output(void)
 {
-   message += "test_prune_output\n";
+    message += "test_prune_output\n";
 
-   MultilayerPerceptron mlp;
+    MultilayerPerceptron mlp;
 
-   // Test
+    // Test
 
-   mlp.set(1, 1);
+    mlp.set(1, 1);
 
-   mlp.prune_output(0);
+    mlp.prune_output(0);
 
-   assert_true(mlp.get_layers_number() == 1, LOG);
-   assert_true(mlp.get_inputs_number() == 0, LOG);
-   assert_true(mlp.get_outputs_number() == 0, LOG);
+    assert_true(mlp.get_layers_number() == 1, LOG);
+    assert_true(mlp.get_inputs_number() == 0, LOG);
+    assert_true(mlp.get_outputs_number() == 0, LOG);
 
-   // Test
+    // Test
 
-   mlp.set(2, 2, 2);
+    mlp.set(2, 2, 2);
 
-   mlp.prune_output(1);
+    mlp.prune_output(1);
 
-   assert_true(mlp.get_inputs_number() == 2, LOG);
-   assert_true(mlp.get_layers_number() == 2, LOG);
-   assert_true(mlp.get_outputs_number() == 1, LOG);
+    assert_true(mlp.get_inputs_number() == 2, LOG);
+    assert_true(mlp.get_layers_number() == 2, LOG);
+    assert_true(mlp.get_outputs_number() == 1, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_prune_layer(void)
 {
-   message += "test_prune_layer\n";
+    message += "test_prune_layer\n";
 
-   MultilayerPerceptron mlp;
+    MultilayerPerceptron mlp;
 
-   // Test
+    // Test
 }
 
 
-void MultilayerPerceptronTest::test_arrange_parameters(void)   
+void MultilayerPerceptronTest::test_arrange_parameters(void)
 {
-   message += "test_arrange_parameters\n";
+    message += "test_arrange_parameters\n";
 
-   MultilayerPerceptron mlp;
-   Vector<double> parameters;
+    MultilayerPerceptron mlp;
+    Vector<double> parameters;
 
-   // Test
+    // Test
 
-   mlp.set();
+    mlp.set();
 
-   parameters = mlp.arrange_parameters();
+    parameters = mlp.arrange_parameters();
 
-   assert_true(parameters.size() == 0, LOG);
+    assert_true(parameters.size() == 0, LOG);
 
-   // Test
+    // Test
 
-   mlp.set(1, 1, 1);
-   mlp.initialize_parameters(0.0);
-   parameters = mlp.arrange_parameters();
+    mlp.set(1, 1, 1);
+    mlp.initialize_parameters(0.0);
+    parameters = mlp.arrange_parameters();
 
-   assert_true(parameters.size() == 4, LOG);
-   assert_true(parameters == 0.0, LOG);
+    assert_true(parameters.size() == 4, LOG);
+    assert_true(parameters == 0.0, LOG);
 
-   // Test
+    // Test
 
-   mlp.set(1, 1, 1);
-   mlp.initialize_parameters(0.0);
-   parameters = mlp.arrange_parameters();
+    mlp.set(1, 1, 1);
+    mlp.initialize_parameters(0.0);
+    parameters = mlp.arrange_parameters();
 
-   assert_true(parameters.size() == 4, LOG);
-   assert_true(parameters == 0.0, LOG);
+    assert_true(parameters.size() == 4, LOG);
+    assert_true(parameters == 0.0, LOG);
 
-   // Test
+    // Test
 
-   mlp.initialize_random();
+    mlp.initialize_random();
 
-   parameters = mlp.arrange_parameters();
-   mlp.set_parameters(parameters);
-   assert_true(parameters == mlp.arrange_parameters(), LOG);
+    parameters = mlp.arrange_parameters();
+    mlp.set_parameters(parameters);
+    assert_true(parameters == mlp.arrange_parameters(), LOG);
 }
 
 
 void MultilayerPerceptronTest::test_initialize_random(void)
 {
-   message += "test_initialize_random\n";
+    message += "test_initialize_random\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   size_t inputs_number;
-   size_t layers_number;
-   Vector<size_t> architecture;
+    size_t inputs_number;
+    size_t layers_number;
+    Vector<size_t> architecture;
 
-   // Test
+    // Test
 
-   n.initialize_random();
+    n.initialize_random();
 
-   inputs_number = n.get_inputs_number();
+    inputs_number = n.get_inputs_number();
 
-   assert_true(inputs_number >= 1 && inputs_number <= 10, LOG); 
+    assert_true(inputs_number >= 1 && inputs_number <= 10, LOG);
 
-   layers_number = n.get_layers_number();
+    layers_number = n.get_layers_number();
 
-   assert_true(layers_number >= 1 && layers_number <= 10, LOG); 
+    assert_true(layers_number >= 1 && layers_number <= 10, LOG);
 
-   architecture = n.arrange_layers_perceptrons_numbers();
+    architecture = n.arrange_layers_perceptrons_numbers();
 
-   assert_true(architecture >= 1 && architecture <= 10, LOG); 
+    assert_true(architecture >= 1 && architecture <= 10, LOG);
 
 }
 
 
 void MultilayerPerceptronTest::test_initialize_parameters(void)
 {
-   message += "test_initialize_parameters\n";
+    message += "test_initialize_parameters\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector<double> parameters;
-   n.set(1,1,1);
-   n.initialize_parameters(0.0);
+    Vector<double> parameters;
+    n.set(1, 1, 1);
+    n.initialize_parameters(0.0);
 
-   parameters = n.arrange_parameters();
+    parameters = n.arrange_parameters();
 
-   assert_true(parameters == 0.0, LOG);
+    assert_true(parameters == 0.0, LOG);
 
 }
 
 
 void MultilayerPerceptronTest::test_initialize_biases(void)
 {
-   message += "test_initialize_biases\n";
+    message += "test_initialize_biases\n";
 }
 
 
 void MultilayerPerceptronTest::test_initialize_synaptic_weights(void)
 {
-   message += "test_initialize_synaptic_weights\n";
+    message += "test_initialize_synaptic_weights\n";
 }
 
 
 void MultilayerPerceptronTest::test_randomize_parameters_uniform(void)
 {
-   message += "test_randomize_parameters_uniform\n";
+    message += "test_randomize_parameters_uniform\n";
 
-   MultilayerPerceptron n;
-   Vector<double> parameters;
+    MultilayerPerceptron n;
+    Vector<double> parameters;
 
-   // Test
+    // Test
 
-   n.set(1,1,1);      
-   n.randomize_parameters_uniform();
-   parameters = n.arrange_parameters();
-   assert_true(parameters >= -1.0, LOG);
-   assert_true(parameters <=  1.0, LOG);   
+    n.set(1, 1, 1);
+    n.randomize_parameters_uniform();
+    parameters = n.arrange_parameters();
+    assert_true(parameters >= -1.0, LOG);
+    assert_true(parameters <= 1.0, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_randomize_parameters_normal(void)
 {
-   message += "test_randomize_parameters_normal\n";
+    message += "test_randomize_parameters_normal\n";
 
-   MultilayerPerceptron n;
-   Vector<double> parameters;
+    MultilayerPerceptron n;
+    Vector<double> parameters;
 
-   // Test
+    // Test
 
-   n.set(1,1,1);      
-   n.randomize_parameters_normal(1.0, 0.0);
-   parameters = n.arrange_parameters();
-   assert_true(parameters == 1.0, LOG);
+    n.set(1, 1, 1);
+    n.randomize_parameters_normal(1.0, 0.0);
+    parameters = n.arrange_parameters();
+    assert_true(parameters == 1.0, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_calculate_parameters_norm(void)
 {
-   message += "test_calculate_parameters_norm\n";
+    message += "test_calculate_parameters_norm\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector< Vector<double> > layers_biases;
-   Vector< Matrix<double> > layers_synaptic_weights;
+    Vector<Vector<double> > layers_biases;
+    Vector<Matrix<double> > layers_synaptic_weights;
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   double parameters_norm;
+    double parameters_norm;
 
-   // Test 
+    // Test
 
-   n.set();
+    n.set();
 
-   parameters_norm = n.calculate_parameters_norm();
+    parameters_norm = n.calculate_parameters_norm();
 
-   assert_true(parameters_norm == 0.0, LOG);
+    assert_true(parameters_norm == 0.0, LOG);
 
-   // Test
+    // Test
 
-   n.set(1, 1, 1);
-   n.initialize_parameters(0.0);
+    n.set(1, 1, 1);
+    n.initialize_parameters(0.0);
 
-   parameters_norm = n.calculate_parameters_norm();
+    parameters_norm = n.calculate_parameters_norm();
 
-   assert_true(parameters_norm == 0.0, LOG);
+    assert_true(parameters_norm == 0.0, LOG);
 
-   // Test
+    // Test
 
-   n.set(2, 4, 3);
+    n.set(2, 4, 3);
 
-   layers_biases.set(2);
+    layers_biases.set(2);
 
-   layers_biases[0].set(4);
-   layers_biases[0][0] =  0.85;
-   layers_biases[0][1] = -0.25;
-   layers_biases[0][2] =  0.29;
-   layers_biases[0][3] = -0.77;
+    layers_biases[0].set(4);
+    layers_biases[0][0] = 0.85;
+    layers_biases[0][1] = -0.25;
+    layers_biases[0][2] = 0.29;
+    layers_biases[0][3] = -0.77;
 
-   layers_biases[1].set(3);
-   layers_biases[1][0] =  0.08;
-   layers_biases[1][1] = -0.33;
-   layers_biases[1][2] =  0.80;
+    layers_biases[1].set(3);
+    layers_biases[1][0] = 0.08;
+    layers_biases[1][1] = -0.33;
+    layers_biases[1][2] = 0.80;
 
-   n.set_layers_biases(layers_biases);
+    n.set_layers_biases(layers_biases);
 
-   layers_synaptic_weights.set(2);
+    layers_synaptic_weights.set(2);
 
-   layers_synaptic_weights[0].set(4, 2);
+    layers_synaptic_weights[0].set(4, 2);
 
-   layers_synaptic_weights[0](0,0) = -0.04;
-   layers_synaptic_weights[0](0,1) =  0.87;
+    layers_synaptic_weights[0](0, 0) = -0.04;
+    layers_synaptic_weights[0](0, 1) = 0.87;
 
-   layers_synaptic_weights[0](1,0) =  0.25;
-   layers_synaptic_weights[0](1,1) = -0.27;
+    layers_synaptic_weights[0](1, 0) = 0.25;
+    layers_synaptic_weights[0](1, 1) = -0.27;
 
-   layers_synaptic_weights[0](2,0) = -0.57;
-   layers_synaptic_weights[0](2,1) =  0.15;
+    layers_synaptic_weights[0](2, 0) = -0.57;
+    layers_synaptic_weights[0](2, 1) = 0.15;
 
-   layers_synaptic_weights[0](3,0) =  0.96;
-   layers_synaptic_weights[0](3,1) = -0.48;
+    layers_synaptic_weights[0](3, 0) = 0.96;
+    layers_synaptic_weights[0](3, 1) = -0.48;
 
-   layers_synaptic_weights[1].set(3,4);
+    layers_synaptic_weights[1].set(3, 4);
 
-   layers_synaptic_weights[1](0,0) = -0.06;
-   layers_synaptic_weights[1](0,1) =  0.26;
-   layers_synaptic_weights[1](0,2) = -0.15;
-   layers_synaptic_weights[1](0,3) =  0.96;
+    layers_synaptic_weights[1](0, 0) = -0.06;
+    layers_synaptic_weights[1](0, 1) = 0.26;
+    layers_synaptic_weights[1](0, 2) = -0.15;
+    layers_synaptic_weights[1](0, 3) = 0.96;
 
-   layers_synaptic_weights[1](1,0) =  0.63;
-   layers_synaptic_weights[1](1,1) = -0.32;
-   layers_synaptic_weights[1](1,2) =  0.89;
-   layers_synaptic_weights[1](1,3) = -0.80;
+    layers_synaptic_weights[1](1, 0) = 0.63;
+    layers_synaptic_weights[1](1, 1) = -0.32;
+    layers_synaptic_weights[1](1, 2) = 0.89;
+    layers_synaptic_weights[1](1, 3) = -0.80;
 
-   layers_synaptic_weights[1](2,0) = -0.03;
-   layers_synaptic_weights[1](2,1) =  0.32;
-   layers_synaptic_weights[1](2,2) =  0.06;
-   layers_synaptic_weights[1](2,3) = -0.38;
+    layers_synaptic_weights[1](2, 0) = -0.03;
+    layers_synaptic_weights[1](2, 1) = 0.32;
+    layers_synaptic_weights[1](2, 2) = 0.06;
+    layers_synaptic_weights[1](2, 3) = -0.38;
 
-   n.set_layers_synaptic_weights(layers_synaptic_weights);
+    n.set_layers_synaptic_weights(layers_synaptic_weights);
 
-   parameters = n.arrange_parameters();
+    parameters = n.arrange_parameters();
 
-   parameters_norm = n.calculate_parameters_norm();
+    parameters_norm = n.calculate_parameters_norm();
 
-   assert_true(fabs(parameters_norm - parameters.calculate_norm()) < 1.0e-6, LOG);
+    assert_true(fabs(parameters_norm - parameters.calculate_norm()) < 1.0e-6, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_calculate_outputs(void)
 {
-   message += "test_calculate_outputs\n";
+    message += "test_calculate_outputs\n";
 
-   MultilayerPerceptron mlp;
+    MultilayerPerceptron mlp;
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   Vector<double> inputs;
-   Vector<double> outputs;
-   Vector<double> potential_outputs;
+    Vector<double> inputs;
+    Vector<double> outputs;
+    Vector<double> potential_outputs;
 
-   Vector<double> hidden_layer_output;
-   Vector<double> output_layer_output;
+    Vector<double> hidden_layer_output;
+    Vector<double> output_layer_output;
 
-   // Test
+    // Test
 
-   mlp.set(2, 4, 3);
+    mlp.set(2, 4, 3);
 
-   parameters.set(27);
+    parameters.set(27);
 
-   parameters[0]  =  0.85;
-   parameters[1]  = -0.04;
-   parameters[2]  =  0.87;
-   parameters[3]  = -0.25;
-   parameters[4]  =  0.25;
-   parameters[5]  = -0.27;
-   parameters[6]  =  0.29;
-   parameters[7]  = -0.57;
-   parameters[8]  =  0.15;
-   parameters[9]  = -0.77;
-   parameters[10] =  0.96;
-   parameters[11] = -0.48;
-   parameters[12] =  0.08;
-   parameters[13] = -0.06;
-   parameters[14] =  0.26;
-   parameters[15] = -0.15;
-   parameters[16] =  0.96;
-   parameters[17] = -0.33;
-   parameters[18] =  0.63;
-   parameters[19] = -0.32; 
-   parameters[20] =  0.89;
-   parameters[21] = -0.80;
-   parameters[22] =  0.80; 
-   parameters[23] = -0.03;
-   parameters[24] =  0.32;
-   parameters[25] =  0.06; 
-   parameters[26] = -0.38;
+    parameters[0] = 0.85;
+    parameters[1] = -0.04;
+    parameters[2] = 0.87;
+    parameters[3] = -0.25;
+    parameters[4] = 0.25;
+    parameters[5] = -0.27;
+    parameters[6] = 0.29;
+    parameters[7] = -0.57;
+    parameters[8] = 0.15;
+    parameters[9] = -0.77;
+    parameters[10] = 0.96;
+    parameters[11] = -0.48;
+    parameters[12] = 0.08;
+    parameters[13] = -0.06;
+    parameters[14] = 0.26;
+    parameters[15] = -0.15;
+    parameters[16] = 0.96;
+    parameters[17] = -0.33;
+    parameters[18] = 0.63;
+    parameters[19] = -0.32;
+    parameters[20] = 0.89;
+    parameters[21] = -0.80;
+    parameters[22] = 0.80;
+    parameters[23] = -0.03;
+    parameters[24] = 0.32;
+    parameters[25] = 0.06;
+    parameters[26] = -0.38;
 
-   mlp.set_parameters(parameters);
+    mlp.set_parameters(parameters);
 
-   inputs.set(2);
-   inputs[0] = -0.88;
-   inputs[1] =  0.78;
+    inputs.set(2);
+    inputs[0] = -0.88;
+    inputs[1] = 0.78;
 
-   const PerceptronLayer& hidden_layer = mlp.get_layer(0);
+    const PerceptronLayer &hidden_layer = mlp.get_layer(0);
 
-   hidden_layer_output = hidden_layer.calculate_outputs(inputs);
+    hidden_layer_output = hidden_layer.calculate_outputs(inputs);
 
-   const PerceptronLayer& output_layer = mlp.get_layer(1);
+    const PerceptronLayer &output_layer = mlp.get_layer(1);
 
-   output_layer_output = output_layer.calculate_outputs(hidden_layer_output);
+    output_layer_output = output_layer.calculate_outputs(hidden_layer_output);
 
-   outputs = mlp.calculate_outputs(inputs);
-   assert_true(outputs.size() == 3, LOG);
-   assert_true(outputs == output_layer_output, LOG);
+    outputs = mlp.calculate_outputs(inputs);
+    assert_true(outputs.size() == 3, LOG);
+    assert_true(outputs == output_layer_output, LOG);
 
-   // Test
+    // Test
 
-   inputs.set(1, 3.0);
+    inputs.set(1, 3.0);
 
-   mlp.set(1, 1);
+    mlp.set(1, 1);
 
-   mlp.initialize_parameters(2.0);
+    mlp.initialize_parameters(2.0);
 
-   outputs = mlp.calculate_outputs(inputs);
+    outputs = mlp.calculate_outputs(inputs);
 
-   parameters.set(2, 1.0);
+    parameters.set(2, 1.0);
 
-   potential_outputs = mlp.calculate_outputs(inputs, parameters);
+    potential_outputs = mlp.calculate_outputs(inputs, parameters);
 
-   assert_true(outputs != potential_outputs, LOG);
+    assert_true(outputs != potential_outputs, LOG);
 
-   // Test
+    // Test
 
-   mlp.set(1, 1);
+    mlp.set(1, 1);
 
-   inputs.set(1);
-   inputs.randomize_normal();
+    inputs.set(1);
+    inputs.randomize_normal();
 
-   parameters = mlp.arrange_parameters();
+    parameters = mlp.arrange_parameters();
 
-   assert_true(mlp.calculate_outputs(inputs) == mlp.calculate_outputs(inputs, parameters), LOG);
+    assert_true(mlp.calculate_outputs(inputs) == mlp.calculate_outputs(inputs, parameters), LOG);
 
-   // Test
+    // Test
 
-   inputs.set(1, 3.0);
+    inputs.set(1, 3.0);
 
-   mlp.set(1, 2, 1);
+    mlp.set(1, 2, 1);
 
-   mlp.initialize_parameters(2.0);
+    mlp.initialize_parameters(2.0);
 
-   outputs = mlp.calculate_outputs(inputs);
+    outputs = mlp.calculate_outputs(inputs);
 
-   parameters = mlp.arrange_parameters();
+    parameters = mlp.arrange_parameters();
 
-   potential_outputs = mlp.calculate_outputs(inputs, parameters*2.0);
+    potential_outputs = mlp.calculate_outputs(inputs, parameters * 2.0);
 
-   assert_true(outputs != potential_outputs, LOG);
+    assert_true(outputs != potential_outputs, LOG);
 
-   // Test
+    // Test
 
-   mlp.set(1, 2, 1);
+    mlp.set(1, 2, 1);
 
-   inputs.set(1);
-   inputs.randomize_normal();
+    inputs.set(1);
+    inputs.randomize_normal();
 
-   parameters = mlp.arrange_parameters();
+    parameters = mlp.arrange_parameters();
 
-   assert_true(mlp.calculate_outputs(inputs) == mlp.calculate_outputs(inputs, parameters), LOG);
+    assert_true(mlp.calculate_outputs(inputs) == mlp.calculate_outputs(inputs, parameters), LOG);
 }
 
 
 void MultilayerPerceptronTest::test_calculate_Jacobian(void)
 {
-   message += "test_calculate_Jacobian\n";
+    message += "test_calculate_Jacobian\n";
 
-   NumericalDifferentiation nd;
+    NumericalDifferentiation nd;
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   size_t inputs_number;
-   Vector<size_t> architecture;
-   Vector<double> parameters;
+    size_t inputs_number;
+    Vector<size_t> architecture;
+    Vector<double> parameters;
 
-   Vector<double> inputs;
+    Vector<double> inputs;
 
-   Matrix<double> Jacobian;
-   Matrix<double> numerical_Jacobian;
+    Matrix<double> Jacobian;
+    Matrix<double> numerical_Jacobian;
 
-   Vector<double> hidden_layer_output;
+    Vector<double> hidden_layer_output;
 
-   Matrix<double> hidden_layer_Jacobian;
-   Matrix<double> output_layer_Jacobian;
+    Matrix<double> hidden_layer_Jacobian;
+    Matrix<double> output_layer_Jacobian;
 
-   // Test
+    // Test
 
-   n.set(1,1,1);
-   n.initialize_parameters(0.0);
+    n.set(1, 1, 1);
+    n.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   Jacobian = n.calculate_Jacobian(inputs);
-   assert_true(Jacobian == 0.0, LOG);    
+    Jacobian = n.calculate_Jacobian(inputs);
+    assert_true(Jacobian == 0.0, LOG);
 
-   // Test
+    // Test
 
-   n.set(3,4,2);
-   n.initialize_parameters(0.0);
-   inputs.set(3, 0.0);
-   Jacobian = n.calculate_Jacobian(inputs);
-   assert_true(Jacobian == 0.0, LOG);    
+    n.set(3, 4, 2);
+    n.initialize_parameters(0.0);
+    inputs.set(3, 0.0);
+    Jacobian = n.calculate_Jacobian(inputs);
+    assert_true(Jacobian == 0.0, LOG);
 
-   // Test
+    // Test
 
-   n.set(2, 4, 3);
+    n.set(2, 4, 3);
 
-   parameters.set(27);
+    parameters.set(27);
 
-   parameters[0]  =  0.85;
-   parameters[1]  = -0.04;
-   parameters[2]  =  0.87;
-   parameters[3]  = -0.25;
-   parameters[4]  =  0.25;
-   parameters[5]  = -0.27;
-   parameters[6]  =  0.29;
-   parameters[7]  = -0.57;
-   parameters[8]  =  0.15;
-   parameters[9]  = -0.77;
-   parameters[10] =  0.96;
-   parameters[11] = -0.48;
-   parameters[12] =  0.08;
-   parameters[13] = -0.06;
-   parameters[14] =  0.26;
-   parameters[15] = -0.15;
-   parameters[16] =  0.96;
-   parameters[17] = -0.33;
-   parameters[18] =  0.63;
-   parameters[19] = -0.32; 
-   parameters[20] =  0.89;
-   parameters[21] = -0.80;
-   parameters[22] =  0.80; 
-   parameters[23] = -0.03;
-   parameters[24] =  0.32;
-   parameters[25] =  0.06; 
-   parameters[26] = -0.38;
+    parameters[0] = 0.85;
+    parameters[1] = -0.04;
+    parameters[2] = 0.87;
+    parameters[3] = -0.25;
+    parameters[4] = 0.25;
+    parameters[5] = -0.27;
+    parameters[6] = 0.29;
+    parameters[7] = -0.57;
+    parameters[8] = 0.15;
+    parameters[9] = -0.77;
+    parameters[10] = 0.96;
+    parameters[11] = -0.48;
+    parameters[12] = 0.08;
+    parameters[13] = -0.06;
+    parameters[14] = 0.26;
+    parameters[15] = -0.15;
+    parameters[16] = 0.96;
+    parameters[17] = -0.33;
+    parameters[18] = 0.63;
+    parameters[19] = -0.32;
+    parameters[20] = 0.89;
+    parameters[21] = -0.80;
+    parameters[22] = 0.80;
+    parameters[23] = -0.03;
+    parameters[24] = 0.32;
+    parameters[25] = 0.06;
+    parameters[26] = -0.38;
 
-   n.set_parameters(parameters);   
+    n.set_parameters(parameters);
 
-   inputs.set(2);
-   inputs[0] = -0.88;
-   inputs[1] =  0.78;
+    inputs.set(2);
+    inputs[0] = -0.88;
+    inputs[1] = 0.78;
 
-   const PerceptronLayer& hidden_layer = n.get_layer(0);
+    const PerceptronLayer &hidden_layer = n.get_layer(0);
 
-   hidden_layer_output = hidden_layer.calculate_outputs(inputs);
-   hidden_layer_Jacobian = hidden_layer.calculate_Jacobian(inputs);
+    hidden_layer_output = hidden_layer.calculate_outputs(inputs);
+    hidden_layer_Jacobian = hidden_layer.calculate_Jacobian(inputs);
 
-   const PerceptronLayer& output_layer = n.get_layer(1);
+    const PerceptronLayer &output_layer = n.get_layer(1);
 
-   output_layer_Jacobian = output_layer.calculate_Jacobian(hidden_layer_output);
+    output_layer_Jacobian = output_layer.calculate_Jacobian(hidden_layer_output);
 
-   Jacobian = n.calculate_Jacobian(inputs);
-   assert_true(Jacobian.get_rows_number() == 3, LOG);
-   assert_true(Jacobian.get_columns_number() == 2, LOG);
-   assert_true((Jacobian - output_layer_Jacobian.dot(hidden_layer_Jacobian)).calculate_absolute_value() < 1.0e-3, LOG);
+    Jacobian = n.calculate_Jacobian(inputs);
+    assert_true(Jacobian.get_rows_number() == 3, LOG);
+    assert_true(Jacobian.get_columns_number() == 2, LOG);
+    assert_true((Jacobian - output_layer_Jacobian.dot(hidden_layer_Jacobian)).calculate_absolute_value() < 1.0e-3, LOG);
 
-   if(numerical_differentiation_tests)
-   {
-      numerical_Jacobian = nd.calculate_Jacobian(n, &MultilayerPerceptron::calculate_outputs, inputs);
-      assert_true((Jacobian-numerical_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    if (numerical_differentiation_tests) {
+        numerical_Jacobian = nd.calculate_Jacobian(n, &MultilayerPerceptron::calculate_outputs, inputs);
+        assert_true((Jacobian - numerical_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
+    }
 
-   // Test
+    // Test
 
-   for(size_t i = 0; i < random_tests_number; i++)
-   {
-      n.initialize_random();
+    for (size_t i = 0; i < random_tests_number; i++) {
+        n.initialize_random();
 
-	  inputs_number = n.get_inputs_number();
+        inputs_number = n.get_inputs_number();
 
-	  inputs.set(inputs_number);
-	  inputs.randomize_uniform();
+        inputs.set(inputs_number);
+        inputs.randomize_uniform();
 
-      Jacobian = n.calculate_Jacobian(inputs);
+        Jacobian = n.calculate_Jacobian(inputs);
 
-      if(numerical_differentiation_tests)
-      {
-         numerical_Jacobian = nd.calculate_Jacobian(n, &MultilayerPerceptron::calculate_outputs, inputs);
-         assert_true((Jacobian-numerical_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-      }
-   }
+        if (numerical_differentiation_tests) {
+            numerical_Jacobian = nd.calculate_Jacobian(n, &MultilayerPerceptron::calculate_outputs, inputs);
+            assert_true((Jacobian - numerical_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
+        }
+    }
 }
 
 
@@ -1337,140 +1333,135 @@ void MultilayerPerceptronTest::test_calculate_Jacobian(void)
 
 void MultilayerPerceptronTest::test_calculate_Hessian_form(void)
 {
-   message += "test_calculate_Hessian_form\n";
+    message += "test_calculate_Hessian_form\n";
 
-   std::cout.precision(2);
+    std::cout.precision(2);
 
-   NumericalDifferentiation nd;
+    NumericalDifferentiation nd;
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
 //   size_t inputs_number;
-   Vector<size_t> architecture;
+    Vector<size_t> architecture;
 //   size_t outputs_number;
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   Vector<double> inputs;
-   Matrix<double> Jacobian;
-   Vector< Matrix<double> > Hessian_form;
-   Vector< Matrix<double> > numerical_Hessian_form;
+    Vector<double> inputs;
+    Matrix<double> Jacobian;
+    Vector<Matrix<double> > Hessian_form;
+    Vector<Matrix<double> > numerical_Hessian_form;
 
-   Matrix<double> Hessian;
+    Matrix<double> Hessian;
 
-   Vector<double> hidden_layer_output;
+    Vector<double> hidden_layer_output;
 
-   Matrix<double> hidden_layer_Jacobian;
-   Vector< Matrix<double> > hidden_layer_Hessian_form;
+    Matrix<double> hidden_layer_Jacobian;
+    Vector<Matrix<double> > hidden_layer_Hessian_form;
 
-   Matrix<double> output_layer_Jacobian;
-   Vector< Matrix<double> > output_layer_Hessian_form;
+    Matrix<double> output_layer_Jacobian;
+    Vector<Matrix<double> > output_layer_Hessian_form;
 
-   // Test
+    // Test
 
-   n.set(1, 1);
+    n.set(1, 1);
 
-   n.initialize_parameters(0.0);
+    n.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
-
-//   Hessian_form = n.calculate_Hessian_form(inputs);
-
-//   assert_true(Hessian_form.size() == 1, LOG);    
-//   assert_true(Hessian_form[0].get_rows_number() == 1, LOG);    
-//   assert_true(Hessian_form[0].get_columns_number() == 1, LOG);    
-//   assert_true(Hessian_form[0] == 0.0, LOG);    
-
-   // Test
-
-   n.set(1, 1, 1);
-
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
 //   Hessian_form = n.calculate_Hessian_form(inputs);
-//   assert_true(Hessian_form.size() == 1, LOG);    
 
-//   assert_true(Hessian_form[0].get_rows_number() == 1, LOG);    
-//   assert_true(Hessian_form[0].get_columns_number() == 1, LOG);    
+//   assert_true(Hessian_form.size() == 1, LOG);
+//   assert_true(Hessian_form[0].get_rows_number() == 1, LOG);
+//   assert_true(Hessian_form[0].get_columns_number() == 1, LOG);
+//   assert_true(Hessian_form[0] == 0.0, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    // Test
+
+    n.set(1, 1, 1);
+
+    inputs.set(1, 0.0);
+
+//   Hessian_form = n.calculate_Hessian_form(inputs);
+//   assert_true(Hessian_form.size() == 1, LOG);
+
+//   assert_true(Hessian_form[0].get_rows_number() == 1, LOG);
+//   assert_true(Hessian_form[0].get_columns_number() == 1, LOG);
+
+    if (numerical_differentiation_tests) {
 //      numerical_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_outputs, inputs);
 
 //      assert_true((Hessian_form[0]-numerical_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(3, 2, 1);
+    n.set(3, 2, 1);
 
-   inputs.set(3, 3.1415927);
+    inputs.set(3, 3.1415927);
 
 //   Hessian_form = n.calculate_Hessian_form(inputs);
 
-//   assert_true(Hessian_form.size() == 1, LOG);    
-//   assert_true(Hessian_form[0].is_symmetric(), LOG);    
-//   assert_true(Hessian_form[0].get_rows_number() == 3, LOG);    
-//   assert_true(Hessian_form[0].get_columns_number() == 3, LOG);    
+//   assert_true(Hessian_form.size() == 1, LOG);
+//   assert_true(Hessian_form[0].is_symmetric(), LOG);
+//   assert_true(Hessian_form[0].get_rows_number() == 3, LOG);
+//   assert_true(Hessian_form[0].get_columns_number() == 3, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      numerical_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_outputs, inputs);
 
 //    assert_true((Hessian_form[0]-numerical_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(3, 4, 2);
+    n.set(3, 4, 2);
 
-   inputs.set(3, 3.1415927);
+    inputs.set(3, 3.1415927);
 
 //   Hessian_form = n.calculate_Hessian_form(inputs);
 
-//   assert_true(Hessian_form.size() == 2, LOG);    
-//   assert_true(Hessian_form[0].get_rows_number() == 3, LOG);    
-//   assert_true(Hessian_form[0].get_columns_number() == 3, LOG);    
+//   assert_true(Hessian_form.size() == 2, LOG);
+//   assert_true(Hessian_form[0].get_rows_number() == 3, LOG);
+//   assert_true(Hessian_form[0].get_columns_number() == 3, LOG);
 
-//   assert_true(Hessian_form[1].get_rows_number() == 3, LOG);    
-//   assert_true(Hessian_form[1].get_columns_number() == 3, LOG);    
+//   assert_true(Hessian_form[1].get_rows_number() == 3, LOG);
+//   assert_true(Hessian_form[1].get_columns_number() == 3, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      numerical_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_outputs, inputs);
 
 //    assert_true((Hessian_form[0]-numerical_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
 //    assert_true((Hessian_form[1]-numerical_Hessian_form[1]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   architecture.set(5, 1);
+    architecture.set(5, 1);
 
-   n.set(architecture);
+    n.set(architecture);
 
-   inputs.set(1, 3.1415927);
+    inputs.set(1, 3.1415927);
 
 //   Hessian_form = n.calculate_Hessian_form(inputs);
-//   assert_true(Hessian_form.size() == 1, LOG);    
+//   assert_true(Hessian_form.size() == 1, LOG);
 
-//   assert_true(Hessian_form[0].get_rows_number() == 1, LOG);    
-//   assert_true(Hessian_form[0].get_columns_number() == 1, LOG);    
+//   assert_true(Hessian_form[0].get_rows_number() == 1, LOG);
+//   assert_true(Hessian_form[0].get_columns_number() == 1, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      numerical_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_outputs, inputs);
 
 //    assert_true((Hessian_form[0]-numerical_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   if(numerical_differentiation_tests)
-   {
-      architecture.set(3, 2, 9);
+    if (numerical_differentiation_tests) {
+        architecture.set(3, 2, 9);
 
-      n.set(architecture);
+        n.set(architecture);
 
 //      inputs.set(4);
 //      inputs[0] = -1.025;
@@ -1482,47 +1473,47 @@ void MultilayerPerceptronTest::test_calculate_Hessian_form(void)
 //    numerical_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_outputs, inputs);
 
 //    assert_true((Hessian_form[0]-numerical_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(2, 4, 3);
+    n.set(2, 4, 3);
 
-   parameters.set(27);
+    parameters.set(27);
 
-   parameters[0]  =  0.85;
-   parameters[1]  = -0.04;
-   parameters[2]  =  0.87;
-   parameters[3]  = -0.25;
-   parameters[4]  =  0.25;
-   parameters[5]  = -0.27;
-   parameters[6]  =  0.29;
-   parameters[7]  = -0.57;
-   parameters[8]  =  0.15;
-   parameters[9]  = -0.77;
-   parameters[10] =  0.96;
-   parameters[11] = -0.48;
-   parameters[12] =  0.08;
-   parameters[13] = -0.06;
-   parameters[14] =  0.26;
-   parameters[15] = -0.15;
-   parameters[16] =  0.96;
-   parameters[17] = -0.33;
-   parameters[18] =  0.63;
-   parameters[19] = -0.32; 
-   parameters[20] =  0.89;
-   parameters[21] = -0.80;
-   parameters[22] =  0.80; 
-   parameters[23] = -0.03;
-   parameters[24] =  0.32;
-   parameters[25] =  0.06; 
-   parameters[26] = -0.38;
+    parameters[0] = 0.85;
+    parameters[1] = -0.04;
+    parameters[2] = 0.87;
+    parameters[3] = -0.25;
+    parameters[4] = 0.25;
+    parameters[5] = -0.27;
+    parameters[6] = 0.29;
+    parameters[7] = -0.57;
+    parameters[8] = 0.15;
+    parameters[9] = -0.77;
+    parameters[10] = 0.96;
+    parameters[11] = -0.48;
+    parameters[12] = 0.08;
+    parameters[13] = -0.06;
+    parameters[14] = 0.26;
+    parameters[15] = -0.15;
+    parameters[16] = 0.96;
+    parameters[17] = -0.33;
+    parameters[18] = 0.63;
+    parameters[19] = -0.32;
+    parameters[20] = 0.89;
+    parameters[21] = -0.80;
+    parameters[22] = 0.80;
+    parameters[23] = -0.03;
+    parameters[24] = 0.32;
+    parameters[25] = 0.06;
+    parameters[26] = -0.38;
 
-   n.set_parameters(parameters);   
+    n.set_parameters(parameters);
 
-   inputs.set(2);
-   inputs[0] = -0.88;
-   inputs[1] =  0.78;
+    inputs.set(2);
+    inputs[0] = -0.88;
+    inputs[1] = 0.78;
 
 //   hidden_layer_output = n.calculate_layer_output(0, inputs);
 //   hidden_layer_Jacobian = n.calculate_layer_Jacobian(0, inputs);
@@ -1542,7 +1533,7 @@ void MultilayerPerceptronTest::test_calculate_Hessian_form(void)
 //   assert_true(Hessian_form[2].get_rows_number() == 2, LOG);
 //   assert_true(Hessian_form[2].get_columns_number() == 2, LOG);
 
-//   Hessian = hidden_layer_Jacobian.calculate_transpose().dot(output_layer_Hessian_form[0]).dot(hidden_layer_Jacobian) 
+//   Hessian = hidden_layer_Jacobian.calculate_transpose().dot(output_layer_Hessian_form[0]).dot(hidden_layer_Jacobian)
 //	       + hidden_layer_Hessian_form[0]*output_layer_Jacobian(0,0)
 //	       + hidden_layer_Hessian_form[1]*output_layer_Jacobian(0,1)
 //	       + hidden_layer_Hessian_form[2]*output_layer_Jacobian(0,2)
@@ -1550,7 +1541,7 @@ void MultilayerPerceptronTest::test_calculate_Hessian_form(void)
 
 //   assert_true(Hessian_form[0] == Hessian, LOG);
 
-//   Hessian = hidden_layer_Jacobian.calculate_transpose().dot(output_layer_Hessian_form[1]).dot(hidden_layer_Jacobian) 
+//   Hessian = hidden_layer_Jacobian.calculate_transpose().dot(output_layer_Hessian_form[1]).dot(hidden_layer_Jacobian)
 //	       + hidden_layer_Hessian_form[0]*output_layer_Jacobian(1,0)
 //	       + hidden_layer_Hessian_form[1]*output_layer_Jacobian(1,1)
 //	       + hidden_layer_Hessian_form[2]*output_layer_Jacobian(1,2)
@@ -1558,7 +1549,7 @@ void MultilayerPerceptronTest::test_calculate_Hessian_form(void)
 
 //   assert_true(Hessian_form[1] == Hessian, LOG);
 
-//   Hessian = hidden_layer_Jacobian.calculate_transpose().dot(output_layer_Hessian_form[2]).dot(hidden_layer_Jacobian) 
+//   Hessian = hidden_layer_Jacobian.calculate_transpose().dot(output_layer_Hessian_form[2]).dot(hidden_layer_Jacobian)
 //	       + hidden_layer_Hessian_form[0]*output_layer_Jacobian(2,0)
 //	       + hidden_layer_Hessian_form[1]*output_layer_Jacobian(2,1)
 //	       + hidden_layer_Hessian_form[2]*output_layer_Jacobian(2,2)
@@ -1574,7 +1565,7 @@ void MultilayerPerceptronTest::test_calculate_Hessian_form(void)
 //    assert_true((Hessian_form[1]-numerical_Hessian_form[1]).calculate_absolute_value() < 1.0e-3, LOG);
 //   }
 
-   // Test
+    // Test
 
 //   for(size_t i = 0; i < random_tests_number; i++)
 //   {
@@ -1595,7 +1586,7 @@ void MultilayerPerceptronTest::test_calculate_Hessian_form(void)
 
 //	     for(size_t j = 0; j < outputs_number; j++)
 //	     {
-//         assert_true((Hessian_form[j]-numerical_Hessian_form[j]).calculate_absolute_value() < 1.0e-3, LOG);	  
+//         assert_true((Hessian_form[j]-numerical_Hessian_form[j]).calculate_absolute_value() < 1.0e-3, LOG);
 //	     }
 //      }
 //   }
@@ -1605,881 +1596,938 @@ void MultilayerPerceptronTest::test_calculate_Hessian_form(void)
 
 void MultilayerPerceptronTest::test_calculate_layer_combination_combination(void)
 {
-   message += "test_calculate_layer_combination_combination\n";   
+    message += "test_calculate_layer_combination_combination\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   Vector<double> inputs;
+    Vector<double> inputs;
 
-   Vector<double> hidden_layer_combination;
-   Vector<double> hidden_layer_activation;
-   Vector<double> output_layer_combination;
+    Vector<double> hidden_layer_combination;
+    Vector<double> hidden_layer_activation;
+    Vector<double> output_layer_combination;
 
-   Vector<double> previous_layer_combination;   
-   Vector<double> layer_combination_combination;   
+    Vector<double> previous_layer_combination;
+    Vector<double> layer_combination_combination;
 
-   // Test
+    // Test
 
-   n.set(1, 1, 1);
-   n.initialize_parameters(0.0);
+    n.set(1, 1, 1);
+    n.initialize_parameters(0.0);
 
-   previous_layer_combination.set(1, 0.0);
+    previous_layer_combination.set(1, 0.0);
 
-   layer_combination_combination = n.calculate_layer_combination_combination(1, previous_layer_combination);
-   assert_true(layer_combination_combination.size() == 1, LOG);      
-   assert_true(layer_combination_combination == 0.0, LOG);
+    layer_combination_combination = n.calculate_layer_combination_combination(1, previous_layer_combination);
+    assert_true(layer_combination_combination.size() == 1, LOG);
+    assert_true(layer_combination_combination == 0.0, LOG);
 
-   // Test
+    // Test
 
-   n.set(2, 4, 3);
+    n.set(2, 4, 3);
 
-   parameters.set(27);
+    parameters.set(27);
 
-   parameters[0]  =  0.85;
-   parameters[1]  = -0.04;
-   parameters[2]  =  0.87;
-   parameters[3]  = -0.25;
-   parameters[4]  =  0.25;
-   parameters[5]  = -0.27;
-   parameters[6]  =  0.29;
-   parameters[7]  = -0.57;
-   parameters[8]  =  0.15;
-   parameters[9]  = -0.77;
-   parameters[10] =  0.96;
-   parameters[11] = -0.48;
-   parameters[12] =  0.08;
-   parameters[13] = -0.06;
-   parameters[14] =  0.26;
-   parameters[15] = -0.15;
-   parameters[16] =  0.96;
-   parameters[17] = -0.33;
-   parameters[18] =  0.63;
-   parameters[19] = -0.32; 
-   parameters[20] =  0.89;
-   parameters[21] = -0.80;
-   parameters[22] =  0.80; 
-   parameters[23] = -0.03;
-   parameters[24] =  0.32;
-   parameters[25] =  0.06; 
-   parameters[26] = -0.38;
+    parameters[0] = 0.85;
+    parameters[1] = -0.04;
+    parameters[2] = 0.87;
+    parameters[3] = -0.25;
+    parameters[4] = 0.25;
+    parameters[5] = -0.27;
+    parameters[6] = 0.29;
+    parameters[7] = -0.57;
+    parameters[8] = 0.15;
+    parameters[9] = -0.77;
+    parameters[10] = 0.96;
+    parameters[11] = -0.48;
+    parameters[12] = 0.08;
+    parameters[13] = -0.06;
+    parameters[14] = 0.26;
+    parameters[15] = -0.15;
+    parameters[16] = 0.96;
+    parameters[17] = -0.33;
+    parameters[18] = 0.63;
+    parameters[19] = -0.32;
+    parameters[20] = 0.89;
+    parameters[21] = -0.80;
+    parameters[22] = 0.80;
+    parameters[23] = -0.03;
+    parameters[24] = 0.32;
+    parameters[25] = 0.06;
+    parameters[26] = -0.38;
 
-   n.set_parameters(parameters);   
+    n.set_parameters(parameters);
 
-   inputs.set(2);
-   inputs[0] = -0.88;
-   inputs[1] =  0.78;
+    inputs.set(2);
+    inputs[0] = -0.88;
+    inputs[1] = 0.78;
 
-   const PerceptronLayer& hl = n.get_layer(0);
+    const PerceptronLayer &hl = n.get_layer(0);
 
-   hidden_layer_combination = hl.calculate_combinations(inputs);
-   hidden_layer_activation = hl.calculate_activations(hidden_layer_combination);
+    hidden_layer_combination = hl.calculate_combinations(inputs);
+    hidden_layer_activation = hl.calculate_activations(hidden_layer_combination);
 
-   const PerceptronLayer& ol = n.get_layer(1);
-   
-   output_layer_combination = ol.calculate_combinations(hidden_layer_activation);
+    const PerceptronLayer &ol = n.get_layer(1);
 
-   layer_combination_combination = n.calculate_layer_combination_combination(1, hidden_layer_combination);
+    output_layer_combination = ol.calculate_combinations(hidden_layer_activation);
 
-   assert_true((layer_combination_combination - output_layer_combination).calculate_absolute_value() < 1.0e-3, LOG);
+    layer_combination_combination = n.calculate_layer_combination_combination(1, hidden_layer_combination);
+
+    assert_true((layer_combination_combination - output_layer_combination).calculate_absolute_value() < 1.0e-3, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_calculate_layer_combination_combination_Jacobian(void)
 {
-   message += "test_calculate_layer_combination_combination_Jacobian\n";
+    message += "test_calculate_layer_combination_combination_Jacobian\n";
 
-   std::cout.precision(2);
+    std::cout.precision(2);
 
-   NumericalDifferentiation nd;
+    NumericalDifferentiation nd;
 
-   MultilayerPerceptron mp;
+    MultilayerPerceptron mp;
 
-   Vector<size_t> architecture;
+    Vector<size_t> architecture;
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   Matrix<double> output_layer_synaptic_weights;
+    Matrix<double> output_layer_synaptic_weights;
 
-   Vector<double> inputs;
+    Vector<double> inputs;
 
-   Vector<double> hidden_layer_combination;
-   Vector<double> hidden_layer_activation;
-   Vector<double> hidden_layer_activation_derivative;
-   Vector<double> output_layer_combination;
+    Vector<double> hidden_layer_combination;
+    Vector<double> hidden_layer_activation;
+    Vector<double> hidden_layer_activation_derivative;
+    Vector<double> output_layer_combination;
 
-   Vector<double> previous_layer_combination;
-   Vector<double> previous_layer_activation_derivative;
+    Vector<double> previous_layer_combination;
+    Vector<double> previous_layer_activation_derivative;
 
-   Matrix<double> layer_combination_combination_Jacobian;
-   Matrix<double> numerical_layer_combination_combination_Jacobian;
+    Matrix<double> layer_combination_combination_Jacobian;
+    Matrix<double> numerical_layer_combination_combination_Jacobian;
 
-   // Test
+    // Test
 
-   mp.set(1, 1, 1);
-   mp.initialize_parameters(0.0);
-   inputs.set(1, 0.0);   
+    mp.set(1, 1, 1);
+    mp.initialize_parameters(0.0);
+    inputs.set(1, 0.0);
 
-   previous_layer_combination = mp.get_layer(0).calculate_combinations(inputs);
+    previous_layer_combination = mp.get_layer(0).calculate_combinations(inputs);
 
-   layer_combination_combination_Jacobian = mp.calculate_layer_combination_combination_Jacobian(1, previous_layer_combination);
-   
-   assert_true(layer_combination_combination_Jacobian == 0.0, LOG);
+    layer_combination_combination_Jacobian = mp.calculate_layer_combination_combination_Jacobian(1,
+                                                                                                 previous_layer_combination);
 
-   // Test
+    assert_true(layer_combination_combination_Jacobian == 0.0, LOG);
 
-   mp.set(1, 2, 3);
-   mp.randomize_parameters_normal();
+    // Test
 
-   inputs.set(1);
-   inputs.randomize_normal();
+    mp.set(1, 2, 3);
+    mp.randomize_parameters_normal();
 
-   const PerceptronLayer& previous_layer = mp.get_layer(0);
+    inputs.set(1);
+    inputs.randomize_normal();
 
-   previous_layer_combination = previous_layer.calculate_combinations(inputs);
-   previous_layer_activation_derivative = previous_layer.calculate_activations_derivatives(previous_layer_combination);
+    const PerceptronLayer &previous_layer = mp.get_layer(0);
 
-   layer_combination_combination_Jacobian = mp.calculate_layer_combination_combination_Jacobian(1, previous_layer_activation_derivative);
+    previous_layer_combination = previous_layer.calculate_combinations(inputs);
+    previous_layer_activation_derivative = previous_layer.calculate_activations_derivatives(previous_layer_combination);
+
+    layer_combination_combination_Jacobian = mp.calculate_layer_combination_combination_Jacobian(1,
+                                                                                                 previous_layer_activation_derivative);
 
 //   if(numerical_differentiation_tests)
 //   {
-      numerical_layer_combination_combination_Jacobian = nd.calculate_Jacobian(mp, &MultilayerPerceptron::calculate_layer_combination_combination, 1, previous_layer_combination);
+    numerical_layer_combination_combination_Jacobian = nd.calculate_Jacobian(mp,
+                                                                             &MultilayerPerceptron::calculate_layer_combination_combination,
+                                                                             1,
+                                                                             previous_layer_combination);
 
-      assert_true((layer_combination_combination_Jacobian - numerical_layer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
+    assert_true((layer_combination_combination_Jacobian - numerical_layer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3,
+                LOG);
 //   }
 
 
-   // Test
+    // Test
 
-  mp.set(5, 10, 2);
-  mp.randomize_parameters_normal();
+    mp.set(5, 10, 2);
+    mp.randomize_parameters_normal();
 
-  inputs.set(5);
-  inputs.randomize_normal();
+    inputs.set(5);
+    inputs.randomize_normal();
 
-  const PerceptronLayer& previous_layer2 = mp.get_layer(0);
+    const PerceptronLayer &previous_layer2 = mp.get_layer(0);
 
-  previous_layer_combination = previous_layer2.calculate_combinations(inputs);
-  previous_layer_activation_derivative = previous_layer2.calculate_activations_derivatives(previous_layer_combination);
+    previous_layer_combination = previous_layer2.calculate_combinations(inputs);
+    previous_layer_activation_derivative = previous_layer2.calculate_activations_derivatives(previous_layer_combination);
 
-  layer_combination_combination_Jacobian = mp.calculate_layer_combination_combination_Jacobian(1, previous_layer_activation_derivative);
+    layer_combination_combination_Jacobian = mp.calculate_layer_combination_combination_Jacobian(1,
+                                                                                                 previous_layer_activation_derivative);
 
-  //   if(numerical_differentiation_tests)
-  //   {
-  numerical_layer_combination_combination_Jacobian = nd.calculate_Jacobian(mp, &MultilayerPerceptron::calculate_layer_combination_combination, 1, previous_layer_combination);
+    //   if(numerical_differentiation_tests)
+    //   {
+    numerical_layer_combination_combination_Jacobian = nd.calculate_Jacobian(mp,
+                                                                             &MultilayerPerceptron::calculate_layer_combination_combination,
+                                                                             1,
+                                                                             previous_layer_combination);
 
-  assert_true((layer_combination_combination_Jacobian - numerical_layer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-  //   }
+    assert_true((layer_combination_combination_Jacobian - numerical_layer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3,
+                LOG);
+    //   }
 
-   // Test
+    // Test
 
-   mp.set(2, 4, 3);
+    mp.set(2, 4, 3);
 
-   parameters.set(27);
+    parameters.set(27);
 
-   parameters[0]  =  0.85;
-   parameters[1]  = -0.04;
-   parameters[2]  =  0.87;
-   parameters[3]  = -0.25;
-   parameters[4]  =  0.25;
-   parameters[5]  = -0.27;
-   parameters[6]  =  0.29;
-   parameters[7]  = -0.57;
-   parameters[8]  =  0.15;
-   parameters[9]  = -0.77;
-   parameters[10] =  0.96;
-   parameters[11] = -0.48;
-   parameters[12] =  0.08;
-   parameters[13] = -0.06;
-   parameters[14] =  0.26;
-   parameters[15] = -0.15;
-   parameters[16] =  0.96;
-   parameters[17] = -0.33;
-   parameters[18] =  0.63;
-   parameters[19] = -0.32; 
-   parameters[20] =  0.89;
-   parameters[21] = -0.80;
-   parameters[22] =  0.80; 
-   parameters[23] = -0.03;
-   parameters[24] =  0.32;
-   parameters[25] =  0.06; 
-   parameters[26] = -0.38;
+    parameters[0] = 0.85;
+    parameters[1] = -0.04;
+    parameters[2] = 0.87;
+    parameters[3] = -0.25;
+    parameters[4] = 0.25;
+    parameters[5] = -0.27;
+    parameters[6] = 0.29;
+    parameters[7] = -0.57;
+    parameters[8] = 0.15;
+    parameters[9] = -0.77;
+    parameters[10] = 0.96;
+    parameters[11] = -0.48;
+    parameters[12] = 0.08;
+    parameters[13] = -0.06;
+    parameters[14] = 0.26;
+    parameters[15] = -0.15;
+    parameters[16] = 0.96;
+    parameters[17] = -0.33;
+    parameters[18] = 0.63;
+    parameters[19] = -0.32;
+    parameters[20] = 0.89;
+    parameters[21] = -0.80;
+    parameters[22] = 0.80;
+    parameters[23] = -0.03;
+    parameters[24] = 0.32;
+    parameters[25] = 0.06;
+    parameters[26] = -0.38;
 
-   mp.set_parameters(parameters);
+    mp.set_parameters(parameters);
 
-   inputs.set(2);
-   inputs[0] = -0.88;
-   inputs[1] =  0.78;
+    inputs.set(2);
+    inputs[0] = -0.88;
+    inputs[1] = 0.78;
 
-   const PerceptronLayer& hidden_layer = mp.get_layer(0);
+    const PerceptronLayer &hidden_layer = mp.get_layer(0);
 
-   hidden_layer_combination = hidden_layer.calculate_combinations(inputs);
-   hidden_layer_activation = hidden_layer.calculate_activations(hidden_layer_combination);
-   hidden_layer_activation_derivative = hidden_layer.calculate_activations_derivatives(hidden_layer_combination);
+    hidden_layer_combination = hidden_layer.calculate_combinations(inputs);
+    hidden_layer_activation = hidden_layer.calculate_activations(hidden_layer_combination);
+    hidden_layer_activation_derivative = hidden_layer.calculate_activations_derivatives(hidden_layer_combination);
 
-   const PerceptronLayer& output_layer = mp.get_layer(1);
+    const PerceptronLayer &output_layer = mp.get_layer(1);
 
-   output_layer_combination = output_layer.calculate_combinations(hidden_layer_activation);
+    output_layer_combination = output_layer.calculate_combinations(hidden_layer_activation);
 
-   layer_combination_combination_Jacobian = mp.calculate_layer_combination_combination_Jacobian(1, hidden_layer_activation_derivative);
+    layer_combination_combination_Jacobian = mp.calculate_layer_combination_combination_Jacobian(1,
+                                                                                                 hidden_layer_activation_derivative);
 
 //   if(numerical_differentiation_tests)
 //   {
-      numerical_layer_combination_combination_Jacobian = nd.calculate_Jacobian(mp, &MultilayerPerceptron::calculate_layer_combination_combination, 1, hidden_layer_combination);
+    numerical_layer_combination_combination_Jacobian = nd.calculate_Jacobian(mp,
+                                                                             &MultilayerPerceptron::calculate_layer_combination_combination,
+                                                                             1,
+                                                                             hidden_layer_combination);
 
-      assert_true((layer_combination_combination_Jacobian - numerical_layer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
+    assert_true((layer_combination_combination_Jacobian - numerical_layer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3,
+                LOG);
 //   }
 }
 
 
 void MultilayerPerceptronTest::test_calculate_interlayer_combination_combination(void)
 {
-   message += "test_calculate_interlayer_combination_combination\n";
+    message += "test_calculate_interlayer_combination_combination\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector<size_t> architecture;
-   Vector<double> parameters;
-   Vector<double> inputs;
+    Vector<size_t> architecture;
+    Vector<double> parameters;
+    Vector<double> inputs;
 
-   Vector<double> hidden_layer_combination;
-   Vector<double> hidden_layer_activation;
-   Vector<double> output_layer_combination;
+    Vector<double> hidden_layer_combination;
+    Vector<double> hidden_layer_activation;
+    Vector<double> output_layer_combination;
 
-   Vector<double> domain_layer_combination;
-   Vector<double> interlayer_combination_combination;
-  
-   // Test
+    Vector<double> domain_layer_combination;
+    Vector<double> interlayer_combination_combination;
 
-   n.set(2, 4, 3);
+    // Test
 
-   parameters.set(27);
+    n.set(2, 4, 3);
 
-   parameters[0]  =  0.85;
-   parameters[1]  = -0.04;
-   parameters[2]  =  0.87;
-   parameters[3]  = -0.25;
-   parameters[4]  =  0.25;
-   parameters[5]  = -0.27;
-   parameters[6]  =  0.29;
-   parameters[7]  = -0.57;
-   parameters[8]  =  0.15;
-   parameters[9]  = -0.77;
-   parameters[10] =  0.96;
-   parameters[11] = -0.48;
-   parameters[12] =  0.08;
-   parameters[13] = -0.06;
-   parameters[14] =  0.26;
-   parameters[15] = -0.15;
-   parameters[16] =  0.96;
-   parameters[17] = -0.33;
-   parameters[18] =  0.63;
-   parameters[19] = -0.32; 
-   parameters[20] =  0.89;
-   parameters[21] = -0.80;
-   parameters[22] =  0.80; 
-   parameters[23] = -0.03;
-   parameters[24] =  0.32;
-   parameters[25] =  0.06; 
-   parameters[26] = -0.38;
+    parameters.set(27);
 
-   n.set_parameters(parameters);   
+    parameters[0] = 0.85;
+    parameters[1] = -0.04;
+    parameters[2] = 0.87;
+    parameters[3] = -0.25;
+    parameters[4] = 0.25;
+    parameters[5] = -0.27;
+    parameters[6] = 0.29;
+    parameters[7] = -0.57;
+    parameters[8] = 0.15;
+    parameters[9] = -0.77;
+    parameters[10] = 0.96;
+    parameters[11] = -0.48;
+    parameters[12] = 0.08;
+    parameters[13] = -0.06;
+    parameters[14] = 0.26;
+    parameters[15] = -0.15;
+    parameters[16] = 0.96;
+    parameters[17] = -0.33;
+    parameters[18] = 0.63;
+    parameters[19] = -0.32;
+    parameters[20] = 0.89;
+    parameters[21] = -0.80;
+    parameters[22] = 0.80;
+    parameters[23] = -0.03;
+    parameters[24] = 0.32;
+    parameters[25] = 0.06;
+    parameters[26] = -0.38;
 
-   inputs.set(2);
-   inputs[0] = -0.88;
-   inputs[1] =  0.78;
+    n.set_parameters(parameters);
 
-   const PerceptronLayer& hidden_layer = n.get_layer(0);
+    inputs.set(2);
+    inputs[0] = -0.88;
+    inputs[1] = 0.78;
 
-   hidden_layer_combination = hidden_layer.calculate_combinations(inputs);
-   hidden_layer_activation = hidden_layer.calculate_activations(hidden_layer_combination);
+    const PerceptronLayer &hidden_layer = n.get_layer(0);
 
-   const PerceptronLayer& output_layer = n.get_layer(1);
+    hidden_layer_combination = hidden_layer.calculate_combinations(inputs);
+    hidden_layer_activation = hidden_layer.calculate_activations(hidden_layer_combination);
 
-   output_layer_combination = output_layer.calculate_combinations(hidden_layer_activation);
+    const PerceptronLayer &output_layer = n.get_layer(1);
 
-   interlayer_combination_combination = n.calculate_interlayer_combination_combination(0, 0, hidden_layer_combination);
+    output_layer_combination = output_layer.calculate_combinations(hidden_layer_activation);
 
-   assert_true((interlayer_combination_combination - hidden_layer_combination).calculate_absolute_value() < 1.0e-3, LOG);
+    interlayer_combination_combination = n.calculate_interlayer_combination_combination(0, 0, hidden_layer_combination);
 
-   interlayer_combination_combination = n.calculate_interlayer_combination_combination(0, 1, hidden_layer_combination);
+    assert_true((interlayer_combination_combination - hidden_layer_combination).calculate_absolute_value() < 1.0e-3,
+                LOG);
 
-   assert_true((interlayer_combination_combination - output_layer_combination).calculate_absolute_value() < 1.0e-3, LOG);
+    interlayer_combination_combination = n.calculate_interlayer_combination_combination(0, 1, hidden_layer_combination);
 
-   interlayer_combination_combination = n.calculate_interlayer_combination_combination(1, 1, output_layer_combination);
+    assert_true((interlayer_combination_combination - output_layer_combination).calculate_absolute_value() < 1.0e-3,
+                LOG);
 
-   assert_true((interlayer_combination_combination - output_layer_combination).calculate_absolute_value() < 1.0e-3, LOG);
+    interlayer_combination_combination = n.calculate_interlayer_combination_combination(1, 1, output_layer_combination);
+
+    assert_true((interlayer_combination_combination - output_layer_combination).calculate_absolute_value() < 1.0e-3,
+                LOG);
 }
 
 
-// @todo 
+// @todo
 
 void MultilayerPerceptronTest::test_calculate_interlayer_combination_combination_Jacobian(void)
 {
-   message += "test_calculate_interlayer_combination_combination_Jacobian\n";
+    message += "test_calculate_interlayer_combination_combination_Jacobian\n";
 
-   NumericalDifferentiation nd;
+    NumericalDifferentiation nd;
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   size_t inputs_number;
-   size_t layers_number;
-   Vector<size_t> architecture;
+    size_t inputs_number;
+    size_t layers_number;
+    Vector<size_t> architecture;
 
-   Vector<double> parameters;
-   Vector<double> inputs;
+    Vector<double> parameters;
+    Vector<double> inputs;
 
-   Vector<double> hidden_layer_combination;
-   Vector<double> hidden_layer_activation;
-   Vector<double> hidden_layer_activation_derivative;
-   Vector<double> output_layer_combination;
-   Vector<double> domain_layer_combination;
+    Vector<double> hidden_layer_combination;
+    Vector<double> hidden_layer_activation;
+    Vector<double> hidden_layer_activation_derivative;
+    Vector<double> output_layer_combination;
+    Vector<double> domain_layer_combination;
 
-   Vector<double> interlayer_combination_combination;
+    Vector<double> interlayer_combination_combination;
 
-   Vector< Vector<double> > layers_combination;
+    Vector<Vector<double> > layers_combination;
 
-   Matrix<double> layer_combination_combination_Jacobian;
-   Matrix<double> interlayer_combination_combination_Jacobian;
+    Matrix<double> layer_combination_combination_Jacobian;
+    Matrix<double> interlayer_combination_combination_Jacobian;
 
-   Matrix<double> numerical_interlayer_combination_combination_Jacobian;
+    Matrix<double> numerical_interlayer_combination_combination_Jacobian;
 
-   // Test
+    // Test
 
-   n.set(2, 4, 3);
+    n.set(2, 4, 3);
 
-   parameters.set(27);
+    parameters.set(27);
 
-   parameters[0]  =  0.85;
-   parameters[1]  = -0.04;
-   parameters[2]  =  0.87;
-   parameters[3]  = -0.25;
-   parameters[4]  =  0.25;
-   parameters[5]  = -0.27;
-   parameters[6]  =  0.29;
-   parameters[7]  = -0.57;
-   parameters[8]  =  0.15;
-   parameters[9]  = -0.77;
-   parameters[10] =  0.96;
-   parameters[11] = -0.48;
-   parameters[12] =  0.08;
-   parameters[13] = -0.06;
-   parameters[14] =  0.26;
-   parameters[15] = -0.15;
-   parameters[16] =  0.96;
-   parameters[17] = -0.33;
-   parameters[18] =  0.63;
-   parameters[19] = -0.32; 
-   parameters[20] =  0.89;
-   parameters[21] = -0.80;
-   parameters[22] =  0.80; 
-   parameters[23] = -0.03;
-   parameters[24] =  0.32;
-   parameters[25] =  0.06; 
-   parameters[26] = -0.38;
+    parameters[0] = 0.85;
+    parameters[1] = -0.04;
+    parameters[2] = 0.87;
+    parameters[3] = -0.25;
+    parameters[4] = 0.25;
+    parameters[5] = -0.27;
+    parameters[6] = 0.29;
+    parameters[7] = -0.57;
+    parameters[8] = 0.15;
+    parameters[9] = -0.77;
+    parameters[10] = 0.96;
+    parameters[11] = -0.48;
+    parameters[12] = 0.08;
+    parameters[13] = -0.06;
+    parameters[14] = 0.26;
+    parameters[15] = -0.15;
+    parameters[16] = 0.96;
+    parameters[17] = -0.33;
+    parameters[18] = 0.63;
+    parameters[19] = -0.32;
+    parameters[20] = 0.89;
+    parameters[21] = -0.80;
+    parameters[22] = 0.80;
+    parameters[23] = -0.03;
+    parameters[24] = 0.32;
+    parameters[25] = 0.06;
+    parameters[26] = -0.38;
 
-   n.set_parameters(parameters);   
+    n.set_parameters(parameters);
 
-   inputs.set(2);
-   inputs[0] = -0.88;
-   inputs[1] =  0.78;
+    inputs.set(2);
+    inputs[0] = -0.88;
+    inputs[1] = 0.78;
 
-   const PerceptronLayer& hidden_layer = n.get_layer(0);
+    const PerceptronLayer &hidden_layer = n.get_layer(0);
 
-   hidden_layer_combination = hidden_layer.calculate_combinations(inputs);
-   hidden_layer_activation = hidden_layer.calculate_activations(hidden_layer_combination);
+    hidden_layer_combination = hidden_layer.calculate_combinations(inputs);
+    hidden_layer_activation = hidden_layer.calculate_activations(hidden_layer_combination);
 
-   hidden_layer_activation_derivative = hidden_layer.calculate_activations_derivatives(hidden_layer_combination);
+    hidden_layer_activation_derivative = hidden_layer.calculate_activations_derivatives(hidden_layer_combination);
 
-   const PerceptronLayer& output_layer = n.get_layer(1);
+    const PerceptronLayer &output_layer = n.get_layer(1);
 
-   output_layer_combination = output_layer.calculate_combinations(hidden_layer_activation);
+    output_layer_combination = output_layer.calculate_combinations(hidden_layer_activation);
 
-   interlayer_combination_combination_Jacobian = n.calculate_interlayer_combination_combination_Jacobian(0, 0, hidden_layer_combination);
-   assert_true(interlayer_combination_combination_Jacobian.get_rows_number() == 4, LOG);
-   assert_true(interlayer_combination_combination_Jacobian.get_columns_number() == 4, LOG);
-   assert_true(interlayer_combination_combination_Jacobian.is_identity(), LOG);
+    interlayer_combination_combination_Jacobian = n.calculate_interlayer_combination_combination_Jacobian(0,
+                                                                                                          0,
+                                                                                                          hidden_layer_combination);
+    assert_true(interlayer_combination_combination_Jacobian.get_rows_number() == 4, LOG);
+    assert_true(interlayer_combination_combination_Jacobian.get_columns_number() == 4, LOG);
+    assert_true(interlayer_combination_combination_Jacobian.is_identity(), LOG);
 
-   //if(numerical_differentiation_tests)
-   //{
-      numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(n, &MultilayerPerceptron::calculate_interlayer_combination_combination, 0, 0, hidden_layer_combination);
-      assert_true((interlayer_combination_combination_Jacobian-numerical_interlayer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);			    
-   //}
+    //if(numerical_differentiation_tests)
+    //{
+    numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(n,
+                                                                                  &MultilayerPerceptron::calculate_interlayer_combination_combination,
+                                                                                  0,
+                                                                                  0,
+                                                                                  hidden_layer_combination);
+    assert_true((interlayer_combination_combination_Jacobian - numerical_interlayer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3,
+                LOG);
+    //}
 
-   interlayer_combination_combination_Jacobian = n.calculate_interlayer_combination_combination_Jacobian(0, 1, hidden_layer_combination);
-   assert_true(interlayer_combination_combination_Jacobian.get_rows_number() == 3, LOG);
-   assert_true(interlayer_combination_combination_Jacobian.get_columns_number() == 4, LOG);
+    interlayer_combination_combination_Jacobian = n.calculate_interlayer_combination_combination_Jacobian(0,
+                                                                                                          1,
+                                                                                                          hidden_layer_combination);
+    assert_true(interlayer_combination_combination_Jacobian.get_rows_number() == 3, LOG);
+    assert_true(interlayer_combination_combination_Jacobian.get_columns_number() == 4, LOG);
 
-   layer_combination_combination_Jacobian = n.calculate_layer_combination_combination_Jacobian(1, hidden_layer_activation_derivative);
-   assert_true((interlayer_combination_combination_Jacobian - layer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
+    layer_combination_combination_Jacobian = n.calculate_layer_combination_combination_Jacobian(1,
+                                                                                                hidden_layer_activation_derivative);
+    assert_true((interlayer_combination_combination_Jacobian - layer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3,
+                LOG);
 
-  // if(numerical_differentiation_tests)
-   //{
-      numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(n, &MultilayerPerceptron::calculate_interlayer_combination_combination, 0, 1, hidden_layer_combination);
-      assert_true((interlayer_combination_combination_Jacobian-numerical_interlayer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);			    
-   //}
+    // if(numerical_differentiation_tests)
+    //{
+    numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(n,
+                                                                                  &MultilayerPerceptron::calculate_interlayer_combination_combination,
+                                                                                  0,
+                                                                                  1,
+                                                                                  hidden_layer_combination);
+    assert_true((interlayer_combination_combination_Jacobian - numerical_interlayer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3,
+                LOG);
+    //}
 
-   interlayer_combination_combination_Jacobian = n.calculate_interlayer_combination_combination_Jacobian(1, 0, hidden_layer_combination);
-   assert_true(interlayer_combination_combination_Jacobian.get_rows_number() == 4, LOG);
-   assert_true(interlayer_combination_combination_Jacobian.get_columns_number() == 3, LOG);
-   assert_true(interlayer_combination_combination_Jacobian == 0.0, LOG);
-   
-   interlayer_combination_combination_Jacobian = n.calculate_interlayer_combination_combination_Jacobian(1, 1, output_layer_combination);
-   assert_true(interlayer_combination_combination_Jacobian.get_rows_number() == 3, LOG);
-   assert_true(interlayer_combination_combination_Jacobian.get_columns_number() == 3, LOG);
-   assert_true(interlayer_combination_combination_Jacobian.is_identity(), LOG);
+    interlayer_combination_combination_Jacobian = n.calculate_interlayer_combination_combination_Jacobian(1,
+                                                                                                          0,
+                                                                                                          hidden_layer_combination);
+    assert_true(interlayer_combination_combination_Jacobian.get_rows_number() == 4, LOG);
+    assert_true(interlayer_combination_combination_Jacobian.get_columns_number() == 3, LOG);
+    assert_true(interlayer_combination_combination_Jacobian == 0.0, LOG);
 
-  // if(numerical_differentiation_tests)
-  // {
-      numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(n, &MultilayerPerceptron::calculate_interlayer_combination_combination, 1, 1, output_layer_combination);
-      assert_true((interlayer_combination_combination_Jacobian-numerical_interlayer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);			    
-  // }
+    interlayer_combination_combination_Jacobian = n.calculate_interlayer_combination_combination_Jacobian(1,
+                                                                                                          1,
+                                                                                                          output_layer_combination);
+    assert_true(interlayer_combination_combination_Jacobian.get_rows_number() == 3, LOG);
+    assert_true(interlayer_combination_combination_Jacobian.get_columns_number() == 3, LOG);
+    assert_true(interlayer_combination_combination_Jacobian.is_identity(), LOG);
 
-   // Test
+    // if(numerical_differentiation_tests)
+    // {
+    numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(n,
+                                                                                  &MultilayerPerceptron::calculate_interlayer_combination_combination,
+                                                                                  1,
+                                                                                  1,
+                                                                                  output_layer_combination);
+    assert_true((interlayer_combination_combination_Jacobian - numerical_interlayer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3,
+                LOG);
+    // }
 
-   for(size_t i = 0; i < random_tests_number; i++)
-   {
-      n.initialize_random();
+    // Test
 
-	  inputs_number = n.get_inputs_number();
+    for (size_t i = 0; i < random_tests_number; i++) {
+        n.initialize_random();
 
-      layers_number = n.get_layers_number();
+        inputs_number = n.get_inputs_number();
 
-	  inputs.set(inputs_number);
-	  inputs.randomize_normal();
+        layers_number = n.get_layers_number();
 
-	  layers_combination = n.calculate_layers_combination(inputs);
+        inputs.set(inputs_number);
+        inputs.randomize_normal();
 
-      for(size_t domain_index = 0; domain_index < layers_number; domain_index++)
-	  {
-         for(size_t image_index = 0; image_index < layers_number; image_index++)
-	     {              
-            interlayer_combination_combination_Jacobian = n.calculate_interlayer_combination_combination_Jacobian(domain_index, image_index, layers_combination[domain_index]);
+        layers_combination = n.calculate_layers_combination(inputs);
 
-	        if(domain_index <= image_index)
-		    {
-               //if(numerical_differentiation_tests)
-               //{
-                  numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(n, &MultilayerPerceptron::calculate_interlayer_combination_combination, domain_index, image_index, layers_combination[domain_index]);
-                  assert_true((interlayer_combination_combination_Jacobian-numerical_interlayer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-               //}
-			}
-			else
-			{
-               assert_true(interlayer_combination_combination_Jacobian == 0.0, LOG);			    
-		    }
-	     }	     
-      }   
-   }
+        for (size_t domain_index = 0; domain_index < layers_number; domain_index++) {
+            for (size_t image_index = 0; image_index < layers_number; image_index++) {
+                interlayer_combination_combination_Jacobian = n.calculate_interlayer_combination_combination_Jacobian(
+                        domain_index,
+                        image_index,
+                        layers_combination[domain_index]);
+
+                if (domain_index <= image_index) {
+                    //if(numerical_differentiation_tests)
+                    //{
+                    numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(n,
+                                                                                                  &MultilayerPerceptron::calculate_interlayer_combination_combination,
+                                                                                                  domain_index,
+                                                                                                  image_index,
+                                                                                                  layers_combination[domain_index]);
+                    assert_true((interlayer_combination_combination_Jacobian - numerical_interlayer_combination_combination_Jacobian)
+                                        .calculate_absolute_value() < 1.0e-3, LOG);
+                    //}
+                }
+                else {
+                    assert_true(interlayer_combination_combination_Jacobian == 0.0, LOG);
+                }
+            }
+        }
+    }
 
 }
 
 
 void MultilayerPerceptronTest::test_calculate_interlayers_combination_combination_Jacobian(void)
 {
-   message += "test_calculate_interlayers_combination_combination_Jacobian\n";
+    message += "test_calculate_interlayers_combination_combination_Jacobian\n";
 
-   NumericalDifferentiation nd;
+    NumericalDifferentiation nd;
 
-   MultilayerPerceptron mlp;
+    MultilayerPerceptron mlp;
 
-   size_t inputs_number;
-   size_t layers_number;
-   Vector<size_t> architecture;
+    size_t inputs_number;
+    size_t layers_number;
+    Vector<size_t> architecture;
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   Vector<double> inputs;
-   Matrix< Matrix<double> > interlayers_combination_combination_Jacobian;
+    Vector<double> inputs;
+    Matrix<Matrix<double> > interlayers_combination_combination_Jacobian;
 
-   Vector< Vector<double> > layers_combination;
+    Vector<Vector<double> > layers_combination;
 
-   Matrix<double> numerical_interlayer_combination_combination_Jacobian;
+    Matrix<double> numerical_interlayer_combination_combination_Jacobian;
 
-   // Test
+    // Test
 
-   mlp.set();
-   inputs.set();
+    mlp.set();
+    inputs.set();
 
-   interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
+    interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
 
-   assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 0, LOG);
-   assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 0, LOG);
 
-   // Test
+    // Test
 
-   mlp.set(1, 1);
-   inputs.set(1, 0.0);
+    mlp.set(1, 1);
+    inputs.set(1, 0.0);
 
-   interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
+    interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
 
-   assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 1, LOG);
-   assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 1, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(0,0).get_rows_number() == 1, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(0,0).get_columns_number() == 1, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(0,0) == 1.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 1, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 1, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 0).get_rows_number() == 1, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 0).get_columns_number() == 1, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 0) == 1.0, LOG);
 
-   // Test
+    // Test
 
-   mlp.set(1, 2);
-   inputs.set(1, 0.0);
+    mlp.set(1, 2);
+    inputs.set(1, 0.0);
 
-   interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
+    interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
 
-   assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 1, LOG);
-   assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 1, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(0,0).get_rows_number() == 2, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(0,0).get_columns_number() == 2, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(0,0).is_identity(), LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 1, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 1, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 0).get_rows_number() == 2, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 0).get_columns_number() == 2, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 0).is_identity(), LOG);
 
-   // Test
+    // Test
 
-   mlp.set(2, 2, 2);
-   inputs.set(2, 0.0);
+    mlp.set(2, 2, 2);
+    inputs.set(2, 0.0);
 
-   interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
+    interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
 
-   assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 2, LOG);
-   assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 2, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 2, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 2, LOG);
 
 
-   // Test
+    // Test
 
-   mlp.set(1, 2, 3);
-   inputs.set(1, 0.0);
+    mlp.set(1, 2, 3);
+    inputs.set(1, 0.0);
 
-   interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
+    interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
 
-   assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 2, LOG);
-   assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 2, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 2, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 2, LOG);
 
-   // Test
+    // Test
 
-   architecture.set(4, 1);
-   mlp.set(architecture);
-   inputs.set(1, 0.0);
+    architecture.set(4, 1);
+    mlp.set(architecture);
+    inputs.set(1, 0.0);
 
-   interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
+    interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
 
-   assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 3, LOG);
-   assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 3, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 3, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 3, LOG);
 
-   // Test
+    // Test
 
-   architecture.set(4);
-   architecture[0] = 1;
-   architecture[1] = 2;
-   architecture[2] = 3;
-   architecture[3] = 4;
-   mlp.set(architecture);
-   inputs.set(1, 0.0);
+    architecture.set(4);
+    architecture[0] = 1;
+    architecture[1] = 2;
+    architecture[2] = 3;
+    architecture[3] = 4;
+    mlp.set(architecture);
+    inputs.set(1, 0.0);
 
-   interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
+    interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
 
-   assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 3, LOG);
-   assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 3, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 3, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 3, LOG);
 
-   // Test
+    // Test
 
-   mlp.set(2, 4, 3);
+    mlp.set(2, 4, 3);
 
-   parameters.set(27);
+    parameters.set(27);
 
-   parameters[0]  =  0.85;
-   parameters[1]  = -0.04;
-   parameters[2]  =  0.87;
-   parameters[3]  = -0.25;
-   parameters[4]  =  0.25;
-   parameters[5]  = -0.27;
-   parameters[6]  =  0.29;
-   parameters[7]  = -0.57;
-   parameters[8]  =  0.15;
-   parameters[9]  = -0.77;
-   parameters[10] =  0.96;
-   parameters[11] = -0.48;
-   parameters[12] =  0.08;
-   parameters[13] = -0.06;
-   parameters[14] =  0.26;
-   parameters[15] = -0.15;
-   parameters[16] =  0.96;
-   parameters[17] = -0.33;
-   parameters[18] =  0.63;
-   parameters[19] = -0.32;
-   parameters[20] =  0.89;
-   parameters[21] = -0.80;
-   parameters[22] =  0.80;
-   parameters[23] = -0.03;
-   parameters[24] =  0.32;
-   parameters[25] =  0.06;
-   parameters[26] = -0.38;
+    parameters[0] = 0.85;
+    parameters[1] = -0.04;
+    parameters[2] = 0.87;
+    parameters[3] = -0.25;
+    parameters[4] = 0.25;
+    parameters[5] = -0.27;
+    parameters[6] = 0.29;
+    parameters[7] = -0.57;
+    parameters[8] = 0.15;
+    parameters[9] = -0.77;
+    parameters[10] = 0.96;
+    parameters[11] = -0.48;
+    parameters[12] = 0.08;
+    parameters[13] = -0.06;
+    parameters[14] = 0.26;
+    parameters[15] = -0.15;
+    parameters[16] = 0.96;
+    parameters[17] = -0.33;
+    parameters[18] = 0.63;
+    parameters[19] = -0.32;
+    parameters[20] = 0.89;
+    parameters[21] = -0.80;
+    parameters[22] = 0.80;
+    parameters[23] = -0.03;
+    parameters[24] = 0.32;
+    parameters[25] = 0.06;
+    parameters[26] = -0.38;
 
-   mlp.set_parameters(parameters);
+    mlp.set_parameters(parameters);
 
-   inputs.set(2);
-   inputs[0] = -0.88;
-   inputs[1] =  0.78;
+    inputs.set(2);
+    inputs[0] = -0.88;
+    inputs[1] = 0.78;
 
-   interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
+    interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
 
-   assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 2, LOG);
-   assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 2, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 2, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 2, LOG);
 
-   assert_true(interlayers_combination_combination_Jacobian(0,0).get_rows_number() == 4, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(0,0).get_columns_number() == 4, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 0).get_rows_number() == 4, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 0).get_columns_number() == 4, LOG);
 
-   assert_true(interlayers_combination_combination_Jacobian(0,1).get_rows_number() == 4, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(0,1).get_columns_number() == 3, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 1).get_rows_number() == 4, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 1).get_columns_number() == 3, LOG);
 
-   assert_true(interlayers_combination_combination_Jacobian(1,0).get_rows_number() == 3, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(1,0).get_columns_number() == 4, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(1, 0).get_rows_number() == 3, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(1, 0).get_columns_number() == 4, LOG);
 
-   assert_true(interlayers_combination_combination_Jacobian(1,1).get_rows_number() == 3, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(1,1).get_columns_number() == 3, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(1, 1).get_rows_number() == 3, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(1, 1).get_columns_number() == 3, LOG);
 
-   // Test
+    // Test
 
-   architecture.set(4, 1);
-   mlp.set(architecture);
+    architecture.set(4, 1);
+    mlp.set(architecture);
 
-   mlp.initialize_parameters(0.0);
+    mlp.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
+    interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
 
-   assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 3, LOG);
-   assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 3, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 3, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 3, LOG);
 
-   assert_true(interlayers_combination_combination_Jacobian(0,0) == 1.0, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(0,1) == 0.0, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(0,2) == 0.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 0) == 1.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 1) == 0.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 2) == 0.0, LOG);
 
-   assert_true(interlayers_combination_combination_Jacobian(1,0) == 0.0, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(1,1) == 1.0, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(1,2) == 0.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(1, 0) == 0.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(1, 1) == 1.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(1, 2) == 0.0, LOG);
 
-   assert_true(interlayers_combination_combination_Jacobian(2,0) == 0.0, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(2,1) == 0.0, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(2,2) == 1.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(2, 0) == 0.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(2, 1) == 0.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(2, 2) == 1.0, LOG);
 
-   // Test
+    // Test
 
-   architecture.set(4, 1);
-   mlp.set(architecture);
+    architecture.set(4, 1);
+    mlp.set(architecture);
 
-   inputs.set(1, 3.1415927);
+    inputs.set(1, 3.1415927);
 
-   interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
+    interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
 
-   assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 3, LOG);
-   assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 3, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_rows_number() == 3, LOG);
+    assert_true(interlayers_combination_combination_Jacobian.get_columns_number() == 3, LOG);
 
-   assert_true(interlayers_combination_combination_Jacobian(0,0) == 1.0, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(0,1) == 0.0, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(0,2) == 0.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 0) == 1.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 1) == 0.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(0, 2) == 0.0, LOG);
 
-   assert_true(interlayers_combination_combination_Jacobian(1,0) != 0.0, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(1,1) == 1.0, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(1,2) == 0.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(1, 0) != 0.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(1, 1) == 1.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(1, 2) == 0.0, LOG);
 
-   assert_true(interlayers_combination_combination_Jacobian(2,0) != 0.0, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(2,1) != 0.0, LOG);
-   assert_true(interlayers_combination_combination_Jacobian(2,2) == 1.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(2, 0) != 0.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(2, 1) != 0.0, LOG);
+    assert_true(interlayers_combination_combination_Jacobian(2, 2) == 1.0, LOG);
 
-   // Test
+    // Test
 
-   for(size_t i = 0; i < random_tests_number; i++)
-   {
-      mlp.initialize_random();
+    for (size_t i = 0; i < random_tests_number; i++) {
+        mlp.initialize_random();
 
-      inputs_number = mlp.get_inputs_number();
+        inputs_number = mlp.get_inputs_number();
 
-      layers_number = mlp.get_layers_number();
+        layers_number = mlp.get_layers_number();
 
-      inputs.set(inputs_number);
-      inputs.randomize_normal();
+        inputs.set(inputs_number);
+        inputs.randomize_normal();
 
-      layers_combination = mlp.calculate_layers_combination(inputs);
+        layers_combination = mlp.calculate_layers_combination(inputs);
 
-      interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
+        interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(inputs);
 
-      for(size_t domain_index = 0; domain_index < layers_number; domain_index++)
-      {
-         for(size_t image_index = 0; image_index < layers_number; image_index++)
-         {
-            if(domain_index < image_index)
-            {
-               assert_true(interlayers_combination_combination_Jacobian(domain_index,image_index).calculate_sum() == 0.0, LOG);
+        for (size_t domain_index = 0; domain_index < layers_number; domain_index++) {
+            for (size_t image_index = 0; image_index < layers_number; image_index++) {
+                if (domain_index < image_index) {
+                    assert_true(interlayers_combination_combination_Jacobian(domain_index,
+                                                                             image_index).calculate_sum() == 0.0, LOG);
+                }
+                else {
+                    if (numerical_differentiation_tests) {
+                        numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(mlp,
+                                                                                                      &MultilayerPerceptron::calculate_interlayer_combination_combination,
+                                                                                                      image_index,
+                                                                                                      domain_index,
+                                                                                                      layers_combination[image_index]);
+
+                        assert_true((interlayers_combination_combination_Jacobian(domain_index,
+                                                                                  image_index) - numerical_interlayer_combination_combination_Jacobian)
+                                            .calculate_absolute_value() < 1.0e-3, LOG);
+                    }
+                }
             }
-            else
-            {
-               if(numerical_differentiation_tests)
-               {
-                  numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(mlp, &MultilayerPerceptron::calculate_interlayer_combination_combination, image_index, domain_index, layers_combination[image_index]);
+        }
+    }
 
-                  assert_true((interlayers_combination_combination_Jacobian(domain_index, image_index) - numerical_interlayer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-               }
+    // Test
+
+    architecture.set(4);
+
+    architecture[0] = 5;
+    architecture[1] = 6;
+    architecture[2] = 8;
+    architecture[3] = 5;
+
+    mlp.set(architecture);
+
+    layers_number = mlp.get_layers_number();
+
+    mlp.set_layer_activation_function(0, Perceptron::Logistic);
+    mlp.set_layer_activation_function(1, Perceptron::Logistic);
+    mlp.set_layer_activation_function(2, Perceptron::Logistic);
+
+    inputs.set(1);
+    inputs.randomize_normal();
+
+    layers_combination = mlp.calculate_layers_combination(inputs);
+
+    interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
+
+    for (size_t domain_index = 0; domain_index < layers_number; domain_index++) {
+        for (size_t image_index = 0; image_index < layers_number; image_index++) {
+            if (domain_index < image_index) {
+                assert_true(interlayers_combination_combination_Jacobian(domain_index, image_index) == 0.0, LOG);
             }
-         }
-      }
-   }
+            else {
+                numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(mlp,
+                                                                                              &MultilayerPerceptron::calculate_interlayer_combination_combination,
+                                                                                              image_index,
+                                                                                              domain_index,
+                                                                                              layers_combination[image_index]);
 
-   // Test
+                assert_true((interlayers_combination_combination_Jacobian(domain_index,
+                                                                          image_index) - numerical_interlayer_combination_combination_Jacobian)
+                                    .calculate_absolute_value() < 1.0e-3, LOG);
+            }
+        }
+    }
 
-   architecture.set(4);
+    // Test Logistic
 
-   architecture[0] = 5;
-   architecture[1] = 6;
-   architecture[2] = 8;
-   architecture[3] = 5;
+    architecture.set(4);
 
-   mlp.set(architecture);
+    architecture[0] = 5;
+    architecture[1] = 3;
+    architecture[2] = 8;
+    architecture[3] = 6;
 
-   layers_number = mlp.get_layers_number();
+    mlp.set(architecture);
 
-   mlp.set_layer_activation_function(0, Perceptron::Logistic);
-   mlp.set_layer_activation_function(1, Perceptron::Logistic);
-   mlp.set_layer_activation_function(2, Perceptron::Logistic);
+    mlp.randomize_parameters_normal();
 
-   inputs.set(1);
-   inputs.randomize_normal();
+    layers_number = mlp.get_layers_number();
 
-   layers_combination = mlp.calculate_layers_combination(inputs);
+    mlp.set_layer_activation_function(0, Perceptron::HyperbolicTangent);
+    mlp.set_layer_activation_function(1, Perceptron::HyperbolicTangent);
+    mlp.set_layer_activation_function(2, Perceptron::HyperbolicTangent);
 
-   interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    inputs.set(5);
+    inputs.randomize_normal();
 
-   for(size_t domain_index = 0; domain_index < layers_number; domain_index++)
-   {
-      for(size_t image_index = 0; image_index < layers_number; image_index++)
-      {
-          if(domain_index < image_index)
-          {
-             assert_true(interlayers_combination_combination_Jacobian(domain_index, image_index) == 0.0, LOG);
-          }
-          else
-          {
-              numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(mlp, &MultilayerPerceptron::calculate_interlayer_combination_combination, image_index, domain_index, layers_combination[image_index]);
+    layers_combination = mlp.calculate_layers_combination(inputs);
 
-              assert_true((interlayers_combination_combination_Jacobian(domain_index, image_index) - numerical_interlayer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-          }
-      }
-   }
+    interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-   // Test Logistic
+    for (size_t domain_index = 0; domain_index < layers_number; domain_index++) {
+        for (size_t image_index = 0; image_index < layers_number; image_index++) {
+            if (domain_index < image_index) {
+                assert_true(interlayers_combination_combination_Jacobian(domain_index, image_index) == 0.0, LOG);
+            }
+            else {
+                numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(mlp,
+                                                                                              &MultilayerPerceptron::calculate_interlayer_combination_combination,
+                                                                                              image_index,
+                                                                                              domain_index,
+                                                                                              layers_combination[image_index]);
 
-   architecture.set(4);
+                assert_true((interlayers_combination_combination_Jacobian(domain_index,
+                                                                          image_index) - numerical_interlayer_combination_combination_Jacobian)
+                                    .calculate_absolute_value() < 1.0e-3, LOG);
+            }
+        }
+    }
 
-   architecture[0] = 5;
-   architecture[1] = 3;
-   architecture[2] = 8;
-   architecture[3] = 6;
+    // Test
 
-   mlp.set(architecture);
+    architecture.set(3);
 
-   mlp.randomize_parameters_normal();
+    architecture[0] = 1;
+    architecture[1] = 5;
+    architecture[2] = 3;
 
-   layers_number = mlp.get_layers_number();
+    mlp.set(architecture);
 
-   mlp.set_layer_activation_function(0, Perceptron::HyperbolicTangent);
-   mlp.set_layer_activation_function(1, Perceptron::HyperbolicTangent);
-   mlp.set_layer_activation_function(2, Perceptron::HyperbolicTangent);
+    layers_number = mlp.get_layers_number();
 
-   inputs.set(5);
-   inputs.randomize_normal();
+    mlp.set_layer_activation_function(0, Perceptron::Logistic);
+    mlp.set_layer_activation_function(1, Perceptron::Logistic);
 
-   layers_combination = mlp.calculate_layers_combination(inputs);
+    inputs.set(1);
+    inputs.randomize_normal();
 
-   interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    layers_combination = mlp.calculate_layers_combination(inputs);
 
-   for(size_t domain_index = 0; domain_index < layers_number; domain_index++)
-   {
-      for(size_t image_index = 0; image_index < layers_number; image_index++)
-      {
-          if(domain_index < image_index)
-          {
-             assert_true(interlayers_combination_combination_Jacobian(domain_index, image_index) == 0.0, LOG);
-          }
-          else
-          {
-              numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(mlp, &MultilayerPerceptron::calculate_interlayer_combination_combination, image_index, domain_index, layers_combination[image_index]);
+    interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-              assert_true((interlayers_combination_combination_Jacobian(domain_index, image_index) - numerical_interlayer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-          }
-      }
-   }
+    for (size_t domain_index = 0; domain_index < layers_number; domain_index++) {
+        for (size_t image_index = 0; image_index < layers_number; image_index++) {
+            if (domain_index < image_index) {
+                assert_true(interlayers_combination_combination_Jacobian(domain_index, image_index) == 0.0, LOG);
+            }
+            else {
+                numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(mlp,
+                                                                                              &MultilayerPerceptron::calculate_interlayer_combination_combination,
+                                                                                              image_index,
+                                                                                              domain_index,
+                                                                                              layers_combination[image_index]);
 
-   // Test
-
-   architecture.set(3);
-
-   architecture[0] = 1;
-   architecture[1] = 5;
-   architecture[2] = 3;
-
-   mlp.set(architecture);
-
-   layers_number = mlp.get_layers_number();
-
-   mlp.set_layer_activation_function(0, Perceptron::Logistic);
-   mlp.set_layer_activation_function(1, Perceptron::Logistic);
-
-   inputs.set(1);
-   inputs.randomize_normal();
-
-   layers_combination = mlp.calculate_layers_combination(inputs);
-
-   interlayers_combination_combination_Jacobian = mlp.calculate_interlayers_combination_combination_Jacobian(layers_combination);
-
-   for(size_t domain_index = 0; domain_index < layers_number; domain_index++)
-   {
-      for(size_t image_index = 0; image_index < layers_number; image_index++)
-      {
-          if(domain_index < image_index)
-          {
-             assert_true(interlayers_combination_combination_Jacobian(domain_index, image_index) == 0.0, LOG);
-          }
-          else
-          {
-              numerical_interlayer_combination_combination_Jacobian = nd.calculate_Jacobian(mlp, &MultilayerPerceptron::calculate_interlayer_combination_combination, image_index, domain_index, layers_combination[image_index]);
-
-              assert_true((interlayers_combination_combination_Jacobian(domain_index, image_index) - numerical_interlayer_combination_combination_Jacobian).calculate_absolute_value() < 1.0e-03, LOG);
-          }
-      }
-   }
+                assert_true((interlayers_combination_combination_Jacobian(domain_index,
+                                                                          image_index) - numerical_interlayer_combination_combination_Jacobian)
+                                    .calculate_absolute_value() < 1.0e-03, LOG);
+            }
+        }
+    }
 }
 
 void MultilayerPerceptronTest::test_calculate_output_layers_delta(void)
 {
-   message += "test_calculate_output_layers_delta\n";
+    message += "test_calculate_output_layers_delta\n";
 
-   NumericalDifferentiation nd;
+    NumericalDifferentiation nd;
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   size_t inputs_number;
-   size_t layers_number;
-   Vector<size_t> architecture;
+    size_t inputs_number;
+    size_t layers_number;
+    Vector<size_t> architecture;
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   Vector<double> inputs;
+    Vector<double> inputs;
 
-   Vector<double> hidden_layer_combination;
-   Vector<double> hidden_layer_activation;
-   Vector<double> output_layer_combination;
+    Vector<double> hidden_layer_combination;
+    Vector<double> hidden_layer_activation;
+    Vector<double> output_layer_combination;
 
-   Vector< Vector<double> > layers_combination;
-   Vector< Vector<double> > layers_activation_derivative;
+    Vector<Vector<double> > layers_combination;
+    Vector<Vector<double> > layers_activation_derivative;
 
-   Vector< Matrix<double> > output_layers_delta;
+    Vector<Matrix<double> > output_layers_delta;
 
-   Matrix<double> numerical_layer_output_delta;
-   Matrix<double> numerical_hidden_layer_output_delta;
-   Matrix<double> numerical_output_layer_output_delta;
+    Matrix<double> numerical_layer_output_delta;
+    Matrix<double> numerical_hidden_layer_output_delta;
+    Matrix<double> numerical_output_layer_output_delta;
 
-   // Test
-   
+    // Test
+
 //   n.set(2, 4, 3);
 
 //   layers_number = n.get_layers_number();
@@ -2490,8 +2538,8 @@ void MultilayerPerceptronTest::test_calculate_output_layers_delta(void)
 //   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
 
 //   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
-   
-//   assert_true(output_layers_delta.size() == layers_number, LOG); 
+
+//   assert_true(output_layers_delta.size() == layers_number, LOG);
 
 //   assert_true(output_layers_delta[0].get_rows_number() == architecture[1], LOG);
 //   assert_true(output_layers_delta[0].get_columns_number() == architecture[0], LOG);
@@ -2499,7 +2547,7 @@ void MultilayerPerceptronTest::test_calculate_output_layers_delta(void)
 //   assert_true(output_layers_delta[1].get_rows_number() == architecture[1], LOG);
 //   assert_true(output_layers_delta[1].get_columns_number() == architecture[1], LOG);
 
-   // Test
+    // Test
 
 //   n.set(3, 4, 2);
 
@@ -2512,7 +2560,7 @@ void MultilayerPerceptronTest::test_calculate_output_layers_delta(void)
 
 //   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-//   assert_true(output_layers_delta.size() == layers_number, LOG); 
+//   assert_true(output_layers_delta.size() == layers_number, LOG);
 
 //   assert_true(output_layers_delta[0].get_rows_number() == architecture[1], LOG);
 //   assert_true(output_layers_delta[0].get_columns_number() == architecture[0], LOG);
@@ -2520,98 +2568,106 @@ void MultilayerPerceptronTest::test_calculate_output_layers_delta(void)
 //   assert_true(output_layers_delta[1].get_rows_number() == architecture[1], LOG);
 //   assert_true(output_layers_delta[1].get_columns_number() == architecture[1], LOG);
 
-   // Test
+    // Test
 
-   n.set(2, 4, 3);
+    n.set(2, 4, 3);
 
-   parameters.set(27);
+    parameters.set(27);
 
-   parameters[0]  =  0.85;
-   parameters[1]  = -0.04;
-   parameters[2]  =  0.87;
-   parameters[3]  = -0.25;
-   parameters[4]  =  0.25;
-   parameters[5]  = -0.27;
-   parameters[6]  =  0.29;
-   parameters[7]  = -0.57;
-   parameters[8]  =  0.15;
-   parameters[9]  = -0.77;
-   parameters[10] =  0.96;
-   parameters[11] = -0.48;
-   parameters[12] =  0.08;
-   parameters[13] = -0.06;
-   parameters[14] =  0.26;
-   parameters[15] = -0.15;
-   parameters[16] =  0.96;
-   parameters[17] = -0.33;
-   parameters[18] =  0.63;
-   parameters[19] = -0.32; 
-   parameters[20] =  0.89;
-   parameters[21] = -0.80;
-   parameters[22] =  0.80; 
-   parameters[23] = -0.03;
-   parameters[24] =  0.32;
-   parameters[25] =  0.06; 
-   parameters[26] = -0.38;
+    parameters[0] = 0.85;
+    parameters[1] = -0.04;
+    parameters[2] = 0.87;
+    parameters[3] = -0.25;
+    parameters[4] = 0.25;
+    parameters[5] = -0.27;
+    parameters[6] = 0.29;
+    parameters[7] = -0.57;
+    parameters[8] = 0.15;
+    parameters[9] = -0.77;
+    parameters[10] = 0.96;
+    parameters[11] = -0.48;
+    parameters[12] = 0.08;
+    parameters[13] = -0.06;
+    parameters[14] = 0.26;
+    parameters[15] = -0.15;
+    parameters[16] = 0.96;
+    parameters[17] = -0.33;
+    parameters[18] = 0.63;
+    parameters[19] = -0.32;
+    parameters[20] = 0.89;
+    parameters[21] = -0.80;
+    parameters[22] = 0.80;
+    parameters[23] = -0.03;
+    parameters[24] = 0.32;
+    parameters[25] = 0.06;
+    parameters[26] = -0.38;
 
-   n.set_parameters(parameters);   
+    n.set_parameters(parameters);
 
-   inputs.set(2);
-   inputs[0] = -0.88;
-   inputs[1] =  0.78;
+    inputs.set(2);
+    inputs[0] = -0.88;
+    inputs[1] = 0.78;
 
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
 
-   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+    output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-   const PerceptronLayer& hidden_layer = n.get_layer(0);
+    const PerceptronLayer &hidden_layer = n.get_layer(0);
 
-   hidden_layer_combination = hidden_layer.calculate_combinations(inputs);
-   hidden_layer_activation = hidden_layer.calculate_activations(hidden_layer_combination);
+    hidden_layer_combination = hidden_layer.calculate_combinations(inputs);
+    hidden_layer_activation = hidden_layer.calculate_activations(hidden_layer_combination);
 
-   const PerceptronLayer& output_layer = n.get_layer(1);
+    const PerceptronLayer &output_layer = n.get_layer(1);
 
-   output_layer_combination = output_layer.calculate_combinations(hidden_layer_activation);
+    output_layer_combination = output_layer.calculate_combinations(hidden_layer_activation);
 
-   if(numerical_differentiation_tests)
-   {
-      numerical_hidden_layer_output_delta = nd.calculate_Jacobian(n, &MultilayerPerceptron::calculate_output_layer_combination, 0, hidden_layer_combination);
+    if (numerical_differentiation_tests) {
+        numerical_hidden_layer_output_delta = nd.calculate_Jacobian(n,
+                                                                    &MultilayerPerceptron::calculate_output_layer_combination,
+                                                                    0,
+                                                                    hidden_layer_combination);
 
-      assert_true((numerical_hidden_layer_output_delta - output_layers_delta[0]).calculate_absolute_value() < 1.0e-3, LOG);
+        assert_true((numerical_hidden_layer_output_delta - output_layers_delta[0]).calculate_absolute_value() < 1.0e-3,
+                    LOG);
 
-      numerical_output_layer_output_delta = nd.calculate_Jacobian(n, &MultilayerPerceptron::calculate_output_layer_combination, 1, output_layer_combination);
+        numerical_output_layer_output_delta = nd.calculate_Jacobian(n,
+                                                                    &MultilayerPerceptron::calculate_output_layer_combination,
+                                                                    1,
+                                                                    output_layer_combination);
 
-      assert_true((numerical_output_layer_output_delta - output_layers_delta[1]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+        assert_true((numerical_output_layer_output_delta - output_layers_delta[1]).calculate_absolute_value() < 1.0e-3,
+                    LOG);
+    }
 
-   // Test
+    // Test
 
-   if(numerical_differentiation_tests)
-   {
-      for(size_t i = 0; i < random_tests_number; i++)
-      {
-         n.initialize_random();
+    if (numerical_differentiation_tests) {
+        for (size_t i = 0; i < random_tests_number; i++) {
+            n.initialize_random();
 
-         inputs_number = n.get_inputs_number();
+            inputs_number = n.get_inputs_number();
 
-         layers_number = n.get_layers_number();
+            layers_number = n.get_layers_number();
 
-         inputs.set(inputs_number);
-         inputs.randomize_normal();
+            inputs.set(inputs_number);
+            inputs.randomize_normal();
 
-         layers_combination = n.calculate_layers_combination(inputs);
-         layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+            layers_combination = n.calculate_layers_combination(inputs);
+            layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
 
-         output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+            output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-         for(size_t i = 0; i < layers_number; i++)
-         {
-            numerical_layer_output_delta = nd.calculate_Jacobian(n, &MultilayerPerceptron::calculate_output_layer_combination, i, layers_combination[i]);
+            for (size_t i = 0; i < layers_number; i++) {
+                numerical_layer_output_delta = nd.calculate_Jacobian(n,
+                                                                     &MultilayerPerceptron::calculate_output_layer_combination,
+                                                                     i,
+                                                                     layers_combination[i]);
 
-            assert_true((numerical_layer_output_delta - output_layers_delta[i]).calculate_absolute_value() < 1.0e-3, LOG);
-         }
-      }
-   }
+                assert_true((numerical_layer_output_delta - output_layers_delta[i]).calculate_absolute_value() < 1.0e-3,
+                            LOG);
+            }
+        }
+    }
 }
 
 
@@ -2619,525 +2675,585 @@ void MultilayerPerceptronTest::test_calculate_output_layers_delta(void)
 
 void MultilayerPerceptronTest::test_calculate_output_interlayers_Delta(void)
 {
-   message += "test_calculate_output_interlayers_Delta\n";
+    message += "test_calculate_output_interlayers_Delta\n";
 
-   NumericalDifferentiation nd;
+    NumericalDifferentiation nd;
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
 //   size_t inputs_number;
 //   size_t layers_number;
 //   size_t outputs_number;
 
-   Vector<double> parameters;
-   
-   Vector<double> inputs; 
+    Vector<double> parameters;
 
-   Vector< Vector<double> > layers_combination;
-   Vector< Vector<double> > layers_activation_derivative;
-   Vector< Vector<double> > layers_activation_second_derivative;
+    Vector<double> inputs;
 
-   Matrix< Matrix<double> > interlayers_combination_combination_Jacobian;
+    Vector<Vector<double> > layers_combination;
+    Vector<Vector<double> > layers_activation_derivative;
+    Vector<Vector<double> > layers_activation_second_derivative;
 
-   Vector< Vector< Vector<double> > > second_order_forward_propagation;
+    Matrix<Matrix<double> > interlayers_combination_combination_Jacobian;
 
-   Vector< Matrix<double> > output_layers_delta;
+    Vector<Vector<Vector<double> > > second_order_forward_propagation;
 
-   Matrix< Vector< Matrix<double> > > output_interlayers_Delta;
+    Vector<Matrix<double> > output_layers_delta;
 
-   Vector< Matrix<double> > numerical_layer_layer_output_Delta;
-   Vector< Matrix<double> > numerical_hidden_layer_hidden_layer_output_Delta;
-   Vector< Matrix<double> > numerical_output_layer_output_layer_output_Delta;
+    Matrix<Vector<Matrix<double> > > output_interlayers_Delta;
 
-   // Test
+    Vector<Matrix<double> > numerical_layer_layer_output_Delta;
+    Vector<Matrix<double> > numerical_hidden_layer_hidden_layer_output_Delta;
+    Vector<Matrix<double> > numerical_output_layer_output_layer_output_Delta;
 
-   n.set(1, 1);
+    // Test
 
-   n.initialize_parameters(0.0);
+    n.set(1, 1);
 
-   inputs.set(1, 0.0);
+    n.initialize_parameters(0.0);
 
-   layers_combination = n.calculate_layers_combination(inputs);
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
-   layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
+    inputs.set(1, 0.0);
 
-   second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
+    layers_combination = n.calculate_layers_combination(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
 
-   interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
 
-   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+    interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-   output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation, interlayers_combination_combination_Jacobian, output_layers_delta);
+    output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-   assert_true(output_interlayers_Delta.get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta.get_columns_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0].get_columns_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0](0,0) == 0.0, LOG);
+    output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation,
+                                                                    interlayers_combination_combination_Jacobian,
+                                                                    output_layers_delta);
 
-   // Test
+    assert_true(output_interlayers_Delta.get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta.get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0](0, 0) == 0.0, LOG);
 
-   n.set(2, 1);
+    // Test
 
-   n.initialize_parameters(0.0);
+    n.set(2, 1);
 
-   inputs.set(2, 0.0);
+    n.initialize_parameters(0.0);
 
-   layers_combination = n.calculate_layers_combination(inputs);
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
-   layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
+    inputs.set(2, 0.0);
 
-   second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
+    layers_combination = n.calculate_layers_combination(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
 
-   interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
 
-   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+    interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-   output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation, interlayers_combination_combination_Jacobian, output_layers_delta);
+    output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-   assert_true(output_interlayers_Delta.get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta.get_columns_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0].get_columns_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0](0,0) == 0.0, LOG);
+    output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation,
+                                                                    interlayers_combination_combination_Jacobian,
+                                                                    output_layers_delta);
 
-   // Test
+    assert_true(output_interlayers_Delta.get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta.get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0](0, 0) == 0.0, LOG);
 
-   n.set(1, 2);
+    // Test
 
-   n.initialize_parameters(0.0);
+    n.set(1, 2);
 
-   inputs.set(1, 0.0);
+    n.initialize_parameters(0.0);
 
-   layers_combination = n.calculate_layers_combination(inputs);
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
-   layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
+    inputs.set(1, 0.0);
 
-   interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    layers_combination = n.calculate_layers_combination(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
 
-   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+    interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-   second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
+    output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-   output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation, interlayers_combination_combination_Jacobian, output_layers_delta);
+    second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
 
-   assert_true(output_interlayers_Delta.get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta.get_columns_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0).size() == 2, LOG);
+    output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation,
+                                                                    interlayers_combination_combination_Jacobian,
+                                                                    output_layers_delta);
 
-   assert_true(output_interlayers_Delta(0,0)[0].get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0].get_columns_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0] == 0.0, LOG);
+    assert_true(output_interlayers_Delta.get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta.get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0).size() == 2, LOG);
 
-   assert_true(output_interlayers_Delta(0,0)[1].get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,0)[1].get_columns_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,0)[1] == 0.0, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0] == 0.0, LOG);
 
-   // Test
+    assert_true(output_interlayers_Delta(0, 0)[1].get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[1].get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[1] == 0.0, LOG);
 
-   n.set(2, 2);
+    // Test
 
-   n.initialize_parameters(0.0);
+    n.set(2, 2);
 
-   inputs.set(2, 0.0);
+    n.initialize_parameters(0.0);
 
-   layers_combination = n.calculate_layers_combination(inputs);
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
-   layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
+    inputs.set(2, 0.0);
 
-   second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
+    layers_combination = n.calculate_layers_combination(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
 
-   interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
 
-   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+    interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-   output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation, interlayers_combination_combination_Jacobian, output_layers_delta);
+    output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-   assert_true(output_interlayers_Delta.get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta.get_columns_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0).size() == 2, LOG);
+    output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation,
+                                                                    interlayers_combination_combination_Jacobian,
+                                                                    output_layers_delta);
 
-   assert_true(output_interlayers_Delta(0,0)[0].get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0].get_columns_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0] == 0.0, LOG);
+    assert_true(output_interlayers_Delta.get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta.get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0).size() == 2, LOG);
 
-   assert_true(output_interlayers_Delta(0,0)[1].get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,0)[1].get_columns_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,0)[1] == 0.0, LOG);
-   
-   // Test
+    assert_true(output_interlayers_Delta(0, 0)[0].get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0] == 0.0, LOG);
 
-   n.set(3, 2);
+    assert_true(output_interlayers_Delta(0, 0)[1].get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[1].get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[1] == 0.0, LOG);
+
+    // Test
+
+    n.set(3, 2);
 
 //   const PerceptronLayer& layer = n.get_layer(0);
 
 //   layer.set_activation_function(Perceptron::Logistic);
 
-   inputs.set(3);
-   inputs.randomize_normal();
+    inputs.set(3);
+    inputs.randomize_normal();
 
-   layers_combination = n.calculate_layers_combination(inputs);
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
-   layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
+    layers_combination = n.calculate_layers_combination(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
 
-   second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
+    second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
 
-   interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+    output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-   output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation, interlayers_combination_combination_Jacobian, output_layers_delta);
+    output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation,
+                                                                    interlayers_combination_combination_Jacobian,
+                                                                    output_layers_delta);
 
-   assert_true(output_interlayers_Delta.get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta.get_columns_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0).size() == 2, LOG);
+    assert_true(output_interlayers_Delta.get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta.get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0).size() == 2, LOG);
 
-   assert_true(output_interlayers_Delta(0,0)[0].get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0].get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_columns_number() == 2, LOG);
 
-   assert_true(output_interlayers_Delta(0,0)[1].get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,0)[1].get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[1].get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[1].get_columns_number() == 2, LOG);
 
-   if(numerical_differentiation_tests)
-   {
-      numerical_output_layer_output_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, 0, layers_combination[0]);
-      assert_true((numerical_output_layer_output_layer_output_Delta[0] - output_interlayers_Delta(0,0)[0]).calculate_absolute_value() < 1.0e-3, LOG);
-      assert_true((numerical_output_layer_output_layer_output_Delta[1] - output_interlayers_Delta(0,0)[1]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    if (numerical_differentiation_tests) {
+        numerical_output_layer_output_layer_output_Delta = nd.calculate_Hessian_form(n,
+                                                                                     &MultilayerPerceptron::calculate_output_layer_combination,
+                                                                                     0,
+                                                                                     layers_combination[0]);
+        assert_true((numerical_output_layer_output_layer_output_Delta[0] - output_interlayers_Delta(0,
+                                                                                                    0)[0]).calculate_absolute_value() < 1.0e-3,
+                    LOG);
+        assert_true((numerical_output_layer_output_layer_output_Delta[1] - output_interlayers_Delta(0,
+                                                                                                    0)[1]).calculate_absolute_value() < 1.0e-3,
+                    LOG);
+    }
 
-   // Test
+    // Test
 
-   n.set(2, 3);
+    n.set(2, 3);
 
 //   n.set_layer_activation_function(0, Perceptron::HyperbolicTangent);
 
-   inputs.set(2);
-   inputs.randomize_normal();
+    inputs.set(2);
+    inputs.randomize_normal();
 
-   layers_combination = n.calculate_layers_combination(inputs);
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
-   layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
+    layers_combination = n.calculate_layers_combination(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
 
-   second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
+    second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
 
-   interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+    output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-   output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation, interlayers_combination_combination_Jacobian, output_layers_delta);
+    output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation,
+                                                                    interlayers_combination_combination_Jacobian,
+                                                                    output_layers_delta);
 
-   assert_true(output_interlayers_Delta.get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta.get_columns_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0).size() == 3, LOG);
+    assert_true(output_interlayers_Delta.get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta.get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0).size() == 3, LOG);
 
-   assert_true(output_interlayers_Delta(0,0)[0].get_rows_number() == 3, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0].get_columns_number() == 3, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_rows_number() == 3, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_columns_number() == 3, LOG);
 
-   assert_true(output_interlayers_Delta(0,0)[1].get_rows_number() == 3, LOG);
-   assert_true(output_interlayers_Delta(0,0)[1].get_columns_number() == 3, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[1].get_rows_number() == 3, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[1].get_columns_number() == 3, LOG);
 
-   if(numerical_differentiation_tests)
-   {
-      numerical_output_layer_output_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, 0, layers_combination[0]);
+    if (numerical_differentiation_tests) {
+        numerical_output_layer_output_layer_output_Delta = nd.calculate_Hessian_form(n,
+                                                                                     &MultilayerPerceptron::calculate_output_layer_combination,
+                                                                                     0,
+                                                                                     layers_combination[0]);
 
-      assert_true((numerical_output_layer_output_layer_output_Delta[0] - output_interlayers_Delta(0,0)[0]).calculate_absolute_value() < 1.0e-3, LOG);
-      assert_true((numerical_output_layer_output_layer_output_Delta[1] - output_interlayers_Delta(0,0)[1]).calculate_absolute_value() < 1.0e-3, LOG);
-      assert_true((numerical_output_layer_output_layer_output_Delta[2] - output_interlayers_Delta(0,0)[2]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+        assert_true((numerical_output_layer_output_layer_output_Delta[0] - output_interlayers_Delta(0,
+                                                                                                    0)[0]).calculate_absolute_value() < 1.0e-3,
+                    LOG);
+        assert_true((numerical_output_layer_output_layer_output_Delta[1] - output_interlayers_Delta(0,
+                                                                                                    0)[1]).calculate_absolute_value() < 1.0e-3,
+                    LOG);
+        assert_true((numerical_output_layer_output_layer_output_Delta[2] - output_interlayers_Delta(0,
+                                                                                                    0)[2]).calculate_absolute_value() < 1.0e-3,
+                    LOG);
+    }
 
-   // Test
+    // Test
 
-   n.set(1, 1, 1);
+    n.set(1, 1, 1);
 
-   n.initialize_parameters(0.0);
+    n.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   layers_combination = n.calculate_layers_combination(inputs);
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
-   layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
+    layers_combination = n.calculate_layers_combination(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
 
-   second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
+    second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
 
-   interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+    output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-   output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation, interlayers_combination_combination_Jacobian, output_layers_delta);
+    output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation,
+                                                                    interlayers_combination_combination_Jacobian,
+                                                                    output_layers_delta);
 
-   assert_true(output_interlayers_Delta.get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta.get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta.get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta.get_columns_number() == 2, LOG);
 
-   assert_true(output_interlayers_Delta(0,0).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,1).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,0).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,1).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 1).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 0).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 1).size() == 1, LOG);
 
-   assert_true(output_interlayers_Delta(0,0)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_columns_number() == 1, LOG);
 //   assert_true(output_interlayers_Delta(0,0)[0] == 0.0, LOG);
 
-   if(numerical_differentiation_tests)
-   {
-      numerical_output_layer_output_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, 1, layers_combination[1]);
-      assert_true((numerical_output_layer_output_layer_output_Delta[0] - output_interlayers_Delta(1,1)[0]).calculate_absolute_value() < 1.0e-3, LOG);
+    if (numerical_differentiation_tests) {
+        numerical_output_layer_output_layer_output_Delta = nd.calculate_Hessian_form(n,
+                                                                                     &MultilayerPerceptron::calculate_output_layer_combination,
+                                                                                     1,
+                                                                                     layers_combination[1]);
+        assert_true((numerical_output_layer_output_layer_output_Delta[0] - output_interlayers_Delta(1,
+                                                                                                    1)[0]).calculate_absolute_value() < 1.0e-3,
+                    LOG);
 
-      numerical_hidden_layer_hidden_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, 0, layers_combination[0]);
+        numerical_hidden_layer_hidden_layer_output_Delta = nd.calculate_Hessian_form(n,
+                                                                                     &MultilayerPerceptron::calculate_output_layer_combination,
+                                                                                     0,
+                                                                                     layers_combination[0]);
 //      assert_true((numerical_hidden_layer_hidden_layer_output_Delta[0] - output_interlayers_Delta(0,0)[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(1, 1, 1);
+    n.set(1, 1, 1);
 
-   inputs.set(1, 3.1415927);
+    inputs.set(1, 3.1415927);
 
-   layers_combination = n.calculate_layers_combination(inputs);
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
-   layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
+    layers_combination = n.calculate_layers_combination(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
 
-   second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
+    second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
 
-   interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+    output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-   output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation, interlayers_combination_combination_Jacobian, output_layers_delta);
+    output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation,
+                                                                    interlayers_combination_combination_Jacobian,
+                                                                    output_layers_delta);
 
-   assert_true(output_interlayers_Delta.get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta.get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta.get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta.get_columns_number() == 2, LOG);
 
-   assert_true(output_interlayers_Delta(1,1).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,1).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,0).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 1).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 1).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 0).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0).size() == 1, LOG);
 
-   assert_true(output_interlayers_Delta(1,1)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,1)[0].get_columns_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,1)[0] == 0.0, LOG);
+    assert_true(output_interlayers_Delta(1, 1)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 1)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 1)[0] == 0.0, LOG);
 
-   assert_true(output_interlayers_Delta(0,1)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,1)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 1)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 1)[0].get_columns_number() == 1, LOG);
 
-   assert_true(output_interlayers_Delta(1,0)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,0)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 0)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 0)[0].get_columns_number() == 1, LOG);
 
-   assert_true(output_interlayers_Delta(0,0)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_columns_number() == 1, LOG);
 
-   if(numerical_differentiation_tests)
-   {
-      numerical_output_layer_output_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, 1, layers_combination[1]);
-      assert_true((numerical_output_layer_output_layer_output_Delta[0] - output_interlayers_Delta(1,1)[0]).calculate_absolute_value() < 1.0e-3, LOG);
+    if (numerical_differentiation_tests) {
+        numerical_output_layer_output_layer_output_Delta = nd.calculate_Hessian_form(n,
+                                                                                     &MultilayerPerceptron::calculate_output_layer_combination,
+                                                                                     1,
+                                                                                     layers_combination[1]);
+        assert_true((numerical_output_layer_output_layer_output_Delta[0] - output_interlayers_Delta(1,
+                                                                                                    1)[0]).calculate_absolute_value() < 1.0e-3,
+                    LOG);
 
 //      numerical_hidden_layer_hidden_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, 0, layers_combination[0]);
 //      assert_true((numerical_hidden_layer_hidden_layer_output_Delta[0] - output_interlayers_Delta(0,0)[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(2, 1, 1);
+    n.set(2, 1, 1);
 
-   inputs.set(2);
-   inputs[0] = -1.1;
-   inputs[1] =  2.3;
+    inputs.set(2);
+    inputs[0] = -1.1;
+    inputs[1] = 2.3;
 
-   layers_combination = n.calculate_layers_combination(inputs);
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
-   layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
+    layers_combination = n.calculate_layers_combination(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
 
-   second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
+    second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
 
-   interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+    output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-   output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation, interlayers_combination_combination_Jacobian, output_layers_delta);
+    output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation,
+                                                                    interlayers_combination_combination_Jacobian,
+                                                                    output_layers_delta);
 
-   assert_true(output_interlayers_Delta.get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta.get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta.get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta.get_columns_number() == 2, LOG);
 
-   assert_true(output_interlayers_Delta(1,1).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,1).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,0).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 1).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 1).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 0).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0).size() == 1, LOG);
 
-   assert_true(output_interlayers_Delta(1,1)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,1)[0].get_columns_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,1)[0] == 0.0, LOG);
+    assert_true(output_interlayers_Delta(1, 1)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 1)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 1)[0] == 0.0, LOG);
 
-   assert_true(output_interlayers_Delta(0,1)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,1)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 1)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 1)[0].get_columns_number() == 1, LOG);
 
-   assert_true(output_interlayers_Delta(1,0)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,0)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 0)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 0)[0].get_columns_number() == 1, LOG);
 
-   assert_true(output_interlayers_Delta(0,0)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_columns_number() == 1, LOG);
 
-   if(numerical_differentiation_tests)
-   {
-      numerical_output_layer_output_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, 1, layers_combination[1]);
+    if (numerical_differentiation_tests) {
+        numerical_output_layer_output_layer_output_Delta = nd.calculate_Hessian_form(n,
+                                                                                     &MultilayerPerceptron::calculate_output_layer_combination,
+                                                                                     1,
+                                                                                     layers_combination[1]);
 //   assert_true((numerical_output_layer_output_layer_output_Delta[0] - output_interlayers_Delta[1](1,0)).calculate_absolute_value() < 1.0e-3, LOG);
 
 //      numerical_hidden_layer_hidden_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, 0, layers_combination[0]);
 //   assert_true((numerical_hidden_layer_hidden_layer_output_Delta[0] - output_interlayers_Delta(0,0)[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(1, 2, 1);
+    n.set(1, 2, 1);
 
-   inputs.set(1);
-   inputs[0] = 3.1415927;
+    inputs.set(1);
+    inputs[0] = 3.1415927;
 
-   layers_combination = n.calculate_layers_combination(inputs);
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
-   layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
+    layers_combination = n.calculate_layers_combination(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
 
-   second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
+    second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
 
-   interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+    output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-   output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation, interlayers_combination_combination_Jacobian, output_layers_delta);
+    output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation,
+                                                                    interlayers_combination_combination_Jacobian,
+                                                                    output_layers_delta);
 
-   assert_true(output_interlayers_Delta.get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta.get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta.get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta.get_columns_number() == 2, LOG);
 
-   assert_true(output_interlayers_Delta(1,1).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,1).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,0).size() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 1).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 1).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 0).size() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0).size() == 1, LOG);
 
-   assert_true(output_interlayers_Delta(1,1)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,1)[0].get_columns_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,1)[0] == 0.0, LOG);
+    assert_true(output_interlayers_Delta(1, 1)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 1)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 1)[0] == 0.0, LOG);
 
-   assert_true(output_interlayers_Delta(0,1)[0].get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,1)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 1)[0].get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 1)[0].get_columns_number() == 1, LOG);
 
-   assert_true(output_interlayers_Delta(1,0)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(1,0)[0].get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(1, 0)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 0)[0].get_columns_number() == 2, LOG);
 
-   assert_true(output_interlayers_Delta(0,0)[0].get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0].get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_columns_number() == 2, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      numerical_output_layer_output_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, 1, layers_combination[1]);
 //   assert_true((numerical_output_layer_output_layer_output_Delta[0] - output_interlayers_Delta[1](1,0)).calculate_absolute_value() < 1.0e-3, LOG);
 
 //      numerical_hidden_layer_hidden_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, 0, layers_combination[0]);
 //   assert_true((numerical_hidden_layer_hidden_layer_output_Delta[0] - output_interlayers_Delta(0,0)[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(1, 1, 2);
+    n.set(1, 1, 2);
 
-   inputs.set(1);
-   inputs[0] = 3.1415927;
+    inputs.set(1);
+    inputs[0] = 3.1415927;
 
-   layers_combination = n.calculate_layers_combination(inputs);
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
-   layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
+    layers_combination = n.calculate_layers_combination(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
 
-   second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
+    second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
 
-   interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+    output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-   output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation, interlayers_combination_combination_Jacobian, output_layers_delta);
+    output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation,
+                                                                    interlayers_combination_combination_Jacobian,
+                                                                    output_layers_delta);
 
-   assert_true(output_interlayers_Delta.get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta.get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta.get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta.get_columns_number() == 2, LOG);
 
-   assert_true(output_interlayers_Delta(1,1).size() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,1).size() == 2, LOG);
-   assert_true(output_interlayers_Delta(1,0).size() == 2, LOG);
-   assert_true(output_interlayers_Delta(0,0).size() == 2, LOG);
+    assert_true(output_interlayers_Delta(1, 1).size() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 1).size() == 2, LOG);
+    assert_true(output_interlayers_Delta(1, 0).size() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 0).size() == 2, LOG);
 
-   assert_true(output_interlayers_Delta(1,1)[0].get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(1,1)[0].get_columns_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(1,1)[0] == 0.0, LOG);
+    assert_true(output_interlayers_Delta(1, 1)[0].get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(1, 1)[0].get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(1, 1)[0] == 0.0, LOG);
 
-   assert_true(output_interlayers_Delta(0,1)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,1)[0].get_columns_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(0, 1)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 1)[0].get_columns_number() == 2, LOG);
 
-   assert_true(output_interlayers_Delta(1,0)[0].get_rows_number() == 2, LOG);
-   assert_true(output_interlayers_Delta(1,0)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(1, 0)[0].get_rows_number() == 2, LOG);
+    assert_true(output_interlayers_Delta(1, 0)[0].get_columns_number() == 1, LOG);
 
-   assert_true(output_interlayers_Delta(0,0)[0].get_rows_number() == 1, LOG);
-   assert_true(output_interlayers_Delta(0,0)[0].get_columns_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_rows_number() == 1, LOG);
+    assert_true(output_interlayers_Delta(0, 0)[0].get_columns_number() == 1, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //   numerical_output_layer_output_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, 1, layers_combination[1]);
 //   assert_true((numerical_output_layer_output_layer_output_Delta[0] - output_interlayers_Delta[1](1,0)).calculate_absolute_value() < 1.0e-3, LOG);
 
 //   numerical_hidden_layer_hidden_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, 0, layers_combination[0]);
 //   assert_true((numerical_hidden_layer_hidden_layer_output_Delta[0] - output_interlayers_Delta(0,0)[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(2, 4, 3);
+    n.set(2, 4, 3);
 
-   parameters.set(27);
+    parameters.set(27);
 
-   parameters[0]  =  0.85;
-   parameters[1]  = -0.04;
-   parameters[2]  =  0.87;
-   parameters[3]  = -0.25;
-   parameters[4]  =  0.25;
-   parameters[5]  = -0.27;
-   parameters[6]  =  0.29;
-   parameters[7]  = -0.57;
-   parameters[8]  =  0.15;
-   parameters[9]  = -0.77;
-   parameters[10] =  0.96;
-   parameters[11] = -0.48;
-   parameters[12] =  0.08;
-   parameters[13] = -0.06;
-   parameters[14] =  0.26;
-   parameters[15] = -0.15;
-   parameters[16] =  0.96;
-   parameters[17] = -0.33;
-   parameters[18] =  0.63;
-   parameters[19] = -0.32; 
-   parameters[20] =  0.89;
-   parameters[21] = -0.80;
-   parameters[22] =  0.80; 
-   parameters[23] = -0.03;
-   parameters[24] =  0.32;
-   parameters[25] =  0.06; 
-   parameters[26] = -0.38;
+    parameters[0] = 0.85;
+    parameters[1] = -0.04;
+    parameters[2] = 0.87;
+    parameters[3] = -0.25;
+    parameters[4] = 0.25;
+    parameters[5] = -0.27;
+    parameters[6] = 0.29;
+    parameters[7] = -0.57;
+    parameters[8] = 0.15;
+    parameters[9] = -0.77;
+    parameters[10] = 0.96;
+    parameters[11] = -0.48;
+    parameters[12] = 0.08;
+    parameters[13] = -0.06;
+    parameters[14] = 0.26;
+    parameters[15] = -0.15;
+    parameters[16] = 0.96;
+    parameters[17] = -0.33;
+    parameters[18] = 0.63;
+    parameters[19] = -0.32;
+    parameters[20] = 0.89;
+    parameters[21] = -0.80;
+    parameters[22] = 0.80;
+    parameters[23] = -0.03;
+    parameters[24] = 0.32;
+    parameters[25] = 0.06;
+    parameters[26] = -0.38;
 
-   n.set_parameters(parameters);   
+    n.set_parameters(parameters);
 
-   inputs.set(2);
-   inputs[0] = -0.88;
-   inputs[1] =  0.78;
+    inputs.set(2);
+    inputs[0] = -0.88;
+    inputs[1] = 0.78;
 
-   second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
+    second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
 
-   layers_combination = n.calculate_layers_combination(inputs);
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
-   layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
+    layers_combination = n.calculate_layers_combination(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
 
-   output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
+    output_layers_delta = n.calculate_output_layers_delta(layers_activation_derivative);
 
-   interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(layers_combination);
+    interlayers_combination_combination_Jacobian = n.calculate_interlayers_combination_combination_Jacobian(
+            layers_combination);
 
-   output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation, interlayers_combination_combination_Jacobian, output_layers_delta);
+    output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation,
+                                                                    interlayers_combination_combination_Jacobian,
+                                                                    output_layers_delta);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      numerical_output_layer_output_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, 1, layers_combination[1]);
 
 //   assert_true((numerical_output_layer_output_layer_output_Delta[0] - output_interlayers_Delta[1](1,0)).calculate_absolute_value() < 1.0e-3, LOG);
@@ -3148,16 +3264,14 @@ void MultilayerPerceptronTest::test_calculate_output_interlayers_Delta(void)
 
 //   assert_true((numerical_hidden_layer_hidden_layer_output_Delta[0] - output_interlayers_Delta(0,0)[0]).calculate_absolute_value() < 1.0e-3, LOG);
 //   assert_true((numerical_hidden_layer_hidden_layer_output_Delta[1] - output_interlayers_Delta(0,0)[1]).calculate_absolute_value() < 1.0e-3, LOG);
-//   assert_true((numerical_hidden_layer_hidden_layer_output_Delta[2] - output_interlayers_Delta(0,0)[2]).calculate_absolute_value() < 1.0e-3, LOG); 
-   }
+//   assert_true((numerical_hidden_layer_hidden_layer_output_Delta[2] - output_interlayers_Delta(0,0)[2]).calculate_absolute_value() < 1.0e-3, LOG);
+    }
 
-   // Test
+    // Test
 
-   if(numerical_differentiation_tests)
-   {
-      for(size_t i = 0; i < random_tests_number; i++)
-      {
-         n.initialize_random();
+    if (numerical_differentiation_tests) {
+        for (size_t i = 0; i < random_tests_number; i++) {
+            n.initialize_random();
 
 //         inputs_number = n.get_inputs_number();
 //         layers_number = n.get_layers_number();
@@ -3179,16 +3293,16 @@ void MultilayerPerceptronTest::test_calculate_output_interlayers_Delta(void)
 //       output_interlayers_Delta = n.calculate_output_interlayers_Delta(second_order_forward_propagation, interlayers_combination_combination_Jacobian, output_layers_delta);
 
 //         for(size_t j = 0; j < layers_number; j++)
-         {
+            {
 //            numerical_layer_layer_output_Delta = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_output_layer_combination, j, layers_combination[j]);
 
 //            for(size_t k = 0; k < outputs_number; k++)
-            {
-//               assert_true((numerical_layer_layer_output_Delta[k] - output_interlayers_Delta[j][j][k]).calculate_absolute_value() < 1.0e-3, LOG);		
+                {
+//               assert_true((numerical_layer_layer_output_Delta[k] - output_interlayers_Delta[j][j][k]).calculate_absolute_value() < 1.0e-3, LOG);
+                }
             }
-         }
-	  }
-   }
+        }
+    }
 
 }
 
@@ -3197,75 +3311,75 @@ void MultilayerPerceptronTest::test_calculate_output_interlayers_Delta(void)
 
 void MultilayerPerceptronTest::test_calculate_parameters_Jacobian(void)
 {
-   message += "test_calculate_parameters_Jacobian\n";
+    message += "test_calculate_parameters_Jacobian\n";
 
-   std::cout.precision(2);
+    std::cout.precision(2);
 
-   NumericalDifferentiation nd;
+    NumericalDifferentiation nd;
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   size_t inputs_number;
+    size_t inputs_number;
 
 //   size_t parameters_number;
-   Vector<double> parameters;
- 
-   Vector<double> inputs;
+    Vector<double> parameters;
 
-   Vector<double> hidden_layer_combination;
-   Vector<double> hidden_layer_activation;
-   Vector<double> hidden_layer_activation_derivative;
-   Vector<double> hidden_layer_activation_second_derivative;
+    Vector<double> inputs;
 
-   Vector<double> hidden_layer_output;
-   Matrix<double> hidden_layer_combination_parameters_Jacobian;
+    Vector<double> hidden_layer_combination;
+    Vector<double> hidden_layer_activation;
+    Vector<double> hidden_layer_activation_derivative;
+    Vector<double> hidden_layer_activation_second_derivative;
 
-   Matrix<double> output_layer_combination_parameters_Jacobian;
+    Vector<double> hidden_layer_output;
+    Matrix<double> hidden_layer_combination_parameters_Jacobian;
 
-   Matrix<double> parameters_Jacobian;
-   Matrix<double> numerical_parameters_Jacobian;
+    Matrix<double> output_layer_combination_parameters_Jacobian;
 
-   // Test
+    Matrix<double> parameters_Jacobian;
+    Matrix<double> numerical_parameters_Jacobian;
 
-   n.set(2, 4, 3);
+    // Test
 
-   parameters.set(27);
+    n.set(2, 4, 3);
 
-   parameters[0]  =  0.85;
-   parameters[1]  = -0.04;
-   parameters[2]  =  0.87;
-   parameters[3]  = -0.25;
-   parameters[4]  =  0.25;
-   parameters[5]  = -0.27;
-   parameters[6]  =  0.29;
-   parameters[7]  = -0.57;
-   parameters[8]  =  0.15;
-   parameters[9]  = -0.77;
-   parameters[10] =  0.96;
-   parameters[11] = -0.48;
-   parameters[12] =  0.08;
-   parameters[13] = -0.06;
-   parameters[14] =  0.26;
-   parameters[15] = -0.15;
-   parameters[16] =  0.96;
-   parameters[17] = -0.33;
-   parameters[18] =  0.63;
-   parameters[19] = -0.32; 
-   parameters[20] =  0.89;
-   parameters[21] = -0.80;
-   parameters[22] =  0.80; 
-   parameters[23] = -0.03;
-   parameters[24] =  0.32;
-   parameters[25] =  0.06; 
-   parameters[26] = -0.38;
+    parameters.set(27);
 
-   n.set_parameters(parameters);   
+    parameters[0] = 0.85;
+    parameters[1] = -0.04;
+    parameters[2] = 0.87;
+    parameters[3] = -0.25;
+    parameters[4] = 0.25;
+    parameters[5] = -0.27;
+    parameters[6] = 0.29;
+    parameters[7] = -0.57;
+    parameters[8] = 0.15;
+    parameters[9] = -0.77;
+    parameters[10] = 0.96;
+    parameters[11] = -0.48;
+    parameters[12] = 0.08;
+    parameters[13] = -0.06;
+    parameters[14] = 0.26;
+    parameters[15] = -0.15;
+    parameters[16] = 0.96;
+    parameters[17] = -0.33;
+    parameters[18] = 0.63;
+    parameters[19] = -0.32;
+    parameters[20] = 0.89;
+    parameters[21] = -0.80;
+    parameters[22] = 0.80;
+    parameters[23] = -0.03;
+    parameters[24] = 0.32;
+    parameters[25] = 0.06;
+    parameters[26] = -0.38;
 
-//   parameters_number = n.count_parameters_number();   
+    n.set_parameters(parameters);
 
-   inputs.set(2);
-   inputs[0] = -0.88;
-   inputs[1] =  0.78;
+//   parameters_number = n.count_parameters_number();
+
+    inputs.set(2);
+    inputs[0] = -0.88;
+    inputs[1] = 0.78;
 
 //   hidden_layer_combination = hidden_layer.calculate_combination(inputs);
 //   hidden_layer_activation = n.calculate_layer_activation(0, hidden_layer_combination);
@@ -3283,35 +3397,32 @@ void MultilayerPerceptronTest::test_calculate_parameters_Jacobian(void)
 //   assert_true(parameters_Jacobian.get_rows_number() == 3, LOG);
 //   assert_true(parameters_Jacobian.get_columns_number() == parameters_number, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      numerical_parameters_Jacobian = nd.calculate_Jacobian(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
-      assert_true((parameters_Jacobian-numerical_parameters_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+        assert_true((parameters_Jacobian - numerical_parameters_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
+    }
 
-   // Test
+    // Test
 
-   if(numerical_differentiation_tests)
-   {
-      for(size_t i = 0; i < random_tests_number; i++)
-      {
-         n.initialize_random();
+    if (numerical_differentiation_tests) {
+        for (size_t i = 0; i < random_tests_number; i++) {
+            n.initialize_random();
 
-	     inputs_number = n.get_inputs_number();
+            inputs_number = n.get_inputs_number();
 
-	     parameters = n.arrange_parameters();
+            parameters = n.arrange_parameters();
 
-	     inputs.set(inputs_number);
-	     inputs.randomize_normal();
+            inputs.set(inputs_number);
+            inputs.randomize_normal();
 
 //         parameters_Jacobian = n.calculate_parameters_Jacobian(inputs);
 
 //         numerical_parameters_Jacobian = nd.calculate_Jacobian(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
-         assert_true((parameters_Jacobian-numerical_parameters_Jacobian).calculate_absolute_value() < 1.0e-3, LOG); 
-      }
-   }
+            assert_true((parameters_Jacobian - numerical_parameters_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
+        }
+    }
 }
 
 
@@ -3319,36 +3430,36 @@ void MultilayerPerceptronTest::test_calculate_parameters_Jacobian(void)
 
 void MultilayerPerceptronTest::test_calculate_parameters_Hessian_form(void)
 {
-   message += "test_calculate_parameters_Hessian_form\n";
+    message += "test_calculate_parameters_Hessian_form\n";
 
-   NumericalDifferentiation nd;
+    NumericalDifferentiation nd;
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   size_t inputs_number;
-   Vector<size_t> architecture;
-   size_t outputs_number;
+    size_t inputs_number;
+    Vector<size_t> architecture;
+    size_t outputs_number;
 
 //   size_t parameters_number;
-   Vector<double> parameters;
- 
-   Vector<double> inputs;
+    Vector<double> parameters;
 
-   Vector< Matrix<double> > parameters_Hessian_form;
+    Vector<double> inputs;
 
-   Vector< Matrix<double> > layer_parameters_Hessian_form;
-   Vector< Matrix<double> > numerical_parameters_Hessian_form;
+    Vector<Matrix<double> > parameters_Hessian_form;
 
-   // Test
+    Vector<Matrix<double> > layer_parameters_Hessian_form;
+    Vector<Matrix<double> > numerical_parameters_Hessian_form;
 
-   n.set(1, 1); 
+    // Test
 
-   n.initialize_parameters(0.0);
-   
+    n.set(1, 1);
+
+    n.initialize_parameters(0.0);
+
 //   parameters_number = n.count_parameters_number();
-   parameters = n.arrange_parameters();
+    parameters = n.arrange_parameters();
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
 //   parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
@@ -3363,20 +3474,20 @@ void MultilayerPerceptronTest::test_calculate_parameters_Hessian_form(void)
 //   assert_true((parameters_Hessian_form[0] - parameters_Hessian_form[0].calculate_transpose()).calculate_absolute_value() < 1.0e-3, LOG);
 
 //   if(numerical_differentiation_tests)
-   {
+    {
 //      numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
 //   assert_true((parameters_Hessian_form[0]-numerical_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(1, 1); 
- 
+    n.set(1, 1);
+
 //   parameters_number = n.count_parameters_number();
-   parameters = n.arrange_parameters();
+    parameters = n.arrange_parameters();
 
-   inputs.set(1, 3.1415927);
+    inputs.set(1, 3.1415927);
 
 //   parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
@@ -3390,22 +3501,21 @@ void MultilayerPerceptronTest::test_calculate_parameters_Hessian_form(void)
 //   assert_true((parameters_Hessian_form[0]-layer_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
 //   assert_true((parameters_Hessian_form[0] - parameters_Hessian_form[0].calculate_transpose()).calculate_absolute_value() < 1.0e-3, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
 //   assert_true((parameters_Hessian_form[0]-numerical_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(2, 1); 
- 
+    n.set(2, 1);
+
 //   parameters_number = n.count_parameters_number();
-   parameters = n.arrange_parameters();
+    parameters = n.arrange_parameters();
 
-   inputs.set(2);
-   inputs.randomize_uniform();
+    inputs.set(2);
+    inputs.randomize_uniform();
 
 //   parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
@@ -3419,22 +3529,21 @@ void MultilayerPerceptronTest::test_calculate_parameters_Hessian_form(void)
 //   assert_true((parameters_Hessian_form[0]-layer_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
 //   assert_true((parameters_Hessian_form[0] - parameters_Hessian_form[0].calculate_transpose()).calculate_absolute_value() < 1.0e-3, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
 //    assert_true((parameters_Hessian_form[0]-numerical_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(2, 2); 
- 
+    n.set(2, 2);
+
 //   parameters_number = n.count_parameters_number();
-   parameters = n.arrange_parameters();
+    parameters = n.arrange_parameters();
 
-   inputs.set(2);
-   inputs.randomize_normal();
+    inputs.set(2);
+    inputs.randomize_normal();
 
 //   parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
@@ -3454,25 +3563,24 @@ void MultilayerPerceptronTest::test_calculate_parameters_Hessian_form(void)
 //   assert_true((parameters_Hessian_form[0]-layer_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
 //   assert_true((parameters_Hessian_form[1]-layer_parameters_Hessian_form[1]).calculate_absolute_value() < 1.0e-3, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
 //    assert_true((parameters_Hessian_form[0]-numerical_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
 //    assert_true((parameters_Hessian_form[1]-numerical_parameters_Hessian_form[1]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(2, 2); 
+    n.set(2, 2);
 
 //   n.set_layer_activation_function(0, Perceptron::HyperbolicTangent);
 
 //   parameters_number = n.count_parameters_number();
-   parameters = n.arrange_parameters();
+    parameters = n.arrange_parameters();
 
-   inputs.set(2);
-   inputs.randomize_normal();
+    inputs.set(2);
+    inputs.randomize_normal();
 
 //   parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
@@ -3490,25 +3598,24 @@ void MultilayerPerceptronTest::test_calculate_parameters_Hessian_form(void)
 //   assert_true((parameters_Hessian_form[0]-layer_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
 //   assert_true((parameters_Hessian_form[1]-layer_parameters_Hessian_form[1]).calculate_absolute_value() < 1.0e-3, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
 //    assert_true((parameters_Hessian_form[0]-numerical_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
 //    assert_true((parameters_Hessian_form[1]-numerical_parameters_Hessian_form[1]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(3, 2); 
+    n.set(3, 2);
 
 //   n.set_layer_activation_function(0, Perceptron::Logistic);
 
 //   parameters_number = n.count_parameters_number();
-   parameters = n.arrange_parameters();
+    parameters = n.arrange_parameters();
 
-   inputs.set(3);
-   inputs.randomize_normal();
+    inputs.set(3);
+    inputs.randomize_normal();
 
 //   parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
@@ -3526,27 +3633,26 @@ void MultilayerPerceptronTest::test_calculate_parameters_Hessian_form(void)
 //   assert_true((parameters_Hessian_form[0]-layer_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
 //   assert_true((parameters_Hessian_form[1]-layer_parameters_Hessian_form[1]).calculate_absolute_value() < 1.0e-3, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
 //    assert_true((parameters_Hessian_form[0]-numerical_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
 //    assert_true((parameters_Hessian_form[1]-numerical_parameters_Hessian_form[1]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(1, 1, 1); 
+    n.set(1, 1, 1);
 
 //   n.set_layer_activation_function(0, Perceptron::Linear);
 //   n.set_layer_activation_function(1, Perceptron::Linear);
 
 //   n.initialize_parameters(0.0);
-   
-//   parameters_number = n.count_parameters_number();
-   parameters = n.arrange_parameters();
 
-   inputs.set(1, 0.0);
+//   parameters_number = n.count_parameters_number();
+    parameters = n.arrange_parameters();
+
+    inputs.set(1, 0.0);
 
 //   parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
@@ -3554,89 +3660,85 @@ void MultilayerPerceptronTest::test_calculate_parameters_Hessian_form(void)
 //   assert_true(parameters_Hessian_form[0].get_rows_number() == parameters_number, LOG);
 //   assert_true(parameters_Hessian_form[0].get_columns_number() == parameters_number, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
 //    assert_true((parameters_Hessian_form[0]-numerical_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
 //    assert_true((parameters_Hessian_form[0] - parameters_Hessian_form[0].calculate_transpose()).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(1, 1, 1); 
-  
+    n.set(1, 1, 1);
+
 //   parameters_number = n.count_parameters_number();
-   parameters = n.arrange_parameters();
+    parameters = n.arrange_parameters();
 
-   inputs.set(1, 3.1415927);
+    inputs.set(1, 3.1415927);
 
 //   parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
 //   assert_true(parameters_Hessian_form.size() == 1, LOG);
 //   assert_true(parameters_Hessian_form[0].get_rows_number() == parameters_number, LOG);
 //   assert_true(parameters_Hessian_form[0].get_columns_number() == parameters_number, LOG);
-   
-   if(numerical_differentiation_tests)
-   {
+
+    if (numerical_differentiation_tests) {
 //      numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
 //   assert_true((parameters_Hessian_form[0]-numerical_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(2, 1, 1); 
-  
+    n.set(2, 1, 1);
+
 //   parameters_number = n.count_parameters_number();
-   parameters = n.arrange_parameters();
+    parameters = n.arrange_parameters();
 
-   inputs.set(2);
-   inputs.randomize_uniform();
+    inputs.set(2);
+    inputs.randomize_uniform();
 
 //   parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
 //   assert_true(parameters_Hessian_form.size() == 1, LOG);
 //   assert_true(parameters_Hessian_form[0].get_rows_number() == parameters_number, LOG);
 //   assert_true(parameters_Hessian_form[0].get_columns_number() == parameters_number, LOG);
-   
-   if(numerical_differentiation_tests)
-   {
+
+    if (numerical_differentiation_tests) {
 //      numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
-   }
+    }
 
 //   assert_true((parameters_Hessian_form[0]-numerical_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
 
-   // Test
+    // Test
 
-   n.set(1, 2, 1); 
-  
+    n.set(1, 2, 1);
+
 //   parameters_number = n.count_parameters_number();
-   parameters = n.arrange_parameters();
+    parameters = n.arrange_parameters();
 
-   inputs.set(1, 3.1415927);
+    inputs.set(1, 3.1415927);
 
 //   parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
 //   assert_true(parameters_Hessian_form.size() == 1, LOG);
 //   assert_true(parameters_Hessian_form[0].get_rows_number() == parameters_number, LOG);
 //   assert_true(parameters_Hessian_form[0].get_columns_number() == parameters_number, LOG);
-   
-   if(numerical_differentiation_tests)
-   {
+
+    if (numerical_differentiation_tests) {
 //      numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
 //   assert_true((parameters_Hessian_form[0]-numerical_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   n.set(1, 1, 2); 
-  
+    n.set(1, 1, 2);
+
 //   parameters_number = n.count_parameters_number();
-   parameters = n.arrange_parameters();
+    parameters = n.arrange_parameters();
 
-   inputs.set(1, 3.1415927);
+    inputs.set(1, 3.1415927);
 
 //   parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
@@ -3645,55 +3747,53 @@ void MultilayerPerceptronTest::test_calculate_parameters_Hessian_form(void)
 //   assert_true(parameters_Hessian_form[0].get_columns_number() == parameters_number, LOG);
 //   assert_true(parameters_Hessian_form[1].get_rows_number() == parameters_number, LOG);
 //   assert_true(parameters_Hessian_form[1].get_columns_number() == parameters_number, LOG);
-   
-   if(numerical_differentiation_tests)
-   {
+
+    if (numerical_differentiation_tests) {
 //      numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
 //   assert_true((parameters_Hessian_form[0]-numerical_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
-   
-   if(numerical_differentiation_tests)
-   {
-      n.set(2, 4, 3);
+    // Test
 
-      parameters.set(27);
+    if (numerical_differentiation_tests) {
+        n.set(2, 4, 3);
 
-      parameters[0]  =  0.85;
-      parameters[1]  = -0.04;
-      parameters[2]  =  0.87;
-      parameters[3]  = -0.25;
-      parameters[4]  =  0.25;
-      parameters[5]  = -0.27;
-      parameters[6]  =  0.29;
-      parameters[7]  = -0.57;
-      parameters[8]  =  0.15;
-      parameters[9]  = -0.77;
-      parameters[10] =  0.96;
-      parameters[11] = -0.48;
-      parameters[12] =  0.08;
-      parameters[13] = -0.06;
-      parameters[14] =  0.26;
-      parameters[15] = -0.15;
-      parameters[16] =  0.96;
-      parameters[17] = -0.33;
-      parameters[18] =  0.63;
-      parameters[19] = -0.32; 
-      parameters[20] =  0.89;
-      parameters[21] = -0.80;
-      parameters[22] =  0.80; 
-      parameters[23] = -0.03;
-      parameters[24] =  0.32;
-      parameters[25] =  0.06; 
-      parameters[26] = -0.38;
-   
-      n.set_parameters(parameters);   
+        parameters.set(27);
 
-      inputs.set(2);
-      inputs[0] = -0.88;
-      inputs[1] =  0.78;
+        parameters[0] = 0.85;
+        parameters[1] = -0.04;
+        parameters[2] = 0.87;
+        parameters[3] = -0.25;
+        parameters[4] = 0.25;
+        parameters[5] = -0.27;
+        parameters[6] = 0.29;
+        parameters[7] = -0.57;
+        parameters[8] = 0.15;
+        parameters[9] = -0.77;
+        parameters[10] = 0.96;
+        parameters[11] = -0.48;
+        parameters[12] = 0.08;
+        parameters[13] = -0.06;
+        parameters[14] = 0.26;
+        parameters[15] = -0.15;
+        parameters[16] = 0.96;
+        parameters[17] = -0.33;
+        parameters[18] = 0.63;
+        parameters[19] = -0.32;
+        parameters[20] = 0.89;
+        parameters[21] = -0.80;
+        parameters[22] = 0.80;
+        parameters[23] = -0.03;
+        parameters[24] = 0.32;
+        parameters[25] = 0.06;
+        parameters[26] = -0.38;
+
+        n.set_parameters(parameters);
+
+        inputs.set(2);
+        inputs[0] = -0.88;
+        inputs[1] = 0.78;
 
 //    parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
@@ -3701,54 +3801,52 @@ void MultilayerPerceptronTest::test_calculate_parameters_Hessian_form(void)
 
 //    assert_true((parameters_Hessian_form[0]-numerical_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
 //    assert_true((parameters_Hessian_form[1]-numerical_parameters_Hessian_form[1]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   if(numerical_differentiation_tests)
-   {
-      architecture.set(4, 1);
+    if (numerical_differentiation_tests) {
+        architecture.set(4, 1);
 
-      n.set(architecture);
+        n.set(architecture);
 
 //      n.set_layer_activation_function(0, Perceptron::Logistic);
 //      n.set_layer_activation_function(1, Perceptron::Logistic);
 //      n.set_layer_activation_function(2, Perceptron::Logistic);
 
-      inputs.set(1, 3.1415927);
+        inputs.set(1, 3.1415927);
 
 //    parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
-      parameters = n.arrange_parameters();
+        parameters = n.arrange_parameters();
 
 //      numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
 //    assert_true((parameters_Hessian_form[0]-numerical_parameters_Hessian_form[0]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   if(numerical_differentiation_tests)
-   {
-      architecture.set(4);
+    if (numerical_differentiation_tests) {
+        architecture.set(4);
 
-      architecture[0] = 2;
-      architecture[1] = 3;
-      architecture[2] = 5;
-      architecture[3] = 4;
+        architecture[0] = 2;
+        architecture[1] = 3;
+        architecture[2] = 5;
+        architecture[3] = 4;
 
-      n.set(architecture);
+        n.set(architecture);
 
 //      n.set_layer_activation_function(0, Perceptron::Logistic);
 //      n.set_layer_activation_function(1, Perceptron::Logistic);
 //      n.set_layer_activation_function(2, Perceptron::Logistic);
 
-      inputs.set(2);
-      inputs.randomize_normal();
+        inputs.set(2);
+        inputs.randomize_normal();
 
 //    parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
-      parameters = n.arrange_parameters();
+        parameters = n.arrange_parameters();
 
 //      numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
@@ -3756,372 +3854,369 @@ void MultilayerPerceptronTest::test_calculate_parameters_Hessian_form(void)
 //    assert_true((parameters_Hessian_form[1]-numerical_parameters_Hessian_form[1]).calculate_absolute_value() < 1.0e-3, LOG);
 //    assert_true((parameters_Hessian_form[2]-numerical_parameters_Hessian_form[2]).calculate_absolute_value() < 1.0e-3, LOG);
 //    assert_true((parameters_Hessian_form[3]-numerical_parameters_Hessian_form[3]).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test 
+    // Test
 
-   if(numerical_differentiation_tests)
-   {
-      for(size_t i = 0; i < random_tests_number; i++)
-      {
-         n.initialize_random();
+    if (numerical_differentiation_tests) {
+        for (size_t i = 0; i < random_tests_number; i++) {
+            n.initialize_random();
 
-         parameters = n.arrange_parameters();
+            parameters = n.arrange_parameters();
 
-         inputs_number = n.get_inputs_number();
-         outputs_number = n.get_outputs_number();
+            inputs_number = n.get_inputs_number();
+            outputs_number = n.get_outputs_number();
 
-         inputs.set(inputs_number);
-         inputs.randomize_normal();
+            inputs.set(inputs_number);
+            inputs.randomize_normal();
 
 //       parameters_Hessian_form = n.calculate_parameters_Hessian_form(inputs);
 
-//         numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters); 
+//         numerical_parameters_Hessian_form = nd.calculate_Hessian_form(n, &MultilayerPerceptron::calculate_parameters_output, inputs, parameters);
 
-         for(size_t j = 0; j < outputs_number; j++)
-         {      
-//          assert_true((parameters_Hessian_form[j]-numerical_parameters_Hessian_form[j]).calculate_absolute_value() < 1.0e-3, LOG);   
-         }
-      }
-   }
+            for (size_t j = 0; j < outputs_number; j++) {
+//          assert_true((parameters_Hessian_form[j]-numerical_parameters_Hessian_form[j]).calculate_absolute_value() < 1.0e-3, LOG);
+            }
+        }
+    }
 
 }
 
 
 void MultilayerPerceptronTest::test_calculate_layers_combination(void)
 {
-   message += "test_calculate_layers_combination\n";
+    message += "test_calculate_layers_combination\n";
 
-   MultilayerPerceptron n(1,1,1);
-   n.initialize_parameters(0.0);
+    MultilayerPerceptron n(1, 1, 1);
+    n.initialize_parameters(0.0);
 
-   // Test
+    // Test
 
-   Vector<double> inputs(1, 0.0);
+    Vector<double> inputs(1, 0.0);
 
-   Vector< Vector<double> > forward_propagation_combination = n.calculate_layers_combination(inputs);
+    Vector<Vector<double> > forward_propagation_combination = n.calculate_layers_combination(inputs);
 
-   assert_true(forward_propagation_combination.size() == 2, LOG);
-   assert_true(forward_propagation_combination[0] == 0, LOG);
-   assert_true(forward_propagation_combination[1] == 0, LOG);
+    assert_true(forward_propagation_combination.size() == 2, LOG);
+    assert_true(forward_propagation_combination[0] == 0, LOG);
+    assert_true(forward_propagation_combination[1] == 0, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_calculate_layers_combination_Jacobian(void)
 {
-   message += "test_calculate_layers_combination_Jacobian\n";
+    message += "test_calculate_layers_combination_Jacobian\n";
 }
 
 
 void MultilayerPerceptronTest::test_calculate_layers_combination_parameters_Jacobian(void)
 {
-   message += "test_calculate_layers_combination_parameters_Jacobian\n";
+    message += "test_calculate_layers_combination_parameters_Jacobian\n";
 }
 
 
 void MultilayerPerceptronTest::test_calculate_perceptrons_combination_parameters_gradient(void)
 {
-   message += "test_calculate_perceptrons_combination_parameters_gradient\n";
+    message += "test_calculate_perceptrons_combination_parameters_gradient\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector<double> inputs;
+    Vector<double> inputs;
 
-   Vector< Vector<double> > layers_inputs;
+    Vector<Vector<double> > layers_inputs;
 
-   Vector< Vector< Vector<double> > > perceptrons_combination_parameters_gradient;
+    Vector<Vector<Vector<double> > > perceptrons_combination_parameters_gradient;
 
-   // Test
+    // Test
 
-   n.set(1, 1);
-   n.initialize_parameters(0.0);
+    n.set(1, 1);
+    n.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   layers_inputs =  n.calculate_layers_input(inputs);
+    layers_inputs = n.calculate_layers_input(inputs);
 
-   perceptrons_combination_parameters_gradient = n.calculate_perceptrons_combination_parameters_gradient(layers_inputs);
+    perceptrons_combination_parameters_gradient = n.calculate_perceptrons_combination_parameters_gradient(layers_inputs);
 }
 
 
 void MultilayerPerceptronTest::test_calculate_layers_activation(void)
 {
-   message += "test_calculate_layers_activation\n";
+    message += "test_calculate_layers_activation\n";
 
-   MultilayerPerceptron n;
-   size_t layers_number;
-   Vector<size_t> architecture;
+    MultilayerPerceptron n;
+    size_t layers_number;
+    Vector<size_t> architecture;
 
-   Vector<double> inputs;
+    Vector<double> inputs;
 
-   Vector< Vector<double> > forward_propagation_activation;
+    Vector<Vector<double> > forward_propagation_activation;
 
-   // Test
+    // Test
 
-   architecture.set(4, 1);
-   n.set(architecture);
+    architecture.set(4, 1);
+    n.set(architecture);
 
-   layers_number = n.get_layers_number();
+    layers_number = n.get_layers_number();
 
-   n.initialize_parameters(0.0);
+    n.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   forward_propagation_activation = n.calculate_layers_activation(inputs);
+    forward_propagation_activation = n.calculate_layers_activation(inputs);
 
-   assert_true(forward_propagation_activation.size() == layers_number, LOG);
-   assert_true(forward_propagation_activation[0].size() == 1, LOG);
-   assert_true(forward_propagation_activation[0] == 0.0, LOG);
-   assert_true(forward_propagation_activation[1].size() == 1, LOG);
-   assert_true(forward_propagation_activation[1] == 0.0, LOG);
-   assert_true(forward_propagation_activation[2].size() == 1, LOG);
-   assert_true(forward_propagation_activation[2] == 0.0, LOG);
+    assert_true(forward_propagation_activation.size() == layers_number, LOG);
+    assert_true(forward_propagation_activation[0].size() == 1, LOG);
+    assert_true(forward_propagation_activation[0] == 0.0, LOG);
+    assert_true(forward_propagation_activation[1].size() == 1, LOG);
+    assert_true(forward_propagation_activation[1] == 0.0, LOG);
+    assert_true(forward_propagation_activation[2].size() == 1, LOG);
+    assert_true(forward_propagation_activation[2] == 0.0, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_calculate_layers_activation_derivative(void)
 {
-   message += "test_calculate_layers_activation_derivative\n";
+    message += "test_calculate_layers_activation_derivative\n";
 
-   MultilayerPerceptron n;
-   size_t layers_number;
-   Vector<size_t> architecture;
+    MultilayerPerceptron n;
+    size_t layers_number;
+    Vector<size_t> architecture;
 
-   Vector<double> inputs;
-   Vector< Vector<double> > layers_activation_derivative;
+    Vector<double> inputs;
+    Vector<Vector<double> > layers_activation_derivative;
 
-   // Test
+    // Test
 
-   architecture.set(3, 1);
-   n.set(architecture);
+    architecture.set(3, 1);
+    n.set(architecture);
 
-   layers_number = n.get_layers_number();
+    layers_number = n.get_layers_number();
 
-   n.initialize_parameters(0.0);
+    n.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
+    layers_activation_derivative = n.calculate_layers_activation_derivative(inputs);
 
-   assert_true(layers_activation_derivative.size() == layers_number, LOG);
-   assert_true(layers_activation_derivative[0].size() == 1, LOG);
-   assert_true(layers_activation_derivative[1].size() == 1, LOG);
+    assert_true(layers_activation_derivative.size() == layers_number, LOG);
+    assert_true(layers_activation_derivative[0].size() == 1, LOG);
+    assert_true(layers_activation_derivative[1].size() == 1, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_calculate_layers_activation_second_derivative(void)
 {
-   message += "test_calculate_layers_activation_second_derivative\n";
+    message += "test_calculate_layers_activation_second_derivative\n";
 
-   MultilayerPerceptron n;
-   size_t layers_number;
-   Vector<size_t> architecture;
+    MultilayerPerceptron n;
+    size_t layers_number;
+    Vector<size_t> architecture;
 
-   Vector<double> inputs;
-   Vector< Vector<double> > layers_activation_second_derivative;
+    Vector<double> inputs;
+    Vector<Vector<double> > layers_activation_second_derivative;
 
-   // Test
+    // Test
 
-   architecture.set(3, 1);
+    architecture.set(3, 1);
 
-   n.set(architecture);
+    n.set(architecture);
 
-   layers_number = n.get_layers_number();
+    layers_number = n.get_layers_number();
 
-   n.initialize_parameters(0.0);
+    n.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
+    layers_activation_second_derivative = n.calculate_layers_activation_second_derivative(inputs);
 
-   assert_true(layers_activation_second_derivative.size() == layers_number, LOG);
-   assert_true(layers_activation_second_derivative[0].size() == 1, LOG);
-   assert_true(layers_activation_second_derivative[1].size() == 1, LOG);
+    assert_true(layers_activation_second_derivative.size() == layers_number, LOG);
+    assert_true(layers_activation_second_derivative[0].size() == 1, LOG);
+    assert_true(layers_activation_second_derivative[1].size() == 1, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_calculate_layers_Jacobian(void)
 {
-   message += "test_calculate_layers_Jacobian\n";
+    message += "test_calculate_layers_Jacobian\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector<double> inputs;
+    Vector<double> inputs;
 
-   Vector< Matrix<double> > layers_Jacobian;
+    Vector<Matrix<double> > layers_Jacobian;
 
-   // Test
+    // Test
 
-   n.set(1,1,1);  
-   n.initialize_parameters(0.0);
+    n.set(1, 1, 1);
+    n.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   layers_Jacobian = n.calculate_layers_Jacobian(inputs);
+    layers_Jacobian = n.calculate_layers_Jacobian(inputs);
 
-   assert_true(layers_Jacobian.size() == 2, LOG);
-   assert_true(layers_Jacobian[0] == 0.0, LOG);
-   assert_true(layers_Jacobian[1] == 0.0, LOG);
+    assert_true(layers_Jacobian.size() == 2, LOG);
+    assert_true(layers_Jacobian[0] == 0.0, LOG);
+    assert_true(layers_Jacobian[1] == 0.0, LOG);
 
-   // Test
+    // Test
 
-   n.set(2,3,4);
-   n.initialize_parameters(0.0);
+    n.set(2, 3, 4);
+    n.initialize_parameters(0.0);
 
-   inputs.set(2, 0.0);
+    inputs.set(2, 0.0);
 
-   layers_Jacobian = n.calculate_layers_Jacobian(inputs);
+    layers_Jacobian = n.calculate_layers_Jacobian(inputs);
 
-   assert_true(layers_Jacobian.size() == 2, LOG);
+    assert_true(layers_Jacobian.size() == 2, LOG);
 
-   assert_true(layers_Jacobian[0].get_rows_number() == 3, LOG);
-   assert_true(layers_Jacobian[0].get_columns_number() == 2, LOG);
-   assert_true(layers_Jacobian[0] == 0.0, LOG);
+    assert_true(layers_Jacobian[0].get_rows_number() == 3, LOG);
+    assert_true(layers_Jacobian[0].get_columns_number() == 2, LOG);
+    assert_true(layers_Jacobian[0] == 0.0, LOG);
 
-   assert_true(layers_Jacobian[1].get_rows_number() == 4, LOG);
-   assert_true(layers_Jacobian[1].get_columns_number() == 3, LOG);
-   assert_true(layers_Jacobian[1] == 0.0, LOG);
+    assert_true(layers_Jacobian[1].get_rows_number() == 4, LOG);
+    assert_true(layers_Jacobian[1].get_columns_number() == 3, LOG);
+    assert_true(layers_Jacobian[1] == 0.0, LOG);
 
-   // Test
+    // Test
 
-   Vector<size_t> architecture(4);
-   architecture[0] = 1;
-   architecture[1] = 2;
-   architecture[2] = 3;
-   architecture[3] = 4;
+    Vector<size_t> architecture(4);
+    architecture[0] = 1;
+    architecture[1] = 2;
+    architecture[2] = 3;
+    architecture[3] = 4;
 
-   n.set(architecture);
+    n.set(architecture);
 
-   n.initialize_parameters(0.0);
+    n.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   layers_Jacobian = n.calculate_layers_Jacobian(inputs);
+    layers_Jacobian = n.calculate_layers_Jacobian(inputs);
 
-   assert_true(layers_Jacobian.size() == 3, LOG);
+    assert_true(layers_Jacobian.size() == 3, LOG);
 
-   assert_true(layers_Jacobian[0].get_rows_number() == 2, LOG);
-   assert_true(layers_Jacobian[0].get_columns_number() == 1, LOG);
-   assert_true(layers_Jacobian[0] == 0.0, LOG);
+    assert_true(layers_Jacobian[0].get_rows_number() == 2, LOG);
+    assert_true(layers_Jacobian[0].get_columns_number() == 1, LOG);
+    assert_true(layers_Jacobian[0] == 0.0, LOG);
 
-   assert_true(layers_Jacobian[1].get_rows_number() == 3, LOG);
-   assert_true(layers_Jacobian[1].get_columns_number() == 2, LOG);
-   assert_true(layers_Jacobian[1] == 0.0, LOG);
+    assert_true(layers_Jacobian[1].get_rows_number() == 3, LOG);
+    assert_true(layers_Jacobian[1].get_columns_number() == 2, LOG);
+    assert_true(layers_Jacobian[1] == 0.0, LOG);
 
-   assert_true(layers_Jacobian[2].get_rows_number() == 4, LOG);
-   assert_true(layers_Jacobian[2].get_columns_number() == 3, LOG);
-   assert_true(layers_Jacobian[2] == 0.0, LOG);  
+    assert_true(layers_Jacobian[2].get_rows_number() == 4, LOG);
+    assert_true(layers_Jacobian[2].get_columns_number() == 3, LOG);
+    assert_true(layers_Jacobian[2] == 0.0, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_calculate_layers_Hessian_form(void)
 {
-   message += "test_calculate_layers_Hessian_form\n";
+    message += "test_calculate_layers_Hessian_form\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector<double> inputs;
+    Vector<double> inputs;
 
-   Vector< Vector< Matrix<double> > > layers_Hessian_form;
+    Vector<Vector<Matrix<double> > > layers_Hessian_form;
 
-   // Test
+    // Test
 
-   n.set(1, 1);  
-   n.initialize_parameters(0.0);
+    n.set(1, 1);
+    n.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   layers_Hessian_form = n.calculate_layers_Hessian_form(inputs);
+    layers_Hessian_form = n.calculate_layers_Hessian_form(inputs);
 
-   assert_true(layers_Hessian_form.size() == 1, LOG);
-   assert_true(layers_Hessian_form[0].size() == 1, LOG);
-   assert_true(layers_Hessian_form[0][0] == 0.0, LOG);
+    assert_true(layers_Hessian_form.size() == 1, LOG);
+    assert_true(layers_Hessian_form[0].size() == 1, LOG);
+    assert_true(layers_Hessian_form[0][0] == 0.0, LOG);
 
-   // Test
+    // Test
 
-   n.set(2,3,4);
-   n.initialize_parameters(0.0);
+    n.set(2, 3, 4);
+    n.initialize_parameters(0.0);
 
-   inputs.set(2, 0.0);
+    inputs.set(2, 0.0);
 
-   layers_Hessian_form = n.calculate_layers_Hessian_form(inputs);
+    layers_Hessian_form = n.calculate_layers_Hessian_form(inputs);
 
-   assert_true(layers_Hessian_form.size() == 2, LOG);
+    assert_true(layers_Hessian_form.size() == 2, LOG);
 
-   assert_true(layers_Hessian_form[0].size() == 3, LOG);
-   assert_true(layers_Hessian_form[1].size() == 4, LOG);
+    assert_true(layers_Hessian_form[0].size() == 3, LOG);
+    assert_true(layers_Hessian_form[1].size() == 4, LOG);
 
-   // Test
+    // Test
 
-   Vector<size_t> architecture(4);
-   architecture[0] = 1;
-   architecture[1] = 2;
-   architecture[2] = 3;
-   architecture[3] = 4;
+    Vector<size_t> architecture(4);
+    architecture[0] = 1;
+    architecture[1] = 2;
+    architecture[2] = 3;
+    architecture[3] = 4;
 
-   n.set(architecture);
+    n.set(architecture);
 
-   n.initialize_parameters(0.0);
+    n.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   layers_Hessian_form = n.calculate_layers_Hessian_form(inputs);
+    layers_Hessian_form = n.calculate_layers_Hessian_form(inputs);
 
-   assert_true(layers_Hessian_form.size() == 3, LOG);
-   assert_true(layers_Hessian_form[0].size() == 2, LOG);
-   assert_true(layers_Hessian_form[1].size() == 3, LOG);
-   assert_true(layers_Hessian_form[2].size() == 4, LOG);
+    assert_true(layers_Hessian_form.size() == 3, LOG);
+    assert_true(layers_Hessian_form[0].size() == 2, LOG);
+    assert_true(layers_Hessian_form[1].size() == 3, LOG);
+    assert_true(layers_Hessian_form[2].size() == 4, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_calculate_first_order_forward_propagation(void)
 {
-   message += "test_calculate_first_order_forward_propagation\n";
+    message += "test_calculate_first_order_forward_propagation\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector<double> inputs;
+    Vector<double> inputs;
 
-   Vector< Vector< Vector<double> > > first_order_forward_propagation;
+    Vector<Vector<Vector<double> > > first_order_forward_propagation;
 
-   // Test
+    // Test
 
-   n.set(2, 4, 3);
-   n.initialize_parameters(0.0);
+    n.set(2, 4, 3);
+    n.initialize_parameters(0.0);
 
-   inputs.set(2, 0.0);
+    inputs.set(2, 0.0);
 
-   first_order_forward_propagation = n.calculate_first_order_forward_propagation(inputs);
+    first_order_forward_propagation = n.calculate_first_order_forward_propagation(inputs);
 
-   assert_true(first_order_forward_propagation.size() == 2, LOG);
-   assert_true(first_order_forward_propagation[0].size() == 2, LOG);
-   assert_true(first_order_forward_propagation[1].size() == 2, LOG);
+    assert_true(first_order_forward_propagation.size() == 2, LOG);
+    assert_true(first_order_forward_propagation[0].size() == 2, LOG);
+    assert_true(first_order_forward_propagation[1].size() == 2, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_calculate_second_order_forward_propagation(void)
 {
-   message += "test_calculate_second_order_forward_propagation\n";
+    message += "test_calculate_second_order_forward_propagation\n";
 
-   MultilayerPerceptron n;
+    MultilayerPerceptron n;
 
-   Vector<double> inputs;
+    Vector<double> inputs;
 
-   Vector< Vector< Vector<double> > > second_order_forward_propagation;
+    Vector<Vector<Vector<double> > > second_order_forward_propagation;
 
-   // Test
+    // Test
 
-   n.set(2, 4, 3);
-   n.initialize_parameters(0.0);
+    n.set(2, 4, 3);
+    n.initialize_parameters(0.0);
 
-   inputs.set(2, 0.0);
+    inputs.set(2, 0.0);
 
-   second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
+    second_order_forward_propagation = n.calculate_second_order_forward_propagation(inputs);
 
-   assert_true(second_order_forward_propagation.size() == 3, LOG);
-   assert_true(second_order_forward_propagation[0].size() == 2, LOG);
-   assert_true(second_order_forward_propagation[1].size() == 2, LOG);
-   assert_true(second_order_forward_propagation[2].size() == 2, LOG);
+    assert_true(second_order_forward_propagation.size() == 3, LOG);
+    assert_true(second_order_forward_propagation[0].size() == 2, LOG);
+    assert_true(second_order_forward_propagation[1].size() == 2, LOG);
+    assert_true(second_order_forward_propagation[2].size() == 2, LOG);
 }
 
 
@@ -4129,283 +4224,283 @@ void MultilayerPerceptronTest::test_calculate_second_order_forward_propagation(v
 
 void MultilayerPerceptronTest::test_write_expression(void)
 {
-   message += "test_write_expression\n";
+    message += "test_write_expression\n";
 
-   Vector<size_t> architecture;
+    Vector<size_t> architecture;
 
-   MultilayerPerceptron n;
-   std::string expression;
+    MultilayerPerceptron n;
+    std::string expression;
 
-   // Test
+    // Test
 
 //   expression = n.write_expression();
 
-   // Test
+    // Test
 
-   n.set(1, 1, 1);
-   n.initialize_parameters(-1.0);
+    n.set(1, 1, 1);
+    n.initialize_parameters(-1.0);
 //   expression = n.write_expression();
 
-   // Test
+    // Test
 
-   n.set(2, 1, 1);
-   n.initialize_parameters(-1.0);
+    n.set(2, 1, 1);
+    n.initialize_parameters(-1.0);
 //   expression = n.write_expression();
 
-   // Test
+    // Test
 
-   n.set(1, 2, 1);
-   n.initialize_parameters(-1.0);
+    n.set(1, 2, 1);
+    n.initialize_parameters(-1.0);
 //   expression = n.write_expression();
 
-   // Test
+    // Test
 
-   n.set(1, 1, 2);
-   n.initialize_parameters(-1.0);
+    n.set(1, 1, 2);
+    n.initialize_parameters(-1.0);
 //   expression = n.write_expression();
 
-   // Test
+    // Test
 
-   n.set(2, 2, 2);
-   n.initialize_parameters(-1.0);
+    n.set(2, 2, 2);
+    n.initialize_parameters(-1.0);
 //   expression = n.write_expression();
 
-   // Test
+    // Test
 
-   architecture.set(3, 2);
-   n.set(architecture);
-   n.initialize_parameters(-1.0);
+    architecture.set(3, 2);
+    n.set(architecture);
+    n.initialize_parameters(-1.0);
 //   expression = n.write_expression();
 }
 
 
 void MultilayerPerceptronTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 
-   MultilayerPerceptron mlp;
+    MultilayerPerceptron mlp;
 
-   tinyxml2::XMLDocument* mlpe;
+    tinyxml2::XMLDocument *mlpe;
 
-   // Test
+    // Test
 
-   mlpe = mlp.to_XML();
+    mlpe = mlp.to_XML();
 
-   assert_true(mlpe != NULL, LOG);
+    assert_true(mlpe != NULL, LOG);
 
-   // Test
+    // Test
 
-   mlp.initialize_random();
+    mlp.initialize_random();
 
-   mlpe = mlp.to_XML();
+    mlpe = mlp.to_XML();
 
-   assert_true(mlpe != NULL, LOG);
+    assert_true(mlpe != NULL, LOG);
 }
 
 
 void MultilayerPerceptronTest::test_from_XML(void)
 {
-   message += "test_from_XML\n";
+    message += "test_from_XML\n";
 
-   MultilayerPerceptron mlp;
+    MultilayerPerceptron mlp;
 
-   tinyxml2::XMLDocument* document;
+    tinyxml2::XMLDocument *document;
 
-   // Test
+    // Test
 
-   mlp.initialize_random();
+    mlp.initialize_random();
 
-   document = mlp.to_XML();
-   
-   mlp.from_XML(*document);
+    document = mlp.to_XML();
+
+    mlp.from_XML(*document);
 }
 
 
 void MultilayerPerceptronTest::run_test_case(void)
 {
-   message += "Running multilayer perceptron test case...\n";
+    message += "Running multilayer perceptron test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Assignment operators methods
+    // Assignment operators methods
 
-   test_assignment_operator();
+    test_assignment_operator();
 
-   // Get methods
+    // Get methods
 
-   // Architecture
+    // Architecture
 
-   test_count_inputs_number();
+    test_count_inputs_number();
 
-   test_get_layers_number();
-   test_count_layers_perceptrons_number();
+    test_get_layers_number();
+    test_count_layers_perceptrons_number();
 
-   test_count_outputs_number();
+    test_count_outputs_number();
 
-   test_get_layers();
-   test_get_layer();
+    test_get_layers();
+    test_get_layer();
 
-   // Neurons number
+    // Neurons number
 
-   test_count_perceptrons_number();
-   test_count_cumulative_perceptrons_number();
+    test_count_perceptrons_number();
+    test_count_cumulative_perceptrons_number();
 
-   // Layers parameters
+    // Layers parameters
 
-   test_arrange_layers_parameters_number();
+    test_arrange_layers_parameters_number();
 
-   test_arrange_layers_biases();
-   test_arrange_layers_synaptic_weights();
-   test_get_layers_parameters();
+    test_arrange_layers_biases();
+    test_arrange_layers_synaptic_weights();
+    test_get_layers_parameters();
 
-   // Multilayer perceptron parameters
+    // Multilayer perceptron parameters
 
-   test_count_parameters_number();
-   test_get_cumulative_parameters_number();
+    test_count_parameters_number();
+    test_get_cumulative_parameters_number();
 
-   test_arrange_parameters();
+    test_arrange_parameters();
 
-   // Multilayer perceptron parameters indices
+    // Multilayer perceptron parameters indices
 
-   test_get_parameter_indices();
-   test_arrange_parameters_indices();
+    test_get_parameter_indices();
+    test_arrange_parameters_indices();
 
-   // Activation functions
+    // Activation functions
 
-   test_get_layers_activation_function();
-   test_get_layers_activation_function_name();
+    test_get_layers_activation_function();
+    test_get_layers_activation_function_name();
 
-   // Parameters methods
+    // Parameters methods
 
-   test_count_parameters_number();
-   test_arrange_parameters();   
+    test_count_parameters_number();
+    test_arrange_parameters();
 
-   // Display messages
+    // Display messages
 
-   test_get_display();
+    test_get_display();
 
-   // Set methods
+    // Set methods
 
-   test_set();
-   test_set_default();
+    test_set();
+    test_set_default();
 
-   // Multilayer perceptron architecture
+    // Multilayer perceptron architecture
 
-   test_set();
+    test_set();
 
-   // Multilayer perceptron parameters
+    // Multilayer perceptron parameters
 
-   test_set_layers_biases();
-   test_set_layers_synaptic_weights();      
-   test_set_layers_parameters();
-   test_set_parameters();
+    test_set_layers_biases();
+    test_set_layers_synaptic_weights();
+    test_set_layers_parameters();
+    test_set_parameters();
 
-   // Activation functions
+    // Activation functions
 
-   test_set_layers_activation_function();
+    test_set_layers_activation_function();
 
-   // Parameters methods
+    // Parameters methods
 
-   test_set_parameters();
+    test_set_parameters();
 
-   // Display messages
+    // Display messages
 
-   test_set_display();
+    test_set_display();
 
-   // Check methods
+    // Check methods
 
-   test_is_empty();
+    test_is_empty();
 
-   // Growing and pruning
+    // Growing and pruning
 
-   test_grow_input();
-   test_grow_layer();
+    test_grow_input();
+    test_grow_layer();
 
-   test_prune_input();
-   test_prune_output();
+    test_prune_input();
+    test_prune_output();
 
-   test_prune_layer();
+    test_prune_layer();
 
-   // Initialization methods
+    // Initialization methods
 
-   test_initialize_random();
+    test_initialize_random();
 
-   // Parameters initialization methods
+    // Parameters initialization methods
 
-   test_initialize_parameters();
-   test_initialize_biases(); 
-   test_initialize_synaptic_weights();
-   test_randomize_parameters_uniform();
-   test_randomize_parameters_normal();
+    test_initialize_parameters();
+    test_initialize_biases();
+    test_initialize_synaptic_weights();
+    test_randomize_parameters_uniform();
+    test_randomize_parameters_normal();
 
-   // Parameters initialization methods
+    // Parameters initialization methods
 
-   test_initialize_parameters();
-   test_randomize_parameters_uniform();
-   test_randomize_parameters_normal();
+    test_initialize_parameters();
+    test_randomize_parameters_uniform();
+    test_randomize_parameters_normal();
 
-   // Parameters norm 
+    // Parameters norm
 
-   test_calculate_parameters_norm();      
+    test_calculate_parameters_norm();
 
-   // Multilayer perceptron outputs
+    // Multilayer perceptron outputs
 
-   test_calculate_outputs();
+    test_calculate_outputs();
 
-   test_calculate_Jacobian();
-   test_calculate_Hessian_form();
+    test_calculate_Jacobian();
+    test_calculate_Hessian_form();
 
-   // Layer combination combination
+    // Layer combination combination
 
-   test_calculate_layer_combination_combination();
-   test_calculate_layer_combination_combination_Jacobian();
+    test_calculate_layer_combination_combination();
+    test_calculate_layer_combination_combination_Jacobian();
 
-   // Interlayers combination combination
+    // Interlayers combination combination
 
-   test_calculate_interlayer_combination_combination();
-   test_calculate_interlayer_combination_combination_Jacobian();
+    test_calculate_interlayer_combination_combination();
+    test_calculate_interlayer_combination_combination_Jacobian();
 
-   // Multilayer perceptron parameters outputs
+    // Multilayer perceptron parameters outputs
 
-   test_calculate_parameters_Jacobian();
-   test_calculate_parameters_Hessian_form();
+    test_calculate_parameters_Jacobian();
+    test_calculate_parameters_Hessian_form();
 
-   // Forward propagation
+    // Forward propagation
 
-   test_calculate_layers_combination();
+    test_calculate_layers_combination();
 
-   test_calculate_layers_combination_Jacobian();
-   test_calculate_layers_combination_parameters_Jacobian();
-   test_calculate_perceptrons_combination_parameters_gradient();
+    test_calculate_layers_combination_Jacobian();
+    test_calculate_layers_combination_parameters_Jacobian();
+    test_calculate_perceptrons_combination_parameters_gradient();
 
-   test_calculate_layers_activation();
-   test_calculate_layers_activation_derivative();
-   test_calculate_layers_activation_second_derivative();
+    test_calculate_layers_activation();
+    test_calculate_layers_activation_derivative();
+    test_calculate_layers_activation_second_derivative();
 
-   test_calculate_layers_Jacobian();
-   test_calculate_layers_Hessian_form();
+    test_calculate_layers_Jacobian();
+    test_calculate_layers_Hessian_form();
 
-   test_calculate_output_layers_delta();
-   test_calculate_output_interlayers_Delta();
+    test_calculate_output_layers_delta();
+    test_calculate_output_interlayers_Delta();
 
-   test_calculate_interlayers_combination_combination_Jacobian();
+    test_calculate_interlayers_combination_combination_Jacobian();
 
-   test_calculate_first_order_forward_propagation();
-   test_calculate_second_order_forward_propagation();
+    test_calculate_first_order_forward_propagation();
+    test_calculate_second_order_forward_propagation();
 
-   // Expression methods
+    // Expression methods
 
-   test_write_expression();
+    test_write_expression();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
-   message += "End of multilayer perceptron test case.\n";
+    message += "End of multilayer perceptron test case.\n";
 }
 
 

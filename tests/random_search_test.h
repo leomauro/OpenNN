@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   R A N D O M   S E A R C H   T E S T   C L A S S   H E A D E R                                              */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -22,69 +22,71 @@
 using namespace OpenNN;
 
 
-class RandomSearchTest : public UnitTesting
-{
+class RandomSearchTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit RandomSearchTest(void); 
-
-
-   // DESTRUCTOR
-
-   virtual ~RandomSearchTest(void);
+    explicit RandomSearchTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~RandomSearchTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void); 
 
-   // Get methods
+    // METHODS
 
-   void test_get_training_rate_reduction_factor(void);
+    // Constructor and destructor methods
 
-   void test_get_reserve_parameters_history(void);
-   void test_get_reserve_parameters_norm_history(void);
+    void test_constructor(void);
 
-   void test_get_reserve_performance_history(void);
+    void test_destructor(void);
 
-   // Set methods
+    // Get methods
 
-   void test_set_training_rate_reduction_factor(void);
+    void test_get_training_rate_reduction_factor(void);
 
-   void test_set_reserve_parameters_history(void);
-   void test_set_reserve_parameters_norm_history(void);
+    void test_get_reserve_parameters_history(void);
 
-   void test_set_reserve_performance_history(void);
+    void test_get_reserve_parameters_norm_history(void);
 
-   // Training methods
+    void test_get_reserve_performance_history(void);
 
-   void test_calculate_training_direction(void);
+    // Set methods
 
-   void test_perform_training(void);
+    void test_set_training_rate_reduction_factor(void);
 
-   // Training history methods
+    void test_set_reserve_parameters_history(void);
 
-   void test_set_reserve_all_training_history(void);
+    void test_set_reserve_parameters_norm_history(void);
 
-   // Utiltity methods
+    void test_set_reserve_performance_history(void);
 
-   void test_to_XML(void);
+    // Training methods
 
-   void test_from_XML(void);
+    void test_calculate_training_direction(void);
 
-   // Unit testing methods
+    void test_perform_training(void);
 
-   void run_test_case(void);
+    // Training history methods
+
+    void test_set_reserve_all_training_history(void);
+
+    // Utiltity methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 
 };
 

@@ -22,53 +22,54 @@
 using namespace OpenNN;
 
 
-class NeuralParametersNormTest : public UnitTesting 
-{
+class NeuralParametersNormTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit NeuralParametersNormTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~NeuralParametersNormTest(void);
+    explicit NeuralParametersNormTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~NeuralParametersNormTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void);
 
-   // Get methods
+    // METHODS
 
-   // Set methods
+    // Constructor and destructor methods
 
-   // Objective methods
+    void test_constructor(void);
 
-   void test_calculate_performance(void); 
+    void test_destructor(void);
+
+    // Get methods
+
+    // Set methods
+
+    // Objective methods
+
+    void test_calculate_performance(void);
 //   void test_calculate_selection_performance(void);
 
-   void test_calculate_gradient(void);
+    void test_calculate_gradient(void);
 
-   void test_calculate_Hessian(void);
+    void test_calculate_Hessian(void);
 
-   // Serialization methods
+    // Serialization methods
 
-   void test_to_XML(void);   
-   void test_from_XML(void);
+    void test_to_XML(void);
 
-   // Unit testing methods
+    void test_from_XML(void);
 
-   void run_test_case(void);
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

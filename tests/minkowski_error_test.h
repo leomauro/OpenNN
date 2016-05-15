@@ -22,57 +22,59 @@
 using namespace OpenNN;
 
 
-class MinkowskiErrorTest : public UnitTesting 
-{
+class MinkowskiErrorTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit MinkowskiErrorTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~MinkowskiErrorTest(void);
+    explicit MinkowskiErrorTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~MinkowskiErrorTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void);
 
-   // Get methods
+    // METHODS
 
-   void test_get_Minkowski_parameter(void);
+    // Constructor and destructor methods
 
-   // Set methods
+    void test_constructor(void);
 
-   void test_set_Minkowski_parameter(void);
+    void test_destructor(void);
 
-   // Objective methods
+    // Get methods
 
-   void test_calculate_performance(void);   
-   void test_calculate_selection_performance(void);
+    void test_get_Minkowski_parameter(void);
 
-   void test_calculate_gradient(void);
+    // Set methods
 
-   void test_calculate_Hessian(void);
+    void test_set_Minkowski_parameter(void);
 
-   // Serialization methods
+    // Objective methods
 
-   void test_to_XML(void);   
-   void test_from_XML(void);
+    void test_calculate_performance(void);
 
-   // Unit testing methods
+    void test_calculate_selection_performance(void);
 
-   void run_test_case(void);
+    void test_calculate_gradient(void);
+
+    void test_calculate_Hessian(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

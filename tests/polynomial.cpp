@@ -28,8 +28,8 @@ using namespace OpenNN;
 
 // GENERAL CONSTRUCTOR
 
-Polynomial::Polynomial(NeuralNetwork* new_neural_network_pointer)       
-: PerformanceTerm(new_neural_network_pointer)
+Polynomial::Polynomial(NeuralNetwork *new_neural_network_pointer)
+        : PerformanceTerm(new_neural_network_pointer)
 {
 }
 
@@ -52,17 +52,17 @@ Polynomial::~Polynomial(void)
 
 // const Vector<double>& get_coefficients(void) const method
 
-const Vector<double>& Polynomial::get_coefficients(void) const
+const Vector<double> &Polynomial::get_coefficients(void) const
 {
-   return(coefficients);
+    return (coefficients);
 }
 
 
 // void set_coefficients(const Vector<double>&) method
 
-void Polynomial::set_coefficients(const Vector<double>& new_coefficients)
+void Polynomial::set_coefficients(const Vector<double> &new_coefficients)
 {
-   coefficients = new_coefficients;
+    coefficients = new_coefficients;
 }
 
 
@@ -70,16 +70,15 @@ void Polynomial::set_coefficients(const Vector<double>& new_coefficients)
 
 double Polynomial::calculate_outputs(double inputs) const
 {
-   unsigned int size = coefficients.size();
+    unsigned int size = coefficients.size();
 
-   double outputs = 0.0;
+    double outputs = 0.0;
 
-   for(unsigned int i = 0; i < size; i++)
-   {
-      outputs += coefficients[i]*pow(inputs,(int)i);
-   }
+    for (unsigned int i = 0; i < size; i++) {
+        outputs += coefficients[i] * pow(inputs, (int) i);
+    }
 
-   return(outputs);
+    return (outputs);
 }
 
 
@@ -97,20 +96,20 @@ double Polynomial::calculate_evaluation(void) const
    return(objective);
 */
 
-   return(0.0);
+    return (0.0);
 }
 
 
 // double calculate_evaluation(const Vector<double>&) const method
 
-double Polynomial::calculate_evaluation(const Vector<double>&) const
+double Polynomial::calculate_evaluation(const Vector<double> &) const
 {
-   return(0.0);
+    return (0.0);
 }
 
 
 // OpenNN: Open Neural Networks Library.
-// Copyright (C) 2005-2012 Roberto Lopez 
+// Copyright (C) 2005-2012 Roberto Lopez
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public

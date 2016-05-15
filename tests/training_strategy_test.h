@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   T R A I N I N G   S T R A T E G Y   T E S T   C L A S S   H E A D E R                                      */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -21,73 +21,79 @@
 using namespace OpenNN;
 
 
-class TrainingStrategyTest : public UnitTesting 
-{
+class TrainingStrategyTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit TrainingStrategyTest(void); 
-
-
-   // DESTRUCTOR
-
-   virtual ~TrainingStrategyTest(void);
+    explicit TrainingStrategyTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~TrainingStrategyTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void);
 
-   // Get methods
+    // METHODS
 
-   void test_get_performance_functional_pointer(void);
+    // Constructor and destructor methods
 
-   // Utilities
+    void test_constructor(void);
 
-   void test_get_display(void);
+    void test_destructor(void);
 
-   // Set methods
+    // Get methods
 
-   void test_set(void);
-   void test_set_default(void);
-
-   void test_set_performance_functional_pointer(void);
+    void test_get_performance_functional_pointer(void);
 
     // Utilities
 
-   void test_set_display(void);
+    void test_get_display(void);
 
-   // Training methods
+    // Set methods
 
-   void test_initialize_layers_autoencoding(void);
-   void test_perform_training(void);
+    void test_set(void);
 
-   // Serialization methods
+    void test_set_default(void);
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    void test_set_performance_functional_pointer(void);
 
-   void test_print(void);
-   void test_save(void);
-   void test_load(void);
+    // Utilities
 
-   // Results methods
+    void test_set_display(void);
 
-   void test_results_constructor(void);
-   void test_results_destructor(void);
+    // Training methods
 
-   // Unit testing methods
+    void test_initialize_layers_autoencoding(void);
 
-   void run_test_case(void);
+    void test_perform_training(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    void test_print(void);
+
+    void test_save(void);
+
+    void test_load(void);
+
+    // Results methods
+
+    void test_results_constructor(void);
+
+    void test_results_destructor(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 
 };
 

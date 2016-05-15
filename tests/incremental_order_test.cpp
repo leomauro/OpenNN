@@ -57,7 +57,7 @@ void IncrementalOrderTest::test_destructor(void)
 {
     message += "test_destructor\n";
 
-    IncrementalOrder* io = new IncrementalOrder;
+    IncrementalOrder *io = new IncrementalOrder;
 
     delete io;
 
@@ -92,43 +92,43 @@ void IncrementalOrderTest::test_perform_order_selection(void)
 
     IncrementalOrder io(&ts);
 
-    IncrementalOrder::IncrementalOrderResults* results;
+    IncrementalOrder::IncrementalOrderResults *results;
 
     // Test
 
     str =
             "-1 0\n"
-            "-0.9 0\n"
-            "-0.8 0\n"
-            "-0.7 0\n"
-            "-0.6 0\n"
-            "-0.5 0\n"
-            "-0.4 0\n"
-            "-0.3 0\n"
-            "-0.2 0\n"
-            "-0.1 0\n"
-            "0.0 0\n"
-            "0.1 0\n"
-            "0.2 0\n"
-            "0.3 0\n"
-            "0.4 0\n"
-            "0.5 0\n"
-            "0.6 0\n"
-            "0.7 0\n"
-            "0.8 0\n"
-            "0.9 0\n"
-            "1 0\n";
+                    "-0.9 0\n"
+                    "-0.8 0\n"
+                    "-0.7 0\n"
+                    "-0.6 0\n"
+                    "-0.5 0\n"
+                    "-0.4 0\n"
+                    "-0.3 0\n"
+                    "-0.2 0\n"
+                    "-0.1 0\n"
+                    "0.0 0\n"
+                    "0.1 0\n"
+                    "0.2 0\n"
+                    "0.3 0\n"
+                    "0.4 0\n"
+                    "0.5 0\n"
+                    "0.6 0\n"
+                    "0.7 0\n"
+                    "0.8 0\n"
+                    "0.9 0\n"
+                    "1 0\n";
 
     data.parse(str);
     ds.set(data);
 
-    uses.set(21,Instances::Training);
+    uses.set(21, Instances::Training);
     for (size_t i = 0; i < 11; i++)
-        uses[2*i+1] = Instances::Selection;
+        uses[2 * i + 1] = Instances::Selection;
 
     ds.get_instances_pointer()->set_uses(uses);
 
-    nn.set(1,3,1);
+    nn.set(1, 3, 1);
     nn.initialize_parameters(0.0);
 
     pf.set_objective_type(PerformanceFunctional::SUM_SQUARED_ERROR_OBJECTIVE);
@@ -152,37 +152,37 @@ void IncrementalOrderTest::test_perform_order_selection(void)
 
     str =
             "-1 -1\n"
-            "-0.9 -0.9\n"
-            "-0.8 -0.8\n"
-            "-0.7 -0.7\n"
-            "-0.6 -0.6\n"
-            "-0.5 -0.5\n"
-            "-0.4 -0.4\n"
-            "-0.3 -0.3\n"
-            "-0.2 -0.2\n"
-            "-0.1 -0.1\n"
-            "0.0 0.0\n"
-            "0.1 0.1\n"
-            "0.2 0.2\n"
-            "0.3 0.3\n"
-            "0.4 0.4\n"
-            "0.5 0.5\n"
-            "0.6 0.6\n"
-            "0.7 0.7\n"
-            "0.8 0.8\n"
-            "0.9 0.9\n"
-            "1 1\n";
+                    "-0.9 -0.9\n"
+                    "-0.8 -0.8\n"
+                    "-0.7 -0.7\n"
+                    "-0.6 -0.6\n"
+                    "-0.5 -0.5\n"
+                    "-0.4 -0.4\n"
+                    "-0.3 -0.3\n"
+                    "-0.2 -0.2\n"
+                    "-0.1 -0.1\n"
+                    "0.0 0.0\n"
+                    "0.1 0.1\n"
+                    "0.2 0.2\n"
+                    "0.3 0.3\n"
+                    "0.4 0.4\n"
+                    "0.5 0.5\n"
+                    "0.6 0.6\n"
+                    "0.7 0.7\n"
+                    "0.8 0.8\n"
+                    "0.9 0.9\n"
+                    "1 1\n";
 
     data.parse(str);
     ds.set(data);
 
-    uses.set(21,Instances::Training);
+    uses.set(21, Instances::Training);
     for (size_t i = 0; i < 11; i++)
-        uses[2*i+1] = Instances::Selection;
+        uses[2 * i + 1] = Instances::Selection;
 
     ds.get_instances_pointer()->set_uses(uses);
 
-    nn.set(1,3,1);
+    nn.set(1, 3, 1);
     nn.initialize_parameters(0.0);
 
     pf.set_objective_type(PerformanceFunctional::SUM_SQUARED_ERROR_OBJECTIVE);
@@ -205,7 +205,6 @@ void IncrementalOrderTest::test_perform_order_selection(void)
                 OrderSelectionAlgorithm::MaximumSelectionFailures, LOG);
 
 
-
 }
 
 // Serialization methods
@@ -216,7 +215,7 @@ void IncrementalOrderTest::test_to_XML(void)
 
     IncrementalOrder io;
 
-    tinyxml2::XMLDocument* document = io.to_XML();
+    tinyxml2::XMLDocument *document = io.to_XML();
     assert_true(document != NULL, LOG);
 
     delete document;
@@ -229,7 +228,7 @@ void IncrementalOrderTest::test_from_XML(void)
 
     IncrementalOrder io;
 
-    tinyxml2::XMLDocument* document = io.to_XML();
+    tinyxml2::XMLDocument *document = io.to_XML();
     io.from_XML(*document);
 
     delete document;

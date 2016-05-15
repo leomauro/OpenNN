@@ -21,8 +21,7 @@
 using namespace OpenNN;
 
 
-class OutputsTest : public UnitTesting
-{
+class OutputsTest : public UnitTesting {
 
 #define STRING(x) #x
 #define TOSTRING(x) STRING(x)
@@ -30,79 +29,88 @@ class OutputsTest : public UnitTesting
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit OutputsTest(void);
+    explicit OutputsTest(void);
 
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~OutputsTest(void);
+    virtual ~OutputsTest(void);
 
-   // METHODS
+    // METHODS
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Assignment operators methods
+    void test_destructor(void);
 
-   void test_assignment_operator(void);
+    // Assignment operators methods
 
-   // Get methods
+    void test_assignment_operator(void);
 
-   // Outputs number
+    // Get methods
 
-   void test_get_outputs_number(void);
+    // Outputs number
 
-   // Output variables information
+    void test_get_outputs_number(void);
 
-   void test_arrange_names(void);
-   void test_get_name(void);
+    // Output variables information
 
-   void test_arrange_units(void);
-   void test_get_unit(void);
+    void test_arrange_names(void);
 
-   void test_arrange_descriptions(void);
-   void test_get_description(void);
+    void test_get_name(void);
 
-   // Display messages
+    void test_arrange_units(void);
 
-   void test_get_display(void);
+    void test_get_unit(void);
 
-   // SET METHODS
+    void test_arrange_descriptions(void);
 
-   void test_set(void);
-   void test_set_default(void);
+    void test_get_description(void);
 
-   // Output variables information
+    // Display messages
 
-   void test_set_names(void);
-   void test_set_name(void);
+    void test_get_display(void);
 
-   void test_set_units(void);
-   void test_set_unit(void);
+    // SET METHODS
 
-   void test_set_descriptions(void);
-   void test_set_description(void);
+    void test_set(void);
 
-   // Display messages
+    void test_set_default(void);
 
-   void test_set_display(void);
+    // Output variables information
 
-   // Initialization methods
+    void test_set_names(void);
 
-   void test_initialize_random(void);
+    void test_set_name(void);
 
-   // Serialization methods
+    void test_set_units(void);
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    void test_set_unit(void);
 
-   // Unit testing methods
+    void test_set_descriptions(void);
 
-   void run_test_case(void);
+    void test_set_description(void);
+
+    // Display messages
+
+    void test_set_display(void);
+
+    // Initialization methods
+
+    void test_initialize_random(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

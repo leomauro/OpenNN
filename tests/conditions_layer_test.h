@@ -21,8 +21,7 @@
 using namespace OpenNN;
 
 
-class ConditionsLayerTest : public UnitTesting
-{
+class ConditionsLayerTest : public UnitTesting {
 
 #define STRING(x) #x
 #define TOSTRING(x) STRING(x)
@@ -30,83 +29,94 @@ class ConditionsLayerTest : public UnitTesting
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit ConditionsLayerTest(void);
+    explicit ConditionsLayerTest(void);
 
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~ConditionsLayerTest(void);
+    virtual ~ConditionsLayerTest(void);
 
-   // METHODS
+    // METHODS
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Assignment operators methods
+    void test_destructor(void);
 
-   void test_assignment_operator(void);
+    // Assignment operators methods
 
-   // Get methods
+    void test_assignment_operator(void);
 
-   // PerceptronLayer arrangement 
+    // Get methods
 
-   void test_count_inputs_number(void);
-   void test_count_outputs_number(void);
-   
-   // Display warnings 
+    // PerceptronLayer arrangement
 
-   void test_get_display(void);
+    void test_count_inputs_number(void);
 
-   // SET METHODS
+    void test_count_outputs_number(void);
 
-   void test_set(void);
-   void test_set_default(void);
+    // Display warnings
 
-   // Multilayer perceptron architecture
+    void test_get_display(void);
 
-   void test_set_size(void);
+    // SET METHODS
 
-   // Display messages
+    void test_set(void);
 
-   void test_set_display(void);
+    void test_set_default(void);
 
-   // Neural network initialization methods
+    // Multilayer perceptron architecture
 
-   void test_initialize_random(void);
+    void test_set_size(void);
 
-   // Conditions 
+    // Display messages
 
-   void test_calculate_particular_solution(void);
-   void test_calculate_particular_solution_Jacobian(void);
-   void test_calculate_particular_solution_Hessian_form(void);
+    void test_set_display(void);
 
-   void test_calculate_homogeneous_solution(void);
-   void test_calculate_homogeneous_solution_Jacobian(void);
-   void test_calculate_homogeneous_solution_Hessian_form(void);
+    // Neural network initialization methods
 
-   void test_calculate_outputs(void);
-   void test_calculate_Jacobian(void);
-   void test_calculate_Hessian_form(void);
+    void test_initialize_random(void);
 
-   // Expression methods
+    // Conditions
 
-   void test_write_particular_solution_expression(void);
-   void test_write_homogeneous_solution_expression(void);
+    void test_calculate_particular_solution(void);
 
-   void test_write_expression(void);
+    void test_calculate_particular_solution_Jacobian(void);
 
-   // Serialization methods
+    void test_calculate_particular_solution_Hessian_form(void);
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    void test_calculate_homogeneous_solution(void);
 
-   // Unit testing methods
+    void test_calculate_homogeneous_solution_Jacobian(void);
 
-   void run_test_case(void);
+    void test_calculate_homogeneous_solution_Hessian_form(void);
+
+    void test_calculate_outputs(void);
+
+    void test_calculate_Jacobian(void);
+
+    void test_calculate_Hessian_form(void);
+
+    // Expression methods
+
+    void test_write_particular_solution_expression(void);
+
+    void test_write_homogeneous_solution_expression(void);
+
+    void test_write_expression(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

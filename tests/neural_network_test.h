@@ -21,8 +21,7 @@
 using namespace OpenNN;
 
 
-class NeuralNetworkTest : public UnitTesting
-{
+class NeuralNetworkTest : public UnitTesting {
 
 #define STRING(x) #x
 #define TOSTRING(x) STRING(x)
@@ -30,136 +29,156 @@ class NeuralNetworkTest : public UnitTesting
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit NeuralNetworkTest(void);
+    explicit NeuralNetworkTest(void);
 
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~NeuralNetworkTest(void);
+    virtual ~NeuralNetworkTest(void);
 
-   // METHODS
+    // METHODS
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Assignment operators methods
+    void test_destructor(void);
 
-   void test_assignment_operator(void);
+    // Assignment operators methods
 
-   // Get methods
+    void test_assignment_operator(void);
 
-   void test_get_inputs_pointer(void);
-   void test_get_outputs_pointer(void);
+    // Get methods
 
-   void test_get_multilayer_perceptron_pointer(void);
-   void test_get_scaling_layer_pointer(void);
-   void test_get_unscaling_layer_pointer(void);   
-   void test_get_bounding_layer_pointer(void);
-   void test_get_probabilistic_layer_pointer(void);
-   void test_get_conditions_layer_pointer(void);
+    void test_get_inputs_pointer(void);
 
-   void test_get_independent_parameters_pointer(void);
+    void test_get_outputs_pointer(void);
 
-   // Display warning 
+    void test_get_multilayer_perceptron_pointer(void);
 
-  // Parameters methods
+    void test_get_scaling_layer_pointer(void);
 
-   void test_count_parameters_number(void);
-   void test_arrange_parameters(void);   
+    void test_get_unscaling_layer_pointer(void);
 
-   // Display messages
+    void test_get_bounding_layer_pointer(void);
 
-   void test_get_display(void);
+    void test_get_probabilistic_layer_pointer(void);
 
-   // SET METHODS
+    void test_get_conditions_layer_pointer(void);
 
-   void test_set(void);
-   void test_set_default(void);
+    void test_get_independent_parameters_pointer(void);
 
-   // Multilayer perceptron architecture
+    // Display warning
 
-   void test_set_network(void);
+    // Parameters methods
 
-   // Variables
+    void test_count_parameters_number(void);
 
-   void test_set_variables(void);
+    void test_arrange_parameters(void);
 
-   // Variables statistics
+    // Display messages
 
-   void test_set_variables_statistics(void);
+    void test_get_display(void);
 
-   // Independent parameters
+    // SET METHODS
 
-   void test_set_independent_parameters(void);
+    void test_set(void);
 
-   // Parameters
+    void test_set_default(void);
 
-   void test_set_parameters(void);
+    // Multilayer perceptron architecture
 
-   // Display messages
+    void test_set_network(void);
 
-   void test_set_display_inputs_warning(void);
-   void test_set_display(void);
+    // Variables
 
-   // Growing and pruning
+    void test_set_variables(void);
 
-   void test_prune_input(void);
-   void test_prune_output(void);
+    // Variables statistics
 
-   // Neural network initialization methods
+    void test_set_variables_statistics(void);
 
-   void test_initialize_random(void);
+    // Independent parameters
 
-   // Parameters initialization methods
+    void test_set_independent_parameters(void);
 
-   void test_initialize_parameters(void);
-   void test_randomize_parameters_uniform(void);
-   void test_randomize_parameters_normal(void);
+    // Parameters
 
-   // Parameters norm 
+    void test_set_parameters(void);
 
-   void test_calculate_parameters_norm(void);
+    // Display messages
 
-   // Output 
+    void test_set_display_inputs_warning(void);
 
-   void test_calculate_outputs(void);
-   void test_calculate_output_data(void);
+    void test_set_display(void);
 
-   void test_calculate_Jacobian(void);
-   void test_calculate_Jacobian_data(void);
+    // Growing and pruning
 
-   void test_calculate_parameters_Jacobian(void);
-   void test_calculate_parameters_Jacobian_data(void);
+    void test_prune_input(void);
 
-   // Expression methods
+    void test_prune_output(void);
 
-   // XML expression methods
+    // Neural network initialization methods
 
-   void test_write_expression(void);
-   void test_save_expression(void);
+    void test_initialize_random(void);
 
-   // Hinton diagram methods
+    // Parameters initialization methods
 
-   void test_get_Hinton_diagram_XML(void);   
-   void test_save_Hinton_diagram(void);
+    void test_initialize_parameters(void);
 
-   // Serialization methods
+    void test_randomize_parameters_uniform(void);
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    void test_randomize_parameters_normal(void);
 
-   void test_print(void);
+    // Parameters norm
 
-   void test_save(void);
-   void test_load(void);
+    void test_calculate_parameters_norm(void);
 
-   // Unit testing methods
+    // Output
 
-   void run_test_case(void);
+    void test_calculate_outputs(void);
+
+    void test_calculate_output_data(void);
+
+    void test_calculate_Jacobian(void);
+
+    void test_calculate_Jacobian_data(void);
+
+    void test_calculate_parameters_Jacobian(void);
+
+    void test_calculate_parameters_Jacobian_data(void);
+
+    // Expression methods
+
+    // XML expression methods
+
+    void test_write_expression(void);
+
+    void test_save_expression(void);
+
+    // Hinton diagram methods
+
+    void test_get_Hinton_diagram_XML(void);
+
+    void test_save_Hinton_diagram(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    void test_print(void);
+
+    void test_save(void);
+
+    void test_load(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

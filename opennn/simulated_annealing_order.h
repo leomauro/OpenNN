@@ -37,109 +37,86 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 ///
 /// This concrete class represents a simulated annealing algorithm for the order selection of a neural network.
 ///
+class SimulatedAnnealingOrder : public OrderSelectionAlgorithm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit SimulatedAnnealingOrder(void);
 
-    class SimulatedAnnealingOrder : public OrderSelectionAlgorithm {
-    public:
-        // DEFAULT CONSTRUCTOR
+    // TRAINING STRATEGY CONSTRUCTOR
+    explicit SimulatedAnnealingOrder(TrainingStrategy *);
 
-        explicit SimulatedAnnealingOrder(void);
+    // XML CONSTRUCTOR
+    explicit SimulatedAnnealingOrder(const tinyxml2::XMLDocument &);
 
-        // TRAINING STRATEGY CONSTRUCTOR
+    // FILE CONSTRUCTOR
+    explicit SimulatedAnnealingOrder(const std::string &);
 
-        explicit SimulatedAnnealingOrder(TrainingStrategy *);
+    // DESTRUCTOR
+    virtual ~SimulatedAnnealingOrder(void);
 
-        // XML CONSTRUCTOR
+    ///
+    /// This structure contains the training results for the simulated annealing order method.
+    ///
+    struct SimulatedAnnealingOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults {
+        /// Default constructor.
+        explicit SimulatedAnnealingOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
+        {
+        }
 
-        explicit SimulatedAnnealingOrder(const tinyxml2::XMLDocument &);
-
-        // FILE CONSTRUCTOR
-
-        explicit SimulatedAnnealingOrder(const std::string &);
-
-        // DESTRUCTOR
-
-        virtual ~SimulatedAnnealingOrder(void);
-
-
-        // STRUCTURES
-
-        ///
-        /// This structure contains the training results for the simulated annealing order method.
-        ///
-
-        struct SimulatedAnnealingOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults {
-            /// Default constructor.
-
-            explicit SimulatedAnnealingOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
-            {
-            }
-
-            /// Destructor.
-
-            virtual ~SimulatedAnnealingOrderResults(void)
-            {
-            }
-
-        };
-
-        // METHODS
-
-        // Get methods
-
-        const double &get_cooling_rate(void) const;
-
-        const double &get_minimum_temperature(void) const;
-
-        // Set methods
-
-        void set_default(void);
-
-        void set_cooling_rate(const double &);
-
-        void set_minimum_temperature(const double &);
-
-        // Order selection methods
-
-        size_t get_optimal_selection_performance_index(void) const;
-
-        SimulatedAnnealingOrderResults *perform_order_selection(void);
-
-        // Serialization methods
-
-        Matrix<std::string> to_string_matrix(void) const;
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-        void save(const std::string &) const;
-
-        void load(const std::string &);
-
-    private:
-
-        // MEMBERS
-
-        /// Temperature reduction factor for the simulated annealing.
-
-        double cooling_rate;
-
-        // STOPPING CRITERIA
-
-        /// Minimum temperature reached in the simulated annealing algorithm.
-
-        double minimum_temperature;
-
+        /// Destructor.
+        virtual ~SimulatedAnnealingOrderResults(void)
+        {
+        }
     };
+
+    // Get methods
+    const double &get_cooling_rate(void) const;
+
+    const double &get_minimum_temperature(void) const;
+
+    // Set methods
+    void set_default(void);
+
+    void set_cooling_rate(const double &);
+
+    void set_minimum_temperature(const double &);
+
+    // Order selection methods
+    size_t get_optimal_selection_performance_index(void) const;
+
+    SimulatedAnnealingOrderResults *perform_order_selection(void);
+
+    // Serialization methods
+    Matrix<std::string> to_string_matrix(void) const;
+
+    tinyxml2::XMLDocument *to_XML(void) const;
+
+    void from_XML(const tinyxml2::XMLDocument &);
+
+    void save(const std::string &) const;
+
+    void load(const std::string &);
+
+private:
+    /// Temperature reduction factor for the simulated annealing.
+    double cooling_rate;
+
+    /// Minimum temperature reached in the simulated annealing algorithm.
+    double minimum_temperature;
+};
+
 
 }
 
 #endif
+
 
 // OpenNN: Open Neural Networks Library.
 // Copyright (c) 2005-2016 Roberto Lopez.

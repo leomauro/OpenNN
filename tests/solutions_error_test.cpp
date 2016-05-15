@@ -18,69 +18,69 @@
 using namespace OpenNN;
 
 
-SolutionsErrorTest::SolutionsErrorTest(void) : UnitTesting() 
+SolutionsErrorTest::SolutionsErrorTest(void) : UnitTesting()
 {
 }
 
 
-SolutionsErrorTest::~SolutionsErrorTest(void) 
+SolutionsErrorTest::~SolutionsErrorTest(void)
 {
 }
 
 
 void SolutionsErrorTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 }
 
 
 void SolutionsErrorTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 
-void SolutionsErrorTest::test_calculate_constraints(void)   
+void SolutionsErrorTest::test_calculate_constraints(void)
 {
-   message += "test_calculate_constraints\n";
+    message += "test_calculate_constraints\n";
 }
 
 
-void SolutionsErrorTest::test_to_XML(void)   
+void SolutionsErrorTest::test_to_XML(void)
 {
-	message += "test_to_XML\n"; 
+    message += "test_to_XML\n";
 }
 
 
 void SolutionsErrorTest::test_from_XML(void)
 {
-	message += "test_from_XML\n"; 
+    message += "test_from_XML\n";
 }
 
 
 void SolutionsErrorTest::run_test_case(void)
 {
-   message += "Running solutions error test case...\n";
+    message += "Running solutions error test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Get methods
+    // Get methods
 
-   // Set methods
+    // Set methods
 
-   // Constraints methods
+    // Constraints methods
 
-   test_calculate_constraints();   
+    test_calculate_constraints();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();   
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
-   message += "End of solutions error test case.\n";
+    message += "End of solutions error test case.\n";
 }
 
 

@@ -37,114 +37,92 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 ///
 /// This concrete class represents a incremental algorithm for the order selection of a neural network.
 ///
+class MatthewCorrelationOptimizationThreshold : public ThresholdSelectionAlgorithm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit MatthewCorrelationOptimizationThreshold(void);
 
-    class MatthewCorrelationOptimizationThreshold : public ThresholdSelectionAlgorithm {
-    public:
-        // DEFAULT CONSTRUCTOR
+    // TRAINING STRATEGY CONSTRUCTOR
+    explicit MatthewCorrelationOptimizationThreshold(TrainingStrategy *);
 
-        explicit MatthewCorrelationOptimizationThreshold(void);
+    // XML CONSTRUCTOR
+    explicit MatthewCorrelationOptimizationThreshold(const tinyxml2::XMLDocument &);
 
-        // TRAINING STRATEGY CONSTRUCTOR
+    // FILE CONSTRUCTOR
+    explicit MatthewCorrelationOptimizationThreshold(const std::string &);
 
-        explicit MatthewCorrelationOptimizationThreshold(TrainingStrategy *);
+    // DESTRUCTOR
+    virtual ~MatthewCorrelationOptimizationThreshold(void);
 
-        // XML CONSTRUCTOR
+    ///
+    /// This structure contains the training results for the incremental order method.
+    ///
+    struct MatthewCorrelationOptimizationThresholdResults : public ThresholdSelectionAlgorithm::ThresholdSelectionResults {
+        /// Default constructor.
+        explicit MatthewCorrelationOptimizationThresholdResults(void)
+            : ThresholdSelectionAlgorithm::ThresholdSelectionResults()
+        {
+        }
 
-        explicit MatthewCorrelationOptimizationThreshold(const tinyxml2::XMLDocument &);
-
-        // FILE CONSTRUCTOR
-
-        explicit MatthewCorrelationOptimizationThreshold(const std::string &);
-
-        // DESTRUCTOR
-
-        virtual ~MatthewCorrelationOptimizationThreshold(void);
-
-
-        // STRUCTURES
-
-        ///
-        /// This structure contains the training results for the incremental order method.
-        ///
-
-        struct MatthewCorrelationOptimizationThresholdResults
-                : public ThresholdSelectionAlgorithm::ThresholdSelectionResults {
-            /// Default constructor.
-
-            explicit MatthewCorrelationOptimizationThresholdResults(void)
-                    : ThresholdSelectionAlgorithm::ThresholdSelectionResults()
-            {
-            }
-
-            /// Destructor.
-
-            virtual ~MatthewCorrelationOptimizationThresholdResults(void)
-            {
-            }
-
-
-        };
-
-        // METHODS
-
-        // Get methods
-
-        const double &get_minimum_threshold(void) const;
-
-        const double &get_maximum_threshold(void) const;
-
-        const double &get_step(void) const;
-
-        // Set methods
-
-        void set_default(void);
-
-        void set_minimum_threshold(const double &);
-
-        void set_maximum_threshold(const double &);
-
-        void set_step(const double &);
-
-        // Order selection methods
-
-        MatthewCorrelationOptimizationThresholdResults *perform_threshold_selection(void);
-
-        // Serialization methods
-
-        Matrix<std::string> to_string_matrix(void) const;
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-        void save(const std::string &) const;
-
-        void load(const std::string &);
-
-    private:
-
-        /// Minimum threshold to be evaluated.
-
-        double minimum_threshold;
-
-        /// Maximum threshold to be evaluated.
-
-        double maximum_threshold;
-
-        /// Difference in the thresholds between two consecutive iterations.
-
-        double step;
-
+        /// Destructor.
+        virtual ~MatthewCorrelationOptimizationThresholdResults(void)
+        {
+        }
     };
+
+    // Get methods
+    const double &get_minimum_threshold(void) const;
+
+    const double &get_maximum_threshold(void) const;
+
+    const double &get_step(void) const;
+
+    // Set methods
+    void set_default(void);
+
+    void set_minimum_threshold(const double &);
+
+    void set_maximum_threshold(const double &);
+
+    void set_step(const double &);
+
+    // Order selection methods
+    MatthewCorrelationOptimizationThresholdResults *perform_threshold_selection(void);
+
+    // Serialization methods
+    Matrix<std::string> to_string_matrix(void) const;
+
+    tinyxml2::XMLDocument *to_XML(void) const;
+
+    void from_XML(const tinyxml2::XMLDocument &);
+
+    void save(const std::string &) const;
+
+    void load(const std::string &);
+
+private:
+    /// Minimum threshold to be evaluated.
+    double minimum_threshold;
+
+    /// Maximum threshold to be evaluated.
+    double maximum_threshold;
+
+    /// Difference in the thresholds between two consecutive iterations.
+    double step;
+};
+
 
 }
 
 #endif
+
 
 // OpenNN: Open Neural Networks Library.
 // Copyright (c) 2005-2016 Roberto Lopez.

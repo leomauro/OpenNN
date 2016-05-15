@@ -21,49 +21,49 @@
 using namespace OpenNN;
 
 
-class GrowingInputsTest : public UnitTesting
-{
+class GrowingInputsTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // CONSTRUCTOR
+    // CONSTRUCTOR
 
-   explicit GrowingInputsTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~GrowingInputsTest(void);
+    explicit GrowingInputsTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~GrowingInputsTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void);
 
-   // Set methods
+    // METHODS
 
-   void test_set_default(void);
+    // Constructor and destructor methods
 
-   // Input selection methods
+    void test_constructor(void);
 
-   void test_perform_inputs_selection(void);
+    void test_destructor(void);
 
-   // Serialization methods
+    // Set methods
 
-   void test_to_XML(void);
+    void test_set_default(void);
 
-   void test_from_XML(void);
+    // Input selection methods
 
-   // Unit testing methods
+    void test_perform_inputs_selection(void);
 
-   void run_test_case(void);
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 
 };
 

@@ -21,117 +21,136 @@
 using namespace OpenNN;
 
 
-class PerceptronTest : public UnitTesting 
-{
+class PerceptronTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // DEFAULT CONSTRUCTOR
+    // DEFAULT CONSTRUCTOR
 
-   PerceptronTest(void);
+    PerceptronTest(void);
 
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~PerceptronTest(void);
+    virtual ~PerceptronTest(void);
 
-   // METHODS
+    // METHODS
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void); 
+    void test_constructor(void);
 
-   // Assignment operator 
+    void test_destructor(void);
 
-   void test_assignment_operator(void);
+    // Assignment operator
 
-   // Get methods
+    void test_assignment_operator(void);
 
-   void test_count_inputs_number(void);
+    // Get methods
 
-   void test_get_activation_function(void);
-   void test_get_bias(void);   
-   void test_arrange_synaptic_weights(void);
-   void test_get_synaptic_weight(void);
+    void test_count_inputs_number(void);
 
-   void test_count_parameters_number(void);
-   void test_arrange_parameters(void);
+    void test_get_activation_function(void);
 
-   void test_get_display(void);
+    void test_get_bias(void);
 
-   // Set methods
+    void test_arrange_synaptic_weights(void);
 
-   void test_set(void);
+    void test_get_synaptic_weight(void);
 
-   void test_set_activation_function(void);
+    void test_count_parameters_number(void);
 
-   void test_set_inputs_number(void);
+    void test_arrange_parameters(void);
 
-   void test_set_bias(void);
-   void test_set_synaptic_weights(void);
-   void test_set_synaptic_weight(void);
+    void test_get_display(void);
 
-   void test_set_parameters_number(void);
-   void test_set_parameters(void);
+    // Set methods
 
-   void test_set_display(void);
+    void test_set(void);
 
-   // Growing and pruning
+    void test_set_activation_function(void);
 
-   void test_grow_input(void);
+    void test_set_inputs_number(void);
 
-   void test_prune_input(void);
+    void test_set_bias(void);
 
-   // Initialization methods
+    void test_set_synaptic_weights(void);
 
-   void test_initialize_bias_uniform(void);
-   void test_initialize_bias_normal(void);
+    void test_set_synaptic_weight(void);
 
-   void test_initialize_synaptic_weights_uniform(void);
-   void test_initialize_synaptic_weights_normal(void);
+    void test_set_parameters_number(void);
 
-   void test_initialize_parameters(void);
+    void test_set_parameters(void);
 
-   // Combination methods
+    void test_set_display(void);
 
-   void test_calculate_combination(void);
+    // Growing and pruning
 
-   void test_calculate_combination_gradient(void);
-   void test_calculate_combination_Hessian(void);
+    void test_grow_input(void);
 
-   void test_calculate_combination_parameters_gradient(void);
-   void test_calculate_combination_parameters_Hessian(void);
+    void test_prune_input(void);
 
-   // Activation methods
+    // Initialization methods
 
-   void test_calculate_activation(void);
-   void test_calculate_activation_derivative(void);
-   void test_calculate_activation_second_derivative(void);
+    void test_initialize_bias_uniform(void);
 
-   // Output methods
+    void test_initialize_bias_normal(void);
 
-   void test_calculate_output(void);
-   void test_calculate_gradient(void);
-   void test_calculate_Hessian(void);
+    void test_initialize_synaptic_weights_uniform(void);
 
-   void test_calculate_parameters_outputs(void);
-   void test_calculate_parameters_gradient(void);
-   void test_calculate_parameters_Hessian(void);
+    void test_initialize_synaptic_weights_normal(void);
 
-   // Serialization methods
+    void test_initialize_parameters(void);
 
-   void test_print(void);
-   void test_save(void);
-   void test_load(void);
+    // Combination methods
 
-   // Unit testing methods
+    void test_calculate_combination(void);
 
-   void run_test_case(void);
+    void test_calculate_combination_gradient(void);
+
+    void test_calculate_combination_Hessian(void);
+
+    void test_calculate_combination_parameters_gradient(void);
+
+    void test_calculate_combination_parameters_Hessian(void);
+
+    // Activation methods
+
+    void test_calculate_activation(void);
+
+    void test_calculate_activation_derivative(void);
+
+    void test_calculate_activation_second_derivative(void);
+
+    // Output methods
+
+    void test_calculate_output(void);
+
+    void test_calculate_gradient(void);
+
+    void test_calculate_Hessian(void);
+
+    void test_calculate_parameters_outputs(void);
+
+    void test_calculate_parameters_gradient(void);
+
+    void test_calculate_parameters_Hessian(void);
+
+    // Serialization methods
+
+    void test_print(void);
+
+    void test_save(void);
+
+    void test_load(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

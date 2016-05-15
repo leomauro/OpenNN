@@ -19,7 +19,7 @@ using namespace OpenNN;
 
 // GENERAL CONSTRUCTOR
 
-MeanSquaredErrorTest::MeanSquaredErrorTest(void) : UnitTesting() 
+MeanSquaredErrorTest::MeanSquaredErrorTest(void) : UnitTesting()
 {
 }
 
@@ -36,31 +36,31 @@ MeanSquaredErrorTest::~MeanSquaredErrorTest(void)
 
 void MeanSquaredErrorTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 
-   // Default
+    // Default
 
-   MeanSquaredError mse1;
+    MeanSquaredError mse1;
 
-   assert_true(mse1.has_neural_network() == false, LOG);
-   assert_true(mse1.has_data_set() == false, LOG);
+    assert_true(mse1.has_neural_network() == false, LOG);
+    assert_true(mse1.has_data_set() == false, LOG);
 
-   // Neural network
+    // Neural network
 
-   NeuralNetwork nn2;
-   MeanSquaredError mse2(&nn2);
+    NeuralNetwork nn2;
+    MeanSquaredError mse2(&nn2);
 
-   assert_true(mse2.has_neural_network() == true, LOG);
-   assert_true(mse2.has_data_set() == false, LOG);
+    assert_true(mse2.has_neural_network() == true, LOG);
+    assert_true(mse2.has_data_set() == false, LOG);
 
-   // Neural network and data set
+    // Neural network and data set
 
-   NeuralNetwork nn3;
-   DataSet ds3;
-   MeanSquaredError mse3(&nn3, &ds3);
+    NeuralNetwork nn3;
+    DataSet ds3;
+    MeanSquaredError mse3(&nn3, &ds3);
 
-   assert_true(mse3.has_neural_network() == true, LOG);
-   assert_true(mse3.has_data_set() == true, LOG);
+    assert_true(mse3.has_neural_network() == true, LOG);
+    assert_true(mse3.has_data_set() == true, LOG);
 
 }
 
@@ -70,382 +70,383 @@ void MeanSquaredErrorTest::test_destructor(void)
 }
 
 
-void MeanSquaredErrorTest::test_calculate_performance(void)   
+void MeanSquaredErrorTest::test_calculate_performance(void)
 {
-   message += "test_calculate_performance\n";
+    message += "test_calculate_performance\n";
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   NeuralNetwork nn(1, 1, 1);
-   nn.initialize_parameters(0.0);
+    NeuralNetwork nn(1, 1, 1);
+    nn.initialize_parameters(0.0);
 
-   DataSet ds(1, 1, 1);
-   ds.initialize_data(0.0);
+    DataSet ds(1, 1, 1);
+    ds.initialize_data(0.0);
 
-   MeanSquaredError mse(&nn, &ds);
+    MeanSquaredError mse(&nn, &ds);
 
-   assert_true(mse.calculate_performance() == 0.0, LOG);
+    assert_true(mse.calculate_performance() == 0.0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(1, 1);
-   nn.randomize_parameters_normal();
+    nn.set(1, 1);
+    nn.randomize_parameters_normal();
 
-   parameters = nn.arrange_parameters();
+    parameters = nn.arrange_parameters();
 
-   ds.set(1, 1, 1);
-   ds.randomize_data_normal();
+    ds.set(1, 1, 1);
+    ds.randomize_data_normal();
 
-   assert_true(mse.calculate_performance() == mse.calculate_performance(parameters), LOG);
+    assert_true(mse.calculate_performance() == mse.calculate_performance(parameters), LOG);
 
 }
 
 
 void MeanSquaredErrorTest::test_calculate_gradient(void)
 {
-   message += "test_calculate_gradient\n";
+    message += "test_calculate_gradient\n";
 
-   NumericalDifferentiation nd;
+    NumericalDifferentiation nd;
 
-   NeuralNetwork nn;
-   Vector<size_t> multilayer_perceptron_architecture;
+    NeuralNetwork nn;
+    Vector<size_t> multilayer_perceptron_architecture;
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   DataSet ds;
+    DataSet ds;
 
-   MeanSquaredError mse(&nn, &ds);
+    MeanSquaredError mse(&nn, &ds);
 
-   Vector<double> gradient;
-   Vector<double> numerical_gradient;
-   Vector<double> error;
+    Vector<double> gradient;
+    Vector<double> numerical_gradient;
+    Vector<double> error;
 
-   // Test
+    // Test
 
-   nn.set(1, 1, 1);
+    nn.set(1, 1, 1);
 
-   nn.initialize_parameters(0.0);
+    nn.initialize_parameters(0.0);
 
-   ds.set(1, 1, 1);
+    ds.set(1, 1, 1);
 
-   ds.initialize_data(0.0);
+    ds.initialize_data(0.0);
 
-   gradient = mse.calculate_gradient();
+    gradient = mse.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
-   assert_true(gradient == 0.0, LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient == 0.0, LOG);
 
-   // Test 
+    // Test
 
-   nn.set(3, 4, 2);
-   nn.initialize_parameters(0.0);
+    nn.set(3, 4, 2);
+    nn.initialize_parameters(0.0);
 
-   ds.set(3, 2, 5);
-   mse.set(&nn, &ds);
-   ds.initialize_data(0.0);
+    ds.set(3, 2, 5);
+    mse.set(&nn, &ds);
+    ds.initialize_data(0.0);
 
-   gradient = mse.calculate_gradient();
+    gradient = mse.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
-   assert_true(gradient == 0.0, LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient == 0.0, LOG);
 
-   // Test
+    // Test
 
-   multilayer_perceptron_architecture.set(3);
-   multilayer_perceptron_architecture[0] = 2;
-   multilayer_perceptron_architecture[1] = 1;
-   multilayer_perceptron_architecture[2] = 3;
+    multilayer_perceptron_architecture.set(3);
+    multilayer_perceptron_architecture[0] = 2;
+    multilayer_perceptron_architecture[1] = 1;
+    multilayer_perceptron_architecture[2] = 3;
 
-   nn.set(multilayer_perceptron_architecture);
-   nn.initialize_parameters(0.0);
+    nn.set(multilayer_perceptron_architecture);
+    nn.initialize_parameters(0.0);
 
-   ds.set(2, 3, 5);
-   mse.set(&nn, &ds);
-   ds.initialize_data(0.0);
+    ds.set(2, 3, 5);
+    mse.set(&nn, &ds);
+    ds.initialize_data(0.0);
 
-   gradient = mse.calculate_gradient();
+    gradient = mse.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
-   assert_true(gradient == 0.0, LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient == 0.0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(1, 1, 1);
+    nn.set(1, 1, 1);
 
-   nn.initialize_parameters(0.0);
+    nn.initialize_parameters(0.0);
 
-   ds.set(1, 1, 1);
+    ds.set(1, 1, 1);
 
-   ds.initialize_data(0.0);
+    ds.initialize_data(0.0);
 
-   gradient = mse.calculate_gradient();
+    gradient = mse.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
-   assert_true(gradient == 0.0, LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient == 0.0, LOG);
 
-   // Test 
+    // Test
 
-   nn.set(3, 4, 2);
-   nn.initialize_parameters(0.0);
+    nn.set(3, 4, 2);
+    nn.initialize_parameters(0.0);
 
-   ds.set(3, 2, 5);
-   mse.set(&nn, &ds);
-   ds.initialize_data(0.0);
+    ds.set(3, 2, 5);
+    mse.set(&nn, &ds);
+    ds.initialize_data(0.0);
 
-   gradient = mse.calculate_gradient();
+    gradient = mse.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
-   assert_true(gradient == 0.0, LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient == 0.0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(1, 1);
-   nn.initialize_parameters(1.0);
-   parameters = nn.arrange_parameters();
+    nn.set(1, 1);
+    nn.initialize_parameters(1.0);
+    parameters = nn.arrange_parameters();
 
-   ds.set(1, 1, 2);
-   ds.initialize_data(1.0);
+    ds.set(1, 1, 2);
+    ds.initialize_data(1.0);
 
-   gradient = mse.calculate_gradient();
-   numerical_gradient = nd.calculate_gradient(mse, &MeanSquaredError::calculate_performance, parameters);
-   assert_true((gradient - numerical_gradient).calculate_absolute_value() < 1.0e-3, LOG);
+    gradient = mse.calculate_gradient();
+    numerical_gradient = nd.calculate_gradient(mse, &MeanSquaredError::calculate_performance, parameters);
+    assert_true((gradient - numerical_gradient).calculate_absolute_value() < 1.0e-3, LOG);
 
-   // Test
+    // Test
 
-   ds.initialize_data(1.0);
+    ds.initialize_data(1.0);
 
-   nn.randomize_parameters_normal();
-   parameters = nn.arrange_parameters();
+    nn.randomize_parameters_normal();
+    parameters = nn.arrange_parameters();
 
-   gradient = mse.calculate_gradient();
-   numerical_gradient = nd.calculate_gradient(mse, &MeanSquaredError::calculate_performance, parameters);
-   error = (gradient - numerical_gradient).calculate_absolute_value();
+    gradient = mse.calculate_gradient();
+    numerical_gradient = nd.calculate_gradient(mse, &MeanSquaredError::calculate_performance, parameters);
+    error = (gradient - numerical_gradient).calculate_absolute_value();
 }
 
 
-void MeanSquaredErrorTest::test_calculate_selection_performance(void)   
+void MeanSquaredErrorTest::test_calculate_selection_performance(void)
 {
-   message += "test_calculate_selection_performance\n";
+    message += "test_calculate_selection_performance\n";
 
-   NeuralNetwork nn(1, 1, 1);
+    NeuralNetwork nn(1, 1, 1);
 
-   nn.initialize_parameters(0.0);
+    nn.initialize_parameters(0.0);
 
-   DataSet ds(1, 1, 1);
+    DataSet ds(1, 1, 1);
 
-   ds.get_instances_pointer()->set_selection();
+    ds.get_instances_pointer()->set_selection();
 
-   ds.initialize_data(0.0);
+    ds.initialize_data(0.0);
 
-   MeanSquaredError mse(&nn, &ds);  
+    MeanSquaredError mse(&nn, &ds);
 
-   double selection_performance = mse.calculate_selection_performance();
+    double selection_performance = mse.calculate_selection_performance();
 
-   assert_true(selection_performance == 0.0, LOG);
+    assert_true(selection_performance == 0.0, LOG);
 }
 
 
 void MeanSquaredErrorTest::test_calculate_terms(void)
 {
-   message += "test_calculate_terms\n";
+    message += "test_calculate_terms\n";
 
-   NeuralNetwork nn;
-   Vector<size_t> hidden_layers_size;
-   Vector<double> parameters;
+    NeuralNetwork nn;
+    Vector<size_t> hidden_layers_size;
+    Vector<double> parameters;
 
-   DataSet ds;
-   
-   MeanSquaredError mse(&nn, &ds);
+    DataSet ds;
 
-   double objective;
+    MeanSquaredError mse(&nn, &ds);
 
-   Vector<double> evaluation_terms;
+    double objective;
 
-   // Test
+    Vector<double> evaluation_terms;
 
-   nn.set(2, 2);
-   nn.randomize_parameters_normal();
+    // Test
 
-   ds.set(2, 2, 3);
-   ds.randomize_data_normal();
+    nn.set(2, 2);
+    nn.randomize_parameters_normal();
 
-   objective = mse.calculate_performance();
+    ds.set(2, 2, 3);
+    ds.randomize_data_normal();
 
-   evaluation_terms = mse.calculate_terms();
+    objective = mse.calculate_performance();
 
-   assert_true(fabs((evaluation_terms*evaluation_terms).calculate_sum() - objective) < 1.0e-3, LOG);
+    evaluation_terms = mse.calculate_terms();
+
+    assert_true(fabs((evaluation_terms * evaluation_terms).calculate_sum() - objective) < 1.0e-3, LOG);
 }
 
 
 void MeanSquaredErrorTest::test_calculate_terms_Jacobian(void)
 {
-   message += "test_calculate_terms_Jacobian\n";
+    message += "test_calculate_terms_Jacobian\n";
 
-   NumericalDifferentiation nd;
+    NumericalDifferentiation nd;
 
-   NeuralNetwork nn;
-   Vector<size_t> multilayer_perceptron_architecture;
-   Vector<double> parameters;
+    NeuralNetwork nn;
+    Vector<size_t> multilayer_perceptron_architecture;
+    Vector<double> parameters;
 
-   DataSet ds;
+    DataSet ds;
 
-   MeanSquaredError mse(&nn, &ds);
+    MeanSquaredError mse(&nn, &ds);
 
-   Vector<double> objective_gradient;
+    Vector<double> objective_gradient;
 
-   Vector<double> evaluation_terms;
-   Matrix<double> terms_Jacobian;
-   Matrix<double> numerical_Jacobian_terms;
+    Vector<double> evaluation_terms;
+    Matrix<double> terms_Jacobian;
+    Matrix<double> numerical_Jacobian_terms;
 
-   // Test
+    // Test
 
-   nn.set(1, 1);
+    nn.set(1, 1);
 
-   nn.initialize_parameters(0.0);
+    nn.initialize_parameters(0.0);
 
-   ds.set(1, 1, 1);
+    ds.set(1, 1, 1);
 
-   ds.initialize_data(0.0);
+    ds.initialize_data(0.0);
 
-   terms_Jacobian = mse.calculate_terms_Jacobian();
+    terms_Jacobian = mse.calculate_terms_Jacobian();
 
-   assert_true(terms_Jacobian.get_rows_number() == ds.get_instances().count_training_instances_number(), LOG);
-   assert_true(terms_Jacobian.get_columns_number() == nn.count_parameters_number(), LOG);
-   assert_true(terms_Jacobian == 0.0, LOG);
+    assert_true(terms_Jacobian.get_rows_number() == ds.get_instances().count_training_instances_number(), LOG);
+    assert_true(terms_Jacobian.get_columns_number() == nn.count_parameters_number(), LOG);
+    assert_true(terms_Jacobian == 0.0, LOG);
 
-   // Test 
+    // Test
 
-   nn.set(3, 4, 2);
-   nn.initialize_parameters(0.0);
+    nn.set(3, 4, 2);
+    nn.initialize_parameters(0.0);
 
-   ds.set(3, 2, 5);
-   mse.set(&nn, &ds);
-   ds.initialize_data(0.0);
+    ds.set(3, 2, 5);
+    mse.set(&nn, &ds);
+    ds.initialize_data(0.0);
 
-   terms_Jacobian = mse.calculate_terms_Jacobian();
+    terms_Jacobian = mse.calculate_terms_Jacobian();
 
-   assert_true(terms_Jacobian.get_rows_number() == ds.get_instances().count_training_instances_number(), LOG);
-   assert_true(terms_Jacobian.get_columns_number() == nn.count_parameters_number(), LOG);
-   assert_true(terms_Jacobian == 0.0, LOG);
+    assert_true(terms_Jacobian.get_rows_number() == ds.get_instances().count_training_instances_number(), LOG);
+    assert_true(terms_Jacobian.get_columns_number() == nn.count_parameters_number(), LOG);
+    assert_true(terms_Jacobian == 0.0, LOG);
 
-   // Test
+    // Test
 
-   multilayer_perceptron_architecture.set(3);
-   multilayer_perceptron_architecture[0] = 2;
-   multilayer_perceptron_architecture[1] = 1;
-   multilayer_perceptron_architecture[2] = 2;
+    multilayer_perceptron_architecture.set(3);
+    multilayer_perceptron_architecture[0] = 2;
+    multilayer_perceptron_architecture[1] = 1;
+    multilayer_perceptron_architecture[2] = 2;
 
-   nn.set(multilayer_perceptron_architecture);
-   nn.initialize_parameters(0.0);
+    nn.set(multilayer_perceptron_architecture);
+    nn.initialize_parameters(0.0);
 
-   ds.set(2, 2, 5);
-   mse.set(&nn, &ds);
-   ds.initialize_data(0.0);
+    ds.set(2, 2, 5);
+    mse.set(&nn, &ds);
+    ds.initialize_data(0.0);
 
-   terms_Jacobian = mse.calculate_terms_Jacobian();
+    terms_Jacobian = mse.calculate_terms_Jacobian();
 
-   assert_true(terms_Jacobian.get_rows_number() == ds.get_instances().count_training_instances_number(), LOG);
-   assert_true(terms_Jacobian.get_columns_number() == nn.count_parameters_number(), LOG);
-   assert_true(terms_Jacobian == 0.0, LOG);
+    assert_true(terms_Jacobian.get_rows_number() == ds.get_instances().count_training_instances_number(), LOG);
+    assert_true(terms_Jacobian.get_columns_number() == nn.count_parameters_number(), LOG);
+    assert_true(terms_Jacobian == 0.0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(1, 1, 1);
-   nn.randomize_parameters_normal();
-   parameters = nn.arrange_parameters();
+    nn.set(1, 1, 1);
+    nn.randomize_parameters_normal();
+    parameters = nn.arrange_parameters();
 
-   ds.set(1, 1, 1);
-   ds.randomize_data_normal();
+    ds.set(1, 1, 1);
+    ds.randomize_data_normal();
 
-   terms_Jacobian = mse.calculate_terms_Jacobian();
-   numerical_Jacobian_terms = nd.calculate_Jacobian(mse, &MeanSquaredError::calculate_terms, parameters);
+    terms_Jacobian = mse.calculate_terms_Jacobian();
+    numerical_Jacobian_terms = nd.calculate_Jacobian(mse, &MeanSquaredError::calculate_terms, parameters);
 
-   assert_true((terms_Jacobian-numerical_Jacobian_terms).calculate_absolute_value() < 1.0e-3, LOG);
+    assert_true((terms_Jacobian - numerical_Jacobian_terms).calculate_absolute_value() < 1.0e-3, LOG);
 
-   // Test
+    // Test
 
-   nn.set(2, 2, 2);
-   nn.randomize_parameters_normal();
-   parameters = nn.arrange_parameters();
+    nn.set(2, 2, 2);
+    nn.randomize_parameters_normal();
+    parameters = nn.arrange_parameters();
 
-   ds.set(2, 2, 2);
-   ds.randomize_data_normal();
+    ds.set(2, 2, 2);
+    ds.randomize_data_normal();
 
-   terms_Jacobian = mse.calculate_terms_Jacobian();
-   numerical_Jacobian_terms = nd.calculate_Jacobian(mse, &MeanSquaredError::calculate_terms, parameters);
+    terms_Jacobian = mse.calculate_terms_Jacobian();
+    numerical_Jacobian_terms = nd.calculate_Jacobian(mse, &MeanSquaredError::calculate_terms, parameters);
 
-   assert_true((terms_Jacobian-numerical_Jacobian_terms).calculate_absolute_value() < 1.0e-3, LOG);
+    assert_true((terms_Jacobian - numerical_Jacobian_terms).calculate_absolute_value() < 1.0e-3, LOG);
 
-   // Test
+    // Test
 
-   nn.set(2, 2, 2);
-   nn.randomize_parameters_normal();
+    nn.set(2, 2, 2);
+    nn.randomize_parameters_normal();
 
-   ds.set(2, 2, 2);
-   ds.randomize_data_normal();
-   
-   objective_gradient = mse.calculate_gradient();
+    ds.set(2, 2, 2);
+    ds.randomize_data_normal();
 
-   evaluation_terms = mse.calculate_terms();
-   terms_Jacobian = mse.calculate_terms_Jacobian();
+    objective_gradient = mse.calculate_gradient();
 
-   assert_true(((terms_Jacobian.calculate_transpose()).dot(evaluation_terms)*2.0 - objective_gradient).calculate_absolute_value() < 1.0e-3, LOG);
+    evaluation_terms = mse.calculate_terms();
+    terms_Jacobian = mse.calculate_terms_Jacobian();
+
+    assert_true(((terms_Jacobian.calculate_transpose()).dot(evaluation_terms) * 2.0 - objective_gradient).calculate_absolute_value() < 1.0e-3,
+                LOG);
 }
 
 
 void MeanSquaredErrorTest::test_calculate_Hessian(void)
 {
-   message += "test_calculate_Hessian\n";
+    message += "test_calculate_Hessian\n";
 }
 
 
 void MeanSquaredErrorTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 }
 
 
 void MeanSquaredErrorTest::test_from_XML(void)
 {
-   message += "test_from_XML\n";
+    message += "test_from_XML\n";
 }
 
 
 void MeanSquaredErrorTest::run_test_case(void)
 {
-   message += "Running mean squared error test case...\n";
+    message += "Running mean squared error test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Get methods
+    // Get methods
 
-   // Set methods
+    // Set methods
 
-   // Objective methods
+    // Objective methods
 
-   test_calculate_performance();   
-   test_calculate_selection_performance();
+    test_calculate_performance();
+    test_calculate_selection_performance();
 
-   test_calculate_gradient();
+    test_calculate_gradient();
 
-   // Objective terms methods
+    // Objective terms methods
 
-   test_calculate_terms();
-   test_calculate_terms_Jacobian();
+    test_calculate_terms();
+    test_calculate_terms_Jacobian();
 
-   // Objective Hessian methods
+    // Objective Hessian methods
 
-   test_calculate_Hessian();
+    test_calculate_Hessian();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
-   message += "End of mean squared error test case.\n";
+    message += "End of mean squared error test case.\n";
 }
 
 

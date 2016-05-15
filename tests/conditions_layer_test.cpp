@@ -35,29 +35,29 @@ ConditionsLayerTest::~ConditionsLayerTest(void)
 
 void ConditionsLayerTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 
-   // Default constructor
+    // Default constructor
 
-   ConditionsLayer cl1;
+    ConditionsLayer cl1;
 
-   assert_true(cl1.get_external_inputs_number() == 0, LOG);
-   assert_true(cl1.get_conditions_neurons_number() == 0, LOG);
+    assert_true(cl1.get_external_inputs_number() == 0, LOG);
+    assert_true(cl1.get_conditions_neurons_number() == 0, LOG);
 
-   // Copy constructor
+    // Copy constructor
 
 }
 
 
 void ConditionsLayerTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 
 void ConditionsLayerTest::test_assignment_operator(void)
 {
-   message += "test_assignment_operator\n";
+    message += "test_assignment_operator\n";
 
 //   ConditionsLayer cl_1;
 //   ConditionsLayer cl_2 = cl_1;
@@ -66,20 +66,20 @@ void ConditionsLayerTest::test_assignment_operator(void)
 
 void ConditionsLayerTest::test_count_inputs_number(void)
 {
-   message += "test_count_inputs_number\n";
+    message += "test_count_inputs_number\n";
 
-   ConditionsLayer cl;
+    ConditionsLayer cl;
 
-   // Test
+    // Test
 
-   cl.set();
-   assert_true(cl.get_external_inputs_number() == 0, LOG);
+    cl.set();
+    assert_true(cl.get_external_inputs_number() == 0, LOG);
 }
 
 
 void ConditionsLayerTest::test_get_display(void)
 {
-   message += "test_get_display\n";
+    message += "test_get_display\n";
 }
 
 
@@ -87,46 +87,46 @@ void ConditionsLayerTest::test_get_display(void)
 
 void ConditionsLayerTest::test_set(void)
 {
-   message += "test_set\n";
+    message += "test_set\n";
 
-   ConditionsLayer cl;
+    ConditionsLayer cl;
 
-   size_t inputs_number;
-   size_t conditions_neurons_number;
+    size_t inputs_number;
+    size_t conditions_neurons_number;
 
-   // Test
+    // Test
 
-   cl.set(1, 1);
+    cl.set(1, 1);
 
-   inputs_number = cl.get_external_inputs_number();
-   conditions_neurons_number = cl.get_conditions_neurons_number();
+    inputs_number = cl.get_external_inputs_number();
+    conditions_neurons_number = cl.get_conditions_neurons_number();
 
-   assert_true(inputs_number == 1, LOG);
-   assert_true(conditions_neurons_number == 1, LOG);
+    assert_true(inputs_number == 1, LOG);
+    assert_true(conditions_neurons_number == 1, LOG);
 }
 
 
 void ConditionsLayerTest::test_set_default(void)
 {
-   message += "test_set_default\n";
+    message += "test_set_default\n";
 }
 
 
 void ConditionsLayerTest::test_set_display(void)
 {
-   message += "test_set_display\n";
+    message += "test_set_display\n";
 }
 
 
 void ConditionsLayerTest::test_initialize_random(void)
 {
-   message += "test_initialize_random\n";
+    message += "test_initialize_random\n";
 
-   ConditionsLayer cl;
+    ConditionsLayer cl;
 
-   // Test
+    // Test
 
-   cl.initialize_random();
+    cl.initialize_random();
 }
 
 
@@ -134,55 +134,55 @@ void ConditionsLayerTest::test_initialize_random(void)
 
 void ConditionsLayerTest::test_calculate_particular_solution(void)
 {
-   message += "test_calculate_particular_solution\n";
+    message += "test_calculate_particular_solution\n";
 
-   ConditionsLayer cl;
+    ConditionsLayer cl;
 
-   Vector<double> inputs;
-   Vector<double> particular_solution;
+    Vector<double> inputs;
+    Vector<double> particular_solution;
 
-   // Test 
+    // Test
 
-   cl.set(1, 1);
+    cl.set(1, 1);
 
-   cl.set_external_input_value(0, 0.0);
-   cl.set_external_input_value(1, 1.0);
+    cl.set_external_input_value(0, 0.0);
+    cl.set_external_input_value(1, 1.0);
 
-   cl.set_output_value(0, 0, 0.0);
-   cl.set_output_value(0, 1, 1.0);
+    cl.set_output_value(0, 0, 0.0);
+    cl.set_output_value(0, 1, 1.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   particular_solution = cl.calculate_particular_solution(inputs);
+    particular_solution = cl.calculate_particular_solution(inputs);
 
-   assert_true(particular_solution.size() == 1, LOG);
-   assert_true(particular_solution == 0.0, LOG);
+    assert_true(particular_solution.size() == 1, LOG);
+    assert_true(particular_solution == 0.0, LOG);
 
-   inputs.set(1, 1.0);
+    inputs.set(1, 1.0);
 
-   particular_solution = cl.calculate_particular_solution(inputs);
+    particular_solution = cl.calculate_particular_solution(inputs);
 
-   assert_true(particular_solution.size() == 1, LOG);
-   assert_true(particular_solution == 1.0, LOG);
+    assert_true(particular_solution.size() == 1, LOG);
+    assert_true(particular_solution == 1.0, LOG);
 
-   // Test 
+    // Test
 
-   cl.set(1, 2);
+    cl.set(1, 2);
 
-   cl.set_external_input_value(0, 0.0);
-   cl.set_external_input_value(1, 1.0);
+    cl.set_external_input_value(0, 0.0);
+    cl.set_external_input_value(1, 1.0);
 
-   cl.set_output_value(0, 0, 0.0);
-   cl.set_output_value(0, 1, 1.0);
-   cl.set_output_value(1, 0, 0.0);
-   cl.set_output_value(1, 1, 1.0);
+    cl.set_output_value(0, 0, 0.0);
+    cl.set_output_value(0, 1, 1.0);
+    cl.set_output_value(1, 0, 0.0);
+    cl.set_output_value(1, 1, 1.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   particular_solution = cl.calculate_particular_solution(inputs);
+    particular_solution = cl.calculate_particular_solution(inputs);
 
-   assert_true(particular_solution.size() == 2, LOG);
-   assert_true(particular_solution == 0.0, LOG);
+    assert_true(particular_solution.size() == 2, LOG);
+    assert_true(particular_solution == 0.0, LOG);
 }
 
 
@@ -190,48 +190,48 @@ void ConditionsLayerTest::test_calculate_particular_solution(void)
 
 void ConditionsLayerTest::test_calculate_particular_solution_Jacobian(void)
 {
-   message += "test_calculate_particular_solution_Jacobian\n";
+    message += "test_calculate_particular_solution_Jacobian\n";
 
-   ConditionsLayer cl;
+    ConditionsLayer cl;
 
-   Vector<double> inputs;
-   Matrix<double> particular_solution_Jacobian;
+    Vector<double> inputs;
+    Matrix<double> particular_solution_Jacobian;
 
-   // Test 
+    // Test
 
-   cl.set(1, 1);
+    cl.set(1, 1);
 
-   cl.set_external_input_value(0, 0.0);
-   cl.set_external_input_value(1, 1.0);
+    cl.set_external_input_value(0, 0.0);
+    cl.set_external_input_value(1, 1.0);
 
-   cl.set_output_value(0, 0, 0.0);
-   cl.set_output_value(0, 1, 1.0);
+    cl.set_output_value(0, 0, 0.0);
+    cl.set_output_value(0, 1, 1.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   particular_solution_Jacobian = cl.calculate_particular_solution_Jacobian(inputs);
+    particular_solution_Jacobian = cl.calculate_particular_solution_Jacobian(inputs);
 
-   assert_true(particular_solution_Jacobian.get_rows_number() == 1, LOG);
-   assert_true(particular_solution_Jacobian.get_columns_number() == 1, LOG);
-   assert_true(particular_solution_Jacobian == 1.0, LOG);
+    assert_true(particular_solution_Jacobian.get_rows_number() == 1, LOG);
+    assert_true(particular_solution_Jacobian.get_columns_number() == 1, LOG);
+    assert_true(particular_solution_Jacobian == 1.0, LOG);
 
-   // Test 
+    // Test
 
-   cl.set(1, 3);
+    cl.set(1, 3);
 
-   cl.set_external_input_value(0, 0.0);
-   cl.set_external_input_value(1, 1.0);
+    cl.set_external_input_value(0, 0.0);
+    cl.set_external_input_value(1, 1.0);
 
-   cl.set_output_value(0, 0, 0.0);
-   cl.set_output_value(0, 1, 1.0);
+    cl.set_output_value(0, 0, 0.0);
+    cl.set_output_value(0, 1, 1.0);
 
-   inputs.set(1, 1.0);
+    inputs.set(1, 1.0);
 
-   particular_solution_Jacobian = cl.calculate_particular_solution_Jacobian(inputs);
+    particular_solution_Jacobian = cl.calculate_particular_solution_Jacobian(inputs);
 
 //   assert_true(particular_solution_Jacobian.get_rows_number() == 3, LOG);
 //   assert_true(particular_solution_Jacobian.get_columns_number() == 2, LOG);
-   assert_true(particular_solution_Jacobian == 1.0, LOG);
+    assert_true(particular_solution_Jacobian == 1.0, LOG);
 }
 
 
@@ -239,62 +239,62 @@ void ConditionsLayerTest::test_calculate_particular_solution_Jacobian(void)
 
 void ConditionsLayerTest::test_calculate_homogeneous_solution(void)
 {
-   message += "test_calculate_homogeneous_solution\n";
+    message += "test_calculate_homogeneous_solution\n";
 
-   ConditionsLayer cl;
+    ConditionsLayer cl;
 
-   Vector<double> inputs;
-   Vector<double> homogeneous_solution;
+    Vector<double> inputs;
+    Vector<double> homogeneous_solution;
 
-   // Test 
+    // Test
 
-   cl.set(1, 1);
+    cl.set(1, 1);
 
-   cl.set_external_input_value(0, 0.0);
-   cl.set_external_input_value(1, 1.0);
+    cl.set_external_input_value(0, 0.0);
+    cl.set_external_input_value(1, 1.0);
 
-   cl.set_output_value(0, 0, 0.0);
-   cl.set_output_value(0, 1, 1.0);
+    cl.set_output_value(0, 0, 0.0);
+    cl.set_output_value(0, 1, 1.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   homogeneous_solution = cl.calculate_homogeneous_solution(inputs);
+    homogeneous_solution = cl.calculate_homogeneous_solution(inputs);
 
-   assert_true(homogeneous_solution.size() == 1, LOG);
-   assert_true(homogeneous_solution == 0.0, LOG);
+    assert_true(homogeneous_solution.size() == 1, LOG);
+    assert_true(homogeneous_solution == 0.0, LOG);
 
-   inputs.set(1, 0.5);
+    inputs.set(1, 0.5);
 
-   homogeneous_solution = cl.calculate_homogeneous_solution(inputs);
+    homogeneous_solution = cl.calculate_homogeneous_solution(inputs);
 
-   assert_true(homogeneous_solution.size() == 1, LOG);
-   assert_true(homogeneous_solution != 0.0, LOG);
+    assert_true(homogeneous_solution.size() == 1, LOG);
+    assert_true(homogeneous_solution != 0.0, LOG);
 
-   inputs.set(1, 1.0);
+    inputs.set(1, 1.0);
 
-   homogeneous_solution = cl.calculate_homogeneous_solution(inputs);
+    homogeneous_solution = cl.calculate_homogeneous_solution(inputs);
 
-   assert_true(homogeneous_solution.size() == 1, LOG);
-   assert_true(homogeneous_solution == 0.0, LOG);
+    assert_true(homogeneous_solution.size() == 1, LOG);
+    assert_true(homogeneous_solution == 0.0, LOG);
 
-   // Test 
+    // Test
 
-   cl.set(1, 2);
+    cl.set(1, 2);
 
-   cl.set_external_input_value(0, 0.0);
-   cl.set_external_input_value(1, 1.0);
+    cl.set_external_input_value(0, 0.0);
+    cl.set_external_input_value(1, 1.0);
 
-   cl.set_output_value(0, 0, 0.0);
-   cl.set_output_value(0, 1, 1.0);
-   cl.set_output_value(1, 0, 0.0);
-   cl.set_output_value(1, 1, 1.0);
+    cl.set_output_value(0, 0, 0.0);
+    cl.set_output_value(0, 1, 1.0);
+    cl.set_output_value(1, 0, 0.0);
+    cl.set_output_value(1, 1, 1.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   homogeneous_solution = cl.calculate_homogeneous_solution(inputs);
+    homogeneous_solution = cl.calculate_homogeneous_solution(inputs);
 
-   assert_true(homogeneous_solution.size() == 2, LOG);
-   assert_true(homogeneous_solution == 0.0, LOG); 
+    assert_true(homogeneous_solution.size() == 2, LOG);
+    assert_true(homogeneous_solution == 0.0, LOG);
 }
 
 
@@ -302,24 +302,24 @@ void ConditionsLayerTest::test_calculate_homogeneous_solution(void)
 
 void ConditionsLayerTest::test_calculate_homogeneous_solution_Jacobian(void)
 {
-   message += "test_calculate_homogeneous_solution_Jacobian\n";
+    message += "test_calculate_homogeneous_solution_Jacobian\n";
 
-   ConditionsLayer cl;
+    ConditionsLayer cl;
 
-   Vector<double> inputs;
-   Matrix<double> homogeneous_solution_Jacobian;
+    Vector<double> inputs;
+    Matrix<double> homogeneous_solution_Jacobian;
 
-   // Test 
+    // Test
 
-   cl.set(1, 1);
+    cl.set(1, 1);
 
-   cl.set_external_input_value(0, 0.0);
-   cl.set_external_input_value(1, 1.0);
+    cl.set_external_input_value(0, 0.0);
+    cl.set_external_input_value(1, 1.0);
 
-   cl.set_output_value(0, 0, 0.0);
-   cl.set_output_value(0, 1, 1.0);
+    cl.set_output_value(0, 0, 0.0);
+    cl.set_output_value(0, 1, 1.0);
 
-   inputs.set(1, 1.0);
+    inputs.set(1, 1.0);
 
 //   homogeneous_solution_Jacobian = cl.calculate_homogeneous_solution_Jacobian(inputs);
 
@@ -327,10 +327,10 @@ void ConditionsLayerTest::test_calculate_homogeneous_solution_Jacobian(void)
 //   assert_true(homogeneous_solution_Jacobian.get_columns_number() == 1, LOG);
 //   assert_true(homogeneous_solution_Jacobian == 0.0, LOG);
 
-   // Test 
+    // Test
 
-   cl.set(1,3);
-   inputs.set(1, 0.0);
+    cl.set(1, 3);
+    inputs.set(1, 0.0);
 
 //   homogeneous_solution_Jacobian = mbcl.calculate_homogeneous_solution_Jacobian(inputs);
 
@@ -342,42 +342,42 @@ void ConditionsLayerTest::test_calculate_homogeneous_solution_Jacobian(void)
 
 void ConditionsLayerTest::test_calculate_outputs(void)
 {
-   message += "test_calculate_outputs\n";
+    message += "test_calculate_outputs\n";
 
-   ConditionsLayer cl;
+    ConditionsLayer cl;
 
-   Vector<double> inputs1;
-   Vector<double> inputs2;
-   Vector<double> outputs;
+    Vector<double> inputs1;
+    Vector<double> inputs2;
+    Vector<double> outputs;
 
-   // Test 
+    // Test
 
-   cl.set(1, 1);
+    cl.set(1, 1);
 
-   cl.set_external_input_value(0, 0.0);
-   cl.set_external_input_value(1, 1.0);
+    cl.set_external_input_value(0, 0.0);
+    cl.set_external_input_value(1, 1.0);
 
-   cl.set_output_value(0, 0, 0.0);
-   cl.set_output_value(0, 1, 1.0);
+    cl.set_output_value(0, 0, 0.0);
+    cl.set_output_value(0, 1, 1.0);
 
-   inputs1.set(1, 1.0);
-   inputs2.set(1, 1.0);
+    inputs1.set(1, 1.0);
+    inputs2.set(1, 1.0);
 
-   outputs = cl.calculate_outputs(inputs1, inputs2);
+    outputs = cl.calculate_outputs(inputs1, inputs2);
 
-   assert_true(outputs.size() == 1, LOG);
+    assert_true(outputs.size() == 1, LOG);
 }
 
 
 void ConditionsLayerTest::test_calculate_Jacobian(void)
 {
-   message += "test_calculate_Jacobian\n";
+    message += "test_calculate_Jacobian\n";
 }
 
 
 void ConditionsLayerTest::test_calculate_Hessian_form(void)
 {
-   message += "test_calculate_Hessian_form\n";
+    message += "test_calculate_Hessian_form\n";
 }
 
 
@@ -385,35 +385,35 @@ void ConditionsLayerTest::test_calculate_Hessian_form(void)
 
 void ConditionsLayerTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 
-   ConditionsLayer  cl;
+    ConditionsLayer cl;
 
-   tinyxml2::XMLDocument* document = cl.to_XML();
+    tinyxml2::XMLDocument *document = cl.to_XML();
 
-   assert_true(document != NULL, LOG);
+    assert_true(document != NULL, LOG);
 
-   delete document;
+    delete document;
 }
 
 
 void ConditionsLayerTest::test_from_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 
-   ConditionsLayer  cl;
+    ConditionsLayer cl;
 }
 
 
 void ConditionsLayerTest::test_write_particular_solution_expression(void)
 {
-   message += "test_write_particular_solution_expression\n";
+    message += "test_write_particular_solution_expression\n";
 }
 
 
 void ConditionsLayerTest::test_write_homogeneous_solution_expression(void)
 {
-   message += "test_write_homogeneous_solution_expression\n";
+    message += "test_write_homogeneous_solution_expression\n";
 }
 
 
@@ -421,75 +421,75 @@ void ConditionsLayerTest::test_write_homogeneous_solution_expression(void)
 
 void ConditionsLayerTest::test_write_expression(void)
 {
-   message += "test_write_expression\n";
+    message += "test_write_expression\n";
 
-   ConditionsLayer cl(1,1);
+    ConditionsLayer cl(1, 1);
 
-   Vector<std::string> x1(1, "x1");
-   Vector<std::string> x2(1, "x2");
-   Vector<std::string> y(1, "y");
+    Vector<std::string> x1(1, "x1");
+    Vector<std::string> x2(1, "x2");
+    Vector<std::string> y(1, "y");
 
-   std::string expression = cl.write_expression(x1, x2, y);
+    std::string expression = cl.write_expression(x1, x2, y);
 }
 
 
 void ConditionsLayerTest::run_test_case(void)
 {
-   message += "Running conditions layer test case...\n";
+    message += "Running conditions layer test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Assignment operators methods
+    // Assignment operators methods
 
-   test_assignment_operator();
+    test_assignment_operator();
 
-   // Get methods
+    // Get methods
 
-   // Display warnings
+    // Display warnings
 
-   test_get_display();
+    test_get_display();
 
-   // Set methods
+    // Set methods
 
-   test_set();
-   test_set_default();
+    test_set();
+    test_set_default();
 
-   // Display messages
+    // Display messages
 
-   test_set_display();
+    test_set_display();
 
-   // PerceptronLayer initialization methods
+    // PerceptronLayer initialization methods
 
-   test_initialize_random();
+    test_initialize_random();
 
-   // Conditions 
+    // Conditions
 
-   test_calculate_particular_solution();
-   test_calculate_particular_solution_Jacobian();
+    test_calculate_particular_solution();
+    test_calculate_particular_solution_Jacobian();
 
-   test_calculate_homogeneous_solution();
-   test_calculate_homogeneous_solution_Jacobian();
+    test_calculate_homogeneous_solution();
+    test_calculate_homogeneous_solution_Jacobian();
 
-   test_calculate_outputs();
-   test_calculate_Jacobian();
-   test_calculate_Hessian_form();
+    test_calculate_outputs();
+    test_calculate_Jacobian();
+    test_calculate_Hessian_form();
 
-   // Expression methods
-   
-   test_write_particular_solution_expression();
-   test_write_homogeneous_solution_expression();
+    // Expression methods
 
-   test_write_expression();
+    test_write_particular_solution_expression();
+    test_write_homogeneous_solution_expression();
 
-   // Serialization methods
+    test_write_expression();
 
-   test_to_XML();
-   test_from_XML();
+    // Serialization methods
 
-   message += "End of conditions layer test case.\n";
+    test_to_XML();
+    test_from_XML();
+
+    message += "End of conditions layer test case.\n";
 }
 
 

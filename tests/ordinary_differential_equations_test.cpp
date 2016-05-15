@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   O R D I N A R Y   D I F F E R E N T I A L   E Q U A T I O N S   T E S T   C L A S S                        */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -18,8 +18,8 @@
 using namespace OpenNN;
 
 
-OrdinaryDifferentialEquationsTest::OrdinaryDifferentialEquationsTest(void) : UnitTesting() 
-{   
+OrdinaryDifferentialEquationsTest::OrdinaryDifferentialEquationsTest(void) : UnitTesting()
+{
 }
 
 
@@ -30,93 +30,93 @@ OrdinaryDifferentialEquationsTest::~OrdinaryDifferentialEquationsTest(void)
 
 void OrdinaryDifferentialEquationsTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_get_points_number(void)
 {
-   message += "test_get_points_number\n";
+    message += "test_get_points_number\n";
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_get_tolerance(void)
 {
-   message += "test_get_tolerance\n";
+    message += "test_get_tolerance\n";
 
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_get_initial_size(void)
 {
-   message += "test_get_initial_size\n";
+    message += "test_get_initial_size\n";
 
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_get_warning_size(void)
 {
-   message += "test_get_warning_size\n";
+    message += "test_get_warning_size\n";
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_get_error_size(void)
 {
-   message += "test_get_error_size\n";
+    message += "test_get_error_size\n";
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_get_display(void)
 {
-   message += "test_get_display\n";
+    message += "test_get_display\n";
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_set_default(void)
 {
-   message += "test_set_default\n";
+    message += "test_set_default\n";
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_set_points_number(void)
 {
-   message += "test_set_points_number\n";
+    message += "test_set_points_number\n";
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_set_tolerance(void)
 {
-   message += "test_set_tolerance\n";
+    message += "test_set_tolerance\n";
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_set_initial_size(void)
 {
-   message += "test_set_initial_size\n";
+    message += "test_set_initial_size\n";
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_set_warning_size(void)
 {
-   message += "test_set_warning_size\n";
+    message += "test_set_warning_size\n";
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_set_error_size(void)
 {
-   message += "test_set_error_size\n";
+    message += "test_set_error_size\n";
 }
 
 
 void OrdinaryDifferentialEquationsTest::test_set_display(void)
 {
-   message += "test_set_display\n";
+    message += "test_set_display\n";
 }
 
 
@@ -124,7 +124,7 @@ void OrdinaryDifferentialEquationsTest::test_set_display(void)
 
 void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_1(void)
 {
-   message += "test_calculate_Runge_Kutta_integral_1\n";
+    message += "test_calculate_Runge_Kutta_integral_1\n";
 /*
    OrdinaryDifferentialEquations ode;
    NeuralNetwork nn;
@@ -134,30 +134,30 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_1(vo
    ode.set_points_number(points_number);
 
    Vector<double> x(points_number);
-   Vector<double> y(points_number); 
+   Vector<double> y(points_number);
 
-   ode.calculate_Runge_Kutta_solution(*this, 
+   ode.calculate_Runge_Kutta_solution(*this,
    x, y,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
-   nn, 0.0, 1.0, 
+   nn, 0.0, 1.0,
    0.0);
-   
+
    assert_true(x[points_number-1] == 1.0, LOG);
    assert_true(y[points_number-1] == 0.0, LOG);
 
-   ode.calculate_Runge_Kutta_solution(*this, 
+   ode.calculate_Runge_Kutta_solution(*this,
    x, y,
    &OrdinaryDifferentialEquationsTest::calculate_x_dot,
-   nn, 0.0, 1.0, 
+   nn, 0.0, 1.0,
    0.0);
 
    assert_true(x[points_number-1] == 1.0, LOG);
 //   assert_true(y[points_number-1] == 0.5, LOG);
 
-   ode.calculate_Runge_Kutta_solution(*this, 
+   ode.calculate_Runge_Kutta_solution(*this,
    x, y,
    &OrdinaryDifferentialEquationsTest::calculate_x_squared_dot,
-   nn, 0.0, 1.0, 
+   nn, 0.0, 1.0,
    0.0);
 
    assert_true(x[points_number-1] == 1.0, LOG);
@@ -169,7 +169,7 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_1(vo
 
 void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_2(void)
 {
-   message += "test_calculate_Runge_Kutta_integral_2\n";
+    message += "test_calculate_Runge_Kutta_integral_2\n";
 /*
    OrdinaryDifferentialEquations ode;
    NeuralNetwork nn;
@@ -179,16 +179,16 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_2(vo
    ode.set_points_number(points_number);
 
    Vector<double> x(points_number);
-   Vector<double> y1(points_number); 
-   Vector<double> y2(points_number); 
+   Vector<double> y1(points_number);
+   Vector<double> y2(points_number);
 
-   ode.calculate_Runge_Kutta_solution(*this, 
+   ode.calculate_Runge_Kutta_solution(*this,
    x, y1, y2,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
-   nn, 0.0, 1.0, 
+   nn, 0.0, 1.0,
    0.0, 0.0);
-   
+
    assert_true(x[points_number-1] == 1.0, LOG);
    assert_true(y1[points_number-1] == 0.0, LOG);
    assert_true(y2[points_number-1] == 0.0, LOG);
@@ -200,7 +200,7 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_2(vo
 
 void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_3(void)
 {
-   message += "test_calculate_Runge_Kutta_integral_3\n";
+    message += "test_calculate_Runge_Kutta_integral_3\n";
 /*
    OrdinaryDifferentialEquations ode;
    NeuralNetwork nn;
@@ -210,18 +210,18 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_3(vo
    ode.set_points_number(points_number);
 
    Vector<double> x(points_number);
-   Vector<double> y1(points_number); 
-   Vector<double> y2(points_number); 
-   Vector<double> y3(points_number); 
+   Vector<double> y1(points_number);
+   Vector<double> y2(points_number);
+   Vector<double> y3(points_number);
 
-   ode.calculate_Runge_Kutta_solution(*this, 
+   ode.calculate_Runge_Kutta_solution(*this,
    x, y1, y2, y3,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
-   nn, 0.0, 1.0, 
+   nn, 0.0, 1.0,
    0.0, 0.0, 0.0);
-   
+
    assert_true(x[points_number-1] == 1.0, LOG);
    assert_true(y1[points_number-1] == 0.0, LOG);
    assert_true(y2[points_number-1] == 0.0, LOG);
@@ -234,7 +234,7 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_3(vo
 
 void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_4(void)
 {
-   message += "test_calculate_Runge_Kutta_integral_4\n";
+    message += "test_calculate_Runge_Kutta_integral_4\n";
 /*
    OrdinaryDifferentialEquations ode;
    NeuralNetwork nn;
@@ -244,20 +244,20 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_4(vo
    ode.set_points_number(points_number);
 
    Vector<double> x(points_number);
-   Vector<double> y1(points_number); 
-   Vector<double> y2(points_number); 
-   Vector<double> y3(points_number); 
-   Vector<double> y4(points_number); 
+   Vector<double> y1(points_number);
+   Vector<double> y2(points_number);
+   Vector<double> y3(points_number);
+   Vector<double> y4(points_number);
 
-   ode.calculate_Runge_Kutta_solution(*this, 
+   ode.calculate_Runge_Kutta_solution(*this,
    x, y1, y2, y3, y4,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
-   nn, 0.0, 1.0, 
+   nn, 0.0, 1.0,
    0.0, 0.0, 0.0, 0.0);
-   
+
    assert_true(x[points_number-1] == 1.0, LOG);
    assert_true(y1[points_number-1] == 0.0, LOG);
    assert_true(y2[points_number-1] == 0.0, LOG);
@@ -271,7 +271,7 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_4(vo
 
 void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_5(void)
 {
-   message += "test_calculate_Runge_Kutta_integral_5\n";
+    message += "test_calculate_Runge_Kutta_integral_5\n";
 /*
    OrdinaryDifferentialEquations ode;
    NeuralNetwork nn;
@@ -281,22 +281,22 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_5(vo
    ode.set_points_number(points_number);
 
    Vector<double> x(points_number);
-   Vector<double> y1(points_number); 
-   Vector<double> y2(points_number); 
-   Vector<double> y3(points_number); 
-   Vector<double> y4(points_number); 
-   Vector<double> y5(points_number); 
+   Vector<double> y1(points_number);
+   Vector<double> y2(points_number);
+   Vector<double> y3(points_number);
+   Vector<double> y4(points_number);
+   Vector<double> y5(points_number);
 
-   ode.calculate_Runge_Kutta_solution(*this, 
+   ode.calculate_Runge_Kutta_solution(*this,
    x, y1, y2, y3, y4, y5,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
-   nn, 0.0, 1.0, 
+   nn, 0.0, 1.0,
    0.0, 0.0, 0.0, 0.0, 0.0);
-   
+
    assert_true(x[points_number-1] == 1.0, LOG);
    assert_true(y1[points_number-1] == 0.0, LOG);
    assert_true(y2[points_number-1] == 0.0, LOG);
@@ -311,18 +311,18 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_integral_5(vo
 
 void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_Fehlberg_integral_1(void)
 {
-   message += "test_calculate_Runge_Kutta_Fehlberg_integral_1\n";
+    message += "test_calculate_Runge_Kutta_Fehlberg_integral_1\n";
 /*
    OrdinaryDifferentialEquations ode;
    NeuralNetwork nn;
 
    Vector<double> x;
-   Vector<double> y; 
+   Vector<double> y;
 
-   size_t points_number = ode.calculate_Runge_Kutta_Fehlberg_solution(*this, 
+   size_t points_number = ode.calculate_Runge_Kutta_Fehlberg_solution(*this,
    x, y,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
-   nn, 0.0, 1.0, 
+   nn, 0.0, 1.0,
    0.0);
 
    assert_true(x[points_number-1] == 1.0, LOG);
@@ -335,20 +335,20 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_Fehlberg_inte
 
 void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_Fehlberg_integral_2(void)
 {
-   message += "test_calculate_Runge_Kutta_Fehlberg_integral_2\n";
+    message += "test_calculate_Runge_Kutta_Fehlberg_integral_2\n";
 /*
    OrdinaryDifferentialEquations ode;
    NeuralNetwork nn;
 
    Vector<double> x;
-   Vector<double> y1; 
-   Vector<double> y2; 
+   Vector<double> y1;
+   Vector<double> y2;
 
-   size_t points_number = ode.calculate_Runge_Kutta_Fehlberg_solution(*this, 
+   size_t points_number = ode.calculate_Runge_Kutta_Fehlberg_solution(*this,
    x, y1, y2,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
-   nn, 0.0, 1.0, 
+   nn, 0.0, 1.0,
    0.0, 0.0);
 
    assert_true(x[points_number-1] == 1.0, LOG);
@@ -362,22 +362,22 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_Fehlberg_inte
 
 void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_Fehlberg_integral_3(void)
 {
-   message += "test_calculate_Runge_Kutta_Fehlberg_integral_3\n";
+    message += "test_calculate_Runge_Kutta_Fehlberg_integral_3\n";
 
 //   OrdinaryDifferentialEquations ode;
 //   NeuralNetwork nn;
 
 //   Vector<double> x;
-//   Vector<double> y1; 
-//   Vector<double> y2; 
-//   Vector<double> y3; 
+//   Vector<double> y1;
+//   Vector<double> y2;
+//   Vector<double> y3;
 
-//   size_t points_number = ode.calculate_Runge_Kutta_Fehlberg_solution(*this, 
+//   size_t points_number = ode.calculate_Runge_Kutta_Fehlberg_solution(*this,
 //   x, y1, y2, y3,
 //   &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
 //   &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
 //   &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
-//   nn, 0.0, 1.0, 
+//   nn, 0.0, 1.0,
 //   0.0, 0.0, 0.0);
 
 //   assert_true(x[points_number-1] == 1.0, LOG);
@@ -392,24 +392,24 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_Fehlberg_inte
 
 void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_Fehlberg_integral_4(void)
 {
-   message += "test_calculate_Runge_Kutta_Fehlberg_integral_4\n";
+    message += "test_calculate_Runge_Kutta_Fehlberg_integral_4\n";
 /*
    OrdinaryDifferentialEquations ode;
    NeuralNetwork nn;
 
    Vector<double> x;
-   Vector<double> y1; 
-   Vector<double> y2; 
-   Vector<double> y3; 
-   Vector<double> y4; 
+   Vector<double> y1;
+   Vector<double> y2;
+   Vector<double> y3;
+   Vector<double> y4;
 
-   size_t points_number = ode.calculate_Runge_Kutta_Fehlberg_solution(*this, 
+   size_t points_number = ode.calculate_Runge_Kutta_Fehlberg_solution(*this,
    x, y1, y2, y3, y4,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
-   nn, 0.0, 1.0, 
+   nn, 0.0, 1.0,
    0.0, 0.0, 0.0, 0.0);
 
    assert_true(x[points_number-1] == 1.0, LOG);
@@ -425,26 +425,26 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_Fehlberg_inte
 
 void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_Fehlberg_integral_5(void)
 {
-   message += "test_calculate_Runge_Kutta_Fehlberg_integral_5\n";
+    message += "test_calculate_Runge_Kutta_Fehlberg_integral_5\n";
 /*
    OrdinaryDifferentialEquations ode;
    NeuralNetwork nn;
 
    Vector<double> x;
-   Vector<double> y1; 
-   Vector<double> y2; 
-   Vector<double> y3; 
-   Vector<double> y4; 
-   Vector<double> y5; 
+   Vector<double> y1;
+   Vector<double> y2;
+   Vector<double> y3;
+   Vector<double> y4;
+   Vector<double> y5;
 
-   size_t points_number = ode.calculate_Runge_Kutta_Fehlberg_solution(*this, 
+   size_t points_number = ode.calculate_Runge_Kutta_Fehlberg_solution(*this,
    x, y1, y2, y3, y4, y5,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
    &OrdinaryDifferentialEquationsTest::calculate_zero_dot,
-   nn, 0.0, 1.0, 
+   nn, 0.0, 1.0,
    0.0, 0.0, 0.0, 0.0, 0.0);
 
    assert_true(x[points_number-1] == 1.0, LOG);
@@ -457,134 +457,174 @@ void OrdinaryDifferentialEquationsTest::test_calculate_Runge_Kutta_Fehlberg_inte
 }
 
 
-double OrdinaryDifferentialEquationsTest::calculate_zero_dot(const NeuralNetwork&, const double&, const double&) const
+double OrdinaryDifferentialEquationsTest::calculate_zero_dot(const NeuralNetwork &,
+                                                             const double &,
+                                                             const double &) const
 {
-   return(0.0);
+    return (0.0);
 }
 
 
-double OrdinaryDifferentialEquationsTest::calculate_zero_dot(const NeuralNetwork&, const double&, const double&, const double&) const
+double OrdinaryDifferentialEquationsTest::calculate_zero_dot(const NeuralNetwork &,
+                                                             const double &,
+                                                             const double &,
+                                                             const double &) const
 {
-   return(0.0);
+    return (0.0);
 }
 
 
-double OrdinaryDifferentialEquationsTest::calculate_zero_dot(const NeuralNetwork&, const double&, const double&, const double&, const double&) const
+double OrdinaryDifferentialEquationsTest::calculate_zero_dot(const NeuralNetwork &,
+                                                             const double &,
+                                                             const double &,
+                                                             const double &,
+                                                             const double &) const
 {
-   return(0.0);
+    return (0.0);
 }
 
 
-double OrdinaryDifferentialEquationsTest::calculate_zero_dot(const NeuralNetwork&, const double&, const double&, const double&, const double&, const double&) const
+double OrdinaryDifferentialEquationsTest::calculate_zero_dot(const NeuralNetwork &,
+                                                             const double &,
+                                                             const double &,
+                                                             const double &,
+                                                             const double &,
+                                                             const double &) const
 {
-   return(0.0);
+    return (0.0);
 }
 
 
-double OrdinaryDifferentialEquationsTest::calculate_zero_dot(const NeuralNetwork&, const double&, const double&, const double&, const double&, const double&, const double&) const
+double OrdinaryDifferentialEquationsTest::calculate_zero_dot(const NeuralNetwork &,
+                                                             const double &,
+                                                             const double &,
+                                                             const double &,
+                                                             const double &,
+                                                             const double &,
+                                                             const double &) const
 {
-   return(0.0);
+    return (0.0);
 }
 
 
-double OrdinaryDifferentialEquationsTest::calculate_x_dot(const NeuralNetwork&, const double& x, const double&) const
+double OrdinaryDifferentialEquationsTest::calculate_x_dot(const NeuralNetwork &, const double &x, const double &) const
 {
-   return(x);
+    return (x);
 }
 
 
-double OrdinaryDifferentialEquationsTest::calculate_x_dot(const NeuralNetwork&, const double&, const double&, const double&) const
+double OrdinaryDifferentialEquationsTest::calculate_x_dot(const NeuralNetwork &,
+                                                          const double &,
+                                                          const double &,
+                                                          const double &) const
 {
-   return(0.0);
+    return (0.0);
 }
 
 
-double OrdinaryDifferentialEquationsTest::calculate_x_dot(const NeuralNetwork&, const double&, const double&, const double&, const double&) const
+double OrdinaryDifferentialEquationsTest::calculate_x_dot(const NeuralNetwork &,
+                                                          const double &,
+                                                          const double &,
+                                                          const double &,
+                                                          const double &) const
 {
-   return(0.0);
+    return (0.0);
 }
 
 
-double OrdinaryDifferentialEquationsTest::calculate_x_dot(const NeuralNetwork&, const double&, const double&, const double&, const double&, const double&) const
+double OrdinaryDifferentialEquationsTest::calculate_x_dot(const NeuralNetwork &,
+                                                          const double &,
+                                                          const double &,
+                                                          const double &,
+                                                          const double &,
+                                                          const double &) const
 {
-   return(0.0);
+    return (0.0);
 }
 
 
-double OrdinaryDifferentialEquationsTest::calculate_x_dot(const NeuralNetwork&, const double&, const double&, const double&, const double&, const double&, const double&) const
+double OrdinaryDifferentialEquationsTest::calculate_x_dot(const NeuralNetwork &,
+                                                          const double &,
+                                                          const double &,
+                                                          const double &,
+                                                          const double &,
+                                                          const double &,
+                                                          const double &) const
 {
-   return(0.0);
+    return (0.0);
 }
 
 
-double OrdinaryDifferentialEquationsTest::calculate_x_squared_dot(const NeuralNetwork&, const double& x, const double&) const
+double OrdinaryDifferentialEquationsTest::calculate_x_squared_dot(const NeuralNetwork &,
+                                                                  const double &x,
+                                                                  const double &) const
 {
-   return(x*x);
+    return (x * x);
 }
 
 
-void OrdinaryDifferentialEquationsTest::test_to_XML(void)   
+void OrdinaryDifferentialEquationsTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 }
 
 
-void OrdinaryDifferentialEquationsTest::test_from_XML(void)   
+void OrdinaryDifferentialEquationsTest::test_from_XML(void)
 {
-   message += "test_from_XML\n";
+    message += "test_from_XML\n";
 }
 
 
 void OrdinaryDifferentialEquationsTest::run_test_case(void)
 {
-   message += "Running ordinary differential equations test case...\n";
+    message += "Running ordinary differential equations test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Get methods
+    // Get methods
 
-   test_get_points_number();
+    test_get_points_number();
 
-   test_get_tolerance();
-   test_get_initial_size();
-   test_get_warning_size();
-   test_get_error_size();
+    test_get_tolerance();
+    test_get_initial_size();
+    test_get_warning_size();
+    test_get_error_size();
 
-   test_get_display();
+    test_get_display();
 
-   // Set methods
+    // Set methods
 
-   test_set_default();
+    test_set_default();
 
-   test_set_points_number();
+    test_set_points_number();
 
-   test_set_tolerance();
-   test_set_initial_size();
-   test_set_warning_size();
-   test_set_error_size();
+    test_set_tolerance();
+    test_set_initial_size();
+    test_set_warning_size();
+    test_set_error_size();
 
-   test_set_display();
+    test_set_display();
 
-   // Runge-Kutta methods
+    // Runge-Kutta methods
 
-   test_calculate_Runge_Kutta_integral_1();
-   test_calculate_Runge_Kutta_integral_2();
-   test_calculate_Runge_Kutta_integral_3();
-   test_calculate_Runge_Kutta_integral_4();
-   test_calculate_Runge_Kutta_integral_5();
+    test_calculate_Runge_Kutta_integral_1();
+    test_calculate_Runge_Kutta_integral_2();
+    test_calculate_Runge_Kutta_integral_3();
+    test_calculate_Runge_Kutta_integral_4();
+    test_calculate_Runge_Kutta_integral_5();
 
-   // Runge-Kutta-Fehlberg methods
+    // Runge-Kutta-Fehlberg methods
 
-   test_calculate_Runge_Kutta_Fehlberg_integral_1();
-   test_calculate_Runge_Kutta_Fehlberg_integral_2();
-   test_calculate_Runge_Kutta_Fehlberg_integral_3();
-   test_calculate_Runge_Kutta_Fehlberg_integral_4();
-   test_calculate_Runge_Kutta_Fehlberg_integral_5();
+    test_calculate_Runge_Kutta_Fehlberg_integral_1();
+    test_calculate_Runge_Kutta_Fehlberg_integral_2();
+    test_calculate_Runge_Kutta_Fehlberg_integral_3();
+    test_calculate_Runge_Kutta_Fehlberg_integral_4();
+    test_calculate_Runge_Kutta_Fehlberg_integral_5();
 
-   message += "End of ordinary differential equations test case.\n";
+    message += "End of ordinary differential equations test case.\n";
 }
 
 

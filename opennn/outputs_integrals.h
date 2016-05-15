@@ -32,88 +32,73 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This class represents the outputs integrals performance term.
 /// It is defined as the weighted sum of the integrals of the neural network outputs.
 /// The neural network here must have only one input.
 /// This performance term might be used in optimal control as an objective or a regularization terms.
+class OutputsIntegrals : public PerformanceTerm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit OutputsIntegrals(void);
 
-    class OutputsIntegrals : public PerformanceTerm {
+    // NEURAL NETWORK CONSTRUCTOR
+    explicit OutputsIntegrals(NeuralNetwork *);
 
-    public:
+    // XML CONSTRUCTOR
+    explicit OutputsIntegrals(const tinyxml2::XMLDocument &);
 
-        // DEFAULT CONSTRUCTOR
+    // DESTRUCTOR
+    virtual ~OutputsIntegrals(void);
 
-        explicit OutputsIntegrals(void);
+    // Get methods
+    const NumericalIntegration &get_numerical_integration(void) const;
 
-        // NEURAL NETWORK CONSTRUCTOR
+    NumericalIntegration *get_numerical_integration_pointer(void);
 
-        explicit OutputsIntegrals(NeuralNetwork *);
+    const Vector<double> &get_outputs_integrals_weights(void) const;
 
-        // XML CONSTRUCTOR
+    const double &get_output_integral_weight(const size_t &) const;
 
-        explicit OutputsIntegrals(const tinyxml2::XMLDocument &);
+    // Set methods
+    void set_numerical_integration(const NumericalIntegration &);
 
-        // DESTRUCTOR
+    void set_outputs_integrals_weights(const Vector<double> &);
 
-        virtual ~OutputsIntegrals(void);
+    void set_output_integral_weight(const size_t &, const double &);
 
-        // METHODS
+    void set_default(void);
 
-        // Get methods
+    // Checking methods
+    void check(void) const;
 
-        const NumericalIntegration &get_numerical_integration(void) const;
+    // Regularization methods
+    double calculate_performance(void) const;
 
-        NumericalIntegration *get_numerical_integration_pointer(void);
+    double calculate_performance(const Vector<double> &) const;
 
-        const Vector<double> &get_outputs_integrals_weights(void) const;
+    Vector<double> calculate_gradient(void) const;
 
-        const double &get_output_integral_weight(const size_t &) const;
+    Matrix<double> calculate_Hessian(void) const;
 
-        // Set methods
+    std::string write_performance_term_type(void) const;
 
-        void set_numerical_integration(const NumericalIntegration &);
+    // Serialization methods
+    tinyxml2::XMLDocument *to_XML(void) const;
 
-        void set_outputs_integrals_weights(const Vector<double> &);
+    void from_XML(const tinyxml2::XMLDocument &);
 
-        void set_output_integral_weight(const size_t &, const double &);
+private:
+    /// Object for numerical integration of functions.
+    NumericalIntegration numerical_integration;
 
-        void set_default(void);
+    /// Weigth for each output integral.
+    Vector<double> outputs_integrals_weights;
+};
 
-        // Checking methods
-
-        void check(void) const;
-
-        // Regularization methods
-
-        double calculate_performance(void) const;
-
-        double calculate_performance(const Vector<double> &) const;
-
-        Vector<double> calculate_gradient(void) const;
-
-        Matrix<double> calculate_Hessian(void) const;
-
-        std::string write_performance_term_type(void) const;
-
-        // Serialization methods
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-    private:
-
-        /// Object for numerical integration of functions.
-
-        NumericalIntegration numerical_integration;
-
-        /// Weigth for each output integral.
-
-        Vector<double> outputs_integrals_weights;
-
-    };
 
 }
 

@@ -19,14 +19,14 @@ using namespace OpenNN;
 
 // GENERAL CONSTRUCTOR
 
-FinalSolutionsErrorTest::FinalSolutionsErrorTest(void) : UnitTesting() 
+FinalSolutionsErrorTest::FinalSolutionsErrorTest(void) : UnitTesting()
 {
 }
 
 
 // DESTRUCTOR
 
-FinalSolutionsErrorTest::~FinalSolutionsErrorTest(void) 
+FinalSolutionsErrorTest::~FinalSolutionsErrorTest(void)
 {
 }
 
@@ -37,50 +37,50 @@ FinalSolutionsErrorTest::~FinalSolutionsErrorTest(void)
 
 void FinalSolutionsErrorTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 
-   // Default
+    // Default
 
-   NeuralNetwork nn;
-   MathematicalModel mm;
+    NeuralNetwork nn;
+    MathematicalModel mm;
 
-   FinalSolutionsError fse(&nn, &mm);
+    FinalSolutionsError fse(&nn, &mm);
 
-   assert_true(fse.get_neural_network_pointer() != NULL, LOG);
-   assert_true(fse.get_mathemtaical_model_pointer() != NULL, LOG);
+    assert_true(fse.get_neural_network_pointer() != NULL, LOG);
+    assert_true(fse.get_mathemtaical_model_pointer() != NULL, LOG);
 
 }
 
 
 void FinalSolutionsErrorTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 // @todo
 
 void FinalSolutionsErrorTest::test_calculate_performance(void)
 {
-   message += "test_calculate_performance\n";
+    message += "test_calculate_performance\n";
 
 //   NeuralNetwork nn;
-//   Vector<double> network_parameters; 
+//   Vector<double> network_parameters;
 
 //   FinalSolutionsError fse;
 
 //   double performance;
 
-   // Test
+    // Test
 }
 
 
-void FinalSolutionsErrorTest::test_to_XML(void)   
+void FinalSolutionsErrorTest::test_to_XML(void)
 {
-	message += "test_to_XML\n"; 
+    message += "test_to_XML\n";
 
     FinalSolutionsError fse;
 
-    tinyxml2::XMLDocument* document = fse.to_XML();
+    tinyxml2::XMLDocument *document = fse.to_XML();
 
     assert_true(document != NULL, LOG);
 
@@ -91,7 +91,7 @@ void FinalSolutionsErrorTest::test_to_XML(void)
 
 void FinalSolutionsErrorTest::test_from_XML(void)
 {
-	message += "test_from_XML\n"; 
+    message += "test_from_XML\n";
 
     std::string file_name = "../data/final_solutions_error.xml";
 
@@ -107,31 +107,29 @@ void FinalSolutionsErrorTest::test_from_XML(void)
 }
 
 
-
-
 void FinalSolutionsErrorTest::run_test_case(void)
 {
-   message += "Running final solutions error test case...\n";
+    message += "Running final solutions error test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Get methods
+    // Get methods
 
-   // Set methods
+    // Set methods
 
-   // Performance methods
+    // Performance methods
 
-   test_calculate_performance();
+    test_calculate_performance();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();   
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
-   message += "End of final solutions error test case...\n";
+    message += "End of final solutions error test case...\n";
 }
 
 

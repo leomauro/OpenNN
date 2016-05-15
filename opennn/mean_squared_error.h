@@ -32,99 +32,74 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This class represents the mean squared error performance term.
 /// The mean squared error measures the difference between the outputs from a neural network and the targets in a data set.
 /// This functional is used in data modeling problems, such as function regression,
 /// pattern recognition and time series prediction.
+class MeanSquaredError : public PerformanceTerm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit MeanSquaredError(void);
 
-    class MeanSquaredError : public PerformanceTerm {
+    // NEURAL NETWORK CONSTRUCTOR
+    explicit MeanSquaredError(NeuralNetwork *);
 
-    public:
+    // DATA SET CONSTRUCTOR
+    explicit MeanSquaredError(DataSet *);
 
-        // DEFAULT CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
+    explicit MeanSquaredError(NeuralNetwork *, DataSet *);
 
-        explicit MeanSquaredError(void);
+    // XML CONSTRUCTOR
+    explicit MeanSquaredError(const tinyxml2::XMLDocument &);
 
-        // NEURAL NETWORK CONSTRUCTOR
+    // COPY CONSTRUCTOR
+    MeanSquaredError(const MeanSquaredError &);
 
-        explicit MeanSquaredError(NeuralNetwork *);
+    // DESTRUCTOR
+    virtual ~MeanSquaredError(void);
 
-        // DATA SET CONSTRUCTOR
+    // Checking methods
+    void check(void) const;
 
-        explicit MeanSquaredError(DataSet *);
+    // Objective methods
+    double calculate_performance(void) const;
 
-        // GENERAL CONSTRUCTOR
+    double calculate_performance(const Vector<double> &) const;
 
-        explicit MeanSquaredError(NeuralNetwork *, DataSet *);
+    double calculate_selection_performance(void) const;
 
-        // XML CONSTRUCTOR
+    Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
 
-        explicit MeanSquaredError(const tinyxml2::XMLDocument &);
+    Vector<double> calculate_gradient(void) const;
 
-        // COPY CONSTRUCTOR
+    Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
 
-        MeanSquaredError(const MeanSquaredError &);
+    Matrix<double> calculate_Hessian(void) const;
 
-        // DESTRUCTOR
+    FirstOrderPerformance calculate_first_order_performance(void) const;
 
-        virtual ~MeanSquaredError(void);
+    SecondOrderPerformance calculate_second_order_performance(void) const;
 
-        // STRUCTURES
+    // Objective terms methods
+    Vector<double> calculate_terms(void) const;
 
+    Vector<double> calculate_terms(const Vector<double> &) const;
 
-        // METHODS
+    Matrix<double> calculate_terms_Jacobian(void) const;
 
-        // Get methods
+    FirstOrderTerms calculate_first_order_terms(void) const;
 
-        // Set methods
+    std::string write_performance_term_type(void) const;
 
-        // Checking methods
+    // Serialization methods
+    tinyxml2::XMLDocument *to_XML(void) const;
+};
 
-        void check(void) const;
-
-        // Objective methods
-
-        double calculate_performance(void) const;
-
-        double calculate_performance(const Vector<double> &) const;
-
-        double calculate_selection_performance(void) const;
-
-        Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
-
-        Vector<double> calculate_gradient(void) const;
-
-        Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
-
-        Matrix<double> calculate_Hessian(void) const;
-
-        FirstOrderPerformance calculate_first_order_performance(void) const;
-
-        SecondOrderPerformance calculate_second_order_performance(void) const;
-
-        // Objective terms methods
-
-        Vector<double> calculate_terms(void) const;
-
-        Vector<double> calculate_terms(const Vector<double> &) const;
-
-        Matrix<double> calculate_terms_Jacobian(void) const;
-
-        FirstOrderTerms calculate_first_order_terms(void) const;
-
-        std::string write_performance_term_type(void) const;
-
-        // Serialization methods
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-
-    private:
-
-
-    };
 
 }
 

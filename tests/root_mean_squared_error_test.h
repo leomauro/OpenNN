@@ -19,55 +19,56 @@
 using namespace OpenNN;
 
 
-class RootMeanSquaredErrorTest : public UnitTesting 
-{
+class RootMeanSquaredErrorTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit RootMeanSquaredErrorTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~RootMeanSquaredErrorTest(void);
+    explicit RootMeanSquaredErrorTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~RootMeanSquaredErrorTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void);
 
-   // Get methods
+    // METHODS
 
-   // Set methods
+    // Constructor and destructor methods
 
-   // Objective methods
+    void test_constructor(void);
 
-   void test_calculate_performance(void);   
+    void test_destructor(void);
 
-   void test_calculate_selection_performance(void);
+    // Get methods
 
-   void test_calculate_gradient(void);
+    // Set methods
 
-   void test_calculate_Hessian(void);
+    // Objective methods
 
-   // Serialization methods
+    void test_calculate_performance(void);
 
-   void test_to_XML(void);   
-   void test_from_XML(void);
+    void test_calculate_selection_performance(void);
 
-   // Unit testing methods
+    void test_calculate_gradient(void);
 
-   void run_test_case(void);
+    void test_calculate_Hessian(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

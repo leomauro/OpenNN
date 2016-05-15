@@ -20,39 +20,40 @@
 
 using namespace OpenNN;
 
-class NumericalIntegrationTest : public UnitTesting
-{
+class NumericalIntegrationTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit NumericalIntegrationTest(void);
+    explicit NumericalIntegrationTest(void);
 
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~NumericalIntegrationTest(void);
+    virtual ~NumericalIntegrationTest(void);
 
-   // METHODS
+    // METHODS
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Integration methods
+    void test_destructor(void);
 
-   void test_calculate_trapezoid_integral(void);
-   void test_calculate_Simpson_integral(void);
+    // Integration methods
 
-   // Unit testing methods
+    void test_calculate_trapezoid_integral(void);
 
-   void run_test_case(void);
+    void test_calculate_Simpson_integral(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

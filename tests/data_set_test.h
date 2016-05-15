@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   D A T A   S E T   T E S T   C L A S S   H E A D E R                                                        */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -20,258 +20,305 @@
 
 using namespace OpenNN;
 
-class DataSetTest : public UnitTesting 
-{
+class DataSetTest : public UnitTesting {
 
 #define STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
-public:  
+public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit DataSetTest(void);
+    explicit DataSetTest(void);
 
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~DataSetTest(void);
+    virtual ~DataSetTest(void);
 
     // METHODS
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Assignment operators methods
+    void test_destructor(void);
 
-   void test_assignment_operator(void);
+    // Assignment operators methods
 
-   // Get methods
+    void test_assignment_operator(void);
 
-   void test_get_instances_number(void);
-   void test_get_variables_number(void);
+    // Get methods
 
-   void test_get_variables(void);
+    void test_get_instances_number(void);
 
-   void test_get_display(void);
+    void test_get_variables_number(void);
 
-   // Data methods
+    void test_get_variables(void);
 
-   void test_get_data(void);
+    void test_get_display(void);
 
-   void test_arrange_training_data(void);
-   void test_arrange_selection_data(void);
-   void test_arrange_testing_data(void);
+    // Data methods
 
-   void test_arrange_input_data(void);
-   void test_arrange_target_data(void);
-  
-   // Instance methods
+    void test_get_data(void);
 
-   void test_get_instance(void);
+    void test_arrange_training_data(void);
 
-   // Set methods
+    void test_arrange_selection_data(void);
 
-   void test_set(void);
+    void test_arrange_testing_data(void);
 
-   void test_set_instances_number(void);
-   void test_set_variables_number(void);
+    void test_arrange_input_data(void);
 
-   void test_set_display(void);
+    void test_arrange_target_data(void);
 
-   // Data methods
+    // Instance methods
 
-   void test_set_data(void);
+    void test_get_instance(void);
 
-   // Instance methods
+    // Set methods
 
-   void test_set_instance(void);
+    void test_set(void);
 
-   void test_set_training_instance(void);
-   void test_set_selection_instance(void);
-   void test_set_testing_instance(void);
+    void test_set_instances_number(void);
 
-   void test_set_input_instance(void);
-   void test_set_target_instance(void);
+    void test_set_variables_number(void);
 
-   void test_set_training_input_instance(void);
-   void test_set_training_target_instance(void);
+    void test_set_display(void);
 
-   void test_set_selection_input_instance(void); 
-   void test_set_selection_target_instance(void);
+    // Data methods
 
-   void test_set_testing_input_instance(void);
-   void test_set_testing_target_instance(void);
+    void test_set_data(void);
 
-   // Data resizing methods
+    // Instance methods
 
-   void test_add_instance(void);
-   void test_subtract_instance(void); 
+    void test_set_instance(void);
 
-   void test_subtract_constant_variables(void);
-   void test_subtract_repeated_instances(void);
+    void test_set_training_instance(void);
 
-   // Initialization methods
+    void test_set_selection_instance(void);
 
-   void test_initialize_data(void);
+    void test_set_testing_instance(void);
 
-   // Statistics methods
+    void test_set_input_instance(void);
 
-   void test_calculate_data_statistics(void);
-   void test_calculate_data_statistics_missing_values(void);
+    void test_set_target_instance(void);
 
-   void test_calculate_training_instances_statistics(void);
-   void test_calculate_selection_instances_statistics(void);
-   void test_calculate_testing_instances_statistics(void);
+    void test_set_training_input_instance(void);
 
-   void test_calculate_input_variables_statistics(void);
-   void test_calculate_targets_statistics(void);
+    void test_set_training_target_instance(void);
 
-   // Correlation methods
+    void test_set_selection_input_instance(void);
 
-   void test_calculate_linear_correlations(void);
+    void test_set_selection_target_instance(void);
 
-   void test_calculate_autocorrelation(void);
-   void test_calculate_cross_correlation(void);
+    void test_set_testing_input_instance(void);
 
-   // Histrogram methods
+    void test_set_testing_target_instance(void);
 
-   void test_calculate_data_histograms(void);
+    // Data resizing methods
 
-   // Filtering methods
+    void test_add_instance(void);
 
-   void test_filter_data(void);
+    void test_subtract_instance(void);
 
-   // Data scaling
+    void test_subtract_constant_variables(void);
 
-   void test_scale_data_mean_standard_deviation(void);  
-   void test_scale_data_minimum_maximum(void); 
+    void test_subtract_repeated_instances(void);
 
-   // Input variables scaling
+    // Initialization methods
 
-   void test_scale_inputs_mean_standard_deviation(void);
-   void test_scale_inputs_minimum_maximum(void);
+    void test_initialize_data(void);
 
-   // Target variables scaling
+    // Statistics methods
 
-   void test_scale_targets_mean_standard_deviation(void);
-   void test_scale_targets_minimum_maximum(void);
+    void test_calculate_data_statistics(void);
 
-   // Input-target variables scaling
+    void test_calculate_data_statistics_missing_values(void);
 
-   void test_scale_variables_mean_standard_deviation(void);
-   void test_scale_variables_minimum_maximum(void);
+    void test_calculate_training_instances_statistics(void);
 
-   // Data unscaling
+    void test_calculate_selection_instances_statistics(void);
 
-   void test_unscale_data_mean_standard_deviation(void);
-   void test_unscale_data_minimum_maximum(void);
+    void test_calculate_testing_instances_statistics(void);
 
-   // Input variables unscaling
+    void test_calculate_input_variables_statistics(void);
 
-   void test_unscale_inputs_mean_standard_deviation(void);
-   void test_unscale_inputs_minimum_maximum(void);
+    void test_calculate_targets_statistics(void);
 
-   // Target variables unscaling
+    // Correlation methods
 
-   void test_unscale_targets_mean_standard_deviation(void);
-   void test_unscale_targets_minimum_maximum(void);
+    void test_calculate_linear_correlations(void);
 
-   // Input-target variables unscaling
+    void test_calculate_autocorrelation(void);
 
-   void test_unscale_variables_mean_standard_deviation(void);
-   void test_unscale_variables_minimum_maximum(void);
+    void test_calculate_cross_correlation(void);
 
-   // Pattern recognition methods
+    // Histrogram methods
 
-   void test_calculate_target_distribution(void);
+    void test_calculate_data_histograms(void);
 
-   void test_unuse_most_populated_target(void);
+    // Filtering methods
 
-   void test_balance_binary_targets_distribution(void);
-   void test_balance_multiple_targets_distribution(void);
-   void test_balance_function_regression_targets_distribution(void);
+    void test_filter_data(void);
 
-   // Outlier detection
+    // Data scaling
 
-   //void test_calculate_instances_distances(void);
-   //void test_calculate_k_distances(void);
-   //void test_calculate_reachability_distances(void);
-   //void test_calculate_reachability_density(void);
-   //void test_calculate_local_outlier_factor(void);
+    void test_scale_data_mean_standard_deviation(void);
 
-   //void test_clean_local_outlier_factor(void);
-   void test_clean_Tukey_outliers(void);
+    void test_scale_data_minimum_maximum(void);
 
-   // Data generation
+    // Input variables scaling
 
-   void test_generate_data_function_regression(void);
+    void test_scale_inputs_mean_standard_deviation(void);
 
-   void test_generate_data_binary_classification(void);
-   void test_generate_data_multiple_classification(void);
+    void test_scale_inputs_minimum_maximum(void);
 
-   // Serialization methods
+    // Target variables scaling
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    void test_scale_targets_mean_standard_deviation(void);
 
-   void test_print(void);
+    void test_scale_targets_minimum_maximum(void);
 
-   void test_save(void);
-   void test_load(void);
+    // Input-target variables scaling
 
-   void test_print_data(void);
-   void test_save_data(void);
-   void test_load_data(void);
+    void test_scale_variables_mean_standard_deviation(void);
 
-   void test_get_data_statistics(void);
-   void test_print_data_statistics(void);
+    void test_scale_variables_minimum_maximum(void);
 
-   void test_get_training_instances_statistics(void);
-   void test_print_training_instances_statistics(void);
-   void test_save_training_instances_statistics(void);
+    // Data unscaling
 
-   void test_get_selection_instances_statistics(void);
-   void test_print_selection_instances_statistics(void);
-   void test_save_selection_instances_statistics(void);
+    void test_unscale_data_mean_standard_deviation(void);
 
-   void test_get_testing_instances_statistics(void);
-   void test_print_testing_instances_statistics(void);
-   void test_save_testing_instances_statistics(void);
+    void test_unscale_data_minimum_maximum(void);
 
-   void test_get_instances_statistics(void);
-   void test_print_instances_statistics(void);
-   void test_save_instances_statistics(void);
+    // Input variables unscaling
 
-   void test_convert_time_series(void);
-   void test_convert_autoassociation(void);
+    void test_unscale_inputs_mean_standard_deviation(void);
 
-   void test_convert_angular_variable_degrees(void);
-   void test_convert_angular_variable_radians(void);
+    void test_unscale_inputs_minimum_maximum(void);
 
-   void test_convert_angular_variables_degrees(void);
-   void test_convert_angular_variables_radians(void);
+    // Target variables unscaling
 
-   void test_convert_angular_variables(void);
+    void test_unscale_targets_mean_standard_deviation(void);
 
-   void test_scrub_missing_values(void);
+    void test_unscale_targets_minimum_maximum(void);
 
-   // String utilities
+    // Input-target variables unscaling
 
-   void test_trim(void);
-   void test_get_trimmed(void);
+    void test_unscale_variables_mean_standard_deviation(void);
 
-   void test_count_tokens(void);
-   void test_get_tokens(void);
+    void test_unscale_variables_minimum_maximum(void);
 
-   void test_is_numeric(void);
+    // Pattern recognition methods
 
-   // Unit testing methods
+    void test_calculate_target_distribution(void);
 
-   void run_test_case(void);
+    void test_unuse_most_populated_target(void);
+
+    void test_balance_binary_targets_distribution(void);
+
+    void test_balance_multiple_targets_distribution(void);
+
+    void test_balance_function_regression_targets_distribution(void);
+
+    // Outlier detection
+
+    //void test_calculate_instances_distances(void);
+    //void test_calculate_k_distances(void);
+    //void test_calculate_reachability_distances(void);
+    //void test_calculate_reachability_density(void);
+    //void test_calculate_local_outlier_factor(void);
+
+    //void test_clean_local_outlier_factor(void);
+    void test_clean_Tukey_outliers(void);
+
+    // Data generation
+
+    void test_generate_data_function_regression(void);
+
+    void test_generate_data_binary_classification(void);
+
+    void test_generate_data_multiple_classification(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    void test_print(void);
+
+    void test_save(void);
+
+    void test_load(void);
+
+    void test_print_data(void);
+
+    void test_save_data(void);
+
+    void test_load_data(void);
+
+    void test_get_data_statistics(void);
+
+    void test_print_data_statistics(void);
+
+    void test_get_training_instances_statistics(void);
+
+    void test_print_training_instances_statistics(void);
+
+    void test_save_training_instances_statistics(void);
+
+    void test_get_selection_instances_statistics(void);
+
+    void test_print_selection_instances_statistics(void);
+
+    void test_save_selection_instances_statistics(void);
+
+    void test_get_testing_instances_statistics(void);
+
+    void test_print_testing_instances_statistics(void);
+
+    void test_save_testing_instances_statistics(void);
+
+    void test_get_instances_statistics(void);
+
+    void test_print_instances_statistics(void);
+
+    void test_save_instances_statistics(void);
+
+    void test_convert_time_series(void);
+
+    void test_convert_autoassociation(void);
+
+    void test_convert_angular_variable_degrees(void);
+
+    void test_convert_angular_variable_radians(void);
+
+    void test_convert_angular_variables_degrees(void);
+
+    void test_convert_angular_variables_radians(void);
+
+    void test_convert_angular_variables(void);
+
+    void test_scrub_missing_values(void);
+
+    // String utilities
+
+    void test_trim(void);
+
+    void test_get_trimmed(void);
+
+    void test_count_tokens(void);
+
+    void test_get_tokens(void);
+
+    void test_is_numeric(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 #endif

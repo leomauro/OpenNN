@@ -15,7 +15,8 @@
 
 #include "neural_parameters_norm.h"
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 // DEFAULT CONSTRUCTOR
 
@@ -23,11 +24,11 @@ namespace OpenNN {
 /// It creates a neural parameters norm functional not associated to any neural network.
 /// It also initializes all the rest of class members to their default values.
 
-    NeuralParametersNorm::NeuralParametersNorm(void)
-            : PerformanceTerm()
-    {
-        set_default();
-    }
+NeuralParametersNorm::NeuralParametersNorm(void)
+    : PerformanceTerm()
+{
+    set_default();
+}
 
 
 // NEURAL NETWORK CONSTRUCTOR
@@ -37,11 +38,11 @@ namespace OpenNN {
 /// It also initializes all the rest of class members to their default values.
 /// @param new_neural_network_pointer Pointer to a neural network object.
 
-    NeuralParametersNorm::NeuralParametersNorm(NeuralNetwork *new_neural_network_pointer)
-            : PerformanceTerm(new_neural_network_pointer)
-    {
-        set_default();
-    }
+NeuralParametersNorm::NeuralParametersNorm(NeuralNetwork *new_neural_network_pointer)
+    : PerformanceTerm(new_neural_network_pointer)
+{
+    set_default();
+}
 
 
 // XML CONSTRUCTOR
@@ -52,13 +53,13 @@ namespace OpenNN {
 /// Please be careful with the format of that file, which is specified in the OpenNN manual.
 /// @param neural_parameters_norm_document TinyXML document with the neural parameters norm elements.
 
-    NeuralParametersNorm::NeuralParametersNorm(const tinyxml2::XMLDocument &neural_parameters_norm_document)
-            : PerformanceTerm()
-    {
-        set_default();
+NeuralParametersNorm::NeuralParametersNorm(const tinyxml2::XMLDocument &neural_parameters_norm_document)
+    : PerformanceTerm()
+{
+    set_default();
 
-        from_XML(neural_parameters_norm_document);
-    }
+    from_XML(neural_parameters_norm_document);
+}
 
 
 // DESTRUCTOR
@@ -66,9 +67,9 @@ namespace OpenNN {
 /// Destructor.
 /// This destructor does not delete any pointer.
 
-    NeuralParametersNorm::~NeuralParametersNorm(void)
-    {
-    }
+NeuralParametersNorm::~NeuralParametersNorm(void)
+{
+}
 
 
 // METHODS
@@ -77,20 +78,20 @@ namespace OpenNN {
 
 /// Returns the weight value for the neural parameters norm in the performance term expression.
 
-    const double &NeuralParametersNorm::get_neural_parameters_norm_weight(void) const
-    {
-        return (neural_parameters_norm_weight);
-    }
+const double &NeuralParametersNorm::get_neural_parameters_norm_weight(void) const
+{
+    return (neural_parameters_norm_weight);
+}
 
 
 // void set_neural_parameters_norm_weight(const double&) method
 
 /// Sets a new weight value for the neural parameters norm in the performance term expression.
 
-    void NeuralParametersNorm::set_neural_parameters_norm_weight(const double &new_neural_parameters_norm_weight)
-    {
-        neural_parameters_norm_weight = new_neural_parameters_norm_weight;
-    }
+void NeuralParametersNorm::set_neural_parameters_norm_weight(const double &new_neural_parameters_norm_weight)
+{
+    neural_parameters_norm_weight = new_neural_parameters_norm_weight;
+}
 
 
 // void set_default(void) method
@@ -101,12 +102,12 @@ namespace OpenNN {
 /// <li> Display: true.
 /// </ul>
 
-    void NeuralParametersNorm::set_default(void)
-    {
-        neural_parameters_norm_weight = 1.0e-3;
+void NeuralParametersNorm::set_default(void)
+{
+    neural_parameters_norm_weight = 1.0e-3;
 
-        display = true;
-    }
+    display = true;
+}
 
 
 // void check(void) const method
@@ -115,50 +116,50 @@ namespace OpenNN {
 /// and that there is a multilayer perceptron in the neural network.
 /// If some of the above conditions is not hold, the method throws an exception.
 
-    void NeuralParametersNorm::check(void) const
-    {
-        std::ostringstream buffer;
+void NeuralParametersNorm::check(void) const
+{
+    std::ostringstream buffer;
 
-        // Neural network stuff
+    // Neural network stuff
 
-        if (!neural_network_pointer) {
-            buffer << "OpenNN Exception: NeuralParametersNorm class.\n"
-            << "void check(void) const method.\n"
-            << "Pointer to neural network is NULL.\n";
+    if (!neural_network_pointer) {
+        buffer << "OpenNN Exception: NeuralParametersNorm class.\n"
+               << "void check(void) const method.\n"
+               << "Pointer to neural network is NULL.\n";
 
-            throw std::logic_error(buffer.str());
-        }
-
-        const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
-
-        if (!multilayer_perceptron_pointer) {
-            buffer << "OpenNN Exception: NeuralParametersNorm class.\n"
-            << "void check(void) const method.\n"
-            << "Pointer to multilayer perceptron is NULL.\n";
-
-            throw std::logic_error(buffer.str());
-        }
-
-        const size_t inputs_number = multilayer_perceptron_pointer->get_inputs_number();
-        const size_t outputs_number = multilayer_perceptron_pointer->get_outputs_number();
-
-        if (inputs_number == 0) {
-            buffer << "OpenNN Exception: NeuralParametersNorm class.\n"
-            << "void check(void) const method.\n"
-            << "Number of inputs in multilayer perceptron object is zero.\n";
-
-            throw std::logic_error(buffer.str());
-        }
-
-        if (outputs_number == 0) {
-            buffer << "OpenNN Exception: NeuralParametersNorm class.\n"
-            << "void check(void) const method.\n"
-            << "Number of outputs in multilayer perceptron object is zero.\n";
-
-            throw std::logic_error(buffer.str());
-        }
-
+        throw std::logic_error(buffer.str());
     }
+
+    const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
+
+    if (!multilayer_perceptron_pointer) {
+        buffer << "OpenNN Exception: NeuralParametersNorm class.\n"
+               << "void check(void) const method.\n"
+               << "Pointer to multilayer perceptron is NULL.\n";
+
+        throw std::logic_error(buffer.str());
+    }
+
+    const size_t inputs_number = multilayer_perceptron_pointer->get_inputs_number();
+    const size_t outputs_number = multilayer_perceptron_pointer->get_outputs_number();
+
+    if (inputs_number == 0) {
+        buffer << "OpenNN Exception: NeuralParametersNorm class.\n"
+               << "void check(void) const method.\n"
+               << "Number of inputs in multilayer perceptron object is zero.\n";
+
+        throw std::logic_error(buffer.str());
+    }
+
+    if (outputs_number == 0) {
+        buffer << "OpenNN Exception: NeuralParametersNorm class.\n"
+               << "void check(void) const method.\n"
+               << "Number of outputs in multilayer perceptron object is zero.\n";
+
+        throw std::logic_error(buffer.str());
+    }
+
+}
 
 
 // double calculate_performance(void) const method
@@ -166,22 +167,22 @@ namespace OpenNN {
 /// Returns the performance of this peformance term.
 /// It is equal to the weighted norm of the parameters from the associated neural network.
 
-    double NeuralParametersNorm::calculate_performance(void) const
-    {
+double NeuralParametersNorm::calculate_performance(void) const
+{
 #ifdef __OPENNN_DEBUG__
 
-        check();
+    check();
 
 #endif
 
-        const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
+    const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
 
-        const Vector<double> neural_parameters = multilayer_perceptron_pointer->arrange_parameters();
+    const Vector<double> neural_parameters = multilayer_perceptron_pointer->arrange_parameters();
 
-        const double neural_parameters_norm = neural_parameters.calculate_norm();
+    const double neural_parameters_norm = neural_parameters.calculate_norm();
 
-        return (neural_parameters_norm_weight * neural_parameters_norm);
-    }
+    return (neural_parameters_norm_weight * neural_parameters_norm);
+}
 
 
 // Vector<double> calculate_gradient(void) const method
@@ -191,22 +192,22 @@ namespace OpenNN {
 
 /// @todo Case including independent parameters.
 
-    Vector<double> NeuralParametersNorm::calculate_gradient(void) const
-    {
-        // Control sentence (if debug)
+Vector<double> NeuralParametersNorm::calculate_gradient(void) const
+{
+    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-        check();
+    check();
 
 #endif
 
-        const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
+    const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
 
-        const Vector<double> neural_parameters = multilayer_perceptron_pointer->arrange_parameters();
+    const Vector<double> neural_parameters = multilayer_perceptron_pointer->arrange_parameters();
 
-        return (neural_parameters.calculate_norm_gradient() * neural_parameters_norm_weight);
-    }
+    return (neural_parameters.calculate_norm_gradient() * neural_parameters_norm_weight);
+}
 
 
 // Matrix<double> calculate_Hessian(void) const method
@@ -217,22 +218,22 @@ namespace OpenNN {
 /// @todo Second derivatives.
 /// @todo Case including independent parameters.
 
-    Matrix<double> NeuralParametersNorm::calculate_Hessian(void) const
-    {
-        // Control sentence (if debug)
+Matrix<double> NeuralParametersNorm::calculate_Hessian(void) const
+{
+    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-        check();
+    check();
 
 #endif
 
-        const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
+    const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
 
-        const Vector<double> neural_parameters = multilayer_perceptron_pointer->arrange_parameters();
+    const Vector<double> neural_parameters = multilayer_perceptron_pointer->arrange_parameters();
 
-        return (neural_parameters.calculate_norm_Hessian() * neural_parameters_norm_weight);
-    }
+    return (neural_parameters.calculate_norm_Hessian() * neural_parameters_norm_weight);
+}
 
 
 // double calculate_performance(const Vector<double>&) method
@@ -241,90 +242,87 @@ namespace OpenNN {
 /// It does not set that vector of parameters to the neural network.
 /// @param parameters Vector of parameters for the neural network associated to the performance term.
 
-    double NeuralParametersNorm::calculate_performance(const Vector<double> &parameters) const
-    {
-        // Control sentence (if debug)
+double NeuralParametersNorm::calculate_performance(const Vector<double> &parameters) const
+{
+    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-        check();
+    check();
 
 #endif
 
-        if (neural_network_pointer->has_independent_parameters()) {
-            const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
+    if (neural_network_pointer->has_independent_parameters()) {
+        const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
 
-            const size_t neural_parameters_number = multilayer_perceptron_pointer->count_parameters_number();
+        const size_t neural_parameters_number = multilayer_perceptron_pointer->count_parameters_number();
 
-            Vector<double> neural_parameters(parameters);
-            neural_parameters.resize(neural_parameters_number);
+        Vector<double> neural_parameters(parameters);
+        neural_parameters.resize(neural_parameters_number);
 
-            const double neural_parameters_norm = neural_parameters.calculate_norm();
+        const double neural_parameters_norm = neural_parameters.calculate_norm();
 
-            return (neural_parameters_norm * neural_parameters_norm_weight);
-        }
-        else {
-            const double neural_parameters_norm = parameters.calculate_norm();
+        return (neural_parameters_norm * neural_parameters_norm_weight);
+    } else {
+        const double neural_parameters_norm = parameters.calculate_norm();
 
-            return (neural_parameters_norm * neural_parameters_norm_weight);
-        }
+        return (neural_parameters_norm * neural_parameters_norm_weight);
     }
+}
 
 
 // Vector<double> calculate_gradient(const Vector<double>&) const method
 
-    Vector<double> NeuralParametersNorm::calculate_gradient(const Vector<double> &parameters) const
-    {
-        // Control sentence (if debug)
+Vector<double> NeuralParametersNorm::calculate_gradient(const Vector<double> &parameters) const
+{
+    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-        check();
+    check();
 
 #endif
 
-        if (neural_network_pointer->has_independent_parameters()) {
-            const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
+    if (neural_network_pointer->has_independent_parameters()) {
+        const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
 
-            const size_t neural_parameters_number = multilayer_perceptron_pointer->count_parameters_number();
+        const size_t neural_parameters_number = multilayer_perceptron_pointer->count_parameters_number();
 
-            Vector<double> neural_parameters(parameters);
-            neural_parameters.resize(neural_parameters_number);
+        Vector<double> neural_parameters(parameters);
+        neural_parameters.resize(neural_parameters_number);
 
-            return (neural_parameters.calculate_norm_gradient() * neural_parameters_norm_weight);
-        }
-        else {
-            return (parameters.calculate_norm_gradient() * neural_parameters_norm_weight);
-        }
+        return (neural_parameters.calculate_norm_gradient() * neural_parameters_norm_weight);
+    } else {
+        return (parameters.calculate_norm_gradient() * neural_parameters_norm_weight);
     }
+}
 
 
 // Matrix<double> calculate_Hessian(const Vector<double>&) const method
 
-    Matrix<double> NeuralParametersNorm::calculate_Hessian(const Vector<double> &parameters) const
-    {
-        // Control sentence (if debug)
+Matrix<double> NeuralParametersNorm::calculate_Hessian(const Vector<double> &parameters) const
+{
+    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
 
-        check();
+    check();
 
 #endif
 
-        if (neural_network_pointer->has_independent_parameters()) {
-            const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
+    if (neural_network_pointer->has_independent_parameters()) {
+        const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
 
-            const size_t neural_parameters_number = multilayer_perceptron_pointer->count_parameters_number();
+        const size_t neural_parameters_number = multilayer_perceptron_pointer->count_parameters_number();
 
-            Vector<double> neural_parameters(parameters);
-            neural_parameters.resize(neural_parameters_number);
+        Vector<double> neural_parameters(parameters);
+        neural_parameters.resize(neural_parameters_number);
 
-            return (neural_parameters.calculate_norm_Hessian() * neural_parameters_norm_weight);
-        }
-        else {
-            return (parameters.calculate_norm_Hessian() * neural_parameters_norm_weight);
-        }
+        return (neural_parameters.calculate_norm_Hessian() * neural_parameters_norm_weight);
+    } else {
+        return (parameters.calculate_norm_Hessian() * neural_parameters_norm_weight);
     }
+}
 
 /*
 // double calculate_selection_performance(void) const method
@@ -353,53 +351,53 @@ double NeuralParametersNorm::calculate_selection_performance(void) const
 /// Returns a string with the name of the neural parameters norm performance type,
 /// "NEURAL_PARAMETERS_NORM".
 
-    std::string NeuralParametersNorm::write_performance_term_type(void) const
-    {
-        return ("NEURAL_PARAMETERS_NORM");
-    }
+std::string NeuralParametersNorm::write_performance_term_type(void) const
+{
+    return ("NEURAL_PARAMETERS_NORM");
+}
 
 
 // std::string write_information(void) const method
 
-    std::string NeuralParametersNorm::write_information(void) const
-    {
-        std::ostringstream buffer;
+std::string NeuralParametersNorm::write_information(void) const
+{
+    std::ostringstream buffer;
 
-        buffer << "Neural parameters norm: " << calculate_performance() << "\n";
+    buffer << "Neural parameters norm: " << calculate_performance() << "\n";
 
-        return (buffer.str());
-    }
+    return (buffer.str());
+}
 
 
 // tinyxml2::XMLDocument* to_XML(void) method method
 
 /// Returns a representation of the sum squared error object, in XML format.
 
-    tinyxml2::XMLDocument *NeuralParametersNorm::to_XML(void) const
+tinyxml2::XMLDocument *NeuralParametersNorm::to_XML(void) const
+{
+    std::ostringstream buffer;
+
+    tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
+
+    // Neural parameters norm
+
+    tinyxml2::XMLElement *neural_network_parameters_norm_element = document->NewElement("NeuralParametersNorm");
+
+    document->InsertFirstChild(neural_network_parameters_norm_element);
+
+    // Neural parameters norm weight
     {
-        std::ostringstream buffer;
+        tinyxml2::XMLElement *weight_element = document->NewElement("NeuralParametersNormWeight");
+        neural_network_parameters_norm_element->LinkEndChild(weight_element);
 
-        tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
+        buffer.str("");
+        buffer << neural_parameters_norm_weight;
 
-        // Neural parameters norm
+        tinyxml2::XMLText *weight_text = document->NewText(buffer.str().c_str());
+        weight_element->LinkEndChild(weight_text);
+    }
 
-        tinyxml2::XMLElement *neural_network_parameters_norm_element = document->NewElement("NeuralParametersNorm");
-
-        document->InsertFirstChild(neural_network_parameters_norm_element);
-
-        // Neural parameters norm weight
-        {
-            tinyxml2::XMLElement *weight_element = document->NewElement("NeuralParametersNormWeight");
-            neural_network_parameters_norm_element->LinkEndChild(weight_element);
-
-            buffer.str("");
-            buffer << neural_parameters_norm_weight;
-
-            tinyxml2::XMLText *weight_text = document->NewText(buffer.str().c_str());
-            weight_element->LinkEndChild(weight_text);
-        }
-
-        // Display
+    // Display
 
 //   {
 //      tinyxml2::XMLElement* display_element = document->NewElement("Display");
@@ -412,8 +410,8 @@ double NeuralParametersNorm::calculate_selection_performance(void) const
 //      display_element->LinkEndChild(display_text);
 //   }
 
-        return (document);
-    }
+    return (document);
+}
 
 
 // void from_XML(const tinyxml2::XMLDocument&) method
@@ -421,52 +419,50 @@ double NeuralParametersNorm::calculate_selection_performance(void) const
 /// Loads a sum squared error object from a XML document.
 /// @param document TinyXML document containing the object members.
 
-    void NeuralParametersNorm::from_XML(const tinyxml2::XMLDocument &document)
+void NeuralParametersNorm::from_XML(const tinyxml2::XMLDocument &document)
+{
+    const tinyxml2::XMLElement *root_element = document.FirstChildElement("NeuralParametersNorm");
+
+    if (!root_element) {
+        std::ostringstream buffer;
+
+        buffer << "OpenNN Exception: NeuralParametersNorm class.\n"
+               << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
+               << "Neural parameters norm element is NULL.\n";
+
+        throw std::logic_error(buffer.str());
+    }
+
+    // Neural parameters norm weight
     {
-        const tinyxml2::XMLElement *root_element = document.FirstChildElement("NeuralParametersNorm");
+        const tinyxml2::XMLElement *element = root_element->FirstChildElement("NeuralParametersNormWeight");
 
-        if (!root_element) {
-            std::ostringstream buffer;
+        if (element) {
+            try {
+                const double new_neural_parameters_norm_weight = atof(element->GetText());
 
-            buffer << "OpenNN Exception: NeuralParametersNorm class.\n"
-            << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
-            << "Neural parameters norm element is NULL.\n";
-
-            throw std::logic_error(buffer.str());
-        }
-
-        // Neural parameters norm weight
-        {
-            const tinyxml2::XMLElement *element = root_element->FirstChildElement("NeuralParametersNormWeight");
-
-            if (element) {
-                try {
-                    const double new_neural_parameters_norm_weight = atof(element->GetText());
-
-                    set_neural_parameters_norm_weight(new_neural_parameters_norm_weight);
-                }
-                catch (const std::logic_error &e) {
-                    std::cout << e.what() << std::endl;
-                }
-            }
-        }
-
-        // Display
-        {
-            const tinyxml2::XMLElement *element = root_element->FirstChildElement("Display");
-
-            if (element) {
-                try {
-                    const std::string new_display_string = element->GetText();
-
-                    set_display(new_display_string != "0");
-                }
-                catch (const std::logic_error &e) {
-                    std::cout << e.what() << std::endl;
-                }
+                set_neural_parameters_norm_weight(new_neural_parameters_norm_weight);
+            } catch (const std::logic_error &e) {
+                std::cout << e.what() << std::endl;
             }
         }
     }
+
+    // Display
+    {
+        const tinyxml2::XMLElement *element = root_element->FirstChildElement("Display");
+
+        if (element) {
+            try {
+                const std::string new_display_string = element->GetText();
+
+                set_display(new_display_string != "0");
+            } catch (const std::logic_error &e) {
+                std::cout << e.what() << std::endl;
+            }
+        }
+    }
+}
 
 }
 

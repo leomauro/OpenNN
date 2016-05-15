@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   I N S T A N C E S   T E S T   C L A S S                                                                    */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -20,7 +20,7 @@ using namespace OpenNN;
 
 // GENERAL CONSTRUCTOR
 
-InstancesTest::InstancesTest(void) : UnitTesting() 
+InstancesTest::InstancesTest(void) : UnitTesting()
 {
 }
 
@@ -36,182 +36,182 @@ InstancesTest::~InstancesTest(void)
 
 void InstancesTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 
-   // Test
+    // Test
 
-   Instances ii0;
+    Instances ii0;
 
-   assert_true(ii0.get_instances_number() == 0, LOG);
+    assert_true(ii0.get_instances_number() == 0, LOG);
 
-   // Test
+    // Test
 
-   Instances ii1(1);
-  
-   assert_true(ii1.count_training_instances_number() == 1, LOG);
+    Instances ii1(1);
 
-   // Test
+    assert_true(ii1.count_training_instances_number() == 1, LOG);
 
-   Instances ii2(1);
-   ii2.set_display(false);
+    // Test
 
-   // Test
+    Instances ii2(1);
+    ii2.set_display(false);
 
-   Instances ii4;
+    // Test
 
-   assert_true(ii4.count_training_instances_number() == 0, LOG);
-   assert_true(ii4.count_selection_instances_number() == 0, LOG);
-   assert_true(ii4.count_testing_instances_number() == 0, LOG);
+    Instances ii4;
 
-   Instances ii5(1);
+    assert_true(ii4.count_training_instances_number() == 0, LOG);
+    assert_true(ii4.count_selection_instances_number() == 0, LOG);
+    assert_true(ii4.count_testing_instances_number() == 0, LOG);
 
-   Instances ii6(ii5);
+    Instances ii5(1);
 
-   assert_true(ii6.count_training_instances_number() == 1, LOG);
+    Instances ii6(ii5);
+
+    assert_true(ii6.count_training_instances_number() == 1, LOG);
 
 }
 
 
 void InstancesTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 
-   Instances* iip = new Instances(1);
+    Instances *iip = new Instances(1);
 
-   delete iip;
+    delete iip;
 
 }
 
 
 void InstancesTest::test_assignment_operator(void)
 {
-   message += "test_assignment_operator\n";
+    message += "test_assignment_operator\n";
 
-   Instances ii1(1);
-   Instances ii2 = ii1;
+    Instances ii1(1);
+    Instances ii2 = ii1;
 
-   assert_true(ii2.get_instances_number() == 1, LOG);   
+    assert_true(ii2.get_instances_number() == 1, LOG);
 }
 
 
-void InstancesTest::test_get_instances_number(void) 
+void InstancesTest::test_get_instances_number(void)
 {
-   message += "test_get_instances_number\n";
+    message += "test_get_instances_number\n";
 
-   Instances i;
+    Instances i;
 
-   assert_true(i.get_instances_number() == 0, LOG);
+    assert_true(i.get_instances_number() == 0, LOG);
 }
 
 
-void InstancesTest::test_count_training_instances_number(void) 
+void InstancesTest::test_count_training_instances_number(void)
 {
-   message += "test_count_training_instances_number\n";
+    message += "test_count_training_instances_number\n";
 
-   Instances i;
+    Instances i;
 
-   // Test
+    // Test
 
-   i.set();
+    i.set();
 
-   assert_true(i.count_training_instances_number() == 0, LOG);
+    assert_true(i.count_training_instances_number() == 0, LOG);
 
-   // Test
+    // Test
 
-   i.set(1);
+    i.set(1);
 
-   assert_true(i.count_training_instances_number() == 1, LOG);
-
-}
-
-
-void InstancesTest::test_arrange_training_indices(void) 
-{
-   message += "test_arrange_training_indices\n";
-
-   Instances i;
-
-   Vector<size_t> training_indices;
-
-   training_indices = i.arrange_training_indices();
-
-   assert_true(training_indices.size() == 0, LOG);
-   
-   i.set(1);
-
-   training_indices = i.arrange_training_indices();
-
-   assert_true(training_indices.size() == 1, LOG);
+    assert_true(i.count_training_instances_number() == 1, LOG);
 
 }
 
 
-void InstancesTest::test_count_selection_instances_number(void) 
+void InstancesTest::test_arrange_training_indices(void)
 {
-   message += "test_count_selection_instances_number\n";
+    message += "test_arrange_training_indices\n";
 
-   Instances i;
+    Instances i;
 
-   assert_true(i.count_selection_instances_number() == 0, LOG);
-   
-   i.set(1);
+    Vector<size_t> training_indices;
 
-   assert_true(i.count_selection_instances_number() == 0, LOG);
-}
+    training_indices = i.arrange_training_indices();
 
+    assert_true(training_indices.size() == 0, LOG);
 
-void InstancesTest::test_arrange_selection_indices(void) 
-{
-   message += "test_arrange_selection_indices\n";
+    i.set(1);
 
-   Instances i;
+    training_indices = i.arrange_training_indices();
 
-   Vector<size_t> selection_indices;
-
-   selection_indices = i.arrange_selection_indices();
-
-   assert_true(selection_indices.size() == 0, LOG);
-   
-   i.set(1);
-
-   selection_indices = i.arrange_selection_indices();
-
-   assert_true(selection_indices.size() == 0, LOG);
-}
-
-
-void InstancesTest::test_count_testing_instances_number(void) 
-{
-   message += "test_count_testing_instances_number\n";
-
-   Instances i;
-
-   assert_true(i.count_testing_instances_number() == 0, LOG);
-   
-   i.set(1);
-
-   assert_true(i.count_testing_instances_number() == 0, LOG);
+    assert_true(training_indices.size() == 1, LOG);
 
 }
 
 
-void InstancesTest::test_arrange_testing_indices(void) 
+void InstancesTest::test_count_selection_instances_number(void)
 {
-   message += "test_arrange_testing_indices\n";
- 
-   Instances i;
+    message += "test_count_selection_instances_number\n";
 
-   Vector<size_t> testing_indices;
+    Instances i;
 
-   testing_indices = i.arrange_testing_indices();
+    assert_true(i.count_selection_instances_number() == 0, LOG);
 
-   assert_true(testing_indices.size() == 0, LOG);
-   
-   i.set(1);
+    i.set(1);
 
-   testing_indices = i.arrange_testing_indices();
+    assert_true(i.count_selection_instances_number() == 0, LOG);
+}
 
-   assert_true(testing_indices.size() == 0, LOG);
+
+void InstancesTest::test_arrange_selection_indices(void)
+{
+    message += "test_arrange_selection_indices\n";
+
+    Instances i;
+
+    Vector<size_t> selection_indices;
+
+    selection_indices = i.arrange_selection_indices();
+
+    assert_true(selection_indices.size() == 0, LOG);
+
+    i.set(1);
+
+    selection_indices = i.arrange_selection_indices();
+
+    assert_true(selection_indices.size() == 0, LOG);
+}
+
+
+void InstancesTest::test_count_testing_instances_number(void)
+{
+    message += "test_count_testing_instances_number\n";
+
+    Instances i;
+
+    assert_true(i.count_testing_instances_number() == 0, LOG);
+
+    i.set(1);
+
+    assert_true(i.count_testing_instances_number() == 0, LOG);
+
+}
+
+
+void InstancesTest::test_arrange_testing_indices(void)
+{
+    message += "test_arrange_testing_indices\n";
+
+    Instances i;
+
+    Vector<size_t> testing_indices;
+
+    testing_indices = i.arrange_testing_indices();
+
+    assert_true(testing_indices.size() == 0, LOG);
+
+    i.set(1);
+
+    testing_indices = i.arrange_testing_indices();
+
+    assert_true(testing_indices.size() == 0, LOG);
 }
 
 
@@ -250,92 +250,92 @@ void InstancesTest::test_arrange_used_indices()
 }
 
 
-void InstancesTest::test_get_display(void) 
+void InstancesTest::test_get_display(void)
 {
-   message += "test_get_display\n";
+    message += "test_get_display\n";
 
-   Instances i;
+    Instances i;
 
-   i.set_display(true);
+    i.set_display(true);
 
-   assert_true(i.get_display() == true, LOG);
+    assert_true(i.get_display() == true, LOG);
 
-   i.set_display(false);
+    i.set_display(false);
 
-   assert_true(i.get_display() == false, LOG);
+    assert_true(i.get_display() == false, LOG);
 }
 
 
-void InstancesTest::test_set(void) 
+void InstancesTest::test_set(void)
 {
-   message += "test_set\n";
+    message += "test_set\n";
 
-   Instances i;
+    Instances i;
 
-   // Instances and inputs and target variables
+    // Instances and inputs and target variables
 
-   i.set(1);
+    i.set(1);
 
-   assert_true(i.get_instances_number() == 1, LOG);
+    assert_true(i.get_instances_number() == 1, LOG);
 }
 
 
-void InstancesTest::test_set_instances_number(void) 
+void InstancesTest::test_set_instances_number(void)
 {
-   message += "test_set_instances_number\n";
+    message += "test_set_instances_number\n";
 
-   Instances i(1);
+    Instances i(1);
 
-   i.set_instances_number(2);
+    i.set_instances_number(2);
 
-   assert_true(i.get_instances_number() == 2, LOG);
+    assert_true(i.get_instances_number() == 2, LOG);
 }
 
 
 void InstancesTest::test_set_training(void)
 {
-   message += "test_set_training\n";
-   
-   Instances i(1);
-   i.set_training();
+    message += "test_set_training\n";
 
-   assert_true(i.count_training_instances_number() == 1, LOG);
-   assert_true(i.count_selection_instances_number() == 0, LOG);
-   assert_true(i.count_testing_instances_number() == 0, LOG);
+    Instances i(1);
+    i.set_training();
 
-   assert_true(i.arrange_training_indices() == 0, LOG);
+    assert_true(i.count_training_instances_number() == 1, LOG);
+    assert_true(i.count_selection_instances_number() == 0, LOG);
+    assert_true(i.count_testing_instances_number() == 0, LOG);
+
+    assert_true(i.arrange_training_indices() == 0, LOG);
 
 }
 
 
 void InstancesTest::test_set_selection(void)
 {
-   message += "test_set_selection\n";
+    message += "test_set_selection\n";
 
-   Instances i(1);
-   i.set_selection();
+    Instances i(1);
+    i.set_selection();
 
-   assert_true(i.count_training_instances_number() == 0, LOG);
-   assert_true(i.count_selection_instances_number() == 1, LOG);
-   assert_true(i.count_testing_instances_number() == 0, LOG);
+    assert_true(i.count_training_instances_number() == 0, LOG);
+    assert_true(i.count_selection_instances_number() == 1, LOG);
+    assert_true(i.count_testing_instances_number() == 0, LOG);
 
-   assert_true(i.arrange_selection_indices() == 0, LOG);
+    assert_true(i.arrange_selection_indices() == 0, LOG);
 
 }
 
 
 void InstancesTest::test_set_testing(void)
 {
-   message += "test_set_testing\n";
+    message += "test_set_testing\n";
 
-   Instances i(1);
-   i.set_testing();
+    Instances i(1);
+    i.set_testing();
 
-   assert_true(i.count_training_instances_number() == 0, LOG);
-   assert_true(i.count_selection_instances_number() == 0, LOG);
-   assert_true(i.count_testing_instances_number() == 1, LOG);
+    assert_true(i.count_training_instances_number() == 0, LOG);
+    assert_true(i.count_selection_instances_number() == 0, LOG);
+    assert_true(i.count_testing_instances_number() == 1, LOG);
 
-   assert_true(i.arrange_testing_indices() == 0, LOG);
+    assert_true(i.arrange_testing_indices() == 0, LOG);
 
 }
 
@@ -365,287 +365,287 @@ void InstancesTest::test_set_unused(void)
 }
 
 
-void InstancesTest::test_set_display(void) 
+void InstancesTest::test_set_display(void)
 {
-   message += "test_set_display\n";
+    message += "test_set_display\n";
 }
 
 
-void InstancesTest::test_split_random_indices(void) 
+void InstancesTest::test_split_random_indices(void)
 {
-   message += "test_split_random_indices\n";
+    message += "test_split_random_indices\n";
 
-   size_t training_instances_number = 0;
-   size_t selection_instances_number = 0;
-   size_t testing_instances_number = 0;
+    size_t training_instances_number = 0;
+    size_t selection_instances_number = 0;
+    size_t testing_instances_number = 0;
 
-   Instances i(12);
+    Instances i(12);
 
-   // All data for training
+    // All data for training
 
-   i.split_random_indices(1.0, 0.0, 0.0);
-  
-   training_instances_number = i.count_training_instances_number();
-   selection_instances_number = i.count_selection_instances_number();
-   testing_instances_number = i.count_testing_instances_number();
+    i.split_random_indices(1.0, 0.0, 0.0);
 
-   assert_true(training_instances_number == 12, LOG);
-   assert_true(selection_instances_number == 0, LOG);
-   assert_true(testing_instances_number == 0, LOG);
+    training_instances_number = i.count_training_instances_number();
+    selection_instances_number = i.count_selection_instances_number();
+    testing_instances_number = i.count_testing_instances_number();
 
-   // All data for selection 
+    assert_true(training_instances_number == 12, LOG);
+    assert_true(selection_instances_number == 0, LOG);
+    assert_true(testing_instances_number == 0, LOG);
 
-   i.split_random_indices(0.0, 10.0, 0.0);
-  
-   training_instances_number = i.count_training_instances_number();
-   selection_instances_number = i.count_selection_instances_number();
-   testing_instances_number = i.count_testing_instances_number();
+    // All data for selection
 
-   assert_true(training_instances_number == 0, LOG);
-   assert_true(selection_instances_number == 12, LOG);
-   assert_true(testing_instances_number == 0, LOG);
+    i.split_random_indices(0.0, 10.0, 0.0);
 
-   // All data for testing 
+    training_instances_number = i.count_training_instances_number();
+    selection_instances_number = i.count_selection_instances_number();
+    testing_instances_number = i.count_testing_instances_number();
 
-   i.split_random_indices(0.0, 0.0, 100.0);
-  
-   training_instances_number = i.count_training_instances_number();
-   selection_instances_number = i.count_selection_instances_number();
-   testing_instances_number = i.count_testing_instances_number();
+    assert_true(training_instances_number == 0, LOG);
+    assert_true(selection_instances_number == 12, LOG);
+    assert_true(testing_instances_number == 0, LOG);
 
-   assert_true(training_instances_number == 0, LOG);
-   assert_true(selection_instances_number == 0, LOG);
-   assert_true(testing_instances_number == 12, LOG);
+    // All data for testing
 
-   // Split data for training, selection and testing
+    i.split_random_indices(0.0, 0.0, 100.0);
 
-   i.split_random_indices(0.5, 0.25, 0.25);
-  
-   training_instances_number = i.count_training_instances_number();
-   selection_instances_number = i.count_selection_instances_number();
-   testing_instances_number = i.count_testing_instances_number();
+    training_instances_number = i.count_training_instances_number();
+    selection_instances_number = i.count_selection_instances_number();
+    testing_instances_number = i.count_testing_instances_number();
 
-   assert_true(training_instances_number == 6, LOG);
-   assert_true(selection_instances_number == 3, LOG);
-   assert_true(testing_instances_number == 3, LOG);
+    assert_true(training_instances_number == 0, LOG);
+    assert_true(selection_instances_number == 0, LOG);
+    assert_true(testing_instances_number == 12, LOG);
 
-   // Split data for training, selection and testing
+    // Split data for training, selection and testing
 
-   i.split_random_indices(2.0, 1.0, 1.0);
-  
-   training_instances_number = i.count_training_instances_number();
-   selection_instances_number = i.count_selection_instances_number();
-   testing_instances_number = i.count_testing_instances_number();
+    i.split_random_indices(0.5, 0.25, 0.25);
 
-   assert_true(training_instances_number == 6, LOG);
-   assert_true(selection_instances_number == 3, LOG);
-   assert_true(testing_instances_number == 3, LOG);
+    training_instances_number = i.count_training_instances_number();
+    selection_instances_number = i.count_selection_instances_number();
+    testing_instances_number = i.count_testing_instances_number();
 
-   // Test
+    assert_true(training_instances_number == 6, LOG);
+    assert_true(selection_instances_number == 3, LOG);
+    assert_true(testing_instances_number == 3, LOG);
 
-   i.set_instances_number(10);
-   i.split_random_indices();
+    // Split data for training, selection and testing
 
-   training_instances_number = i.count_training_instances_number();
-   selection_instances_number = i.count_selection_instances_number();
-   testing_instances_number = i.count_testing_instances_number();
+    i.split_random_indices(2.0, 1.0, 1.0);
 
-   assert_true(training_instances_number == 6, LOG);
-   assert_true(selection_instances_number == 2, LOG);
-   assert_true(testing_instances_number == 2, LOG);
+    training_instances_number = i.count_training_instances_number();
+    selection_instances_number = i.count_selection_instances_number();
+    testing_instances_number = i.count_testing_instances_number();
+
+    assert_true(training_instances_number == 6, LOG);
+    assert_true(selection_instances_number == 3, LOG);
+    assert_true(testing_instances_number == 3, LOG);
+
+    // Test
+
+    i.set_instances_number(10);
+    i.split_random_indices();
+
+    training_instances_number = i.count_training_instances_number();
+    selection_instances_number = i.count_selection_instances_number();
+    testing_instances_number = i.count_testing_instances_number();
+
+    assert_true(training_instances_number == 6, LOG);
+    assert_true(selection_instances_number == 2, LOG);
+    assert_true(testing_instances_number == 2, LOG);
 
 }
 
 
 void InstancesTest::test_split_sequential_indices(void)
 {
-   message += "test_split_sequential_indices\n";
+    message += "test_split_sequential_indices\n";
 
 
-  size_t training_instances_number = 0;
-  size_t selection_instances_number = 0;
-  size_t testing_instances_number = 0;
+    size_t training_instances_number = 0;
+    size_t selection_instances_number = 0;
+    size_t testing_instances_number = 0;
 
-  Instances i(12);
+    Instances i(12);
 
-  // All data for training
+    // All data for training
 
-  i.split_sequential_indices(1.0, 0.0, 0.0);
+    i.split_sequential_indices(1.0, 0.0, 0.0);
 
-  training_instances_number = i.count_training_instances_number();
-  selection_instances_number = i.count_selection_instances_number();
-  testing_instances_number = i.count_testing_instances_number();
+    training_instances_number = i.count_training_instances_number();
+    selection_instances_number = i.count_selection_instances_number();
+    testing_instances_number = i.count_testing_instances_number();
 
-  assert_true(training_instances_number == 12, LOG);
-  assert_true(selection_instances_number == 0, LOG);
-  assert_true(testing_instances_number == 0, LOG);
+    assert_true(training_instances_number == 12, LOG);
+    assert_true(selection_instances_number == 0, LOG);
+    assert_true(testing_instances_number == 0, LOG);
 
-  // All data for selection
+    // All data for selection
 
-  i.split_sequential_indices(0.0, 10.0, 0.0);
+    i.split_sequential_indices(0.0, 10.0, 0.0);
 
-  training_instances_number = i.count_training_instances_number();
-  selection_instances_number = i.count_selection_instances_number();
-  testing_instances_number = i.count_testing_instances_number();
+    training_instances_number = i.count_training_instances_number();
+    selection_instances_number = i.count_selection_instances_number();
+    testing_instances_number = i.count_testing_instances_number();
 
-  assert_true(training_instances_number == 0, LOG);
-  assert_true(selection_instances_number == 12, LOG);
-  assert_true(testing_instances_number == 0, LOG);
+    assert_true(training_instances_number == 0, LOG);
+    assert_true(selection_instances_number == 12, LOG);
+    assert_true(testing_instances_number == 0, LOG);
 
-  // All data for testing
+    // All data for testing
 
-  i.split_sequential_indices(0.0, 0.0, 100.0);
+    i.split_sequential_indices(0.0, 0.0, 100.0);
 
-  training_instances_number = i.count_training_instances_number();
-  selection_instances_number = i.count_selection_instances_number();
-  testing_instances_number = i.count_testing_instances_number();
+    training_instances_number = i.count_training_instances_number();
+    selection_instances_number = i.count_selection_instances_number();
+    testing_instances_number = i.count_testing_instances_number();
 
-  assert_true(training_instances_number == 0, LOG);
-  assert_true(selection_instances_number == 0, LOG);
-  assert_true(testing_instances_number == 12, LOG);
+    assert_true(training_instances_number == 0, LOG);
+    assert_true(selection_instances_number == 0, LOG);
+    assert_true(testing_instances_number == 12, LOG);
 
-  // Split data for training, selection and testing
+    // Split data for training, selection and testing
 
-  i.split_sequential_indices(0.5, 0.25, 0.25);
+    i.split_sequential_indices(0.5, 0.25, 0.25);
 
-  training_instances_number = i.count_training_instances_number();
-  selection_instances_number = i.count_selection_instances_number();
-  testing_instances_number = i.count_testing_instances_number();
+    training_instances_number = i.count_training_instances_number();
+    selection_instances_number = i.count_selection_instances_number();
+    testing_instances_number = i.count_testing_instances_number();
 
-  assert_true(training_instances_number == 6, LOG);
-  assert_true(selection_instances_number == 3, LOG);
-  assert_true(testing_instances_number == 3, LOG);
+    assert_true(training_instances_number == 6, LOG);
+    assert_true(selection_instances_number == 3, LOG);
+    assert_true(testing_instances_number == 3, LOG);
 
-  // Split data for training, selection and testing
+    // Split data for training, selection and testing
 
-  i.split_sequential_indices(2.0, 1.0, 1.0);
+    i.split_sequential_indices(2.0, 1.0, 1.0);
 
-  training_instances_number = i.count_training_instances_number();
-  selection_instances_number = i.count_selection_instances_number();
-  testing_instances_number = i.count_testing_instances_number();
+    training_instances_number = i.count_training_instances_number();
+    selection_instances_number = i.count_selection_instances_number();
+    testing_instances_number = i.count_testing_instances_number();
 
-  assert_true(training_instances_number == 6, LOG);
-  assert_true(selection_instances_number == 3, LOG);
-  assert_true(testing_instances_number == 3, LOG);
+    assert_true(training_instances_number == 6, LOG);
+    assert_true(selection_instances_number == 3, LOG);
+    assert_true(testing_instances_number == 3, LOG);
 
-  // Test
+    // Test
 
-  i.set_instances_number(10);
-  i.split_sequential_indices();
+    i.set_instances_number(10);
+    i.split_sequential_indices();
 
-  training_instances_number = i.count_training_instances_number();
-  selection_instances_number = i.count_selection_instances_number();
-  testing_instances_number = i.count_testing_instances_number();
+    training_instances_number = i.count_training_instances_number();
+    selection_instances_number = i.count_selection_instances_number();
+    testing_instances_number = i.count_testing_instances_number();
 
-  assert_true(training_instances_number == 6, LOG);
-  assert_true(selection_instances_number == 2, LOG);
-  assert_true(testing_instances_number == 2, LOG);
+    assert_true(training_instances_number == 6, LOG);
+    assert_true(selection_instances_number == 2, LOG);
+    assert_true(testing_instances_number == 2, LOG);
 }
 
 
-void InstancesTest::test_to_XML(void) 
+void InstancesTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 
-   Instances i;
+    Instances i;
 
-   tinyxml2::XMLDocument* document = i.to_XML();
+    tinyxml2::XMLDocument *document = i.to_XML();
 
-   assert_true(document != NULL, LOG);
+    assert_true(document != NULL, LOG);
 
-   // Test
+    // Test
 
-   i.set(2);
+    i.set(2);
 
-   i.set_use(0, Instances::Testing);
-   i.set_use(1, Instances::Unused);
+    i.set_use(0, Instances::Testing);
+    i.set_use(1, Instances::Unused);
 
-   document = i.to_XML();
+    document = i.to_XML();
 
-   i.set();
+    i.set();
 
-   i.from_XML(*document);
+    i.from_XML(*document);
 
-   assert_true(i.get_instances_number() == 2, LOG);
-   assert_true(i.get_use(0) == Instances::Testing, LOG);
-   assert_true(i.get_use(1) == Instances::Unused, LOG);
+    assert_true(i.get_instances_number() == 2, LOG);
+    assert_true(i.get_use(0) == Instances::Testing, LOG);
+    assert_true(i.get_use(1) == Instances::Unused, LOG);
 }
 
 
-void InstancesTest::test_from_XML(void) 
+void InstancesTest::test_from_XML(void)
 {
-   message += "test_from_XML\n";
+    message += "test_from_XML\n";
 
-   Instances i;
+    Instances i;
 
-   tinyxml2::XMLDocument* document = i.to_XML();
-   
-   i.from_XML(*document);
+    tinyxml2::XMLDocument *document = i.to_XML();
+
+    i.from_XML(*document);
 
 }
 
 
 void InstancesTest::run_test_case(void)
 {
-   message += "Running instances test case...\n";
+    message += "Running instances test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Assignment operators methods
+    // Assignment operators methods
 
-   test_assignment_operator();
+    test_assignment_operator();
 
-   // Get methods
+    // Get methods
 
-   test_get_instances_number();
+    test_get_instances_number();
 
-   // Instances methods 
+    // Instances methods
 
-   test_count_training_instances_number();
-   test_arrange_training_indices();
+    test_count_training_instances_number();
+    test_arrange_training_indices();
 
-   test_count_selection_instances_number();
-   test_arrange_selection_indices();
+    test_count_selection_instances_number();
+    test_arrange_selection_indices();
 
-   test_count_testing_instances_number();
-   test_arrange_testing_indices();
+    test_count_testing_instances_number();
+    test_arrange_testing_indices();
 
-   test_arrange_used_indices();
+    test_arrange_used_indices();
 
-   test_get_display();
+    test_get_display();
 
-   // Set methods
+    // Set methods
 
-   test_set();
+    test_set();
 
-   // Instances methods
+    // Instances methods
 
-   test_set_training();
-   test_set_selection();
-   test_set_testing();
+    test_set_training();
+    test_set_selection();
+    test_set_testing();
 
-   test_set_unused();
+    test_set_unused();
 
-   test_set_display();
+    test_set_display();
 
-   // Data methods
+    // Data methods
 
-   test_set_instances_number();
+    test_set_instances_number();
 
-   // Splitting methods
+    // Splitting methods
 
-   test_split_random_indices();
-   test_split_sequential_indices();
+    test_split_random_indices();
+    test_split_sequential_indices();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
-   message += "End of instances test case.\n";
+    message += "End of instances test case.\n";
 }
 
 

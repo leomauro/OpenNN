@@ -21,8 +21,7 @@
 using namespace OpenNN;
 
 
-class IndependentParametersTest : public UnitTesting
-{
+class IndependentParametersTest : public UnitTesting {
 
 #define STRING(x) #x
 #define TOSTRING(x) STRING(x)
@@ -30,174 +29,202 @@ class IndependentParametersTest : public UnitTesting
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit IndependentParametersTest(void);
+    explicit IndependentParametersTest(void);
 
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~IndependentParametersTest(void);
+    virtual ~IndependentParametersTest(void);
 
-   // METHODS
+    // METHODS
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Assignment operators methods
+    void test_destructor(void);
 
-   void test_assignment_operator(void);
+    // Assignment operators methods
 
-   // Get methods
+    void test_assignment_operator(void);
 
-   // Independent parameters
+    // Get methods
 
-   void test_count_parameters_number(void);
+    // Independent parameters
 
-   void test_get_parameters(void);   
-   void test_get_parameter(void);   
+    void test_count_parameters_number(void);
 
-   // Independent parameters scaling and unscaling
+    void test_get_parameters(void);
 
-   void test_get_parameters_scaling_method(void);
-   void test_get_parameters_scaling_method_name(void);
+    void test_get_parameter(void);
 
-   // Independent parameters information
+    // Independent parameters scaling and unscaling
 
-   void test_get_parameters_name(void);
-   void test_get_parameter_name(void);
+    void test_get_parameters_scaling_method(void);
 
-   void test_get_parameters_units(void);
-   void test_get_parameter_units(void);
+    void test_get_parameters_scaling_method_name(void);
 
-   void test_get_parameters_description(void);
-   void test_get_parameter_description(void);
+    // Independent parameters information
 
-   void test_get_parameters_information(void);
+    void test_get_parameters_name(void);
 
-   // Independent parameters statistics
+    void test_get_parameter_name(void);
 
-   void test_get_parameters_minimum(void);
-   void test_get_parameter_minimum(void);
+    void test_get_parameters_units(void);
 
-   void test_get_parameters_maximum(void);
-   void test_get_parameter_maximum(void);
+    void test_get_parameter_units(void);
 
-   void test_get_parameters_mean(void);
-   void test_get_parameter_mean(void);
+    void test_get_parameters_description(void);
 
-   void test_get_parameters_standard_deviation(void);
-   void test_get_parameter_standard_deviation(void);
+    void test_get_parameter_description(void);
 
-   void test_get_parameters_mean_standard_deviation(void);
+    void test_get_parameters_information(void);
 
-   void test_get_parameters_minimum_maximum(void);
+    // Independent parameters statistics
 
-   void test_get_parameters_statistics(void);
+    void test_get_parameters_minimum(void);
 
-   // Independent parameters bounds
+    void test_get_parameter_minimum(void);
 
-   void test_get_parameters_lower_bound(void);
-   void test_get_parameter_lower_bound(void);
+    void test_get_parameters_maximum(void);
 
-   void test_get_parameters_upper_bound(void);
-   void test_get_parameter_upper_bound(void);
+    void test_get_parameter_maximum(void);
 
-   void test_get_parameters_bounds(void);
+    void test_get_parameters_mean(void);
 
-  // Display messages
+    void test_get_parameter_mean(void);
 
-   void test_get_display(void);
+    void test_get_parameters_standard_deviation(void);
 
-   // SET METHODS
+    void test_get_parameter_standard_deviation(void);
 
-   void test_set(void);
-   void test_set_default(void);
+    void test_get_parameters_mean_standard_deviation(void);
 
-   // Independent parameters
+    void test_get_parameters_minimum_maximum(void);
 
-   void test_set_parameters_number(void);
+    void test_get_parameters_statistics(void);
 
-   void test_set_parameters(void);
-   void test_set_parameter(void);
+    // Independent parameters bounds
 
-   // Independent parameters information
+    void test_get_parameters_lower_bound(void);
 
-   void test_set_parameters_name(void);
-   void test_set_parameter_name(void);
+    void test_get_parameter_lower_bound(void);
 
-   void test_set_parameters_units(void);
-   void test_set_parameter_units(void);
+    void test_get_parameters_upper_bound(void);
 
-   void test_set_parameters_description(void);
-   void test_set_parameter_description(void);
+    void test_get_parameter_upper_bound(void);
 
-   // Independent parameters statistics
+    void test_get_parameters_bounds(void);
 
-   void test_set_parameters_mean(void);
-   void test_set_parameter_mean(void);
+    // Display messages
 
-   void test_set_parameters_standard_deviation(void);
-   void test_set_parameter_standard_deviation(void);
-   
-   void test_set_parameters_minimum(void);
-   void test_set_parameter_minimum(void);
+    void test_get_display(void);
 
-   void test_set_parameters_maximum(void);
-   void test_set_parameter_maximum(void);
+    // SET METHODS
 
-   void test_set_parameters_mean_standard_deviation(void);
-   void test_set_parameters_minimum_maximum(void);
+    void test_set(void);
 
-   void test_set_parameters_statistics(void);
+    void test_set_default(void);
 
-   // Independent parameters scaling and unscaling
+    // Independent parameters
 
-   void test_set_parameters_scaling_method(void);
+    void test_set_parameters_number(void);
 
-   // Independent parameters bounds
+    void test_set_parameters(void);
 
-   void test_set_parameters_lower_bound(void);
-   void test_set_parameter_lower_bound(void);
+    void test_set_parameter(void);
 
-   void test_set_parameters_upper_bound(void);
-   void test_set_parameter_upper_bound(void);
+    // Independent parameters information
 
-   void test_set_parameters_bounds(void);
+    void test_set_parameters_name(void);
 
-   // Display messages
+    void test_set_parameter_name(void);
 
-   void test_set_display(void);
+    void test_set_parameters_units(void);
 
-   // Neural network initialization methods
+    void test_set_parameter_units(void);
 
-   void test_initialize_random(void);
+    void test_set_parameters_description(void);
 
-   // Independent parameters initialization methods
+    void test_set_parameter_description(void);
 
-   void test_initialize_parameters(void);
+    // Independent parameters statistics
 
-   void test_randomize_parameters_uniform(void);
-   void test_randomize_parameters_normal(void);
+    void test_set_parameters_mean(void);
 
-   // Independent parameters methods
+    void test_set_parameter_mean(void);
 
-   void test_calculate_scaled_parameters(void);
-   void test_unscale_parameters(void);
+    void test_set_parameters_standard_deviation(void);
 
-   void test_bound_parameters(void);
-   void test_bound_parameter(void);
+    void test_set_parameter_standard_deviation(void);
 
-   // Serialization methods
+    void test_set_parameters_minimum(void);
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    void test_set_parameter_minimum(void);
 
-   // Unit testing methods
+    void test_set_parameters_maximum(void);
 
-   void run_test_case(void);
+    void test_set_parameter_maximum(void);
+
+    void test_set_parameters_mean_standard_deviation(void);
+
+    void test_set_parameters_minimum_maximum(void);
+
+    void test_set_parameters_statistics(void);
+
+    // Independent parameters scaling and unscaling
+
+    void test_set_parameters_scaling_method(void);
+
+    // Independent parameters bounds
+
+    void test_set_parameters_lower_bound(void);
+
+    void test_set_parameter_lower_bound(void);
+
+    void test_set_parameters_upper_bound(void);
+
+    void test_set_parameter_upper_bound(void);
+
+    void test_set_parameters_bounds(void);
+
+    // Display messages
+
+    void test_set_display(void);
+
+    // Neural network initialization methods
+
+    void test_initialize_random(void);
+
+    // Independent parameters initialization methods
+
+    void test_initialize_parameters(void);
+
+    void test_randomize_parameters_uniform(void);
+
+    void test_randomize_parameters_normal(void);
+
+    // Independent parameters methods
+
+    void test_calculate_scaled_parameters(void);
+
+    void test_unscale_parameters(void);
+
+    void test_bound_parameters(void);
+
+    void test_bound_parameter(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

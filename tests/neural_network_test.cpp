@@ -38,623 +38,623 @@ NeuralNetworkTest::~NeuralNetworkTest(void)
 
 void NeuralNetworkTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 
-   Vector<size_t> multilayer_perceptron_architecture;
+    Vector<size_t> multilayer_perceptron_architecture;
 
-   std::string file_name = "../data/neural_network.xml";
+    std::string file_name = "../data/neural_network.xml";
 
-   // Default constructor
+    // Default constructor
 
-   NeuralNetwork nn1;
+    NeuralNetwork nn1;
 
-   assert_true(nn1.has_multilayer_perceptron() == false, LOG);
-   assert_true(nn1.has_independent_parameters() == false, LOG);
+    assert_true(nn1.has_multilayer_perceptron() == false, LOG);
+    assert_true(nn1.has_independent_parameters() == false, LOG);
 
-   // Multilayer perceptron architecture constructor 
+    // Multilayer perceptron architecture constructor
 
-   multilayer_perceptron_architecture.set(3, 1);
+    multilayer_perceptron_architecture.set(3, 1);
 
-   NeuralNetwork nn2(multilayer_perceptron_architecture);
+    NeuralNetwork nn2(multilayer_perceptron_architecture);
 
-   assert_true(nn2.has_multilayer_perceptron() == true, LOG);
-   assert_true(nn2.has_independent_parameters() == false, LOG);
+    assert_true(nn2.has_multilayer_perceptron() == true, LOG);
+    assert_true(nn2.has_independent_parameters() == false, LOG);
 
-   // Independent parameters constructor
+    // Independent parameters constructor
 
-   NeuralNetwork nn4(1);
+    NeuralNetwork nn4(1);
 
-   assert_true(nn4.has_multilayer_perceptron() == false, LOG);
-   assert_true(nn4.has_independent_parameters() == true, LOG);
+    assert_true(nn4.has_multilayer_perceptron() == false, LOG);
+    assert_true(nn4.has_independent_parameters() == true, LOG);
 
-   // One layer constructor 
-   
-   NeuralNetwork nn3(1, 2);
+    // One layer constructor
 
-   assert_true(nn3.has_multilayer_perceptron() == true, LOG);
-   assert_true(nn3.has_independent_parameters() == false, LOG);
+    NeuralNetwork nn3(1, 2);
+
+    assert_true(nn3.has_multilayer_perceptron() == true, LOG);
+    assert_true(nn3.has_independent_parameters() == false, LOG);
 
 
-   // Two layers constructor 
+    // Two layers constructor
 
-   NeuralNetwork nn5(1, 2, 3);
+    NeuralNetwork nn5(1, 2, 3);
 
-   assert_true(nn5.has_multilayer_perceptron() == true, LOG);
-   assert_true(nn5.has_independent_parameters() == false, LOG);
+    assert_true(nn5.has_multilayer_perceptron() == true, LOG);
+    assert_true(nn5.has_independent_parameters() == false, LOG);
 
-   // File constructor
+    // File constructor
 
-   nn1.save(file_name);
-   NeuralNetwork nn6(file_name);
+    nn1.save(file_name);
+    NeuralNetwork nn6(file_name);
 
-   // Copy constructor
+    // Copy constructor
 
 }
 
 
 void NeuralNetworkTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 
 void NeuralNetworkTest::test_assignment_operator(void)
 {
-   message += "test_assignment_operator\n";
+    message += "test_assignment_operator\n";
 
-   NeuralNetwork nn1;
-   NeuralNetwork nn2 = nn1;
+    NeuralNetwork nn1;
+    NeuralNetwork nn2 = nn1;
 
-   assert_true(nn2.has_multilayer_perceptron() == false, LOG);
-   assert_true(nn2.has_independent_parameters() == false, LOG);
+    assert_true(nn2.has_multilayer_perceptron() == false, LOG);
+    assert_true(nn2.has_independent_parameters() == false, LOG);
 }
 
 
 void NeuralNetworkTest::test_get_multilayer_perceptron_pointer(void)
 {
-   message += "test_get_multilayer_perceptron_pointer\n";
+    message += "test_get_multilayer_perceptron_pointer\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   // Test
+    // Test
 
-   nn.set(1, 1);
-   assert_true(nn.get_multilayer_perceptron_pointer() != NULL, LOG);
+    nn.set(1, 1);
+    assert_true(nn.get_multilayer_perceptron_pointer() != NULL, LOG);
 }
 
 
 void NeuralNetworkTest::test_get_inputs_pointer(void)
 {
-   message += "test_get_inputs_pointer\n";
+    message += "test_get_inputs_pointer\n";
 
-   NeuralNetwork nn(1, 1);
+    NeuralNetwork nn(1, 1);
 
-   // Test
+    // Test
 
-   assert_true(nn.get_inputs_pointer() != NULL, LOG);
+    assert_true(nn.get_inputs_pointer() != NULL, LOG);
 }
 
 
 void NeuralNetworkTest::test_get_outputs_pointer(void)
 {
-   message += "test_get_outputs_pointer\n";
+    message += "test_get_outputs_pointer\n";
 
-   NeuralNetwork nn(1, 1);
+    NeuralNetwork nn(1, 1);
 
-   // Test
+    // Test
 
-   assert_true(nn.get_outputs_pointer() != NULL, LOG);
+    assert_true(nn.get_outputs_pointer() != NULL, LOG);
 }
 
 
 void NeuralNetworkTest::test_get_scaling_layer_pointer(void)
 {
-   message += "test_get_scaling_layer_pointer\n";
+    message += "test_get_scaling_layer_pointer\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   nn.construct_scaling_layer();
+    nn.construct_scaling_layer();
 
-   // Test
+    // Test
 
-   assert_true(nn.get_scaling_layer_pointer() != NULL, LOG);
+    assert_true(nn.get_scaling_layer_pointer() != NULL, LOG);
 }
 
 
-void NeuralNetworkTest::test_get_unscaling_layer_pointer(void)  
+void NeuralNetworkTest::test_get_unscaling_layer_pointer(void)
 {
-   message += "test_get_unscaling_layer_pointer\n";
+    message += "test_get_unscaling_layer_pointer\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   nn.construct_unscaling_layer();
+    nn.construct_unscaling_layer();
 
-   // Test
+    // Test
 
-   assert_true(nn.get_unscaling_layer_pointer() != NULL, LOG);
+    assert_true(nn.get_unscaling_layer_pointer() != NULL, LOG);
 }
 
 
 void NeuralNetworkTest::test_get_bounding_layer_pointer(void)
 {
-   message += "test_get_bounding_layer_pointer\n";
+    message += "test_get_bounding_layer_pointer\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   nn.construct_bounding_layer();
+    nn.construct_bounding_layer();
 
-   // Test
+    // Test
 
-   assert_true(nn.get_bounding_layer_pointer() != NULL, LOG);
+    assert_true(nn.get_bounding_layer_pointer() != NULL, LOG);
 }
 
 
 void NeuralNetworkTest::test_get_probabilistic_layer_pointer(void)
 {
-   message += "test_get_probabilistic_layer_pointer\n";
+    message += "test_get_probabilistic_layer_pointer\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   nn.construct_probabilistic_layer();
+    nn.construct_probabilistic_layer();
 
-   // Test
+    // Test
 
-   assert_true(nn.get_probabilistic_layer_pointer() != NULL, LOG);
+    assert_true(nn.get_probabilistic_layer_pointer() != NULL, LOG);
 }
 
 
 void NeuralNetworkTest::test_get_conditions_layer_pointer(void)
 {
-   message += "test_get_conditions_layer_pointer\n";
+    message += "test_get_conditions_layer_pointer\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   nn.construct_conditions_layer();
+    nn.construct_conditions_layer();
 
-   // Test
+    // Test
 
-   assert_true(nn.get_conditions_layer_pointer() != NULL, LOG);
+    assert_true(nn.get_conditions_layer_pointer() != NULL, LOG);
 }
 
 
 void NeuralNetworkTest::test_get_independent_parameters_pointer(void)
 {
-   message += "test_get_independent_parameters_pointer\n";
+    message += "test_get_independent_parameters_pointer\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   nn.construct_independent_parameters();
+    nn.construct_independent_parameters();
 
-   // Test
+    // Test
 
-   assert_true(nn.get_independent_parameters_pointer() != NULL, LOG);
+    assert_true(nn.get_independent_parameters_pointer() != NULL, LOG);
 }
 
 
 void NeuralNetworkTest::test_get_display(void)
 {
-   message += "test_get_display\n";
+    message += "test_get_display\n";
 }
 
 
 void NeuralNetworkTest::test_set(void)
 {
-   message += "test_set\n";
+    message += "test_set\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   // Test
+    // Test
 }
 
 
 void NeuralNetworkTest::test_set_default(void)
 {
-   message += "test_set_default\n";
+    message += "test_set_default\n";
 }
 
 
 void NeuralNetworkTest::test_set_variables(void)
 {
-   message += "test_set_variables\n";
+    message += "test_set_variables\n";
 }
 
 
 void NeuralNetworkTest::test_set_variables_statistics(void)
 {
-   message += "test_set_variables_statistics\n";
+    message += "test_set_variables_statistics\n";
 }
 
 
 void NeuralNetworkTest::test_set_independent_parameters(void)
 {
-   message += "test_set_independent_parameters\n";
+    message += "test_set_independent_parameters\n";
 }
 
 
 void NeuralNetworkTest::test_set_display_inputs_warning(void)
 {
-   message += "test_set_display_inputs_warning\n";
+    message += "test_set_display_inputs_warning\n";
 }
 
 
 void NeuralNetworkTest::test_set_display(void)
 {
-   message += "test_set_display\n";
+    message += "test_set_display\n";
 }
 
 
 void NeuralNetworkTest::test_prune_input(void)
 {
-   message += "test_prune_input\n";
+    message += "test_prune_input\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   // Test
+    // Test
 
-   nn.set(1, 1);
+    nn.set(1, 1);
 
-   nn.prune_input(0);
+    nn.prune_input(0);
 
-   assert_true(nn.get_inputs_pointer()->get_inputs_number() == 0, LOG);
-   assert_true(nn.get_outputs_pointer()->get_outputs_number() == 1, LOG);
+    assert_true(nn.get_inputs_pointer()->get_inputs_number() == 0, LOG);
+    assert_true(nn.get_outputs_pointer()->get_outputs_number() == 1, LOG);
 
-   // Test
+    // Test
 
-   nn.set(2, 2, 2);
+    nn.set(2, 2, 2);
 
-   nn.prune_input(1);
+    nn.prune_input(1);
 
-   assert_true(nn.get_inputs_pointer()->get_inputs_number() == 1, LOG);
-   assert_true(nn.get_outputs_pointer()->get_outputs_number() == 2, LOG);
+    assert_true(nn.get_inputs_pointer()->get_inputs_number() == 1, LOG);
+    assert_true(nn.get_outputs_pointer()->get_outputs_number() == 2, LOG);
 
 }
 
 
 void NeuralNetworkTest::test_prune_output(void)
 {
-   message += "test_prune_output\n";
+    message += "test_prune_output\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   // Test
+    // Test
 
-   nn.set(1, 1);
+    nn.set(1, 1);
 
-   nn.prune_output(0);
+    nn.prune_output(0);
 
-   assert_true(nn.get_inputs_pointer()->get_inputs_number() == 1, LOG);
-   assert_true(nn.get_outputs_pointer()->get_outputs_number() == 0, LOG);
+    assert_true(nn.get_inputs_pointer()->get_inputs_number() == 1, LOG);
+    assert_true(nn.get_outputs_pointer()->get_outputs_number() == 0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(2, 2, 2);
+    nn.set(2, 2, 2);
 
-   nn.prune_output(1);
+    nn.prune_output(1);
 
-   assert_true(nn.get_inputs_pointer()->get_inputs_number() == 2, LOG);
-   assert_true(nn.get_outputs_pointer()->get_outputs_number() == 1, LOG);
+    assert_true(nn.get_inputs_pointer()->get_inputs_number() == 2, LOG);
+    assert_true(nn.get_outputs_pointer()->get_outputs_number() == 1, LOG);
 
 }
 
 
 void NeuralNetworkTest::test_count_parameters_number(void)
 {
-   message += "test_count_parameters_number\n";
+    message += "test_count_parameters_number\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   IndependentParameters* ip;
+    IndependentParameters *ip;
 
-   // Test
+    // Test
 
-   nn.set();
-   assert_true(nn.count_parameters_number() == 0, LOG);
+    nn.set();
+    assert_true(nn.count_parameters_number() == 0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(1, 1, 1);
-   assert_true(nn.count_parameters_number() == 4, LOG);
+    nn.set(1, 1, 1);
+    assert_true(nn.count_parameters_number() == 4, LOG);
 
-   // Test
+    // Test
 
-   nn.set(1);
-   assert_true(nn.count_parameters_number() == 1, LOG);
+    nn.set(1);
+    assert_true(nn.count_parameters_number() == 1, LOG);
 
-   // Test
+    // Test
 
-   nn.set(1, 1, 1);
+    nn.set(1, 1, 1);
 
-   ip = new IndependentParameters(1);
-   nn.set_independent_parameters_pointer(ip);
-   
-   assert_true(nn.count_parameters_number() == 5, LOG);
+    ip = new IndependentParameters(1);
+    nn.set_independent_parameters_pointer(ip);
+
+    assert_true(nn.count_parameters_number() == 5, LOG);
 }
 
 
-void NeuralNetworkTest::test_arrange_parameters(void)   
+void NeuralNetworkTest::test_arrange_parameters(void)
 {
-   message += "test_arrange_parameters\n";
+    message += "test_arrange_parameters\n";
 
-   NeuralNetwork nn;
-   Vector<double> parameters;
+    NeuralNetwork nn;
+    Vector<double> parameters;
 
-   IndependentParameters* ip;
+    IndependentParameters *ip;
 
-   // Test
+    // Test
 
-   nn.set();
-   parameters = nn.arrange_parameters();
+    nn.set();
+    parameters = nn.arrange_parameters();
 
-   assert_true(parameters.size() == 0, LOG);
+    assert_true(parameters.size() == 0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(1, 1, 1);
+    nn.set(1, 1, 1);
 
-   ip = new IndependentParameters(1);
-   nn.set_independent_parameters_pointer(ip);
-   nn.initialize_parameters(0.0);
-   parameters = nn.arrange_parameters();
+    ip = new IndependentParameters(1);
+    nn.set_independent_parameters_pointer(ip);
+    nn.initialize_parameters(0.0);
+    parameters = nn.arrange_parameters();
 
-   assert_true(parameters.size() == 5, LOG);
-   assert_true(parameters == 0.0, LOG);
+    assert_true(parameters.size() == 5, LOG);
+    assert_true(parameters == 0.0, LOG);
 
-   // Test
+    // Test
 
-   nn.set();
-   ip = new IndependentParameters(1);
-   nn.set_independent_parameters_pointer(ip);
-   nn.initialize_parameters(0.0);
-   parameters = nn.arrange_parameters();
-   assert_true(parameters.size() == 1, LOG);
-   assert_true(parameters == 0.0, LOG);
+    nn.set();
+    ip = new IndependentParameters(1);
+    nn.set_independent_parameters_pointer(ip);
+    nn.initialize_parameters(0.0);
+    parameters = nn.arrange_parameters();
+    assert_true(parameters.size() == 1, LOG);
+    assert_true(parameters == 0.0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(1,1,1);
-   ip = new IndependentParameters(1);
-   nn.set_independent_parameters_pointer(ip);
-   nn.initialize_parameters(0.0);
-   parameters = nn.arrange_parameters();
-   assert_true(parameters.size() == 5, LOG);
-   assert_true(parameters == 0.0, LOG);
+    nn.set(1, 1, 1);
+    ip = new IndependentParameters(1);
+    nn.set_independent_parameters_pointer(ip);
+    nn.initialize_parameters(0.0);
+    parameters = nn.arrange_parameters();
+    assert_true(parameters.size() == 5, LOG);
+    assert_true(parameters == 0.0, LOG);
 }
 
 
 void NeuralNetworkTest::test_set_parameters(void)
 {
-   message += "test_set_parameters\n";
+    message += "test_set_parameters\n";
 
-   Vector<size_t> multilayer_perceptron_architecture;
-   NeuralNetwork nn;
+    Vector<size_t> multilayer_perceptron_architecture;
+    NeuralNetwork nn;
 
-   size_t parameters_number;
-   Vector<double> parameters;
+    size_t parameters_number;
+    Vector<double> parameters;
 
-   // Test
+    // Test
 
-   nn.set_parameters(parameters);   
+    nn.set_parameters(parameters);
 
-   parameters = nn.arrange_parameters();
-   assert_true(parameters.size() == 0, LOG);
+    parameters = nn.arrange_parameters();
+    assert_true(parameters.size() == 0, LOG);
 
-   // Test
+    // Test
 
-   multilayer_perceptron_architecture.set(2, 2);
-   nn.set(multilayer_perceptron_architecture);
+    multilayer_perceptron_architecture.set(2, 2);
+    nn.set(multilayer_perceptron_architecture);
 
-   nn.construct_independent_parameters();
+    nn.construct_independent_parameters();
 
-   nn.get_independent_parameters_pointer()->set_parameters_number(2);
+    nn.get_independent_parameters_pointer()->set_parameters_number(2);
 
-   parameters_number = nn.count_parameters_number();
+    parameters_number = nn.count_parameters_number();
 
-   parameters.set(0.0, 1.0, (double)parameters_number-1);
-   nn.set_parameters(parameters);   
-   parameters = nn.arrange_parameters();
+    parameters.set(0.0, 1.0, (double) parameters_number - 1);
+    nn.set_parameters(parameters);
+    parameters = nn.arrange_parameters();
 
-   assert_true(parameters.size() == parameters_number, LOG);
-   assert_true(parameters[0] == 0.0, LOG);
-   assert_true(parameters[parameters_number-1] == parameters_number-1.0, LOG); 
+    assert_true(parameters.size() == parameters_number, LOG);
+    assert_true(parameters[0] == 0.0, LOG);
+    assert_true(parameters[parameters_number - 1] == parameters_number - 1.0, LOG);
 }
 
 
 void NeuralNetworkTest::test_initialize_random(void)
 {
-   message += "test_initialize_random\n";
+    message += "test_initialize_random\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
     // Test
 
-   nn.set();
+    nn.set();
 
-   nn.initialize_random();
+    nn.initialize_random();
 }
 
 
 void NeuralNetworkTest::test_initialize_parameters(void)
 {
-   message += "test_initialize_parameters\n";
+    message += "test_initialize_parameters\n";
 
-   NeuralNetwork nn;
-   Vector<double> parameters;
+    NeuralNetwork nn;
+    Vector<double> parameters;
 
-   IndependentParameters* ip;
+    IndependentParameters *ip;
 
-   // Test
+    // Test
 
-   nn.set(1, 1, 1);
+    nn.set(1, 1, 1);
 
-   nn.construct_independent_parameters();
+    nn.construct_independent_parameters();
 
-   ip = nn.get_independent_parameters_pointer();
-   ip->set_parameters_number(1);
+    ip = nn.get_independent_parameters_pointer();
+    ip->set_parameters_number(1);
 
-   nn.randomize_parameters_normal(1.0, 0.0);
-   parameters = nn.arrange_parameters();
-   assert_true(parameters == 1.0, LOG);
+    nn.randomize_parameters_normal(1.0, 0.0);
+    parameters = nn.arrange_parameters();
+    assert_true(parameters == 1.0, LOG);
 }
 
 
 void NeuralNetworkTest::test_randomize_parameters_uniform(void)
 {
-   message += "test_randomize_parameters_uniform\n";
+    message += "test_randomize_parameters_uniform\n";
 
-   NeuralNetwork nn;
-   Vector<double> parameters;
+    NeuralNetwork nn;
+    Vector<double> parameters;
 
-   // Test
+    // Test
 
-   nn.set(1,1,1);
-   nn.randomize_parameters_uniform();
-   parameters = nn.arrange_parameters();
-   assert_true(parameters >= -1.0, LOG);
-   assert_true(parameters <=  1.0, LOG);   
+    nn.set(1, 1, 1);
+    nn.randomize_parameters_uniform();
+    parameters = nn.arrange_parameters();
+    assert_true(parameters >= -1.0, LOG);
+    assert_true(parameters <= 1.0, LOG);
 }
 
 
 void NeuralNetworkTest::test_randomize_parameters_normal(void)
 {
-   message += "test_randomize_parameters_normal\n";
+    message += "test_randomize_parameters_normal\n";
 
-   NeuralNetwork nn;
-   Vector<double> network_parameters;
+    NeuralNetwork nn;
+    Vector<double> network_parameters;
 
-   // Test
+    // Test
 
-   nn.set(1,1,1);      
-   nn.randomize_parameters_normal(1.0, 0.0);
-   network_parameters = nn.arrange_parameters();
-   assert_true(network_parameters == 1.0, LOG);
+    nn.set(1, 1, 1);
+    nn.randomize_parameters_normal(1.0, 0.0);
+    network_parameters = nn.arrange_parameters();
+    assert_true(network_parameters == 1.0, LOG);
 }
 
 
 void NeuralNetworkTest::test_calculate_parameters_norm(void)
 {
-   message += "test_calculate_parameters_norm\n";
+    message += "test_calculate_parameters_norm\n";
 
-   NeuralNetwork nn;
-   double parameters_norm;
+    NeuralNetwork nn;
+    double parameters_norm;
 
-   // Test 
+    // Test
 
-   nn.set();
+    nn.set();
 
-   parameters_norm = nn.calculate_parameters_norm();
+    parameters_norm = nn.calculate_parameters_norm();
 
-   assert_true(parameters_norm == 0.0, LOG);
+    assert_true(parameters_norm == 0.0, LOG);
 }
 
 
 void NeuralNetworkTest::test_calculate_outputs(void)
 {
-   message += "test_calculate_outputs\n";
+    message += "test_calculate_outputs\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   size_t inputs_number;
-   size_t outputs_number;
+    size_t inputs_number;
+    size_t outputs_number;
 
-   Vector<size_t> architecture;
+    Vector<size_t> architecture;
 
-   Vector<double> inputs;
-   Vector<double> outputs;
+    Vector<double> inputs;
+    Vector<double> outputs;
 
-   size_t parameters_number;
+    size_t parameters_number;
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   // Test
+    // Test
 
-   nn.set(3, 4, 2);
-   nn.initialize_parameters(0.0);
+    nn.set(3, 4, 2);
+    nn.initialize_parameters(0.0);
 
-   inputs.set(3, 0.0);
+    inputs.set(3, 0.0);
 
-   outputs = nn.calculate_outputs(inputs);
+    outputs = nn.calculate_outputs(inputs);
 
-   assert_true(outputs == 0.0, LOG);
+    assert_true(outputs == 0.0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(1, 1, 1);
-   nn.initialize_parameters(0.0);
+    nn.set(1, 1, 1);
+    nn.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
-   outputs = nn.calculate_outputs(inputs);
+    outputs = nn.calculate_outputs(inputs);
 
-   assert_true(outputs == 0.0, LOG);
+    assert_true(outputs == 0.0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(1, 1);
+    nn.set(1, 1);
 
-   inputs.set(1);
-   inputs.randomize_normal();
+    inputs.set(1);
+    inputs.randomize_normal();
 
-   parameters = nn.arrange_parameters();
+    parameters = nn.arrange_parameters();
 
-   assert_true(nn.calculate_outputs(inputs) == nn.calculate_outputs(inputs, parameters), LOG);
+    assert_true(nn.calculate_outputs(inputs) == nn.calculate_outputs(inputs, parameters), LOG);
 
-   // Test
+    // Test
 
-   nn.set(4, 3, 5);
+    nn.set(4, 3, 5);
 
-   inputs.set(4, 0.0);
+    inputs.set(4, 0.0);
 
-   parameters_number = nn.count_parameters_number();
+    parameters_number = nn.count_parameters_number();
 
-   parameters.set(parameters_number, 0.0);
+    parameters.set(parameters_number, 0.0);
 
-   outputs = nn.calculate_outputs(inputs, parameters);
+    outputs = nn.calculate_outputs(inputs, parameters);
 
-   assert_true(outputs.size() == 5, LOG);
-   assert_true(outputs == 0.0, LOG);
+    assert_true(outputs.size() == 5, LOG);
+    assert_true(outputs == 0.0, LOG);
 
-   // Test
+    // Test
 
-   architecture.set(5);
+    architecture.set(5);
 
-   architecture.randomize_uniform(5, 10);
+    architecture.randomize_uniform(5, 10);
 
-   nn.set(architecture);
+    nn.set(architecture);
 
-   inputs_number = nn.get_inputs_pointer()->get_inputs_number();
-   outputs_number = nn.get_outputs_pointer()->get_outputs_number();
+    inputs_number = nn.get_inputs_pointer()->get_inputs_number();
+    outputs_number = nn.get_outputs_pointer()->get_outputs_number();
 
-   inputs.set(inputs_number, 0.0);
+    inputs.set(inputs_number, 0.0);
 
-   parameters_number = nn.count_parameters_number();
+    parameters_number = nn.count_parameters_number();
 
-   parameters.set(parameters_number, 0.0);
+    parameters.set(parameters_number, 0.0);
 
-   outputs = nn.calculate_outputs(inputs, parameters);
+    outputs = nn.calculate_outputs(inputs, parameters);
 
-   assert_true(outputs.size() == outputs_number, LOG);
-   assert_true(outputs == 0.0, LOG);
+    assert_true(outputs.size() == outputs_number, LOG);
+    assert_true(outputs == 0.0, LOG);
 }
 
 
 void NeuralNetworkTest::test_calculate_output_data(void)
 {
-   message += "test_calculate_output_data\n";
+    message += "test_calculate_output_data\n";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   Matrix<double> input_data;
-   Matrix<double> output_data;
-   
-   // Test
+    Matrix<double> input_data;
+    Matrix<double> output_data;
 
-   nn.set(1,1,1);
-   nn.initialize_parameters(0.0);
+    // Test
 
-   input_data.set(2, 1, 0.0);
-   output_data = nn.calculate_output_data(input_data);
+    nn.set(1, 1, 1);
+    nn.initialize_parameters(0.0);
 
-   assert_true(output_data.get_rows_number() == 2, LOG);
+    input_data.set(2, 1, 0.0);
+    output_data = nn.calculate_output_data(input_data);
+
+    assert_true(output_data.get_rows_number() == 2, LOG);
 }
 
 
@@ -662,16 +662,16 @@ void NeuralNetworkTest::test_calculate_output_data(void)
 
 void NeuralNetworkTest::test_calculate_Jacobian(void)
 {
-   message += "test_calculate_Jacobian\n";
+    message += "test_calculate_Jacobian\n";
 
-   // One layer
+    // One layer
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   Vector<size_t> multilayer_perceptron_architecture;
+    Vector<size_t> multilayer_perceptron_architecture;
 
-   Vector<double> inputs;
-   Matrix<double> Jacobian;
+    Vector<double> inputs;
+    Matrix<double> Jacobian;
 
 //   Vector<double> inputs_minimum;
 //   Vector<double> inputs_maximum;
@@ -688,82 +688,80 @@ void NeuralNetworkTest::test_calculate_Jacobian(void)
 //   mmlp.set_display(false);
 
 
-   NumericalDifferentiation nd;
-   Matrix<double> numerical_Jacobian;
+    NumericalDifferentiation nd;
+    Matrix<double> numerical_Jacobian;
 
-   // Test
+    // Test
 
-   nn.set(1, 1, 1);
-   nn.initialize_parameters(0.0);
-   inputs.set(1, 0.0);
-   Jacobian = nn.calculate_Jacobian(inputs);
-   assert_true(Jacobian == 0.0, LOG);    
+    nn.set(1, 1, 1);
+    nn.initialize_parameters(0.0);
+    inputs.set(1, 0.0);
+    Jacobian = nn.calculate_Jacobian(inputs);
+    assert_true(Jacobian == 0.0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(3, 4, 2);
-   nn.initialize_parameters(0.0);
-   inputs.set(3, 0.0);
-   Jacobian = nn.calculate_Jacobian(inputs);
-   assert_true(Jacobian == 0.0, LOG);    
+    nn.set(3, 4, 2);
+    nn.initialize_parameters(0.0);
+    inputs.set(3, 0.0);
+    Jacobian = nn.calculate_Jacobian(inputs);
+    assert_true(Jacobian == 0.0, LOG);
 
-   // Test
+    // Test
 
-   if(numerical_differentiation_tests)
-   {
-      nn.set(3, 4, 2);
-      nn.initialize_parameters(0.0);
-      inputs.set(3, 0.0);
-      Jacobian = nn.calculate_Jacobian(inputs);
-      numerical_Jacobian = nd.calculate_Jacobian(nn, &NeuralNetwork::calculate_outputs, inputs);
-      assert_true((Jacobian-numerical_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    if (numerical_differentiation_tests) {
+        nn.set(3, 4, 2);
+        nn.initialize_parameters(0.0);
+        inputs.set(3, 0.0);
+        Jacobian = nn.calculate_Jacobian(inputs);
+        numerical_Jacobian = nd.calculate_Jacobian(nn, &NeuralNetwork::calculate_outputs, inputs);
+        assert_true((Jacobian - numerical_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
+    }
 
-   // Test
+    // Test
 
-   multilayer_perceptron_architecture.set(3, 1);   
-   nn.set(multilayer_perceptron_architecture);
-   nn.initialize_parameters(0.0);
-   inputs.set(1, 0.0);
-   Jacobian = nn.calculate_Jacobian(inputs);
-   assert_true(Jacobian == 0.0, LOG);    
+    multilayer_perceptron_architecture.set(3, 1);
+    nn.set(multilayer_perceptron_architecture);
+    nn.initialize_parameters(0.0);
+    inputs.set(1, 0.0);
+    Jacobian = nn.calculate_Jacobian(inputs);
+    assert_true(Jacobian == 0.0, LOG);
 
-   // Test
+    // Test
 
-   multilayer_perceptron_architecture.set(3);   
-   multilayer_perceptron_architecture[0] = 3;
-   multilayer_perceptron_architecture[1] = 4;
-   multilayer_perceptron_architecture[2] = 1;
+    multilayer_perceptron_architecture.set(3);
+    multilayer_perceptron_architecture[0] = 3;
+    multilayer_perceptron_architecture[1] = 4;
+    multilayer_perceptron_architecture[2] = 1;
 
-   nn.set(multilayer_perceptron_architecture);
+    nn.set(multilayer_perceptron_architecture);
 
-   nn.initialize_parameters(0.0);
-   inputs.set(3, 0.0);
-   Jacobian = nn.calculate_Jacobian(inputs);
-   assert_true(Jacobian == 0.0, LOG);    
+    nn.initialize_parameters(0.0);
+    inputs.set(3, 0.0);
+    Jacobian = nn.calculate_Jacobian(inputs);
+    assert_true(Jacobian == 0.0, LOG);
 
-   // Test
+    // Test
 
-   if(numerical_differentiation_tests)
-   {
-      multilayer_perceptron_architecture.set(3);   
-      multilayer_perceptron_architecture[0] = 3;
-      multilayer_perceptron_architecture[1] = 4;
-      multilayer_perceptron_architecture[2] = 1;
+    if (numerical_differentiation_tests) {
+        multilayer_perceptron_architecture.set(3);
+        multilayer_perceptron_architecture[0] = 3;
+        multilayer_perceptron_architecture[1] = 4;
+        multilayer_perceptron_architecture[2] = 1;
 
-      nn.set(multilayer_perceptron_architecture);
+        nn.set(multilayer_perceptron_architecture);
 
-      inputs.set(3);
-      inputs[0] = 0.0;
-      inputs[1] = 1.0;
-      inputs[2] = 2.0;
+        inputs.set(3);
+        inputs[0] = 0.0;
+        inputs[1] = 1.0;
+        inputs[2] = 2.0;
 
-      Jacobian = nn.calculate_Jacobian(inputs);
-      numerical_Jacobian = nd.calculate_Jacobian(nn, &NeuralNetwork::calculate_outputs, inputs);
-      assert_true((Jacobian-numerical_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+        Jacobian = nn.calculate_Jacobian(inputs);
+        numerical_Jacobian = nd.calculate_Jacobian(nn, &NeuralNetwork::calculate_outputs, inputs);
+        assert_true((Jacobian - numerical_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
+    }
 
-   // Scaling and unscaling test
+    // Scaling and unscaling test
 
 //   if(numerical_differentiation_tests)
 //   {
@@ -773,14 +771,14 @@ void NeuralNetworkTest::test_calculate_Jacobian(void)
 
 //      nn.set_input_minimum(0, -0.3);
 //      nn.set_input_minimum(1, -0.2);
-     
+
 //      nn.set_input_maximum(0, 0.0);
 //      nn.set_input_maximum(1, 0.1);
 
 //      nn.set_output_minimum(0, -1.0);
 //      nn.set_output_minimum(1, -4.1);
 //      nn.set_output_minimum(2, -8.2);
-     
+
 //      nn.set_output_maximum(0, 1.0);
 //      nn.set_output_maximum(1, 7.2);
 //      nn.set_output_maximum(2, 6.0);
@@ -794,7 +792,7 @@ void NeuralNetworkTest::test_calculate_Jacobian(void)
 //      assert_true((Jacobian-numerical_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
 //   }
 
-   // Scaling and unscaling test
+    // Scaling and unscaling test
 
 //   if(numerical_differentiation_tests)
 //   {
@@ -804,14 +802,14 @@ void NeuralNetworkTest::test_calculate_Jacobian(void)
 
 //      nn.set_input_mean(0, -0.3);
 //      nn.set_input_mean(1, -0.2);
-     
+
 //      nn.set_input_standard_deviation(0, 0.2);
 //      nn.set_input_standard_deviation(1, 0.1);
 
 //      nn.set_output_mean(0, -1.0);
 //      nn.set_output_mean(1, -4.1);
 //      nn.set_output_mean(2, -8.2);
-     
+
 //      nn.set_output_standard_deviation(0, 1.0);
 //      nn.set_output_standard_deviation(1, 7.2);
 //      nn.set_output_standard_deviation(2, 6.0);
@@ -825,7 +823,7 @@ void NeuralNetworkTest::test_calculate_Jacobian(void)
 //      assert_true((Jacobian-numerical_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
 //   }
 
-   // Conditions test
+    // Conditions test
 
 //   mmlp.set(1, 1, 1);
 
@@ -833,19 +831,19 @@ void NeuralNetworkTest::test_calculate_Jacobian(void)
 //   inputs.set(1, 0.0);
 //   Jacobian = mmlp.calculate_Jacobian(inputs);
 
-//   assert_true(Jacobian == 0.0, LOG);    
+//   assert_true(Jacobian == 0.0, LOG);
 
-   // Conditions test
+    // Conditions test
 
-   // Lower and upper bounds test
+    // Lower and upper bounds test
 
-   // Probabilistic postprocessing test
+    // Probabilistic postprocessing test
 }
 
 
 void NeuralNetworkTest::test_calculate_Jacobian_data(void)
 {
-   message += "test_calculate_Jacobian_data\n";
+    message += "test_calculate_Jacobian_data\n";
 }
 
 
@@ -853,54 +851,52 @@ void NeuralNetworkTest::test_calculate_Jacobian_data(void)
 
 void NeuralNetworkTest::test_calculate_parameters_Jacobian(void)
 {
-   message += "test_calculate_parameters_Jacobian\n";
+    message += "test_calculate_parameters_Jacobian\n";
 
-   NumericalDifferentiation nd;
+    NumericalDifferentiation nd;
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   Vector<size_t> multilayer_perceptron_architecture;
+    Vector<size_t> multilayer_perceptron_architecture;
 //   size_t outputs_number;
 
 //   size_t parameters_number;
-  
-   Vector<double> inputs;
 
-   Vector<double> parameters;
-   Matrix<double> parameters_Jacobian;
-   Matrix<double> numerical_parameters_Jacobian;
+    Vector<double> inputs;
 
-   // Test
+    Vector<double> parameters;
+    Matrix<double> parameters_Jacobian;
+    Matrix<double> numerical_parameters_Jacobian;
 
-   nn.set(1, 1); 
+    // Test
+
+    nn.set(1, 1);
 
 //   outputs_number = nn.get_outputs_number();
 
 //   parameters_number = nn.count_parameters_number();
 
-   nn.initialize_parameters(0.0);
+    nn.initialize_parameters(0.0);
 
-   inputs.set(1, 0.0);
+    inputs.set(1, 0.0);
 
 //   parameters_Jacobian = nn.calculate_parameters_Jacobian(inputs);
 
 //   assert_true(parameters_Jacobian.get_rows_number() == outputs_number, LOG);
 //   assert_true(parameters_Jacobian.get_columns_number() == parameters_number, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      parameters = nn.arrange_parameters();
 
 //      numerical_parameters_Jacobian = nd.calculate_Jacobian(nn, &NeuralNetwork::calculate_parameters_output, inputs, parameters);
 
 //      assert_true((parameters_Jacobian-numerical_parameters_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   if(numerical_differentiation_tests)
-   {
-//      nn.set(2, 1); 
+    if (numerical_differentiation_tests) {
+//      nn.set(2, 1);
 
 //      nn.initialize_parameters(0.0);
 
@@ -911,14 +907,13 @@ void NeuralNetworkTest::test_calculate_parameters_Jacobian(void)
 //      parameters = nn.arrange_parameters();
 //      numerical_parameters_Jacobian = nd.calculate_Jacobian(nn, &NeuralNetwork::calculate_parameters_output, inputs, parameters);
 
- //     assert_true((parameters_Jacobian-numerical_parameters_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+        //     assert_true((parameters_Jacobian-numerical_parameters_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
+    }
 
-   // Test
+    // Test
 
-   if(numerical_differentiation_tests)
-   {
-//      nn.set(1, 2); 
+    if (numerical_differentiation_tests) {
+//      nn.set(1, 2);
 
 //      nn.initialize_parameters(0.0);
 
@@ -930,13 +925,12 @@ void NeuralNetworkTest::test_calculate_parameters_Jacobian(void)
 //      numerical_parameters_Jacobian = nd.calculate_Jacobian(nn, &NeuralNetwork::calculate_parameters_output, inputs, parameters);
 
 //      assert_true((parameters_Jacobian-numerical_parameters_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-   if(numerical_differentiation_tests)
-   {
-//      nn.set(2, 3); 
+    if (numerical_differentiation_tests) {
+//      nn.set(2, 3);
 
 //      nn.initialize_parameters(0.0);
 
@@ -948,31 +942,30 @@ void NeuralNetworkTest::test_calculate_parameters_Jacobian(void)
 //      numerical_parameters_Jacobian = nd.calculate_Jacobian(nn, &NeuralNetwork::calculate_parameters_output, inputs, parameters);
 
 //      assert_true((parameters_Jacobian-numerical_parameters_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
-//   nn.set(3, 4, 2); 
+//   nn.set(3, 4, 2);
 
 //   outputs_number = nn.get_outputs_number();
 //   parameters_number = nn.count_parameters_number();
 
 //   inputs.set(3, 3.1415927);
-   
+
 //   parameters_Jacobian = nn.calculate_parameters_Jacobian(inputs);
 
 //   assert_true(parameters_Jacobian.get_rows_number() == outputs_number, LOG);
 //   assert_true(parameters_Jacobian.get_columns_number() == parameters_number, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //      parameters = nn.arrange_parameters();
 //      numerical_parameters_Jacobian = nd.calculate_Jacobian(nn, &NeuralNetwork::calculate_parameters_output, inputs, parameters);
 
 //      assert_true((parameters_Jacobian-numerical_parameters_Jacobian).calculate_absolute_value() < 1.0e-3, LOG);
-   }
+    }
 
-   // Test
+    // Test
 
 //   multilayer_perceptron_architecture.set(12, -3, 2);
 
@@ -982,19 +975,18 @@ void NeuralNetworkTest::test_calculate_parameters_Jacobian(void)
 //   parameters_number = nn.count_parameters_number();
 
 //   inputs.set(7, 3.1415927);
-   
+
 //   parameters_Jacobian = nn.calculate_parameters_Jacobian(inputs);
 
 //   assert_true(parameters_Jacobian.get_rows_number() == outputs_number, LOG);
 //   assert_true(parameters_Jacobian.get_columns_number() == parameters_number, LOG);
 
-   if(numerical_differentiation_tests)
-   {
+    if (numerical_differentiation_tests) {
 //    parameters = nn.arrange_parameters();
 //      numerical_parameters_Jacobian = nd.calculate_Jacobian(nn, &NeuralNetwork::calculate_parameters_output, inputs, parameters);
 
 //     assert_true((parameters_Jacobian-numerical_parameters_Jacobian).calculate_absolute_value() < 1.0e-5, LOG);
-   }
+    }
 
 }
 
@@ -1003,139 +995,139 @@ void NeuralNetworkTest::test_calculate_parameters_Jacobian(void)
 
 void NeuralNetworkTest::test_calculate_parameters_Jacobian_data(void)
 {
-   message += "test_calculate_parameters_Jacobian_data\n";
+    message += "test_calculate_parameters_Jacobian_data\n";
 }
 
 
 void NeuralNetworkTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 
-   NeuralNetwork  nn;
+    NeuralNetwork nn;
 
-   tinyxml2::XMLDocument* document;
-   
-   // Test
-   
-   document = nn.to_XML();
+    tinyxml2::XMLDocument *document;
 
-   assert_true(document != NULL, LOG);
+    // Test
 
-   delete document;
+    document = nn.to_XML();
 
-   // Test
+    assert_true(document != NULL, LOG);
 
-   nn.initialize_random();
+    delete document;
 
-   document = nn.to_XML();
+    // Test
 
-   assert_true(document != NULL, LOG);
+    nn.initialize_random();
 
-   delete document;
+    document = nn.to_XML();
+
+    assert_true(document != NULL, LOG);
+
+    delete document;
 }
 
 
 void NeuralNetworkTest::test_from_XML(void)
 {
-   message += "test_from_XML\n";
+    message += "test_from_XML\n";
 
-   NeuralNetwork  nn;
+    NeuralNetwork nn;
 
-   tinyxml2::XMLDocument* document;
-   
-   // Test
+    tinyxml2::XMLDocument *document;
 
-   nn.initialize_random();
+    // Test
 
-   document = nn.to_XML();
+    nn.initialize_random();
 
-   nn.from_XML(*document);
+    document = nn.to_XML();
 
-   delete document;
+    nn.from_XML(*document);
+
+    delete document;
 }
 
 
 void NeuralNetworkTest::test_print(void)
 {
-   message += "test_print\n";
+    message += "test_print\n";
 
-   // Empty neural network
- 
-   NeuralNetwork nn1;
-   //nn1.print();
+    // Empty neural network
 
-   // Only network architecture
+    NeuralNetwork nn1;
+    //nn1.print();
 
-   NeuralNetwork nn2(2, 4, 3);
-   //nn2.print();
+    // Only network architecture
 
-   // Only independent parameters
+    NeuralNetwork nn2(2, 4, 3);
+    //nn2.print();
 
-   NeuralNetwork nn3(2);
-   //nn3.print();
+    // Only independent parameters
 
-   // Both network architecture and independent parameters
+    NeuralNetwork nn3(2);
+    //nn3.print();
 
-   NeuralNetwork nn4(1, 1, 1);
-   //nn4.set_independent_parameters(1);
-   //nn4.print();
+    // Both network architecture and independent parameters
 
-   //nn5.print();
+    NeuralNetwork nn4(1, 1, 1);
+    //nn4.set_independent_parameters(1);
+    //nn4.print();
 
-   // Units
+    //nn5.print();
 
-   // Description
+    // Units
+
+    // Description
 }
 
 
 void NeuralNetworkTest::test_save(void)
 {
-   message += "test_save\n";
+    message += "test_save\n";
 
-   std::string file_name = "../data/neural_network.xml";
+    std::string file_name = "../data/neural_network.xml";
 
-   NeuralNetwork nn;
+    NeuralNetwork nn;
 
-   IndependentParameters* ipp;
+    IndependentParameters *ipp;
 
-   // Empty multilayer perceptron
- 
-   nn.set();
-   nn.save(file_name);
+    // Empty multilayer perceptron
 
-   // Only network architecture
+    nn.set();
+    nn.save(file_name);
 
-   nn.set(2, 4, 3);
-   nn.save(file_name);
+    // Only network architecture
 
-   // Only independent parameters
+    nn.set(2, 4, 3);
+    nn.save(file_name);
 
-   nn.set(2);
-   nn.save(file_name);
+    // Only independent parameters
 
-   // Both network architecture and independent parameters
+    nn.set(2);
+    nn.save(file_name);
 
-   nn.set(1, 1, 1);
-   nn.construct_independent_parameters();
+    // Both network architecture and independent parameters
 
-   ipp = nn.get_independent_parameters_pointer();
+    nn.set(1, 1, 1);
+    nn.construct_independent_parameters();
 
-   ipp->set_parameters_number(1);
-   nn.save(file_name);
+    ipp = nn.get_independent_parameters_pointer();
+
+    ipp->set_parameters_number(1);
+    nn.save(file_name);
 }
 
 
 void NeuralNetworkTest::test_load(void)
 {
-   message += "test_load\n";
+    message += "test_load\n";
 
-   std::string file_name = "../data/neural_network.xml";
+    std::string file_name = "../data/neural_network.xml";
 
-   // Empty neural network
+    // Empty neural network
 
-   NeuralNetwork nn1;
-   nn1.save(file_name);
-   nn1.load(file_name);
+    NeuralNetwork nn1;
+    nn1.save(file_name);
+    nn1.load(file_name);
 }
 
 
@@ -1143,43 +1135,43 @@ void NeuralNetworkTest::test_load(void)
 
 void NeuralNetworkTest::test_write_expression(void)
 {
-   message += "test_write_expression\n";
+    message += "test_write_expression\n";
 
-   NeuralNetwork nn;
-   std::string expression;
+    NeuralNetwork nn;
+    std::string expression;
 
-   // Test
+    // Test
 
 //   expression = nn.write_expression();
 
-   // Test
+    // Test
 
-   nn.set(1, 1, 1);
-   nn.initialize_parameters(-1.0);
+    nn.set(1, 1, 1);
+    nn.initialize_parameters(-1.0);
 //   expression = nn.write_expression();
 
-   // Test
+    // Test
 
-   nn.set(2, 1, 1);
-   nn.initialize_parameters(-1.0);
+    nn.set(2, 1, 1);
+    nn.initialize_parameters(-1.0);
 //   expression = nn.write_expression();
 
-   // Test
+    // Test
 
-   nn.set(1, 2, 1);
-   nn.initialize_parameters(-1.0);
+    nn.set(1, 2, 1);
+    nn.initialize_parameters(-1.0);
 //   expression = nn.write_expression();
 
-   // Test
+    // Test
 
-   nn.set(1, 1, 2);
-   nn.initialize_parameters(-1.0);
+    nn.set(1, 1, 2);
+    nn.initialize_parameters(-1.0);
 //   expression = nn.write_expression();
 
-   // Test
+    // Test
 
-   nn.set(2, 2, 2);
-   nn.initialize_parameters(-1.0);
+    nn.set(2, 2, 2);
+    nn.initialize_parameters(-1.0);
 //   expression = nn.write_expression();
 
 }
@@ -1187,127 +1179,127 @@ void NeuralNetworkTest::test_write_expression(void)
 
 void NeuralNetworkTest::test_get_Hinton_diagram_XML(void)
 {
-   message += "test_get_Hinton_diagram_XML\n";
+    message += "test_get_Hinton_diagram_XML\n";
 }
 
 
 void NeuralNetworkTest::test_save_Hinton_diagram(void)
 {
-   message += "test_save_Hinton_diagram\n";
+    message += "test_save_Hinton_diagram\n";
 }
 
 
 void NeuralNetworkTest::run_test_case(void)
 {
-   message += "Running neural network test case...\n";
+    message += "Running neural network test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Assignment operators methods
+    // Assignment operators methods
 
-   test_assignment_operator();
+    test_assignment_operator();
 
-   // Get methods
+    // Get methods
 
-   test_get_inputs_pointer();
-   test_get_outputs_pointer();
+    test_get_inputs_pointer();
+    test_get_outputs_pointer();
 
-   test_get_multilayer_perceptron_pointer();
-   test_get_scaling_layer_pointer();
-   test_get_unscaling_layer_pointer();   
-   test_get_bounding_layer_pointer();
-   test_get_probabilistic_layer_pointer();
-   test_get_conditions_layer_pointer();
-   test_get_independent_parameters_pointer();
+    test_get_multilayer_perceptron_pointer();
+    test_get_scaling_layer_pointer();
+    test_get_unscaling_layer_pointer();
+    test_get_bounding_layer_pointer();
+    test_get_probabilistic_layer_pointer();
+    test_get_conditions_layer_pointer();
+    test_get_independent_parameters_pointer();
 
-   // Parameters methods
+    // Parameters methods
 
-   test_count_parameters_number();
-   test_arrange_parameters();   
+    test_count_parameters_number();
+    test_arrange_parameters();
 
-   // Display messages
+    // Display messages
 
-   test_get_display();
+    test_get_display();
 
-   // Set methods
+    // Set methods
 
-   test_set();
-   test_set_default();
+    test_set();
+    test_set_default();
 
-   // Variables
+    // Variables
 
-   test_set_variables();
+    test_set_variables();
 
-   // Variables statistics
+    // Variables statistics
 
-   test_set_variables_statistics();
+    test_set_variables_statistics();
 
-   // Independent parameters
+    // Independent parameters
 
-   test_set_independent_parameters();
+    test_set_independent_parameters();
 
-   // Parameters methods
+    // Parameters methods
 
-   test_set_parameters();
+    test_set_parameters();
 
-   // Display messages
+    // Display messages
 
-   test_set_display();
+    test_set_display();
 
-   // Growing and pruning
+    // Growing and pruning
 
-   test_prune_input();
-   test_prune_output();
+    test_prune_input();
+    test_prune_output();
 
-   // Neural network initialization methods
+    // Neural network initialization methods
 
-   test_initialize_random();
+    test_initialize_random();
 
-   // Parameters initialization methods
+    // Parameters initialization methods
 
-   test_initialize_parameters();
-   test_randomize_parameters_uniform();
-   test_randomize_parameters_normal();
+    test_initialize_parameters();
+    test_randomize_parameters_uniform();
+    test_randomize_parameters_normal();
 
-   // Parameters norm 
+    // Parameters norm
 
-   test_calculate_parameters_norm();
+    test_calculate_parameters_norm();
 
-   // Output 
+    // Output
 
-   test_calculate_outputs();
-   test_calculate_output_data();
+    test_calculate_outputs();
+    test_calculate_output_data();
 
-   test_calculate_Jacobian();
-   test_calculate_Jacobian_data();
+    test_calculate_Jacobian();
+    test_calculate_Jacobian_data();
 
-   test_calculate_parameters_Jacobian();
-   test_calculate_parameters_Jacobian_data();
+    test_calculate_parameters_Jacobian();
+    test_calculate_parameters_Jacobian_data();
 
-   // Expression methods
+    // Expression methods
 
-   test_write_expression();
+    test_write_expression();
 
-   // Hinton diagram methods
+    // Hinton diagram methods
 
-   test_get_Hinton_diagram_XML();
+    test_get_Hinton_diagram_XML();
 
-   test_save_Hinton_diagram();
+    test_save_Hinton_diagram();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
-   test_print();
-   test_save();
+    test_print();
+    test_save();
 
-   test_load();
+    test_load();
 
-   message += "End of neural network test case.\n";
+    message += "End of neural network test case.\n";
 }
 
 

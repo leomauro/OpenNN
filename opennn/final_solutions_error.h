@@ -33,119 +33,95 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This class represents the final solutions error constraints functional.
 /// The final solutions error is measured on a mathematical model.
 /// This constraints functional often appears in optimal control problems.
+class FinalSolutionsError : public PerformanceTerm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit FinalSolutionsError(void);
 
-    class FinalSolutionsError : public PerformanceTerm {
+    // NEURAL NETWORK CONSTRUCTOR
+    explicit FinalSolutionsError(NeuralNetwork *);
 
-    public:
+    // MATHEMATICAL MODEL CONSTRUCTOR
+    explicit FinalSolutionsError(MathematicalModel *);
 
-        // DEFAULT CONSTRUCTOR
+    // NEURAL NETWORK AND MATHEMATICAL MODEL CONSTRUCTOR
+    explicit FinalSolutionsError(NeuralNetwork *, MathematicalModel *);
 
-        explicit FinalSolutionsError(void);
+    // XML CONSTRUCTOR
+    explicit FinalSolutionsError(const tinyxml2::XMLDocument &);
 
-        // NEURAL NETWORK CONSTRUCTOR
+    // COPY CONSTRUCTOR
+    FinalSolutionsError(const FinalSolutionsError &);
 
-        explicit FinalSolutionsError(NeuralNetwork *);
+    // DESTRUCTOR
+    virtual ~FinalSolutionsError(void);
 
-        // MATHEMATICAL MODEL CONSTRUCTOR
+    // ASSIGNMENT OPERATOR
+    FinalSolutionsError &operator=(const FinalSolutionsError &);
 
-        explicit FinalSolutionsError(MathematicalModel *);
+    // EQUAL TO OPERATOR
+    bool operator==(const FinalSolutionsError &) const;
 
-        // NEURAL NETWORK AND MATHEMATICAL MODEL CONSTRUCTOR
+    // Get methods
+    const Vector<double> &get_final_solutions_errors_weights(void) const;
 
-        explicit FinalSolutionsError(NeuralNetwork *, MathematicalModel *);
+    const Vector<double> &get_target_final_solutions(void) const;
 
-        // XML CONSTRUCTOR
+    // Set methods
+    void set(void);
 
-        explicit FinalSolutionsError(const tinyxml2::XMLDocument &);
+    void set(NeuralNetwork *);
 
-        // COPY CONSTRUCTOR
+    void set(MathematicalModel *);
 
-        FinalSolutionsError(const FinalSolutionsError &);
+    void set(NeuralNetwork *, MathematicalModel *);
 
-        // DESTRUCTOR
+    void set_mathematical_model_pointer(MathematicalModel *);
 
-        virtual ~FinalSolutionsError(void);
+    void set_final_solutions_errors_weights(const Vector<double> &);
 
-        // ASSIGNMENT OPERATOR
+    void set_final_solution_error_weight(const size_t &, const double &);
 
-        FinalSolutionsError &operator=(const FinalSolutionsError &);
+    void set_target_final_solutions(const Vector<double> &);
 
-        // EQUAL TO OPERATOR
+    void set_target_final_solution(const size_t &, const double &);
 
-        bool operator==(const FinalSolutionsError &) const;
+    void set_default(void);
 
-        // METHODS
+    // Checking methods
+    void check(void) const;
 
-        // Get methods
+    // Performance term methods
+    double calculate_performance(void) const;
 
-        const Vector<double> &get_final_solutions_errors_weights(void) const;
+    double calculate_performance(const Vector<double> &) const;
 
-        const Vector<double> &get_target_final_solutions(void) const;
+    std::string write_performance_term_type(void) const;
 
-        // Set methods
+    std::string write_information(void) const;
 
-        void set(void);
+    // Serialization methods
+    tinyxml2::XMLDocument *to_XML(void) const;
 
-        void set(NeuralNetwork *);
+    void from_XML(const tinyxml2::XMLDocument &);
 
-        void set(MathematicalModel *);
+private:
+    /// Desired final values for the dependent variables.
+    /// The size of this vector must be equal to the number of dependent variablese in the mathematical model.
+    Vector<double> target_final_solutions;
 
-        void set(NeuralNetwork *, MathematicalModel *);
+    /// Weight value for each error on the final solution.
+    /// The size of this vector must be equal to the number of dependent variablese in the mathematical model.
+    Vector<double> final_solutions_errors_weights;
+};
 
-//   void set(const FinalSolutionsError&);
-
-        void set_mathematical_model_pointer(MathematicalModel *);
-
-        void set_final_solutions_errors_weights(const Vector<double> &);
-
-        void set_final_solution_error_weight(const size_t &, const double &);
-
-        void set_target_final_solutions(const Vector<double> &);
-
-        void set_target_final_solution(const size_t &, const double &);
-
-        void set_default(void);
-
-        // Checking methods
-
-        void check(void) const;
-
-        // Performance term methods
-
-        double calculate_performance(void) const;
-
-        double calculate_performance(const Vector<double> &) const;
-
-        std::string write_performance_term_type(void) const;
-
-        std::string write_information(void) const;
-
-        // Serialization methods
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-    private:
-
-        // MEMBERS
-
-        /// Desired final values for the dependent variables.
-        /// The size of this vector must be equal to the number of dependent variablese in the mathematical model.
-
-        Vector<double> target_final_solutions;
-
-        /// Weight value for each error on the final solution.
-        /// The size of this vector must be equal to the number of dependent variablese in the mathematical model.
-
-        Vector<double> final_solutions_errors_weights;
-
-    };
 
 }
 

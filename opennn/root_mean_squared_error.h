@@ -32,75 +32,59 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This class represents the root mean squared error performance term.
 /// The root mean squared error measures the difference between the outputs from a neural network and the targets in a data set.
 /// This functional is used in data modeling problems.
+class RootMeanSquaredError : public PerformanceTerm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit RootMeanSquaredError(void);
 
-    class RootMeanSquaredError : public PerformanceTerm {
+    // NEURAL NETWORK CONSTRUCTOR
+    explicit RootMeanSquaredError(NeuralNetwork *);
 
-    public:
+    // DATA SET CONSTRUCTOR
+    explicit RootMeanSquaredError(DataSet *);
 
-        // DEFAULT CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
+    explicit RootMeanSquaredError(NeuralNetwork *, DataSet *);
 
-        explicit RootMeanSquaredError(void);
+    // XML CONSTRUCTOR
+    explicit RootMeanSquaredError(const tinyxml2::XMLDocument &);
 
-        // NEURAL NETWORK CONSTRUCTOR
+    // DESTRUCTOR
+    virtual ~RootMeanSquaredError(void);
 
-        explicit RootMeanSquaredError(NeuralNetwork *);
+    // Checking methods
+    void check(void) const;
 
-        // DATA SET CONSTRUCTOR
+    // Performance term performance methods
+    double calculate_performance(void) const;
 
-        explicit RootMeanSquaredError(DataSet *);
+    double calculate_performance(const Vector<double> &) const;
 
-        // GENERAL CONSTRUCTOR
+    double calculate_selection_performance(void) const;
 
-        explicit RootMeanSquaredError(NeuralNetwork *, DataSet *);
+    Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
 
-        // XML CONSTRUCTOR
+    Vector<double> calculate_gradient(void) const;
 
-        explicit RootMeanSquaredError(const tinyxml2::XMLDocument &);
+    Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
 
-        // DESTRUCTOR
+    Matrix<double> calculate_Hessian(void) const;
 
-        virtual ~RootMeanSquaredError(void);
+    std::string write_performance_term_type(void) const;
 
-        // METHODS
+    // Serialization methods
+    tinyxml2::XMLDocument *to_XML(void) const;
 
-        // Get methods
+    void from_XML(const tinyxml2::XMLDocument &);
+};
 
-        // Set methods
-
-        // Checking methods
-
-        void check(void) const;
-
-        // Performance term performance methods
-
-        double calculate_performance(void) const;
-
-        double calculate_performance(const Vector<double> &) const;
-
-        double calculate_selection_performance(void) const;
-
-        Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
-
-        Vector<double> calculate_gradient(void) const;
-
-        Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
-
-        Matrix<double> calculate_Hessian(void) const;
-
-        std::string write_performance_term_type(void) const;
-
-        // Serialization methods
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-    };
 
 }
 

@@ -21,49 +21,51 @@
 using namespace OpenNN;
 
 
-class NewtonMethodTest : public UnitTesting 
-{
+class NewtonMethodTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // CONSTRUCTOR
+    // CONSTRUCTOR
 
-   explicit NewtonMethodTest(void);
+    explicit NewtonMethodTest(void);
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~NewtonMethodTest(void);
+    virtual ~NewtonMethodTest(void);
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+    void test_constructor(void);
 
-   // Training methods
+    void test_destructor(void);
 
-   void test_calculate_gradient_descent_training_direction(void);
-   void test_calculate_training_direction(void);
+    // Training methods
 
-   void test_perform_training(void);
+    void test_calculate_gradient_descent_training_direction(void);
 
-   // Training history methods
+    void test_calculate_training_direction(void);
 
-   void test_resize_training_history(void);
-   void test_set_reserve_all_training_history(void);
+    void test_perform_training(void);
 
-   // Serialization methods
+    // Training history methods
 
-   void test_to_XML(void);
+    void test_resize_training_history(void);
 
-   void test_from_XML(void);
+    void test_set_reserve_all_training_history(void);
 
-   // Unit testing methods
+    // Serialization methods
 
-   void run_test_case(void);
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 
 };
 

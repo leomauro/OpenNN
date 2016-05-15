@@ -19,12 +19,12 @@
 using namespace OpenNN;
 
 
-ModelSelectionTest::ModelSelectionTest(void) : UnitTesting() 
+ModelSelectionTest::ModelSelectionTest(void) : UnitTesting()
 {
 }
 
 
-ModelSelectionTest::~ModelSelectionTest(void) 
+ModelSelectionTest::~ModelSelectionTest(void)
 {
 }
 
@@ -49,7 +49,7 @@ void ModelSelectionTest::test_destructor(void)
 {
     message += "test_destructor\n";
 
-    ModelSelection* ms = new ModelSelection;
+    ModelSelection *ms = new ModelSelection;
 
     delete ms;
 }
@@ -95,13 +95,13 @@ void ModelSelectionTest::test_perform_order_selection(void)
 }
 
 
-void ModelSelectionTest::test_to_XML(void)   
+void ModelSelectionTest::test_to_XML(void)
 {
     message += "test_to_XML\n";
 
     ModelSelection ms;
 
-    tinyxml2::XMLDocument* document = ms.to_XML();
+    tinyxml2::XMLDocument *document = ms.to_XML();
     assert_true(document != NULL, LOG);
 
     delete document;
@@ -116,7 +116,7 @@ void ModelSelectionTest::test_from_XML(void)
 
     ms1.set_order_selection_type(ModelSelection::INCREMENTAL_ORDER);
 
-    tinyxml2::XMLDocument* document = ms1.to_XML();
+    tinyxml2::XMLDocument *document = ms1.to_XML();
 
     ms2.from_XML(*document);
 

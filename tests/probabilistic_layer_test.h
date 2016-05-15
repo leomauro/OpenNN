@@ -31,8 +31,7 @@
 using namespace OpenNN;
 
 
-class ProbabilisticLayerTest : public UnitTesting
-{
+class ProbabilisticLayerTest : public UnitTesting {
 
 #define STRING(x) #x
 #define TOSTRING(x) STRING(x)
@@ -40,70 +39,75 @@ class ProbabilisticLayerTest : public UnitTesting
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit ProbabilisticLayerTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~ProbabilisticLayerTest(void);
-
-   // METHODS
-
-   // Constructor and destructor methods
-
-   void test_constructor(void);
-   void test_destructor(void);
-
-   // Assignment operators methods
-
-   void test_assignment_operator(void);
-
-   // Get methods
-
-   // Probabilistic layer
-
-   void test_count_probabilistic_neurons_number(void);
-
-   // Output variables probabilistic postprocessing
+    explicit ProbabilisticLayerTest(void);
 
 
-   // Display messages
+    // DESTRUCTOR
 
-   void test_get_display(void);
+    virtual ~ProbabilisticLayerTest(void);
 
-   // SET METHODS
+    // METHODS
 
-   void test_set(void);
-   void test_set_default(void);
+    // Constructor and destructor methods
 
-   // Display messages
+    void test_constructor(void);
 
-   void test_set_display(void);
+    void test_destructor(void);
 
-   // Neural network initialization methods
+    // Assignment operators methods
 
-   void test_initialize_random(void);
+    void test_assignment_operator(void);
 
-  // Probabilistic post-processing
+    // Get methods
 
-   void test_calculate_outputs(void);
-   void test_calculate_Jacobian(void);
-   void test_calculate_Hessian_form(void);
+    // Probabilistic layer
 
-   // Expression methods
+    void test_count_probabilistic_neurons_number(void);
 
-   void test_get_layer_expression(void);
+    // Output variables probabilistic postprocessing
 
-   // Serialization methods
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    // Display messages
 
-   // Unit testing methods
+    void test_get_display(void);
 
-   void run_test_case(void);
+    // SET METHODS
+
+    void test_set(void);
+
+    void test_set_default(void);
+
+    // Display messages
+
+    void test_set_display(void);
+
+    // Neural network initialization methods
+
+    void test_initialize_random(void);
+
+    // Probabilistic post-processing
+
+    void test_calculate_outputs(void);
+
+    void test_calculate_Jacobian(void);
+
+    void test_calculate_Hessian_form(void);
+
+    // Expression methods
+
+    void test_get_layer_expression(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

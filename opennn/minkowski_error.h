@@ -31,87 +31,68 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This class represents the Minkowski error performance term.
 /// The Minkowski error measures the difference between the outputs of a neural network and the targets in a data set.
 /// This performance term is used in data modeling problems.
 /// It can be more useful when the data set presents outliers.
+class MinkowskiError : public PerformanceTerm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit MinkowskiError(void);
 
-    class MinkowskiError : public PerformanceTerm {
+    // NEURAL NETWORK CONSTRUCTOR
+    explicit MinkowskiError(NeuralNetwork *);
 
-    public:
+    // DATA SET CONSTRUCTOR
+    explicit MinkowskiError(DataSet *);
 
-        // DEFAULT CONSTRUCTOR
+    // NEURAL NETWORK AND DATA SET CONSTRUCTOR
+    explicit MinkowskiError(NeuralNetwork *, DataSet *);
 
-        explicit MinkowskiError(void);
+    // XML CONSTRUCTOR
+    explicit MinkowskiError(const tinyxml2::XMLDocument &);
 
-        // NEURAL NETWORK CONSTRUCTOR
+    // DESTRUCTOR
+    virtual ~MinkowskiError(void);
 
-        explicit MinkowskiError(NeuralNetwork *);
+    // Get methods
+    double get_Minkowski_parameter(void) const;
 
-        // DATA SET CONSTRUCTOR
+    // Set methods
+    void set_default(void);
 
-        explicit MinkowskiError(DataSet *);
+    void set_Minkowski_parameter(const double &);
 
-        // NEURAL NETWORK AND DATA SET CONSTRUCTOR
+    // Checking methods
+    void check(void) const;
 
-        explicit MinkowskiError(NeuralNetwork *, DataSet *);
+    // performance methods
+    double calculate_performance(void) const;
 
-        // XML CONSTRUCTOR
+    double calculate_performance(const Vector<double> &) const;
 
-        explicit MinkowskiError(const tinyxml2::XMLDocument &);
+    double calculate_selection_performance(void) const;
 
-        // DESTRUCTOR
+    Vector<double> calculate_gradient(void) const;
 
-        virtual ~MinkowskiError(void);
+    Matrix<double> calculate_Hessian(void) const;
 
+    std::string write_performance_term_type(void) const;
 
-        // METHODS
+    // Serialization methods
+    tinyxml2::XMLDocument *to_XML(void) const;
 
-        // Get methods
+    void from_XML(const tinyxml2::XMLDocument &);
 
-        double get_Minkowski_parameter(void) const;
+private:
+    /// Minkowski exponent value.
+    double Minkowski_parameter;
+};
 
-        // Set methods
-
-        void set_default(void);
-
-        void set_Minkowski_parameter(const double &);
-
-        // Checking methods
-
-        void check(void) const;
-
-        // performance methods
-
-        double calculate_performance(void) const;
-
-        double calculate_performance(const Vector<double> &) const;
-
-        double calculate_selection_performance(void) const;
-
-        Vector<double> calculate_gradient(void) const;
-
-        Matrix<double> calculate_Hessian(void) const;
-
-        std::string write_performance_term_type(void) const;
-
-        // Serialization methods
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-    private:
-
-        // MEMBERS
-
-        /// Minkowski exponent value.
-
-        double Minkowski_parameter;
-
-    };
 
 }
 

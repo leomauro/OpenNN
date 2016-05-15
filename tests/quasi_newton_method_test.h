@@ -22,65 +22,69 @@
 using namespace OpenNN;
 
 
-class QuasiNewtonMethodTest : public UnitTesting 
-{
+class QuasiNewtonMethodTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit QuasiNewtonMethodTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~QuasiNewtonMethodTest(void);
+    explicit QuasiNewtonMethodTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~QuasiNewtonMethodTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void); 
 
-   // Get methods
+    // METHODS
 
-   void test_get_inverse_Hessian_approximation_method(void);
-   void test_get_inverse_Hessian_approximation_method_name(void);
+    // Constructor and destructor methods
 
-   // Set methods
+    void test_constructor(void);
 
-   void test_set_inverse_Hessian_approximation_method(void);
+    void test_destructor(void);
 
-   // Training methods
+    // Get methods
 
-   void test_calculate_DFP_inverse_Hessian_approximation(void);
-   void test_calculate_BFGS_inverse_Hessian_approximation(void);
+    void test_get_inverse_Hessian_approximation_method(void);
 
-   void test_calculate_inverse_Hessian_approximation(void);
-   void test_calculate_training_direction(void);
+    void test_get_inverse_Hessian_approximation_method_name(void);
 
-   void test_perform_training(void);
+    // Set methods
 
-   // Training history methods
+    void test_set_inverse_Hessian_approximation_method(void);
 
-   void test_resize_training_history(void);
+    // Training methods
 
-   void test_set_reserve_all_training_history(void);
+    void test_calculate_DFP_inverse_Hessian_approximation(void);
 
-   // Serialization methods
+    void test_calculate_BFGS_inverse_Hessian_approximation(void);
 
-   void test_to_XML(void);   
-   void test_load(void);
-  
-   // Unit testing methods
+    void test_calculate_inverse_Hessian_approximation(void);
 
-   void run_test_case(void);
+    void test_calculate_training_direction(void);
+
+    void test_perform_training(void);
+
+    // Training history methods
+
+    void test_resize_training_history(void);
+
+    void test_set_reserve_all_training_history(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_load(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

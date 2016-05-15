@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   P L U G - I N   T E S T   C L A S S                                                                        */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -19,8 +19,8 @@
 using namespace OpenNN;
 
 
-PlugInTest::PlugInTest(void) : UnitTesting() 
-{   
+PlugInTest::PlugInTest(void) : UnitTesting()
+{
 }
 
 
@@ -31,119 +31,119 @@ PlugInTest::~PlugInTest(void)
 
 void PlugInTest::test_get_template_file_name(void)
 {
-   message += "test_get_template_file_name\n";
+    message += "test_get_template_file_name\n";
 }
 
 
 void PlugInTest::test_get_input_file_name(void)
 {
-   message += "test_get_input_file_name\n";
+    message += "test_get_input_file_name\n";
 }
 
 
 void PlugInTest::test_get_script_file_name(void)
 {
-   message += "test_get_script_file_name\n";
+    message += "test_get_script_file_name\n";
 }
 
 
 void PlugInTest::test_get_output_file_name(void)
 {
-   message += "test_get_output_file_name\n";
+    message += "test_get_output_file_name\n";
 }
 
 
 void PlugInTest::test_get_input_flags(void)
 {
-   message += "test_get_input_flags\n";
+    message += "test_get_input_flags\n";
 }
 
 
 void PlugInTest::test_get_display(void)
 {
-   message += "test_get_display\n";
+    message += "test_get_display\n";
 }
 
 
 void PlugInTest::test_set_template_file_name(void)
 {
-   message += "test_set_template_file_name\n";
+    message += "test_set_template_file_name\n";
 }
 
 
 void PlugInTest::test_set_input_file_name(void)
 {
-   message += "test_set_input_file_name\n";
+    message += "test_set_input_file_name\n";
 }
 
 
 void PlugInTest::test_set_script_file_name(void)
 {
-   message += "test_set_script_file_name\n";
+    message += "test_set_script_file_name\n";
 }
 
 
 void PlugInTest::test_set_output_file_name(void)
 {
-   message += "test_set_output_file_name\n";
+    message += "test_set_output_file_name\n";
 }
 
 
 void PlugInTest::test_set_input_flags(void)
 {
-   message += "test_set_input_flags\n";
+    message += "test_set_input_flags\n";
 }
 
 
 void PlugInTest::test_set_display(void)
 {
-   message += "test_set_display\n";
+    message += "test_set_display\n";
 }
 
 // @todo
 
 void PlugInTest::test_write_input_file(void)
 {
-   message += "test_write_input_file\n";
+    message += "test_write_input_file\n";
 
-   //NeuralNetwork nn;
+    //NeuralNetwork nn;
 
-   //PlugIn pi(&nn);
+    //PlugIn pi(&nn);
 
-   //Vector<std::string> input_flags;
+    //Vector<std::string> input_flags;
 
-   //// Test
+    //// Test
 
-   //nn.set(3);
+    //nn.set(3);
 
-   //nn.get_independent_parameters_pointer()->set_parameter(0, 1.0);
-   //nn.get_independent_parameters_pointer()->set_parameter(1, 3.0);
-   //nn.get_independent_parameters_pointer()->set_parameter(2, 5.0);
+    //nn.get_independent_parameters_pointer()->set_parameter(0, 1.0);
+    //nn.get_independent_parameters_pointer()->set_parameter(1, 3.0);
+    //nn.get_independent_parameters_pointer()->set_parameter(2, 5.0);
 
-   //pi.set_template_file_name("../data/opennn_tests/template.dat");
-   //pi.set_input_file_name("../data/opennn_tests/input.dat");
+    //pi.set_template_file_name("../data/opennn_tests/template.dat");
+    //pi.set_input_file_name("../data/opennn_tests/input.dat");
 
-   //input_flags.set(3);
-   //input_flags[0] = "input_flag_1";
-   //input_flags[1] = "input_flag_3";
-   //input_flags[2] = "input_flag_5";
-   //
-   //pi.set_input_flags(input_flags);
+    //input_flags.set(3);
+    //input_flags[0] = "input_flag_1";
+    //input_flags[1] = "input_flag_3";
+    //input_flags[2] = "input_flag_5";
+    //
+    //pi.set_input_flags(input_flags);
 
-   //pi.write_input_file();
+    //pi.write_input_file();
 
 }
 
 
 void PlugInTest::test_run_script(void)
 {
-   message += "test_run_script\n";
+    message += "test_run_script\n";
 
-   PlugIn pi;
+    PlugIn pi;
 
-   // Test
+    // Test
 
-   //pi.set_script_file_name("../data/script");
+    //pi.set_script_file_name("../data/script");
 
 //   pi.run_script();
 
@@ -152,23 +152,23 @@ void PlugInTest::test_run_script(void)
 
 void PlugInTest::test_read_output_file(void)
 {
-   message += "test_read_output_file\n";
+    message += "test_read_output_file\n";
 
-   PlugIn pi;
+    PlugIn pi;
 
-   std::string output_file_name;
+    std::string output_file_name;
 
-   // Test
+    // Test
 
-   output_file_name = "../data/output.dat";
+    output_file_name = "../data/output.dat";
 
-   pi.set_output_file_name(output_file_name);
+    pi.set_output_file_name(output_file_name);
 }
 
 
 void PlugInTest::test_read_output_file_header(void)
 {
-   message += "test_read_output_file_header\n";
+    message += "test_read_output_file_header\n";
 }
 
 
@@ -176,167 +176,167 @@ void PlugInTest::test_read_output_file_header(void)
 
 void PlugInTest::test_calculate_output_data(void)
 {
-   
-   message += "test_calculate_output_data\n";
 
-   PlugIn pi;
+    message += "test_calculate_output_data\n";
 
-   std::string template_file_name;
-   std::string input_file_name;
-   std::string script_file_name;
-   std::string output_file_name;
+    PlugIn pi;
 
-   Vector<std::string> input_flags;
+    std::string template_file_name;
+    std::string input_file_name;
+    std::string script_file_name;
+    std::string output_file_name;
 
-   Vector<double> input_values;
+    Vector<std::string> input_flags;
 
-   Matrix<double> outut_values;
+    Vector<double> input_values;
 
-   // Test
+    Matrix<double> outut_values;
 
-   template_file_name = "../data/template.dat";
-   input_file_name = "../data/input.dat";
-   script_file_name = "../data/batch.dat";
-   output_file_name = "../data/output.dat";
+    // Test
 
-   pi.set_template_file_name(template_file_name);
-   pi.set_input_file_name(input_file_name);
-   pi.set_script_file_name(script_file_name);
-   pi.set_output_file_name(output_file_name);
+    template_file_name = "../data/template.dat";
+    input_file_name = "../data/input.dat";
+    script_file_name = "../data/batch.dat";
+    output_file_name = "../data/output.dat";
 
-   input_flags.set(2);
-   input_flags[0] = "input_flag_1";
-   input_flags[1] = "input_flag_2";
+    pi.set_template_file_name(template_file_name);
+    pi.set_input_file_name(input_file_name);
+    pi.set_script_file_name(script_file_name);
+    pi.set_output_file_name(output_file_name);
 
-   pi.set_input_flags(input_flags);
+    input_flags.set(2);
+    input_flags[0] = "input_flag_1";
+    input_flags[1] = "input_flag_2";
+
+    pi.set_input_flags(input_flags);
 
 //   pi.write_input_file();
 
 }
 
 
-void PlugInTest::test_to_XML(void)   
+void PlugInTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 }
 
 
-void PlugInTest::test_from_XML(void)   
+void PlugInTest::test_from_XML(void)
 {
-   message += "test_from_XML\n";
+    message += "test_from_XML\n";
 }
 
 
 void PlugInTest::test_save(void)
 {
-   message += "test_save\n";
+    message += "test_save\n";
 
-   std::string file_name = "../data/plug_in.xml";
+    std::string file_name = "../data/plug_in.xml";
 
-   PlugIn pi;
+    PlugIn pi;
 
-   std::string template_file_name;
-   std::string input_file_name;
-   std::string script_file_name;
-   std::string output_file_name;
+    std::string template_file_name;
+    std::string input_file_name;
+    std::string script_file_name;
+    std::string output_file_name;
 
-   Vector<std::string> input_flags;
+    Vector<std::string> input_flags;
 
-   bool display;
+    bool display;
 
-   Vector<double> input_values;
+    Vector<double> input_values;
 
-   Matrix<double> outut_values;
+    Matrix<double> outut_values;
 
-   // Test
+    // Test
 
-   template_file_name = "template.dat";
-   input_file_name = "input.dat";
-   script_file_name = "batch.dat";
-   output_file_name = "output.dat";
-   
+    template_file_name = "template.dat";
+    input_file_name = "input.dat";
+    script_file_name = "batch.dat";
+    output_file_name = "output.dat";
 
-   pi.set_template_file_name(template_file_name);
-   pi.set_input_file_name(input_file_name);
-   pi.set_script_file_name(script_file_name);
-   pi.set_output_file_name(output_file_name);
 
-   input_flags.set(2);
-   input_flags[0] = "input_flag_1";
-   input_flags[1] = "input_flag_2";
+    pi.set_template_file_name(template_file_name);
+    pi.set_input_file_name(input_file_name);
+    pi.set_script_file_name(script_file_name);
+    pi.set_output_file_name(output_file_name);
 
-   pi.set_input_flags(input_flags);
+    input_flags.set(2);
+    input_flags[0] = "input_flag_1";
+    input_flags[1] = "input_flag_2";
 
-   display = false;
+    pi.set_input_flags(input_flags);
 
-   pi.set_display(display);
+    display = false;
 
-   pi.save(file_name);
+    pi.set_display(display);
 
-   pi.load(file_name);
+    pi.save(file_name);
 
-   assert_true(pi.get_template_file_name() == template_file_name, LOG);
-   assert_true(pi.get_input_file_name() == input_file_name, LOG);
-   assert_true(pi.get_script_file_name() == script_file_name, LOG);
-   assert_true(pi.get_output_file_name() == output_file_name, LOG);
-   assert_true(pi.get_input_flags() == input_flags, LOG);
+    pi.load(file_name);
+
+    assert_true(pi.get_template_file_name() == template_file_name, LOG);
+    assert_true(pi.get_input_file_name() == input_file_name, LOG);
+    assert_true(pi.get_script_file_name() == script_file_name, LOG);
+    assert_true(pi.get_output_file_name() == output_file_name, LOG);
+    assert_true(pi.get_input_flags() == input_flags, LOG);
 
 }
 
 
 void PlugInTest::test_load(void)
 {
-   message += "test_load\n";
+    message += "test_load\n";
 }
 
 
 void PlugInTest::run_test_case(void)
 {
-   message += "Running plug-in test case...\n";  
+    message += "Running plug-in test case...\n";
 
-   test_get_template_file_name();
-   test_get_input_file_name();
+    test_get_template_file_name();
+    test_get_input_file_name();
 
-   test_get_script_file_name();
+    test_get_script_file_name();
 
-   test_get_output_file_name();
+    test_get_output_file_name();
 
-   test_get_input_flags();
-   test_get_display();
+    test_get_input_flags();
+    test_get_display();
 
-   // Set methods
+    // Set methods
 
-   test_set_template_file_name();
-   test_set_input_file_name();
+    test_set_template_file_name();
+    test_set_input_file_name();
 
-   test_set_script_file_name();
+    test_set_script_file_name();
 
-   test_set_output_file_name();
+    test_set_output_file_name();
 
-   test_set_input_flags();
-   test_set_display();
+    test_set_input_flags();
+    test_set_display();
 
-   // Plug-In methods
+    // Plug-In methods
 
-   test_write_input_file();
+    test_write_input_file();
 
-   test_run_script();
+    test_run_script();
 
-   test_read_output_file();
+    test_read_output_file();
 
-   test_read_output_file_header();
+    test_read_output_file_header();
 
-   test_calculate_output_data();
+    test_calculate_output_data();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();   
-   test_from_XML();   
+    test_to_XML();
+    test_from_XML();
 
-   test_save();
-   test_load();
+    test_save();
+    test_load();
 
-   message += "End of plug-in test case.\n";
+    message += "End of plug-in test case.\n";
 }
 
 

@@ -20,14 +20,14 @@ using namespace OpenNN;
 
 // GENERAL CONSTRUCTOR
 
-NeuralParametersNormTest::NeuralParametersNormTest(void) : UnitTesting() 
+NeuralParametersNormTest::NeuralParametersNormTest(void) : UnitTesting()
 {
 }
 
 
 // DESTRUCTOR
 
-NeuralParametersNormTest::~NeuralParametersNormTest(void) 
+NeuralParametersNormTest::~NeuralParametersNormTest(void)
 {
 }
 
@@ -36,59 +36,59 @@ NeuralParametersNormTest::~NeuralParametersNormTest(void)
 
 void NeuralParametersNormTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 
-   // Default
+    // Default
 
-   NeuralParametersNorm npn1;
+    NeuralParametersNorm npn1;
 
-   assert_true(npn1.has_neural_network() == false, LOG);
+    assert_true(npn1.has_neural_network() == false, LOG);
 
-   // Neural network 
+    // Neural network
 
-   NeuralNetwork nn;
-   NeuralParametersNorm npn2(&nn);
+    NeuralNetwork nn;
+    NeuralParametersNorm npn2(&nn);
 
-   assert_true(npn2.has_neural_network() == true, LOG);
+    assert_true(npn2.has_neural_network() == true, LOG);
 }
 
 
 void NeuralParametersNormTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 
-void NeuralParametersNormTest::test_calculate_performance(void)   
+void NeuralParametersNormTest::test_calculate_performance(void)
 {
-   message += "test_calculate_performance\n";
+    message += "test_calculate_performance\n";
 
-   NeuralNetwork nn;
-   Vector<double> neural_parameters;
+    NeuralNetwork nn;
+    Vector<double> neural_parameters;
 
-   NeuralParametersNorm npn(&nn);
+    NeuralParametersNorm npn(&nn);
 
-   Vector<double> parameters;
+    Vector<double> parameters;
 
-   double performance;
+    double performance;
 
-   // Test
+    // Test
 
-   nn.set(1, 1);
-   nn.initialize_parameters(0.0);
+    nn.set(1, 1);
+    nn.initialize_parameters(0.0);
 
-   performance = npn.calculate_performance();
+    performance = npn.calculate_performance();
 
-   assert_true(performance == 0.0, LOG);
+    assert_true(performance == 0.0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(1, 1);
-   nn.initialize_parameters(3.1415927);
+    nn.set(1, 1);
+    nn.initialize_parameters(3.1415927);
 
-   parameters = nn.arrange_parameters();
+    parameters = nn.arrange_parameters();
 
-   assert_true(npn.calculate_performance() == npn.calculate_performance(parameters), LOG);
+    assert_true(npn.calculate_performance() == npn.calculate_performance(parameters), LOG);
 }
 
 /*
@@ -109,86 +109,86 @@ void NeuralParametersNormTest::test_calculate_selection_performance(void)
    nn.initialize_parameters(0.0);
 
    selection_performance = npn.calculate_selection_performance();
-   
+
    assert_true(selection_performance == 0.0, LOG);
 }
 */
 
 void NeuralParametersNormTest::test_calculate_gradient(void)
 {
-   message += "test_calculate_gradient\n";
+    message += "test_calculate_gradient\n";
 
-   NumericalDifferentiation nd;
-   NeuralNetwork nn;
-   NeuralParametersNorm npn(&nn);
+    NumericalDifferentiation nd;
+    NeuralNetwork nn;
+    NeuralParametersNorm npn(&nn);
 
-   Vector<size_t> architecture;
+    Vector<size_t> architecture;
 
-   Vector<double> parameters;
-   Vector<double> gradient;
-   Vector<double> numerical_gradient;
-   Vector<double> error;
+    Vector<double> parameters;
+    Vector<double> gradient;
+    Vector<double> numerical_gradient;
+    Vector<double> error;
 
-   // Test 
+    // Test
 
-   nn.set(1, 1, 1);
-   nn.initialize_parameters(0.0);
+    nn.set(1, 1, 1);
+    nn.initialize_parameters(0.0);
 
-   gradient = npn.calculate_gradient();
+    gradient = npn.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
-   assert_true(gradient == 0.0, LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient == 0.0, LOG);
 
-   // Test 
+    // Test
 
-   nn.set(3, 4, 2);
-   nn.initialize_parameters(0.0);
+    nn.set(3, 4, 2);
+    nn.initialize_parameters(0.0);
 
-   gradient = npn.calculate_gradient();
+    gradient = npn.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
-   assert_true(gradient == 0.0, LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient == 0.0, LOG);
 
-   // Test
+    // Test
 
-   architecture.set(3);
-   architecture[0] = 5;
-   architecture[1] = 1;
-   architecture[2] = 2;
+    architecture.set(3);
+    architecture[0] = 5;
+    architecture[1] = 1;
+    architecture[2] = 2;
 
-   nn.set(architecture);
-   nn.initialize_parameters(0.0);
+    nn.set(architecture);
+    nn.initialize_parameters(0.0);
 
-   npn.set_neural_network_pointer(&nn);
+    npn.set_neural_network_pointer(&nn);
 
-   gradient = npn.calculate_gradient();
+    gradient = npn.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
-   assert_true(gradient == 0.0, LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient == 0.0, LOG);
 
-   // Test 
+    // Test
 
-   nn.set(3, 4, 2);
-   nn.initialize_parameters(0.0);
+    nn.set(3, 4, 2);
+    nn.initialize_parameters(0.0);
 
-   npn.set_neural_network_pointer(&nn);
+    npn.set_neural_network_pointer(&nn);
 
-   gradient = npn.calculate_gradient();
+    gradient = npn.calculate_gradient();
 
-   assert_true(gradient.size() == nn.count_parameters_number(), LOG);
-   assert_true(gradient == 0.0, LOG);
+    assert_true(gradient.size() == nn.count_parameters_number(), LOG);
+    assert_true(gradient == 0.0, LOG);
 
 
-   // Test
+    // Test
 
-   nn.initialize_parameters(1.0);
-   parameters = nn.arrange_parameters();
+    nn.initialize_parameters(1.0);
+    parameters = nn.arrange_parameters();
 
-   gradient = npn.calculate_gradient();
-   numerical_gradient = nd.calculate_gradient(npn, &NeuralParametersNorm::calculate_performance, parameters);
-   error = (gradient - numerical_gradient).calculate_absolute_value();
+    gradient = npn.calculate_gradient();
+    numerical_gradient = nd.calculate_gradient(npn, &NeuralParametersNorm::calculate_performance, parameters);
+    error = (gradient - numerical_gradient).calculate_absolute_value();
 
-   assert_true(error < 1.0e-3, LOG);
+    assert_true(error < 1.0e-3, LOG);
 }
 
 
@@ -196,75 +196,75 @@ void NeuralParametersNormTest::test_calculate_gradient(void)
 
 void NeuralParametersNormTest::test_calculate_Hessian(void)
 {
-   message += "test_calculate_Hessian\n";
+    message += "test_calculate_Hessian\n";
 
-   NumericalDifferentiation nd;
-   NeuralNetwork nn;
-   NeuralParametersNorm npn(&nn);
+    NumericalDifferentiation nd;
+    NeuralNetwork nn;
+    NeuralParametersNorm npn(&nn);
 
-   npn.set_neural_parameters_norm_weight(1.0);
+    npn.set_neural_parameters_norm_weight(1.0);
 
-   Vector<size_t> architecture;
+    Vector<size_t> architecture;
 
-   Vector<double> parameters;
-   Matrix<double> Hessian;
-   Matrix<double> numerical_Hessian;
-   Matrix<double> error;
+    Vector<double> parameters;
+    Matrix<double> Hessian;
+    Matrix<double> numerical_Hessian;
+    Matrix<double> error;
 
-   // Test
+    // Test
 
-   nn.set(1, 1, 1);
-   nn.initialize_parameters(0.0);
+    nn.set(1, 1, 1);
+    nn.initialize_parameters(0.0);
 
-   Hessian = npn.calculate_Hessian();
+    Hessian = npn.calculate_Hessian();
 
-   assert_true(Hessian.get_rows_number() == nn.count_parameters_number(), LOG);
-   assert_true(Hessian.get_columns_number() == nn.count_parameters_number(), LOG);
-   assert_true(Hessian == 0.0, LOG);
+    assert_true(Hessian.get_rows_number() == nn.count_parameters_number(), LOG);
+    assert_true(Hessian.get_columns_number() == nn.count_parameters_number(), LOG);
+    assert_true(Hessian == 0.0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(3, 4, 2);
-   nn.initialize_parameters(0.0);
+    nn.set(3, 4, 2);
+    nn.initialize_parameters(0.0);
 
-   Hessian = npn.calculate_Hessian();
+    Hessian = npn.calculate_Hessian();
 
-   assert_true(Hessian.get_rows_number() == nn.count_parameters_number(), LOG);
-   assert_true(Hessian.get_columns_number() == nn.count_parameters_number(), LOG);
-   assert_true(Hessian == 0.0, LOG);
+    assert_true(Hessian.get_rows_number() == nn.count_parameters_number(), LOG);
+    assert_true(Hessian.get_columns_number() == nn.count_parameters_number(), LOG);
+    assert_true(Hessian == 0.0, LOG);
 
-   // Test
+    // Test
 
-   architecture.set(3);
-   architecture[0] = 5;
-   architecture[1] = 1;
-   architecture[2] = 2;
+    architecture.set(3);
+    architecture[0] = 5;
+    architecture[1] = 1;
+    architecture[2] = 2;
 
-   nn.set(architecture);
-   nn.initialize_parameters(0.0);
+    nn.set(architecture);
+    nn.initialize_parameters(0.0);
 
-   npn.set_neural_network_pointer(&nn);
+    npn.set_neural_network_pointer(&nn);
 
-   Hessian = npn.calculate_Hessian();
+    Hessian = npn.calculate_Hessian();
 
-   assert_true(Hessian.get_rows_number() == nn.count_parameters_number(), LOG);
-   assert_true(Hessian.get_columns_number() == nn.count_parameters_number(), LOG);
-   assert_true(Hessian == 0.0, LOG);
+    assert_true(Hessian.get_rows_number() == nn.count_parameters_number(), LOG);
+    assert_true(Hessian.get_columns_number() == nn.count_parameters_number(), LOG);
+    assert_true(Hessian == 0.0, LOG);
 
-   // Test
+    // Test
 
-   nn.set(3, 4, 2);
-   nn.initialize_parameters(0.0);
+    nn.set(3, 4, 2);
+    nn.initialize_parameters(0.0);
 
-   npn.set_neural_network_pointer(&nn);
+    npn.set_neural_network_pointer(&nn);
 
-   Hessian = npn.calculate_Hessian();
+    Hessian = npn.calculate_Hessian();
 
-   assert_true(Hessian.get_rows_number() == nn.count_parameters_number(), LOG);
-   assert_true(Hessian.get_columns_number() == nn.count_parameters_number(), LOG);
-   assert_true(Hessian == 0.0, LOG);
+    assert_true(Hessian.get_rows_number() == nn.count_parameters_number(), LOG);
+    assert_true(Hessian.get_columns_number() == nn.count_parameters_number(), LOG);
+    assert_true(Hessian == 0.0, LOG);
 
-   // Test
+    // Test
 
 //   for(size_t i = 0; i < 100; i++)
 //   {
@@ -285,13 +285,13 @@ void NeuralParametersNormTest::test_calculate_Hessian(void)
 }
 
 
-void NeuralParametersNormTest::test_to_XML(void)   
+void NeuralParametersNormTest::test_to_XML(void)
 {
-	message += "test_to_XML\n"; 
+    message += "test_to_XML\n";
 
     NeuralParametersNorm npn;
 
-    tinyxml2::XMLDocument* document;
+    tinyxml2::XMLDocument *document;
 
     // Test
 
@@ -306,55 +306,55 @@ void NeuralParametersNormTest::test_to_XML(void)
 
 void NeuralParametersNormTest::test_from_XML(void)
 {
-	message += "test_from_XML\n"; 
+    message += "test_from_XML\n";
 
     NeuralParametersNorm npn;
 
-   tinyxml2::XMLDocument* document;
+    tinyxml2::XMLDocument *document;
 
-   // Test
+    // Test
 
-   npn.set_display(false);
+    npn.set_display(false);
 
-   document = npn.to_XML();
+    document = npn.to_XML();
 
-   npn.from_XML(*document);
+    npn.from_XML(*document);
 
-   delete document;
+    delete document;
 
-   assert_true(npn.get_display() == false, LOG);
+    assert_true(npn.get_display() == false, LOG);
 
 }
 
 
 void NeuralParametersNormTest::run_test_case(void)
 {
-   message += "Running neural parameters norm test case...\n";
+    message += "Running neural parameters norm test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Get methods
+    // Get methods
 
-   // Set methods
+    // Set methods
 
-   // Objective methods
+    // Objective methods
 
-   test_calculate_performance();   
+    test_calculate_performance();
 //   test_calculate_selection_performance();
 
-   test_calculate_gradient();
+    test_calculate_gradient();
 
-   test_calculate_Hessian();
+    test_calculate_Hessian();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();   
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
-   message += "End of neural parameters norm test case.\n";
+    message += "End of neural parameters norm test case.\n";
 }
 
 

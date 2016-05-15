@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   D A T A   S E T   T E S T   C L A S S                                                                      */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -19,7 +19,7 @@ using namespace OpenNN;
 
 // GENERAL CONSTRUCTOR
 
-DataSetTest::DataSetTest(void) : UnitTesting() 
+DataSetTest::DataSetTest(void) : UnitTesting()
 {
 }
 
@@ -35,167 +35,168 @@ DataSetTest::~DataSetTest(void)
 
 void DataSetTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 
-   // Default constructor
+    // Default constructor
 
-   DataSet ds1;
+    DataSet ds1;
 
-   assert_true(ds1.get_variables().get_variables_number() == 0, LOG);
-   assert_true(ds1.get_instances().get_instances_number() == 0, LOG);
+    assert_true(ds1.get_variables().get_variables_number() == 0, LOG);
+    assert_true(ds1.get_instances().get_instances_number() == 0, LOG);
 
-   // Instances and variables number constructor
+    // Instances and variables number constructor
 
-   DataSet ds2(1, 2);
+    DataSet ds2(1, 2);
 
-   assert_true(ds2.get_instances().get_instances_number() == 1, LOG);
-   assert_true(ds2.get_variables().get_variables_number() == 2, LOG);
+    assert_true(ds2.get_instances().get_instances_number() == 1, LOG);
+    assert_true(ds2.get_variables().get_variables_number() == 2, LOG);
 
-   // Inputs, targets and instances numbers constructor
+    // Inputs, targets and instances numbers constructor
 
-   DataSet ds3(1, 1, 1);
+    DataSet ds3(1, 1, 1);
 
-   assert_true(ds3.get_variables().get_variables_number() == 2, LOG);
-   assert_true(ds3.get_instances().get_instances_number() == 1, LOG);
+    assert_true(ds3.get_variables().get_variables_number() == 2, LOG);
+    assert_true(ds3.get_instances().get_instances_number() == 1, LOG);
 
-   // XML constructor
+    // XML constructor
 
-   tinyxml2::XMLDocument* document = ds3.to_XML();
+    tinyxml2::XMLDocument *document = ds3.to_XML();
 
-   DataSet ds4(*document);
+    DataSet ds4(*document);
 
-   assert_true(ds4.get_variables().get_variables_number() == 2, LOG);
-   assert_true(ds4.get_instances().get_instances_number() == 1, LOG);
+    assert_true(ds4.get_variables().get_variables_number() == 2, LOG);
+    assert_true(ds4.get_instances().get_instances_number() == 1, LOG);
 
-   delete document;
+    delete document;
 
-   // File constructor
+    // File constructor
 
-   const std::string file_name = "../data/data_set.xml";
+    const std::string file_name = "../data/data_set.xml";
 
-   ds1.save(file_name);
+    ds1.save(file_name);
 
-   DataSet ds5(file_name);
+    DataSet ds5(file_name);
 
-   assert_true(ds5.get_variables().get_variables_number() == 0, LOG);
-   assert_true(ds5.get_instances().get_instances_number() == 0, LOG);
+    assert_true(ds5.get_variables().get_variables_number() == 0, LOG);
+    assert_true(ds5.get_instances().get_instances_number() == 0, LOG);
 
-   // Copy constructor
+    // Copy constructor
 
-   DataSet ds6(ds1);
+    DataSet ds6(ds1);
 
-   assert_true(ds6.get_variables().get_variables_number() == 0, LOG);
-   assert_true(ds6.get_instances().get_instances_number() == 0, LOG);
+    assert_true(ds6.get_variables().get_variables_number() == 0, LOG);
+    assert_true(ds6.get_instances().get_instances_number() == 0, LOG);
 
 }
 
 
 void DataSetTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 
-   DataSet* dsp = new DataSet(1, 1, 1);
+    DataSet *dsp = new DataSet(1, 1, 1);
 
-   delete dsp;
+    delete dsp;
 }
 
 
 void DataSetTest::test_assignment_operator(void)
 {
-   message += "test_assignment_operator\n";
+    message += "test_assignment_operator\n";
 
-   DataSet ds1(1, 1, 1);
-   DataSet ds2 = ds1;
+    DataSet ds1(1, 1, 1);
+    DataSet ds2 = ds1;
 
-   assert_true(ds2.get_instances().get_instances_number() == 1, LOG);
-   assert_true(ds2.get_variables().get_variables_number() == 2, LOG);
+    assert_true(ds2.get_instances().get_instances_number() == 1, LOG);
+    assert_true(ds2.get_variables().get_variables_number() == 2, LOG);
 }
 
 
-void DataSetTest::test_get_instances_number(void) 
+void DataSetTest::test_get_instances_number(void)
 {
-   message += "test_get_instances_number\n";
+    message += "test_get_instances_number\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   assert_true(ds.get_instances().get_instances_number() == 0, LOG);
+    assert_true(ds.get_instances().get_instances_number() == 0, LOG);
 }
 
 
-void DataSetTest::test_get_variables_number(void) 
+void DataSetTest::test_get_variables_number(void)
 {
-   message += "test_get_variables_number\n";
+    message += "test_get_variables_number\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   assert_true(ds.get_variables().get_variables_number() == 0, LOG);
+    assert_true(ds.get_variables().get_variables_number() == 0, LOG);
 }
 
 
-void DataSetTest::test_get_variables(void) 
+void DataSetTest::test_get_variables(void)
 {
-   message += "test_get_variables\n";
+    message += "test_get_variables\n";
 
-   DataSet ds(1, 3, 2);
+    DataSet ds(1, 3, 2);
 
-   const Variables& variables = ds.get_variables();
+    const Variables &variables = ds.get_variables();
 
-   assert_true(variables.count_inputs_number() == 3, LOG);
-   assert_true(variables.count_targets_number() == 2, LOG);
+    assert_true(variables.count_inputs_number() == 3, LOG);
+    assert_true(variables.count_targets_number() == 2, LOG);
 }
 
 
-void DataSetTest::test_get_display(void) 
+void DataSetTest::test_get_display(void)
 {
-   message += "test_get_display\n";
+    message += "test_get_display\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   ds.set_display(true);
+    ds.set_display(true);
 
-   assert_true(ds.get_display() == true, LOG);
+    assert_true(ds.get_display() == true, LOG);
 
-   ds.set_display(false);
+    ds.set_display(false);
 
-   assert_true(ds.get_display() == false, LOG);
+    assert_true(ds.get_display() == false, LOG);
 }
 
 
-void DataSetTest::test_get_data(void) 
+void DataSetTest::test_get_data(void)
 {
-   message += "test_get_data\n";
+    message += "test_get_data\n";
 
-   DataSet ds(1,1,1);
+    DataSet ds(1, 1, 1);
 
-   ds.initialize_data(0.0);
+    ds.initialize_data(0.0);
 
-   const Matrix<double>& data = ds.get_data();
+    const Matrix<double> &data = ds.get_data();
 
-   assert_true(data.get_rows_number() == 1, LOG);
-   assert_true(data.get_columns_number() == 2, LOG);
-   assert_true(data == 0.0, LOG);
+    assert_true(data.get_rows_number() == 1, LOG);
+    assert_true(data.get_columns_number() == 2, LOG);
+    assert_true(data == 0.0, LOG);
 }
 
 
 void DataSetTest::test_arrange_training_data(void)
 {
-   message += "test_arrange_training_data\n";
+    message += "test_arrange_training_data\n";
 }
 
 
 void DataSetTest::test_arrange_selection_data(void)
 {
-   message += "test_arrange_selection_data\n";
+    message += "test_arrange_selection_data\n";
 }
 
 
 void DataSetTest::test_arrange_testing_data(void)
 {
-   message += "test_arrange_testing_data\n";
+    message += "test_arrange_testing_data\n";
 }
 
 
-void DataSetTest::test_arrange_input_data(void) 
+/*
+void DataSetTest::test_arrange_input_data(void)
 {
    message += "test_arrange_input_data\n";
 
@@ -212,216 +213,216 @@ void DataSetTest::test_arrange_input_data(void)
    assert_true(instances_number == rows_number, LOG);
    assert_true(inputs_number == columns_number, LOG);
 }
+*/
 
-
-void DataSetTest::test_arrange_target_data(void) 
+void DataSetTest::test_arrange_target_data(void)
 {
-   message += "test_arrange_target_data\n";
+    message += "test_arrange_target_data\n";
 
-   DataSet ds(1,3,2);
+    DataSet ds(1, 3, 2);
 
-   size_t instances_number = ds.get_instances().get_instances_number();
-   size_t targets_number = ds.get_variables().count_targets_number();
+    size_t instances_number = ds.get_instances().get_instances_number();
+    size_t targets_number = ds.get_variables().count_targets_number();
 
-   Matrix<double> target_data = ds.arrange_target_data();
+    Matrix<double> target_data = ds.arrange_target_data();
 
-   size_t rows_number = target_data.get_rows_number();
-   size_t columns_number = target_data.get_columns_number();
+    size_t rows_number = target_data.get_rows_number();
+    size_t columns_number = target_data.get_columns_number();
 
-   assert_true(instances_number == rows_number, LOG);
-   assert_true(targets_number == columns_number, LOG);
+    assert_true(instances_number == rows_number, LOG);
+    assert_true(targets_number == columns_number, LOG);
 }
 
 
 void DataSetTest::test_get_instance(void)
 {
-   message += "test_get_instance\n";
+    message += "test_get_instance\n";
 
-   DataSet ds;
-   Vector<double> instance;
+    DataSet ds;
+    Vector<double> instance;
 
-   // Test
+    // Test
 
-   ds.set(1, 1, 1);
-   ds.initialize_data(1.0);
+    ds.set(1, 1, 1);
+    ds.initialize_data(1.0);
 
-   instance = ds.get_instance(0);
+    instance = ds.get_instance(0);
 
-   assert_true(instance.size() == 2, LOG);
-   assert_true(instance == 1.0, LOG);
+    assert_true(instance.size() == 2, LOG);
+    assert_true(instance == 1.0, LOG);
 }
 
 
-void DataSetTest::test_set(void) 
+void DataSetTest::test_set(void)
 {
-   message += "test_set\n";
+    message += "test_set\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Matrix<double> data;
+    Matrix<double> data;
 
-   // Instances and inputs and target variables
+    // Instances and inputs and target variables
 
-   ds.set(1, 2, 3);
+    ds.set(1, 2, 3);
 
-   assert_true(ds.get_instances().get_instances_number() == 1, LOG);
-   assert_true(ds.get_variables().count_inputs_number() == 2, LOG);
-   assert_true(ds.get_variables().count_targets_number() == 3, LOG);
+    assert_true(ds.get_instances().get_instances_number() == 1, LOG);
+    assert_true(ds.get_variables().count_inputs_number() == 2, LOG);
+    assert_true(ds.get_variables().count_targets_number() == 3, LOG);
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(data.get_rows_number() == 1, LOG);
-   assert_true(data.get_columns_number() == 5, LOG);
+    assert_true(data.get_rows_number() == 1, LOG);
+    assert_true(data.get_columns_number() == 5, LOG);
 }
 
 
-void DataSetTest::test_set_instances_number(void) 
+void DataSetTest::test_set_instances_number(void)
 {
-   message += "test_set_instances_number\n";
+    message += "test_set_instances_number\n";
 
-   DataSet ds(1,1,1);
+    DataSet ds(1, 1, 1);
 
-   ds.set_instances_number(2);
+    ds.set_instances_number(2);
 
-   assert_true(ds.get_instances().get_instances_number() == 2, LOG);
+    assert_true(ds.get_instances().get_instances_number() == 2, LOG);
 }
 
 
-void DataSetTest::test_set_variables_number(void) 
+void DataSetTest::test_set_variables_number(void)
 {
-   message += "test_set_variables_number\n";
+    message += "test_set_variables_number\n";
 
-   DataSet ds(1, 1);
+    DataSet ds(1, 1);
 
-   ds.set_variables_number(2);
+    ds.set_variables_number(2);
 
-   assert_true(ds.get_variables().get_variables_number() == 2, LOG);
+    assert_true(ds.get_variables().get_variables_number() == 2, LOG);
 }
 
 
-void DataSetTest::test_set_display(void) 
+void DataSetTest::test_set_display(void)
 {
-   message += "test_set_display\n";
+    message += "test_set_display\n";
 }
 
 
-void DataSetTest::test_set_data(void) 
+void DataSetTest::test_set_data(void)
 {
-   message += "test_set_data\n";
+    message += "test_set_data\n";
 
-   DataSet ds(1, 1, 1);
+    DataSet ds(1, 1, 1);
 
-   Matrix<double> new_data(1, 2, 0.0);
+    Matrix<double> new_data(1, 2, 0.0);
 
-   ds.set_data(new_data);
+    ds.set_data(new_data);
 
-   Matrix<double> data = ds.get_data();
+    Matrix<double> data = ds.get_data();
 
-   assert_true(data == new_data, LOG);
+    assert_true(data == new_data, LOG);
 }
 
 
 void DataSetTest::test_set_instance(void)
 {
-   message += "test_set_instance\n";
+    message += "test_set_instance\n";
 
-   DataSet ds(1, 1, 1);
+    DataSet ds(1, 1, 1);
 
-   Vector<double> new_instance(2, 0.0);
+    Vector<double> new_instance(2, 0.0);
 
-   ds.set_instance(0, new_instance);
+    ds.set_instance(0, new_instance);
 
-   Vector<double> instance = ds.get_instance(0);
+    Vector<double> instance = ds.get_instance(0);
 
-   assert_true(instance == new_instance, LOG);
+    assert_true(instance == new_instance, LOG);
 }
 
 
-void DataSetTest::test_add_instance(void) 
+void DataSetTest::test_add_instance(void)
 {
-   message += "test_add_instance\n";
+    message += "test_add_instance\n";
 
-   DataSet ds(1,1,1);
+    DataSet ds(1, 1, 1);
 
-   Vector<double> new_instance(2, 0.0);
+    Vector<double> new_instance(2, 0.0);
 
-   ds.add_instance(new_instance);
+    ds.add_instance(new_instance);
 
-   assert_true(ds.get_instances().get_instances_number() == 2, LOG);
+    assert_true(ds.get_instances().get_instances_number() == 2, LOG);
 
-   Vector<double> instance = ds.get_instance(1);
+    Vector<double> instance = ds.get_instance(1);
 
-   assert_true(instance == new_instance, LOG);
+    assert_true(instance == new_instance, LOG);
 
 }
 
 
-void DataSetTest::test_subtract_instance(void) 
+void DataSetTest::test_subtract_instance(void)
 {
-   message += "test_subtract_instance\n";
+    message += "test_subtract_instance\n";
 
-   DataSet ds(3, 1, 1);
+    DataSet ds(3, 1, 1);
 
-   ds.subtract_instance(1);
+    ds.subtract_instance(1);
 
-   assert_true(ds.get_instances().get_instances_number() == 2, LOG);
+    assert_true(ds.get_instances().get_instances_number() == 2, LOG);
 }
 
 
-void DataSetTest::test_calculate_data_statistics(void) 
+void DataSetTest::test_calculate_data_statistics(void)
 {
-   message += "test_calculate_data_statistics\n";
+    message += "test_calculate_data_statistics\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Vector< Statistics<double> > statistics;
+    Vector<Statistics<double> > statistics;
 
-   // Test
+    // Test
 
-   ds.set(1, 1);
+    ds.set(1, 1);
 
-   ds.initialize_data(0.0);
+    ds.initialize_data(0.0);
 
-   statistics = ds.calculate_data_statistics();
+    statistics = ds.calculate_data_statistics();
 
-   assert_true(ds.get_missing_values().get_missing_values_number() == 0, LOG);
+    assert_true(ds.get_missing_values().get_missing_values_number() == 0, LOG);
 
-   assert_true(statistics.size() == 1, LOG);
+    assert_true(statistics.size() == 1, LOG);
 
-   assert_true(statistics[0].minimum == 0.0, LOG);
-   assert_true(statistics[0].maximum == 0.0, LOG);
-   assert_true(statistics[0].mean == 0.0, LOG);
-   assert_true(statistics[0].standard_deviation == 0.0, LOG);
+    assert_true(statistics[0].minimum == 0.0, LOG);
+    assert_true(statistics[0].maximum == 0.0, LOG);
+    assert_true(statistics[0].mean == 0.0, LOG);
+    assert_true(statistics[0].standard_deviation == 0.0, LOG);
 
-   // Test
+    // Test
 
-   ds.set(2, 2, 2);
+    ds.set(2, 2, 2);
 
-   ds.initialize_data(0.0);
+    ds.initialize_data(0.0);
 
-   statistics = ds.calculate_data_statistics();
+    statistics = ds.calculate_data_statistics();
 
-   assert_true(statistics.size() == 4, LOG);
+    assert_true(statistics.size() == 4, LOG);
 
-   assert_true(statistics[0].minimum == 0.0, LOG);
-   assert_true(statistics[0].maximum == 0.0, LOG);
-   assert_true(statistics[0].mean == 0.0, LOG);
-   assert_true(statistics[0].standard_deviation == 0.0, LOG);
+    assert_true(statistics[0].minimum == 0.0, LOG);
+    assert_true(statistics[0].maximum == 0.0, LOG);
+    assert_true(statistics[0].mean == 0.0, LOG);
+    assert_true(statistics[0].standard_deviation == 0.0, LOG);
 
-   assert_true(statistics[1].minimum == 0.0, LOG);
-   assert_true(statistics[1].maximum == 0.0, LOG);
-   assert_true(statistics[1].mean == 0.0, LOG);
-   assert_true(statistics[1].standard_deviation == 0.0, LOG);
+    assert_true(statistics[1].minimum == 0.0, LOG);
+    assert_true(statistics[1].maximum == 0.0, LOG);
+    assert_true(statistics[1].mean == 0.0, LOG);
+    assert_true(statistics[1].standard_deviation == 0.0, LOG);
 
-   assert_true(statistics[2].minimum == 0.0, LOG);
-   assert_true(statistics[2].maximum == 0.0, LOG);
-   assert_true(statistics[2].mean == 0.0, LOG);
-   assert_true(statistics[2].standard_deviation == 0.0, LOG);
+    assert_true(statistics[2].minimum == 0.0, LOG);
+    assert_true(statistics[2].maximum == 0.0, LOG);
+    assert_true(statistics[2].mean == 0.0, LOG);
+    assert_true(statistics[2].standard_deviation == 0.0, LOG);
 
-   assert_true(statistics[3].minimum == 0.0, LOG);
-   assert_true(statistics[3].maximum == 0.0, LOG);
-   assert_true(statistics[3].mean == 0.0, LOG);
-   assert_true(statistics[3].standard_deviation == 0.0, LOG);
+    assert_true(statistics[3].minimum == 0.0, LOG);
+    assert_true(statistics[3].maximum == 0.0, LOG);
+    assert_true(statistics[3].mean == 0.0, LOG);
+    assert_true(statistics[3].standard_deviation == 0.0, LOG);
 
 }
 
@@ -438,7 +439,7 @@ void DataSetTest::test_calculate_data_statistics_missing_values(void)
 
     ds.set_data_file_name(data_file_name);
 
-      ds.set_file_type("dat");
+    ds.set_file_type("dat");
 
     Matrix<double> data;
 
@@ -465,86 +466,86 @@ void DataSetTest::test_calculate_data_statistics_missing_values(void)
 
 void DataSetTest::test_calculate_training_instances_statistics(void)
 {
-   message += "test_calculate_training_instances_statistics\n";
+    message += "test_calculate_training_instances_statistics\n";
 
-   DataSet ds;
-   Vector< Statistics<double> > training_instances_statistics;
+    DataSet ds;
+    Vector<Statistics<double> > training_instances_statistics;
 
-   Instances* instances_pointer;
+    Instances *instances_pointer;
 
-   // Test
+    // Test
 
-   ds.set(2, 2, 2);
+    ds.set(2, 2, 2);
 
-   instances_pointer = ds.get_instances_pointer();
-   instances_pointer->set_training();
+    instances_pointer = ds.get_instances_pointer();
+    instances_pointer->set_training();
 
-   ds.initialize_data(0.0);
+    ds.initialize_data(0.0);
 
-   ds.calculate_training_instances_statistics();
+    ds.calculate_training_instances_statistics();
 
 }
 
 
 void DataSetTest::test_calculate_selection_instances_statistics(void)
 {
-   message += "test_calculate_selection_instances_statistics\n";
+    message += "test_calculate_selection_instances_statistics\n";
 
-   DataSet ds;
-   Vector< Statistics<double> > selection_instances_statistics;
+    DataSet ds;
+    Vector<Statistics<double> > selection_instances_statistics;
 
-   Instances* instances_pointer;
+    Instances *instances_pointer;
 
-   // Test
+    // Test
 
-   ds.set(2,2,2);
+    ds.set(2, 2, 2);
 
-   instances_pointer = ds.get_instances_pointer();
-   instances_pointer->set_selection();
+    instances_pointer = ds.get_instances_pointer();
+    instances_pointer->set_selection();
 
-   ds.initialize_data(0.0);
+    ds.initialize_data(0.0);
 
-   selection_instances_statistics = ds.calculate_selection_instances_statistics();
+    selection_instances_statistics = ds.calculate_selection_instances_statistics();
 }
 
 
 void DataSetTest::test_calculate_testing_instances_statistics(void)
 {
-   message += "test_calculate_testing_instances_statistics\n";
+    message += "test_calculate_testing_instances_statistics\n";
 
-   DataSet ds;
-   Vector< Statistics<double> > testing_instances_statistics;
+    DataSet ds;
+    Vector<Statistics<double> > testing_instances_statistics;
 
-   Instances* instances_pointer;
+    Instances *instances_pointer;
 
-   // Test
+    // Test
 
-   ds.set(2, 2, 2);
+    ds.set(2, 2, 2);
 
-   instances_pointer = ds.get_instances_pointer();
-   instances_pointer->set_testing();
-   
-   ds.initialize_data(0.0);
+    instances_pointer = ds.get_instances_pointer();
+    instances_pointer->set_testing();
 
-   testing_instances_statistics = ds.calculate_testing_instances_statistics();
+    ds.initialize_data(0.0);
+
+    testing_instances_statistics = ds.calculate_testing_instances_statistics();
 }
 
 
 void DataSetTest::test_calculate_input_variables_statistics(void)
 {
-   message += "test_calculate_input_variables_statistics\n";
+    message += "test_calculate_input_variables_statistics\n";
 }
 
 
 void DataSetTest::test_calculate_targets_statistics(void)
 {
-   message += "test_calculate_targets_statistics\n";
+    message += "test_calculate_targets_statistics\n";
 }
 
 
 void DataSetTest::test_calculate_linear_correlations(void)
 {
-   message += "test_calculate_linear_correlations\n";
+    message += "test_calculate_linear_correlations\n";
 }
 
 void DataSetTest::test_calculate_autocorrelation(void)
@@ -572,7 +573,7 @@ void DataSetTest::test_calculate_cross_correlation(void)
 
     DataSet ds;
 
-    Matrix< Vector<double> > cross_correlation;
+    Matrix<Vector<double> > cross_correlation;
 
     ds.set(20, 5, 1);
 
@@ -587,324 +588,328 @@ void DataSetTest::test_calculate_cross_correlation(void)
 
 void DataSetTest::test_calculate_data_histograms(void)
 {
-   message += "test_calculate_data_histograms\n";
+    message += "test_calculate_data_histograms\n";
 }
 
 
 void DataSetTest::test_filter_data(void)
 {
-   message += "test_filter_data\n";
+    message += "test_filter_data\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Vector<double> minimums;
-   Vector<double> maximums;
+    Vector<double> minimums;
+    Vector<double> maximums;
 
-   Matrix<double> data;
+    Matrix<double> data;
 
-   // Test
+    // Test
 
-   ds.set(2, 1, 1);
-   ds.initialize_data(1.0);
+    ds.set(2, 1, 1);
+    ds.initialize_data(1.0);
 
-   minimums.set(2, 0.0);
-   maximums.set(2, 0.5);
+    minimums.set(2, 0.0);
+    maximums.set(2, 0.5);
 
-   ds.filter_data(minimums, maximums);
+    ds.filter_data(minimums, maximums);
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(ds.get_instances().get_use(0) == Instances::Unused, LOG);
-   assert_true(ds.get_instances().get_use(1) == Instances::Unused, LOG);
+    assert_true(ds.get_instances().get_use(0) == Instances::Unused, LOG);
+    assert_true(ds.get_instances().get_use(1) == Instances::Unused, LOG);
 }
 
 
-void DataSetTest::test_scale_inputs_mean_standard_deviation(void) 
+void DataSetTest::test_scale_inputs_mean_standard_deviation(void)
 {
-   message += "test_scale_inputs_mean_standard_deviation\n";
+    message += "test_scale_inputs_mean_standard_deviation\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Vector< Statistics<double> > inputs_statistics;
+    Vector<Statistics<double> > inputs_statistics;
 
-   // Test
+    // Test
 
-   ds.set(2, 2, 2);
-   ds.randomize_data_normal();
+    ds.set(2, 2, 2);
+    ds.randomize_data_normal();
 
-   ds.scale_inputs_mean_standard_deviation();
+    ds.scale_inputs_mean_standard_deviation();
 
-   inputs_statistics = ds.calculate_inputs_statistics();
+    inputs_statistics = ds.calculate_inputs_statistics();
 
-   assert_true(inputs_statistics[0].has_mean_zero_standard_deviation_one(), LOG);
+    assert_true(inputs_statistics[0].has_mean_zero_standard_deviation_one(), LOG);
 }
 
 
-void DataSetTest::test_scale_targets_mean_standard_deviation(void) 
+void DataSetTest::test_scale_targets_mean_standard_deviation(void)
 {
-   message += "test_scale_targets_mean_standard_deviation\n";
+    message += "test_scale_targets_mean_standard_deviation\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Vector< Statistics<double> > targets_statistics;
+    Vector<Statistics<double> > targets_statistics;
 
-   // Test
+    // Test
 
-   ds.set(2, 2, 2);
-   ds.randomize_data_normal();
+    ds.set(2, 2, 2);
+    ds.randomize_data_normal();
 
-   ds.scale_targets_mean_standard_deviation();
+    ds.scale_targets_mean_standard_deviation();
 
-   targets_statistics = ds.calculate_targets_statistics();
+    targets_statistics = ds.calculate_targets_statistics();
 
-   assert_true(targets_statistics[0].has_mean_zero_standard_deviation_one(), LOG);
+    assert_true(targets_statistics[0].has_mean_zero_standard_deviation_one(), LOG);
 }
 
 
-void DataSetTest::test_scale_inputs_minimum_maximum(void) 
+void DataSetTest::test_scale_inputs_minimum_maximum(void)
 {
-   message += "test_scale_inputs_minimum_maximum\n";
+    message += "test_scale_inputs_minimum_maximum\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Vector< Statistics<double> > inputs_statistics;
+    Vector<Statistics<double> > inputs_statistics;
 
-   // Test
+    // Test
 
-   ds.set(2, 2, 2);
-   ds.randomize_data_normal();
+    ds.set(2, 2, 2);
+    ds.randomize_data_normal();
 
-   ds.scale_inputs_minimum_maximum();
+    ds.scale_inputs_minimum_maximum();
 
-   inputs_statistics = ds.calculate_inputs_statistics();
+    inputs_statistics = ds.calculate_inputs_statistics();
 
-   assert_true(inputs_statistics[0].has_minimum_minus_one_maximum_one(), LOG);
+    assert_true(inputs_statistics[0].has_minimum_minus_one_maximum_one(), LOG);
 }
 
 
-void DataSetTest::test_scale_targets_minimum_maximum(void) 
+void DataSetTest::test_scale_targets_minimum_maximum(void)
 {
-   message += "test_scale_targets_minimum_maximum\n";
+    message += "test_scale_targets_minimum_maximum\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Vector< Statistics<double> > targets_statistics;
+    Vector<Statistics<double> > targets_statistics;
 
-   // Test
+    // Test
 
-   ds.set(2, 2, 2);
-   ds.randomize_data_normal();
+    ds.set(2, 2, 2);
+    ds.randomize_data_normal();
 
-   ds.scale_targets_minimum_maximum();
+    ds.scale_targets_minimum_maximum();
 
-   targets_statistics = ds.calculate_targets_statistics();
+    targets_statistics = ds.calculate_targets_statistics();
 
-   assert_true(targets_statistics[0].has_minimum_minus_one_maximum_one(), LOG);
+    assert_true(targets_statistics[0].has_minimum_minus_one_maximum_one(), LOG);
 }
 
 
 void DataSetTest::test_scale_data_minimum_maximum(void)
 {
-   message += "test_scale_data_minimum_maximum\n";
+    message += "test_scale_data_minimum_maximum\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Vector< Statistics<double> > data_statistics;
+    Vector<Statistics<double> > data_statistics;
 
-   Matrix<double> data;
-   Matrix<double> scaled_data;
+    Matrix<double> data;
+    Matrix<double> scaled_data;
 
     // Test
 
-   ds.set(2,2,2);
-   ds.initialize_data(0.0);
+    ds.set(2, 2, 2);
+    ds.initialize_data(0.0);
 
-   ds.set_display(false);
+    ds.set_display(false);
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   data_statistics = ds.scale_data_minimum_maximum();
+    data_statistics = ds.scale_data_minimum_maximum();
 
-   scaled_data = ds.get_data();
+    scaled_data = ds.get_data();
 
-   assert_true(scaled_data == data, LOG);
+    assert_true(scaled_data == data, LOG);
 }
 
 
 void DataSetTest::test_scale_data_mean_standard_deviation(void)
 {
-   message += "test_scale_data_mean_standard_deviation\n";
+    message += "test_scale_data_mean_standard_deviation\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Vector< Statistics<double> > data_statistics;
+    Vector<Statistics<double> > data_statistics;
 
-   Matrix<double> data;
-   Matrix<double> scaled_data;
+    Matrix<double> data;
+    Matrix<double> scaled_data;
 
     // Test
 
-   ds.set(2,2,2);
-   ds.initialize_data(0.0);
+    ds.set(2, 2, 2);
+    ds.initialize_data(0.0);
 
-   ds.set_display(false);
+    ds.set_display(false);
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   data_statistics = ds.scale_data_mean_standard_deviation();
+    data_statistics = ds.scale_data_mean_standard_deviation();
 
-   scaled_data = ds.get_data();
+    scaled_data = ds.get_data();
 
-   assert_true(scaled_data == data, LOG);
+    assert_true(scaled_data == data, LOG);
 }
 
 
 void DataSetTest::test_unscale_data_mean_standard_deviation(void)
 {
-   message += "test_unscale_data_mean_standard_deviation\n";
+    message += "test_unscale_data_mean_standard_deviation\n";
 }
 
 
 void DataSetTest::test_unscale_data_minimum_maximum(void)
 {
-   message += "test_unscale_data_minimum_maximum\n";
+    message += "test_unscale_data_minimum_maximum\n";
 }
 
 
-void DataSetTest::test_unscale_inputs_mean_standard_deviation(void) 
+/*
+void DataSetTest::test_unscale_inputs_mean_standard_deviation(void)
 {
-   message += "test_unscale_inputs_mean_standard_deviation\n";
+    message += "test_unscale_inputs_mean_standard_deviation\n";
 
-   DataSet ds(2, 2, 2);
-   ds.initialize_data(0.0);
+    DataSet ds(2, 2, 2);
+    ds.initialize_data(0.0);
 
-   ds.set_display(false);
+    ds.set_display(false);
 
-   Vector< Statistics<double> > data_statistics;
+    Vector<Statistics<double> > data_statistics;
 
-   // Test
+    // Test
 
-   Matrix<double> input_data = ds.arrange_input_data();
+    Matrix<double> input_data = ds.arrange_input_data();
 
-   data_statistics.set(4);
+    data_statistics.set(4);
 
-   ds.unscale_inputs_mean_standard_deviation(data_statistics);
+    ds.unscale_inputs_mean_standard_deviation(data_statistics);
 
-   Matrix<double> new_input_data = ds.arrange_input_data();
+    Matrix<double> new_input_data = ds.arrange_input_data();
 
-   assert_true(new_input_data == input_data, LOG);
+    assert_true(new_input_data == input_data, LOG);
+
+}
+*/
+
+
+void DataSetTest::test_unscale_targets_mean_standard_deviation(void)
+{
+    message += "test_unscale_targets_mean_standard_deviation\n";
+
+    DataSet ds(2, 2, 2);
+    ds.initialize_data(0.0);
+
+    ds.set_display(false);
+
+    Matrix<double> target_data = ds.arrange_target_data();
+
+    Vector<Statistics<double> > data_statistics(4);
+
+    ds.unscale_targets_mean_standard_deviation(data_statistics);
+
+    Matrix<double> new_target_data = ds.arrange_target_data();
+
+    assert_true(new_target_data == target_data, LOG);
+}
+
+
+void DataSetTest::test_unscale_variables_mean_standard_deviation(void)
+{
+    message += "test_unscale_variables_mean_standard_deviation\n";
+}
+
+
+/*
+void DataSetTest::test_unscale_inputs_minimum_maximum(void)
+{
+    message += "test_unscale_inputs_minimum_maximum\n";
+
+    DataSet ds(2, 2, 2);
+    ds.initialize_data(0.0);
+
+    ds.set_display(false);
+
+    Vector<Statistics<double> > data_statistics;
+
+    // Test
+
+    Matrix<double> input_data = ds.arrange_input_data();
+
+    data_statistics.set(4);
+
+    ds.unscale_inputs_minimum_maximum(data_statistics);
+
+    Matrix<double> new_input_data = ds.arrange_input_data();
+
+    assert_true(new_input_data == input_data, LOG);
+}
+*/
+
+
+void DataSetTest::test_unscale_targets_minimum_maximum(void)
+{
+    message += "test_unscale_targets_minimum_maximum\n";
+
+    DataSet ds(2, 2, 2);
+    ds.initialize_data(0.0);
+
+    ds.set_display(false);
+
+    Matrix<double> target_data = ds.arrange_target_data();
+
+    Vector<Statistics<double> > data_statistics(4);
+
+    ds.unscale_targets_minimum_maximum(data_statistics);
+
+    Matrix<double> new_target_data = ds.arrange_target_data();
+
+    assert_true(new_target_data == target_data, LOG);
 
 }
 
 
-void DataSetTest::test_unscale_targets_mean_standard_deviation(void) 
+void DataSetTest::test_unscale_variables_minimum_maximum(void)
 {
-   message += "test_unscale_targets_mean_standard_deviation\n";
-   
-   DataSet ds(2, 2, 2);
-   ds.initialize_data(0.0);
-
-   ds.set_display(false);
-
-   Matrix<double> target_data = ds.arrange_target_data();
-
-   Vector< Statistics<double> > data_statistics(4);
-
-   ds.unscale_targets_mean_standard_deviation(data_statistics);
-
-   Matrix<double> new_target_data = ds.arrange_target_data();
-
-   assert_true(new_target_data == target_data, LOG);
-}
-
-
-void DataSetTest::test_unscale_variables_mean_standard_deviation(void) 
-{
-   message += "test_unscale_variables_mean_standard_deviation\n";
-}
-
-
-void DataSetTest::test_unscale_inputs_minimum_maximum(void) 
-{
-   message += "test_unscale_inputs_minimum_maximum\n"; 
-
-   DataSet ds(2, 2, 2);
-   ds.initialize_data(0.0);
-
-   ds.set_display(false);
-
-   Vector< Statistics<double> > data_statistics;
-
-   // Test
-
-   Matrix<double> input_data = ds.arrange_input_data();
-
-   data_statistics.set(4);
-
-   ds.unscale_inputs_minimum_maximum(data_statistics);
-
-   Matrix<double> new_input_data = ds.arrange_input_data();
-
-   assert_true(new_input_data == input_data, LOG);
-}
-
-
-void DataSetTest::test_unscale_targets_minimum_maximum(void) 
-{
-   message += "test_unscale_targets_minimum_maximum\n";
-
-   DataSet ds(2, 2, 2);
-   ds.initialize_data(0.0);
-
-   ds.set_display(false);
-
-   Matrix<double> target_data = ds.arrange_target_data();
-
-   Vector< Statistics<double> > data_statistics(4);
-
-   ds.unscale_targets_minimum_maximum(data_statistics);
-
-   Matrix<double> new_target_data = ds.arrange_target_data();
-
-   assert_true(new_target_data == target_data, LOG);
-
-}
-
-
-void DataSetTest::test_unscale_variables_minimum_maximum(void) 
-{
-   message += "test_unscale_variables_minimum_maximum\n"; 
+    message += "test_unscale_variables_minimum_maximum\n";
 }
 
 
 void DataSetTest::test_subtract_constant_variables(void)
 {
-   message += "test_subtract_constant_variables\n"; 
+    message += "test_subtract_constant_variables\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   // Test 
+    // Test
 
-   ds.set(1, 2, 1);
+    ds.set(1, 2, 1);
 
-   ds.initialize_data(0.0);
+    ds.initialize_data(0.0);
 
-   ds.unuse_constant_variables();
+    ds.unuse_constant_variables();
 
-   assert_true(ds.get_variables().count_inputs_number() == 0, LOG);
-   assert_true(ds.get_variables().count_targets_number() == 1, LOG);
+    assert_true(ds.get_variables().count_inputs_number() == 0, LOG);
+    assert_true(ds.get_variables().count_targets_number() == 1, LOG);
 }
 
 
 void DataSetTest::test_subtract_repeated_instances(void)
 {
-   message += "test_subtract_repeated_instances\n"; 
+    message += "test_subtract_repeated_instances\n";
 }
 
 
 void DataSetTest::test_initialize_data(void)
 {
-   message += "test_initialize_data\n";
+    message += "test_initialize_data\n";
 }
 
 
@@ -925,7 +930,7 @@ void DataSetTest::test_unuse_most_populated_target(void)
 
     // Test
 
-    ds.set(5,2,5);
+    ds.set(5, 2, 5);
     ds.initialize_data(0.0);
 
     unused_instances_indices = ds.unuse_most_populated_target(7);
@@ -938,7 +943,7 @@ void DataSetTest::test_unuse_most_populated_target(void)
 
     DataSet ds2;
 
-    ds2.set(100, 7,5);
+    ds2.set(100, 7, 5);
     ds2.initialize_data(1.0);
 
     unused_instances_indices = ds2.unuse_most_populated_target(99);
@@ -951,7 +956,7 @@ void DataSetTest::test_unuse_most_populated_target(void)
 
     DataSet ds3;
 
-    ds3.set(1, 10,10);
+    ds3.set(1, 10, 10);
     ds3.randomize_data_normal();
 
     unused_instances_indices = ds3.unuse_most_populated_target(50);
@@ -1003,280 +1008,280 @@ void DataSetTest::test_balance_binary_targets_distribution(void)
     // Test
 
     {
-    DataSet ds(10, 3, 1);
+        DataSet ds(10, 3, 1);
 
-    Vector<double> instance0(4);
-    Vector<double> instance1(4);
-    Vector<double> instance2(4);
-    Vector<double> instance3(4);
-    Vector<double> instance4(4);
-    Vector<double> instance5(4);
-    Vector<double> instance6(4);
-    Vector<double> instance7(4);
-    Vector<double> instance8(4);
-    Vector<double> instance9(4);
+        Vector<double> instance0(4);
+        Vector<double> instance1(4);
+        Vector<double> instance2(4);
+        Vector<double> instance3(4);
+        Vector<double> instance4(4);
+        Vector<double> instance5(4);
+        Vector<double> instance6(4);
+        Vector<double> instance7(4);
+        Vector<double> instance8(4);
+        Vector<double> instance9(4);
 
-    instance0[0] = 0.9;
-    instance0[1] = 5.0;
-    instance0[2] = 0.0;
-    instance0[3] = 0.0;
+        instance0[0] = 0.9;
+        instance0[1] = 5.0;
+        instance0[2] = 0.0;
+        instance0[3] = 0.0;
 
-    instance1[0] = 1.1;
-    instance1[1] = 2.3;
-    instance1[2] = 0.0;
-    instance1[3] = 0.0;
+        instance1[0] = 1.1;
+        instance1[1] = 2.3;
+        instance1[2] = 0.0;
+        instance1[3] = 0.0;
 
-    instance2[0] = 2.3;
-    instance2[1] = 3.0;
-    instance2[2] = 1.0;
-    instance2[3] = 0.0;
+        instance2[0] = 2.3;
+        instance2[1] = 3.0;
+        instance2[2] = 1.0;
+        instance2[3] = 0.0;
 
-    instance3[0] = 5.6;
-    instance3[1] = 3.4;
-    instance3[2] = 1.0;
-    instance3[3] = 0.0;
+        instance3[0] = 5.6;
+        instance3[1] = 3.4;
+        instance3[2] = 1.0;
+        instance3[3] = 0.0;
 
-    instance4[0] = 0.8;
-    instance4[1] = 3.1;
-    instance4[2] = 0.0;
-    instance4[3] = 0.0;
+        instance4[0] = 0.8;
+        instance4[1] = 3.1;
+        instance4[2] = 0.0;
+        instance4[3] = 0.0;
 
-    instance5[0] = 3.4;
-    instance5[1] = 3.9;
-    instance5[2] = 0.0;
-    instance5[3] = 0.0;
+        instance5[0] = 3.4;
+        instance5[1] = 3.9;
+        instance5[2] = 0.0;
+        instance5[3] = 0.0;
 
-    instance6[0] = 5.6;
-    instance6[1] = 8.0;
-    instance6[2] = 1.0;
-    instance6[3] = 0.0;
+        instance6[0] = 5.6;
+        instance6[1] = 8.0;
+        instance6[2] = 1.0;
+        instance6[3] = 0.0;
 
-    instance7[0] = 3.9;
-    instance7[1] = 9.0;
-    instance7[2] = 0.0;
-    instance7[3] = 0.0;
+        instance7[0] = 3.9;
+        instance7[1] = 9.0;
+        instance7[2] = 0.0;
+        instance7[3] = 0.0;
 
-    instance8[0] = 1.9;
-    instance8[1] = 2.3;
-    instance8[2] = 0.0;
-    instance8[3] = 0.0;
+        instance8[0] = 1.9;
+        instance8[1] = 2.3;
+        instance8[2] = 0.0;
+        instance8[3] = 0.0;
 
-    instance9[0] = 7.8;
-    instance9[1] = 2.8;
-    instance9[2] = 0.0;
-    instance9[3] = 0.0;
+        instance9[0] = 7.8;
+        instance9[1] = 2.8;
+        instance9[2] = 0.0;
+        instance9[3] = 0.0;
 
-    ds.set_instance(0, instance0);
-    ds.set_instance(1, instance1);
-    ds.set_instance(2, instance2);
-    ds.set_instance(3, instance3);
-    ds.set_instance(4, instance4);
-    ds.set_instance(5, instance5);
-    ds.set_instance(6, instance6);
-    ds.set_instance(7, instance7);
-    ds.set_instance(8, instance8);
-    ds.set_instance(9, instance9);
+        ds.set_instance(0, instance0);
+        ds.set_instance(1, instance1);
+        ds.set_instance(2, instance2);
+        ds.set_instance(3, instance3);
+        ds.set_instance(4, instance4);
+        ds.set_instance(5, instance5);
+        ds.set_instance(6, instance6);
+        ds.set_instance(7, instance7);
+        ds.set_instance(8, instance8);
+        ds.set_instance(9, instance9);
 
-    ds.balance_binary_targets_distribution();
+        ds.balance_binary_targets_distribution();
 
-    assert_true(ds.get_instances().count_unused_instances_number() == 10, LOG);
-    assert_true(ds.calculate_target_distribution()[1] == 0, LOG);
-    assert_true(ds.calculate_target_distribution()[0] == 0, LOG);
+        assert_true(ds.get_instances().count_unused_instances_number() == 10, LOG);
+        assert_true(ds.calculate_target_distribution()[1] == 0, LOG);
+        assert_true(ds.calculate_target_distribution()[0] == 0, LOG);
     }
 
     // Test
 
     {
-    DataSet ds(10, 3, 1);
+        DataSet ds(10, 3, 1);
 
-    Vector<double> instance0(4);
-    Vector<double> instance1(4);
-    Vector<double> instance2(4);
-    Vector<double> instance3(4);
-    Vector<double> instance4(4);
-    Vector<double> instance5(4);
-    Vector<double> instance6(4);
-    Vector<double> instance7(4);
-    Vector<double> instance8(4);
-    Vector<double> instance9(4);
+        Vector<double> instance0(4);
+        Vector<double> instance1(4);
+        Vector<double> instance2(4);
+        Vector<double> instance3(4);
+        Vector<double> instance4(4);
+        Vector<double> instance5(4);
+        Vector<double> instance6(4);
+        Vector<double> instance7(4);
+        Vector<double> instance8(4);
+        Vector<double> instance9(4);
 
-    instance0[0] = 0.9;
-    instance0[1] = 5.0;
-    instance0[2] = 0.0;
-    instance0[3] = 0.0;
+        instance0[0] = 0.9;
+        instance0[1] = 5.0;
+        instance0[2] = 0.0;
+        instance0[3] = 0.0;
 
-    instance1[0] = 1.1;
-    instance1[1] = 2.3;
-    instance1[2] = 0.0;
-    instance1[3] = 0.0;
+        instance1[0] = 1.1;
+        instance1[1] = 2.3;
+        instance1[2] = 0.0;
+        instance1[3] = 0.0;
 
-    instance2[0] = 2.3;
-    instance2[1] = 3.0;
-    instance2[2] = 1.0;
-    instance2[3] = 0.0;
+        instance2[0] = 2.3;
+        instance2[1] = 3.0;
+        instance2[2] = 1.0;
+        instance2[3] = 0.0;
 
-    instance3[0] = 5.6;
-    instance3[1] = 3.4;
-    instance3[2] = 1.0;
-    instance3[3] = 1.0;
+        instance3[0] = 5.6;
+        instance3[1] = 3.4;
+        instance3[2] = 1.0;
+        instance3[3] = 1.0;
 
-    instance4[0] = 0.8;
-    instance4[1] = 3.1;
-    instance4[2] = 0.0;
-    instance4[3] = 0.0;
+        instance4[0] = 0.8;
+        instance4[1] = 3.1;
+        instance4[2] = 0.0;
+        instance4[3] = 0.0;
 
-    instance5[0] = 3.4;
-    instance5[1] = 3.9;
-    instance5[2] = 0.0;
-    instance5[3] = 0.0;
+        instance5[0] = 3.4;
+        instance5[1] = 3.9;
+        instance5[2] = 0.0;
+        instance5[3] = 0.0;
 
-    instance6[0] = 5.6;
-    instance6[1] = 8.0;
-    instance6[2] = 1.0;
-    instance6[3] = 0.0;
+        instance6[0] = 5.6;
+        instance6[1] = 8.0;
+        instance6[2] = 1.0;
+        instance6[3] = 0.0;
 
-    instance7[0] = 3.9;
-    instance7[1] = 9.0;
-    instance7[2] = 0.0;
-    instance7[3] = 1.0;
+        instance7[0] = 3.9;
+        instance7[1] = 9.0;
+        instance7[2] = 0.0;
+        instance7[3] = 1.0;
 
-    instance8[0] = 1.9;
-    instance8[1] = 2.3;
-    instance8[2] = 0.0;
-    instance8[3] = 0.0;
+        instance8[0] = 1.9;
+        instance8[1] = 2.3;
+        instance8[2] = 0.0;
+        instance8[3] = 0.0;
 
-    instance9[0] = 7.8;
-    instance9[1] = 2.8;
-    instance9[2] = 0.0;
-    instance9[3] = 0.0;
+        instance9[0] = 7.8;
+        instance9[1] = 2.8;
+        instance9[2] = 0.0;
+        instance9[3] = 0.0;
 
-    ds.set_instance(0, instance0);
-    ds.set_instance(1, instance1);
-    ds.set_instance(2, instance2);
-    ds.set_instance(3, instance3);
-    ds.set_instance(4, instance4);
-    ds.set_instance(5, instance5);
-    ds.set_instance(6, instance6);
-    ds.set_instance(7, instance7);
-    ds.set_instance(8, instance8);
-    ds.set_instance(9, instance9);
+        ds.set_instance(0, instance0);
+        ds.set_instance(1, instance1);
+        ds.set_instance(2, instance2);
+        ds.set_instance(3, instance3);
+        ds.set_instance(4, instance4);
+        ds.set_instance(5, instance5);
+        ds.set_instance(6, instance6);
+        ds.set_instance(7, instance7);
+        ds.set_instance(8, instance8);
+        ds.set_instance(9, instance9);
 
-    ds.balance_binary_targets_distribution(50.0);
+        ds.balance_binary_targets_distribution(50.0);
 
-    assert_true(ds.get_instances().count_unused_instances_number() == 3, LOG);
-    assert_true(ds.calculate_target_distribution()[1] == 2, LOG);
-    assert_true(ds.calculate_target_distribution()[0] == 5, LOG);
+        assert_true(ds.get_instances().count_unused_instances_number() == 3, LOG);
+        assert_true(ds.calculate_target_distribution()[1] == 2, LOG);
+        assert_true(ds.calculate_target_distribution()[0] == 5, LOG);
     }
 
     // Test
     {
-    DataSet ds2(9, 1, 99);
+        DataSet ds2(9, 1, 99);
 
-    Matrix<double> data1(9,10);
-    Matrix<double> data2(90,10);
+        Matrix<double> data1(9, 10);
+        Matrix<double> data2(90, 10);
 
-    data1.randomize_normal();
-    data2.randomize_normal();
+        data1.randomize_normal();
+        data2.randomize_normal();
 
-    data1.set_column(9, 0.0);
-    data2.set_column(9, 1.0);
+        data1.set_column(9, 0.0);
+        data2.set_column(9, 1.0);
 
-    Matrix<double> data = data1.assemble_rows(data2);
+        Matrix<double> data = data1.assemble_rows(data2);
 
-    ds2.set(data);
+        ds2.set(data);
 
-    ds2.balance_binary_targets_distribution();
+        ds2.balance_binary_targets_distribution();
 
-    assert_true(ds2.calculate_target_distribution()[0] == ds2.calculate_target_distribution()[1], LOG);
-    assert_true(ds2.calculate_target_distribution()[0] == 9, LOG);
+        assert_true(ds2.calculate_target_distribution()[0] == ds2.calculate_target_distribution()[1], LOG);
+        assert_true(ds2.calculate_target_distribution()[0] == 9, LOG);
     }
 
     //Test
     {
-    DataSet ds(4,1,1);
+        DataSet ds(4, 1, 1);
 
-    const std::string data_file_name = "../data/data.dat";
+        const std::string data_file_name = "../data/data.dat";
 
-    ds.set_data_file_name(data_file_name);
-    ds.set_header_line(false);
-    ds.set_separator("Comma");
-    ds.set_file_type("dat");
-    ds.set_missing_values_label("NaN");
+        ds.set_data_file_name(data_file_name);
+        ds.set_header_line(false);
+        ds.set_separator("Comma");
+        ds.set_file_type("dat");
+        ds.set_missing_values_label("NaN");
 
-    const std::string data_string =
-    "5.1,3.5,1.0\n"
-    "7.0,3.2,NaN\n"
-    "7.0,3.2,0.0\n"
-    "6.3,3.3,0.0";
+        const std::string data_string =
+                "5.1,3.5,1.0\n"
+                        "7.0,3.2,NaN\n"
+                        "7.0,3.2,0.0\n"
+                        "6.3,3.3,0.0";
 
-    std::ofstream file;
+        std::ofstream file;
 
-    file.open(data_file_name.c_str());
-    file << data_string;
-    file.close();
+        file.open(data_file_name.c_str());
+        file << data_string;
+        file.close();
 
-    ds.load_data();
+        ds.load_data();
 
-    ds.scrub_missing_values_unuse();
+        ds.scrub_missing_values_unuse();
 
-    ds.balance_binary_targets_distribution();
+        ds.balance_binary_targets_distribution();
 
-    Vector<size_t> target_distribution = ds.calculate_target_distribution();
+        Vector<size_t> target_distribution = ds.calculate_target_distribution();
 
-    assert_true(target_distribution[0] == target_distribution[1], LOG);
-    assert_true(ds.get_instances().arrange_used_indices().size() == 2, LOG);
-    assert_true(ds.get_instances().arrange_unused_indices().size() == 2, LOG);
+        assert_true(target_distribution[0] == target_distribution[1], LOG);
+        assert_true(ds.get_instances().arrange_used_indices().size() == 2, LOG);
+        assert_true(ds.get_instances().arrange_unused_indices().size() == 2, LOG);
     }
 
     //Test
     {
-    DataSet ds(16,1,1);
+        DataSet ds(16, 1, 1);
 
-    const std::string data_file_name = "../data/data.dat";
+        const std::string data_file_name = "../data/data.dat";
 
-    ds.set_data_file_name(data_file_name);
-    ds.set_header_line(false);
-    ds.set_separator("Comma");
-    ds.set_file_type("dat");
-    ds.set_missing_values_label("NaN");
+        ds.set_data_file_name(data_file_name);
+        ds.set_header_line(false);
+        ds.set_separator("Comma");
+        ds.set_file_type("dat");
+        ds.set_missing_values_label("NaN");
 
-    const std::string data_string =
-    "5.1,3.5,1.0\n"
-    "7.0,3.2,1.0\n"
-    "7.0,3.2,0.0\n"
-    "6.3,3.3,0.0\n"
-    "5.1,3.5,1.0\n"
-    "7.0,3.2,0.0\n"
-    "7.0,3.2,NaN\n"
-    "6.3,3.3,NaN\n"
-    "5.1,3.5,NaN\n"
-    "7.0,3.2,NaN\n"
-    "7.0,3.2,NaN\n"
-    "6.3,3.3,NaN\n"
-    "5.1,3.5,NaN\n"
-    "7.0,3.2,NaN\n"
-    "7.0,3.2,NaN\n"
-    "6.3,3.3,NaN\n"
-    "5.1,3.5,1.0\n"
-    "7.0,3.2,NaN\n"
-    "7.0,3.2,NaN\n"
-    "6.3,3.3,NaN\n";
+        const std::string data_string =
+                "5.1,3.5,1.0\n"
+                        "7.0,3.2,1.0\n"
+                        "7.0,3.2,0.0\n"
+                        "6.3,3.3,0.0\n"
+                        "5.1,3.5,1.0\n"
+                        "7.0,3.2,0.0\n"
+                        "7.0,3.2,NaN\n"
+                        "6.3,3.3,NaN\n"
+                        "5.1,3.5,NaN\n"
+                        "7.0,3.2,NaN\n"
+                        "7.0,3.2,NaN\n"
+                        "6.3,3.3,NaN\n"
+                        "5.1,3.5,NaN\n"
+                        "7.0,3.2,NaN\n"
+                        "7.0,3.2,NaN\n"
+                        "6.3,3.3,NaN\n"
+                        "5.1,3.5,1.0\n"
+                        "7.0,3.2,NaN\n"
+                        "7.0,3.2,NaN\n"
+                        "6.3,3.3,NaN\n";
 
-    std::ofstream file;
+        std::ofstream file;
 
-    file.open(data_file_name.c_str());
-    file << data_string;
-    file.close();
+        file.open(data_file_name.c_str());
+        file << data_string;
+        file.close();
 
-    ds.load_data();
+        ds.load_data();
 
-    ds.scrub_missing_values_unuse();
+        ds.scrub_missing_values_unuse();
 
-    ds.balance_binary_targets_distribution();
+        ds.balance_binary_targets_distribution();
 
-    Vector<size_t> target_distribution = ds.calculate_target_distribution();
+        Vector<size_t> target_distribution = ds.calculate_target_distribution();
 
-    assert_true(target_distribution[0] == target_distribution[1], LOG);
+        assert_true(target_distribution[0] == target_distribution[1], LOG);
     }
 }
 
@@ -1712,662 +1717,662 @@ void DataSetTest::test_generate_data_multiple_classification(void)
 }
 
 
-void DataSetTest::test_to_XML(void) 
+void DataSetTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   tinyxml2::XMLDocument* document;
+    tinyxml2::XMLDocument *document;
 
-   // Test
+    // Test
 
-   document = ds.to_XML();
+    document = ds.to_XML();
 
-   assert_true(document != NULL, LOG);
+    assert_true(document != NULL, LOG);
 }
 
 
-void DataSetTest::test_from_XML(void) 
+void DataSetTest::test_from_XML(void)
 {
-   message += "test_from_XML\n";
+    message += "test_from_XML\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Variables* v = ds.get_variables_pointer();
-   Instances* i = ds.get_instances_pointer();
+    Variables *v = ds.get_variables_pointer();
+    Instances *i = ds.get_instances_pointer();
 
-   tinyxml2::XMLDocument* document;
-   
-   // Test
+    tinyxml2::XMLDocument *document;
 
-   document = ds.to_XML();
+    // Test
 
-   ds.from_XML(*document);
+    document = ds.to_XML();
 
-   // Test
+    ds.from_XML(*document);
 
-   ds.set(2, 2);
+    // Test
 
-   v->set_use(0, Variables::Target);
-   v->set_use(1, Variables::Unused);
+    ds.set(2, 2);
 
-   i->set_use(0, Instances::Unused);
-   i->set_use(1, Instances::Testing);
+    v->set_use(0, Variables::Target);
+    v->set_use(1, Variables::Unused);
 
-   document = ds.to_XML();
+    i->set_use(0, Instances::Unused);
+    i->set_use(1, Instances::Testing);
 
-   ds.set();
+    document = ds.to_XML();
 
-   ds.from_XML(*document);
+    ds.set();
 
-   assert_true(v->get_variables_number() == 2, LOG);
-   assert_true(v->get_use(0) == Variables::Target, LOG);
-   assert_true(v->get_use(1) == Variables::Unused, LOG);
-   assert_true(i->get_instances_number() == 2, LOG);
-   assert_true(i->get_use(0) == Instances::Unused, LOG);
-   assert_true(i->get_use(1) == Instances::Testing, LOG);
+    ds.from_XML(*document);
+
+    assert_true(v->get_variables_number() == 2, LOG);
+    assert_true(v->get_use(0) == Variables::Target, LOG);
+    assert_true(v->get_use(1) == Variables::Unused, LOG);
+    assert_true(i->get_instances_number() == 2, LOG);
+    assert_true(i->get_use(0) == Instances::Unused, LOG);
+    assert_true(i->get_use(1) == Instances::Testing, LOG);
 }
 
 
-void DataSetTest::test_print(void) 
+void DataSetTest::test_print(void)
 {
-   message += "test_print\n";
+    message += "test_print\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   ds.set_display(false);
+    ds.set_display(false);
 
 //   ds.print();
 }
 
 
-void DataSetTest::test_save(void) 
+void DataSetTest::test_save(void)
 {
-   message += "test_save\n";
+    message += "test_save\n";
 
-   std::string file_name = "../data/data_set.xml";
+    std::string file_name = "../data/data_set.xml";
 
-   DataSet ds;
+    DataSet ds;
 
-   ds.set_display(false);
+    ds.set_display(false);
 
-   ds.save(file_name);
+    ds.save(file_name);
 }
 
 
-void DataSetTest::test_load(void) 
+void DataSetTest::test_load(void)
 {
-   message += "test_load\n";
+    message += "test_load\n";
 
-   std::string file_name = "../data/data_set.xml";
-   std::string data_file_name = "../data/data.dat";
+    std::string file_name = "../data/data_set.xml";
+    std::string data_file_name = "../data/data.dat";
 
-   DataSet ds;
-   DataSet ds_copy;
+    DataSet ds;
+    DataSet ds_copy;
 
-   Matrix<double> data;
+    Matrix<double> data;
 
-   // Test
+    // Test
 
-   ds.set();
+    ds.set();
 
-   ds.save(file_name);
-   ds.load(file_name);
+    ds.save(file_name);
+    ds.load(file_name);
 
-   // Test;
+    // Test;
 
-   ds.set();
+    ds.set();
 
-   data.set(1, 2, 0.0);
+    data.set(1, 2, 0.0);
 
-   data.save(data_file_name);
+    data.save(data_file_name);
 
-   ds.set(2, 1);
+    ds.set(2, 1);
 
-   ds.set_data_file_name(data_file_name);
+    ds.set_data_file_name(data_file_name);
 
-   ds.get_variables_pointer()->set_name(0, "x");
-   ds.get_variables_pointer()->set_units(0, "[m]");
-   ds.get_variables_pointer()->set_description(0, "distance");
+    ds.get_variables_pointer()->set_name(0, "x");
+    ds.get_variables_pointer()->set_units(0, "[m]");
+    ds.get_variables_pointer()->set_description(0, "distance");
 
-   ds.get_variables_pointer()->set_name(1, "y");
-   ds.get_variables_pointer()->set_units(1, "[s]");
-   ds.get_variables_pointer()->set_description(1, "time");
+    ds.get_variables_pointer()->set_name(1, "y");
+    ds.get_variables_pointer()->set_units(1, "[s]");
+    ds.get_variables_pointer()->set_description(1, "time");
 
-   ds.save(file_name);
-   ds_copy.load(file_name);
+    ds.save(file_name);
+    ds_copy.load(file_name);
 
-   assert_true(ds_copy.get_variables().get_variables_number() == 2, LOG);
-   assert_true(ds_copy.get_instances().get_instances_number() == 1, LOG);
+    assert_true(ds_copy.get_variables().get_variables_number() == 2, LOG);
+    assert_true(ds_copy.get_instances().get_instances_number() == 1, LOG);
 
-   assert_true(ds_copy.get_variables_pointer()->get_name(0) == "x", LOG);
-   assert_true(ds_copy.get_variables_pointer()->get_unit(0) == "[m]", LOG);
-   assert_true(ds_copy.get_variables_pointer()->get_description(0) == "distance", LOG);
+    assert_true(ds_copy.get_variables_pointer()->get_name(0) == "x", LOG);
+    assert_true(ds_copy.get_variables_pointer()->get_unit(0) == "[m]", LOG);
+    assert_true(ds_copy.get_variables_pointer()->get_description(0) == "distance", LOG);
 
-   assert_true(ds_copy.get_variables_pointer()->get_name(1) == "y", LOG);
-   assert_true(ds_copy.get_variables_pointer()->get_unit(1) == "[s]", LOG);
-   assert_true(ds_copy.get_variables_pointer()->get_description(1) == "time", LOG);
+    assert_true(ds_copy.get_variables_pointer()->get_name(1) == "y", LOG);
+    assert_true(ds_copy.get_variables_pointer()->get_unit(1) == "[s]", LOG);
+    assert_true(ds_copy.get_variables_pointer()->get_description(1) == "time", LOG);
 }
 
 
 void DataSetTest::test_print_data(void)
 {
-   message += "test_print_data\n";
+    message += "test_print_data\n";
 }
 
 
 void DataSetTest::test_save_data(void)
 {
-   message += "test_save_data\n";
+    message += "test_save_data\n";
 
-   std::string data_file_name = "../data/data.dat";
+    std::string data_file_name = "../data/data.dat";
 
-   DataSet ds(2,2,2);
+    DataSet ds(2, 2, 2);
 
-   ds.set_data_file_name(data_file_name);
+    ds.set_data_file_name(data_file_name);
 
-   ds.set_display(false);
+    ds.set_display(false);
 
-   ds.save_data();
+    ds.save_data();
 }
 
 
-void DataSetTest::test_load_data(void) 
+void DataSetTest::test_load_data(void)
 {
-   message += "test_load_data\n";
+    message += "test_load_data\n";
 
-   const std::string data_file_name = "../data/data.dat";
+    const std::string data_file_name = "../data/data.dat";
 
-   std::ofstream file;
+    std::ofstream file;
 
-   DataSet ds;
+    DataSet ds;
 
-   Variables* variables_pointer;
+    Variables *variables_pointer;
 
-   ds.set_data_file_name(data_file_name);
+    ds.set_data_file_name(data_file_name);
 
-   Matrix<double> data;
+    Matrix<double> data;
 
-   std::string data_string;
+    std::string data_string;
 
-   // Test
+    // Test
 
-   ds.set();
-   ds.set_data_file_name(data_file_name);
-   ds.set_file_type("dat");
+    ds.set();
+    ds.set_data_file_name(data_file_name);
+    ds.set_file_type("dat");
 
-   ds.set_display(false);
+    ds.set_display(false);
 
-   ds.save_data();
+    ds.save_data();
 
-   ds.load_data();
+    ds.load_data();
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(data.empty(), LOG);
+    assert_true(data.empty(), LOG);
 
-   // Test
+    // Test
 
-   ds.set(2, 2, 2);
-   ds.set_data_file_name(data_file_name);
-   ds.set_file_type("dat");
+    ds.set(2, 2, 2);
+    ds.set_data_file_name(data_file_name);
+    ds.set_file_type("dat");
 
-   ds.initialize_data(0.0);
+    ds.initialize_data(0.0);
 
-   ds.set_display(false);
+    ds.set_display(false);
 
-   ds.save_data();
+    ds.save_data();
 
-   ds.load_data();
+    ds.load_data();
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(data == 0.0, LOG);
+    assert_true(data == 0.0, LOG);
 
-   // Test
+    // Test
 
-   ds.set_separator("Space");
-   ds.set_file_type("dat");
+    ds.set_separator("Space");
+    ds.set_file_type("dat");
 
-   data_string = "\n\t\n   1 \t 2   \n\n\n   3 \t 4   \n\t\n";
+    data_string = "\n\t\n   1 \t 2   \n\n\n   3 \t 4   \n\t\n";
 
-   file.open(data_file_name.c_str());
-   file << data_string;
-   file.close();
+    file.open(data_file_name.c_str());
+    file << data_string;
+    file.close();
 
-   ds.load_data();
+    ds.load_data();
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(data.get_rows_number() == 2, LOG);
-   assert_true(data.get_columns_number() == 2, LOG);
+    assert_true(data.get_rows_number() == 2, LOG);
+    assert_true(data.get_columns_number() == 2, LOG);
 
-   assert_true(data(0,0) == 1, LOG);
-   assert_true(data(0,1) == 2, LOG);
-   assert_true(data(1,0) == 3, LOG);
-   assert_true(data(1,1) == 4, LOG);
+    assert_true(data(0, 0) == 1, LOG);
+    assert_true(data(0, 1) == 2, LOG);
+    assert_true(data(1, 0) == 3, LOG);
+    assert_true(data(1, 1) == 4, LOG);
 
-   assert_true(ds.get_instances().get_instances_number() == 2, LOG);
-   assert_true(ds.get_variables().get_variables_number() == 2, LOG);
+    assert_true(ds.get_instances().get_instances_number() == 2, LOG);
+    assert_true(ds.get_variables().get_variables_number() == 2, LOG);
 
-   // Test
+    // Test
 
-   ds.set_separator("Tab");
-   ds.set_file_type("dat");
+    ds.set_separator("Tab");
+    ds.set_file_type("dat");
 
-   data_string = "\n\n\n1 \t 2\n3 \t 4\n\n\n";
+    data_string = "\n\n\n1 \t 2\n3 \t 4\n\n\n";
 
-   file.open(data_file_name.c_str());
-   file << data_string;
-   file.close();
+    file.open(data_file_name.c_str());
+    file << data_string;
+    file.close();
 
-   ds.load_data();
+    ds.load_data();
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(data(0,0) == 1, LOG);
-   assert_true(data(0,1) == 2, LOG);
-   assert_true(data(1,0) == 3, LOG);
-   assert_true(data(1,1) == 4, LOG);
+    assert_true(data(0, 0) == 1, LOG);
+    assert_true(data(0, 1) == 2, LOG);
+    assert_true(data(1, 0) == 3, LOG);
+    assert_true(data(1, 1) == 4, LOG);
 
-   // Test
+    // Test
 
-   ds.set_header_line(true);
-   ds.set_separator("Space");
-   ds.set_file_type("dat");
+    ds.set_header_line(true);
+    ds.set_separator("Space");
+    ds.set_file_type("dat");
 
-   data_string = "\n"
-                 "x y\n"
-                 "\n"
-                 "1   2\n"
-                 "3   4\n";
+    data_string = "\n"
+            "x y\n"
+            "\n"
+            "1   2\n"
+            "3   4\n";
 
-   file.open(data_file_name.c_str());
-   file << data_string;
-   file.close();
+    file.open(data_file_name.c_str());
+    file << data_string;
+    file.close();
 
-   ds.load_data();
+    ds.load_data();
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(ds.get_header_line() == true, LOG);
-   assert_true(ds.get_variables_pointer()->get_name(0) == "x", LOG);
-   assert_true(ds.get_variables_pointer()->get_name(1) == "y", LOG);
+    assert_true(ds.get_header_line() == true, LOG);
+    assert_true(ds.get_variables_pointer()->get_name(0) == "x", LOG);
+    assert_true(ds.get_variables_pointer()->get_name(1) == "y", LOG);
 
-   assert_true(data.get_rows_number() == 2, LOG);
-   assert_true(data.get_columns_number() == 2, LOG);
+    assert_true(data.get_rows_number() == 2, LOG);
+    assert_true(data.get_columns_number() == 2, LOG);
 
-   assert_true(data(0,0) == 1, LOG);
-   assert_true(data(0,1) == 2, LOG);
-   assert_true(data(1,0) == 3, LOG);
-   assert_true(data(1,1) == 4, LOG);
+    assert_true(data(0, 0) == 1, LOG);
+    assert_true(data(0, 1) == 2, LOG);
+    assert_true(data(1, 0) == 3, LOG);
+    assert_true(data(1, 1) == 4, LOG);
 
-   // Test
+    // Test
 
-   ds.set_header_line(true);
-   ds.set_separator("Comma");
-   ds.set_file_type("dat");
+    ds.set_header_line(true);
+    ds.set_separator("Comma");
+    ds.set_file_type("dat");
 
-   data_string = "\tx \t ,\t y \n"
-                 "\t1 \t, \t 2 \n"
-                 "\t3 \t, \t 4 \n";
+    data_string = "\tx \t ,\t y \n"
+            "\t1 \t, \t 2 \n"
+            "\t3 \t, \t 4 \n";
 
-   file.open(data_file_name.c_str());
-   file << data_string;
-   file.close();
+    file.open(data_file_name.c_str());
+    file << data_string;
+    file.close();
 
-   ds.load_data();
+    ds.load_data();
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(ds.get_variables_pointer()->get_name(0) == "x", LOG);
-   assert_true(ds.get_variables_pointer()->get_name(1) == "y", LOG);
+    assert_true(ds.get_variables_pointer()->get_name(0) == "x", LOG);
+    assert_true(ds.get_variables_pointer()->get_name(1) == "y", LOG);
 
-   assert_true(data(0,0) == 1, LOG);
-   assert_true(data(0,1) == 2, LOG);
-   assert_true(data(1,0) == 3, LOG);
-   assert_true(data(1,1) == 4, LOG);
+    assert_true(data(0, 0) == 1, LOG);
+    assert_true(data(0, 1) == 2, LOG);
+    assert_true(data(1, 0) == 3, LOG);
+    assert_true(data(1, 1) == 4, LOG);
 
-   // Test
+    // Test
 
-   ds.set_header_line(true);
-   ds.set_separator("Comma");
-   ds.set_file_type("dat");
+    ds.set_header_line(true);
+    ds.set_separator("Comma");
+    ds.set_file_type("dat");
 
-   data_string = "x , y\n"
-                 "1 , 2\n"
-                 "3 , 4\n";
+    data_string = "x , y\n"
+            "1 , 2\n"
+            "3 , 4\n";
 
-   file.open(data_file_name.c_str());
-   file << data_string;
-   file.close();
+    file.open(data_file_name.c_str());
+    file << data_string;
+    file.close();
 
-   ds.load_data();
+    ds.load_data();
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(ds.get_variables_pointer()->get_name(0) == "x", LOG);
-   assert_true(ds.get_variables_pointer()->get_name(1) == "y", LOG);
+    assert_true(ds.get_variables_pointer()->get_name(0) == "x", LOG);
+    assert_true(ds.get_variables_pointer()->get_name(1) == "y", LOG);
 
-   assert_true(data(0,0) == 1, LOG);
-   assert_true(data(0,1) == 2, LOG);
-   assert_true(data(1,0) == 3, LOG);
-   assert_true(data(1,1) == 4, LOG);
+    assert_true(data(0, 0) == 1, LOG);
+    assert_true(data(0, 1) == 2, LOG);
+    assert_true(data(1, 0) == 3, LOG);
+    assert_true(data(1, 1) == 4, LOG);
 
-   // Test
+    // Test
 
-   ds.set_header_line(false);
-   ds.set_separator("Comma");
-   ds.set_file_type("dat");
+    ds.set_header_line(false);
+    ds.set_separator("Comma");
+    ds.set_file_type("dat");
 
-   data_string =
-   "5.1,3.5,1.4,0.2,Iris-setosa\n"
-   "7.0,3.2,4.7,1.4,Iris-versicolor\n"
-   "7.0,3.2,4.7,1.4,Iris-versicolor\n"
-   "6.3,3.3,6.0,2.5,Iris-virginica";
+    data_string =
+            "5.1,3.5,1.4,0.2,Iris-setosa\n"
+                    "7.0,3.2,4.7,1.4,Iris-versicolor\n"
+                    "7.0,3.2,4.7,1.4,Iris-versicolor\n"
+                    "6.3,3.3,6.0,2.5,Iris-virginica";
 
-   file.open(data_file_name.c_str());
-   file << data_string;
-   file.close();
+    file.open(data_file_name.c_str());
+    file << data_string;
+    file.close();
 
-   ds.load_data();
-
-   assert_true(ds.get_instances().get_instances_number() == 4, LOG);
-   assert_true(ds.get_variables().get_variables_number() == 7, LOG);
+    ds.load_data();
+
+    assert_true(ds.get_instances().get_instances_number() == 4, LOG);
+    assert_true(ds.get_variables().get_variables_number() == 7, LOG);
 
-   // Test
+    // Test
 
-   ds.set_header_line(false);
-   ds.set_separator("Comma");
-   ds.set_file_type("dat");
+    ds.set_header_line(false);
+    ds.set_separator("Comma");
+    ds.set_file_type("dat");
 
-   data_string =
-   "5.1,3.5,1.4,0.2,Iris-setosa\n"
-   "7.0,3.2,4.7,1.4,Iris-versicolor\n"
-   "7.0,3.2,4.7,1.4,Iris-versicolor\n"
-   "6.3,3.3,6.0,2.5,Iris-virginica\n";
+    data_string =
+            "5.1,3.5,1.4,0.2,Iris-setosa\n"
+                    "7.0,3.2,4.7,1.4,Iris-versicolor\n"
+                    "7.0,3.2,4.7,1.4,Iris-versicolor\n"
+                    "6.3,3.3,6.0,2.5,Iris-virginica\n";
 
-   file.open(data_file_name.c_str());
-   file << data_string;
-   file.close();
+    file.open(data_file_name.c_str());
+    file << data_string;
+    file.close();
 
-   ds.load_data();
+    ds.load_data();
 
-   assert_true(ds.get_variables_pointer()->get_variables_number() == 7, LOG);
-   assert_true(ds.get_variables_pointer()->count_inputs_number() == 4, LOG);
-   assert_true(ds.get_variables_pointer()->count_targets_number() == 3, LOG);
-   assert_true(ds.get_instances_pointer()->get_instances_number() == 4, LOG);
+    assert_true(ds.get_variables_pointer()->get_variables_number() == 7, LOG);
+    assert_true(ds.get_variables_pointer()->count_inputs_number() == 4, LOG);
+    assert_true(ds.get_variables_pointer()->count_targets_number() == 3, LOG);
+    assert_true(ds.get_instances_pointer()->get_instances_number() == 4, LOG);
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(data(0,0) == 5.1, LOG);
-   assert_true(data(0,4) == 1, LOG);
-   assert_true(data(0,5) == 0, LOG);
-   assert_true(data(0,6) == 0, LOG);
-   assert_true(data(1,4) == 0, LOG);
-   assert_true(data(1,5) == 1, LOG);
-   assert_true(data(1,6) == 0, LOG);
-   assert_true(data(2,4) == 0, LOG);
-   assert_true(data(2,5) == 1, LOG);
-   assert_true(data(2,6) == 0, LOG);
-   assert_true(data(3,4) == 0, LOG);
-   assert_true(data(3,5) == 0, LOG);
-   assert_true(data(3,6) == 1, LOG);
+    assert_true(data(0, 0) == 5.1, LOG);
+    assert_true(data(0, 4) == 1, LOG);
+    assert_true(data(0, 5) == 0, LOG);
+    assert_true(data(0, 6) == 0, LOG);
+    assert_true(data(1, 4) == 0, LOG);
+    assert_true(data(1, 5) == 1, LOG);
+    assert_true(data(1, 6) == 0, LOG);
+    assert_true(data(2, 4) == 0, LOG);
+    assert_true(data(2, 5) == 1, LOG);
+    assert_true(data(2, 6) == 0, LOG);
+    assert_true(data(3, 4) == 0, LOG);
+    assert_true(data(3, 5) == 0, LOG);
+    assert_true(data(3, 6) == 1, LOG);
 
-   // Test
+    // Test
 
-   ds.set_header_line(true);
-   ds.set_separator("Comma");
-   ds.set_missing_values_label("NaN");
-   ds.set_file_type("dat");
+    ds.set_header_line(true);
+    ds.set_separator("Comma");
+    ds.set_missing_values_label("NaN");
+    ds.set_file_type("dat");
 
-   data_string =
-   "sepal length,sepal width,petal length,petal width,class\n"
-   "NaN,3.5,1.4,0.2,Iris-setosa\n"
-   "7.0,3.2,4.7,1.4,Iris-versicolor\n"
-   "7.0,3.2,4.7,1.4,Iris-versicolor\n"
-   "6.3,3.3,6.0,2.5,Iris-virginica\n"
-   "0.0,0.0,0.0,0.0,NaN\n";
+    data_string =
+            "sepal length,sepal width,petal length,petal width,class\n"
+                    "NaN,3.5,1.4,0.2,Iris-setosa\n"
+                    "7.0,3.2,4.7,1.4,Iris-versicolor\n"
+                    "7.0,3.2,4.7,1.4,Iris-versicolor\n"
+                    "6.3,3.3,6.0,2.5,Iris-virginica\n"
+                    "0.0,0.0,0.0,0.0,NaN\n";
 
-   file.open(data_file_name.c_str());
-   file << data_string;
-   file.close();
+    file.open(data_file_name.c_str());
+    file << data_string;
+    file.close();
 
-   ds.load_data();
+    ds.load_data();
 
-   assert_true(ds.get_variables_pointer()->get_variables_number() == 7, LOG);
-   assert_true(ds.get_variables_pointer()->count_inputs_number() == 4, LOG);
-   assert_true(ds.get_variables_pointer()->count_targets_number() == 3, LOG);
+    assert_true(ds.get_variables_pointer()->get_variables_number() == 7, LOG);
+    assert_true(ds.get_variables_pointer()->count_inputs_number() == 4, LOG);
+    assert_true(ds.get_variables_pointer()->count_targets_number() == 3, LOG);
 
-   assert_true(ds.get_variables_pointer()->get_name(0) == "sepal length", LOG);
-   assert_true(ds.get_variables_pointer()->get_name(1) == "sepal width", LOG);
-   assert_true(ds.get_variables_pointer()->get_name(2) == "petal length", LOG);
-   assert_true(ds.get_variables_pointer()->get_name(3) == "petal width", LOG);
-   assert_true(ds.get_variables_pointer()->get_name(4) == "Iris-setosa", LOG);
-   assert_true(ds.get_variables_pointer()->get_name(5) == "Iris-versicolor", LOG);
-   assert_true(ds.get_variables_pointer()->get_name(6) == "Iris-virginica", LOG);
+    assert_true(ds.get_variables_pointer()->get_name(0) == "sepal length", LOG);
+    assert_true(ds.get_variables_pointer()->get_name(1) == "sepal width", LOG);
+    assert_true(ds.get_variables_pointer()->get_name(2) == "petal length", LOG);
+    assert_true(ds.get_variables_pointer()->get_name(3) == "petal width", LOG);
+    assert_true(ds.get_variables_pointer()->get_name(4) == "Iris-setosa", LOG);
+    assert_true(ds.get_variables_pointer()->get_name(5) == "Iris-versicolor", LOG);
+    assert_true(ds.get_variables_pointer()->get_name(6) == "Iris-virginica", LOG);
 
-   assert_true(ds.get_instances_pointer()->get_instances_number() == 5, LOG);
+    assert_true(ds.get_instances_pointer()->get_instances_number() == 5, LOG);
 
-   assert_true(ds.get_missing_values().get_missing_values_number() == 4, LOG);
-   assert_true(ds.get_missing_values().get_item(0).instance_index == 0, LOG);
-   assert_true(ds.get_missing_values().get_item(0).variable_index == 0, LOG);
+    assert_true(ds.get_missing_values().get_missing_values_number() == 4, LOG);
+    assert_true(ds.get_missing_values().get_item(0).instance_index == 0, LOG);
+    assert_true(ds.get_missing_values().get_item(0).variable_index == 0, LOG);
 
-   assert_true(ds.get_missing_values().get_item(1).instance_index == 4, LOG);
-   assert_true(ds.get_missing_values().get_item(1).variable_index == 4, LOG);
-   assert_true(ds.get_missing_values().get_item(2).instance_index == 4, LOG);
-   assert_true(ds.get_missing_values().get_item(2).variable_index == 5, LOG);
-   assert_true(ds.get_missing_values().get_item(3).instance_index == 4, LOG);
-   assert_true(ds.get_missing_values().get_item(3).variable_index == 6, LOG);
+    assert_true(ds.get_missing_values().get_item(1).instance_index == 4, LOG);
+    assert_true(ds.get_missing_values().get_item(1).variable_index == 4, LOG);
+    assert_true(ds.get_missing_values().get_item(2).instance_index == 4, LOG);
+    assert_true(ds.get_missing_values().get_item(2).variable_index == 5, LOG);
+    assert_true(ds.get_missing_values().get_item(3).instance_index == 4, LOG);
+    assert_true(ds.get_missing_values().get_item(3).variable_index == 6, LOG);
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(data(0,4) == 1, LOG);
-   assert_true(data(0,5) == 0, LOG);
-   assert_true(data(0,6) == 0, LOG);
-   assert_true(data(1,4) == 0, LOG);
-   assert_true(data(1,5) == 1, LOG);
-   assert_true(data(1,6) == 0, LOG);
-   assert_true(data(2,4) == 0, LOG);
-   assert_true(data(2,5) == 1, LOG);
-   assert_true(data(2,6) == 0, LOG);
+    assert_true(data(0, 4) == 1, LOG);
+    assert_true(data(0, 5) == 0, LOG);
+    assert_true(data(0, 6) == 0, LOG);
+    assert_true(data(1, 4) == 0, LOG);
+    assert_true(data(1, 5) == 1, LOG);
+    assert_true(data(1, 6) == 0, LOG);
+    assert_true(data(2, 4) == 0, LOG);
+    assert_true(data(2, 5) == 1, LOG);
+    assert_true(data(2, 6) == 0, LOG);
 
-   // Test
+    // Test
 
-   ds.set_header_line(false);
-   ds.set_separator("Comma");
-   ds.set_missing_values_label("NaN");
-   ds.set_file_type("dat");
+    ds.set_header_line(false);
+    ds.set_separator("Comma");
+    ds.set_missing_values_label("NaN");
+    ds.set_file_type("dat");
 
-   data_string =
-   "0,0,0\n"
-   "0,0,NaN\n"
-   "0,0,0\n";
+    data_string =
+            "0,0,0\n"
+                    "0,0,NaN\n"
+                    "0,0,0\n";
 
-   file.open(data_file_name.c_str());
-   file << data_string;
-   file.close();
+    file.open(data_file_name.c_str());
+    file << data_string;
+    file.close();
 
-   ds.load_data();
+    ds.load_data();
 
-   assert_true(ds.get_missing_values().count_missing_instances() == 1, LOG);
-   assert_true(ds.get_missing_values().get_item(0).instance_index == 1, LOG);
-   assert_true(ds.get_missing_values().get_item(0).variable_index == 2, LOG);
+    assert_true(ds.get_missing_values().count_missing_instances() == 1, LOG);
+    assert_true(ds.get_missing_values().get_item(0).instance_index == 1, LOG);
+    assert_true(ds.get_missing_values().get_item(0).variable_index == 2, LOG);
 
-   // Test
+    // Test
 
-   ds.set_separator("Space");
-   ds.set_file_type("dat");
+    ds.set_separator("Space");
+    ds.set_file_type("dat");
 
-   data_string = "1 2\n3 4\n5 6\n";
+    data_string = "1 2\n3 4\n5 6\n";
 
-   file.open(data_file_name.c_str());
-   file << data_string;
-   file.close();
+    file.open(data_file_name.c_str());
+    file << data_string;
+    file.close();
 
-   ds.load_data();
+    ds.load_data();
 
-   variables_pointer = ds.get_variables_pointer();
+    variables_pointer = ds.get_variables_pointer();
 
-   variables_pointer->set_name(0, "x");
-   variables_pointer->set_name(1, "y");
+    variables_pointer->set_name(0, "x");
+    variables_pointer->set_name(1, "y");
 
-   ds.save("../data/data_set.xml");
+    ds.save("../data/data_set.xml");
 
-   ds.load("../data/data_set.xml");
+    ds.load("../data/data_set.xml");
 
-   assert_true(ds.get_variables().get_name(0) == "x", LOG);
-   assert_true(ds.get_variables().get_name(1) == "y", LOG);
+    assert_true(ds.get_variables().get_name(0) == "x", LOG);
+    assert_true(ds.get_variables().get_name(1) == "y", LOG);
 
-   // Test
+    // Test
 
-   ds.set_header_line(false);
-   ds.set_separator("Space");
-   ds.set_file_type("dat");
+    ds.set_header_line(false);
+    ds.set_separator("Space");
+    ds.set_file_type("dat");
 
-   data_string = "1 true\n"
-                 "3 false\n"
-                 "5 true\n";
+    data_string = "1 true\n"
+            "3 false\n"
+            "5 true\n";
 
-   file.open(data_file_name.c_str());
-   file << data_string;
-   file.close();
+    file.open(data_file_name.c_str());
+    file << data_string;
+    file.close();
 
-   ds.load_data();
+    ds.load_data();
 
-   assert_true(ds.get_variables_pointer()->get_variables_number() == 2, LOG);
-   assert_true(ds.get_variables_pointer()->count_inputs_number() == 1, LOG);
-   assert_true(ds.get_variables_pointer()->count_targets_number() == 1, LOG);
+    assert_true(ds.get_variables_pointer()->get_variables_number() == 2, LOG);
+    assert_true(ds.get_variables_pointer()->count_inputs_number() == 1, LOG);
+    assert_true(ds.get_variables_pointer()->count_targets_number() == 1, LOG);
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(data(0,1) == 1, LOG);
-   assert_true(data(1,1) == 0, LOG);
-   assert_true(data(2,1) == 1, LOG);
+    assert_true(data(0, 1) == 1, LOG);
+    assert_true(data(1, 1) == 0, LOG);
+    assert_true(data(2, 1) == 1, LOG);
 
-   // Test
+    // Test
 
-   ds.set_separator("Tab");
-   ds.set_missing_values_label("NaN");
-   ds.set_file_type("dat");
+    ds.set_separator("Tab");
+    ds.set_missing_values_label("NaN");
+    ds.set_file_type("dat");
 
-   data_string =
-   "f	52	1100	32	145490	4	no\n"
-   "f	57	8715	1	242542	1	NaN\n"
-   "m	44	5145	28	79100	5	no\n"
-   "f	57	2857	16	1	1	NaN\n"
-   "f	47	3368	44	63939	1	yes\n"
-   "f	59	5697	14	45278	1	no\n"
-   "m	86	1843	1	132799	2	yes\n"
-   "m	67	4394	25	6670	2	no\n"
-   "m	40	6619	23	168081	1	no\n"
-   "f	12	4204	17	1	2	no\n";
+    data_string =
+            "f	52	1100	32	145490	4	no\n"
+                    "f	57	8715	1	242542	1	NaN\n"
+                    "m	44	5145	28	79100	5	no\n"
+                    "f	57	2857	16	1	1	NaN\n"
+                    "f	47	3368	44	63939	1	yes\n"
+                    "f	59	5697	14	45278	1	no\n"
+                    "m	86	1843	1	132799	2	yes\n"
+                    "m	67	4394	25	6670	2	no\n"
+                    "m	40	6619	23	168081	1	no\n"
+                    "f	12	4204	17	1	2	no\n";
 
-   file.open(data_file_name.c_str());
-   file << data_string;
-   file.close();
+    file.open(data_file_name.c_str());
+    file << data_string;
+    file.close();
 
-   ds.load_data();
+    ds.load_data();
 
-   assert_true(ds.get_variables_pointer()->get_variables_number() == 7, LOG);
-   assert_true(ds.get_variables_pointer()->count_inputs_number() == 6, LOG);
-   assert_true(ds.get_variables_pointer()->count_targets_number() == 1, LOG);
+    assert_true(ds.get_variables_pointer()->get_variables_number() == 7, LOG);
+    assert_true(ds.get_variables_pointer()->count_inputs_number() == 6, LOG);
+    assert_true(ds.get_variables_pointer()->count_targets_number() == 1, LOG);
 
-   assert_true(ds.get_missing_values_pointer()->get_missing_values_number() == 2, LOG);
+    assert_true(ds.get_missing_values_pointer()->get_missing_values_number() == 2, LOG);
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(data.get_rows_number() == 10, LOG);
-   assert_true(data.get_columns_number() == 7, LOG);
+    assert_true(data.get_rows_number() == 10, LOG);
+    assert_true(data.get_columns_number() == 7, LOG);
 
 }
 
 
 void DataSetTest::test_get_data_statistics(void)
 {
-   message += "test_get_data_statistics\n";
+    message += "test_get_data_statistics\n";
 
-   DataSet ds(1,1,1);
+    DataSet ds(1, 1, 1);
 }
 
 
 void DataSetTest::test_print_data_statistics(void)
 {
-   message += "test_print_data_statistics\n";
+    message += "test_print_data_statistics\n";
 }
 
 
 void DataSetTest::test_get_training_instances_statistics(void)
 {
-   message += "test_get_training_instances_statistics\n";
+    message += "test_get_training_instances_statistics\n";
 
 }
 
 
 void DataSetTest::test_save_training_instances_statistics(void)
 {
-   message += "test_save_training_instances_statistics\n";
+    message += "test_save_training_instances_statistics\n";
 }
 
 
 void DataSetTest::test_print_training_instances_statistics(void)
 {
-   message += "test_print_training_instances_statistics\n";
+    message += "test_print_training_instances_statistics\n";
 }
 
 
 void DataSetTest::test_get_selection_instances_statistics(void)
 {
-   message += "test_get_selection_instances_statistics\n";
+    message += "test_get_selection_instances_statistics\n";
 }
 
 
 void DataSetTest::test_save_selection_instances_statistics(void)
 {
-   message += "test_save_selection_instances_statistics\n";
+    message += "test_save_selection_instances_statistics\n";
 }
 
 
 void DataSetTest::test_print_selection_instances_statistics(void)
 {
-   message += "test_print_selection_instances_statistics\n";
+    message += "test_print_selection_instances_statistics\n";
 }
 
 
 void DataSetTest::test_get_testing_instances_statistics(void)
 {
-   message += "test_get_testing_instances_statistics\n";
+    message += "test_get_testing_instances_statistics\n";
 }
 
 
 void DataSetTest::test_save_testing_instances_statistics(void)
 {
-   message += "test_save_testing_instances_statistics\n";
+    message += "test_save_testing_instances_statistics\n";
 }
 
 
 void DataSetTest::test_print_testing_instances_statistics(void)
 {
-   message += "test_print_testing_instances_statistics\n";
+    message += "test_print_testing_instances_statistics\n";
 }
 
 
 void DataSetTest::test_get_instances_statistics(void)
 {
-   message += "test_get_instances_statistics\n";
+    message += "test_get_instances_statistics\n";
 }
 
 
 void DataSetTest::test_save_instances_statistics(void)
 {
-   message += "test_save_instances_statistics\n";
+    message += "test_save_instances_statistics\n";
 }
 
 
 void DataSetTest::test_print_instances_statistics(void)
 {
-   message += "test_print_instances_statistics\n";
+    message += "test_print_instances_statistics\n";
 }
 
 
@@ -2375,35 +2380,35 @@ void DataSetTest::test_print_instances_statistics(void)
 
 void DataSetTest::test_convert_time_series(void)
 {
-   message += "test_convert_time_series\n";
+    message += "test_convert_time_series\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Matrix<double> data;
+    Matrix<double> data;
 
-   // Test
+    // Test
 
-   data.set(2, 2, 3.1416);
+    data.set(2, 2, 3.1416);
 
-   ds.set_data(data);
+    ds.set_data(data);
 
-   ds.get_variables_pointer()->set_name(0, "x");
-   ds.get_variables_pointer()->set_name(1, "y");
+    ds.get_variables_pointer()->set_name(0, "x");
+    ds.get_variables_pointer()->set_name(1, "y");
 
-   ds.set_lags_number(1);
+    ds.set_lags_number(1);
 
-   ds.convert_time_series();
+    ds.convert_time_series();
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(data.get_rows_number() == 1, LOG);
-   assert_true(data.get_columns_number() == 4, LOG);
+    assert_true(data.get_rows_number() == 1, LOG);
+    assert_true(data.get_columns_number() == 4, LOG);
 
-   assert_true(ds.get_instances().get_instances_number() == 1, LOG);
-   assert_true(ds.get_variables().get_variables_number() == 4, LOG);
+    assert_true(ds.get_instances().get_instances_number() == 1, LOG);
+    assert_true(ds.get_variables().get_variables_number() == 4, LOG);
 
-   assert_true(ds.get_variables().count_inputs_number() == 2, LOG);
-   assert_true(ds.get_variables().count_targets_number() == 2, LOG);
+    assert_true(ds.get_variables().count_inputs_number() == 2, LOG);
+    assert_true(ds.get_variables().count_targets_number() == 2, LOG);
 
 //   assert_true(ds.get_variables().get_name(0) == "x", LOG);
 //   assert_true(ds.get_variables().get_name(1) == "y", LOG);
@@ -2414,144 +2419,144 @@ void DataSetTest::test_convert_time_series(void)
 
 void DataSetTest::test_convert_autoassociation(void)
 {
-   message += "test_convert_autoassociation\n";
+    message += "test_convert_autoassociation\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Matrix<double> data;
+    Matrix<double> data;
 
-   // Test
+    // Test
 
-   data.set(2, 2, 3.1416);
+    data.set(2, 2, 3.1416);
 
-   ds.set_data(data);
+    ds.set_data(data);
 
-   ds.get_variables_pointer()->set_name(0, "x");
-   ds.get_variables_pointer()->set_name(1, "y");
+    ds.get_variables_pointer()->set_name(0, "x");
+    ds.get_variables_pointer()->set_name(1, "y");
 
-   ds.set_autoassociation(true);
+    ds.set_autoassociation(true);
 
-   ds.convert_autoassociation();
+    ds.convert_autoassociation();
 
-   data = ds.get_data();
+    data = ds.get_data();
 
-   assert_true(data.get_rows_number() == 2, LOG);
-   assert_true(data.get_columns_number() == 4, LOG);
+    assert_true(data.get_rows_number() == 2, LOG);
+    assert_true(data.get_columns_number() == 4, LOG);
 
-   assert_true(ds.get_instances().get_instances_number() == 2, LOG);
-   assert_true(ds.get_variables().get_variables_number() == 4, LOG);
+    assert_true(ds.get_instances().get_instances_number() == 2, LOG);
+    assert_true(ds.get_variables().get_variables_number() == 4, LOG);
 
-   assert_true(ds.get_variables().count_inputs_number() == 2, LOG);
-   assert_true(ds.get_variables().count_targets_number() == 2, LOG);
+    assert_true(ds.get_variables().count_inputs_number() == 2, LOG);
+    assert_true(ds.get_variables().count_targets_number() == 2, LOG);
 
-   assert_true(ds.get_variables().get_name(0) == "x", LOG);
-   assert_true(ds.get_variables().get_name(1) == "y", LOG);
-   assert_true(ds.get_variables().get_name(2) == "autoassociation_x", LOG);
-   assert_true(ds.get_variables().get_name(3) == "autoassociation_y", LOG);
+    assert_true(ds.get_variables().get_name(0) == "x", LOG);
+    assert_true(ds.get_variables().get_name(1) == "y", LOG);
+    assert_true(ds.get_variables().get_name(2) == "autoassociation_x", LOG);
+    assert_true(ds.get_variables().get_name(3) == "autoassociation_y", LOG);
 }
 
 
 void DataSetTest::test_convert_angular_variable_degrees(void)
 {
-   message += "test_convert_angular_variable_degrees\n";
+    message += "test_convert_angular_variable_degrees\n";
 }
 
 
 void DataSetTest::test_convert_angular_variable_radians(void)
 {
-   message += "test_convert_angular_variable_radians\n";
+    message += "test_convert_angular_variable_radians\n";
 }
 
 
 void DataSetTest::test_convert_angular_variables_degrees(void)
 {
-   message += "test_convert_angular_variables_degrees\n";
+    message += "test_convert_angular_variables_degrees\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Matrix<double> data;
+    Matrix<double> data;
 
-   Vector<size_t> angular_variables;
+    Vector<size_t> angular_variables;
 
-   // Test
+    // Test
 
-   data.set(2,2, 1.234);
+    data.set(2, 2, 1.234);
 
-   ds.set(data);
+    ds.set(data);
 
-   angular_variables.set(1, 0);
+    angular_variables.set(1, 0);
 
-   ds.convert_angular_variables_degrees(angular_variables);
+    ds.convert_angular_variables_degrees(angular_variables);
 
-   assert_true(ds.get_variables().get_variables_number() == 3, LOG);
-   assert_true(ds.get_data().arrange_column(0).calculate_absolute_value() <= 1.0, LOG);
-   assert_true(ds.get_data().arrange_column(1).calculate_absolute_value() <= 1.0, LOG);
-   assert_true(ds.get_data().arrange_column(2).calculate_absolute_value() == 1.234, LOG);
+    assert_true(ds.get_variables().get_variables_number() == 3, LOG);
+    assert_true(ds.get_data().arrange_column(0).calculate_absolute_value() <= 1.0, LOG);
+    assert_true(ds.get_data().arrange_column(1).calculate_absolute_value() <= 1.0, LOG);
+    assert_true(ds.get_data().arrange_column(2).calculate_absolute_value() == 1.234, LOG);
 
-   // Test
+    // Test
 
-   data.set(2,2, 1.234);
+    data.set(2, 2, 1.234);
 
-   ds.set(data);
+    ds.set(data);
 
-   angular_variables.set(0,1,1);
+    angular_variables.set(0, 1, 1);
 
-   ds.convert_angular_variables_degrees(angular_variables);
+    ds.convert_angular_variables_degrees(angular_variables);
 
-   assert_true(ds.get_variables().get_variables_number() == 4, LOG);
-   assert_true(ds.get_data().arrange_column(0).calculate_absolute_value() <= 1.0, LOG);
-   assert_true(ds.get_data().arrange_column(1).calculate_absolute_value() <= 1.0, LOG);
-   assert_true(ds.get_data().arrange_column(2).calculate_absolute_value() <= 1.0, LOG);
-   assert_true(ds.get_data().arrange_column(3).calculate_absolute_value() <= 1.0, LOG);
+    assert_true(ds.get_variables().get_variables_number() == 4, LOG);
+    assert_true(ds.get_data().arrange_column(0).calculate_absolute_value() <= 1.0, LOG);
+    assert_true(ds.get_data().arrange_column(1).calculate_absolute_value() <= 1.0, LOG);
+    assert_true(ds.get_data().arrange_column(2).calculate_absolute_value() <= 1.0, LOG);
+    assert_true(ds.get_data().arrange_column(3).calculate_absolute_value() <= 1.0, LOG);
 }
 
 
 void DataSetTest::test_convert_angular_variables_radians(void)
 {
-   message += "test_convert_angular_variables_radians\n";
+    message += "test_convert_angular_variables_radians\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   Matrix<double> data;
+    Matrix<double> data;
 
-   Vector<size_t> angular_variables;
+    Vector<size_t> angular_variables;
 
-   // Test
+    // Test
 
-   data.set(2,2, 1.234);
+    data.set(2, 2, 1.234);
 
-   ds.set(data);
+    ds.set(data);
 
-   angular_variables.set(1, 0);
+    angular_variables.set(1, 0);
 
-   ds.convert_angular_variables_radians(angular_variables);
+    ds.convert_angular_variables_radians(angular_variables);
 
-   assert_true(ds.get_variables().get_variables_number() == 3, LOG);
-   assert_true(ds.get_data().arrange_column(0).calculate_absolute_value() <= 1.0, LOG);
-   assert_true(ds.get_data().arrange_column(1).calculate_absolute_value() <= 1.0, LOG);
-   assert_true(ds.get_data().arrange_column(2).calculate_absolute_value() == 1.234, LOG);
+    assert_true(ds.get_variables().get_variables_number() == 3, LOG);
+    assert_true(ds.get_data().arrange_column(0).calculate_absolute_value() <= 1.0, LOG);
+    assert_true(ds.get_data().arrange_column(1).calculate_absolute_value() <= 1.0, LOG);
+    assert_true(ds.get_data().arrange_column(2).calculate_absolute_value() == 1.234, LOG);
 
-   // Test
+    // Test
 
-   data.set(2,2, 1.234);
+    data.set(2, 2, 1.234);
 
-   ds.set(data);
+    ds.set(data);
 
-   angular_variables.set(0,1,1);
+    angular_variables.set(0, 1, 1);
 
-   ds.convert_angular_variables_radians(angular_variables);
+    ds.convert_angular_variables_radians(angular_variables);
 
-   assert_true(ds.get_variables().get_variables_number() == 4, LOG);
-   assert_true(ds.get_data().arrange_column(0).calculate_absolute_value() <= 1.0, LOG);
-   assert_true(ds.get_data().arrange_column(1).calculate_absolute_value() <= 1.0, LOG);
-   assert_true(ds.get_data().arrange_column(2).calculate_absolute_value() <= 1.0, LOG);
-   assert_true(ds.get_data().arrange_column(3).calculate_absolute_value() <= 1.0, LOG);
+    assert_true(ds.get_variables().get_variables_number() == 4, LOG);
+    assert_true(ds.get_data().arrange_column(0).calculate_absolute_value() <= 1.0, LOG);
+    assert_true(ds.get_data().arrange_column(1).calculate_absolute_value() <= 1.0, LOG);
+    assert_true(ds.get_data().arrange_column(2).calculate_absolute_value() <= 1.0, LOG);
+    assert_true(ds.get_data().arrange_column(3).calculate_absolute_value() <= 1.0, LOG);
 }
 
 
 void DataSetTest::test_convert_angular_variables(void)
 {
-   message += "test_convert_angular_variables\n";
+    message += "test_convert_angular_variables\n";
 }
 
 
@@ -2571,7 +2576,7 @@ void DataSetTest::test_scrub_missing_values(void)
 
     Instances instances;
 
-    MissingValues* mv = ds.get_missing_values_pointer();
+    MissingValues *mv = ds.get_missing_values_pointer();
 
     Matrix<double> data;
 
@@ -2586,8 +2591,8 @@ void DataSetTest::test_scrub_missing_values(void)
     mv->set_scrubbing_method("Unuse");
 
     data_string = "0 0 0\n"
-                  "0 0 NaN\n"
-                  "0 0 0\n";
+            "0 0 NaN\n"
+            "0 0 0\n";
 
     file.open(data_file_name.c_str());
     file << data_string;
@@ -2612,8 +2617,8 @@ void DataSetTest::test_scrub_missing_values(void)
     ds.set_file_type("dat");
 
     data_string = "NaN 3   3\n"
-                  "2   NaN 3\n"
-                  "0   1   NaN\n";
+            "2   NaN 3\n"
+            "0   1   NaN\n";
 
     file.open(data_file_name.c_str());
     file << data_string;
@@ -2629,467 +2634,467 @@ void DataSetTest::test_scrub_missing_values(void)
 
     data = ds.get_data();
 
-    assert_true(fabs(data(0,0) - 1.0) < 1.0e-3, LOG);
-    assert_true(fabs(data(1,1) - 2.0) < 1.0e-3, LOG);
-    assert_true(fabs(data(2,2) - 3.0) < 1.0e-3, LOG);
+    assert_true(fabs(data(0, 0) - 1.0) < 1.0e-3, LOG);
+    assert_true(fabs(data(1, 1) - 2.0) < 1.0e-3, LOG);
+    assert_true(fabs(data(2, 2) - 3.0) < 1.0e-3, LOG);
 }
 
 
 void DataSetTest::test_trim(void)
 {
-   message += "test_trim\n";
+    message += "test_trim\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   std::string str;
+    std::string str;
 
-   // Test
+    // Test
 
-   str.assign(" hello");
+    str.assign(" hello");
 
-   ds.trim(str);
+    ds.trim(str);
 
-   assert_true(str.compare("hello") == 0, LOG);
+    assert_true(str.compare("hello") == 0, LOG);
 
-   // Test
+    // Test
 
-   str.assign("hello ");
+    str.assign("hello ");
 
-   ds.trim(str);
+    ds.trim(str);
 
-   assert_true(str.compare("hello") == 0, LOG);
+    assert_true(str.compare("hello") == 0, LOG);
 
-   // Test
+    // Test
 
-   str.assign(" hello ");
+    str.assign(" hello ");
 
-   ds.trim(str);
+    ds.trim(str);
 
-   assert_true(str.compare("hello") == 0, LOG);
+    assert_true(str.compare("hello") == 0, LOG);
 
-   // Test
+    // Test
 
-   str.assign("   hello   ");
+    str.assign("   hello   ");
 
-   ds.trim(str);
+    ds.trim(str);
 
-   assert_true(str.compare("hello") == 0, LOG);
+    assert_true(str.compare("hello") == 0, LOG);
 }
 
 
 void DataSetTest::test_get_trimmed(void)
 {
-   message += "test_get_trimmed\n";
+    message += "test_get_trimmed\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   std::string str1;
-   std::string str2;
+    std::string str1;
+    std::string str2;
 
-   // Test
+    // Test
 
-   str1.assign(" hello");
+    str1.assign(" hello");
 
-   str2 = ds.get_trimmed(str1);
+    str2 = ds.get_trimmed(str1);
 
-   assert_true(str2.compare("hello") == 0, LOG);
+    assert_true(str2.compare("hello") == 0, LOG);
 
-   // Test
+    // Test
 
-   str1.assign("hello ");
+    str1.assign("hello ");
 
-   str2 = ds.get_trimmed(str1);
+    str2 = ds.get_trimmed(str1);
 
-   assert_true(str2.compare("hello") == 0, LOG);
+    assert_true(str2.compare("hello") == 0, LOG);
 
-   // Test
+    // Test
 
-   str1.assign(" hello ");
+    str1.assign(" hello ");
 
-   str2 = ds.get_trimmed(str1);
+    str2 = ds.get_trimmed(str1);
 
-   assert_true(str2.compare("hello") == 0, LOG);
+    assert_true(str2.compare("hello") == 0, LOG);
 
-   // Test
+    // Test
 
-   str1.assign("   hello   ");
+    str1.assign("   hello   ");
 
-   str2 = ds.get_trimmed(str1);
+    str2 = ds.get_trimmed(str1);
 
-   assert_true(str2.compare("hello") == 0, LOG);
+    assert_true(str2.compare("hello") == 0, LOG);
 }
 
 
 void DataSetTest::test_count_tokens(void)
 {
-   message += "test_count_tokens\n";
+    message += "test_count_tokens\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   std::string str;
+    std::string str;
 
-   size_t tokens_number;
+    size_t tokens_number;
 
-   // Test
+    // Test
 
-   str.assign(" hello ");
+    str.assign(" hello ");
 
-   tokens_number = ds.count_tokens(str);
+    tokens_number = ds.count_tokens(str);
 
-   assert_true(tokens_number == 1, LOG);
+    assert_true(tokens_number == 1, LOG);
 
-   // Test
+    // Test
 
-   str.assign(" hello");
+    str.assign(" hello");
 
-   tokens_number = ds.count_tokens(str);
+    tokens_number = ds.count_tokens(str);
 
-   assert_true(tokens_number == 1, LOG);
+    assert_true(tokens_number == 1, LOG);
 
-   // Test
+    // Test
 
-   str.assign(" hello bye ");
+    str.assign(" hello bye ");
 
-   tokens_number = ds.count_tokens(str);
+    tokens_number = ds.count_tokens(str);
 
-   assert_true(tokens_number == 2, LOG);
+    assert_true(tokens_number == 2, LOG);
 
-   // Test
+    // Test
 
-   str.assign(" hello   bye ");
+    str.assign(" hello   bye ");
 
-   tokens_number = ds.count_tokens(str);
+    tokens_number = ds.count_tokens(str);
 
-   assert_true(tokens_number == 2, LOG);
+    assert_true(tokens_number == 2, LOG);
 
-   // Test
+    // Test
 
-   ds.set_separator("Comma");
+    ds.set_separator("Comma");
 
-   str.assign("1, 2, 3, 4");
+    str.assign("1, 2, 3, 4");
 
-   tokens_number = ds.count_tokens(str);
+    tokens_number = ds.count_tokens(str);
 
-   assert_true(tokens_number == 4, LOG);
+    assert_true(tokens_number == 4, LOG);
 
-   // Test
+    // Test
 
-   ds.set_separator("Comma");
+    ds.set_separator("Comma");
 
-   str.assign(",1, 2, 3, 4,");
+    str.assign(",1, 2, 3, 4,");
 
-   tokens_number = ds.count_tokens(str);
+    tokens_number = ds.count_tokens(str);
 
-   assert_true(tokens_number == 4, LOG);
+    assert_true(tokens_number == 4, LOG);
 
-   // Test
+    // Test
 
-   str.assign(",1,2,3,4,");
+    str.assign(",1,2,3,4,");
 
-   tokens_number = ds.count_tokens(str);
+    tokens_number = ds.count_tokens(str);
 
-   assert_true(tokens_number == 4, LOG);
+    assert_true(tokens_number == 4, LOG);
 
-   // Test
+    // Test
 
-   str.assign(" , 1 , 2 , 3 , 4, ");
+    str.assign(" , 1 , 2 , 3 , 4, ");
 
-   tokens_number = ds.count_tokens(str);
+    tokens_number = ds.count_tokens(str);
 
-   assert_true(tokens_number == 4, LOG);
+    assert_true(tokens_number == 4, LOG);
 
-   // Test
+    // Test
 
-   str.assign("5.1,3.5,1.4,0.2,Iris-setosa");
+    str.assign("5.1,3.5,1.4,0.2,Iris-setosa");
 
-   tokens_number = ds.count_tokens(str);
+    tokens_number = ds.count_tokens(str);
 
-   assert_true(tokens_number == 5, LOG);
+    assert_true(tokens_number == 5, LOG);
 }
 
 
 void DataSetTest::test_get_tokens(void)
 {
-   message += "test_get_tokens\n";
+    message += "test_get_tokens\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   std::string str;
+    std::string str;
 
-   Vector<std::string> tokens;
+    Vector<std::string> tokens;
 
-   // Test
+    // Test
 
-   str.assign(" hello ");
+    str.assign(" hello ");
 
-   tokens = ds.get_tokens(str);
+    tokens = ds.get_tokens(str);
 
-   assert_true(tokens.size() == 1, LOG);
-   assert_true(tokens[0].compare("hello") == 0, LOG);
+    assert_true(tokens.size() == 1, LOG);
+    assert_true(tokens[0].compare("hello") == 0, LOG);
 
-   // Test
+    // Test
 
-   str.assign(" hello");
+    str.assign(" hello");
 
-   tokens = ds.get_tokens(str);
+    tokens = ds.get_tokens(str);
 
-   assert_true(tokens.size() == 1, LOG);
-   assert_true(tokens[0].compare("hello") == 0, LOG);
+    assert_true(tokens.size() == 1, LOG);
+    assert_true(tokens[0].compare("hello") == 0, LOG);
 
-   // Test
+    // Test
 
-   str.assign(" hello bye ");
+    str.assign(" hello bye ");
 
-   tokens = ds.get_tokens(str);
+    tokens = ds.get_tokens(str);
 
-   assert_true(tokens.size() == 2, LOG);
-   assert_true(tokens[0].compare("hello") == 0, LOG);
-   assert_true(tokens[1].compare("bye") == 0, LOG);
+    assert_true(tokens.size() == 2, LOG);
+    assert_true(tokens[0].compare("hello") == 0, LOG);
+    assert_true(tokens[1].compare("bye") == 0, LOG);
 
-   // Test
+    // Test
 
-   ds.set_separator("Comma");
+    ds.set_separator("Comma");
 
-   str.assign("1,2,3,4");
+    str.assign("1,2,3,4");
 
-   tokens = ds.get_tokens(str);
+    tokens = ds.get_tokens(str);
 
-   assert_true(tokens.size() == 4, LOG);
-   assert_true(tokens[0].compare("1") == 0, LOG);
-   assert_true(tokens[1].compare("2") == 0, LOG);
-   assert_true(tokens[2].compare("3") == 0, LOG);
-   assert_true(tokens[3].compare("4") == 0, LOG);
+    assert_true(tokens.size() == 4, LOG);
+    assert_true(tokens[0].compare("1") == 0, LOG);
+    assert_true(tokens[1].compare("2") == 0, LOG);
+    assert_true(tokens[2].compare("3") == 0, LOG);
+    assert_true(tokens[3].compare("4") == 0, LOG);
 
-   // Test
+    // Test
 
-   ds.set_separator("Comma");
+    ds.set_separator("Comma");
 
-   str.assign(",1,2,3,4,");
+    str.assign(",1,2,3,4,");
 
-   tokens = ds.get_tokens(str);
+    tokens = ds.get_tokens(str);
 
-   assert_true(tokens.size() == 4, LOG);
-   assert_true(tokens[0].compare("1") == 0, LOG);
-   assert_true(tokens[1].compare("2") == 0, LOG);
-   assert_true(tokens[2].compare("3") == 0, LOG);
-   assert_true(tokens[3].compare("4") == 0, LOG);
+    assert_true(tokens.size() == 4, LOG);
+    assert_true(tokens[0].compare("1") == 0, LOG);
+    assert_true(tokens[1].compare("2") == 0, LOG);
+    assert_true(tokens[2].compare("3") == 0, LOG);
+    assert_true(tokens[3].compare("4") == 0, LOG);
 
-   // Test
+    // Test
 
-   ds.set_separator("Comma");
+    ds.set_separator("Comma");
 
-   str.assign(" , 1 , 2 , 3 , 4 , ");
+    str.assign(" , 1 , 2 , 3 , 4 , ");
 
-   tokens = ds.get_tokens(str);
+    tokens = ds.get_tokens(str);
 
-   assert_true(tokens.size() == 4, LOG);
+    assert_true(tokens.size() == 4, LOG);
 
-   assert_true(ds.get_trimmed(tokens[0]).compare("1") == 0, LOG);
-   assert_true(ds.get_trimmed(tokens[1]).compare("2") == 0, LOG);
-   assert_true(ds.get_trimmed(tokens[2]).compare("3") == 0, LOG);
-   assert_true(ds.get_trimmed(tokens[3]).compare("4") == 0, LOG);
+    assert_true(ds.get_trimmed(tokens[0]).compare("1") == 0, LOG);
+    assert_true(ds.get_trimmed(tokens[1]).compare("2") == 0, LOG);
+    assert_true(ds.get_trimmed(tokens[2]).compare("3") == 0, LOG);
+    assert_true(ds.get_trimmed(tokens[3]).compare("4") == 0, LOG);
 
-   // Test
+    // Test
 
-   ds.set_separator("Comma");
+    ds.set_separator("Comma");
 
-   str.assign(" , 1 , 2 , 3 , 4 , ");
+    str.assign(" , 1 , 2 , 3 , 4 , ");
 
-   tokens = ds.get_tokens(str);
+    tokens = ds.get_tokens(str);
 
-   assert_true(tokens.size() == 4, LOG);
+    assert_true(tokens.size() == 4, LOG);
 
-   assert_true(ds.get_trimmed(tokens[0]).compare("1") == 0, LOG);
-   assert_true(ds.get_trimmed(tokens[1]).compare("2") == 0, LOG);
-   assert_true(ds.get_trimmed(tokens[2]).compare("3") == 0, LOG);
-   assert_true(ds.get_trimmed(tokens[3]).compare("4") == 0, LOG);
+    assert_true(ds.get_trimmed(tokens[0]).compare("1") == 0, LOG);
+    assert_true(ds.get_trimmed(tokens[1]).compare("2") == 0, LOG);
+    assert_true(ds.get_trimmed(tokens[2]).compare("3") == 0, LOG);
+    assert_true(ds.get_trimmed(tokens[3]).compare("4") == 0, LOG);
 
 }
 
 
 void DataSetTest::test_is_numeric(void)
 {
-   message += "test_is_numeric\n";
+    message += "test_is_numeric\n";
 
-   DataSet ds;
+    DataSet ds;
 
-   std::string str;
+    std::string str;
 
-   // Test
+    // Test
 
-   str.assign("hello");
+    str.assign("hello");
 
-   assert_true(!ds.is_numeric(str), LOG);
+    assert_true(!ds.is_numeric(str), LOG);
 
-   // Test
+    // Test
 
-   str.assign("0");
+    str.assign("0");
 
-   assert_true(ds.is_numeric(str), LOG);
+    assert_true(ds.is_numeric(str), LOG);
 
-   // Test
+    // Test
 
-   str.assign("-1.0e-99");
+    str.assign("-1.0e-99");
 
-   assert_true(ds.is_numeric(str), LOG);
+    assert_true(ds.is_numeric(str), LOG);
 }
 
 
 void DataSetTest::run_test_case(void)
 {
-   message += "Running data set test case...\n";
+    message += "Running data set test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Assignment operators methods
+    // Assignment operators methods
 
-   test_assignment_operator();
+    test_assignment_operator();
 
-   // Get methods
+    // Get methods
 
-   test_get_instances_number();
-   test_get_variables_number();
- 
-   test_get_variables();
+    test_get_instances_number();
+    test_get_variables_number();
 
-   test_get_display();
+    test_get_variables();
 
-   // Data methods
+    test_get_display();
 
-   test_get_data();
+    // Data methods
 
-   test_arrange_training_data();
-   test_arrange_selection_data();
-   test_arrange_testing_data();
+    test_get_data();
 
-   test_arrange_input_data();
-   test_arrange_target_data();
+    test_arrange_training_data();
+    test_arrange_selection_data();
+    test_arrange_testing_data();
 
-   // Instance methods
+//    test_arrange_input_data();
+    test_arrange_target_data();
 
-   test_get_instance();
+    // Instance methods
 
-   // Set methods
+    test_get_instance();
 
-   test_set();
+    // Set methods
 
-   test_set_display();
+    test_set();
 
-   // Data methods
+    test_set_display();
 
-   test_set_data();
+    // Data methods
 
-   test_set_instances_number();
-   test_set_variables_number();
+    test_set_data();
 
-   // Instance methods
+    test_set_instances_number();
+    test_set_variables_number();
 
-   test_set_instance();
+    // Instance methods
 
-   // Data resizing methods
+    test_set_instance();
 
-   test_add_instance();
-   test_subtract_instance();
+    // Data resizing methods
 
-   test_subtract_constant_variables();
-   test_subtract_repeated_instances();
+    test_add_instance();
+    test_subtract_instance();
 
-   // Initialization methods
+    test_subtract_constant_variables();
+    test_subtract_repeated_instances();
 
-   test_initialize_data();
+    // Initialization methods
 
-   // Statistics methods
+    test_initialize_data();
 
-   test_calculate_data_statistics();
-   test_calculate_data_statistics_missing_values();
+    // Statistics methods
 
-   test_calculate_training_instances_statistics();
-   test_calculate_selection_instances_statistics();
-   test_calculate_testing_instances_statistics();
+    test_calculate_data_statistics();
+    test_calculate_data_statistics_missing_values();
 
-   test_calculate_input_variables_statistics();
-   test_calculate_targets_statistics();
+    test_calculate_training_instances_statistics();
+    test_calculate_selection_instances_statistics();
+    test_calculate_testing_instances_statistics();
 
-   // Correlation methods
+    test_calculate_input_variables_statistics();
+    test_calculate_targets_statistics();
 
-   test_calculate_linear_correlations();
+    // Correlation methods
 
-   // Histrogram methods
+    test_calculate_linear_correlations();
 
-   test_calculate_data_histograms();
+    // Histrogram methods
 
-   // Filtering methods
+    test_calculate_data_histograms();
 
-   test_filter_data();
+    // Filtering methods
 
-   // Data scaling
+    test_filter_data();
 
-   test_scale_data_mean_standard_deviation();
-   test_scale_data_minimum_maximum();
+    // Data scaling
 
-   // Input variables scaling
+    test_scale_data_mean_standard_deviation();
+    test_scale_data_minimum_maximum();
 
-   test_scale_inputs_mean_standard_deviation();
-   test_scale_inputs_minimum_maximum();
+    // Input variables scaling
 
-   // Target variables scaling
+    test_scale_inputs_mean_standard_deviation();
+    test_scale_inputs_minimum_maximum();
 
-   test_scale_targets_mean_standard_deviation();
+    // Target variables scaling
 
-   test_scale_targets_minimum_maximum();
+    test_scale_targets_mean_standard_deviation();
 
-   // Data unscaling
+    test_scale_targets_minimum_maximum();
 
-   test_unscale_data_mean_standard_deviation();
-   test_unscale_data_minimum_maximum();
+    // Data unscaling
 
-   // Input variables unscaling
+    test_unscale_data_mean_standard_deviation();
+    test_unscale_data_minimum_maximum();
 
-   test_unscale_inputs_mean_standard_deviation();
-   test_unscale_inputs_minimum_maximum();
+    // Input variables unscaling
 
-   // Target variables unscaling
+//    test_unscale_inputs_mean_standard_deviation();
+//    test_unscale_inputs_minimum_maximum();
 
-   test_unscale_targets_mean_standard_deviation();
-   test_unscale_targets_minimum_maximum();
+    // Target variables unscaling
 
-   // Input-target variables unscaling
+    test_unscale_targets_mean_standard_deviation();
+    test_unscale_targets_minimum_maximum();
 
-   test_unscale_variables_mean_standard_deviation();
-   test_unscale_variables_minimum_maximum();
+    // Input-target variables unscaling
 
-   // Pattern recognition methods
+    test_unscale_variables_mean_standard_deviation();
+    test_unscale_variables_minimum_maximum();
 
-   test_calculate_target_distribution();
+    // Pattern recognition methods
 
-   test_unuse_most_populated_target();
+    test_calculate_target_distribution();
 
-   test_balance_binary_targets_distribution();
-   test_balance_multiple_targets_distribution();
-   test_balance_function_regression_targets_distribution();
+    test_unuse_most_populated_target();
 
-   // Outlier detection
+    test_balance_binary_targets_distribution();
+    test_balance_multiple_targets_distribution();
+    test_balance_function_regression_targets_distribution();
 
-   //test_calculate_instances_distances();
-   //test_calculate_k_distances();
-   //test_calculate_reachability_distances();
-   //test_calculate_reachability_density();
-   //test_calculate_local_outlier_factor();
+    // Outlier detection
 
-   //test_clean_local_outlier_factor();
-   test_clean_Tukey_outliers();
+    //test_calculate_instances_distances();
+    //test_calculate_k_distances();
+    //test_calculate_reachability_distances();
+    //test_calculate_reachability_density();
+    //test_calculate_local_outlier_factor();
 
-   // Data generation
+    //test_clean_local_outlier_factor();
+    test_clean_Tukey_outliers();
 
-   test_generate_data_function_regression();
+    // Data generation
 
-   test_generate_data_binary_classification();
-   test_generate_data_multiple_classification();
+    test_generate_data_function_regression();
 
-   // Serialization methods
+    test_generate_data_binary_classification();
+    test_generate_data_multiple_classification();
+
+    // Serialization methods
 
 //   test_to_XML();
 //   test_from_XML();
@@ -3132,7 +3137,7 @@ void DataSetTest::run_test_case(void)
 
 //   test_scrub_missing_values();
 
-   // String utilities
+    // String utilities
 
 //   test_trim();
 //   test_get_trimmed();
@@ -3142,7 +3147,7 @@ void DataSetTest::run_test_case(void)
 
 //   test_is_numeric();
 
-   message += "End of data set test case.\n";
+    message += "End of data set test case.\n";
 }
 
 

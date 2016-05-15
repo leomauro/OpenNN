@@ -22,103 +22,115 @@
 using namespace OpenNN;
 
 
-class PerformanceFunctionalTest : public UnitTesting 
-{
+class PerformanceFunctionalTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit PerformanceFunctionalTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~PerformanceFunctionalTest(void);
+    explicit PerformanceFunctionalTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
+    virtual ~PerformanceFunctionalTest(void);
 
-   void test_constructor(void);
-   void test_destructor(void);
 
-   // Get methods
+    // METHODS
 
-   void test_get_neural_network_pointer(void);
+    // Constructor and destructor methods
 
-   void test_get_mathematical_model_pointer(void);
-   void test_get_data_set_pointer(void);
+    void test_constructor(void);
 
-   void test_get_user_objective_pointer(void);
-   void test_get_user_regularization_pointer(void);
-   void test_get_user_constraints_pointer(void);
+    void test_destructor(void);
 
-   void test_get_numerical_differentiation_pointer(void);
+    // Get methods
 
-   // Serialization methods
+    void test_get_neural_network_pointer(void);
 
-   void test_get_display(void);
+    void test_get_mathematical_model_pointer(void);
 
-   // Set methods
+    void test_get_data_set_pointer(void);
 
-   void test_set_neural_network_pointer(void);
-   void test_set_numerical_differentiation(void);
-   
-   void test_set_default(void);
+    void test_get_user_objective_pointer(void);
 
-   // Serialization methods
+    void test_get_user_regularization_pointer(void);
 
-   void test_set_display(void);
+    void test_get_user_constraints_pointer(void);
 
-   // Objective functional performance methods
+    void test_get_numerical_differentiation_pointer(void);
 
-   void test_calculate_performance(void);
+    // Serialization methods
 
-   void test_calculate_gradient(void);
+    void test_get_display(void);
 
-   void test_calculate_gradient_norm(void);
+    // Set methods
 
-   void test_calculate_Hessian(void);
+    void test_set_neural_network_pointer(void);
 
-   void test_calculate_inverse_Hessian(void);
+    void test_set_numerical_differentiation(void);
 
-   void test_calculate_vector_dot_Hessian(void);
+    void test_set_default(void);
 
-   void test_calculate_terms(void);
-   void test_calculate_terms_Jacobian(void);
+    // Serialization methods
 
-   // Taylor approximation methods
+    void test_set_display(void);
 
-   void test_calculate_zero_order_Taylor_approximation(void);
-   void test_calculate_first_order_Taylor_approximation(void);
-   void test_calculate_second_order_Taylor_approximation(void);
+    // Objective functional performance methods
 
-   // Directional performance methods
-   
-   void test_calculate_directional_performance(void);
-   void test_calculate_directional_performance_derivative(void);
-   void test_calculate_directional_performance_second_derivative(void);
+    void test_calculate_performance(void);
 
-   // Serialization methods
+    void test_calculate_gradient(void);
 
-   void test_to_XML(void);   
-   void test_from_XML(void);   
+    void test_calculate_gradient_norm(void);
 
-   void test_print(void);   
-   void test_save(void);   
-   void test_load(void);   
+    void test_calculate_Hessian(void);
 
-   void test_write_information(void);
+    void test_calculate_inverse_Hessian(void);
 
-   // Unit testing methods
+    void test_calculate_vector_dot_Hessian(void);
 
-   void run_test_case(void);
+    void test_calculate_terms(void);
+
+    void test_calculate_terms_Jacobian(void);
+
+    // Taylor approximation methods
+
+    void test_calculate_zero_order_Taylor_approximation(void);
+
+    void test_calculate_first_order_Taylor_approximation(void);
+
+    void test_calculate_second_order_Taylor_approximation(void);
+
+    // Directional performance methods
+
+    void test_calculate_directional_performance(void);
+
+    void test_calculate_directional_performance_derivative(void);
+
+    void test_calculate_directional_performance_second_derivative(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    void test_print(void);
+
+    void test_save(void);
+
+    void test_load(void);
+
+    void test_write_information(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 
 };
 

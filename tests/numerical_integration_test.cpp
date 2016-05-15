@@ -16,15 +16,13 @@
 
 #include "unit_testing.h"
 
-#include "polynomial.h"
-
 #include "numerical_integration_test.h"
 
 
 using namespace OpenNN;
 
 
-NumericalIntegrationTest::NumericalIntegrationTest(void) : UnitTesting() 
+NumericalIntegrationTest::NumericalIntegrationTest(void) : UnitTesting()
 {
 }
 
@@ -36,67 +34,67 @@ NumericalIntegrationTest::~NumericalIntegrationTest(void)
 
 void NumericalIntegrationTest::test_constructor(void)
 {
-   message += "test_constructor\n";
+    message += "test_constructor\n";
 }
 
 
 void NumericalIntegrationTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 
 void NumericalIntegrationTest::test_calculate_trapezoid_integral(void)
 {
-   message += "test_calculate_trapezoid_integral\n";
+    message += "test_calculate_trapezoid_integral\n";
 
-   NumericalIntegration ni;
+    NumericalIntegration ni;
 
-   // Case 1
+    // Case 1
 
-   Vector<double> x_1(0, 1, 10);
-   Vector<double> y_1(0, 1, 10);
+    Vector<double> x_1(0, 1, 10);
+    Vector<double> y_1(0, 1, 10);
 
-   double integral_1 = ni.calculate_trapezoid_integral(x_1, y_1);
+    double integral_1 = ni.calculate_trapezoid_integral(x_1, y_1);
 
-   assert_true(integral_1 == 50.0, LOG);
+    assert_true(integral_1 == 50.0, LOG);
 
 }
 
 
 void NumericalIntegrationTest::test_calculate_Simpson_integral(void)
 {
-   message += "test_calculate_Simpson_integral\n";
+    message += "test_calculate_Simpson_integral\n";
 
-   NumericalIntegration ni;
+    NumericalIntegration ni;
 
-   // Case 1
+    // Case 1
 
-   Vector<double> x_1(0.0, 1, 10.0);
-   Vector<double> y_1(0.0, 1, 10.0);
+    Vector<double> x_1(0.0, 1, 10.0);
+    Vector<double> y_1(0.0, 1, 10.0);
 
-   double integral_1 = ni.calculate_Simpson_integral(x_1, y_1);
+    double integral_1 = ni.calculate_Simpson_integral(x_1, y_1);
 
-   assert_true(integral_1 == 50.0, LOG);
+    assert_true(integral_1 == 50.0, LOG);
 
 }
 
 
 void NumericalIntegrationTest::run_test_case(void)
 {
-   message += "Running numerical integration test case...\n";
+    message += "Running numerical integration test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Integration methods
+    // Integration methods
 
-   test_calculate_trapezoid_integral();
-   test_calculate_Simpson_integral();
+    test_calculate_trapezoid_integral();
+    test_calculate_Simpson_integral();
 
-   message += "End of numerical integration test case.\n";
+    message += "End of numerical integration test case.\n";
 }
 
 

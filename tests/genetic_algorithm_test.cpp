@@ -16,8 +16,6 @@
 
 #include "genetic_algorithm_test.h"
 
-#include "genetic_algorithm.h"
-
 
 using namespace OpenNN;
 
@@ -58,7 +56,7 @@ void GeneticAlgorithmTest::test_destructor(void)
 {
     message += "test_destructor\n";
 
-    GeneticAlgorithm* ga = new GeneticAlgorithm;
+    GeneticAlgorithm *ga = new GeneticAlgorithm;
 
     delete ga;
 }
@@ -78,15 +76,15 @@ void GeneticAlgorithmTest::test_initialize_population(void)
 
     DataSet ds;
 
-    NeuralNetwork nn(3,2,1);
+    NeuralNetwork nn(3, 2, 1);
 
-    PerformanceFunctional pf(&nn,&ds);
+    PerformanceFunctional pf(&nn, &ds);
 
     TrainingStrategy ts(&pf);
 
     GeneticAlgorithm ga(&ts);
 
-    Vector< Vector<bool> > population;
+    Vector<Vector<bool> > population;
 
     ga.set_population_size(10);
 
@@ -107,24 +105,24 @@ void GeneticAlgorithmTest::test_calculate_fitness(void)
 
     DataSet ds;
 
-    NeuralNetwork nn(3,2,1);
+    NeuralNetwork nn(3, 2, 1);
 
-    PerformanceFunctional pf(&nn,&ds);
+    PerformanceFunctional pf(&nn, &ds);
 
     TrainingStrategy ts(&pf);
 
     GeneticAlgorithm ga(&ts);
 
-    Matrix<double> performance(4,2);
+    Matrix<double> performance(4, 2);
 
     Vector<double> fitness;
 
     ga.set_population_size(4);
 
-    performance(0,1) = 1;
-    performance(1,1) = 2;
-    performance(2,1) = 3;
-    performance(3,1) = 4;
+    performance(0, 1) = 1;
+    performance(1, 1) = 2;
+    performance(2, 1) = 3;
+    performance(3, 1) = 4;
 
     ga.set_performance(performance);
 
@@ -156,21 +154,21 @@ void GeneticAlgorithmTest::test_perform_selection(void)
 
     DataSet ds;
 
-    NeuralNetwork nn(3,2,1);
+    NeuralNetwork nn(3, 2, 1);
 
-    PerformanceFunctional pf(&nn,&ds);
+    PerformanceFunctional pf(&nn, &ds);
 
     TrainingStrategy ts(&pf);
 
     GeneticAlgorithm ga(&ts);
 
-    Vector< Vector<bool> > population;
+    Vector<Vector<bool> > population;
 
-    Vector< Vector<bool> > selected_population;
+    Vector<Vector<bool> > selected_population;
 
     Vector<double> fitness(4);
 
-    Matrix<double> performance(4,2);
+    Matrix<double> performance(4, 2);
 
     ga.set_population_size(4);
 
@@ -179,10 +177,14 @@ void GeneticAlgorithmTest::test_perform_selection(void)
     fitness[2] = 3;
     fitness[3] = 4;
 
-    performance(0,0) = 0.0; performance(0,1) = 0.4;
-    performance(1,0) = 0.0; performance(1,1) = 0.3;
-    performance(2,0) = 0.0; performance(2,1) = 0.2;
-    performance(3,0) = 0.0; performance(3,1) = 0.1;
+    performance(0, 0) = 0.0;
+    performance(0, 1) = 0.4;
+    performance(1, 0) = 0.0;
+    performance(1, 1) = 0.3;
+    performance(2, 0) = 0.0;
+    performance(2, 1) = 0.2;
+    performance(3, 0) = 0.0;
+    performance(3, 1) = 0.1;
 
     ga.set_inicialization_method(GeneticAlgorithm::Random);
 
@@ -212,28 +214,30 @@ void GeneticAlgorithmTest::test_perform_crossover(void)
 
     DataSet ds;
 
-    NeuralNetwork nn(2,2,1);
+    NeuralNetwork nn(2, 2, 1);
 
-    PerformanceFunctional pf(&nn,&ds);
+    PerformanceFunctional pf(&nn, &ds);
 
     TrainingStrategy ts(&pf);
 
     GeneticAlgorithm ga(&ts);
 
-    Vector< Vector<bool> > population(4);
+    Vector<Vector<bool> > population(4);
     Vector<bool> individual(2);
 
-    Vector< Vector<bool> > crossover_population;
+    Vector<Vector<bool> > crossover_population;
 
     Vector<double> fitness(4);
 
-    Matrix<double> performance(4,2);
+    Matrix<double> performance(4, 2);
 
-    individual[0] = true; individual[1] = true;
+    individual[0] = true;
+    individual[1] = true;
     population[0] = individual;
     population[1] = individual;
 
-    individual[0] = false; individual[1] = true;
+    individual[0] = false;
+    individual[1] = true;
     population[2] = individual;
     population[3] = individual;
 
@@ -242,10 +246,14 @@ void GeneticAlgorithmTest::test_perform_crossover(void)
     fitness[2] = 3;
     fitness[3] = 4;
 
-    performance(0,0) = 0.0; performance(0,1) = 0.4;
-    performance(1,0) = 0.0; performance(1,1) = 0.3;
-    performance(2,0) = 0.0; performance(2,1) = 0.2;
-    performance(3,0) = 0.0; performance(3,1) = 0.1;
+    performance(0, 0) = 0.0;
+    performance(0, 1) = 0.4;
+    performance(1, 0) = 0.0;
+    performance(1, 1) = 0.3;
+    performance(2, 0) = 0.0;
+    performance(2, 1) = 0.2;
+    performance(3, 0) = 0.0;
+    performance(3, 1) = 0.1;
 
     ga.set_population_size(4);
 
@@ -298,18 +306,18 @@ void GeneticAlgorithmTest::test_perform_mutation(void)
 
     DataSet ds;
 
-    NeuralNetwork nn(1,2,1);
+    NeuralNetwork nn(1, 2, 1);
 
-    PerformanceFunctional pf(&nn,&ds);
+    PerformanceFunctional pf(&nn, &ds);
 
     TrainingStrategy ts(&pf);
 
     GeneticAlgorithm ga(&ts);
 
-    Vector< Vector<bool> > population(4);
+    Vector<Vector<bool> > population(4);
     Vector<bool> individual(1);
 
-    Vector< Vector<bool> > mutated_population;
+    Vector<Vector<bool> > mutated_population;
 
     individual[0] = 1;
     population[0] = individual;
@@ -361,28 +369,27 @@ void GeneticAlgorithmTest::test_perform_order_selection(void)
 
     NeuralNetwork nn;
 
-    PerformanceFunctional pf(&nn,&ds);
+    PerformanceFunctional pf(&nn, &ds);
 
     TrainingStrategy ts(&pf);
 
     GeneticAlgorithm ga(&ts);
 
-    GeneticAlgorithm::GeneticAlgorithmResults* ga_results;
+    GeneticAlgorithm::GeneticAlgorithmResults *ga_results;
 
     // Test
 
-    data.set(20,3);
+    data.set(20, 3);
 
-    for (size_t i = 0; i < 20; i++)
-    {
-        data(i,0) = (double)i;
-        data(i,1) = 10.0;
-        data(i,2) = (double)i;
+    for (size_t i = 0; i < 20; i++) {
+        data(i, 0) = (double) i;
+        data(i, 1) = 10.0;
+        data(i, 2) = (double) i;
     }
 
     ds.set(data);
 
-    nn.set(2,6,1);
+    nn.set(2, 6, 1);
 
     ts.set_display(false);
 
@@ -407,23 +414,21 @@ void GeneticAlgorithmTest::test_perform_order_selection(void)
 
     size_t j = -10;
 
-    for (size_t i = 0; i < 10; i++)
-    {
-        data(i,0) = (double)j;
-        data(i,1) = 10.0;
-        data(i,2) = 1.0;
-        j+=1;
+    for (size_t i = 0; i < 10; i++) {
+        data(i, 0) = (double) j;
+        data(i, 1) = 10.0;
+        data(i, 2) = 1.0;
+        j += 1;
     }
-    for (size_t i = 10; i < 20; i++)
-    {
-        data(i,0) = (double)i;
-        data(i,1) = 10.0;
-        data(i,2) = 0.0;
+    for (size_t i = 10; i < 20; i++) {
+        data(i, 0) = (double) i;
+        data(i, 1) = 10.0;
+        data(i, 2) = 0.0;
     }
 
     ds.set(data);
 
-    nn.set(2,6,1);
+    nn.set(2, 6, 1);
 
     ts.set_display(false);
 
@@ -455,7 +460,7 @@ void GeneticAlgorithmTest::test_to_XML(void)
 
     GeneticAlgorithm ga;
 
-    tinyxml2::XMLDocument* document = ga.to_XML();
+    tinyxml2::XMLDocument *document = ga.to_XML();
     assert_true(document != NULL, LOG);
 
     delete document;
@@ -467,7 +472,7 @@ void GeneticAlgorithmTest::test_from_XML(void)
 
     GeneticAlgorithm ga;
 
-    tinyxml2::XMLDocument* document = ga.to_XML();
+    tinyxml2::XMLDocument *document = ga.to_XML();
     ga.from_XML(*document);
 
     delete document;

@@ -32,127 +32,103 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This class represents the mean squared error performance term.
 /// The mean squared error measures the difference between the outputs from a neural network and the targets in a data set.
 /// This functional is used in data modeling problems, such as function regression,
 /// pattern recognition and time series prediction.
+class WeightedSquaredError : public PerformanceTerm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit WeightedSquaredError(void);
 
-    class WeightedSquaredError : public PerformanceTerm {
+    // NEURAL NETWORK CONSTRUCTOR
+    explicit WeightedSquaredError(NeuralNetwork *);
 
-    public:
+    // DATA SET CONSTRUCTOR
+    explicit WeightedSquaredError(DataSet *);
 
-        // DEFAULT CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
+    explicit WeightedSquaredError(NeuralNetwork *, DataSet *);
 
-        explicit WeightedSquaredError(void);
+    // XML CONSTRUCTOR
+    explicit WeightedSquaredError(const tinyxml2::XMLDocument &);
 
-        // NEURAL NETWORK CONSTRUCTOR
+    // COPY CONSTRUCTOR
+    WeightedSquaredError(const WeightedSquaredError &);
 
-        explicit WeightedSquaredError(NeuralNetwork *);
+    // DESTRUCTOR
+    virtual ~WeightedSquaredError(void);
 
-        // DATA SET CONSTRUCTOR
+    // Get methods
+    double get_positives_weight(void) const;
 
-        explicit WeightedSquaredError(DataSet *);
+    double get_negatives_weight(void) const;
 
-        // GENERAL CONSTRUCTOR
+    // Checking methods
+    void check(void) const;
 
-        explicit WeightedSquaredError(NeuralNetwork *, DataSet *);
+    // Objective methods
+    void set_default(void);
 
-        // XML CONSTRUCTOR
+    void set_positives_weight(const double &);
 
-        explicit WeightedSquaredError(const tinyxml2::XMLDocument &);
+    void set_negatives_weight(const double &);
 
-        // COPY CONSTRUCTOR
+    void set_weights(const double &, const double &);
 
-        WeightedSquaredError(const WeightedSquaredError &);
+    void set_weights(void);
 
-        // DESTRUCTOR
+    double calculate_positives_performance(void) const;
 
-        virtual ~WeightedSquaredError(void);
+    double calculate_negatives_performance(void) const;
 
-        // STRUCTURES
+    double calculate_performance(void) const;
 
+    double calculate_performance(const Vector<double> &) const;
 
-        // METHODS
+    double calculate_selection_performance(void) const;
 
-        // Get methods
+    Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
 
-        double get_positives_weight(void) const;
+    Vector<double> calculate_gradient(void) const;
 
-        double get_negatives_weight(void) const;
+    Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
 
-        // Set methods
+    Matrix<double> calculate_Hessian(void) const;
 
-        // Checking methods
+    FirstOrderPerformance calculate_first_order_performance(void) const;
 
-        void check(void) const;
+    SecondOrderPerformance calculate_second_order_performance(void) const;
 
-//   void set_default(void);
+    // Objective terms methods
+    Vector<double> calculate_terms(void) const;
 
-        // Objective methods
+    Vector<double> calculate_terms(const Vector<double> &) const;
 
-        void set_default(void);
+    Matrix<double> calculate_terms_Jacobian(void) const;
 
-        void set_positives_weight(const double &);
+    FirstOrderTerms calculate_first_order_terms(void) const;
 
-        void set_negatives_weight(const double &);
+    std::string write_performance_term_type(void) const;
 
-        void set_weights(const double &, const double &);
+    // Serialization methods
+    tinyxml2::XMLDocument *to_XML(void) const;
 
-        void set_weights(void);
+    void from_XML(const tinyxml2::XMLDocument &);
 
-        double calculate_positives_performance(void) const;
+    std::string write_information(void) const;
 
-        double calculate_negatives_performance(void) const;
+    std::string to_string(void) const;
 
-        double calculate_performance(void) const;
+private:
+    double positives_weight;
+    double negatives_weight;
+};
 
-        double calculate_performance(const Vector<double> &) const;
-
-        double calculate_selection_performance(void) const;
-
-        Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
-
-        Vector<double> calculate_gradient(void) const;
-
-        Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
-
-        Matrix<double> calculate_Hessian(void) const;
-
-        FirstOrderPerformance calculate_first_order_performance(void) const;
-
-        SecondOrderPerformance calculate_second_order_performance(void) const;
-
-        // Objective terms methods
-
-        Vector<double> calculate_terms(void) const;
-
-        Vector<double> calculate_terms(const Vector<double> &) const;
-
-        Matrix<double> calculate_terms_Jacobian(void) const;
-
-        FirstOrderTerms calculate_first_order_terms(void) const;
-
-        std::string write_performance_term_type(void) const;
-
-        // Serialization methods
-
-        tinyxml2::XMLDocument *to_XML(void) const;
-
-        void from_XML(const tinyxml2::XMLDocument &);
-
-        std::string write_information(void) const;
-
-        std::string to_string(void) const;
-
-    private:
-
-        double positives_weight;
-        double negatives_weight;
-
-
-    };
 
 }
 

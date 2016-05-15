@@ -20,8 +20,7 @@
 
 using namespace OpenNN;
 
-class BoundingLayerTest : public UnitTesting
-{
+class BoundingLayerTest : public UnitTesting {
 
 #define STRING(x) #x
 #define TOSTRING(x) STRING(x)
@@ -29,88 +28,97 @@ class BoundingLayerTest : public UnitTesting
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit BoundingLayerTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~BoundingLayerTest(void);
-
-   // METHODS
-
-   // Constructor and destructor methods
-
-   void test_constructor(void);
-   void test_destructor(void);
-
-   // Assignment operators methods
-
-   void test_assignment_operator(void);
-
-   // Get methods
-
-   // PerceptronLayer architecture 
-
-   void test_get_bounding_neurons_number(void);
-   
-   // Variables bounds
-
-   void test_get_lower_bounds(void);
-   void test_get_lower_bound(void);
-
-   void test_get_upper_bounds(void);
-   void test_get_upper_bound(void);
-
-   void test_get_bounds(void);
-
-   // Display messages
-
-   void test_get_display(void);
-
-   // SET METHODS
-
-   void test_set(void);
-   void test_set_default(void);
-
-   // Variables bounds
-
-   void test_set_lower_bounds(void);
-   void test_set_lower_bound(void);
-
-   void test_set_upper_bounds(void);
-   void test_set_upper_bound(void);
-
-   void test_set_bounds(void);
-
-   // Display messages
-
-   void test_set_display(void);
-
-   // Initialization methods
-
-   void test_initialize_random(void);
-
-   // Output methods
-
-   void test_calculate_outputs(void);
-   void test_calculate_derivative(void);
-   void test_calculate_second_derivative(void);
+    explicit BoundingLayerTest(void);
 
 
-   // Expression methods
+    // DESTRUCTOR
 
-   void test_write_expression(void);
+    virtual ~BoundingLayerTest(void);
 
-   // Serialization methods
+    // METHODS
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+    // Constructor and destructor methods
 
-   // Unit testing methods
+    void test_constructor(void);
 
-   void run_test_case(void);
+    void test_destructor(void);
+
+    // Assignment operators methods
+
+    void test_assignment_operator(void);
+
+    // Get methods
+
+    // PerceptronLayer architecture
+
+    void test_get_bounding_neurons_number(void);
+
+    // Variables bounds
+
+    void test_get_lower_bounds(void);
+
+    void test_get_lower_bound(void);
+
+    void test_get_upper_bounds(void);
+
+    void test_get_upper_bound(void);
+
+    void test_get_bounds(void);
+
+    // Display messages
+
+    void test_get_display(void);
+
+    // SET METHODS
+
+    void test_set(void);
+
+    void test_set_default(void);
+
+    // Variables bounds
+
+    void test_set_lower_bounds(void);
+
+    void test_set_lower_bound(void);
+
+    void test_set_upper_bounds(void);
+
+    void test_set_upper_bound(void);
+
+    void test_set_bounds(void);
+
+    // Display messages
+
+    void test_set_display(void);
+
+    // Initialization methods
+
+    void test_initialize_random(void);
+
+    // Output methods
+
+    void test_calculate_outputs(void);
+
+    void test_calculate_derivative(void);
+
+    void test_calculate_second_derivative(void);
+
+
+    // Expression methods
+
+    void test_write_expression(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

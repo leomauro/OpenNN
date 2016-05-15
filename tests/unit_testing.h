@@ -5,7 +5,7 @@
 /*                                                                                                              */
 /*   U N I T   T E S T I N G   C L A S S   H E A D E R                                                          */
 /*                                                                                                              */
-/*   Roberto Lopez                                                                                              */ 
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -29,89 +29,95 @@
 
 #include "../opennn/opennn.h"
 
-class UnitTesting
-{
+class UnitTesting {
 
 public:
 
-   // DEFAULT CONSTRUCTOR
+    // DEFAULT CONSTRUCTOR
 
-   explicit UnitTesting(void);
+    explicit UnitTesting(void);
 
-   // DESTRUCTOR
+    // DESTRUCTOR
 
-   virtual ~UnitTesting(void);
+    virtual ~UnitTesting(void);
 
-   // METHODS
+    // METHODS
 
-   // Get methods
+    // Get methods
 
-   size_t get_tests_count(void) const;
-   size_t get_tests_passed_count(void) const;
-   size_t get_tests_failed_count(void) const;
+    size_t get_tests_count(void) const;
 
-   bool get_numerical_differentiation_tests(void) const;
-   size_t get_random_tests_number(void) const;
+    size_t get_tests_passed_count(void) const;
 
-   std::string& get_message(void);
+    size_t get_tests_failed_count(void) const;
 
-   const bool& get_display(void) const;
+    bool get_numerical_differentiation_tests(void) const;
 
-   // Set methods
+    size_t get_random_tests_number(void) const;
 
-   void set_tests_count(const size_t&);
-   void set_tests_passed_count(const size_t&);
-   void set_tests_failed_count(const size_t&);
+    std::string &get_message(void);
 
-   void set_numerical_differentiation_tests(const bool&);
-   void set_random_tests_number(const size_t&);
+    const bool &get_display(void) const;
 
-   void set_message(const std::string&);
+    // Set methods
 
-   void set_display(const bool&);
+    void set_tests_count(const size_t &);
 
-   // Unit testing methods
+    void set_tests_passed_count(const size_t &);
 
-   void assert_true(const bool&, const std::string&);
-   void assert_false(const bool&, const std::string&);
-   
-   // Test case methods
+    void set_tests_failed_count(const size_t &);
 
-   /// This method runs all the methods contained in the test case. 
+    void set_numerical_differentiation_tests(const bool &);
 
-   virtual void run_test_case(void) = 0;
+    void set_random_tests_number(const size_t &);
 
-   void print_results(void);
+    void set_message(const std::string &);
+
+    void set_display(const bool &);
+
+    // Unit testing methods
+
+    void assert_true(const bool &, const std::string &);
+
+    void assert_false(const bool &, const std::string &);
+
+    // Test case methods
+
+    /// This method runs all the methods contained in the test case.
+
+    virtual void run_test_case(void) = 0;
+
+    void print_results(void);
 
 protected:
 
-   // Number of performed tests. 
+    // Number of performed tests.
 
-   size_t tests_count;
+    size_t tests_count;
 
-   // Number of tests which have passed the test case. 
- 
-   size_t tests_passed_count;
+    // Number of tests which have passed the test case.
 
-   // Number of tests which have failed the test case. 
+    size_t tests_passed_count;
 
-   size_t tests_failed_count;
+    // Number of tests which have failed the test case.
 
-   // True if test using numerical differentiation are to be performed. 
+    size_t tests_failed_count;
 
-   bool numerical_differentiation_tests;
+    // True if test using numerical differentiation are to be performed.
 
-   // Number of iterations in random tests loops. 
+    bool numerical_differentiation_tests;
 
-   size_t random_tests_number;
+    // Number of iterations in random tests loops.
 
-   // String with the test case information.
+    size_t random_tests_number;
 
-   std::string message;
+    // String with the test case information.
 
-   // True if messages from this class are to be displayed, false otherwise. 
+    std::string message;
 
-   bool display;
+    // True if messages from this class are to be displayed, false otherwise.
+
+    bool display;
 };
 
 #endif

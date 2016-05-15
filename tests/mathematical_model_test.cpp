@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   M A T H E M A T I C A L   M O D E L   T E S T   C L A S S                                                  */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -18,8 +18,8 @@
 using namespace OpenNN;
 
 
-MathematicalModelTest::MathematicalModelTest(void) : UnitTesting() 
-{   
+MathematicalModelTest::MathematicalModelTest(void) : UnitTesting()
+{
 }
 
 
@@ -30,108 +30,108 @@ MathematicalModelTest::~MathematicalModelTest(void)
 
 void MathematicalModelTest::test_get_display(void)
 {
-   message += "test_get_display\n";
+    message += "test_get_display\n";
 }
 
 
 void MathematicalModelTest::test_set_display(void)
 {
-   message += "test_set_display\n";
+    message += "test_set_display\n";
 }
 
 
-void MathematicalModelTest::test_to_XML(void)   
+void MathematicalModelTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 
-   MathematicalModel mm;
+    MathematicalModel mm;
 
-   tinyxml2::XMLDocument* document;
-   
-   // Test
+    tinyxml2::XMLDocument *document;
 
-   document = mm.to_XML();
+    // Test
 
-   assert_true(document != NULL, LOG);
+    document = mm.to_XML();
 
-   delete document;
+    assert_true(document != NULL, LOG);
+
+    delete document;
 }
 
 
-void MathematicalModelTest::test_from_XML(void)   
+void MathematicalModelTest::test_from_XML(void)
 {
-   message += "test_from_XML\n";
+    message += "test_from_XML\n";
 
-   MathematicalModel mm1;
-   MathematicalModel mm2;
+    MathematicalModel mm1;
+    MathematicalModel mm2;
 
-   tinyxml2::XMLDocument* document;
-   
-   // Test
+    tinyxml2::XMLDocument *document;
 
-   document = mm1.to_XML();
+    // Test
 
-   assert_true(document != NULL, LOG);
+    document = mm1.to_XML();
 
-   mm2.from_XML(*document);
+    assert_true(document != NULL, LOG);
 
-   assert_true(mm1 == mm2, LOG);
+    mm2.from_XML(*document);
+
+    assert_true(mm1 == mm2, LOG);
 
 }
 
 
 void MathematicalModelTest::test_save(void)
 {
-   message += "test_save\n";
+    message += "test_save\n";
 
-   std::string file_name = "../data/mathematical_model.xml";
+    std::string file_name = "../data/mathematical_model.xml";
 
-   MathematicalModel mm;
+    MathematicalModel mm;
 
-   // Test
+    // Test
 
-   mm.save(file_name);
+    mm.save(file_name);
 }
 
 
 void MathematicalModelTest::test_load(void)
 {
-   message += "test_load\n";
+    message += "test_load\n";
 
-   std::string file_name = "../data/mathematical_model.xml";
+    std::string file_name = "../data/mathematical_model.xml";
 
-   MathematicalModel mm;
+    MathematicalModel mm;
 
-   // Test
+    // Test
 
-   mm.save(file_name);
-   mm.load(file_name);
+    mm.save(file_name);
+    mm.load(file_name);
 }
 
 
 void MathematicalModelTest::run_test_case(void)
 {
-   message += "Running mathematical model test case...\n";  
+    message += "Running mathematical model test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   // Get methods
+    // Get methods
 
-   test_get_display();
+    test_get_display();
 
-   // Set methods
+    // Set methods
 
-   test_set_display();
+    test_set_display();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();   
-   test_from_XML();   
+    test_to_XML();
+    test_from_XML();
 
-   test_save();
-   test_load();
+    test_save();
+    test_load();
 
-   message += "End of mathematical model test case.\n";
+    message += "End of mathematical model test case.\n";
 }
 
 

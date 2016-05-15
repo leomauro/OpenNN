@@ -12,98 +12,97 @@
 /****************************************************************************************************************/
 
 #ifndef __OPENNN_H__
-#define __OPENNN_H__
-
-// Data set
-
-#include "data_set.h"
-#include "instances.h"
-#include "variables.h"
-#include "missing_values.h"
+    #define __OPENNN_H__
 
 
-// Mathematical model
+    // Data set
 
-#include "mathematical_model.h"
-#include "ordinary_differential_equations.h"
-#include "plug_in.h"
+    #include "data_set.h"
+    #include "instances.h"
+    #include "variables.h"
+    #include "missing_values.h"
 
+    // Mathematical model
 
-// Model selection
+    #include "mathematical_model.h"
+    #include "ordinary_differential_equations.h"
+    #include "plug_in.h"
 
-#include "model_selection.h"
-#include "order_selection_algorithm.h"
-#include "incremental_order.h"
-#include "golden_section_order.h"
-#include "simulated_annealing_order.h"
-#include "inputs_selection_algorithm.h"
-#include "growing_inputs.h"
-#include "pruning_inputs.h"
-#include "genetic_algorithm.h"
-#include "threshold_selection_algorithm.h"
-#include "f1_score_optimization_threshold.h"
-#include "matthew_correlation_optimization_threshold.h"
-#include "youden_index_optimization_threshold.h"
-#include "kappa_coefficient_optimization_threshold.h"
-#include "roc_curve_optimization_threshold.h"
+    // Model selection
 
-// Neural network
+    #include "model_selection.h"
+    #include "order_selection_algorithm.h"
+    #include "incremental_order.h"
+    #include "golden_section_order.h"
+    #include "simulated_annealing_order.h"
+    #include "inputs_selection_algorithm.h"
+    #include "growing_inputs.h"
+    #include "pruning_inputs.h"
+    #include "genetic_algorithm.h"
+    #include "threshold_selection_algorithm.h"
+    #include "f1_score_optimization_threshold.h"
+    #include "matthew_correlation_optimization_threshold.h"
+    #include "youden_index_optimization_threshold.h"
+    #include "kappa_coefficient_optimization_threshold.h"
+    #include "roc_curve_optimization_threshold.h"
 
-#include "conditions_layer.h"
-#include "bounding_layer.h"
-#include "independent_parameters.h"
-#include "inputs.h"
-#include "outputs.h"
-#include "perceptron_layer.h"
-#include "multilayer_perceptron.h"
-#include "perceptron.h"
-#include "probabilistic_layer.h"
-#include "scaling_layer.h"
-#include "unscaling_layer.h"
-#include "neural_network.h"
+    // Neural network
 
-// Performance functional
+    #include "conditions_layer.h"
+    #include "bounding_layer.h"
+    #include "independent_parameters.h"
+    #include "inputs.h"
+    #include "outputs.h"
+    #include "perceptron_layer.h"
+    #include "multilayer_perceptron.h"
+    #include "perceptron.h"
+    #include "probabilistic_layer.h"
+    #include "scaling_layer.h"
+    #include "unscaling_layer.h"
+    #include "neural_network.h"
 
-#include "performance_functional.h"
-#include "performance_term.h"
+    // Performance functional
 
-#include "neural_parameters_norm.h"
+    #include "performance_functional.h"
+    #include "performance_term.h"
 
-#include "cross_entropy_error.h"
-#include "inverse_sum_squared_error.h"
-#include "mean_squared_error.h"
-#include "minkowski_error.h"
-#include "normalized_squared_error.h"
-#include "root_mean_squared_error.h"
-#include "sum_squared_error.h"
+    #include "neural_parameters_norm.h"
 
-#include "final_solutions_error.h"
-#include "solutions_error.h"
-#include "independent_parameters_error.h"
+    #include "cross_entropy_error.h"
+    #include "inverse_sum_squared_error.h"
+    #include "mean_squared_error.h"
+    #include "minkowski_error.h"
+    #include "normalized_squared_error.h"
+    #include "root_mean_squared_error.h"
+    #include "sum_squared_error.h"
 
-// Testing analysis
+    #include "final_solutions_error.h"
+    #include "solutions_error.h"
+    #include "independent_parameters_error.h"
 
-#include "testing_analysis.h"
+    // Testing analysis
 
-// Training strategy
+    #include "testing_analysis.h"
 
-#include "conjugate_gradient.h"
-#include "evolutionary_algorithm.h"
-#include "gradient_descent.h"
-#include "levenberg_marquardt_algorithm.h"
-#include "newton_method.h"
-#include "quasi_newton_method.h"
-#include "random_search.h"
-#include "training_algorithm.h"
-#include "training_rate_algorithm.h"
+    // Training strategy
 
-// Utilities
+    #include "conjugate_gradient.h"
+    #include "evolutionary_algorithm.h"
+    #include "gradient_descent.h"
+    #include "levenberg_marquardt_algorithm.h"
+    #include "newton_method.h"
+    #include "quasi_newton_method.h"
+    #include "random_search.h"
+    #include "training_algorithm.h"
+    #include "training_rate_algorithm.h"
 
-#include "matrix.h"
-#include "numerical_differentiation.h"
-#include "numerical_integration.h"
-#include "vector.h"
-#include "math.h"
+    // Utilities
+
+    #include "matrix.h"
+    #include "numerical_differentiation.h"
+    #include "numerical_integration.h"
+    #include "vector.h"
+    #include "math.h"
 
 #endif
 

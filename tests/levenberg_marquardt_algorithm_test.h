@@ -21,78 +21,84 @@
 
 using namespace OpenNN;
 
-class LevenbergMarquardtAlgorithmTest : public UnitTesting 
-{
+class LevenbergMarquardtAlgorithmTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // GENERAL CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
 
-   explicit LevenbergMarquardtAlgorithmTest(void); 
-
-
-   // DESTRUCTOR
-
-   virtual ~LevenbergMarquardtAlgorithmTest(void);
+    explicit LevenbergMarquardtAlgorithmTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
-
-   void test_constructor(void);
-   void test_destructor(void);
-
-   // METHODS
-
-   // Get methods
-
-   void test_get_damping_parameter(void);
-
-   void test_get_damping_parameter_factor(void);
-
-   void test_get_minimum_damping_parameter(void);
-   void test_get_maximum_damping_parameter(void);
-
-   // Set methods
-
-   void test_set_damping_parameter(void);
-
-   void test_set_damping_parameter_factor(void);
-
-   void test_set_minimum_damping_parameter(void);
-   void test_set_maximum_damping_parameter(void);
-
-   // Training methods
-
-   void test_calculate_performance(void);
-   void test_calculate_gradient(void);
-   void test_calculate_Hessian_approximation(void);
-
-   void test_perform_training(void);
-
-   // Training history methods
-
-   void test_resize_training_history(void);
-   void test_set_reserve_all_training_history(void);
-
-   // Serialization methods
-
-   void test_to_XML(void);   
-   void test_from_XML(void);
-
-   // Linear algebraic equations methods
-
-   void test_perform_Householder_QR_decomposition(void);
+    virtual ~LevenbergMarquardtAlgorithmTest(void);
 
 
-   // Unit testing methods
+    // METHODS
 
-   void run_test_case(void);
+    // Constructor and destructor methods
+
+    void test_constructor(void);
+
+    void test_destructor(void);
+
+    // METHODS
+
+    // Get methods
+
+    void test_get_damping_parameter(void);
+
+    void test_get_damping_parameter_factor(void);
+
+    void test_get_minimum_damping_parameter(void);
+
+    void test_get_maximum_damping_parameter(void);
+
+    // Set methods
+
+    void test_set_damping_parameter(void);
+
+    void test_set_damping_parameter_factor(void);
+
+    void test_set_minimum_damping_parameter(void);
+
+    void test_set_maximum_damping_parameter(void);
+
+    // Training methods
+
+    void test_calculate_performance(void);
+
+    void test_calculate_gradient(void);
+
+    void test_calculate_Hessian_approximation(void);
+
+    void test_perform_training(void);
+
+    // Training history methods
+
+    void test_resize_training_history(void);
+
+    void test_set_reserve_all_training_history(void);
+
+    // Serialization methods
+
+    void test_to_XML(void);
+
+    void test_from_XML(void);
+
+    // Linear algebraic equations methods
+
+    void test_perform_Householder_QR_decomposition(void);
+
+
+    // Unit testing methods
+
+    void run_test_case(void);
 };
 
 

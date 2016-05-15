@@ -18,57 +18,58 @@
 
 #include "unit_testing.h"
 
-namespace OpenNN
-{
+namespace OpenNN {
 
-class GradientDescentTest : public UnitTesting 
-{
+    class GradientDescentTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
-public:
+    public:
 
-   // GENERAL CONSTRUCTOR
+        // GENERAL CONSTRUCTOR
 
-   explicit GradientDescentTest(void);
+        explicit GradientDescentTest(void);
 
-   // DESTRUCTOR
+        // DESTRUCTOR
 
-   virtual ~GradientDescentTest(void);
+        virtual ~GradientDescentTest(void);
 
 
-   // METHODS
+        // METHODS
 
-   // Constructor and destructor methods
+        // Constructor and destructor methods
 
-   void test_constructor(void);
-   void test_destructor(void);
+        void test_constructor(void);
 
-   // Set methods
+        void test_destructor(void);
 
-   void test_set(void);
-   void test_set_reserve_all_training_history(void);
+        // Set methods
 
-   // Training methods
+        void test_set(void);
 
-   void test_perform_training(void);
+        void test_set_reserve_all_training_history(void);
 
-   // Training history methods
+        // Training methods
 
-   void test_resize_training_history(void);
+        void test_perform_training(void);
 
-   // Serialization methods
+        // Training history methods
 
-   void test_to_XML(void);
-   void test_from_XML(void);
+        void test_resize_training_history(void);
 
-   // Unit testing methods
+        // Serialization methods
 
-   void run_test_case(void);
+        void test_to_XML(void);
 
-};
+        void test_from_XML(void);
+
+        // Unit testing methods
+
+        void run_test_case(void);
+
+    };
 
 }
 

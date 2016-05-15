@@ -4,8 +4,8 @@
 /*   www.opennn.net                                                                                             */
 /*                                                                                                              */
 /*   N E W T O N   M E T H O D   T E S T   C L A S S                                                            */
-/*                                                                                                              */ 
-/*   Roberto Lopez                                                                                              */ 
+/*                                                                                                              */
+/*   Roberto Lopez                                                                                              */
 /*   Artelnics - Making intelligent use of data                                                                 */
 /*   robertolopez@artelnics.com                                                                                 */
 /*                                                                                                              */
@@ -20,8 +20,8 @@ using namespace OpenNN;
 
 // GENERAL CONSTRUCTOR
 
-NewtonMethodTest::NewtonMethodTest(void) : UnitTesting() 
-{   
+NewtonMethodTest::NewtonMethodTest(void) : UnitTesting()
+{
 }
 
 
@@ -34,52 +34,52 @@ NewtonMethodTest::~NewtonMethodTest(void)
 
 void NewtonMethodTest::test_constructor(void)
 {
-   message += "test_constructor\n"; 
+    message += "test_constructor\n";
 
-   PerformanceFunctional mof;
+    PerformanceFunctional mof;
 
-   // Default constructor
+    // Default constructor
 
-   NewtonMethod nm1; 
-   assert_true(nm1.has_performance_functional() == false, LOG);
+    NewtonMethod nm1;
+    assert_true(nm1.has_performance_functional() == false, LOG);
 
-   // Objective functional constructor
+    // Objective functional constructor
 
-   NewtonMethod nm2(&mof); 
-   assert_true(nm2.has_performance_functional() == true, LOG);
+    NewtonMethod nm2(&mof);
+    assert_true(nm2.has_performance_functional() == true, LOG);
 }
 
 
 void NewtonMethodTest::test_destructor(void)
 {
-   message += "test_destructor\n";
+    message += "test_destructor\n";
 }
 
 
 void NewtonMethodTest::test_calculate_gradient_descent_training_direction(void)
 {
-   message += "test_calculate_gradient_descent_training_direction\n";
+    message += "test_calculate_gradient_descent_training_direction\n";
 
-   DataSet ds(1, 1, 2);
+    DataSet ds(1, 1, 2);
 
-   NeuralNetwork nn(1, 1);
-   
-   PerformanceFunctional pf(&nn);
-   
-   NewtonMethod nm(&pf);
+    NeuralNetwork nn(1, 1);
 
-   Vector<double> gradient(2, 1.0);
+    PerformanceFunctional pf(&nn);
 
-   Vector<double> gradient_descent_training_direction = nm.calculate_gradient_descent_training_direction(gradient);
+    NewtonMethod nm(&pf);
 
-   assert_true(gradient_descent_training_direction.size() == 2, LOG);
-   assert_true((gradient_descent_training_direction.calculate_norm() - 1.0) < 1.0e-3, LOG);
+    Vector<double> gradient(2, 1.0);
+
+    Vector<double> gradient_descent_training_direction = nm.calculate_gradient_descent_training_direction(gradient);
+
+    assert_true(gradient_descent_training_direction.size() == 2, LOG);
+    assert_true((gradient_descent_training_direction.calculate_norm() - 1.0) < 1.0e-3, LOG);
 }
 
 
 void NewtonMethodTest::test_calculate_training_direction(void)
 {
-   message += "test_calculate_training_direction\n";
+    message += "test_calculate_training_direction\n";
 
 }
 
@@ -88,54 +88,54 @@ void NewtonMethodTest::test_calculate_training_direction(void)
 
 void NewtonMethodTest::test_perform_training(void)
 {
-   message += "test_perform_training\n";
+    message += "test_perform_training\n";
 
-   DataSet ds(1, 1, 2);
-   ds.randomize_data_normal();
+    DataSet ds(1, 1, 2);
+    ds.randomize_data_normal();
 
-   NeuralNetwork nn(1, 1);
-   PerformanceFunctional pf(&nn, &ds);
-   NewtonMethod nm(&pf);
+    NeuralNetwork nn(1, 1);
+    PerformanceFunctional pf(&nn, &ds);
+    NewtonMethod nm(&pf);
 
-   nn.initialize_parameters(0.1);
+    nn.initialize_parameters(0.1);
 
 //   double old_performance = pf.calculate_performance();
 
-   nm.set_display(false);
-   nm.set_maximum_iterations_number(1);
+    nm.set_display(false);
+    nm.set_maximum_iterations_number(1);
 //   nm.perform_training();
 
 //   double performance = pf.calculate_performance();
-   
+
 //   assert_true(evaluation < old_performance, LOG);
 
-   // Minimum parameters increment norm
+    // Minimum parameters increment norm
 
-   nn.initialize_parameters(1.0);
+    nn.initialize_parameters(1.0);
 
-   double minimum_parameters_increment_norm = 0.1;
+    double minimum_parameters_increment_norm = 0.1;
 
-   nm.set_minimum_parameters_increment_norm(minimum_parameters_increment_norm);
-   nm.set_performance_goal(0.0);
-   nm.set_minimum_performance_increase(0.0);
-   nm.set_gradient_norm_goal(0.0);
-   nm.set_maximum_iterations_number(1000);
-   nm.set_maximum_time(1000.0);
+    nm.set_minimum_parameters_increment_norm(minimum_parameters_increment_norm);
+    nm.set_performance_goal(0.0);
+    nm.set_minimum_performance_increase(0.0);
+    nm.set_gradient_norm_goal(0.0);
+    nm.set_maximum_iterations_number(1000);
+    nm.set_maximum_time(1000.0);
 
 //   nm.perform_training();
 
-   // Performance goal
+    // Performance goal
 
-   nn.initialize_parameters(1.0);
+    nn.initialize_parameters(1.0);
 
-   double performance_goal = 0.1;
+    double performance_goal = 0.1;
 
-   nm.set_minimum_parameters_increment_norm(0.0);
-   nm.set_performance_goal(performance_goal);
-   nm.set_minimum_performance_increase(0.0);
-   nm.set_gradient_norm_goal(0.0);
-   nm.set_maximum_iterations_number(1000);
-   nm.set_maximum_time(1000.0);
+    nm.set_minimum_parameters_increment_norm(0.0);
+    nm.set_performance_goal(performance_goal);
+    nm.set_minimum_performance_increase(0.0);
+    nm.set_gradient_norm_goal(0.0);
+    nm.set_maximum_iterations_number(1000);
+    nm.set_maximum_time(1000.0);
 
 //   nm.perform_training();
 
@@ -143,33 +143,33 @@ void NewtonMethodTest::test_perform_training(void)
 
 //   assert_true(performance < performance_goal, LOG);
 
-   // Minimum evaluation improvement
+    // Minimum evaluation improvement
 
-   nn.initialize_parameters(1.0);
+    nn.initialize_parameters(1.0);
 
-   double minimum_performance_increase = 0.1;
+    double minimum_performance_increase = 0.1;
 
-   nm.set_minimum_parameters_increment_norm(0.0);
-   nm.set_performance_goal(0.0);
-   nm.set_minimum_performance_increase(minimum_performance_increase);
-   nm.set_gradient_norm_goal(0.0);
-   nm.set_maximum_iterations_number(1000);
-   nm.set_maximum_time(1000.0);
+    nm.set_minimum_parameters_increment_norm(0.0);
+    nm.set_performance_goal(0.0);
+    nm.set_minimum_performance_increase(minimum_performance_increase);
+    nm.set_gradient_norm_goal(0.0);
+    nm.set_maximum_iterations_number(1000);
+    nm.set_maximum_time(1000.0);
 
 //   nm.perform_training();
 
-   // Gradient norm goal 
+    // Gradient norm goal
 
-   nn.initialize_parameters(1.0);
+    nn.initialize_parameters(1.0);
 
-   double gradient_norm_goal = 0.1;
+    double gradient_norm_goal = 0.1;
 
-   nm.set_minimum_parameters_increment_norm(0.0);
-   nm.set_performance_goal(0.0);
-   nm.set_minimum_performance_increase(0.0);
-   nm.set_gradient_norm_goal(gradient_norm_goal);
-   nm.set_maximum_iterations_number(1000);
-   nm.set_maximum_time(1000.0);
+    nm.set_minimum_parameters_increment_norm(0.0);
+    nm.set_performance_goal(0.0);
+    nm.set_minimum_performance_increase(0.0);
+    nm.set_gradient_norm_goal(gradient_norm_goal);
+    nm.set_maximum_iterations_number(1000);
+    nm.set_maximum_time(1000.0);
 
 //   nm.perform_training();
 
@@ -182,116 +182,116 @@ void NewtonMethodTest::test_perform_training(void)
 
 void NewtonMethodTest::test_to_XML(void)
 {
-   message += "test_to_XML\n";
+    message += "test_to_XML\n";
 
-   NewtonMethod nm;
+    NewtonMethod nm;
 
-   tinyxml2::XMLDocument* document;
+    tinyxml2::XMLDocument *document;
 
-   // Test
+    // Test
 
-   document = nm.to_XML();
+    document = nm.to_XML();
 
-   assert_true(document != NULL, LOG);
+    assert_true(document != NULL, LOG);
 
-   delete document;
+    delete document;
 }
 
 
 void NewtonMethodTest::test_from_XML(void)
 {
-   message += "test_from_XML\n";
+    message += "test_from_XML\n";
 
-   NewtonMethod nm;
+    NewtonMethod nm;
 
-   tinyxml2::XMLDocument* document;
+    tinyxml2::XMLDocument *document;
 
-   // Test
+    // Test
 
-   document = nm.to_XML();
+    document = nm.to_XML();
 
-   nm.from_XML(*document);
+    nm.from_XML(*document);
 
-   delete document;
+    delete document;
 }
 
 
 void NewtonMethodTest::test_resize_training_history(void)
 {
-   message += "test_resize_training_history\n";
+    message += "test_resize_training_history\n";
 
-   NewtonMethod nm;
+    NewtonMethod nm;
 
-   nm.set_reserve_all_training_history(true);
+    nm.set_reserve_all_training_history(true);
 
-   NewtonMethod::NewtonMethodResults nmtr(&nm);
+    NewtonMethod::NewtonMethodResults nmtr(&nm);
 
-   nmtr.resize_training_history(1);
+    nmtr.resize_training_history(1);
 
-   assert_true(nmtr.parameters_history.size() == 1, LOG);
-   assert_true(nmtr.parameters_norm_history.size() == 1, LOG);
+    assert_true(nmtr.parameters_history.size() == 1, LOG);
+    assert_true(nmtr.parameters_norm_history.size() == 1, LOG);
 
-   assert_true(nmtr.performance_history.size() == 1, LOG);
-   assert_true(nmtr.gradient_history.size() == 1, LOG);
-   assert_true(nmtr.gradient_norm_history.size() == 1, LOG);
-   assert_true(nmtr.inverse_Hessian_history.size() == 1, LOG);
-   assert_true(nmtr.selection_performance_history.size() == 1, LOG);  
+    assert_true(nmtr.performance_history.size() == 1, LOG);
+    assert_true(nmtr.gradient_history.size() == 1, LOG);
+    assert_true(nmtr.gradient_norm_history.size() == 1, LOG);
+    assert_true(nmtr.inverse_Hessian_history.size() == 1, LOG);
+    assert_true(nmtr.selection_performance_history.size() == 1, LOG);
 
-   assert_true(nmtr.training_direction_history.size() == 1, LOG);
-   assert_true(nmtr.training_rate_history.size() == 1, LOG);
-   assert_true(nmtr.elapsed_time_history.size() == 1, LOG);
+    assert_true(nmtr.training_direction_history.size() == 1, LOG);
+    assert_true(nmtr.training_rate_history.size() == 1, LOG);
+    assert_true(nmtr.elapsed_time_history.size() == 1, LOG);
 }
 
 
 void NewtonMethodTest::test_set_reserve_all_training_history(void)
 {
-   message += "test_set_reserve_all_training_history\n";
+    message += "test_set_reserve_all_training_history\n";
 
-   NewtonMethod nm;
-   nm.set_reserve_all_training_history(true);
+    NewtonMethod nm;
+    nm.set_reserve_all_training_history(true);
 
-   assert_true(nm.get_reserve_parameters_history() == true, LOG);
-   assert_true(nm.get_reserve_parameters_norm_history() == true, LOG);
+    assert_true(nm.get_reserve_parameters_history() == true, LOG);
+    assert_true(nm.get_reserve_parameters_norm_history() == true, LOG);
 
-   assert_true(nm.get_reserve_performance_history() == true, LOG);
-   assert_true(nm.get_reserve_gradient_history() == true, LOG);
-   assert_true(nm.get_reserve_gradient_norm_history() == true, LOG);
-   assert_true(nm.get_reserve_inverse_Hessian_history() == true, LOG);
+    assert_true(nm.get_reserve_performance_history() == true, LOG);
+    assert_true(nm.get_reserve_gradient_history() == true, LOG);
+    assert_true(nm.get_reserve_gradient_norm_history() == true, LOG);
+    assert_true(nm.get_reserve_inverse_Hessian_history() == true, LOG);
 
-   assert_true(nm.get_reserve_training_direction_history() == true, LOG);
-   assert_true(nm.get_reserve_training_rate_history() == true, LOG);
-   assert_true(nm.get_reserve_elapsed_time_history() == true, LOG);
-   assert_true(nm.get_reserve_selection_performance_history() == true, LOG);
+    assert_true(nm.get_reserve_training_direction_history() == true, LOG);
+    assert_true(nm.get_reserve_training_rate_history() == true, LOG);
+    assert_true(nm.get_reserve_elapsed_time_history() == true, LOG);
+    assert_true(nm.get_reserve_selection_performance_history() == true, LOG);
 }
 
 
 void NewtonMethodTest::run_test_case(void)
 {
-   message += "Running Newton method test case...\n";
+    message += "Running Newton method test case...\n";
 
-   // Constructor and destructor methods
+    // Constructor and destructor methods
 
-   test_constructor();
-   test_destructor();
+    test_constructor();
+    test_destructor();
 
-   // Training methods
+    // Training methods
 
-   test_calculate_gradient_descent_training_direction();
-   test_calculate_training_direction();
+    test_calculate_gradient_descent_training_direction();
+    test_calculate_training_direction();
 
-   test_perform_training();
+    test_perform_training();
 
-   // Training history methods
+    // Training history methods
 
-   test_resize_training_history();
-   test_set_reserve_all_training_history();
+    test_resize_training_history();
+    test_set_reserve_all_training_history();
 
-   // Serialization methods
+    // Serialization methods
 
-   test_to_XML();
-   test_from_XML();
+    test_to_XML();
+    test_from_XML();
 
-   message += "End of Newton method test case.\n";
+    message += "End of Newton method test case.\n";
 }
 
 

@@ -33,106 +33,52 @@
 
 #include <tinyxml2.h>
 
-namespace OpenNN {
+namespace OpenNN
+{
 
 /// This class represents the sum squared peformance term functional.
 /// This is used as the performance term in data modeling problems, such as function regression,
 /// pattern recognition or time series prediction.
+class RocAreaError : public PerformanceTerm
+{
+public:
+    // DEFAULT CONSTRUCTOR
+    explicit RocAreaError(void);
 
-    class RocAreaError : public PerformanceTerm {
+    // NEURAL NETWORK CONSTRUCTOR
+    explicit RocAreaError(NeuralNetwork *);
 
-    public:
+    // DATA SET CONSTRUCTOR
+    explicit RocAreaError(DataSet *);
 
-        // DEFAULT CONSTRUCTOR
+    // GENERAL CONSTRUCTOR
+    explicit RocAreaError(NeuralNetwork *, DataSet *);
 
-        explicit RocAreaError(void);
+    // XML CONSTRUCTOR
+    explicit RocAreaError(const tinyxml2::XMLDocument &);
 
-        // NEURAL NETWORK CONSTRUCTOR
+    // COPY CONSTRUCTOR
+    RocAreaError(const RocAreaError &);
 
-        explicit RocAreaError(NeuralNetwork *);
+    // DESTRUCTOR
+    virtual ~RocAreaError(void);
 
-        // DATA SET CONSTRUCTOR
+    // Checking methods
+    void check(void) const;
 
-        explicit RocAreaError(DataSet *);
+    // performance methods
+    double calculate_performance(void) const;
 
-        // GENERAL CONSTRUCTOR
+    Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
 
-        explicit RocAreaError(NeuralNetwork *, DataSet *);
+    Vector<double> calculate_gradient(void) const;
 
-        // XML CONSTRUCTOR
+    double calculate_performance(const Vector<double> &) const;
 
-        explicit RocAreaError(const tinyxml2::XMLDocument &);
+private:
+    NumericalIntegration numerical_integration;
+};
 
-        // COPY CONSTRUCTOR
-
-        RocAreaError(const RocAreaError &);
-
-        // DESTRUCTOR
-
-        virtual ~RocAreaError(void);
-
-        // METHODS
-
-        // Get methods
-
-        // Set methods
-
-        // Checking methods
-
-        void check(void) const;
-
-        // performance methods
-
-        double calculate_performance(void) const;
-
-//   double calculate_selection_performance(void) const;
-
-        Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
-
-        Vector<double> calculate_gradient(void) const;
-
-//   Matrix<double> calculate_Hessian(void) const;
-
-//   Matrix<double> calculate_single_hidden_layer_Hessian(void) const;
-
-        double calculate_performance(const Vector<double> &) const;
-
-//   double calculate_performance_combination(const size_t&, const Vector<double>&) const;
-//   double calculate_performance_combinations(const size_t&, const Vector<double>&, const size_t&, const Vector<double>&) const;
-
-//   Vector<double> calculate_gradient(const Vector<double>&) const;
-
-//   Matrix<double> calculate_output_Hessian(const Vector<double>&, const Vector<double>&) const;
-
-//   Matrix<double> calculate_Hessian(const Vector<double>&) const;
-
-        // Objective terms methods
-
-//   Vector<double> calculate_terms(void) const;
-//   Vector<double> calculate_terms(const Vector<double>&) const;
-
-//   Matrix<double> calculate_terms_Jacobian(void) const;
-
-//   PerformanceTerm::FirstOrderTerms calculate_first_order_terms(void) const;
-
-        // Squared errors methods
-
-//   Vector<double> calculate_squared_errors(void) const;
-
-//   std::string write_performance_term_type(void) const;
-
-        // Serialization methods
-
-//   tinyxml2::XMLDocument* to_XML(void) const;
-
-//   void from_XML(const tinyxml2::XMLDocument&);
-
-    private:
-
-        NumericalIntegration numerical_integration;
-
-
-    };
 
 }
 

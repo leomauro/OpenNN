@@ -21,64 +21,66 @@
 using namespace OpenNN;
 
 
-class OrderSelectionAlgorithmTest : public UnitTesting
-{
+class OrderSelectionAlgorithmTest : public UnitTesting {
 
-#define	STRING(x) #x
+#define    STRING(x) #x
 #define TOSTRING(x) STRING(x)
 #define LOG __FILE__ ":" TOSTRING(__LINE__)"\n"
 
 public:
 
-   // CONSTRUCTOR
+    // CONSTRUCTOR
 
-   explicit OrderSelectionAlgorithmTest(void);
-
-
-   // DESTRUCTOR
-
-   virtual ~OrderSelectionAlgorithmTest(void);
+    explicit OrderSelectionAlgorithmTest(void);
 
 
-   // METHODS
+    // DESTRUCTOR
 
-   // Constructor and destructor methods
-
-   void test_constructor(void);
-   void test_destructor(void);
-
-   // Get methods
-
-   void test_get_training_strategy_pointer(void);
+    virtual ~OrderSelectionAlgorithmTest(void);
 
 
-   void test_get_performance_calculation_method(void);
+    // METHODS
 
-   void test_write_performance_calculation_method(void) ;
+    // Constructor and destructor methods
 
-   // Set methods
+    void test_constructor(void);
 
-   void test_set_training_strategy_pointer(void);
+    void test_destructor(void);
 
-   void test_set_default(void);
+    // Get methods
 
-   void test_set_performance_calculation_method(void);
+    void test_get_training_strategy_pointer(void);
 
-   // Performances calculation methods
 
-   void test_perform_minimum_model_evaluation(void);
-   void test_perform_maximum_model_evaluation(void);
-   void test_perform_mean_model_evaluation(void);
+    void test_get_performance_calculation_method(void);
 
-   void test_get_final_performances(void);
+    void test_write_performance_calculation_method(void);
 
-   void test_perform_model_evaluation(void);
+    // Set methods
 
-   void test_get_parameters_order(void);
+    void test_set_training_strategy_pointer(void);
 
-   // Unit testing methods
+    void test_set_default(void);
 
-   void run_test_case(void);
+    void test_set_performance_calculation_method(void);
+
+    // Performances calculation methods
+
+    void test_perform_minimum_model_evaluation(void);
+
+    void test_perform_maximum_model_evaluation(void);
+
+    void test_perform_mean_model_evaluation(void);
+
+    void test_get_final_performances(void);
+
+    void test_perform_model_evaluation(void);
+
+    void test_get_parameters_order(void);
+
+    // Unit testing methods
+
+    void run_test_case(void);
 
 };
 
