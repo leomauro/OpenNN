@@ -41,7 +41,7 @@ class PrincipalComponentsLayer
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit PrincipalComponentsLayer(void);
+    explicit PrincipalComponentsLayer();
 
     // INPUTS NUMBER CONSTRUCTOR
     explicit PrincipalComponentsLayer(const size_t &);
@@ -50,7 +50,7 @@ public:
     PrincipalComponentsLayer(const PrincipalComponentsLayer &);
 
     // DESTRUCTOR
-    virtual ~PrincipalComponentsLayer(void);
+    virtual ~PrincipalComponentsLayer();
 
     // ENUMERATIONS
     enum PrincipalComponentsState {
@@ -58,18 +58,18 @@ public:
     };
 
     // GET METHODS
-    Matrix<double> get_eigenvectors(void) const;
+    Matrix<double> get_eigenvectors() const;
 
-    Vector<double> get_means(void) const;
+    Vector<double> get_means() const;
 
     // Inputs principal components function
     Vector<double> calculate_ouputs(const Vector<double> &) const;
 
     // Display messages
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // SET METHODS
-    void set(void);
+    void set();
 
     void set(const size_t &);
 
@@ -81,10 +81,10 @@ public:
 
     void set_means(const size_t &, const double &);
 
-    virtual void set_default(void);
+    virtual void set_default();
 
     // GET METHODS
-    size_t get_principal_components_neurons_number(void) const;
+    size_t get_principal_components_neurons_number() const;
 
     // Display messages
     void set_display(const bool &);
@@ -95,9 +95,9 @@ public:
     Vector<double> calculate_derivatives(const Vector<double> &) const;
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     virtual void from_XML(const tinyxml2::XMLDocument &);
 

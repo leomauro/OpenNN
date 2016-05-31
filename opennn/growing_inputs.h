@@ -47,7 +47,7 @@ class GrowingInputs : public InputsSelectionAlgorithm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit GrowingInputs(void);
+    explicit GrowingInputs();
 
     // TRAINING STRATEGY CONSTRUCTOR
     explicit GrowingInputs(TrainingStrategy *);
@@ -59,42 +59,42 @@ public:
     explicit GrowingInputs(const std::string &);
 
     // DESTRUCTOR
-    virtual ~GrowingInputs(void);
+    virtual ~GrowingInputs();
 
     ///
     /// This structure contains the training results for the growing inputs method.
     ///
     struct GrowingInputsResults : public InputsSelectionAlgorithm::InputsSelectionResults {
         /// Default constructor.
-        explicit GrowingInputsResults(void) : InputsSelectionAlgorithm::InputsSelectionResults()
+        explicit GrowingInputsResults() : InputsSelectionAlgorithm::InputsSelectionResults()
         {
         }
 
         /// Destructor.
-        virtual ~GrowingInputsResults(void)
+        virtual ~GrowingInputsResults()
         {
         }
     };
 
     // Get methods
-    const size_t &get_maximum_inputs_number(void) const;
+    const size_t &get_maximum_inputs_number() const;
 
-    const size_t &get_maximum_selection_failures(void) const;
+    const size_t &get_maximum_selection_failures() const;
 
     // Set methods
-    void set_default(void);
+    void set_default();
 
     void set_maximum_inputs_number(const size_t &);
 
     void set_maximum_selection_failures(const size_t &);
 
     // Order selection methods
-    GrowingInputsResults *perform_inputs_selection(void);
+    GrowingInputsResults *perform_inputs_selection();
 
     // Serialization methods
-    Matrix<std::string> to_string_matrix(void) const;
+    Matrix<std::string> to_string_matrix() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

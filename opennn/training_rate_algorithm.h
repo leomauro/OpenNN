@@ -47,7 +47,7 @@ public:
     };
 
     // DEFAULT CONSTRUCTOR
-    explicit TrainingRateAlgorithm(void);
+    explicit TrainingRateAlgorithm();
 
     // GENERAL CONSTRUCTOR
     explicit TrainingRateAlgorithm(PerformanceFunctional *);
@@ -56,14 +56,14 @@ public:
     explicit TrainingRateAlgorithm(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~TrainingRateAlgorithm(void);
+    virtual ~TrainingRateAlgorithm();
 
     ///
     /// Defines a set of three points (A, U, B) for bracketing a directional minimum.
     ///
     struct Triplet {
         /// Default constructor.
-        Triplet(void)
+        Triplet()
         {
             A.set(2, 0.0);
             U.set(2, 0.0);
@@ -71,7 +71,7 @@ public:
         }
 
         /// Destructor.
-        virtual ~Triplet(void)
+        virtual ~Triplet()
         {
         }
 
@@ -86,18 +86,18 @@ public:
 
         /// Returns true if the length of the interval (A,B) is zero,
         /// and false otherwise.
-        inline bool has_length_zero(void) const
+        inline bool has_length_zero() const
         {
             return A[0] == B[0];
         }
 
-        inline bool is_constant(void) const
+        inline bool is_constant() const
         {
             return A[1] == B[1];
         }
 
         /// Writes a string with the values of A, U and B.
-        inline std::string to_string(void) const
+        inline std::string to_string() const
         {
             std::ostringstream buffer;
             buffer << "A = (" << A[0] << "," << A[1] << ")\n"
@@ -107,7 +107,7 @@ public:
         }
 
         /// Prints the triplet points to the standard output.
-        inline void print(void) const
+        inline void print() const
         {
             std::cout << to_string();
         }
@@ -115,13 +115,13 @@ public:
         /// Checks that the points A, U and B define a minimum.
         /// That is, a < u < b, fa > fu and fu < fb.
         /// If some of that conditions is not satisfied, an exception is thrown.
-        inline void check(void) const
+        inline void check() const
         {
             if (A[0] > U[0] || U[0] > B[0]) {
                 std::ostringstream buffer;
 
                 buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
-                       << "void check(void) const method.\n"
+                       << "void check() const method.\n"
                        << "Uncorrect triplet:\n"
                        << to_string();
 
@@ -132,7 +132,7 @@ public:
                 std::ostringstream buffer;
 
                 buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
-                       << "void check(void) const method.\n"
+                       << "void check() const method.\n"
                        << "Triplet does not satisfy minimum condition:\n"
                        << to_string();
 
@@ -151,29 +151,29 @@ public:
     };
 
     // Get methods
-    PerformanceFunctional *get_performance_functional_pointer(void) const;
+    PerformanceFunctional *get_performance_functional_pointer() const;
 
-    bool has_performance_functional(void) const;
+    bool has_performance_functional() const;
 
     // Training operators
-    const TrainingRateMethod &get_training_rate_method(void) const;
+    const TrainingRateMethod &get_training_rate_method() const;
 
-    std::string write_training_rate_method(void) const;
+    std::string write_training_rate_method() const;
 
     // Training parameters
-    const double &get_bracketing_factor(void) const;
+    const double &get_bracketing_factor() const;
 
-    const double &get_training_rate_tolerance(void) const;
+    const double &get_training_rate_tolerance() const;
 
-    const double &get_warning_training_rate(void) const;
+    const double &get_warning_training_rate() const;
 
-    const double &get_error_training_rate(void) const;
+    const double &get_error_training_rate() const;
 
     // Utilities
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // Set methods
-    void set(void);
+    void set();
 
     void set(PerformanceFunctional *);
 
@@ -196,7 +196,7 @@ public:
     // Utilities
     void set_display(const bool &);
 
-    virtual void set_default(void);
+    virtual void set_default();
 
     // Training rate method
     double calculate_golden_section_training_rate(const Triplet &) const;
@@ -218,7 +218,7 @@ public:
     Vector<double> calculate_directional_point(const double &, const Vector<double> &, const double &) const;
 
     // Serialization methods
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

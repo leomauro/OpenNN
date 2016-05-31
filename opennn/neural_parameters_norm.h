@@ -40,7 +40,7 @@ class NeuralParametersNorm : public PerformanceTerm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit NeuralParametersNorm(void);
+    explicit NeuralParametersNorm();
 
     // NEURAL NETWORK CONSTRUCTOR
     explicit NeuralParametersNorm(NeuralNetwork *);
@@ -49,25 +49,25 @@ public:
     explicit NeuralParametersNorm(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~NeuralParametersNorm(void);
+    virtual ~NeuralParametersNorm();
 
     // Get methods
-    const double &get_neural_parameters_norm_weight(void) const;
+    const double &get_neural_parameters_norm_weight() const;
 
     // Set methods
     void set_neural_parameters_norm_weight(const double &);
 
-    void set_default(void);
+    void set_default();
 
     // Checking methods
-    void check(void) const;
+    void check() const;
 
     // performance methods
-    double calculate_performance(void) const;
+    double calculate_performance() const;
 
-    Vector<double> calculate_gradient(void) const;
+    Vector<double> calculate_gradient() const;
 
-    Matrix<double> calculate_Hessian(void) const;
+    Matrix<double> calculate_Hessian() const;
 
     double calculate_performance(const Vector<double> &) const;
 
@@ -75,12 +75,12 @@ public:
 
     Matrix<double> calculate_Hessian(const Vector<double> &) const;
 
-    std::string write_performance_term_type(void) const;
+    std::string write_performance_term_type() const;
 
-    std::string write_information(void) const;
+    std::string write_information() const;
 
     // Serialization methods
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

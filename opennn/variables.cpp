@@ -16,13 +16,12 @@
 #include "variables.h"
 
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 /// Default constructor.
 /// It creates a variables object with zero variables.
 /// It also initializes the rest of class members to their default values.
-Variables::Variables(void)
+Variables::Variables()
 {
     set();
 }
@@ -68,7 +67,7 @@ Variables::Variables(const Variables &other_variables)
 }
 
 /// Destructor.
-Variables::~Variables(void)
+Variables::~Variables()
 {
 }
 
@@ -97,7 +96,7 @@ bool Variables::operator==(const Variables &other_variables) const
 }
 
 /// Returns the vector Item structures in the variables object.
-const Vector<Variables::Item> &Variables::get_items(void) const
+const Vector<Variables::Item> &Variables::get_items() const
 {
     return items;
 }
@@ -109,6 +108,7 @@ const Variables::Item &Variables::get_item(const size_t &i) const
 
 #ifdef __OPENNN_DEBUG__
     const size_t variables_number = get_variables_number();
+
     if (i >= variables_number) {
         std::ostringstream buffer;
 
@@ -124,21 +124,19 @@ const Variables::Item &Variables::get_item(const size_t &i) const
 }
 
 /// Returns true if the number of variables is zero, and false otherwise.
-bool Variables::empty(void) const
+bool Variables::empty() const
 {
     return items.empty();
 }
 
 /// Returns the number of variables which are either input or target.
-size_t Variables::count_used_variables_number(void) const
+size_t Variables::count_used_variables_number() const
 {
-    const size_t variables_number = get_variables_number();
-    const size_t unused_variables_number = count_unused_variables_number();
-    return variables_number - unused_variables_number;
+    return get_variables_number() - count_unused_variables_number();
 }
 
 /// Returns the number of variables which will neither be used as input nor as target.
-size_t Variables::count_unused_variables_number(void) const
+size_t Variables::count_unused_variables_number() const
 {
     const size_t variables_number = get_variables_number();
     size_t count = 0;
@@ -150,7 +148,7 @@ size_t Variables::count_unused_variables_number(void) const
 }
 
 /// Returns the number of input variables of the data set.
-size_t Variables::count_inputs_number(void) const
+size_t Variables::count_inputs_number() const
 {
     const size_t variables_number = get_variables_number();
     size_t count = 0;
@@ -162,7 +160,7 @@ size_t Variables::count_inputs_number(void) const
 }
 
 /// Returns the number of target variables of the data set.
-size_t Variables::count_targets_number(void) const
+size_t Variables::count_targets_number() const
 {
     const size_t variables_number = get_variables_number();
     size_t count = 0;
@@ -176,25 +174,24 @@ size_t Variables::count_targets_number(void) const
 /// Returns a vector containing the numbers of input, target and unused variables,
 /// respectively.
 /// The size of that vector is three.
-Vector<size_t> Variables::count_uses(void) const
+Vector<size_t> Variables::count_uses() const
 {
     Vector<size_t> count(3, 0);
     const size_t variables_number = get_variables_number();
     for (size_t i = 0; i < variables_number; i++) {
-        if (items[i].use == Input) {
+        if (items[i].use == Input)
             count[0]++;
-        } else if (items[i].use == Target) {
+        else if (items[i].use == Target)
             count[1]++;
-        } else {
+        else
             count[2]++;
-        }
     }
     return count;
 }
 
 /// Returns a vector containing the use of each variable.
 /// The size of the vector is equal to the number of variables.
-Vector<Variables::Use> Variables::arrange_uses(void) const
+Vector<Variables::Use> Variables::arrange_uses() const
 {
     const size_t variables_number = get_variables_number();
     Vector<Variables::Use> uses(variables_number);
@@ -207,22 +204,22 @@ Vector<Variables::Use> Variables::arrange_uses(void) const
 /// Returns a vector of strings with the use of each variable.
 /// The size of the vector is equal to the number of variables.
 /// The possible values for the elements are "Unused", "Input" and "Target".
-Vector<std::string> Variables::write_uses(void) const
+Vector<std::string> Variables::write_uses() const
 {
     const size_t variables_number = get_variables_number();
     Vector<std::string> uses_string(variables_number);
     for (size_t i = 0; i < variables_number; i++) {
-        if (items[i].use == Unused) {
+        if (items[i].use == Unused)
             uses_string[i] = "Unused";
-        } else if (items[i].use == Input) {
+        else if (items[i].use == Input)
             uses_string[i] = "Input";
-        } else if (items[i].use == Target) {
+        else if (items[i].use == Target)
             uses_string[i] = "Target";
-        } else {
+        else {
             std::ostringstream buffer;
 
             buffer << "OpenNN Exception Variables class.\n"
-                   << "Vector<std::string> write_uses(void) const method.\n"
+                   << "Vector<std::string> write_uses() const method.\n"
                    << "Unknown use.\n";
 
             throw std::logic_error(buffer.str());
@@ -242,13 +239,13 @@ const Variables::Use &Variables::get_use(const size_t &i) const
 /// @param i Variable index.
 std::string Variables::write_use(const size_t &i) const
 {
-    if (items[i].use == Unused) {
+    if (items[i].use == Unused)
         return "Unused";
-    } else if (items[i].use == Input) {
+    else if (items[i].use == Input)
         return "Input";
-    } else if (items[i].use == Target) {
+    else if (items[i].use == Target)
         return "Target";
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception Variables class.\n"
@@ -266,6 +263,7 @@ bool Variables::is_input(const size_t &index) const
 
 #ifdef __OPENNN_DEBUG__
     const size_t variables_number = get_variables_number();
+
     if (index >= variables_number) {
         std::ostringstream buffer;
 
@@ -287,6 +285,7 @@ bool Variables::is_target(const size_t &index) const
 
 #ifdef __OPENNN_DEBUG__
     const size_t variables_number = get_variables_number();
+
     if (index >= variables_number) {
         std::ostringstream buffer;
 
@@ -308,6 +307,7 @@ bool Variables::is_unused(const size_t &index) const
 
 #ifdef __OPENNN_DEBUG__
     const size_t variables_number = get_variables_number();
+
     if (index >= variables_number) {
         std::ostringstream buffer;
 
@@ -329,6 +329,7 @@ bool Variables::is_used(const size_t &index) const
 
 #ifdef __OPENNN_DEBUG__
     const size_t variables_number = get_variables_number();
+
     if (index >= variables_number) {
         std::ostringstream buffer;
 
@@ -347,7 +348,7 @@ bool Variables::is_used(const size_t &index) const
 /// The number of rows is the number of variables.
 /// The number of columns is four.
 /// Each row contains the information of a single variable (name, units, description and use).
-Matrix<std::string> Variables::arrange_information(void) const
+Matrix<std::string> Variables::arrange_information() const
 {
     const size_t variables_number = get_variables_number();
     Matrix<std::string> information(variables_number, 4);
@@ -361,7 +362,7 @@ Matrix<std::string> Variables::arrange_information(void) const
 }
 
 /// Returns the indices of the used variables (those which are not set unused).
-Vector<size_t> Variables::arrange_used_indices(void) const
+Vector<size_t> Variables::arrange_used_indices() const
 {
     const size_t variables_number = get_variables_number();
     const size_t used_variables_number = count_used_variables_number();
@@ -377,7 +378,7 @@ Vector<size_t> Variables::arrange_used_indices(void) const
 }
 
 /// Returns the indices of the input variables.
-Vector<size_t> Variables::arrange_inputs_indices(void) const
+Vector<size_t> Variables::arrange_inputs_indices() const
 {
     const size_t variables_number = get_variables_number();
     const size_t inputs_number = count_inputs_number();
@@ -393,7 +394,7 @@ Vector<size_t> Variables::arrange_inputs_indices(void) const
 }
 
 /// Returns the indices of the target variables.
-Vector<size_t> Variables::arrange_targets_indices(void) const
+Vector<size_t> Variables::arrange_targets_indices() const
 {
     const size_t variables_number = get_variables_number();
     const size_t targets_number = count_targets_number();
@@ -409,7 +410,7 @@ Vector<size_t> Variables::arrange_targets_indices(void) const
 }
 
 /// Returns the indices of the unused variables.
-Vector<size_t> Variables::arrange_unused_indices(void) const
+Vector<size_t> Variables::arrange_unused_indices() const
 {
     const size_t variables_number = get_variables_number();
     const size_t unused_number = count_unused_variables_number();
@@ -425,7 +426,7 @@ Vector<size_t> Variables::arrange_unused_indices(void) const
 }
 
 /// Returns the names of all the variables in the data set.
-Vector<std::string> Variables::arrange_names(void) const
+Vector<std::string> Variables::arrange_names() const
 {
     const size_t variables_number = get_variables_number();
     Vector<std::string> names(variables_number);
@@ -436,7 +437,7 @@ Vector<std::string> Variables::arrange_names(void) const
 }
 
 /// Returns the names of the used variables in the data set.
-Vector<std::string> Variables::arrange_used_names(void) const
+Vector<std::string> Variables::arrange_used_names() const
 {
     const size_t variables_number = get_variables_number();
     const Vector<size_t> used_variables_indices = arrange_used_indices();
@@ -459,6 +460,7 @@ const std::string &Variables::get_name(const size_t &i) const
 
 #ifdef __OPENNN_DEBUG__
     const size_t variables_number = get_variables_number();
+
     if (i >= variables_number) {
         std::ostringstream buffer;
 
@@ -474,7 +476,7 @@ const std::string &Variables::get_name(const size_t &i) const
 }
 
 /// Returns true if all the variables have been named, and false otherwise.
-bool Variables::has_names(void) const
+bool Variables::has_names() const
 {
     const size_t variables_number = get_variables_number();
     for (size_t i = 0; i < variables_number; i++) {
@@ -485,7 +487,7 @@ bool Variables::has_names(void) const
 }
 
 /// Returns the names of the input variables in the data set.
-Vector<std::string> Variables::arrange_inputs_name(void) const
+Vector<std::string> Variables::arrange_inputs_name() const
 {
     const size_t inputs_number = count_inputs_number();
     const Vector<size_t> inputs_indices = arrange_inputs_indices();
@@ -499,7 +501,7 @@ Vector<std::string> Variables::arrange_inputs_name(void) const
 }
 
 /// Returns the names of the target variables in the data set.
-Vector<std::string> Variables::arrange_targets_name(void) const
+Vector<std::string> Variables::arrange_targets_name() const
 {
     const size_t targets_number = count_targets_number();
     const Vector<size_t> targets_indices = arrange_targets_indices();
@@ -513,7 +515,7 @@ Vector<std::string> Variables::arrange_targets_name(void) const
 }
 
 /// Returns the units of all the variables in the data set.
-Vector<std::string> Variables::arrange_units(void) const
+Vector<std::string> Variables::arrange_units() const
 {
     const size_t variables_number = get_variables_number();
     Vector<std::string> units(variables_number);
@@ -530,6 +532,7 @@ const std::string &Variables::get_unit(const size_t &i) const
 
 #ifdef __OPENNN_DEBUG__
     const size_t variables_number = get_variables_number();
+
     if (i >= variables_number) {
         std::ostringstream buffer;
 
@@ -545,7 +548,7 @@ const std::string &Variables::get_unit(const size_t &i) const
 }
 
 /// Returns the units of the input variables in the data set.
-Vector<std::string> Variables::arrange_inputs_units(void) const
+Vector<std::string> Variables::arrange_inputs_units() const
 {
     const Vector<size_t> inputs_indices = arrange_inputs_indices();
     const size_t inputs_number = count_inputs_number();
@@ -559,7 +562,7 @@ Vector<std::string> Variables::arrange_inputs_units(void) const
 }
 
 /// Returns the units of the target variables in the data set.
-Vector<std::string> Variables::arrange_targets_units(void) const
+Vector<std::string> Variables::arrange_targets_units() const
 {
     const Vector<size_t> targets_indices = arrange_targets_indices();
     const size_t targets_number = count_targets_number();
@@ -573,7 +576,7 @@ Vector<std::string> Variables::arrange_targets_units(void) const
 }
 
 /// Returns the description of all the variables in the data set.
-Vector<std::string> Variables::arrange_descriptions(void) const
+Vector<std::string> Variables::arrange_descriptions() const
 {
     const size_t variables_number = get_variables_number();
     Vector<std::string> descriptions(variables_number);
@@ -590,6 +593,7 @@ const std::string &Variables::get_description(const size_t &i) const
 
 #ifdef __OPENNN_DEBUG__
     const size_t variables_number = get_variables_number();
+
     if (i >= variables_number) {
         std::ostringstream buffer;
 
@@ -605,7 +609,7 @@ const std::string &Variables::get_description(const size_t &i) const
 }
 
 /// Returns the description of the input variables in the data set.
-Vector<std::string> Variables::arrange_inputs_description(void) const
+Vector<std::string> Variables::arrange_inputs_description() const
 {
     const size_t inputs_number = count_inputs_number();
     const Vector<size_t> inputs_indices = arrange_inputs_indices();
@@ -619,7 +623,7 @@ Vector<std::string> Variables::arrange_inputs_description(void) const
 }
 
 /// Returns the description of the target variables in the data set.
-Vector<std::string> Variables::arrange_targets_description(void) const
+Vector<std::string> Variables::arrange_targets_description() const
 {
     const Vector<size_t> targets_indices = arrange_targets_indices();
     const size_t targets_number = count_targets_number();
@@ -634,7 +638,7 @@ Vector<std::string> Variables::arrange_targets_description(void) const
 
 /// Returns a single matrix with the names, units and descriptions of all the input variables.
 /// The number of rows is the number of inputs, and the number of columns is 3.
-Matrix<std::string> Variables::arrange_inputs_information(void) const
+Matrix<std::string> Variables::arrange_inputs_information() const
 {
     const size_t inputs_number = count_inputs_number();
     const Vector<size_t> inputs_indices = arrange_inputs_indices();
@@ -651,7 +655,7 @@ Matrix<std::string> Variables::arrange_inputs_information(void) const
 
 /// Returns a single matrix with the names, units and descriptions of all the target variables.
 /// The number of rows is the number of targets, and the number of columns is 3.
-Matrix<std::string> Variables::arrange_targets_information(void) const
+Matrix<std::string> Variables::arrange_targets_information() const
 {
     const size_t targets_number = count_targets_number();
     const Vector<size_t> targets_indices = arrange_targets_indices();
@@ -668,15 +672,16 @@ Matrix<std::string> Variables::arrange_targets_information(void) const
 
 /// Returns true if messages from this class can be displayed on the screen,
 /// or false if messages from this class can't be displayed on the screen.
-const bool &Variables::get_display(void) const
+const bool &Variables::get_display() const
 {
     return display;
 }
 
 /// Sets a variables object with zero variables.
-void Variables::set(void)
+void Variables::set()
 {
     set_variables_number(0);
+
     set_default();
 }
 
@@ -687,6 +692,7 @@ void Variables::set(void)
 void Variables::set(const size_t &new_variables_number)
 {
     set_variables_number(new_variables_number);
+
     set_default();
 }
 
@@ -705,6 +711,7 @@ void Variables::set(const size_t &inputs_number, const size_t &targets_number)
     for (size_t i = inputs_number; i < variables_number; i++) {
         items[i].use = Target;
     }
+
     set_default();
 }
 
@@ -713,6 +720,7 @@ void Variables::set(const size_t &inputs_number, const size_t &targets_number)
 void Variables::set(const tinyxml2::XMLDocument &variables_document)
 {
     set_default();
+
     from_XML(variables_document);
 }
 
@@ -720,7 +728,7 @@ void Variables::set(const tinyxml2::XMLDocument &variables_document)
 /// <ul>
 /// <li>display: true</li>
 /// </ul>
-void Variables::set_default(void)
+void Variables::set_default()
 {
     display = true;
 }
@@ -750,13 +758,13 @@ void Variables::set_uses(const Vector<std::string> &new_uses)
 {
     const size_t new_variables_number = new_uses.size();
     for (size_t i = 0; i < new_variables_number; i++) {
-        if (new_uses[i] == "Input") {
+        if (new_uses[i] == "Input")
             items[i].use = Input;
-        } else if (new_uses[i] == "Target") {
+        else if (new_uses[i] == "Target")
             items[i].use = Target;
-        } else if (new_uses[i] == "Unused") {
+        else if (new_uses[i] == "Unused")
             items[i].use = Unused;
-        } else {
+        else {
             std::ostringstream buffer;
 
             buffer << "OpenNN Exception Variables class.\n"
@@ -810,13 +818,13 @@ void Variables::set_use(const size_t &i, const std::string &new_use)
     }
 #endif
 
-    if (new_use == "Unused") {
+    if (new_use == "Unused")
         items[i].use = Unused;
-    } else if (new_use == "Input") {
+    else if (new_use == "Input")
         items[i].use = Input;
-    } else if (new_use == "Target") {
+    else if (new_use == "Target")
         items[i].use = Target;
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception Variables class.\n"
@@ -828,7 +836,7 @@ void Variables::set_use(const size_t &i, const std::string &new_use)
 }
 
 /// Sets all the variables in the data set as input variables.
-void Variables::set_input(void)
+void Variables::set_input()
 {
     const size_t variables_number = get_variables_number();
     for (size_t i = 0; i < variables_number; i++) {
@@ -837,7 +845,7 @@ void Variables::set_input(void)
 }
 
 /// Sets all the variables in the data set as target variables.
-void Variables::set_target(void)
+void Variables::set_target()
 {
     const size_t variables_number = get_variables_number();
     for (size_t i = 0; i < variables_number; i++) {
@@ -846,7 +854,7 @@ void Variables::set_target(void)
 }
 
 /// Sets all the variables in the data set as unused variables.
-void Variables::set_unuse(void)
+void Variables::set_unuse()
 {
     const size_t variables_number = get_variables_number();
     for (size_t i = 0; i < variables_number; i++) {
@@ -859,18 +867,16 @@ void Variables::set_unuse(void)
 /// <li> Input indices: 0, ..., variables number-2.
 /// <li> Target indices: variables number-1.
 /// </ul>
-void Variables::set_default_uses(void)
+void Variables::set_default_uses()
 {
     const size_t variables_number = get_variables_number();
-    if (variables_number == 0) {
+    if (variables_number == 0)
         return;
-    }
 
     if (variables_number == 1)
         items[0].use = Unused;
     else {
         set_input();
-
         items[variables_number - 1].use = Target;
     }
 }
@@ -884,6 +890,7 @@ void Variables::set_names(const Vector<std::string> &new_names)
 
 #ifdef __OPENNN_DEBUG__
     const size_t size = new_names.size();
+
     if (size != variables_number) {
         std::ostringstream buffer;
 
@@ -909,6 +916,7 @@ void Variables::set_name(const size_t &i, const std::string &new_name)
 
 #ifdef __OPENNN_DEBUG__
     const size_t variables_number = get_variables_number();
+
     if (i >= variables_number) {
         std::ostringstream buffer;
 
@@ -932,6 +940,7 @@ void Variables::set_units(const Vector<std::string> &new_units)
 
 #ifdef __OPENNN_DEBUG__
     const size_t size = new_units.size();
+
     if (size != variables_number) {
         std::ostringstream buffer;
 
@@ -954,8 +963,10 @@ void Variables::set_units(const Vector<std::string> &new_units)
 /// @param new_units Units of variable.
 void Variables::set_units(const size_t &i, const std::string &new_units)
 {
+
 #ifdef __OPENNN_DEBUG__
     const size_t variables_number = get_variables_number();
+
     if (i >= variables_number) {
         std::ostringstream buffer;
 
@@ -1005,6 +1016,7 @@ void Variables::set_description(const size_t &i, const std::string &new_descript
 
 #ifdef __OPENNN_DEBUG__
     const size_t variables_number = get_variables_number();
+
     if (i >= variables_number) {
         std::ostringstream buffer;
 
@@ -1041,9 +1053,9 @@ void Variables::set_names(const Vector<std::string> &columns_name,
 
     Vector<std::string> names;
     for (size_t i = 0; i < nominal_labels.size(); i++) {
-        if (nominal_labels[i].size() == 0) {
+        if (nominal_labels[i].size() == 0)
             names.push_back(columns_name[i]);
-        } else if (nominal_labels[i].size() == 2) {
+        else if (nominal_labels[i].size() == 2) {
             if (nominal_labels[i].contains("true") ||
                 nominal_labels[i].contains("True") ||
                 nominal_labels[i].contains("TRUE")) {
@@ -1052,14 +1064,12 @@ void Variables::set_names(const Vector<std::string> &columns_name,
                        nominal_labels[i].contains("Positive") ||
                        nominal_labels[i].contains("POSITIVE")) {
                 names.push_back(columns_name[i] + "positive");
-            } else {
+            } else
                 names.push_back(columns_name[i]);
-            }
-        } else {
+        } else
             for (size_t j = 0; j < nominal_labels[i].size(); j++) {
                 names.push_back(nominal_labels[i][j]);
             }
-        }
     }
     set_names(names);
 }
@@ -1090,9 +1100,8 @@ void Variables::convert_time_series(const size_t &lags_number)
             if (i != lags_number) {
                 new_items[index].name.append("_lag_").append(unsigned_to_string(lags_number - i));
                 new_items[index].use = Variables::Input;
-            } else {
+            } else
                 new_items[index].use = Variables::Target;
-            }
             index++;
         }
     }
@@ -1102,7 +1111,7 @@ void Variables::convert_time_series(const size_t &lags_number)
 /// Arranges the variables in a proper format for autoassociation.
 /// The number of variables is doubled.
 /// The first half will be set as inputs, and the second half as targets.
-void Variables::convert_autoassociation(void)
+void Variables::convert_autoassociation()
 {
     const size_t variables_number = get_variables_number();
     set_input();
@@ -1122,11 +1131,12 @@ void Variables::convert_autoassociation(void)
 void Variables::set_variables_number(const size_t &new_variables_number)
 {
     items.set(new_variables_number);
+
     set_default_uses();
 }
 
 /// Returns a string representation of the current variables object.
-std::string Variables::to_string(void) const
+std::string Variables::to_string() const
 {
     std::ostringstream buffer;
 
@@ -1153,7 +1163,7 @@ std::string Variables::to_string(void) const
 
 /// Serializes the variables object into a XML document of the TinyXML library.
 /// See the OpenNN manual for more information about the format of this document.
-tinyxml2::XMLDocument *Variables::to_XML(void) const
+tinyxml2::XMLDocument *Variables::to_XML() const
 {
     tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
     std::ostringstream buffer;

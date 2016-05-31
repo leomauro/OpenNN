@@ -36,12 +36,12 @@ namespace OpenNN
 {
 
 /// This abstract class represents the concept of training algorithm for a neural network.
-/// Any derived class must implement the perform_training(void) method.
+/// Any derived class must implement the perform_training() method.
 class TrainingAlgorithm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit TrainingAlgorithm(void);
+    explicit TrainingAlgorithm();
 
     // GENERAL CONSTRUCTOR
     explicit TrainingAlgorithm(PerformanceFunctional *);
@@ -50,7 +50,7 @@ public:
     explicit TrainingAlgorithm(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~TrainingAlgorithm(void);
+    virtual ~TrainingAlgorithm();
 
     // ASSIGNMENT OPERATOR
     virtual TrainingAlgorithm &operator=(const TrainingAlgorithm &);
@@ -62,16 +62,16 @@ public:
     /// This structure contains the training algorithm results.
     ///
     struct TrainingAlgorithmResults {
-        explicit TrainingAlgorithmResults(void)
+        explicit TrainingAlgorithmResults()
         {
         }
 
-        virtual ~TrainingAlgorithmResults(void)
+        virtual ~TrainingAlgorithmResults()
         {
         }
 
         /// Returns a string representation of the results structure.
-        virtual std::string to_string(void) const
+        virtual std::string to_string() const
         {
             std::string str;
             return str;
@@ -86,25 +86,25 @@ public:
     };
 
     // Get methods
-    PerformanceFunctional *get_performance_functional_pointer(void) const;
+    PerformanceFunctional *get_performance_functional_pointer() const;
 
-    bool has_performance_functional(void) const;
+    bool has_performance_functional() const;
 
     // Utilities
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
-    const size_t &get_display_period(void) const;
+    const size_t &get_display_period() const;
 
-    const size_t &get_save_period(void) const;
+    const size_t &get_save_period() const;
 
-    const std::string &get_neural_network_file_name(void) const;
+    const std::string &get_neural_network_file_name() const;
 
     // Set methods
-    void set(void);
+    void set();
 
     void set(PerformanceFunctional *);
 
-    virtual void set_default(void);
+    virtual void set_default();
 
     virtual void set_performance_functional_pointer(PerformanceFunctional *);
 
@@ -117,21 +117,21 @@ public:
     void set_neural_network_file_name(const std::string &);
 
     // Training methods
-    virtual void check(void) const;
+    virtual void check() const;
 
     /// Trains a neural network which has a performance functional associated.
-    virtual TrainingAlgorithmResults *perform_training(void) = 0;
+    virtual TrainingAlgorithmResults *perform_training() = 0;
 
-    virtual std::string write_training_algorithm_type(void) const;
+    virtual std::string write_training_algorithm_type() const;
 
     // Serialization methods
-    virtual std::string to_string(void) const;
+    virtual std::string to_string() const;
 
-    void print(void) const;
+    void print() const;
 
-    virtual Matrix<std::string> to_string_matrix(void) const;
+    virtual Matrix<std::string> to_string_matrix() const;
 
-    virtual tinyxml2::XMLDocument *to_XML(void) const;
+    virtual tinyxml2::XMLDocument *to_XML() const;
 
     virtual void from_XML(const tinyxml2::XMLDocument &);
 
@@ -139,7 +139,7 @@ public:
 
     void load(const std::string &);
 
-    virtual void initialize_random(void);
+    virtual void initialize_random();
 
 protected:
     /// Pointer to a performance functional for a multilayer perceptron object.

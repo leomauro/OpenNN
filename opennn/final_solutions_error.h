@@ -43,7 +43,7 @@ class FinalSolutionsError : public PerformanceTerm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit FinalSolutionsError(void);
+    explicit FinalSolutionsError();
 
     // NEURAL NETWORK CONSTRUCTOR
     explicit FinalSolutionsError(NeuralNetwork *);
@@ -61,7 +61,7 @@ public:
     FinalSolutionsError(const FinalSolutionsError &);
 
     // DESTRUCTOR
-    virtual ~FinalSolutionsError(void);
+    virtual ~FinalSolutionsError();
 
     // ASSIGNMENT OPERATOR
     FinalSolutionsError &operator=(const FinalSolutionsError &);
@@ -70,12 +70,12 @@ public:
     bool operator==(const FinalSolutionsError &) const;
 
     // Get methods
-    const Vector<double> &get_final_solutions_errors_weights(void) const;
+    const Vector<double> &get_final_solutions_errors_weights() const;
 
-    const Vector<double> &get_target_final_solutions(void) const;
+    const Vector<double> &get_target_final_solutions() const;
 
     // Set methods
-    void set(void);
+    void set();
 
     void set(NeuralNetwork *);
 
@@ -93,22 +93,22 @@ public:
 
     void set_target_final_solution(const size_t &, const double &);
 
-    void set_default(void);
+    void set_default();
 
     // Checking methods
-    void check(void) const;
+    void check() const;
 
     // Performance term methods
-    double calculate_performance(void) const;
+    double calculate_performance() const;
 
     double calculate_performance(const Vector<double> &) const;
 
-    std::string write_performance_term_type(void) const;
+    std::string write_performance_term_type() const;
 
-    std::string write_information(void) const;
+    std::string write_information() const;
 
     // Serialization methods
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

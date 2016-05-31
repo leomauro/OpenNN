@@ -41,7 +41,7 @@ class MathematicalModel
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit MathematicalModel(void);
+    explicit MathematicalModel();
 
     // XML CONSTRUCTOR
     explicit MathematicalModel(const tinyxml2::XMLDocument &);
@@ -53,7 +53,7 @@ public:
     MathematicalModel(const MathematicalModel &);
 
     // DESTRUCTOR
-    virtual ~MathematicalModel(void);
+    virtual ~MathematicalModel();
 
     // ASSIGNMENT OPERATOR
     virtual MathematicalModel &operator=(const MathematicalModel &);
@@ -62,13 +62,13 @@ public:
     virtual bool operator==(const MathematicalModel &) const;
 
     // Get methods
-    const size_t &get_independent_variables_number(void) const;
+    const size_t &get_independent_variables_number() const;
 
-    const size_t &get_dependent_variables_number(void) const;
+    const size_t &get_dependent_variables_number() const;
 
-    size_t count_variables_number(void) const;
+    size_t count_variables_number() const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // Set methods
     void set(const MathematicalModel &);
@@ -79,7 +79,7 @@ public:
 
     void set_display(const bool &);
 
-    virtual void set_default(void);
+    virtual void set_default();
 
     // Mathematical model
     virtual Matrix<double> calculate_solutions(const NeuralNetwork &) const;
@@ -89,11 +89,11 @@ public:
     virtual Matrix<double> calculate_dependent_variables(const NeuralNetwork &, const Matrix<double> &) const;
 
     // Serialization methods
-    virtual std::string to_string(void) const;
+    virtual std::string to_string() const;
 
-    void print(void) const;
+    void print() const;
 
-    virtual tinyxml2::XMLDocument *to_XML(void) const;
+    virtual tinyxml2::XMLDocument *to_XML() const;
 
     virtual void from_XML(const tinyxml2::XMLDocument &);
 

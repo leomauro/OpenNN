@@ -58,7 +58,7 @@ class NeuralNetwork
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit NeuralNetwork(void);
+    explicit NeuralNetwork();
 
     // MULTILAYER PERCEPTRON CONSTRUCTOR
     explicit NeuralNetwork(const MultilayerPerceptron &);
@@ -85,7 +85,7 @@ public:
     NeuralNetwork(const NeuralNetwork &);
 
     // DESTRUCTOR
-    virtual ~NeuralNetwork(void);
+    virtual ~NeuralNetwork();
 
     // ASSIGNMENT OPERATOR
     NeuralNetwork &operator=(const NeuralNetwork &);
@@ -94,50 +94,50 @@ public:
     bool operator==(const NeuralNetwork &) const;
 
     // GET METHODS
-    bool has_multilayer_perceptron(void) const;
+    bool has_multilayer_perceptron() const;
 
-    bool has_inputs(void) const;
+    bool has_inputs() const;
 
-    bool has_outputs(void) const;
+    bool has_outputs() const;
 
-    bool has_scaling_layer(void) const;
+    bool has_scaling_layer() const;
 
-    bool has_principal_components_layer(void) const;
+    bool has_principal_components_layer() const;
 
-    bool has_unscaling_layer(void) const;
+    bool has_unscaling_layer() const;
 
-    bool has_bounding_layer(void) const;
+    bool has_bounding_layer() const;
 
-    bool has_probabilistic_layer(void) const;
+    bool has_probabilistic_layer() const;
 
-    bool has_conditions_layer(void) const;
+    bool has_conditions_layer() const;
 
-    bool has_independent_parameters(void) const;
+    bool has_independent_parameters() const;
 
-    MultilayerPerceptron *get_multilayer_perceptron_pointer(void) const;
+    MultilayerPerceptron *get_multilayer_perceptron_pointer() const;
 
-    Inputs *get_inputs_pointer(void) const;
+    Inputs *get_inputs_pointer() const;
 
-    Outputs *get_outputs_pointer(void) const;
+    Outputs *get_outputs_pointer() const;
 
-    ScalingLayer *get_scaling_layer_pointer(void) const;
+    ScalingLayer *get_scaling_layer_pointer() const;
 
-    PrincipalComponentsLayer *get_principal_components_layer_pointer(void) const;
+    PrincipalComponentsLayer *get_principal_components_layer_pointer() const;
 
-    UnscalingLayer *get_unscaling_layer_pointer(void) const;
+    UnscalingLayer *get_unscaling_layer_pointer() const;
 
-    BoundingLayer *get_bounding_layer_pointer(void) const;
+    BoundingLayer *get_bounding_layer_pointer() const;
 
-    ProbabilisticLayer *get_probabilistic_layer_pointer(void) const;
+    ProbabilisticLayer *get_probabilistic_layer_pointer() const;
 
-    ConditionsLayer *get_conditions_layer_pointer(void) const;
+    ConditionsLayer *get_conditions_layer_pointer() const;
 
-    IndependentParameters *get_independent_parameters_pointer(void) const;
+    IndependentParameters *get_independent_parameters_pointer() const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // SET METHODS
-    void set(void);
+    void set();
 
     void set(const MultilayerPerceptron &);
 
@@ -153,7 +153,7 @@ public:
 
     void set(const NeuralNetwork &);
 
-    virtual void set_default(void);
+    virtual void set_default();
 
     void set_multilayer_perceptron_pointer(MultilayerPerceptron *);
 
@@ -191,70 +191,70 @@ public:
     void resize_outputs_number(const size_t &);
 
     // Pointer methods
-    void construct_multilayer_perceptron(void);
+    void construct_multilayer_perceptron();
 
-    void construct_scaling_layer(void);
+    void construct_scaling_layer();
 
-    void construct_principal_components_layer(void);
+    void construct_principal_components_layer();
 
-    void construct_unscaling_layer(void);
+    void construct_unscaling_layer();
 
-    void construct_bounding_layer(void);
+    void construct_bounding_layer();
 
-    void construct_probabilistic_layer(void);
+    void construct_probabilistic_layer();
 
-    void construct_conditions_layer(void);
+    void construct_conditions_layer();
 
-    void construct_inputs(void);
+    void construct_inputs();
 
-    void construct_outputs(void);
+    void construct_outputs();
 
-    void construct_independent_parameters(void);
+    void construct_independent_parameters();
 
-    void destruct_multilayer_perceptron(void);
+    void destruct_multilayer_perceptron();
 
-    void destruct_scaling_layer(void);
+    void destruct_scaling_layer();
 
-    void destruct_unscaling_layer(void);
+    void destruct_unscaling_layer();
 
-    void destruct_bounding_layer(void);
+    void destruct_bounding_layer();
 
-    void destruct_probabilistic_layer(void);
+    void destruct_probabilistic_layer();
 
-    void destruct_conditions_layer(void);
+    void destruct_conditions_layer();
 
-    void destruct_inputs(void);
+    void destruct_inputs();
 
-    void destruct_outputs(void);
+    void destruct_outputs();
 
-    void destruct_independent_parameters(void);
+    void destruct_independent_parameters();
 
-    void delete_pointers(void);
+    void delete_pointers();
 
     // Initialization methods
-    void initialize_random(void);
+    void initialize_random();
 
     // Layers
-    size_t get_layers_number(void);
+    size_t get_layers_number();
 
     // Architecture
-    size_t get_inputs_number(void) const;
+    size_t get_inputs_number() const;
 
-    size_t get_outputs_number(void) const;
+    size_t get_outputs_number() const;
 
-    Vector<size_t> arrange_architecture(void) const;
+    Vector<size_t> arrange_architecture() const;
 
     // Parameters
-    size_t count_parameters_number(void) const;
+    size_t count_parameters_number() const;
 
-    Vector<double> arrange_parameters(void) const;
+    Vector<double> arrange_parameters() const;
 
     void set_parameters(const Vector<double> &);
 
     // Parameters initialization methods
     void initialize_parameters(const double &);
 
-    void randomize_parameters_uniform(void);
+    void randomize_parameters_uniform();
 
     void randomize_parameters_uniform(const double &, const double &);
 
@@ -262,7 +262,7 @@ public:
 
     void randomize_parameters_uniform(const Vector<Vector<double>> &);
 
-    void randomize_parameters_normal(void);
+    void randomize_parameters_normal();
 
     void randomize_parameters_normal(const double &, const double &);
 
@@ -271,9 +271,9 @@ public:
     void randomize_parameters_normal(const Vector<Vector<double>> &);
 
     // Parameters
-    double calculate_parameters_norm(void) const;
+    double calculate_parameters_norm() const;
 
-    Statistics<double> calculate_parameters_statistics(void) const;
+    Statistics<double> calculate_parameters_statistics() const;
 
     Histogram<double> calculate_parameters_histogram(const size_t & = 10) const;
 
@@ -309,13 +309,13 @@ public:
     Vector<Histogram<double>> calculate_outputs_histograms(const Matrix<double> &, const size_t & = 10) const;
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    virtual tinyxml2::XMLDocument *to_XML(void) const;
+    virtual tinyxml2::XMLDocument *to_XML() const;
 
     virtual void from_XML(const tinyxml2::XMLDocument &);
 
-    void print(void) const;
+    void print() const;
 
     void save(const std::string &) const;
 
@@ -328,11 +328,11 @@ public:
     void save_data(const std::string &) const;
 
     // Expression methods
-    std::string write_expression(void) const;
+    std::string write_expression() const;
 
-    std::string write_expression_python(void) const;
+    std::string write_expression_python() const;
 
-    std::string write_expression_R(void) const;
+    std::string write_expression_R() const;
 
     void save_expression(const std::string &);
 
@@ -341,7 +341,7 @@ public:
     void save_expression_R(const std::string &);
 
     // PMML methods
-    virtual tinyxml2::XMLDocument *to_PMML(void) const;
+    virtual tinyxml2::XMLDocument *to_PMML() const;
 
     virtual void from_PMML(const tinyxml2::XMLDocument &);
 

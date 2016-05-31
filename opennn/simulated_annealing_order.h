@@ -47,7 +47,7 @@ class SimulatedAnnealingOrder : public OrderSelectionAlgorithm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit SimulatedAnnealingOrder(void);
+    explicit SimulatedAnnealingOrder();
 
     // TRAINING STRATEGY CONSTRUCTOR
     explicit SimulatedAnnealingOrder(TrainingStrategy *);
@@ -59,44 +59,44 @@ public:
     explicit SimulatedAnnealingOrder(const std::string &);
 
     // DESTRUCTOR
-    virtual ~SimulatedAnnealingOrder(void);
+    virtual ~SimulatedAnnealingOrder();
 
     ///
     /// This structure contains the training results for the simulated annealing order method.
     ///
     struct SimulatedAnnealingOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults {
         /// Default constructor.
-        explicit SimulatedAnnealingOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
+        explicit SimulatedAnnealingOrderResults() : OrderSelectionAlgorithm::OrderSelectionResults()
         {
         }
 
         /// Destructor.
-        virtual ~SimulatedAnnealingOrderResults(void)
+        virtual ~SimulatedAnnealingOrderResults()
         {
         }
     };
 
     // Get methods
-    const double &get_cooling_rate(void) const;
+    const double &get_cooling_rate() const;
 
-    const double &get_minimum_temperature(void) const;
+    const double &get_minimum_temperature() const;
 
     // Set methods
-    void set_default(void);
+    void set_default();
 
     void set_cooling_rate(const double &);
 
     void set_minimum_temperature(const double &);
 
     // Order selection methods
-    size_t get_optimal_selection_performance_index(void) const;
+    size_t get_optimal_selection_performance_index() const;
 
-    SimulatedAnnealingOrderResults *perform_order_selection(void);
+    SimulatedAnnealingOrderResults *perform_order_selection();
 
     // Serialization methods
-    Matrix<std::string> to_string_matrix(void) const;
+    Matrix<std::string> to_string_matrix() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

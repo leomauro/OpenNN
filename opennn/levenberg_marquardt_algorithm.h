@@ -43,7 +43,7 @@ class LevenbergMarquardtAlgorithm : public TrainingAlgorithm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit LevenbergMarquardtAlgorithm(void);
+    explicit LevenbergMarquardtAlgorithm();
 
     // PERFORMANCE FUNCTIONAL CONSTRUCTOR
     explicit LevenbergMarquardtAlgorithm(PerformanceFunctional *);
@@ -52,14 +52,14 @@ public:
     explicit LevenbergMarquardtAlgorithm(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~LevenbergMarquardtAlgorithm(void);
+    virtual ~LevenbergMarquardtAlgorithm();
 
     ///
     /// This structure contains the training results for the Levenberg-Marquardt algorithm.
     ///
     struct LevenbergMarquardtAlgorithmResults : public TrainingAlgorithm::TrainingAlgorithmResults {
         /// Default constructor.
-        LevenbergMarquardtAlgorithmResults(void)
+        LevenbergMarquardtAlgorithmResults()
         {
             Levenberg_Marquardt_algorithm_pointer = NULL;
         }
@@ -71,7 +71,7 @@ public:
         }
 
         /// Destructor.
-        virtual ~LevenbergMarquardtAlgorithmResults(void)
+        virtual ~LevenbergMarquardtAlgorithmResults()
         {
         }
 
@@ -131,67 +131,67 @@ public:
 
         void resize_training_history(const size_t &);
 
-        std::string to_string(void) const;
+        std::string to_string() const;
 
         Matrix<std::string> write_final_results(const size_t &precision = 3) const;
     };
 
     // Training parameters
-    const double &get_warning_parameters_norm(void) const;
+    const double &get_warning_parameters_norm() const;
 
-    const double &get_warning_gradient_norm(void) const;
+    const double &get_warning_gradient_norm() const;
 
-    const double &get_error_parameters_norm(void) const;
+    const double &get_error_parameters_norm() const;
 
-    const double &get_error_gradient_norm(void) const;
+    const double &get_error_gradient_norm() const;
 
     // Stopping criteria
-    const double &get_minimum_parameters_increment_norm(void) const;
+    const double &get_minimum_parameters_increment_norm() const;
 
-    const double &get_minimum_performance_increase(void) const;
+    const double &get_minimum_performance_increase() const;
 
-    const double &get_performance_goal(void) const;
+    const double &get_performance_goal() const;
 
-    const double &get_gradient_norm_goal(void) const;
+    const double &get_gradient_norm_goal() const;
 
-    const size_t &get_maximum_selection_performance_decreases(void) const;
+    const size_t &get_maximum_selection_performance_decreases() const;
 
-    const size_t &get_maximum_iterations_number(void) const;
+    const size_t &get_maximum_iterations_number() const;
 
-    const double &get_maximum_time(void) const;
+    const double &get_maximum_time() const;
 
     // Reserve training history
-    const bool &get_reserve_parameters_history(void) const;
+    const bool &get_reserve_parameters_history() const;
 
-    const bool &get_reserve_parameters_norm_history(void) const;
+    const bool &get_reserve_parameters_norm_history() const;
 
-    const bool &get_reserve_performance_history(void) const;
+    const bool &get_reserve_performance_history() const;
 
-    const bool &get_reserve_gradient_history(void) const;
+    const bool &get_reserve_gradient_history() const;
 
-    const bool &get_reserve_gradient_norm_history(void) const;
+    const bool &get_reserve_gradient_norm_history() const;
 
-    const bool &get_reserve_Hessian_approximation_history(void) const;
+    const bool &get_reserve_Hessian_approximation_history() const;
 
-    const bool &get_reserve_selection_performance_history(void) const;
+    const bool &get_reserve_selection_performance_history() const;
 
-    const bool &get_reserve_elapsed_time_history(void) const;
+    const bool &get_reserve_elapsed_time_history() const;
 
     // Utilities
-    const double &get_damping_parameter(void) const;
+    const double &get_damping_parameter() const;
 
-    const double &get_damping_parameter_factor(void) const;
+    const double &get_damping_parameter_factor() const;
 
-    const double &get_minimum_damping_parameter(void) const;
+    const double &get_minimum_damping_parameter() const;
 
-    const double &get_maximum_damping_parameter(void) const;
+    const double &get_maximum_damping_parameter() const;
 
-    const bool &get_reserve_damping_parameter_history(void) const;
+    const bool &get_reserve_damping_parameter_history() const;
 
-    const Vector<double> &get_damping_parameter_history(void) const;
+    const Vector<double> &get_damping_parameter_history() const;
 
     // Set methods
-    void set_default(void);
+    void set_default();
 
     void set_damping_parameter(const double &);
 
@@ -251,7 +251,7 @@ public:
     void set_display_period(const size_t &);
 
     // Training methods
-    void check(void) const;
+    void check() const;
 
     double calculate_performance(const Vector<double> &) const;
 
@@ -259,14 +259,14 @@ public:
 
     Matrix<double> calculate_Hessian_approximation(const Matrix<double> &) const;
 
-    LevenbergMarquardtAlgorithmResults *perform_training(void);
+    LevenbergMarquardtAlgorithmResults *perform_training();
 
-    std::string write_training_algorithm_type(void) const;
+    std::string write_training_algorithm_type() const;
 
     // Serialization methods
-    Matrix<std::string> to_string_matrix(void) const;
+    Matrix<std::string> to_string_matrix() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

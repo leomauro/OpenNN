@@ -16,13 +16,12 @@
 #include "instances.h"
 
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 /// Default constructor.
 /// It creates a instances object with zero instances.
 /// It also initializes the rest of class members to their default values.
-Instances::Instances(void)
+Instances::Instances()
 {
     set();
 }
@@ -54,7 +53,7 @@ Instances::Instances(const Instances &other_instances)
 }
 
 /// Destructor.
-Instances::~Instances(void)
+Instances::~Instances()
 {
 }
 
@@ -83,29 +82,29 @@ bool Instances::operator==(const Instances &other_instances) const
 /// @param splitting_method String with the method for splitting the instances.
 Instances::SplittingMethod Instances::get_splitting_method(const std::string &splitting_method)
 {
-    if (splitting_method == "Sequential") {
+    if (splitting_method == "Sequential")
         return Sequential;
-    } else if (splitting_method == "Random") {
+    else if (splitting_method == "Random")
         return Random;
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Instances class.\n"
-        << "static SplittingMethod get_splitting_method(const std::string&).\n"
-        << "Unknown splitting method: " << splitting_method << ".\n";
+               << "static SplittingMethod get_splitting_method(const std::string&).\n"
+               << "Unknown splitting method: " << splitting_method << ".\n";
 
         throw std::logic_error(buffer.str());
     }
 }
 
 /// Returns empty if the number of instances is zero, and false otherwise.
-bool Instances::empty(void) const
+bool Instances::empty() const
 {
     return items.empty();
 }
 
 /// Returns the use of every instance (training, selection, testing) in a vector.
-Vector<Instances::Use> Instances::arrange_uses(void) const
+Vector<Instances::Use> Instances::arrange_uses() const
 {
     const size_t instances_number = get_instances_number();
     Vector<Use> uses(instances_number);
@@ -116,7 +115,7 @@ Vector<Instances::Use> Instances::arrange_uses(void) const
 }
 
 /// Returns the use of every instance (training, selection, testing) in a string vector.
-Vector<std::string> Instances::write_uses(void) const
+Vector<std::string> Instances::write_uses() const
 {
     const size_t instances_number = get_instances_number();
     const Vector<Use> uses = arrange_uses();
@@ -134,7 +133,7 @@ Vector<std::string> Instances::write_uses(void) const
             std::ostringstream buffer;
 
             buffer << "OpenNN Exception Instances class.\n"
-                   << "Vector<std::string> write_uses(void) const method.\n"
+                   << "Vector<std::string> write_uses() const method.\n"
                    << "Unknown use.\n";
 
             throw std::logic_error(buffer.str());
@@ -144,25 +143,25 @@ Vector<std::string> Instances::write_uses(void) const
 }
 
 /// Returns the use of every instance (training, selection, testing) in a string vector.
-Vector<std::string> Instances::write_abbreviated_uses(void) const
+Vector<std::string> Instances::write_abbreviated_uses() const
 {
     const size_t instances_number = get_instances_number();
     const Vector<Use> uses = arrange_uses();
     Vector<std::string> uses_string(instances_number);
     for (size_t i = 0; i < instances_number; i++) {
-        if (uses[i] == Training) {
+        if (uses[i] == Training)
             uses_string[i] = "Train.";
-        } else if (uses[i] == Selection) {
+        else if (uses[i] == Selection)
             uses_string[i] = "Gen.";
-        } else if (uses[i] == Testing) {
+        else if (uses[i] == Testing)
             uses_string[i] = "Test.";
-        } else if (uses[i] == Unused) {
+        else if (uses[i] == Unused)
             uses_string[i] = "Unused";
-        } else {
+        else {
             std::ostringstream buffer;
 
             buffer << "OpenNN Exception Instances class.\n"
-                   << "Vector<std::string> write_abbreviated_uses(void) const method.\n"
+                   << "Vector<std::string> write_abbreviated_uses() const method.\n"
                    << "Unknown use.\n";
 
             throw std::logic_error(buffer.str());
@@ -182,20 +181,20 @@ const Instances::Use &Instances::get_use(const size_t &i) const
 /// @param i Instance index.
 std::string Instances::write_use(const size_t &i) const
 {
-    if (items[i].use == Training) {
+    if (items[i].use == Training)
         return "Training";
-    } else if (items[i].use == Selection) {
+    else if (items[i].use == Selection)
         return "Selection";
-    } else if (items[i].use == Testing) {
+    else if (items[i].use == Testing)
         return "Testing";
-    } else if (items[i].use == Unused) {
+    else if (items[i].use == Unused)
         return "Unused";
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception Instances class.\n"
-               << "std::string write_use(const size_t&) const method.\n"
-               << "Unknown use.\n";
+        << "std::string write_use(const size_t&) const method.\n"
+        << "Unknown use.\n";
 
         throw std::logic_error(buffer.str());
     }
@@ -216,7 +215,7 @@ bool Instances::is_unused(const size_t &i) const
 
 /// Returns the number of instances in the data set which will neither be used
 /// for training, selection or testing.
-size_t Instances::count_unused_instances_number(void) const
+size_t Instances::count_unused_instances_number() const
 {
     const size_t instances_number = get_instances_number();
     size_t unused_instances_number = 0;
@@ -229,7 +228,7 @@ size_t Instances::count_unused_instances_number(void) const
 
 /// Returns the total number of training, selection and testing instances,
 /// i.e. those which are not "Unused".
-size_t Instances::count_used_instances_number(void) const
+size_t Instances::count_used_instances_number() const
 {
     const size_t instances_number = get_instances_number();
     const size_t unused_instances_number = count_unused_instances_number();
@@ -237,7 +236,7 @@ size_t Instances::count_used_instances_number(void) const
 }
 
 /// Returns the number of instances in the data set which will be used for training.
-size_t Instances::count_training_instances_number(void) const
+size_t Instances::count_training_instances_number() const
 {
     const size_t instances_number = get_instances_number();
     size_t training_instances_number = 0;
@@ -249,7 +248,7 @@ size_t Instances::count_training_instances_number(void) const
 }
 
 /// Returns the number of instances in the data set which will be used for selection.
-size_t Instances::count_selection_instances_number(void) const
+size_t Instances::count_selection_instances_number() const
 {
     const size_t instances_number = get_instances_number();
     size_t selection_instances_number = 0;
@@ -261,7 +260,7 @@ size_t Instances::count_selection_instances_number(void) const
 }
 
 /// Returns the number of instances in the data set which will be used for testing.
-size_t Instances::count_testing_instances_number(void) const
+size_t Instances::count_testing_instances_number() const
 {
     const size_t instances_number = get_instances_number();
     size_t testing_instances_number = 0;
@@ -275,26 +274,25 @@ size_t Instances::count_testing_instances_number(void) const
 /// Returns a vector with the number of training, selection, testing
 /// and unused instances.
 /// The size of that vector is therefore four.
-Vector<size_t> Instances::count_uses(void) const
+Vector<size_t> Instances::count_uses() const
 {
     Vector<size_t> count(4, 0);
     const size_t instances_number = get_instances_number();
     for (size_t i = 0; i < instances_number; i++) {
-        if (items[i].use == Training) {
+        if (items[i].use == Training)
             count[0]++;
-        } else if (items[i].use == Selection) {
+        else if (items[i].use == Selection)
             count[1]++;
-        } else if (items[i].use == Testing) {
+        else if (items[i].use == Testing)
             count[2]++;
-        } else {
+        else
             count[3]++;
-        }
     }
     return count;
 }
 
 /// Returns the indices of the used instances (those which are not set unused).
-Vector<size_t> Instances::arrange_used_indices(void) const
+Vector<size_t> Instances::arrange_used_indices() const
 {
     const size_t instances_number = get_instances_number();
     const size_t training_instances_number = count_training_instances_number();
@@ -318,7 +316,7 @@ Vector<size_t> Instances::arrange_used_indices(void) const
 }
 
 /// Returns the indices of the instances set unused.
-Vector<size_t> Instances::arrange_unused_indices(void) const
+Vector<size_t> Instances::arrange_unused_indices() const
 {
     const size_t instances_number = get_instances_number();
     const size_t unused_instances_number = count_unused_instances_number();
@@ -334,7 +332,7 @@ Vector<size_t> Instances::arrange_unused_indices(void) const
 }
 
 /// Returns the indices of the instances which will be used for training.
-Vector<size_t> Instances::arrange_training_indices(void) const
+Vector<size_t> Instances::arrange_training_indices() const
 {
     const size_t instances_number = get_instances_number();
     const size_t training_instances_number = count_training_instances_number();
@@ -350,7 +348,7 @@ Vector<size_t> Instances::arrange_training_indices(void) const
 }
 
 /// Returns the indices of the instances which will be used for selection.
-Vector<size_t> Instances::arrange_selection_indices(void) const
+Vector<size_t> Instances::arrange_selection_indices() const
 {
     const size_t instances_number = get_instances_number();
     const size_t selection_instances_number = count_selection_instances_number();
@@ -366,7 +364,7 @@ Vector<size_t> Instances::arrange_selection_indices(void) const
 }
 
 /// Returns the indices of the instances which will be used for testing.
-Vector<size_t> Instances::arrange_testing_indices(void) const
+Vector<size_t> Instances::arrange_testing_indices() const
 {
     const size_t instances_number = get_instances_number();
     const size_t testing_instances_number = count_testing_instances_number();
@@ -383,13 +381,13 @@ Vector<size_t> Instances::arrange_testing_indices(void) const
 
 /// Returns true if messages from this class can be displayed on the screen,
 /// or false if messages from this class can't be displayed on the screen.
-const bool &Instances::get_display(void) const
+const bool &Instances::get_display() const
 {
     return display;
 }
 
 /// Sets a instances object with zero instances.
-void Instances::set(void)
+void Instances::set()
 {
     set_instances_number(0);
     set_default();
@@ -416,7 +414,7 @@ void Instances::set(const tinyxml2::XMLDocument &instances_document)
 /// <ul>
 /// <li>display: true</li>
 /// </ul>
-void Instances::set_default(void)
+void Instances::set_default()
 {
     display = true;
 }
@@ -468,15 +466,15 @@ void Instances::set_uses(const Vector<std::string> &new_uses)
 #endif
 
     for (size_t i = 0; i < instances_number; i++) {
-        if (new_uses[i] == "Unused") {
+        if (new_uses[i] == "Unused")
             items[i].use = Unused;
-        } else if (new_uses[i] == "Training") {
+        else if (new_uses[i] == "Training")
             items[i].use = Training;
-        } else if (new_uses[i] == "Selection") {
+        else if (new_uses[i] == "Selection")
             items[i].use = Selection;
-        } else if (new_uses[i] == "Testing") {
+        else if (new_uses[i] == "Testing")
             items[i].use = Testing;
-        } else {
+        else {
             std::ostringstream buffer;
 
             buffer << "OpenNN Exception Instances class.\n"
@@ -501,15 +499,15 @@ void Instances::set_use(const size_t &i, const Use &new_use)
 /// @param new_use String with the use name ("Training", "Selection", "Testing" or "Unused")
 void Instances::set_use(const size_t &i, const std::string &new_use)
 {
-    if (new_use == "Training") {
+    if (new_use == "Training")
         items[i].use = Training;
-    } else if (new_use == "Selection") {
+    else if (new_use == "Selection")
         items[i].use = Selection;
-    } else if (new_use == "Testing") {
+    else if (new_use == "Testing")
         items[i].use = Testing;
-    } else if (new_use == "Unused") {
+    else if (new_use == "Unused")
         items[i].use = Unused;
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception Instances class.\n"
@@ -531,7 +529,7 @@ void Instances::set_unused(const Vector<size_t> &indices)
 }
 
 /// Sets all the instances in the data set for training.
-void Instances::set_training(void)
+void Instances::set_training()
 {
     const size_t instances_number = get_instances_number();
     for (size_t i = 0; i < instances_number; i++) {
@@ -540,7 +538,7 @@ void Instances::set_training(void)
 }
 
 /// Sets all the instances in the data set for selection.
-void Instances::set_selection(void)
+void Instances::set_selection()
 {
     const size_t instances_number = get_instances_number();
     for (size_t i = 0; i < instances_number; i++) {
@@ -549,7 +547,7 @@ void Instances::set_selection(void)
 }
 
 /// Sets all the instances in the data set for testing.
-void Instances::set_testing(void)
+void Instances::set_testing()
 {
     const size_t instances_number = get_instances_number();
     for (size_t i = 0; i < instances_number; i++) {
@@ -577,7 +575,7 @@ void Instances::set_instances_number(const size_t &new_instances_number)
 
 /// Serializes the instances object into a XML document of the TinyXML library.
 /// See the OpenNN manual for more information about the format of this document.
-tinyxml2::XMLDocument *Instances::to_XML(void) const
+tinyxml2::XMLDocument *Instances::to_XML() const
 {
     tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
     std::ostringstream buffer;
@@ -623,6 +621,8 @@ void Instances::from_XML(const tinyxml2::XMLDocument &instances_document)
     // Instances  element
     const tinyxml2::XMLElement *instances_element = instances_document.FirstChildElement("Instances");
     if (!instances_element) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: Instances class.\n"
                << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
                << "Pointer to instances information element is NULL.\n";
@@ -633,6 +633,8 @@ void Instances::from_XML(const tinyxml2::XMLDocument &instances_document)
     // Instances number
     const tinyxml2::XMLElement *instances_number_element = instances_element->FirstChildElement("InstancesNumber");
     if (!instances_number_element) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: Instances class.\n"
                << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
                << "Pointer to instances number is NULL.\n";
@@ -653,14 +655,16 @@ void Instances::from_XML(const tinyxml2::XMLDocument &instances_document)
         start_element = item_element;
         if (!item_element) {
             buffer << "OpenNN Exception: Instances class.\n"
-                   << "void from_XML(const tinyxml2::XMLElement*) method.\n"
-                   << "Item " << i + 1 << " is NULL.\n";
+            << "void from_XML(const tinyxml2::XMLElement*) method.\n"
+            << "Item " << i + 1 << " is NULL.\n";
 
             throw std::logic_error(buffer.str());
         }
 
         item_element->QueryUnsignedAttribute("Index", &index);
         if (index != i + 1) {
+            std::ostringstream buffer;
+
             buffer << "OpenNN Exception: Instances class.\n"
                    << "void from_XML(const tinyxml2::XMLElement*) method.\n"
                    << "Index " << index << " is not correct.\n";
@@ -671,6 +675,8 @@ void Instances::from_XML(const tinyxml2::XMLDocument &instances_document)
         // Use
         const tinyxml2::XMLElement *use_element = item_element->FirstChildElement("Use");
         if (!use_element) {
+            std::ostringstream buffer;
+
             buffer << "OpenNN Exception: Instances class.\n"
                    << "void from_XML(const tinyxml2::XMLElement*) method.\n"
                    << "Pointer to use element is NULL.\n";
@@ -686,7 +692,6 @@ void Instances::from_XML(const tinyxml2::XMLDocument &instances_document)
 /// @param training_instances_ratio Ratio of training instances in the data set.
 /// @param selection_instances_ratio Ratio of selection instances in the data set.
 /// @param testing_instances_ratio Ratio of testing instances in the data set.
-
 void Instances::split_random_indices(const double &training_instances_ratio,
                                      const double &selection_instances_ratio,
                                      const double &testing_instances_ratio)
@@ -698,16 +703,16 @@ void Instances::split_random_indices(const double &training_instances_ratio,
     const double total_ratio = training_instances_ratio + selection_instances_ratio + testing_instances_ratio;
 
     // Get number of instances for training, selection and testing
-    const size_t selection_instances_number = (size_t)(selection_instances_ratio * used_instances_number / total_ratio);
-    const size_t testing_instances_number = (size_t)(testing_instances_ratio * used_instances_number / total_ratio);
+    const size_t selection_instances_number = (size_t) (selection_instances_ratio * used_instances_number / total_ratio);
+    const size_t testing_instances_number = (size_t) (testing_instances_ratio * used_instances_number / total_ratio);
     const size_t training_instances_number = used_instances_number - selection_instances_number - testing_instances_number;
     const size_t sum_instances_number = training_instances_number + selection_instances_number + testing_instances_number;
     if (sum_instances_number != used_instances_number) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Warning: Instances class.\n"
-               << "void split_random_indices(const double&, const double&, const double&) method.\n"
-               << "Sum of numbers of training, selection and testing instances is not equal to number of used instances.\n";
+        << "void split_random_indices(const double&, const double&, const double&) method.\n"
+        << "Sum of numbers of training, selection and testing instances is not equal to number of used instances.\n";
 
         throw std::logic_error(buffer.str());
     }
@@ -767,16 +772,16 @@ void Instances::split_sequential_indices(const double &training_instances_ratio,
     const double total_ratio = training_instances_ratio + selection_instances_ratio + testing_instances_ratio;
 
     // Get number of instances for training, selection and testing
-    const size_t selection_instances_number = (size_t)(selection_instances_ratio * used_instances_number / total_ratio);
-    const size_t testing_instances_number = (size_t)(testing_instances_ratio * used_instances_number / total_ratio);
+    const size_t selection_instances_number = (size_t) (selection_instances_ratio * used_instances_number / total_ratio);
+    const size_t testing_instances_number = (size_t) (testing_instances_ratio * used_instances_number / total_ratio);
     const size_t training_instances_number = used_instances_number - selection_instances_number - testing_instances_number;
     const size_t sum_instances_number = training_instances_number + selection_instances_number + testing_instances_number;
     if (sum_instances_number != used_instances_number) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Warning: Instances class.\n"
-               << "void split_random_indices(const double&, const double&, const double&) method.\n"
-               << "Sum of numbers of training, selection and testing instances is not equal to number of used instances.\n";
+        << "void split_random_indices(const double&, const double&, const double&) method.\n"
+        << "Sum of numbers of training, selection and testing instances is not equal to number of used instances.\n";
 
         throw std::logic_error(buffer.str());
     }
@@ -826,9 +831,9 @@ void Instances::split_instances(const SplittingMethod &splitting_method,
 {
 
 #ifdef __OPENNN_DEBUG__
-    std::ostringstream buffer;
-
     if (training_ratio < 0) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: Instances class.\n"
                << "void split_instances(const SplittingMethod&, const double&, const double&, const double&) method.\n"
                << "Training ratio is lower than zero.\n";
@@ -837,6 +842,8 @@ void Instances::split_instances(const SplittingMethod &splitting_method,
     }
 
     if (selection_ratio < 0) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: Instances class.\n"
                << "void split_instances(const SplittingMethod&, const double&, const double&, const double&) method.\n"
                << "Selection ratio is lower than zero.\n";
@@ -845,6 +852,8 @@ void Instances::split_instances(const SplittingMethod &splitting_method,
     }
 
     if (testing_ratio < 0) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: Instances class.\n"
                << "void split_instances(const SplittingMethod&, const double&, const double&, const double&) method.\n"
                << "Testing ratio is lower than zero.\n";
@@ -853,6 +862,8 @@ void Instances::split_instances(const SplittingMethod &splitting_method,
     }
 
     if (training_ratio == 0.0 && selection_ratio == 0.0 && testing_ratio == 0.0) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: Instances class.\n"
                << "void split_instances(const SplittingMethod&, const double&, const double&, const double&) method.\n"
                << "All training, selection and testing ratios are zero.\n";
@@ -885,7 +896,7 @@ void Instances::split_instances(const SplittingMethod &splitting_method,
 
 /// Returns the percentages of
 /// unused, training, selection and testing instances, respectively.
-Vector<double> Instances::calculate_uses_percentage(void) const
+Vector<double> Instances::calculate_uses_percentage() const
 {
     const size_t instances_number = get_instances_number();
     Vector<double> uses_percentage(instances_number);
@@ -917,7 +928,7 @@ void Instances::convert_time_series(const size_t &lags_number)
 }
 
 /// Returns a string representation of the current instances object.
-std::string Instances::to_string(void) const
+std::string Instances::to_string() const
 {
     std::ostringstream buffer;
 
@@ -933,10 +944,11 @@ std::string Instances::to_string(void) const
 
 
 /// Prints to the screen information about the instances object.
-void Instances::print(void) const
+void Instances::print() const
 {
     std::cout << to_string();
 }
+
 
 }
 

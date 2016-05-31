@@ -18,11 +18,11 @@
 #define numeric_to_string(x)    \
     (static_cast<std::ostringstream &>((std::ostringstream() << std::dec << x)).str())
 
-namespace OpenNN
-{
+namespace OpenNN {
+
 /// Default constructor.
 /// It creates a outputs information object with zero outputs.
-Outputs::Outputs(void)
+Outputs::Outputs()
 {
     set();
 }
@@ -53,7 +53,7 @@ Outputs::Outputs(const Outputs &other_outputs)
 }
 
 /// Destructor.
-Outputs::~Outputs(void)
+Outputs::~Outputs()
 {
 }
 
@@ -79,7 +79,7 @@ bool Outputs::operator==(const Outputs &other_outputs) const
 }
 
 /// Returns true if both the number of outputs is zero, and false otherwise.
-bool Outputs::is_empty(void) const
+bool Outputs::is_empty() const
 {
     const size_t outputs_number = get_outputs_number();
     return outputs_number == 0;
@@ -87,7 +87,7 @@ bool Outputs::is_empty(void) const
 
 /// Returns the names of the output variables.
 /// Such names are only used to give the user basic information about the problem at hand.
-Vector<std::string> Outputs::arrange_names(void) const
+Vector<std::string> Outputs::arrange_names() const
 {
     const size_t outputs_number = get_outputs_number();
     Vector<std::string> names(outputs_number);
@@ -105,6 +105,7 @@ const std::string &Outputs::get_name(const size_t &index) const
 
 #ifdef __OPENNN_DEBUG__
     const size_t outputs_number = get_outputs_number();
+
     if (index >= outputs_number) {
         std::ostringstream buffer;
 
@@ -121,7 +122,7 @@ const std::string &Outputs::get_name(const size_t &index) const
 
 /// Returns the descriptions of the output variables as strings.
 /// Such descriptions are only used to give the user basic information about the problem at hand.
-Vector<std::string> Outputs::arrange_descriptions(void) const
+Vector<std::string> Outputs::arrange_descriptions() const
 {
     return descriptions;
 }
@@ -134,6 +135,7 @@ const std::string &Outputs::get_description(const size_t &index) const
 
 #ifdef __OPENNN_DEBUG__
     const size_t outputs_number = get_outputs_number();
+
     if (index >= outputs_number) {
         std::ostringstream buffer;
 
@@ -150,7 +152,7 @@ const std::string &Outputs::get_description(const size_t &index) const
 
 /// Returns the units of the output variables as strings.
 /// Such units are only used to give the user basic information about the problem at hand.
-Vector<std::string> Outputs::arrange_units(void) const
+Vector<std::string> Outputs::arrange_units() const
 {
     return units;
 }
@@ -163,6 +165,7 @@ const std::string &Outputs::get_unit(const size_t &index) const
 
 #ifdef __OPENNN_DEBUG__
     const size_t outputs_number = get_outputs_number();
+
     if (index >= outputs_number) {
         std::ostringstream buffer;
 
@@ -181,7 +184,7 @@ const std::string &Outputs::get_unit(const size_t &index) const
 /// The number of rows is the number of outputs.
 /// The number of columns is three.
 /// Each row contains the information of a single output (name, units and description).
-Matrix<std::string> Outputs::arrange_information(void) const
+Matrix<std::string> Outputs::arrange_information() const
 {
     const size_t outputs_number = get_outputs_number();
     Matrix<std::string> information(outputs_number, 3);
@@ -195,14 +198,14 @@ Matrix<std::string> Outputs::arrange_information(void) const
 
 /// Returns true if messages from this class are to be displayed on the screen, or false if messages
 /// from this class are not to be displayed on the screen.
-const bool &Outputs::get_display(void) const
+const bool &Outputs::get_display() const
 {
     return display;
 }
 
 /// Sets zero outputs.
 /// It also sets the rest of members to their default values.
-void Outputs::set(void)
+void Outputs::set()
 {
     set_outputs_number(0);
     set_default();
@@ -240,7 +243,7 @@ void Outputs::set_outputs_number(const size_t &new_outputs_number)
 }
 
 /// Sets the members of this object to their default values.
-void Outputs::set_default(void)
+void Outputs::set_default()
 {
     const size_t outputs_number = get_outputs_number();
     for (size_t i = 0; i < outputs_number; i++) {
@@ -262,6 +265,7 @@ void Outputs::set_names(const Vector<std::string> &new_names)
 
 #ifdef __OPENNN_DEBUG__
     const size_t size = new_names.size();
+
     if (size != outputs_number) {
         std::ostringstream buffer;
 
@@ -287,6 +291,7 @@ void Outputs::set_name(const size_t &index, const std::string &new_name)
 
 #ifdef __OPENNN_DEBUG__
     const size_t outputs_number = get_outputs_number();
+
     if (index >= outputs_number) {
         std::ostringstream buffer;
 
@@ -310,6 +315,7 @@ void Outputs::set_units(const Vector<std::string> &new_units)
 #ifdef __OPENNN_DEBUG__
     const size_t outputs_number = get_outputs_number();
     const size_t size = new_units.size();
+
     if (size != outputs_number) {
         std::ostringstream buffer;
 
@@ -358,6 +364,7 @@ void Outputs::set_descriptions(const Vector<std::string> &new_descriptions)
 #ifdef __OPENNN_DEBUG__
     const size_t size = new_descriptions.size();
     const size_t outputs_number = get_outputs_number();
+
     if (size != outputs_number) {
         std::ostringstream buffer;
 
@@ -425,7 +432,7 @@ void Outputs::set_display(const bool &new_display)
 }
 
 /// Appends a new item to the outputs.
-void Outputs::grow_output(void)
+void Outputs::grow_output()
 {
     const Item item;
     items.push_back(item);
@@ -438,6 +445,7 @@ void Outputs::prune_output(const size_t &index)
 
 #ifdef __OPENNN_DEBUG__
     const size_t outputs_number = get_outputs_number();
+
     if (index >= outputs_number) {
         std::ostringstream buffer;
 
@@ -458,7 +466,7 @@ void Outputs::prune_output(const size_t &index)
 /// <li> ...
 /// <li> output_n
 /// </ul>
-Vector<std::string> Outputs::write_default_names(void) const
+Vector<std::string> Outputs::write_default_names() const
 {
     const size_t outputs_number = get_outputs_number();
     Vector<std::string> default_names(outputs_number);
@@ -471,7 +479,7 @@ Vector<std::string> Outputs::write_default_names(void) const
 }
 
 /// Returns a string representation of the current outputs object.
-std::string Outputs::to_string(void) const
+std::string Outputs::to_string() const
 {
     std::ostringstream buffer;
     const size_t outputs_number = get_outputs_number();
@@ -487,7 +495,7 @@ std::string Outputs::to_string(void) const
 
 /// Serializes the outputs information object into a XML document of the TinyXML library.
 /// See the OpenNN manual for more information about the format of this document.
-tinyxml2::XMLDocument *Outputs::to_XML(void) const
+tinyxml2::XMLDocument *Outputs::to_XML() const
 {
     tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
     const size_t outputs_number = get_outputs_number();

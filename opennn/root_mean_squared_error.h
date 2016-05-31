@@ -42,7 +42,7 @@ class RootMeanSquaredError : public PerformanceTerm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit RootMeanSquaredError(void);
+    explicit RootMeanSquaredError();
 
     // NEURAL NETWORK CONSTRUCTOR
     explicit RootMeanSquaredError(NeuralNetwork *);
@@ -57,30 +57,30 @@ public:
     explicit RootMeanSquaredError(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~RootMeanSquaredError(void);
+    virtual ~RootMeanSquaredError();
 
     // Checking methods
-    void check(void) const;
+    void check() const;
 
     // Performance term performance methods
-    double calculate_performance(void) const;
+    double calculate_performance() const;
 
     double calculate_performance(const Vector<double> &) const;
 
-    double calculate_selection_performance(void) const;
+    double calculate_selection_performance() const;
 
     Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
 
-    Vector<double> calculate_gradient(void) const;
+    Vector<double> calculate_gradient() const;
 
     Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
 
-    Matrix<double> calculate_Hessian(void) const;
+    Matrix<double> calculate_Hessian() const;
 
-    std::string write_performance_term_type(void) const;
+    std::string write_performance_term_type() const;
 
     // Serialization methods
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 };

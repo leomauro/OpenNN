@@ -45,7 +45,7 @@ class SolutionsError : public PerformanceTerm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit SolutionsError(void);
+    explicit SolutionsError();
 
     // NEURAL NETWORK CONSTRUCTOR
     explicit SolutionsError(NeuralNetwork *);
@@ -69,7 +69,7 @@ public:
     bool operator==(const SolutionsError &) const;
 
     // DESTRUCTOR
-    virtual ~SolutionsError(void);
+    virtual ~SolutionsError();
 
     /// Enumeration of the different methods to compute the errors between the mathematical model solutions and the target solutions.
     enum SolutionsErrorMethod {
@@ -77,11 +77,11 @@ public:
     };
 
     // Get methods
-    const SolutionsErrorMethod &get_solutions_error_method(void) const;
+    const SolutionsErrorMethod &get_solutions_error_method() const;
 
-    std::string write_solutions_error_method(void) const;
+    std::string write_solutions_error_method() const;
 
-    const Vector<double> &get_solutions_errors_weights(void) const;
+    const Vector<double> &get_solutions_errors_weights() const;
 
     const double &get_solution_error_weight(const size_t &) const;
 
@@ -94,31 +94,31 @@ public:
 
     void set_solution_error_weight(const size_t &, const double &);
 
-    void set_default(void);
+    void set_default();
 
     // Target trajectories methods
     virtual Matrix<double> calculate_target_dependent_variables(const Matrix<double> &) const;
 
     // Checking methods
-    void check(void) const;
+    void check() const;
 
     // Constraints methods
-    double calculate_solutions_error_sum(void) const;
+    double calculate_solutions_error_sum() const;
 
-    double calculate_solutions_error_integral(void) const;
+    double calculate_solutions_error_integral() const;
 
-    virtual double calculate_performance(void) const;
+    virtual double calculate_performance() const;
 
     virtual double calculate_performance(const Vector<double> &) const;
 
-    std::string write_performance_term_type(void) const;
+    std::string write_performance_term_type() const;
 
-    std::string write_information(void) const;
+    std::string write_information() const;
 
     // Serialization methods
-    virtual void print(void) const;
+    virtual void print() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

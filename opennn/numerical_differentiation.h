@@ -36,13 +36,13 @@ class NumericalDifferentiation
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit NumericalDifferentiation(void);
+    explicit NumericalDifferentiation();
 
     // COPY CONSTRUCTOR
     NumericalDifferentiation(const NumericalDifferentiation &);
 
     // DESTRUCTOR
-    virtual ~NumericalDifferentiation(void);
+    virtual ~NumericalDifferentiation();
 
     // ASSIGNMENT OPERATOR
     NumericalDifferentiation &operator=(const NumericalDifferentiation &);
@@ -56,13 +56,13 @@ public:
     };
 
     // METHODS
-    const NumericalDifferentiationMethod &get_numerical_differentiation_method(void) const;
+    const NumericalDifferentiationMethod &get_numerical_differentiation_method() const;
 
-    std::string write_numerical_differentiation_method(void) const;
+    std::string write_numerical_differentiation_method() const;
 
-    const size_t &get_precision_digits(void) const;
+    const size_t &get_precision_digits() const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     void set(const NumericalDifferentiation &);
 
@@ -74,14 +74,14 @@ public:
 
     void set_display(const bool &);
 
-    void set_default(void);
+    void set_default();
 
     double calculate_h(const double &) const;
 
     Vector<double> calculate_h(const Vector<double> &) const;
 
     // Serialization methods
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

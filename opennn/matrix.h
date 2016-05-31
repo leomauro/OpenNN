@@ -38,7 +38,7 @@ class Matrix : public std::vector<T>
 {
 public:
     // CONSTRUCTORS
-    explicit Matrix(void);
+    explicit Matrix();
 
     explicit Matrix(const size_t &, const size_t &);
 
@@ -49,7 +49,7 @@ public:
     Matrix(const Matrix &);
 
     // DESTRUCTOR
-    virtual ~Matrix(void);
+    virtual ~Matrix();
 
     // ASSIGNMENT OPERATORS
     inline Matrix<T> &operator=(const Matrix<T> &);
@@ -84,12 +84,12 @@ public:
     bool operator<=(const T &) const;
 
     // Get methods
-    const size_t &get_rows_number(void) const;
+    const size_t &get_rows_number() const;
 
-    const size_t &get_columns_number(void) const;
+    const size_t &get_columns_number() const;
 
     // Set methods
-    void set(void);
+    void set();
 
     void set(const size_t &, const size_t &);
 
@@ -107,9 +107,9 @@ public:
 
     void tuck_in(const size_t &, const size_t &, const Matrix<T> &);
 
-    size_t count_diagonal_elements(void) const;
+    size_t count_diagonal_elements() const;
 
-    size_t count_off_diagonal_elements(void) const;
+    size_t count_off_diagonal_elements() const;
 
     Matrix<T> arrange_submatrix(const Vector <size_t> &, const Vector <size_t> &) const;
 
@@ -125,7 +125,7 @@ public:
 
     Vector <T> arrange_column(const size_t &, const Vector <size_t> &) const;
 
-    Vector <T> get_diagonal(void) const;
+    Vector <T> get_diagonal() const;
 
     void set_row(const size_t &, const Vector <T> &);
 
@@ -181,20 +181,20 @@ public:
 
     void randomize_normal(const Matrix<double> &, const Matrix<double> &);
 
-    void initialize_identity(void);
+    void initialize_identity();
 
     void initialize_diagonal(const T &);
 
     // Mathematical methods
-    T calculate_sum(void) const;
+    T calculate_sum() const;
 
-    Vector <T> calculate_rows_sum(void) const;
+    Vector <T> calculate_rows_sum() const;
 
     void sum_row(const size_t &, const Vector <T> &);
 
-    double calculate_trace(void) const;
+    double calculate_trace() const;
 
-    Vector<double> calculate_mean(void) const;
+    Vector<double> calculate_mean() const;
 
     double calculate_mean(const size_t &) const;
 
@@ -208,24 +208,24 @@ public:
             const Vector <size_t> &,
             const Vector <Vector<size_t>> &) const;
 
-    Vector <Vector<double>> calculate_mean_standard_deviation(void) const;
+    Vector <Vector<double>> calculate_mean_standard_deviation() const;
 
     Vector <Vector<double>> calculate_mean_standard_deviation(const Vector <size_t> &) const;
 
     Vector <Vector<double>> calculate_mean_standard_deviation(const Vector <size_t> &,
                                                               const Vector <size_t> &) const;
 
-    T calculate_minimum(void) const;
+    T calculate_minimum() const;
 
-    T calculate_maximum(void) const;
+    T calculate_maximum() const;
 
-    Vector <Vector<T>> calculate_minimum_maximum(void) const;
+    Vector <Vector<T>> calculate_minimum_maximum() const;
 
     Vector <Vector<T>> calculate_minimum_maximum(const Vector <size_t> &) const;
 
     Vector <Vector<T>> calculate_minimum_maximum(const Vector <size_t> &, const Vector <size_t> &) const;
 
-    Vector <Statistics<T>> calculate_statistics(void) const;
+    Vector <Statistics<T>> calculate_statistics() const;
 
     Vector <Statistics<T>> calculate_statistics_missing_values(const Vector <Vector<size_t>> &) const;
 
@@ -241,7 +241,7 @@ public:
     Vector <Statistics<T>> calculate_columns_statistics_missing_values(const Vector <size_t> &,
                                                                        const Vector <Vector<size_t>>) const;
 
-    Vector <Vector<double>> calculate_shape_parameters(void) const;
+    Vector <Vector<double>> calculate_shape_parameters() const;
 
     Vector <Vector<double>> calculate_shape_parameters_missing_values(const Vector <Vector<size_t>> &) const;
 
@@ -257,7 +257,7 @@ public:
     Vector <Vector<double>> calculate_columns_shape_parameters_missing_values(const Vector <size_t> &,
                                                                               const Vector <Vector<size_t>> &) const;
 
-    Matrix<double> calculate_covariance_matrix(void) const;
+    Matrix<double> calculate_covariance_matrix() const;
 
     Vector <Histogram<T>> calculate_histograms(const size_t & = 10) const;
 
@@ -270,7 +270,7 @@ public:
 
     void scale_mean_standard_deviation(const Vector <Statistics<T>> &);
 
-    Vector <Statistics<T>> scale_mean_standard_deviation(void);
+    Vector <Statistics<T>> scale_mean_standard_deviation();
 
     void scale_rows_mean_standard_deviation(const Vector <Statistics<T>> &, const Vector <size_t> &);
 
@@ -278,7 +278,7 @@ public:
 
     void scale_minimum_maximum(const Vector <Statistics<T>> &);
 
-    Vector <Statistics<T>> scale_minimum_maximum(void);
+    Vector <Statistics<T>> scale_minimum_maximum();
 
     void scale_rows_minimum_maximum(const Vector <Statistics<T>> &, const Vector <size_t> &);
 
@@ -296,29 +296,29 @@ public:
 
     void unscale_columns_minimum_maximum(const Vector <Statistics<T>> &, const Vector <size_t> &);
 
-    Vector <size_t> calculate_minimal_indices(void) const;
+    Vector <size_t> calculate_minimal_indices() const;
 
-    Vector <size_t> calculate_maximal_indices(void) const;
+    Vector <size_t> calculate_maximal_indices() const;
 
-    Vector <Vector<size_t>> calculate_minimal_maximal_indices(void) const;
+    Vector <Vector<size_t>> calculate_minimal_maximal_indices() const;
 
     double calculate_sum_squared_error(const Matrix<double> &) const;
 
     double calculate_sum_squared_error(const Vector<double> &) const;
 
-    Vector<double> calculate_rows_norm(void) const;
+    Vector<double> calculate_rows_norm() const;
 
-    Matrix<T> calculate_absolute_value(void) const;
+    Matrix<T> calculate_absolute_value() const;
 
-    Matrix<T> calculate_transpose(void) const;
+    Matrix<T> calculate_transpose() const;
 
-    T calculate_determinant(void) const;
+    T calculate_determinant() const;
 
-    Matrix<T> calculate_cofactor(void) const;
+    Matrix<T> calculate_cofactor() const;
 
-    Matrix<T> calculate_inverse(void) const;
+    Matrix<T> calculate_inverse() const;
 
-    Matrix<T> calculate_LU_inverse(void) const;
+    Matrix<T> calculate_LU_inverse() const;
 
     double calculate_distance(const size_t &, const size_t &) const;
 
@@ -366,40 +366,40 @@ public:
 
     Matrix<double> dot(const Matrix<double> &) const;
 
-    Matrix<double> calculate_eigenvalues(void) const;
+    Matrix<double> calculate_eigenvalues() const;
 
-    Matrix<double> calculate_eigenvectors(void) const;
+    Matrix<double> calculate_eigenvectors() const;
 
     Matrix<T> direct(const Matrix<T> &) const;
 
-    bool empty(void) const;
+    bool empty() const;
 
-    bool is_square(void) const;
+    bool is_square() const;
 
-    bool is_symmetric(void) const;
+    bool is_symmetric() const;
 
-    bool is_antisymmetric(void) const;
+    bool is_antisymmetric() const;
 
-    bool is_diagonal(void) const;
+    bool is_diagonal() const;
 
-    bool is_scalar(void) const;
+    bool is_scalar() const;
 
-    bool is_identity(void) const;
+    bool is_identity() const;
 
-    bool is_binary(void) const;
+    bool is_binary() const;
 
     Matrix<T> filter(const size_t &, const T &, const T &) const;
 
     void convert_time_series(const size_t &);
 
-    void convert_autoassociation(void);
+    void convert_autoassociation();
 
     void convert_angular_variables_degrees(const size_t &);
 
     void convert_angular_variables_radians(const size_t &);
 
     // Serialization methods
-    void print(void) const;
+    void print() const;
 
     void load(const std::string &);
 
@@ -417,11 +417,11 @@ public:
 
     Matrix<std::string> write_string_matrix(const size_t & = 3) const;
 
-    std::vector<T> to_std_vector(void) const;
+    std::vector<T> to_std_vector() const;
 
-    Vector <T> to_vector(void) const;
+    Vector <T> to_vector() const;
 
-    void print_preview(void) const;
+    void print_preview() const;
 
 private:
     /// Number of rows in the matrix.
@@ -434,7 +434,7 @@ private:
 
 /// Default constructor. It creates a matrix with zero rows and zero columns.
 template<class T>
-Matrix<T>::Matrix(void)
+Matrix<T>::Matrix()
         : std::vector<T>()
 {
     rows_number = 0;
@@ -533,7 +533,7 @@ Matrix<T>::Matrix(const Matrix &other_matrix)
 
 /// Destructor.
 template<class T>
-Matrix<T>::~Matrix(void)
+Matrix<T>::~Matrix()
 {
 }
 
@@ -903,21 +903,21 @@ bool Matrix<T>::operator<=(const T &value) const
 
 /// Returns the number of rows in the matrix.
 template<class T>
-const size_t &Matrix<T>::get_rows_number(void) const
+const size_t &Matrix<T>::get_rows_number() const
 {
     return rows_number;
 }
 
 /// Returns the number of columns in the matrix.
 template<class T>
-const size_t &Matrix<T>::get_columns_number(void) const
+const size_t &Matrix<T>::get_columns_number() const
 {
     return columns_number;
 }
 
 /// This method set the numbers of rows and columns of the matrix to zero.
 template<class T>
-void Matrix<T>::set(void)
+void Matrix<T>::set()
 {
     rows_number = 0;
     columns_number = 0;
@@ -1087,7 +1087,7 @@ void Matrix<T>::tuck_in(const size_t &row_position, const size_t &column_positio
 /// Returns the number of elements in the diagonal which are not zero.
 /// This method is only defined for square matrices.
 template<class T>
-size_t Matrix<T>::count_diagonal_elements(void) const
+size_t Matrix<T>::count_diagonal_elements() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -1095,7 +1095,7 @@ size_t Matrix<T>::count_diagonal_elements(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "size_t count_diagonal_elements(void) const method.\n"
+               << "size_t count_diagonal_elements() const method.\n"
                << "The matrix is not square.\n";
 
         throw std::logic_error(buffer.str());
@@ -1114,7 +1114,7 @@ size_t Matrix<T>::count_diagonal_elements(void) const
 /// Returns the number of elements outside the diagonal which are not zero.
 /// This method is only defined for square matrices.
 template<class T>
-size_t Matrix<T>::count_off_diagonal_elements(void) const
+size_t Matrix<T>::count_off_diagonal_elements() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -1122,7 +1122,7 @@ size_t Matrix<T>::count_off_diagonal_elements(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "size_t count_off_diagonal_elements(void) const method.\n"
+               << "size_t count_off_diagonal_elements() const method.\n"
                << "The matrix is not square.\n";
 
         throw std::logic_error(buffer.str());
@@ -1303,7 +1303,7 @@ Vector <T> Matrix<T>::arrange_column(const size_t &column_index, const Vector <s
 
 /// Returns the diagonal of the matrix.
 template<class T>
-Vector <T> Matrix<T>::get_diagonal(void) const
+Vector <T> Matrix<T>::get_diagonal() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -1311,7 +1311,7 @@ Vector <T> Matrix<T>::get_diagonal(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "Vector<T> get_diagonal(void) const method.\n"
+               << "Vector<T> get_diagonal() const method.\n"
                << "Matrix must be squared.\n";
 
         throw std::logic_error(buffer.str());
@@ -2154,7 +2154,7 @@ void Matrix<T>::randomize_normal(const Matrix<double> &mean, const Matrix<double
 /// Sets the diagonal elements in the matrix with ones and the rest elements with zeros. The matrix
 /// must be square.
 template<class T>
-void Matrix<T>::initialize_identity(void)
+void Matrix<T>::initialize_identity()
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -2162,7 +2162,7 @@ void Matrix<T>::initialize_identity(void)
         std::ostringstream buffer;
 
         std::cout << "OpenNN Exception: Matrix Template.\n"
-                  << "initialize_identity(void) const method.\n"
+                  << "initialize_identity() const method.\n"
                   << "Matrix must be square.\n";
 
         throw std::logic_error(buffer.str());
@@ -2206,7 +2206,7 @@ void Matrix<T>::initialize_diagonal(const T &value)
 
 /// Returns the sum of all the elements in the matrix.
 template<class T>
-T Matrix<T>::calculate_sum(void) const
+T Matrix<T>::calculate_sum() const
 {
     T sum = 0;
     for (size_t i = 0; i < this->size(); i++) {
@@ -2217,7 +2217,7 @@ T Matrix<T>::calculate_sum(void) const
 
 /// Returns the sum of all the rows in the matrix.
 template<class T>
-Vector <T> Matrix<T>::calculate_rows_sum(void) const
+Vector <T> Matrix<T>::calculate_rows_sum() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -2225,7 +2225,7 @@ Vector <T> Matrix<T>::calculate_rows_sum(void) const
         std::ostringstream buffer;
 
         std::cout << "OpenNN Exception: Matrix Template.\n"
-                  << "Vector<T> calculate_rows_sum(void) const method.\n"
+                  << "Vector<T> calculate_rows_sum() const method.\n"
                   << "Matrix is empty.\n";
 
         throw std::logic_error(buffer.str());
@@ -2267,7 +2267,7 @@ void Matrix<T>::sum_row(const size_t &row_index, const Vector <T> &vector)
 /// Returns the trace of the matrix, which is defined to be the sum of the main diagonal elements.
 /// The matrix must be square.
 template<class T>
-double Matrix<T>::calculate_trace(void) const
+double Matrix<T>::calculate_trace() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -2275,7 +2275,7 @@ double Matrix<T>::calculate_trace(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix template.\n"
-               << "double calculate_trace(void) const method.\n"
+               << "double calculate_trace() const method.\n"
                << "Matrix is not square.\n";
 
         throw std::logic_error(buffer.str());
@@ -2292,7 +2292,7 @@ double Matrix<T>::calculate_trace(void) const
 /// Returns a vector with the mean values of all the matrix columns.
 /// The size is equal to the number of columns in the matrix.
 template<class T>
-Vector<double> Matrix<T>::calculate_mean(void) const
+Vector<double> Matrix<T>::calculate_mean() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -2300,7 +2300,7 @@ Vector<double> Matrix<T>::calculate_mean(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix template.\n"
-               << "Vector<double> calculate_mean(void) const method.\n"
+               << "Vector<double> calculate_mean() const method.\n"
                << "Number of rows must be greater than one.\n";
 
         throw std::logic_error(buffer.str());
@@ -2559,7 +2559,7 @@ Vector<double> Matrix<T>::calculate_mean_missing_values(const Vector <size_t> &r
 /// The size of the vector is two.
 /// The size of each element is equal to the number of columns in the matrix.
 template<class T>
-Vector <Vector<double>> Matrix<T>::calculate_mean_standard_deviation(void) const
+Vector <Vector<double>> Matrix<T>::calculate_mean_standard_deviation() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -2567,7 +2567,7 @@ Vector <Vector<double>> Matrix<T>::calculate_mean_standard_deviation(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix template.\n"
-               << "Vector<double> calculate_mean_standard_deviation(void) const method.\n"
+               << "Vector<double> calculate_mean_standard_deviation() const method.\n"
                << "Number of rows must be greater than one.\n";
 
         throw std::logic_error(buffer.str());
@@ -2713,7 +2713,7 @@ Vector <Vector<double>> Matrix<T>::calculate_mean_standard_deviation(const Vecto
 
 /// Returns the minimum value from all elements in the matrix.
 template<class T>
-T Matrix<T>::calculate_minimum(void) const
+T Matrix<T>::calculate_minimum() const
 {
     T minimum = (T) 1.0e99;
     for (size_t i = 0; i < this->size(); i++) {
@@ -2726,7 +2726,7 @@ T Matrix<T>::calculate_minimum(void) const
 
 /// Returns the maximum value from all elements in the matrix.
 template<class T>
-T Matrix<T>::calculate_maximum(void) const
+T Matrix<T>::calculate_maximum() const
 {
     T maximum = (T) - 1.0e99;
     for (size_t i = 0; i < this->size(); i++) {
@@ -2741,7 +2741,7 @@ T Matrix<T>::calculate_maximum(void) const
 /// The size of the vector is two.
 /// The size of each element is equal to the number of columns in the matrix.
 template<class T>
-Vector <Vector<T>> Matrix<T>::calculate_minimum_maximum(void) const
+Vector <Vector<T>> Matrix<T>::calculate_minimum_maximum() const
 {
     Vector<Vector<T>> minimum_maximum(2);
     Vector<T> minimum(columns_number, (T) 1.0e99);
@@ -2838,7 +2838,7 @@ Vector <Vector<T>> Matrix<T>::calculate_minimum_maximum(const Vector <size_t> &r
 /// The format is a vector of statistics structures.
 /// The size of that vector is equal to the number of columns in this matrix.
 template<class T>
-Vector <Statistics<T>> Matrix<T>::calculate_statistics(void) const
+Vector <Statistics<T>> Matrix<T>::calculate_statistics() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -2846,7 +2846,7 @@ Vector <Statistics<T>> Matrix<T>::calculate_statistics(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix template.\n"
-               << "Vector< Statistics<double> > calculate_statistics(void) const method.\n"
+               << "Vector< Statistics<double> > calculate_statistics() const method.\n"
                << "Number of rows must be greater than one.\n";
 
         throw std::logic_error(buffer.str());
@@ -3003,7 +3003,7 @@ Vector <Statistics<T>> Matrix<T>::calculate_columns_statistics_missing_values(co
 /// The format is a vector of subvectors.
 /// The size of that vector is equal to the number of columns in this matrix.
 template<class T>
-Vector <Vector<double>> Matrix<T>::calculate_shape_parameters(void) const
+Vector <Vector<double>> Matrix<T>::calculate_shape_parameters() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -3011,7 +3011,7 @@ Vector <Vector<double>> Matrix<T>::calculate_shape_parameters(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix template.\n"
-               << "Vector< Vector<double> > calculate_shape_parameters(void) const method.\n"
+               << "Vector< Vector<double> > calculate_shape_parameters() const method.\n"
                << "Number of rows must be greater than one.\n";
 
         throw std::logic_error(buffer.str());
@@ -3167,7 +3167,7 @@ Vector <Vector<double>> Matrix<T>::calculate_columns_shape_parameters_missing_va
 /// Retruns the covariance matrix of this matrix.
 /// The number of columns and rows of the matrix is equal to the number of columns of this matrix.
 template<class T>
-Matrix<double> Matrix<T>::calculate_covariance_matrix(void) const
+Matrix<double> Matrix<T>::calculate_covariance_matrix() const
 {
     const size_t size = (*this).get_columns_number();
 
@@ -3176,7 +3176,7 @@ Matrix<double> Matrix<T>::calculate_covariance_matrix(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix template."
-               << "void calculate_covariance_matrix(void) const method.\n"
+               << "void calculate_covariance_matrix() const method.\n"
                << "Number of columns must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -3315,7 +3315,7 @@ void Matrix<T>::scale_mean_standard_deviation(const Vector <Statistics<T>> &stat
 /// the mean and standard deviation values calculated from the matrix.
 /// It also returns the statistics of all the columns.
 template<class T>
-Vector <Statistics<T>> Matrix<T>::scale_mean_standard_deviation(void)
+Vector <Statistics<T>> Matrix<T>::scale_mean_standard_deviation()
 {
     const Vector<Statistics<T>> statistics = calculate_statistics();
     scale_mean_standard_deviation(statistics);
@@ -3424,7 +3424,7 @@ void Matrix<T>::scale_minimum_maximum(const Vector <Statistics<T>> &statistics)
 /// the minimum and maximum values calculated from the matrix.
 /// It also returns the statistics of all the columns.
 template<class T>
-Vector <Statistics<T>> Matrix<T>::scale_minimum_maximum(void)
+Vector <Statistics<T>> Matrix<T>::scale_minimum_maximum()
 {
     const Vector<Statistics<T>> statistics = calculate_statistics();
     scale_minimum_maximum(statistics);
@@ -3674,7 +3674,7 @@ void Matrix<T>::unscale_columns_minimum_maximum(const Vector <Statistics<T>> &st
 
 /// Returns the row and column indices corresponding to the entry with minimum value.
 template<class T>
-Vector <size_t> Matrix<T>::calculate_minimal_indices(void) const
+Vector <size_t> Matrix<T>::calculate_minimal_indices() const
 {
     T minimum = (*this)(0, 0);
     Vector<size_t> minimal_indices(2, 0);
@@ -3692,7 +3692,7 @@ Vector <size_t> Matrix<T>::calculate_minimal_indices(void) const
 
 /// Returns the row and column indices corresponding to the entry with maximum value.
 template<class T>
-Vector <size_t> Matrix<T>::calculate_maximal_indices(void) const
+Vector <size_t> Matrix<T>::calculate_maximal_indices() const
 {
     T maximum = (*this)(0, 0);
     Vector<size_t> maximal_indices(2, 0);
@@ -3713,7 +3713,7 @@ Vector <size_t> Matrix<T>::calculate_maximal_indices(void) const
 /// Each subvector also has two elements.
 /// The first vector contains the minimal indices, and the second vector contains the maximal indices.
 template<class T>
-Vector <Vector<size_t>> Matrix<T>::calculate_minimal_maximal_indices(void) const
+Vector <Vector<size_t>> Matrix<T>::calculate_minimal_maximal_indices() const
 {
     T minimum = (*this)(0, 0);
     T maximum = (*this)(0, 0);
@@ -3809,7 +3809,7 @@ double Matrix<T>::calculate_sum_squared_error(const Vector<double> &vector) cons
 /// Returns a vector with the norm of each row.
 /// The size of that vector is the number of rows.
 template<class T>
-Vector<double> Matrix<T>::calculate_rows_norm(void) const
+Vector<double> Matrix<T>::calculate_rows_norm() const
 {
     Vector<double> rows_norm(rows_number, 0.0);
     for (size_t i = 0; i < rows_number; i++) {
@@ -3823,7 +3823,7 @@ Vector<double> Matrix<T>::calculate_rows_norm(void) const
 
 /// Returns a matrix with the absolute values of this matrix.
 template<class T>
-Matrix<T> Matrix<T>::calculate_absolute_value(void) const
+Matrix<T> Matrix<T>::calculate_absolute_value() const
 {
     Matrix<T> absolute_value(rows_number, columns_number);
     for (size_t i = 0; i < this->size(); i++) {
@@ -3838,7 +3838,7 @@ Matrix<T> Matrix<T>::calculate_absolute_value(void) const
 
 /// Returns the transpose of the matrix.
 template<class T>
-Matrix<T> Matrix<T>::calculate_transpose(void) const
+Matrix<T> Matrix<T>::calculate_transpose() const
 {
     Matrix<T> transpose(columns_number, rows_number);
     for (size_t i = 0; i < columns_number; i++) {
@@ -3851,7 +3851,7 @@ Matrix<T> Matrix<T>::calculate_transpose(void) const
 
 /// Returns the determinant of a square matrix.
 template<class T>
-T Matrix<T>::calculate_determinant(void) const
+T Matrix<T>::calculate_determinant() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -3859,7 +3859,7 @@ T Matrix<T>::calculate_determinant(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "calculate_determinant(void) const method.\n"
+               << "calculate_determinant() const method.\n"
                << "Matrix is empty.\n";
 
         throw std::logic_error(buffer.str());
@@ -3869,7 +3869,7 @@ T Matrix<T>::calculate_determinant(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "calculate_determinant(void) const method.\n"
+               << "calculate_determinant() const method.\n"
                << "Matrix must be square.\n";
 
         throw std::logic_error(buffer.str());
@@ -3903,7 +3903,7 @@ T Matrix<T>::calculate_determinant(void) const
 
 /// Returns the cofactor matrix.
 template<class T>
-Matrix<T> Matrix<T>::calculate_cofactor(void) const
+Matrix<T> Matrix<T>::calculate_cofactor() const
 {
     Matrix<T> cofactor(rows_number, columns_number);
     Matrix<T> c(rows_number - 1, columns_number - 1);
@@ -3933,7 +3933,7 @@ Matrix<T> Matrix<T>::calculate_cofactor(void) const
 /// Returns the inverse of a square matrix.
 /// An error message is printed if the matrix is singular.
 template<class T>
-Matrix<T> Matrix<T>::calculate_inverse(void) const
+Matrix<T> Matrix<T>::calculate_inverse() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -3941,7 +3941,7 @@ Matrix<T> Matrix<T>::calculate_inverse(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "calculate_inverse(void) const method.\n"
+               << "calculate_inverse() const method.\n"
                << "Matrix is empty.\n";
 
         throw std::logic_error(buffer.str());
@@ -3951,7 +3951,7 @@ Matrix<T> Matrix<T>::calculate_inverse(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "calculate_inverse(void) const method.\n"
+               << "calculate_inverse() const method.\n"
                << "Matrix must be square.\n";
 
         throw std::logic_error(buffer.str());
@@ -3963,7 +3963,7 @@ Matrix<T> Matrix<T>::calculate_inverse(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "calculate_inverse(void) const method.\n"
+               << "calculate_inverse() const method.\n"
                << "Matrix is singular.\n";
 
         throw std::logic_error(buffer.str());
@@ -3989,7 +3989,7 @@ Matrix<T> Matrix<T>::calculate_inverse(void) const
 /// Returns the inverse of a square matrix using the LU decomposition method.
 /// The given matrix must be invertible.
 template<class T>
-Matrix<T> Matrix<T>::calculate_LU_inverse(void) const
+Matrix<T> Matrix<T>::calculate_LU_inverse() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -3997,7 +3997,7 @@ Matrix<T> Matrix<T>::calculate_LU_inverse(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "calculate_LU_inverse(void) const method.\n"
+               << "calculate_LU_inverse() const method.\n"
                << "Matrix is empty.\n";
 
         throw std::logic_error(buffer.str());
@@ -4007,7 +4007,7 @@ Matrix<T> Matrix<T>::calculate_LU_inverse(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "calculate_LU_inverse(void) const method.\n"
+               << "calculate_LU_inverse() const method.\n"
                << "Matrix must be square.\n";
 
         throw std::logic_error(buffer.str());
@@ -4559,7 +4559,7 @@ Matrix<double> Matrix<T>::dot(const Matrix<double> &other_matrix) const
 /// Calculates the eigen values of this matrix, which must be squared.
 /// Returns a matrix with only one column and rows the same as this matrix with the eigenvalues.
 template<class T>
-Matrix<double> Matrix<T>::calculate_eigenvalues(void) const
+Matrix<double> Matrix<T>::calculate_eigenvalues() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -4567,7 +4567,7 @@ Matrix<double> Matrix<T>::calculate_eigenvalues(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "Matrix<T> calculate_eigen_values(void) const method.\n"
+               << "Matrix<T> calculate_eigen_values() const method.\n"
                << "Number of columns must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -4577,7 +4577,7 @@ Matrix<double> Matrix<T>::calculate_eigenvalues(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "Matrix<T> calculate_eigen_values(void) const method.\n"
+               << "Matrix<T> calculate_eigen_values() const method.\n"
                << "Number of rows must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -4587,7 +4587,7 @@ Matrix<double> Matrix<T>::calculate_eigenvalues(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "Matrix<T> calculate_eigen_values(void) const method.\n"
+               << "Matrix<T> calculate_eigen_values() const method.\n"
                << "The matrix must be squared.\n";
 
         throw std::logic_error(buffer.str());
@@ -4605,7 +4605,7 @@ Matrix<double> Matrix<T>::calculate_eigenvalues(void) const
 /// Calculates the eigenvectors of this matrix, which must be squared.
 /// Returns a matrix whose columns are the eigenvectors.
 template<class T>
-Matrix<double> Matrix<T>::calculate_eigenvectors(void) const
+Matrix<double> Matrix<T>::calculate_eigenvectors() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -4613,7 +4613,7 @@ Matrix<double> Matrix<T>::calculate_eigenvectors(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "Matrix<T> calculate_eigen_values(void) const method.\n"
+               << "Matrix<T> calculate_eigen_values() const method.\n"
                << "Number of columns must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -4623,7 +4623,7 @@ Matrix<double> Matrix<T>::calculate_eigenvectors(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "Matrix<T> calculate_eigen_values(void) const method.\n"
+               << "Matrix<T> calculate_eigen_values() const method.\n"
                << "Number of rows must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -4633,7 +4633,7 @@ Matrix<double> Matrix<T>::calculate_eigenvectors(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "Matrix<T> calculate_eigen_values(void) const method.\n"
+               << "Matrix<T> calculate_eigen_values() const method.\n"
                << "The matrix must be squared.\n";
 
         throw std::logic_error(buffer.str());
@@ -4675,7 +4675,7 @@ Matrix<T> Matrix<T>::direct(const Matrix<T> &other_matrix) const
 
 /// Returns true if number of rows and columns is zero.
 template<class T>
-bool Matrix<T>::empty(void) const
+bool Matrix<T>::empty() const
 {
     return rows_number == 0 && columns_number == 0;
 }
@@ -4683,7 +4683,7 @@ bool Matrix<T>::empty(void) const
 /// Returns true if this matrix is square.
 /// A square matrix has the same numbers of rows and columns.
 template<class T>
-bool Matrix<T>::is_square(void) const
+bool Matrix<T>::is_square() const
 {
     return rows_number == columns_number;
 }
@@ -4691,7 +4691,7 @@ bool Matrix<T>::is_square(void) const
 /// Returns true if this matrix is symmetric.
 /// A symmetric matrix is a squared matrix which is equal to its transpose.
 template<class T>
-bool Matrix<T>::is_symmetric(void) const
+bool Matrix<T>::is_symmetric() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -4699,7 +4699,7 @@ bool Matrix<T>::is_symmetric(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "bool is_symmetric(void) const method.\n"
+               << "bool is_symmetric() const method.\n"
                << "Matrix must be squared.\n";
 
         throw std::logic_error(buffer.str());
@@ -4713,7 +4713,7 @@ bool Matrix<T>::is_symmetric(void) const
 /// Returns true if this matrix is antysymmetric.
 /// A symmetric matrix is a squared matrix which its opposed is equal to its transpose.
 template<class T>
-bool Matrix<T>::is_antisymmetric(void) const
+bool Matrix<T>::is_antisymmetric() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -4721,7 +4721,7 @@ bool Matrix<T>::is_antisymmetric(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "bool is_antisymmetric(void) const method.\n"
+               << "bool is_antisymmetric() const method.\n"
                << "Matrix must be squared.\n";
 
         throw std::logic_error(buffer.str());
@@ -4735,7 +4735,7 @@ bool Matrix<T>::is_antisymmetric(void) const
 /// Returns true if this matrix is diagonal.
 /// A diagonal matrix is which the entries outside the main diagonal are zero.
 template<class T>
-bool Matrix<T>::is_diagonal(void) const
+bool Matrix<T>::is_diagonal() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -4743,7 +4743,7 @@ bool Matrix<T>::is_diagonal(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "bool is_diagonal(void) const method.\n"
+               << "bool is_diagonal() const method.\n"
                << "Matrix must be squared.\n";
 
         throw std::logic_error(buffer.str());
@@ -4763,7 +4763,7 @@ bool Matrix<T>::is_diagonal(void) const
 /// Returns true if this matrix is scalar.
 /// A scalar matrix is a diagonal matrix whose diagonal elements all contain the same scalar.
 template<class T>
-bool Matrix<T>::is_scalar(void) const
+bool Matrix<T>::is_scalar() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -4771,7 +4771,7 @@ bool Matrix<T>::is_scalar(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "bool is_scalar(void) const method.\n"
+               << "bool is_scalar() const method.\n"
                << "Matrix must be squared.\n";
 
         throw std::logic_error(buffer.str());
@@ -4786,7 +4786,7 @@ bool Matrix<T>::is_scalar(void) const
 /// Returns true if this matrix is the identity.
 /// The identity matrix or unit matrix is a square matrix with ones on the main diagonal and zeros elsewhere.
 template<class T>
-bool Matrix<T>::is_identity(void) const
+bool Matrix<T>::is_identity() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -4794,7 +4794,7 @@ bool Matrix<T>::is_identity(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Matrix Template.\n"
-               << "bool is_unity(void) const method.\n"
+               << "bool is_unity() const method.\n"
                << "Matrix must be squared.\n";
 
         throw std::logic_error(buffer.str());
@@ -4817,7 +4817,7 @@ bool Matrix<T>::is_identity(void) const
 
 /// Returns true if this matrix has binary values.
 template<class T>
-bool Matrix<T>::is_binary(void) const
+bool Matrix<T>::is_binary() const
 {
     for (size_t i = 0; i < this->size(); i++) {
         if ((*this)[i] != 0 && (*this)[i] != 1)
@@ -4872,7 +4872,7 @@ void Matrix<T>::convert_time_series(const size_t &lags_number)
 /// Arranges the matrix in a proper format for autoassociation.
 /// Note that this method sets new numbers of columns in the matrix.
 template<class T>
-void Matrix<T>::convert_autoassociation(void)
+void Matrix<T>::convert_autoassociation()
 {
     Matrix<T> copy(*this);
     set(copy.assemble_columns(copy));
@@ -4946,7 +4946,7 @@ void Matrix<T>::convert_angular_variables_radians(const size_t &column_index)
 
 /// Prints to the screen in the matrix object.
 template<class T>
-void Matrix<T>::print(void) const
+void Matrix<T>::print() const
 {
     std::cout << *this;
 }
@@ -5209,7 +5209,7 @@ Matrix<std::string> Matrix<T>::write_string_matrix(const size_t &precision) cons
 /// The size of the new vector is equal to the number of elements of this matrix.
 /// The entries of the new vector are the entries of this matrix ordered by rows.
 template<class T>
-std::vector<T> Matrix<T>::to_std_vector(void) const
+std::vector<T> Matrix<T>::to_std_vector() const
 {
     const std::vector<T> std_vector((*this).begin(), (*this).end());
     return std_vector;
@@ -5219,7 +5219,7 @@ std::vector<T> Matrix<T>::to_std_vector(void) const
 /// The size of the new vector is equal to the number of elements of this matrix.
 /// The entries of the new vector are the entries of this matrix ordered by rows.
 template<class T>
-Vector <T> Matrix<T>::to_vector(void) const
+Vector <T> Matrix<T>::to_vector() const
 {
     Vector<T> vector(rows_number * columns_number);
     for (size_t i = 0; i < rows_number * columns_number; i++) {
@@ -5231,7 +5231,7 @@ Vector <T> Matrix<T>::to_vector(void) const
 /// Prints to the sceen a preview of the matrix,
 /// i.e., the first, second and last rows
 template<class T>
-void Matrix<T>::print_preview(void) const
+void Matrix<T>::print_preview() const
 {
     std::cout << "Rows number: " << rows_number << std::endl
               << "Columns number: " << columns_number << std::endl;

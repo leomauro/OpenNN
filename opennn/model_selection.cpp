@@ -15,325 +15,258 @@
 
 #include "model_selection.h"
 
-namespace OpenNN
-{
 
-// DEFAULT CONSTRUCTOR
+namespace OpenNN {
 
 /// Default constructor.
-
-ModelSelection::ModelSelection(void)
-    : training_strategy_pointer(NULL), incremental_order_pointer(NULL), golden_section_order_pointer(NULL),
-      simulated_annelaing_order_pointer(NULL), growing_inputs_pointer(NULL), pruning_inputs_pointer(NULL),
-      genetic_algorithm_pointer(NULL), f1_score_optimization_threshold_pointer(NULL),
-      matthew_correlation_optimization_threshold_pointer(NULL),
-      youden_index_optimization_threshold_pointer(NULL), kappa_coefficient_optimization_threshold_pointer(NULL),
-      roc_curve_optimization_threshold_pointer(NULL)
+ModelSelection::ModelSelection()
+        : training_strategy_pointer(NULL),
+          incremental_order_pointer(NULL),
+          golden_section_order_pointer(NULL),
+          simulated_annelaing_order_pointer(NULL),
+          growing_inputs_pointer(NULL),
+          pruning_inputs_pointer(NULL),
+          genetic_algorithm_pointer(NULL),
+          f1_score_optimization_threshold_pointer(NULL),
+          matthew_correlation_optimization_threshold_pointer(NULL),
+          youden_index_optimization_threshold_pointer(NULL),
+          kappa_coefficient_optimization_threshold_pointer(NULL),
+          roc_curve_optimization_threshold_pointer(NULL)
 {
     set_default();
 }
-
-
-// TRAINING STRATEGY CONSTRUCTOR
 
 /// Training strategy constructor.
 /// @param new_training_strategy_pointer Pointer to a training strategy object.
-
 ModelSelection::ModelSelection(TrainingStrategy *new_training_strategy_pointer)
-    : training_strategy_pointer(new_training_strategy_pointer), incremental_order_pointer(NULL),
-      golden_section_order_pointer(NULL), simulated_annelaing_order_pointer(NULL), growing_inputs_pointer(NULL),
-      pruning_inputs_pointer(NULL), genetic_algorithm_pointer(NULL),
-      f1_score_optimization_threshold_pointer(NULL), matthew_correlation_optimization_threshold_pointer(NULL),
-      youden_index_optimization_threshold_pointer(NULL), kappa_coefficient_optimization_threshold_pointer(NULL),
-      roc_curve_optimization_threshold_pointer(NULL)
+        : training_strategy_pointer(new_training_strategy_pointer),
+          incremental_order_pointer(NULL),
+          golden_section_order_pointer(NULL),
+          simulated_annelaing_order_pointer(NULL),
+          growing_inputs_pointer(NULL),
+          pruning_inputs_pointer(NULL),
+          genetic_algorithm_pointer(NULL),
+          f1_score_optimization_threshold_pointer(NULL),
+          matthew_correlation_optimization_threshold_pointer(NULL),
+          youden_index_optimization_threshold_pointer(NULL),
+          kappa_coefficient_optimization_threshold_pointer(NULL),
+          roc_curve_optimization_threshold_pointer(NULL)
 {
     set_default();
 }
 
-
-// FILE CONSTRUCTOR
-
 /// File constructor.
 /// @param file_name Name of XML model selection file.
-
 ModelSelection::ModelSelection(const std::string &file_name)
-    : training_strategy_pointer(NULL), incremental_order_pointer(NULL), golden_section_order_pointer(NULL),
-      simulated_annelaing_order_pointer(NULL), growing_inputs_pointer(NULL), pruning_inputs_pointer(NULL),
-      genetic_algorithm_pointer(NULL), f1_score_optimization_threshold_pointer(NULL),
-      matthew_correlation_optimization_threshold_pointer(NULL),
-      youden_index_optimization_threshold_pointer(NULL), kappa_coefficient_optimization_threshold_pointer(NULL),
-      roc_curve_optimization_threshold_pointer(NULL)
+        : training_strategy_pointer(NULL),
+          incremental_order_pointer(NULL),
+          golden_section_order_pointer(NULL),
+          simulated_annelaing_order_pointer(NULL),
+          growing_inputs_pointer(NULL),
+          pruning_inputs_pointer(NULL),
+          genetic_algorithm_pointer(NULL),
+          f1_score_optimization_threshold_pointer(NULL),
+          matthew_correlation_optimization_threshold_pointer(NULL),
+          youden_index_optimization_threshold_pointer(NULL),
+          kappa_coefficient_optimization_threshold_pointer(NULL),
+          roc_curve_optimization_threshold_pointer(NULL)
 {
     load(file_name);
 }
 
-
-// XML CONSTRUCTOR
-
 /// XML constructor.
 /// @param model_selection_document Pointer to a TinyXML document containing the model selection data.
-
 ModelSelection::ModelSelection(const tinyxml2::XMLDocument &model_selection_document)
-    : training_strategy_pointer(NULL), incremental_order_pointer(NULL), golden_section_order_pointer(NULL),
-      simulated_annelaing_order_pointer(NULL), growing_inputs_pointer(NULL), pruning_inputs_pointer(NULL),
-      genetic_algorithm_pointer(NULL), f1_score_optimization_threshold_pointer(NULL),
-      matthew_correlation_optimization_threshold_pointer(NULL),
-      youden_index_optimization_threshold_pointer(NULL), kappa_coefficient_optimization_threshold_pointer(NULL),
-      roc_curve_optimization_threshold_pointer(NULL)
+        : training_strategy_pointer(NULL),
+          incremental_order_pointer(NULL),
+          golden_section_order_pointer(NULL),
+          simulated_annelaing_order_pointer(NULL),
+          growing_inputs_pointer(NULL),
+          pruning_inputs_pointer(NULL),
+          genetic_algorithm_pointer(NULL),
+          f1_score_optimization_threshold_pointer(NULL),
+          matthew_correlation_optimization_threshold_pointer(NULL),
+          youden_index_optimization_threshold_pointer(NULL),
+          kappa_coefficient_optimization_threshold_pointer(NULL),
+          roc_curve_optimization_threshold_pointer(NULL)
 {
     from_XML(model_selection_document);
 }
 
 
-// DESTRUCTOR
-
 /// Destructor.
-
-ModelSelection::~ModelSelection(void)
+ModelSelection::~ModelSelection()
 {
 }
 
-
-// METHODS
-
-// TrainingStrategy* get_training_strategy_pointer(void) const method
-
 /// Returns a pointer to the training strategy object.
-
-TrainingStrategy *ModelSelection::get_training_strategy_pointer(void) const
+TrainingStrategy *ModelSelection::get_training_strategy_pointer() const
 {
-#ifdef __OPENNN_DEBUG__
 
+#ifdef __OPENNN_DEBUG__
     if (!training_strategy_pointer) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "TrainingStrategy* get_training_strategy_pointer(void) const method.\n"
+               << "TrainingStrategy* get_training_strategy_pointer() const method.\n"
                << "Training strategy pointer is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
 
-    return (training_strategy_pointer);
+    return training_strategy_pointer;
 }
-
-// bool has_training_strategy(void) const method
 
 /// Returns true if this model selection has a training strategy associated,
 /// and false otherwise.
-
-bool ModelSelection::has_training_strategy(void) const
+bool ModelSelection::has_training_strategy() const
 {
-    if (training_strategy_pointer) {
-        return (true);
-    } else {
-        return (false);
-    }
+    return training_strategy_pointer;
 }
-
-// const OrderSelectionType& get_order_selection_type(void) const method
 
 /// Returns the type of algorithm for the order selection.
-
-const ModelSelection::OrderSelectionType &ModelSelection::get_order_selection_type(void) const
+const ModelSelection::OrderSelectionType &ModelSelection::get_order_selection_type() const
 {
-    return (order_selection_type);
+    return order_selection_type;
 }
-
-// const InputSelectionType& get_inputs_selection_type(void) const method
 
 /// Returns the type of algorithm for the inputs selection.
-
-const ModelSelection::InputsSelectionType &ModelSelection::get_inputs_selection_type(void) const
+const ModelSelection::InputsSelectionType &ModelSelection::get_inputs_selection_type() const
 {
-    return (inputs_selection_type);
+    return inputs_selection_type;
 }
-
-// const ThresholdSelectionType& get_threshold_selection_type(void) const method
 
 /// Returns the type of algorithm for the threshold selection.
-
-const ModelSelection::ThresholdSelectionType &ModelSelection::get_threshold_selection_type(void) const
+const ModelSelection::ThresholdSelectionType &ModelSelection::get_threshold_selection_type() const
 {
-    return (threshold_selection_type);
+    return threshold_selection_type;
 }
-
-// IncrementalOrder* get_incremental_order_pointer(void) const method
 
 /// Returns a pointer to the incremental order selection algorithm.
-
-IncrementalOrder *ModelSelection::get_incremental_order_pointer(void) const
+IncrementalOrder *ModelSelection::get_incremental_order_pointer() const
 {
-    return (incremental_order_pointer);
+    return incremental_order_pointer;
 }
-
-// GoldenSectionOrder* get_golden_section_order_pointer(void) const method
 
 /// Returns a pointer to the golden section order selection algorithm.
-
-GoldenSectionOrder *ModelSelection::get_golden_section_order_pointer(void) const
+GoldenSectionOrder *ModelSelection::get_golden_section_order_pointer() const
 {
-    return (golden_section_order_pointer);
+    return golden_section_order_pointer;
 }
-
-// SimulatedAnnealingOrder* get_simulated_annealing_order_pointer(void) const method
 
 /// Returns a pointer to the simulated annealing order selection algorithm.
-
-SimulatedAnnealingOrder *ModelSelection::get_simulated_annealing_order_pointer(void) const
+SimulatedAnnealingOrder *ModelSelection::get_simulated_annealing_order_pointer() const
 {
-    return (simulated_annelaing_order_pointer);
+    return simulated_annelaing_order_pointer;
 }
-
-// GrowingInputs* get_growing_inputs_pointer(void) const method
 
 /// Returns a pointer to the growing inputs selection algorithm.
-
-GrowingInputs *ModelSelection::get_growing_inputs_pointer(void) const
+GrowingInputs *ModelSelection::get_growing_inputs_pointer() const
 {
-    return (growing_inputs_pointer);
+    return growing_inputs_pointer;
 }
-
-// PruningInputs* get_pruning_inputs_pointer(void) const method
 
 /// Returns a pointer to the pruning inputs selection algorithm.
-
-PruningInputs *ModelSelection::get_pruning_inputs_pointer(void) const
+PruningInputs *ModelSelection::get_pruning_inputs_pointer() const
 {
-    return (pruning_inputs_pointer);
+    return pruning_inputs_pointer;
 }
-
-// GeneticAlgorithm* get_genetic_algorithm_pointer(void) const method
 
 /// Returns a pointer to the genetic inputs selection algorithm.
-
-GeneticAlgorithm *ModelSelection::get_genetic_algorithm_pointer(void) const
+GeneticAlgorithm *ModelSelection::get_genetic_algorithm_pointer() const
 {
-    return (genetic_algorithm_pointer);
+    return genetic_algorithm_pointer;
 }
-
-// F1ScoreOptimizationThreshold* get_f1_score_optimization_threshold_pointer(void) const method
 
 /// Returns a pointer to the f1 score optimiztion threshold selection algorithm.
-
-F1ScoreOptimizationThreshold *ModelSelection::get_f1_score_optimization_threshold_pointer(void) const
+F1ScoreOptimizationThreshold *ModelSelection::get_f1_score_optimization_threshold_pointer() const
 {
-    return (f1_score_optimization_threshold_pointer);
+    return f1_score_optimization_threshold_pointer;
 }
-
-// MatthewCorrelationOptimizationThreshold* get_matthew_correlation_optimization_threshold(void) const method
 
 /// Returns a pointer to the matthew correlation optimiztion threshold selection algorithm.
-
-MatthewCorrelationOptimizationThreshold *ModelSelection::get_matthew_correlation_optimization_threshold(void) const
+MatthewCorrelationOptimizationThreshold *ModelSelection::get_matthew_correlation_optimization_threshold() const
 {
-    return (matthew_correlation_optimization_threshold_pointer);
+    return matthew_correlation_optimization_threshold_pointer;
 }
-
-// YoudenIndexOptimizationThreshold* get_youden_index_optimization_threshold(void) const method
 
 /// Returns a pointer to the youden index optimiztion threshold selection algorithm.
-
-YoudenIndexOptimizationThreshold *ModelSelection::get_youden_index_optimization_threshold(void) const
+YoudenIndexOptimizationThreshold *ModelSelection::get_youden_index_optimization_threshold() const
 {
-    return (youden_index_optimization_threshold_pointer);
+    return youden_index_optimization_threshold_pointer;
 }
-
-// KappaCoefficientOptimizationThreshold* get_kappa_coefficient_optimization_threshold(void) const method
 
 /// Returns a pointer to the kappa coefficient optimiztion threshold selection algorithm.
-
-KappaCoefficientOptimizationThreshold *ModelSelection::get_kappa_coefficient_optimization_threshold(void) const
+KappaCoefficientOptimizationThreshold *ModelSelection::get_kappa_coefficient_optimization_threshold() const
 {
-    return (kappa_coefficient_optimization_threshold_pointer);
+    return kappa_coefficient_optimization_threshold_pointer;
 }
-
-// ROCCurveOptimizationThreshold* get_roc_curve_optimization_threshold(void) const method
 
 /// Returns a pointer to the roc curve optimiztion threshold selection algorithm.
-
-ROCCurveOptimizationThreshold *ModelSelection::get_roc_curve_optimization_threshold(void) const
+ROCCurveOptimizationThreshold *ModelSelection::get_roc_curve_optimization_threshold() const
 {
-    return (roc_curve_optimization_threshold_pointer);
+    return roc_curve_optimization_threshold_pointer;
 }
 
-// void set_default(void) method
-
 /// Sets the members of the model selection object to their default values.
-
-void ModelSelection::set_default(void)
+void ModelSelection::set_default()
 {
     set_order_selection_type(ModelSelection::INCREMENTAL_ORDER);
     set_inputs_selection_type(ModelSelection::GROWING_INPUTS);
     set_threshold_selection_type(ModelSelection::YOUDEN_INDEX);
 }
 
-// void set_order_selection_type(const OrderSelectionType&) method
-
 /// Sets a new method for selecting the order which have more impact on the targets.
 /// @param new_order_selection_type Method for selecting the order (NO_ORDER_SELECTION, INCREMENTAL_ORDER, GOLDEN_SECTION, SIMULATED_ANNEALING).
-
 void ModelSelection::set_order_selection_type(const ModelSelection::OrderSelectionType &new_order_selection_type)
 {
     destruct_order_selection();
 
     order_selection_type = new_order_selection_type;
-
     switch (new_order_selection_type) {
-    case NO_ORDER_SELECTION: {
+    case NO_ORDER_SELECTION:
         // do nothing
-
         break;
-    }
-    case INCREMENTAL_ORDER: {
+
+    case INCREMENTAL_ORDER:
         incremental_order_pointer = new IncrementalOrder(training_strategy_pointer);
-
         break;
-    }
-    case GOLDEN_SECTION: {
+
+    case GOLDEN_SECTION:
         golden_section_order_pointer = new GoldenSectionOrder(training_strategy_pointer);
-
         break;
-    }
-    case SIMULATED_ANNEALING: {
+
+    case SIMULATED_ANNEALING:
         simulated_annelaing_order_pointer = new SimulatedAnnealingOrder(training_strategy_pointer);
-
         break;
+
+    default:
+        {
+            std::ostringstream buffer;
+
+            buffer << "OpenNN Exception: ModelSelection class.\n"
+                   << "void set_order_selection_method(const OrderSelectionType&) const method.\n"
+                   << "Unknow order selection method.\n";
+
+            throw std::logic_error(buffer.str());
+        }
     }
-    default: {
-        std::ostringstream buffer;
-
-        buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void set_order_selection_method(const OrderSelectionType&) const method.\n"
-               << "Unknow order selection method.\n";
-
-        throw std::logic_error(buffer.str());
-
-        break;
-    }
-    }
-
-
 }
-
-// void set_order_selection_type(const std::string&) method
 
 /// Sets a new order selection algorithm from a string.
 /// @param new_order_selection_type String with the order selection type.
-
 void ModelSelection::set_order_selection_type(const std::string &new_order_selection_type)
 {
-    if (new_order_selection_type == "NO_ORDER_SELECTION") {
+    if (new_order_selection_type == "NO_ORDER_SELECTION")
         set_order_selection_type(NO_ORDER_SELECTION);
-    } else if (new_order_selection_type == "INCREMENTAL_ORDER") {
+    else if (new_order_selection_type == "INCREMENTAL_ORDER")
         set_order_selection_type(INCREMENTAL_ORDER);
-    } else if (new_order_selection_type == "GOLDEN_SECTION") {
+    else if (new_order_selection_type == "GOLDEN_SECTION")
         set_order_selection_type(GOLDEN_SECTION);
-    } else if (new_order_selection_type == "SIMULATED_ANNEALING") {
+    else if (new_order_selection_type == "SIMULATED_ANNEALING")
         set_order_selection_type(SIMULATED_ANNEALING);
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: ModelSelection class.\n"
@@ -344,68 +277,55 @@ void ModelSelection::set_order_selection_type(const std::string &new_order_selec
     }
 }
 
-// void set_inputs_selection_type(const InputSelectionType&) method
-
 /// Sets a new method for selecting the inputs which have more impact on the targets.
 /// @param new_inputs_selection_type Method for selecting the inputs (NO_INPUTS_SELECTION, GROWING_INPUTS, PRUNING_INPUTS, GENETIC_ALGORITHM).
-
 void ModelSelection::set_inputs_selection_type(const ModelSelection::InputsSelectionType &new_inputs_selection_type)
 {
     destruct_inputs_selection();
 
     inputs_selection_type = new_inputs_selection_type;
-
     switch (new_inputs_selection_type) {
-    case NO_INPUTS_SELECTION: {
-        // do nothing
-
+    case NO_INPUTS_SELECTION:
         break;
-    }
-    case GROWING_INPUTS: {
+
+    case GROWING_INPUTS:
         growing_inputs_pointer = new GrowingInputs(training_strategy_pointer);
-
         break;
-    }
-    case PRUNING_INPUTS: {
+
+    case PRUNING_INPUTS:
         pruning_inputs_pointer = new PruningInputs(training_strategy_pointer);
-
         break;
-    }
-    case GENETIC_ALGORITHM: {
+
+    case GENETIC_ALGORITHM:
         genetic_algorithm_pointer = new GeneticAlgorithm(training_strategy_pointer);
-
         break;
-    }
-    default: {
-        std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void set_inputs_selection_method(const InputsSelectionType&) const method.\n"
-               << "Unknow inputs selection method.\n";
+    default:
+        {
+            std::ostringstream buffer;
 
-        throw std::logic_error(buffer.str());
+            buffer << "OpenNN Exception: ModelSelection class.\n"
+                   << "void set_inputs_selection_method(const InputsSelectionType&) const method.\n"
+                   << "Unknow inputs selection method.\n";
 
-        break;
-    }
+            throw std::logic_error(buffer.str());
+        }
     }
 }
 
-// void set_inputs_selection_type(const std::string&) method
-
 /// Sets a new inputs selection algorithm from a string.
 /// @param new_inputs_selection_type String with the inputs selection type.
-
 void ModelSelection::set_inputs_selection_type(const std::string &new_inputs_selection_type)
 {
-    if (new_inputs_selection_type == "NO_INPUTS_SELECTION") {
+    if (new_inputs_selection_type == "NO_INPUTS_SELECTION")
         set_inputs_selection_type(NO_INPUTS_SELECTION);
-    } else if (new_inputs_selection_type == "GROWING_INPUTS") {
+    else if (new_inputs_selection_type == "GROWING_INPUTS")
         set_inputs_selection_type(GROWING_INPUTS);
-    } else if (new_inputs_selection_type == "PRUNING_INPUTS") {
+    else if (new_inputs_selection_type == "PRUNING_INPUTS")
         set_inputs_selection_type(PRUNING_INPUTS);
-    } else if (new_inputs_selection_type == "GENETIC_ALGORITHM") {
+    else if (new_inputs_selection_type == "GENETIC_ALGORITHM")
         set_inputs_selection_type(GENETIC_ALGORITHM);
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: ModelSelection class.\n"
@@ -416,84 +336,68 @@ void ModelSelection::set_inputs_selection_type(const std::string &new_inputs_sel
     }
 }
 
-// void set_threshold_selection_type(const ThresholdSelectionType&) method
-
 /// Sets a new method for selecting the threshold to improve the final model.
 /// @param new_threshold_selection_type Method for selecting the threshold.
-
 void ModelSelection::set_threshold_selection_type(const ModelSelection::ThresholdSelectionType &new_threshold_selection_type)
 {
     destruct_threshold_selection();
 
     threshold_selection_type = new_threshold_selection_type;
-
     switch (new_threshold_selection_type) {
-    case NO_THRESHOLD_SELECTION: {
+    case NO_THRESHOLD_SELECTION:
         // do nothing
-
         break;
-    }
-    case F1_SCORE_OPTIMIZATION: {
+
+    case F1_SCORE_OPTIMIZATION:
         f1_score_optimization_threshold_pointer = new F1ScoreOptimizationThreshold(training_strategy_pointer);
-
         break;
-    }
-    case MATTHEW_CORRELATION: {
-        matthew_correlation_optimization_threshold_pointer = new MatthewCorrelationOptimizationThreshold(
-            training_strategy_pointer);
 
+    case MATTHEW_CORRELATION:
+        matthew_correlation_optimization_threshold_pointer = new MatthewCorrelationOptimizationThreshold(training_strategy_pointer);
         break;
-    }
-    case YOUDEN_INDEX: {
+
+    case YOUDEN_INDEX:
         youden_index_optimization_threshold_pointer = new YoudenIndexOptimizationThreshold(training_strategy_pointer);
-
         break;
-    }
-    case KAPPA_COEFFICIENT: {
-        kappa_coefficient_optimization_threshold_pointer = new KappaCoefficientOptimizationThreshold(
-            training_strategy_pointer);
 
+    case KAPPA_COEFFICIENT:
+        kappa_coefficient_optimization_threshold_pointer = new KappaCoefficientOptimizationThreshold(training_strategy_pointer);
         break;
-    }
-    case ROC_CURVE_DISTANCE: {
+
+    case ROC_CURVE_DISTANCE:
         roc_curve_optimization_threshold_pointer = new ROCCurveOptimizationThreshold(training_strategy_pointer);
-
         break;
-    }
-    default: {
-        std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void set_threshold_selection_method(const ThresholdSelectionType&) const method.\n"
-               << "Unknow threshold selection method.\n";
+    default:
+        {
+            std::ostringstream buffer;
 
-        throw std::logic_error(buffer.str());
+            buffer << "OpenNN Exception: ModelSelection class.\n"
+                   << "void set_threshold_selection_method(const ThresholdSelectionType&) const method.\n"
+                   << "Unknow threshold selection method.\n";
 
-        break;
-    }
+            throw std::logic_error(buffer.str());
+        }
     }
 }
 
-// void set_threshold_selection_type(const std::string&) method
-
 /// Sets a new threshold selection algorithm from a string.
 /// @param new_inputs_selection_type String with the inputs selection type.
-
 void ModelSelection::set_threshold_selection_type(const std::string &new_threshold_selection_type)
 {
-    if (new_threshold_selection_type == "NO_THRESHOLD_SELECTION") {
+    if (new_threshold_selection_type == "NO_THRESHOLD_SELECTION")
         set_threshold_selection_type(NO_THRESHOLD_SELECTION);
-    } else if (new_threshold_selection_type == "F1_SCORE_OPTIMIZATION") {
+    else if (new_threshold_selection_type == "F1_SCORE_OPTIMIZATION")
         set_threshold_selection_type(F1_SCORE_OPTIMIZATION);
-    } else if (new_threshold_selection_type == "MATTHEW_CORRELATION") {
+    else if (new_threshold_selection_type == "MATTHEW_CORRELATION")
         set_threshold_selection_type(MATTHEW_CORRELATION);
-    } else if (new_threshold_selection_type == "YOUDEN_INDEX") {
+    else if (new_threshold_selection_type == "YOUDEN_INDEX")
         set_threshold_selection_type(YOUDEN_INDEX);
-    } else if (new_threshold_selection_type == "KAPPA_COEFFICIENT") {
+    else if (new_threshold_selection_type == "KAPPA_COEFFICIENT")
         set_threshold_selection_type(KAPPA_COEFFICIENT);
-    } else if (new_threshold_selection_type == "ROC_CURVE_DISTANCE") {
+    else if (new_threshold_selection_type == "ROC_CURVE_DISTANCE")
         set_threshold_selection_type(ROC_CURVE_DISTANCE);
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: ModelSelection class.\n"
@@ -504,162 +408,145 @@ void ModelSelection::set_threshold_selection_type(const std::string &new_thresho
     }
 }
 
-// void set_function_regression(const bool&) method
-
 /// Sets a new regression value.
 /// If it is set to true the problem will be taken as a function regression;
 /// if it is set to false the problem will be taken as a pattern recognition.
 /// @param new_regression Regression value.
-
 void ModelSelection::set_function_regression(const bool &new_function_regression)
 {
     switch (inputs_selection_type) {
-    case NO_INPUTS_SELECTION: {
+    case NO_INPUTS_SELECTION:
         // do nothing
-
         break;
-    }
-    case GROWING_INPUTS: {
+
+    case GROWING_INPUTS:
         growing_inputs_pointer->set_function_regression(new_function_regression);
-
         break;
-    }
-    case PRUNING_INPUTS: {
+
+    case PRUNING_INPUTS:
         pruning_inputs_pointer->set_function_regression(new_function_regression);
-
         break;
-    }
-    case GENETIC_ALGORITHM: {
+
+    case GENETIC_ALGORITHM:
         genetic_algorithm_pointer->set_function_regression(new_function_regression);
-
         break;
-    }
-    default: {
-        std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void set_function_regression(const bool&) const method.\n"
-               << "Unknow inputs selection method.\n";
+    default:
+        {
+            std::ostringstream buffer;
 
-        throw std::logic_error(buffer.str());
+            buffer << "OpenNN Exception: ModelSelection class.\n"
+                   << "void set_function_regression(const bool&) const method.\n"
+                   << "Unknow inputs selection method.\n";
 
-        break;
-    }
+            throw std::logic_error(buffer.str());
+        }
     }
 }
-
-// void set_training_strategy_pointer(TrainingStrategy*) method
 
 /// Sets a new training strategy pointer.
 /// @param new_training_strategy_pointer Pointer to a training strategy object.
-
 void ModelSelection::set_training_strategy_pointer(TrainingStrategy *new_training_strategy_pointer)
 {
     training_strategy_pointer = new_training_strategy_pointer;
-
     switch (order_selection_type) {
-    case NO_ORDER_SELECTION: {
+    case NO_ORDER_SELECTION:
         // do nothing
-
         break;
-    }
-    case INCREMENTAL_ORDER: {
+
+    case INCREMENTAL_ORDER:
         incremental_order_pointer->set_training_strategy_pointer(new_training_strategy_pointer);
         break;
-    }
-    case GOLDEN_SECTION: {
+
+    case GOLDEN_SECTION:
         golden_section_order_pointer->set_training_strategy_pointer(new_training_strategy_pointer);
         break;
-    }
-    case SIMULATED_ANNEALING: {
+
+    case SIMULATED_ANNEALING:
         simulated_annelaing_order_pointer->set_training_strategy_pointer(new_training_strategy_pointer);
         break;
-    }
-    default: {
-        std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void set_training_strategy_pointer(TrainingStrategy*) method.\n"
-               << "Unknown order selection type.\n";
+    default:
+        {
+            std::ostringstream buffer;
 
-        throw std::logic_error(buffer.str());
-    }
+            buffer << "OpenNN Exception: ModelSelection class.\n"
+            << "void set_training_strategy_pointer(TrainingStrategy*) method.\n"
+            << "Unknown order selection type.\n";
+
+            throw std::logic_error(buffer.str());
+        }
     }
 
     switch (inputs_selection_type) {
-    case NO_ORDER_SELECTION: {
+    case NO_ORDER_SELECTION:
         // do nothing
-
         break;
-    }
-    case GROWING_INPUTS: {
+
+    case GROWING_INPUTS:
         growing_inputs_pointer->set_training_strategy_pointer(new_training_strategy_pointer);
         break;
-    }
-    case PRUNING_INPUTS: {
+
+    case PRUNING_INPUTS:
         pruning_inputs_pointer->set_training_strategy_pointer(new_training_strategy_pointer);
         break;
-    }
-    case GENETIC_ALGORITHM: {
+
+    case GENETIC_ALGORITHM:
         genetic_algorithm_pointer->set_training_strategy_pointer(new_training_strategy_pointer);
         break;
-    }
-    default: {
-        std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void set_training_strategy_pointer(TrainingStrategy*) method.\n"
-               << "Unknown inputs selection type.\n";
+    default:
+        {
+            std::ostringstream buffer;
 
-        throw std::logic_error(buffer.str());
-    }
+            buffer << "OpenNN Exception: ModelSelection class.\n"
+            << "void set_training_strategy_pointer(TrainingStrategy*) method.\n"
+            << "Unknown inputs selection type.\n";
+
+            throw std::logic_error(buffer.str());
+        }
     }
 
     switch (threshold_selection_type) {
-    case NO_THRESHOLD_SELECTION: {
+    case NO_THRESHOLD_SELECTION:
         // do nothing
-
         break;
-    }
-    case F1_SCORE_OPTIMIZATION: {
+
+    case F1_SCORE_OPTIMIZATION:
         f1_score_optimization_threshold_pointer->set_training_strategy_pointer(new_training_strategy_pointer);
         break;
-    }
-    case MATTHEW_CORRELATION: {
-        matthew_correlation_optimization_threshold_pointer->set_training_strategy_pointer(
-            new_training_strategy_pointer);
+
+    case MATTHEW_CORRELATION:
+        matthew_correlation_optimization_threshold_pointer->set_training_strategy_pointer(new_training_strategy_pointer);
         break;
-    }
-    case YOUDEN_INDEX: {
+
+    case YOUDEN_INDEX:
         youden_index_optimization_threshold_pointer->set_training_strategy_pointer(new_training_strategy_pointer);
         break;
-    }
-    case KAPPA_COEFFICIENT: {
-        kappa_coefficient_optimization_threshold_pointer->set_training_strategy_pointer(
-            new_training_strategy_pointer);
+
+    case KAPPA_COEFFICIENT:
+        kappa_coefficient_optimization_threshold_pointer->set_training_strategy_pointer(new_training_strategy_pointer);
         break;
-    }
-    case ROC_CURVE_DISTANCE: {
+
+    case ROC_CURVE_DISTANCE:
         roc_curve_optimization_threshold_pointer->set_training_strategy_pointer(new_training_strategy_pointer);
         break;
-    }
-    default: {
-        std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void set_training_strategy_pointer(TrainingStrategy*) method.\n"
-               << "Unknown threshold selection type.\n";
+    default:
+        {
+            std::ostringstream buffer;
 
-        throw std::logic_error(buffer.str());
-    }
+            buffer << "OpenNN Exception: ModelSelection class.\n"
+                   << "void set_training_strategy_pointer(TrainingStrategy*) method.\n"
+                   << "Unknown threshold selection type.\n";
+
+            throw std::logic_error(buffer.str());
+        }
     }
 }
 
-// void destruct_order_selection(void) method
-
 /// This method deletes the order selection algorithm object which composes this model selection object.
-
-void ModelSelection::destruct_order_selection(void)
+void ModelSelection::destruct_order_selection()
 {
     delete incremental_order_pointer;
     delete golden_section_order_pointer;
@@ -672,11 +559,8 @@ void ModelSelection::destruct_order_selection(void)
     order_selection_type = NO_ORDER_SELECTION;
 }
 
-// void destruct_inputs_selection(void) method
-
 /// This method deletes the inputs selection algorithm object which composes this model selection object.
-
-void ModelSelection::destruct_inputs_selection(void)
+void ModelSelection::destruct_inputs_selection()
 {
     delete growing_inputs_pointer;
     delete pruning_inputs_pointer;
@@ -689,11 +573,8 @@ void ModelSelection::destruct_inputs_selection(void)
     inputs_selection_type = NO_INPUTS_SELECTION;
 }
 
-// void destruct_threshold_selection(void) method
-
 /// This method deletes the threshold selection algorithm object which composes this model selection object.
-
-void ModelSelection::destruct_threshold_selection(void)
+void ModelSelection::destruct_threshold_selection()
 {
     delete f1_score_optimization_threshold_pointer;
     delete matthew_correlation_optimization_threshold_pointer;
@@ -710,44 +591,38 @@ void ModelSelection::destruct_threshold_selection(void)
     threshold_selection_type = NO_THRESHOLD_SELECTION;
 }
 
-// void check(void) const method
-
 /// Checks that the different pointers needed for performing the model selection are not NULL.
-
-void ModelSelection::check(void) const
+void ModelSelection::check() const
 {
-
-    // Training algorithm stuff
-
-    std::ostringstream buffer;
-
     if (!training_strategy_pointer) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void check(void) const method.\n"
+               << "void check() const method.\n"
                << "Pointer to training strategy is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
 
-    // Performance functional stuff
-
     const PerformanceFunctional *performance_functional_pointer = training_strategy_pointer->get_performance_functional_pointer();
 
     if (!performance_functional_pointer) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void check(void) const method.\n"
+               << "void check() const method.\n"
                << "Pointer to performance functional is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
 
-    // Neural network stuff
-
     const NeuralNetwork *neural_network_pointer = performance_functional_pointer->get_neural_network_pointer();
 
     if (!neural_network_pointer) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void check(void) const method.\n"
+               << "void check() const method.\n"
                << "Pointer to neural network is NULL.\n";
 
         throw std::logic_error(buffer.str());
@@ -756,419 +631,350 @@ void ModelSelection::check(void) const
     const MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
 
     if (!multilayer_perceptron_pointer) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void check(void) const method.\n"
+               << "void check() const method.\n"
                << "Pointer to multilayer perceptron is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
 
     if (multilayer_perceptron_pointer->is_empty()) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void check(void) const method.\n"
+               << "void check() const method.\n"
                << "Multilayer Perceptron is empty.\n";
 
         throw std::logic_error(buffer.str());
     }
 
-    // Data set stuff
-
     const DataSet *data_set_pointer = performance_functional_pointer->get_data_set_pointer();
 
     if (!data_set_pointer) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void check(void) const method.\n"
+               << "void check() const method.\n"
                << "Pointer to data set is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
 
     const Instances &instances = data_set_pointer->get_instances();
-
     const size_t selection_instances_number = instances.count_selection_instances_number();
 
     if (selection_instances_number == 0) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "void check(void) const method.\n"
+               << "void check() const method.\n"
                << "Number of selection instances is zero.\n";
 
         throw std::logic_error(buffer.str());
     }
-
 }
-
-// ModelSelectionResults perform_order_selection(void) method
 
 /// Perform the order selection, returns a structure with the results of the order selection
 /// It also set the neural network of the training strategy pointer with the optimum parameters
-
-ModelSelection::ModelSelectionResults ModelSelection::perform_order_selection(void) const
+ModelSelection::ModelSelectionResults ModelSelection::perform_order_selection() const
 {
+
 #ifdef __OPENNN_DEBUG__
-
-    std::ostringstream buffer;
-
     if (order_selection_type == NO_ORDER_SELECTION) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "ModelSelectionResults perform_order_selection(void) const method.\n"
+               << "ModelSelectionResults perform_order_selection() const method.\n"
                << "None order selection term is used.\n";
 
         throw std::logic_error(buffer.str());
     }
 
     check();
-
 #endif
 
     ModelSelectionResults results;
 
     switch (order_selection_type) {
-    case INCREMENTAL_ORDER: {
+    case INCREMENTAL_ORDER:
         results.incremental_order_results_pointer = incremental_order_pointer->perform_order_selection();
         break;
-    }
-    case GOLDEN_SECTION: {
+
+    case GOLDEN_SECTION:
         results.golden_section_order_results_pointer = golden_section_order_pointer->perform_order_selection();
         break;
-    }
-    case SIMULATED_ANNEALING: {
+
+    case SIMULATED_ANNEALING:
         results.simulated_annealing_order_results_pointer = simulated_annelaing_order_pointer->perform_order_selection();
         break;
+
+    default:
+        {
+            std::ostringstream buffer;
+
+            buffer << "OpenNN Exception: ModelSelection class.\n"
+            << "ModelSelectionResults perform_order_selection() method.\n"
+            << "Unknown order selection method.\n";
+
+            throw std::logic_error(buffer.str());
+        }
     }
-    default: {
-        std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "ModelSelectionResults perform_order_selection(void) method.\n"
-               << "Unknown order selection method.\n";
-
-        throw std::logic_error(buffer.str());
-
-        break;
-    }
-    }
-
-    return (results);
+    return results;
 }
-
-// ModelSelectionResults perform_inputs_selection(void) method
 
 /// Perform the inputs selection, returns a structure with the results of the inputs selection.
 /// It also set the neural network of the training strategy pointer with the optimum parameters.
-
-ModelSelection::ModelSelectionResults ModelSelection::perform_inputs_selection(void) const
+ModelSelection::ModelSelectionResults ModelSelection::perform_inputs_selection() const
 {
 #ifdef __OPENNN_DEBUG__
-
-    std::ostringstream buffer;
-
     if (inputs_selection_type == NO_INPUTS_SELECTION) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "ModelSelectionResults perform_inputs_selection(void) const method.\n"
+               << "ModelSelectionResults perform_inputs_selection() const method.\n"
                << "None inputs selection term is used.\n";
 
         throw std::logic_error(buffer.str());
     }
 
     check();
-
 #endif
 
     ModelSelectionResults results;
 
     switch (inputs_selection_type) {
-    case GROWING_INPUTS: {
+    case GROWING_INPUTS:
         results.growing_inputs_results_pointer = growing_inputs_pointer->perform_inputs_selection();
-
         break;
-    }
-    case PRUNING_INPUTS: {
+
+    case PRUNING_INPUTS:
         results.pruning_inputs_results_pointer = pruning_inputs_pointer->perform_inputs_selection();
-
         break;
-    }
-    case GENETIC_ALGORITHM: {
+
+    case GENETIC_ALGORITHM:
         results.genetic_algorithm_results_pointer = genetic_algorithm_pointer->perform_inputs_selection();
-
         break;
-    }
-    default: {
-        std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "ModelSelectionResults perform_inputs_selection(void) method.\n"
-               << "Unknown inputs selection method.\n";
+    default:
+        {
+            std::ostringstream buffer;
 
-        throw std::logic_error(buffer.str());
+            buffer << "OpenNN Exception: ModelSelection class.\n"
+                   << "ModelSelectionResults perform_inputs_selection() method.\n"
+                   << "Unknown inputs selection method.\n";
 
-        break;
-    }
+            throw std::logic_error(buffer.str());
+        }
     }
 
     return (results);
 }
 
-// ModelSelectionResults perform_threshold_selection(void) method
-
 /// Perform the threshold selection, returns a structure with the results of the threshold selection.
 /// It also set the neural network with the optimum threshold.
-
-ModelSelection::ModelSelectionResults ModelSelection::perform_threshold_selection(void) const
+ModelSelection::ModelSelectionResults ModelSelection::perform_threshold_selection() const
 {
+
 #ifdef __OPENNN_DEBUG__
-
-    std::ostringstream buffer;
-
     if (threshold_selection_type == NO_THRESHOLD_SELECTION) {
+        std::ostringstream buffer;
+
         buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "ModelSelectionResults perform_threshold_selection(void) const method.\n"
+               << "ModelSelectionResults perform_threshold_selection() const method.\n"
                << "None threshold selection term is used.\n";
 
         throw std::logic_error(buffer.str());
     }
 
     check();
-
 #endif
 
     ModelSelectionResults results;
 
     switch (threshold_selection_type) {
-    case F1_SCORE_OPTIMIZATION: {
+    case F1_SCORE_OPTIMIZATION:
         results.f1_score_opimization_results_pointer = f1_score_optimization_threshold_pointer->perform_threshold_selection();
-
         break;
-    }
-    case MATTHEW_CORRELATION: {
-        results.matthew_correlation_optimization_results_pointer = matthew_correlation_optimization_threshold_pointer
-                ->perform_threshold_selection();
 
+    case MATTHEW_CORRELATION:
+        results.matthew_correlation_optimization_results_pointer = matthew_correlation_optimization_threshold_pointer->perform_threshold_selection();
         break;
-    }
-    case YOUDEN_INDEX: {
+
+    case YOUDEN_INDEX:
         results.youden_index_optimization_results_pointer = youden_index_optimization_threshold_pointer->perform_threshold_selection();
-
         break;
-    }
-    case KAPPA_COEFFICIENT: {
+
+    case KAPPA_COEFFICIENT:
         results.kappa_coefficient_optimization_results_pointer = kappa_coefficient_optimization_threshold_pointer->perform_threshold_selection();
-
         break;
-    }
-    case ROC_CURVE_DISTANCE: {
+
+    case ROC_CURVE_DISTANCE:
         results.roc_curve_optimization_results_pointer = roc_curve_optimization_threshold_pointer->perform_threshold_selection();
-
         break;
+
+    default:
+        {
+            std::ostringstream buffer;
+
+            buffer << "OpenNN Exception: ModelSelection class.\n"
+            << "ModelSelectionResults perform_threshold_selection() method.\n"
+            << "Unknown threshold selection method.\n";
+
+            throw std::logic_error(buffer.str());
+        }
     }
-    default: {
-        std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "ModelSelectionResults perform_threshold_selection(void) method.\n"
-               << "Unknown threshold selection method.\n";
-
-        throw std::logic_error(buffer.str());
-
-        break;
-    }
-    }
-
-    return (results);
+    return results;
 }
-
-// ModelSelectionResults perform_model_selection(void) const method
 
 /// @todo
 /// Perform inputs selection and order selection.
-
-ModelSelection::ModelSelectionResults ModelSelection::perform_model_selection(void) const
+ModelSelection::ModelSelectionResults ModelSelection::perform_model_selection() const
 {
     ModelSelectionResults model_selection_results;
-
     model_selection_results = perform_order_selection();
 
-    return (model_selection_results);
+    return model_selection_results;
 }
-
-
-// tinyxml2::XMLDocument* to_XML(void) const method
 
 /// Serializes the model selection object into a XML document of the TinyXML library.
 /// See the OpenNN manual for more information about the format of this document.
-
-tinyxml2::XMLDocument *ModelSelection::to_XML(void) const
+tinyxml2::XMLDocument *ModelSelection::to_XML() const
 {
     std::ostringstream buffer;
-
     tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
 
     // Training strategy
-
     tinyxml2::XMLElement *model_selection_element = document->NewElement("ModelSelection");
-
     document->InsertFirstChild(model_selection_element);
 
     // Inputs Selection
-
     switch (inputs_selection_type) {
-    case NO_INPUTS_SELECTION: {
-        tinyxml2::XMLElement *inputs_selection_element = document->NewElement("InputsSelection");
-        model_selection_element->LinkEndChild(inputs_selection_element);
+    case NO_INPUTS_SELECTION:
+        {
+            tinyxml2::XMLElement *inputs_selection_element = document->NewElement("InputsSelection");
+            model_selection_element->LinkEndChild(inputs_selection_element);
+            inputs_selection_element->SetAttribute("Type", "NO_INPUTS_SELECTION");
+        }
+        break;
 
-        inputs_selection_element->SetAttribute("Type", "NO_INPUTS_SELECTION");
-    }
-    break;
+    case GROWING_INPUTS:
+        {
+            tinyxml2::XMLElement *inputs_selection_element = document->NewElement("InputsSelection");
+            model_selection_element->LinkEndChild(inputs_selection_element);
+            inputs_selection_element->SetAttribute("Type", "GROWING_INPUTS");
+            const tinyxml2::XMLDocument *growing_inputs_document = growing_inputs_pointer->to_XML();
+            const tinyxml2::XMLElement *growing_inputs_element = growing_inputs_document->FirstChildElement("GrowingInputs");
+            DeepClone(inputs_selection_element, growing_inputs_element, document, NULL);
+            delete growing_inputs_document;
+        }
+        break;
 
-    case GROWING_INPUTS: {
-        tinyxml2::XMLElement *inputs_selection_element = document->NewElement("InputsSelection");
-        model_selection_element->LinkEndChild(inputs_selection_element);
+    case PRUNING_INPUTS:
+        {
+            tinyxml2::XMLElement *inputs_selection_element = document->NewElement("InputsSelection");
+            model_selection_element->LinkEndChild(inputs_selection_element);
+            inputs_selection_element->SetAttribute("Type", "PRUNING_INPUTS");
+            const tinyxml2::XMLDocument *pruning_inputs_document = pruning_inputs_pointer->to_XML();
+            const tinyxml2::XMLElement *pruning_inputs_element = pruning_inputs_document->FirstChildElement("PruningInputs");
+            DeepClone(inputs_selection_element, pruning_inputs_element, document, NULL);
+            delete pruning_inputs_document;
+        }
+        break;
 
-        inputs_selection_element->SetAttribute("Type", "GROWING_INPUTS");
+    case GENETIC_ALGORITHM:
+        {
+            tinyxml2::XMLElement *inputs_selection_element = document->NewElement("InputsSelection");
+            model_selection_element->LinkEndChild(inputs_selection_element);
+            inputs_selection_element->SetAttribute("Type", "GENETIC_ALGORITHM");
+            const tinyxml2::XMLDocument *genetic_algorithm_document = genetic_algorithm_pointer->to_XML();
+            const tinyxml2::XMLElement *genetic_algorithm_element = genetic_algorithm_document->FirstChildElement("GeneticAlgorithm");
+            DeepClone(inputs_selection_element, genetic_algorithm_element, document, NULL);
+            delete genetic_algorithm_document;
+        }
+        break;
 
-        const tinyxml2::XMLDocument *growing_inputs_document = growing_inputs_pointer->to_XML();
+    default:
+        {
+            std::ostringstream buffer;
 
-        const tinyxml2::XMLElement *growing_inputs_element = growing_inputs_document->FirstChildElement(
-                    "GrowingInputs");
+            buffer << "OpenNN Exception: ModelSelection class.\n"
+                   << "tinyxml2::XMLDocument* to_XML() const method.\n"
+                   << "Unknown inputs selection type.\n";
 
-        DeepClone(inputs_selection_element, growing_inputs_element, document, NULL);
-
-        delete growing_inputs_document;
-    }
-    break;
-
-    case PRUNING_INPUTS: {
-        tinyxml2::XMLElement *inputs_selection_element = document->NewElement("InputsSelection");
-        model_selection_element->LinkEndChild(inputs_selection_element);
-
-        inputs_selection_element->SetAttribute("Type", "PRUNING_INPUTS");
-
-        const tinyxml2::XMLDocument *pruning_inputs_document = pruning_inputs_pointer->to_XML();
-
-        const tinyxml2::XMLElement *pruning_inputs_element = pruning_inputs_document->FirstChildElement(
-                    "PruningInputs");
-
-        DeepClone(inputs_selection_element, pruning_inputs_element, document, NULL);
-
-        delete pruning_inputs_document;
-    }
-    break;
-
-    case GENETIC_ALGORITHM: {
-        tinyxml2::XMLElement *inputs_selection_element = document->NewElement("InputsSelection");
-        model_selection_element->LinkEndChild(inputs_selection_element);
-
-        inputs_selection_element->SetAttribute("Type", "GENETIC_ALGORITHM");
-
-        const tinyxml2::XMLDocument *genetic_algorithm_document = genetic_algorithm_pointer->to_XML();
-
-        const tinyxml2::XMLElement *genetic_algorithm_element = genetic_algorithm_document->FirstChildElement(
-                    "GeneticAlgorithm");
-
-        DeepClone(inputs_selection_element, genetic_algorithm_element, document, NULL);
-
-        delete genetic_algorithm_document;
-    }
-    break;
-
-    default: {
-        std::ostringstream buffer;
-
-        buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "tinyxml2::XMLDocument* to_XML(void) const method.\n"
-               << "Unknown inputs selection type.\n";
-
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 
     // Order Selection
-
     switch (order_selection_type) {
-    case NO_ORDER_SELECTION: {
-        tinyxml2::XMLElement *order_selection_element = document->NewElement("OrderSelection");
-        model_selection_element->LinkEndChild(order_selection_element);
+    case NO_ORDER_SELECTION:
+        {
+            tinyxml2::XMLElement *order_selection_element = document->NewElement("OrderSelection");
+            model_selection_element->LinkEndChild(order_selection_element);
+            order_selection_element->SetAttribute("Type", "NO_ORDER_SELECTION");
+        }
+        break;
 
-        order_selection_element->SetAttribute("Type", "NO_ORDER_SELECTION");
-    }
-    break;
+    case INCREMENTAL_ORDER:
+        {
+            tinyxml2::XMLElement *order_selection_element = document->NewElement("OrderSelection");
+            model_selection_element->LinkEndChild(order_selection_element);
+            order_selection_element->SetAttribute("Type", "INCREMENTAL_ORDER");
+            const tinyxml2::XMLDocument *incremental_order_document = incremental_order_pointer->to_XML();
+            const tinyxml2::XMLElement *incremental_order_element = incremental_order_document->FirstChildElement("IncrementalOrder");
+            DeepClone(order_selection_element, incremental_order_element, document, NULL);
+            delete incremental_order_document;
+        }
+        break;
 
-    case INCREMENTAL_ORDER: {
-        tinyxml2::XMLElement *order_selection_element = document->NewElement("OrderSelection");
-        model_selection_element->LinkEndChild(order_selection_element);
+    case GOLDEN_SECTION:
+        {
+            tinyxml2::XMLElement *order_selection_element = document->NewElement("OrderSelection");
+            model_selection_element->LinkEndChild(order_selection_element);
+            order_selection_element->SetAttribute("Type", "GOLDEN_SECTION");
+            const tinyxml2::XMLDocument *golden_section_order_document = golden_section_order_pointer->to_XML();
+            const tinyxml2::XMLElement *golden_section_order_element = golden_section_order_document->FirstChildElement("GoldenSectionOrder");
+            DeepClone(order_selection_element, golden_section_order_element, document, NULL);
+            delete golden_section_order_document;
+        }
+        break;
 
-        order_selection_element->SetAttribute("Type", "INCREMENTAL_ORDER");
+    case SIMULATED_ANNEALING:
+        {
+            tinyxml2::XMLElement *order_selection_element = document->NewElement("OrderSelection");
+            model_selection_element->LinkEndChild(order_selection_element);
+            order_selection_element->SetAttribute("Type", "SIMULATED_ANNEALING");
+            const tinyxml2::XMLDocument *simulated_annealing_order_document = simulated_annelaing_order_pointer->to_XML();
+            const tinyxml2::XMLElement *simulated_annealing_order_element = simulated_annealing_order_document->FirstChildElement("SimulatedAnnealingOrder");
+            DeepClone(order_selection_element, simulated_annealing_order_element, document, NULL);
+            delete simulated_annealing_order_document;
+        }
+        break;
 
-        const tinyxml2::XMLDocument *incremental_order_document = incremental_order_pointer->to_XML();
+    default:
+        {
+            std::ostringstream buffer;
 
-        const tinyxml2::XMLElement *incremental_order_element = incremental_order_document->FirstChildElement(
-                    "IncrementalOrder");
+            buffer << "OpenNN Exception: ModelSelection class.\n"
+                   << "tinyxml2::XMLDocument* to_XML() const method.\n"
+                   << "Unknown order selection type.\n";
 
-        DeepClone(order_selection_element, incremental_order_element, document, NULL);
-
-        delete incremental_order_document;
-    }
-    break;
-
-    case GOLDEN_SECTION: {
-        tinyxml2::XMLElement *order_selection_element = document->NewElement("OrderSelection");
-        model_selection_element->LinkEndChild(order_selection_element);
-
-        order_selection_element->SetAttribute("Type", "GOLDEN_SECTION");
-
-        const tinyxml2::XMLDocument *golden_section_order_document = golden_section_order_pointer->to_XML();
-
-        const tinyxml2::XMLElement *golden_section_order_element = golden_section_order_document->FirstChildElement(
-                    "GoldenSectionOrder");
-
-        DeepClone(order_selection_element, golden_section_order_element, document, NULL);
-
-        delete golden_section_order_document;
-    }
-    break;
-
-    case SIMULATED_ANNEALING: {
-        tinyxml2::XMLElement *order_selection_element = document->NewElement("OrderSelection");
-        model_selection_element->LinkEndChild(order_selection_element);
-
-        order_selection_element->SetAttribute("Type", "SIMULATED_ANNEALING");
-
-        const tinyxml2::XMLDocument *simulated_annealing_order_document = simulated_annelaing_order_pointer->to_XML();
-
-        const tinyxml2::XMLElement *simulated_annealing_order_element = simulated_annealing_order_document->FirstChildElement(
-                    "SimulatedAnnealingOrder");
-
-        DeepClone(order_selection_element, simulated_annealing_order_element, document, NULL);
-
-        delete simulated_annealing_order_document;
-    }
-    break;
-
-    default: {
-        std::ostringstream buffer;
-
-        buffer << "OpenNN Exception: ModelSelection class.\n"
-               << "tinyxml2::XMLDocument* to_XML(void) const method.\n"
-               << "Unknown order selection type.\n";
-
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 
-    return (document);
+    return document;
 }
-
-
-// void from_XML(const tinyxml2::XMLDocument&) method
 
 /// Loads the members of this model selection object from a XML document.
 /// @param document XML document of the TinyXML library.
-
 void ModelSelection::from_XML(const tinyxml2::XMLDocument &document)
 {
     const tinyxml2::XMLElement *root_element = document.FirstChildElement("ModelSelection");
-
     if (!root_element) {
         std::ostringstream buffer;
 
@@ -1182,60 +988,54 @@ void ModelSelection::from_XML(const tinyxml2::XMLDocument &document)
     // Inputs Selection
     {
         const tinyxml2::XMLElement *element = root_element->FirstChildElement("InputsSelection");
-
         if (element) {
             const std::string new_inputs_selection_type = element->Attribute("Type");
-
             set_inputs_selection_type(new_inputs_selection_type);
-
             switch (inputs_selection_type) {
-            case NO_INPUTS_SELECTION: {
+            case NO_INPUTS_SELECTION:
                 // do nothing
-            }
-            break;
-            case GROWING_INPUTS: {
-                tinyxml2::XMLDocument new_document;
+                break;
 
-                tinyxml2::XMLElement *element_clone = new_document.NewElement("GrowingInputs");
-                new_document.InsertFirstChild(element_clone);
+            case GROWING_INPUTS:
+                {
+                    tinyxml2::XMLDocument new_document;
+                    tinyxml2::XMLElement *element_clone = new_document.NewElement("GrowingInputs");
+                    new_document.InsertFirstChild(element_clone);
+                    DeepClone(element_clone, element, &new_document, NULL);
+                    growing_inputs_pointer->from_XML(new_document);
+                }
+                break;
 
-                DeepClone(element_clone, element, &new_document, NULL);
+            case PRUNING_INPUTS:
+                {
+                    tinyxml2::XMLDocument new_document;
+                    tinyxml2::XMLElement *element_clone = new_document.NewElement("PruningInputs");
+                    new_document.InsertFirstChild(element_clone);
+                    DeepClone(element_clone, element, &new_document, NULL);
+                    pruning_inputs_pointer->from_XML(new_document);
+                }
+                break;
 
-                growing_inputs_pointer->from_XML(new_document);
-            }
-            break;
-            case PRUNING_INPUTS: {
-                tinyxml2::XMLDocument new_document;
+            case GENETIC_ALGORITHM:
+                {
+                    tinyxml2::XMLDocument new_document;
+                    tinyxml2::XMLElement *element_clone = new_document.NewElement("GeneticAlgorithm");
+                    new_document.InsertFirstChild(element_clone);
+                    DeepClone(element_clone, element, &new_document, NULL);
+                    genetic_algorithm_pointer->from_XML(new_document);
+                }
+                break;
 
-                tinyxml2::XMLElement *element_clone = new_document.NewElement("PruningInputs");
-                new_document.InsertFirstChild(element_clone);
+            default:
+                {
+                    std::ostringstream buffer;
 
-                DeepClone(element_clone, element, &new_document, NULL);
+                    buffer << "OpenNN Exception: ModelSelection class.\n"
+                           << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
+                           << "Unknown inputs selection type.\n";
 
-                pruning_inputs_pointer->from_XML(new_document);
-            }
-            break;
-            case GENETIC_ALGORITHM: {
-                tinyxml2::XMLDocument new_document;
-
-                tinyxml2::XMLElement *element_clone = new_document.NewElement("GeneticAlgorithm");
-                new_document.InsertFirstChild(element_clone);
-
-                DeepClone(element_clone, element, &new_document, NULL);
-
-                genetic_algorithm_pointer->from_XML(new_document);
-            }
-            break;
-            default: {
-                std::ostringstream buffer;
-
-                buffer << "OpenNN Exception: ModelSelection class.\n"
-                       << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
-                       << "Unknown inputs selection type.\n";
-
-                throw std::logic_error(buffer.str());
-            }
-            break;
+                    throw std::logic_error(buffer.str());
+                }
             }
         }
     }
@@ -1243,100 +1043,78 @@ void ModelSelection::from_XML(const tinyxml2::XMLDocument &document)
     // Order Selection
     {
         const tinyxml2::XMLElement *element = root_element->FirstChildElement("OrderSelection");
-
         if (element) {
             const std::string new_order_selection_type = element->Attribute("Type");
-
             set_order_selection_type(new_order_selection_type);
-
             switch (order_selection_type) {
-            case NO_ORDER_SELECTION: {
+            case NO_ORDER_SELECTION:
                 // do nothing
-            }
-            break;
-            case INCREMENTAL_ORDER: {
-                tinyxml2::XMLDocument new_document;
+                break;
 
-                tinyxml2::XMLElement *element_clone = new_document.NewElement("IncrementalOrder");
-                new_document.InsertFirstChild(element_clone);
+            case INCREMENTAL_ORDER:
+                {
+                    tinyxml2::XMLDocument new_document;
+                    tinyxml2::XMLElement *element_clone = new_document.NewElement("IncrementalOrder");
+                    new_document.InsertFirstChild(element_clone);
+                    DeepClone(element_clone, element, &new_document, NULL);
+                    incremental_order_pointer->from_XML(new_document);
+                }
+                break;
 
-                DeepClone(element_clone, element, &new_document, NULL);
+            case GOLDEN_SECTION:
+                {
+                    tinyxml2::XMLDocument new_document;
+                    tinyxml2::XMLElement *element_clone = new_document.NewElement("GoldenSectionOrder");
+                    new_document.InsertFirstChild(element_clone);
+                    DeepClone(element_clone, element, &new_document, NULL);
+                    golden_section_order_pointer->from_XML(new_document);
+                }
+                break;
 
-                incremental_order_pointer->from_XML(new_document);
-            }
-            break;
-            case GOLDEN_SECTION: {
-                tinyxml2::XMLDocument new_document;
+            case SIMULATED_ANNEALING:
+                {
+                    tinyxml2::XMLDocument new_document;
+                    tinyxml2::XMLElement *element_clone = new_document.NewElement("SimulatedAnnealingOrder");
+                    new_document.InsertFirstChild(element_clone);
+                    DeepClone(element_clone, element, &new_document, NULL);
+                    simulated_annelaing_order_pointer->from_XML(new_document);
+                }
+                break;
 
-                tinyxml2::XMLElement *element_clone = new_document.NewElement("GoldenSectionOrder");
-                new_document.InsertFirstChild(element_clone);
+            default:
+                {
+                    std::ostringstream buffer;
+                    buffer << "OpenNN Exception: ModelSelection class.\n"
+                           << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
+                           << "Unknown order selection type.\n";
 
-                DeepClone(element_clone, element, &new_document, NULL);
-
-                golden_section_order_pointer->from_XML(new_document);
-            }
-            break;
-            case SIMULATED_ANNEALING: {
-                tinyxml2::XMLDocument new_document;
-
-                tinyxml2::XMLElement *element_clone = new_document.NewElement("SimulatedAnnealingOrder");
-                new_document.InsertFirstChild(element_clone);
-
-                DeepClone(element_clone, element, &new_document, NULL);
-
-                simulated_annelaing_order_pointer->from_XML(new_document);
-            }
-            break;
-            default: {
-                std::ostringstream buffer;
-
-                buffer << "OpenNN Exception: ModelSelection class.\n"
-                       << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
-                       << "Unknown order selection type.\n";
-
-                throw std::logic_error(buffer.str());
-            }
-            break;
+                    throw std::logic_error(buffer.str());
+                }
             }
         }
     }
 }
 
-
-// void print(void) method
-
 /// Prints to the screen the XML representation of this model selection object.
-
-void ModelSelection::print(void) const
+void ModelSelection::print() const
 {
     std::cout << to_XML();
 }
 
-
-// void save(const std::string&) const method
-
 /// Saves the model selection members to a XML file.
 /// @param file_name Name of model selection XML file.
-
 void ModelSelection::save(const std::string &file_name) const
 {
     tinyxml2::XMLDocument *document = to_XML();
-
     document->SaveFile(file_name.c_str());
-
     delete document;
 }
 
-
-// void load(const std::string&) method
-
 /// Loads the model selection members from a XML file.
 /// @param file_name Name of model selection XML file.
-
 void ModelSelection::load(const std::string &file_name)
 {
     tinyxml2::XMLDocument document;
-
     if (document.LoadFile(file_name.c_str())) {
         std::ostringstream buffer;
 
@@ -1350,11 +1128,8 @@ void ModelSelection::load(const std::string &file_name)
     from_XML(document);
 }
 
-// void ModelSelectionResults::save(const std::string&) const method
-
 /// Saves the results structure to a data file.
 /// @param file_name Name of model selection results data file.
-
 void ModelSelection::ModelSelectionResults::save(const std::string &file_name) const
 {
     std::ofstream file(file_name.c_str());
@@ -1362,21 +1137,14 @@ void ModelSelection::ModelSelectionResults::save(const std::string &file_name) c
     file << "% Model Selection Results\n";
 
     file << "\n% Order Selection Results\n";
-
-    if (incremental_order_results_pointer) {
+    if (incremental_order_results_pointer)
         file << incremental_order_results_pointer->to_string();
-    }
-
-    if (golden_section_order_results_pointer) {
+    if (golden_section_order_results_pointer)
         file << golden_section_order_results_pointer->to_string();
-    }
-
-    if (simulated_annealing_order_results_pointer) {
+    if (simulated_annealing_order_results_pointer)
         file << simulated_annealing_order_results_pointer->to_string();
-    }
 
     file << "\n% Inputs Selection Results\n";
-
     if (growing_inputs_results_pointer) {
         file << growing_inputs_results_pointer->to_string();
     }
@@ -1390,29 +1158,20 @@ void ModelSelection::ModelSelectionResults::save(const std::string &file_name) c
     }
 
     file << "\n% Threhold Selection Results\n";
-
-    if (f1_score_opimization_results_pointer) {
+    if (f1_score_opimization_results_pointer)
         file << f1_score_opimization_results_pointer->to_string();
-    }
-
-    if (matthew_correlation_optimization_results_pointer) {
+    if (matthew_correlation_optimization_results_pointer)
         file << matthew_correlation_optimization_results_pointer->to_string();
-    }
-
-    if (youden_index_optimization_results_pointer) {
+    if (youden_index_optimization_results_pointer)
         file << youden_index_optimization_results_pointer->to_string();
-    }
-
-    if (kappa_coefficient_optimization_results_pointer) {
+    if (kappa_coefficient_optimization_results_pointer)
         file << kappa_coefficient_optimization_results_pointer->to_string();
-    }
-
-    if (roc_curve_optimization_results_pointer) {
+    if (roc_curve_optimization_results_pointer)
         file << roc_curve_optimization_results_pointer->to_string();
-    }
 
     file.close();
 }
+
 
 }
 

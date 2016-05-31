@@ -16,13 +16,12 @@
 #include "missing_values.h"
 
 
-namespace OpenNN
-{
+namespace OpenNN {
 
 /// Default constructor.
 /// It creates a missing values object with zero missing values.
 /// It also initializes the rest of class members to their default values.
-MissingValues::MissingValues(void)
+MissingValues::MissingValues()
 {
     set();
     set_default();
@@ -58,7 +57,7 @@ MissingValues::MissingValues(const MissingValues &other_missing_values)
 }
 
 /// Destructor.
-MissingValues::~MissingValues(void)
+MissingValues::~MissingValues()
 {
 }
 
@@ -86,20 +85,20 @@ bool MissingValues::operator==(const MissingValues &other_missing_values) const
 }
 
 /// Returns the number of instances in the data set.
-size_t MissingValues::get_instances_number(void) const
+size_t MissingValues::get_instances_number() const
 {
     return instances_number;
 }
 
 /// Returns the number of variables in the data set.
-size_t MissingValues::get_variables_number(void) const
+size_t MissingValues::get_variables_number() const
 {
     return variables_number;
 }
 
 /// Returns a vector with the number of missing values for each variable in the data set.
 /// The size of the vector is the number of variables.
-Vector<size_t> MissingValues::get_missing_values_numbers(void) const
+Vector<size_t> MissingValues::get_missing_values_numbers() const
 {
     Vector<size_t> missing_values_numbers(variables_number, 0);
     const size_t missing_values_number = get_missing_values_number();
@@ -112,7 +111,7 @@ Vector<size_t> MissingValues::get_missing_values_numbers(void) const
 }
 
 /// Returns a constant reference to the vector of missing value items.
-const Vector<MissingValues::Item> &MissingValues::get_items(void) const
+const Vector<MissingValues::Item> &MissingValues::get_items() const
 {
     return items;
 }
@@ -124,6 +123,7 @@ const MissingValues::Item &MissingValues::get_item(const size_t &index) const
 
 #ifdef __OPENNN_DEBUG__
     const size_t missing_values_number = get_missing_values_number();
+
     if (index >= missing_values_number) {
         std::ostringstream buffer;
 
@@ -139,25 +139,25 @@ const MissingValues::Item &MissingValues::get_item(const size_t &index) const
 }
 
 /// Returns the method to be used for dealing with the missing values.
-MissingValues::ScrubbingMethod MissingValues::get_scrubbing_method(void) const
+MissingValues::ScrubbingMethod MissingValues::get_scrubbing_method() const
 {
     return scrubbing_method;
 }
 
 /// Returns a string with the name of the method used for scrubbing.
-std::string MissingValues::write_scrubbing_method(void) const
+std::string MissingValues::write_scrubbing_method() const
 {
-    if (scrubbing_method == Unuse) {
+    if (scrubbing_method == Unuse)
         return "Unuse";
-    } else if (scrubbing_method == Mean) {
+    else if (scrubbing_method == Mean)
         return "Mean";
-    } else if (scrubbing_method == NoScrubbing) {
+    else if (scrubbing_method == NoScrubbing)
         return "NoScrubbing";
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: MissingValues class.\n"
-               << "std::string write_scrubbing_method(void) const method.\n"
+               << "std::string write_scrubbing_method() const method.\n"
                << "Unknown scrubbing method.\n";
 
         throw std::logic_error(buffer.str());
@@ -165,19 +165,19 @@ std::string MissingValues::write_scrubbing_method(void) const
 }
 
 /// Returns a string with the name of the method used for scrubbing, as paragaph text.
-std::string MissingValues::write_scrubbing_method_text(void) const
+std::string MissingValues::write_scrubbing_method_text() const
 {
-    if (scrubbing_method == Unuse) {
+    if (scrubbing_method == Unuse)
         return "unuse";
-    } else if (scrubbing_method == Mean) {
+    else if (scrubbing_method == Mean)
         return "mean";
-    } else if (scrubbing_method == NoScrubbing) {
+    else if (scrubbing_method == NoScrubbing)
         return "no scrubbing";
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: MissingValues class.\n"
-               << "std::string write_scrubbing_method_text(void) const method.\n"
+               << "std::string write_scrubbing_method_text() const method.\n"
                << "Unknown scrubbing method.\n";
 
         throw std::logic_error(buffer.str());
@@ -186,13 +186,13 @@ std::string MissingValues::write_scrubbing_method_text(void) const
 
 /// Returns true if messages from this class can be displayed on the screen,
 /// or false if messages from this class can't be displayed on the screen.
-const bool &MissingValues::get_display(void) const
+const bool &MissingValues::get_display() const
 {
     return display;
 }
 
 /// Sets a missing values object with zero instances, variables and missing values.
-void MissingValues::set(void)
+void MissingValues::set()
 {
     instances_number = 0;
     variables_number = 0;
@@ -238,7 +238,7 @@ void MissingValues::set_variables_number(const size_t &new_variables_number)
 /// <li>scrubbing_method: Unuse</li>
 /// <li>display: true</li>
 /// </ul>
-void MissingValues::set_default(void)
+void MissingValues::set_default()
 {
     scrubbing_method = Unuse;
     display = true;
@@ -265,6 +265,7 @@ void MissingValues::set_item(const size_t &index, const size_t &instance_index, 
 
 #ifdef __OPENNN_DEBUG__
     const size_t missing_values_number = get_missing_values_number();
+
     if (index >= missing_values_number) {
         std::ostringstream buffer;
 
@@ -350,11 +351,11 @@ void MissingValues::set_scrubbing_method(const ScrubbingMethod &new_scrubbing_me
 /// @param new_scrubbing_method String with the name of the scrubbing method.
 void MissingValues::set_scrubbing_method(const std::string &new_scrubbing_method)
 {
-    if (new_scrubbing_method == "Unuse") {
+    if (new_scrubbing_method == "Unuse")
         scrubbing_method = Unuse;
-    } else if (new_scrubbing_method == "Mean") {
+    else if (new_scrubbing_method == "Mean")
         scrubbing_method = Mean;
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: MissingValues class.\n"
@@ -367,7 +368,7 @@ void MissingValues::set_scrubbing_method(const std::string &new_scrubbing_method
 
 /// Returns true if there are missing values,
 /// and false if the number of missing values is zero.
-bool MissingValues::has_missing_values(void) const
+bool MissingValues::has_missing_values() const
 {
     return !items.empty();
 }
@@ -377,9 +378,8 @@ bool MissingValues::has_missing_values(void) const
 /// @param instance_index Index of instance.
 bool MissingValues::has_missing_values(const size_t &instance_index) const
 {
-    if (items.empty()) {
+    if (items.empty())
         return false;
-    }
 
     const size_t missing_values_number = get_missing_values_number();
     for (size_t i = 0; i < missing_values_number; i++) {
@@ -425,7 +425,7 @@ bool MissingValues::is_missing_value(const size_t &instance_index, const size_t 
 }
 
 /// Returns a vector with the indices of those instances with missing values.
-Vector<size_t> MissingValues::arrange_missing_instances(void) const
+Vector<size_t> MissingValues::arrange_missing_instances() const
 {
     const size_t missing_values_number = get_missing_values_number();
     Vector<size_t> missing_instances;
@@ -437,13 +437,13 @@ Vector<size_t> MissingValues::arrange_missing_instances(void) const
 }
 
 /// Returns the number of instances with missing values.
-size_t MissingValues::count_missing_instances(void) const
+size_t MissingValues::count_missing_instances() const
 {
     return arrange_missing_instances().size();
 }
 
 /// Returns a vector with the indices of those variables with missing values.
-Vector<size_t> MissingValues::arrange_missing_variables(void) const
+Vector<size_t> MissingValues::arrange_missing_variables() const
 {
     const size_t missing_values_number = get_missing_values_number();
     Vector<size_t> missing_variables;
@@ -462,7 +462,7 @@ void MissingValues::convert_time_series(const size_t &lags_number)
 }
 
 /// @todo Implement this method.
-void MissingValues::convert_autoassociation(void)
+void MissingValues::convert_autoassociation()
 {
     const size_t missing_values_number = get_missing_values_number();
     Vector<Item> autoassociation_items(missing_values_number);
@@ -471,7 +471,7 @@ void MissingValues::convert_autoassociation(void)
 /// Returns a vector of vectors with the indices of the missing values for each variable.
 /// The size of the vector is the number of variables.
 /// The size of each subvector is the number of missing values for the corresponding variable.
-Vector<Vector<size_t>> MissingValues::arrange_missing_indices(void) const
+Vector<Vector<size_t>> MissingValues::arrange_missing_indices() const
 {
     Vector<Vector<size_t>> missing_indices(variables_number);
     const size_t missing_values_number = get_missing_values_number();
@@ -488,7 +488,7 @@ Vector<Vector<size_t>> MissingValues::arrange_missing_indices(void) const
 /// Serializes the MissingValues object into a XML document of the TinyXML library.
 /// See the OpenNN manual for more information about the format of this document.
 /// @todo
-tinyxml2::XMLDocument *MissingValues::to_XML(void) const
+tinyxml2::XMLDocument *MissingValues::to_XML() const
 {
     tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
     std::ostringstream buffer;
@@ -685,7 +685,7 @@ void MissingValues::from_XML(const tinyxml2::XMLDocument &document)
 }
 
 /// Returns a string representation of the current MissingValues object.
-std::string MissingValues::to_string(void) const
+std::string MissingValues::to_string() const
 {
     std::ostringstream buffer;
     const size_t missing_values_number = get_missing_values_number();
@@ -699,11 +699,12 @@ std::string MissingValues::to_string(void) const
                << "Variable index: " << items[i].variable_index << "\n";
     }
     buffer << "Scrubbing method: " << write_scrubbing_method() << "\n";
+
     return buffer.str();
 }
 
 /// Prints to the screen information about the missing values object.
-void MissingValues::print(void) const
+void MissingValues::print() const
 {
     std::cout << to_string();
 }

@@ -43,7 +43,7 @@ class WeightedSquaredError : public PerformanceTerm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit WeightedSquaredError(void);
+    explicit WeightedSquaredError();
 
     // NEURAL NETWORK CONSTRUCTOR
     explicit WeightedSquaredError(NeuralNetwork *);
@@ -61,18 +61,18 @@ public:
     WeightedSquaredError(const WeightedSquaredError &);
 
     // DESTRUCTOR
-    virtual ~WeightedSquaredError(void);
+    virtual ~WeightedSquaredError();
 
     // Get methods
-    double get_positives_weight(void) const;
+    double get_positives_weight() const;
 
-    double get_negatives_weight(void) const;
+    double get_negatives_weight() const;
 
     // Checking methods
-    void check(void) const;
+    void check() const;
 
     // Objective methods
-    void set_default(void);
+    void set_default();
 
     void set_positives_weight(const double &);
 
@@ -80,49 +80,49 @@ public:
 
     void set_weights(const double &, const double &);
 
-    void set_weights(void);
+    void set_weights();
 
-    double calculate_positives_performance(void) const;
+    double calculate_positives_performance() const;
 
-    double calculate_negatives_performance(void) const;
+    double calculate_negatives_performance() const;
 
-    double calculate_performance(void) const;
+    double calculate_performance() const;
 
     double calculate_performance(const Vector<double> &) const;
 
-    double calculate_selection_performance(void) const;
+    double calculate_selection_performance() const;
 
     Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
 
-    Vector<double> calculate_gradient(void) const;
+    Vector<double> calculate_gradient() const;
 
     Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
 
-    Matrix<double> calculate_Hessian(void) const;
+    Matrix<double> calculate_Hessian() const;
 
-    FirstOrderPerformance calculate_first_order_performance(void) const;
+    FirstOrderPerformance calculate_first_order_performance() const;
 
-    SecondOrderPerformance calculate_second_order_performance(void) const;
+    SecondOrderPerformance calculate_second_order_performance() const;
 
     // Objective terms methods
-    Vector<double> calculate_terms(void) const;
+    Vector<double> calculate_terms() const;
 
     Vector<double> calculate_terms(const Vector<double> &) const;
 
-    Matrix<double> calculate_terms_Jacobian(void) const;
+    Matrix<double> calculate_terms_Jacobian() const;
 
-    FirstOrderTerms calculate_first_order_terms(void) const;
+    FirstOrderTerms calculate_first_order_terms() const;
 
-    std::string write_performance_term_type(void) const;
+    std::string write_performance_term_type() const;
 
     // Serialization methods
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 
-    std::string write_information(void) const;
+    std::string write_information() const;
 
-    std::string to_string(void) const;
+    std::string to_string() const;
 
 private:
     double positives_weight;

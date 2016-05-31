@@ -53,57 +53,57 @@ public:
     explicit NormalizedSquaredError(DataSet *);
 
     // DEFAULT CONSTRUCTOR
-    explicit NormalizedSquaredError(void);
+    explicit NormalizedSquaredError();
 
     // XML CONSTRUCTOR
     explicit NormalizedSquaredError(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~NormalizedSquaredError(void);
+    virtual ~NormalizedSquaredError();
 
     // Normalization coefficients
     double calculate_normalization_coefficient(const Matrix<double> &, const Vector<double> &) const;
 
     // Checking methods
-    void check(void) const;
+    void check() const;
 
     // performance methods
-    double calculate_performance(void) const;
+    double calculate_performance() const;
 
     Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
 
-    Vector<double> calculate_gradient(void) const;
+    Vector<double> calculate_gradient() const;
 
     Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
 
-    Matrix<double> calculate_Hessian(void) const;
+    Matrix<double> calculate_Hessian() const;
 
     double calculate_performance(const Vector<double> &) const;
 
-    double calculate_selection_performance(void) const;
+    double calculate_selection_performance() const;
 
     // Objective terms methods
-    Vector<double> calculate_terms(void) const;
+    Vector<double> calculate_terms() const;
 
     Vector<double> calculate_terms(const Vector<double> &) const;
 
-    Matrix<double> calculate_terms_Jacobian(void) const;
+    Matrix<double> calculate_terms_Jacobian() const;
 
-    PerformanceTerm::FirstOrderTerms calculate_first_order_terms(void) const;
+    PerformanceTerm::FirstOrderTerms calculate_first_order_terms() const;
 
     // Squared errors methods
-    Vector<double> calculate_squared_errors(void) const;
+    Vector<double> calculate_squared_errors() const;
 
     Vector<size_t> calculate_maximal_errors(const size_t & = 10) const;
 
-    std::string write_performance_term_type(void) const;
+    std::string write_performance_term_type() const;
 
     // Serialization methods
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 
-    std::string write_information(void) const;
+    std::string write_information() const;
 
 private:
     /// Mean values of all the target variables.

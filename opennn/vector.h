@@ -75,7 +75,7 @@ class Vector : public std::vector<T>
 {
 public:
     // Default constructor.
-    explicit Vector(void);
+    explicit Vector();
 
     // General constructor.
     explicit Vector(const size_t &);
@@ -97,7 +97,7 @@ public:
     Vector(const Vector<T> &);
 
     // DESTRUCTOR
-    virtual ~Vector(void);
+    virtual ~Vector();
 
     // OPERATORS
     bool operator==(const T &) const;
@@ -113,7 +113,7 @@ public:
     bool operator<=(const T &) const;
 
     // Set methods
-    void set(void);
+    void set();
 
     void set(const size_t &);
 
@@ -128,7 +128,7 @@ public:
     // Initialization methods
     void initialize(const T &);
 
-    void initialize_sequential(void);
+    void initialize_sequential();
 
     void randomize_uniform(const double & = -1.0, const double & = 1.0);
 
@@ -147,9 +147,9 @@ public:
 
     bool is_constant(const double & = 0.0) const;
 
-    bool is_crescent(void) const;
+    bool is_crescent() const;
 
-    bool is_decrescent(void) const;
+    bool is_decrescent() const;
 
     // Other methods
     size_t count_occurrences(const T &) const;
@@ -171,11 +171,11 @@ public:
                                                               const Vector<Histogram<T>> &) const;
 
     // Statistics methods
-    T calculate_minimum(void) const;
+    T calculate_minimum() const;
 
-    T calculate_maximum(void) const;
+    T calculate_maximum() const;
 
-    Vector<T> calculate_minimum_maximum(void) const;
+    Vector<T> calculate_minimum_maximum() const;
 
     T calculate_minimum_missing_values(const Vector<size_t> &) const;
 
@@ -183,7 +183,7 @@ public:
 
     Vector<T> calculate_minimum_maximum_missing_values(const Vector<size_t> &) const;
 
-    Vector<T> calculate_explained_variance(void) const;
+    Vector<T> calculate_explained_variance() const;
 
     // Histogram methods
     Histogram<T> calculate_histogram(const size_t & = 10) const;
@@ -191,57 +191,57 @@ public:
     Histogram<T> calculate_histogram_missing_values(const Vector<size_t> &,
                                                     const size_t & = 10) const;
 
-    size_t calculate_minimal_index(void) const;
+    size_t calculate_minimal_index() const;
 
-    size_t calculate_maximal_index(void) const;
+    size_t calculate_maximal_index() const;
 
     Vector<size_t> calculate_minimal_indices(const size_t &) const;
 
     Vector<size_t> calculate_maximal_indices(const size_t &) const;
 
-    Vector<size_t> calculate_minimal_maximal_index(void) const;
+    Vector<size_t> calculate_minimal_maximal_index() const;
 
     Vector<T> calculate_pow(const T &) const;
 
-    Vector<T> calculate_competitive(void) const;
+    Vector<T> calculate_competitive() const;
 
-    Vector<T> calculate_softmax(void) const;
+    Vector<T> calculate_softmax() const;
 
-    Matrix<T> calculate_softmax_Jacobian(void) const;
+    Matrix<T> calculate_softmax_Jacobian() const;
 
-    Vector<bool> calculate_binary(void) const;
+    Vector<bool> calculate_binary() const;
 
-    Vector<T> calculate_cumulative(void) const;
+    Vector<T> calculate_cumulative() const;
 
     size_t calculate_cumulative_index(const T &) const;
 
     size_t calculate_closest_index(const T &) const;
 
-    T calculate_sum(void) const;
+    T calculate_sum() const;
 
     T calculate_partial_sum(const Vector<size_t> &) const;
 
     T calculate_sum_missing_values(const Vector<size_t> &) const;
 
-    T calculate_product(void) const;
+    T calculate_product() const;
 
-    double calculate_mean(void) const;
+    double calculate_mean() const;
 
-    double calculate_variance(void) const;
+    double calculate_variance() const;
 
     double calculate_covariance(const Vector<double> &) const;
 
-    double calculate_standard_deviation(void) const;
+    double calculate_standard_deviation() const;
 
-    double calculate_asymmetry(void) const;
+    double calculate_asymmetry() const;
 
-    double calculate_kurtosis(void) const;
+    double calculate_kurtosis() const;
 
-    double calculate_median(void) const;
+    double calculate_median() const;
 
-    Vector<double> calculate_quartiles(void) const;
+    Vector<double> calculate_quartiles() const;
 
-    Vector<double> calculate_mean_standard_deviation(void) const;
+    Vector<double> calculate_mean_standard_deviation() const;
 
     double calculate_mean_missing_values(const Vector<size_t> &) const;
 
@@ -253,28 +253,28 @@ public:
 
     double calculate_kurtosis_missing_values(const Vector<size_t> &) const;
 
-    Statistics<T> calculate_statistics(void) const;
+    Statistics<T> calculate_statistics() const;
 
     Statistics<T> calculate_statistics_missing_values(const Vector<size_t> &) const;
 
-    Vector<double> calculate_shape_parameters(void) const;
+    Vector<double> calculate_shape_parameters() const;
 
     Vector<double> calculate_shape_parameters_missing_values(const Vector<size_t> &) const;
 
-    Vector<double> calculate_box_and_whiskers(void) const;
+    Vector<double> calculate_box_and_whiskers() const;
 
     // Norm methods
-    double calculate_norm(void) const;
+    double calculate_norm() const;
 
-    Vector<T> calculate_norm_gradient(void) const;
+    Vector<T> calculate_norm_gradient() const;
 
-    Matrix<T> calculate_norm_Hessian(void) const;
+    Matrix<T> calculate_norm_Hessian() const;
 
     double calculate_p_norm(const double &) const;
 
     Vector<double> calculate_p_norm_gradient(const double &) const;
 
-    Vector<T> calculate_normalized(void) const;
+    Vector<T> calculate_normalized() const;
 
     double calculate_distance(const Vector<T> &) const;
 
@@ -299,9 +299,9 @@ public:
 
     LinearRegressionParameters<T> calculate_linear_regression_parameters(const Vector<T> &) const;
 
-    Vector<T> calculate_absolute_value(void) const;
+    Vector<T> calculate_absolute_value() const;
 
-    void apply_absolute_value(void);
+    void apply_absolute_value();
 
     // Bounding methods
     Vector<T> calculate_lower_bounded(const T &) const;
@@ -330,14 +330,14 @@ public:
     void apply_lower_upper_bounds(const Vector<T> &, const Vector<T> &);
 
     // Rank methods
-    Vector<size_t> sort_less_indices(void) const;
+    Vector<size_t> sort_less_indices() const;
 
-    Vector<size_t> sort_greater_indices(void) const;
+    Vector<size_t> sort_greater_indices() const;
 
 
-    Vector<size_t> calculate_less_rank(void) const;
+    Vector<size_t> calculate_less_rank() const;
 
-    Vector<size_t> calculate_greater_rank(void) const;
+    Vector<size_t> calculate_greater_rank() const;
 
     // Mathematical operators
     inline Vector<T> operator+(const T &) const;
@@ -381,22 +381,22 @@ public:
     void operator/=(const Vector<T> &);
 
     // Filtering methods
-    void filter_positive(void);
+    void filter_positive();
 
-    void filter_negative(void);
+    void filter_negative();
 
     // Scaling methods
     void scale_minimum_maximum(const T &, const T &);
 
     void scale_minimum_maximum(const Statistics<T> &);
 
-    Statistics<T> scale_minimum_maximum(void);
+    Statistics<T> scale_minimum_maximum();
 
     void scale_mean_standard_deviation(const T &, const T &);
 
     void scale_mean_standard_deviation(const Statistics<T> &);
 
-    Statistics<T> scale_mean_standard_deviation(void);
+    Statistics<T> scale_mean_standard_deviation();
 
     void scale_minimum_maximum(const Vector<T> &, const Vector<T> &);
 
@@ -420,7 +420,7 @@ public:
     void unscale_mean_standard_deviation(const Vector<T> &, const Vector<T> &);
 
     // Arranging methods
-    Matrix<T> arrange_diagonal_matrix(void) const;
+    Matrix<T> arrange_diagonal_matrix() const;
 
     Vector<T> arrange_subvector(const Vector<size_t> &) const;
 
@@ -445,11 +445,11 @@ public:
 
     Vector<T> assemble(const Vector<T> &) const;
 
-    std::vector<T> to_std_vector(void) const;
+    std::vector<T> to_std_vector() const;
 
-    Matrix<T> to_row_matrix(void) const;
+    Matrix<T> to_row_matrix() const;
 
-    Matrix<T> to_column_matrix(void) const;
+    Matrix<T> to_column_matrix() const;
 
     void parse(const std::string &);
 
@@ -465,7 +465,7 @@ public:
 
 /// Default constructor. It creates a vector of size zero.
 template<class T>
-Vector<T>::Vector(void)
+Vector<T>::Vector()
         : std::vector<T>()
 {
 }
@@ -526,7 +526,7 @@ Vector<T>::Vector(const Vector<T> &other_vector)
 
 /// Destructor.
 template<class T>
-Vector<T>::~Vector(void)
+Vector<T>::~Vector()
 {
 }
 
@@ -624,7 +624,7 @@ bool Vector<T>::operator<=(const T &value) const
 
 /// Sets the size of a vector to zero.
 template<class T>
-void Vector<T>::set(void)
+void Vector<T>::set()
 {
     this->resize(0);
 }
@@ -699,7 +699,7 @@ void Vector<T>::initialize(const T &value)
 
 /// Initializes all the elements of the vector in a sequential order.
 template<class T>
-void Vector<T>::initialize_sequential(void)
+void Vector<T>::initialize_sequential()
 {
     for (size_t i = 0; i < this->size(); i++) {
         (*this)[i] = (T) i;
@@ -914,7 +914,7 @@ bool Vector<T>::is_constant(const double &tolerance) const
 /// Returns true if all the elements in the vector have values which increase
 /// with the index, and false otherwise.
 template<class T>
-bool Vector<T>::is_crescent(void) const
+bool Vector<T>::is_crescent() const
 {
     for (size_t i = 0; i < this->size() - 1; i++) {
         if ((*this)[i] > (*this)[i + 1])
@@ -926,7 +926,7 @@ bool Vector<T>::is_crescent(void) const
 /// Returns true if all the elements in the vector have values which decrease
 /// with the index, and false otherwise.
 template<class T>
-bool Vector<T>::is_decrescent(void) const
+bool Vector<T>::is_decrescent() const
 {
     for (size_t i = 0; i < this->size() - 1; i++) {
         if ((*this)[i] < (*this)[i + 1])
@@ -1060,7 +1060,7 @@ Vector<size_t> Vector<T>::calculate_total_frequencies_missing_values(const Vecto
 
 /// Returns the smallest element in the vector.
 template<class T>
-T Vector<T>::calculate_minimum(void) const
+T Vector<T>::calculate_minimum() const
 {
     const size_t this_size = this->size();
     T minimum = std::numeric_limits<T>::max();
@@ -1073,7 +1073,7 @@ T Vector<T>::calculate_minimum(void) const
 
 /// Returns the largest element in the vector.
 template<class T>
-T Vector<T>::calculate_maximum(void) const
+T Vector<T>::calculate_maximum() const
 {
     const size_t this_size = this->size();
     T maximum = std::numeric_limits<T>::max();
@@ -1091,7 +1091,7 @@ T Vector<T>::calculate_maximum(void) const
 /// Returns a vector containing the smallest and the largest elements in the
 /// vector.
 template<class T>
-Vector<T> Vector<T>::calculate_minimum_maximum(void) const
+Vector<T> Vector<T>::calculate_minimum_maximum() const
 {
     size_t this_size = this->size();
     T minimum = std::numeric_limits<T>::max();
@@ -1173,7 +1173,7 @@ Vector<T> Vector<T>::calculate_minimum_maximum_missing_values(const Vector<size_
 /// Calculates the explained variance for a given vector (principal components analysis).
 /// This method returns a vector whose size is the same as the size of the given vector.
 template<class T>
-Vector<T> Vector<T>::calculate_explained_variance(void) const
+Vector<T> Vector<T>::calculate_explained_variance() const
 {
     const size_t this_size = this->size();
 
@@ -1182,7 +1182,7 @@ Vector<T> Vector<T>::calculate_explained_variance(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Vector Template.\n"
-               << "Vector<T> calculate_explained_variance(void) const method.\n"
+               << "Vector<T> calculate_explained_variance() const method.\n"
                << "Size of the vector must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -1196,7 +1196,7 @@ Vector<T> Vector<T>::calculate_explained_variance(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Vector Template.\n"
-               << "Vector<T> calculate_explained_variance(void) const method.\n"
+               << "Vector<T> calculate_explained_variance() const method.\n"
                << "Sum of the members of the vector must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -1205,7 +1205,7 @@ Vector<T> Vector<T>::calculate_explained_variance(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Vector Template.\n"
-               << "Vector<T> calculate_explained_variance(void) const method.\n"
+               << "Vector<T> calculate_explained_variance() const method.\n"
                << "Sum of the members of the vector cannot be negative.\n";
 
         throw std::logic_error(buffer.str());
@@ -1340,7 +1340,7 @@ Histogram<T> Vector<T>::calculate_histogram_missing_values(const Vector<size_t> 
 
 /// Returns the index of the smallest element in the vector.
 template<class T>
-size_t Vector<T>::calculate_minimal_index(void) const
+size_t Vector<T>::calculate_minimal_index() const
 {
     const size_t this_size = this->size();
     T minimum = (*this)[0];
@@ -1356,7 +1356,7 @@ size_t Vector<T>::calculate_minimal_index(void) const
 
 /// Returns the index of the largest element in the vector.
 template<class T>
-size_t Vector<T>::calculate_maximal_index(void) const
+size_t Vector<T>::calculate_maximal_index() const
 {
     const size_t this_size = this->size();
     T maximum = (*this)[0];
@@ -1409,7 +1409,7 @@ Vector<T>::calculate_maximal_indices(const size_t &number) const
 /// Returns a vector with the indexes of the smallest and the largest elements
 /// in the vector.
 template<class T>
-Vector<size_t> Vector<T>::calculate_minimal_maximal_index(void) const
+Vector<size_t> Vector<T>::calculate_minimal_maximal_index() const
 {
     const size_t this_size = this->size();
     T minimum = (*this)[0];
@@ -1451,7 +1451,7 @@ Vector<T> Vector<T>::calculate_pow(const T &exponent) const
 /// whose elements are one the bigest element of this vector, and zero for the
 /// other elements.
 template<class T>
-Vector<T> Vector<T>::calculate_competitive(void) const
+Vector<T> Vector<T>::calculate_competitive() const
 {
     const size_t this_size = this->size();
     Vector<T> competitive(this_size, 0);
@@ -1463,7 +1463,7 @@ Vector<T> Vector<T>::calculate_competitive(void) const
 /// Returns the softmax vector of this vector,
 /// whose elements sum one, and can be interpreted as probabilities.
 template<class T>
-Vector<T> Vector<T>::calculate_softmax(void) const
+Vector<T> Vector<T>::calculate_softmax() const
 {
     const size_t this_size = this->size();
     Vector<T> softmax(this_size);
@@ -1479,7 +1479,7 @@ Vector<T> Vector<T>::calculate_softmax(void) const
 
 /// Returns the softmax Jacobian of this vector.
 template<class T>
-Matrix<T> Vector<T>::calculate_softmax_Jacobian(void) const
+Matrix<T> Vector<T>::calculate_softmax_Jacobian() const
 {
     const size_t this_size = this->size();
     Matrix<T> softmax_Jacobian(this_size, this_size);
@@ -1497,7 +1497,7 @@ Matrix<T> Vector<T>::calculate_softmax_Jacobian(void) const
 /// This method converts the values of the vector to be binary.
 /// The threshold value used is 0.5.
 template<class T>
-Vector<bool> Vector<T>::calculate_binary(void) const
+Vector<bool> Vector<T>::calculate_binary() const
 {
     const size_t this_size = this->size();
     Vector<bool> binary(this_size);
@@ -1513,7 +1513,7 @@ Vector<bool> Vector<T>::calculate_binary(void) const
 /// Return the cumulative vector of this vector,
 /// where each element is summed up with all the previous ones.
 template<class T>
-Vector<T> Vector<T>::calculate_cumulative(void) const
+Vector<T> Vector<T>::calculate_cumulative() const
 {
     const size_t this_size = this->size();
     Vector<T> cumulative(this_size);
@@ -1593,7 +1593,7 @@ size_t Vector<T>::calculate_closest_index(const T &value) const
 
 /// Returns the sum of the elements in the vector.
 template<class T>
-T Vector<T>::calculate_sum(void) const
+T Vector<T>::calculate_sum() const
 {
     const size_t this_size = this->size();
     T sum = 0;
@@ -1632,7 +1632,7 @@ T Vector<T>::calculate_sum_missing_values(const Vector<size_t> &missing_indices)
 
 /// Returns the product of the elements in the vector.
 template<class T>
-T Vector<T>::calculate_product(void) const
+T Vector<T>::calculate_product() const
 {
     const size_t this_size = this->size();
     T product = 1;
@@ -1644,7 +1644,7 @@ T Vector<T>::calculate_product(void) const
 
 /// Returns the mean of the elements in the vector.
 template<class T>
-double Vector<T>::calculate_mean(void) const
+double Vector<T>::calculate_mean() const
 {
     const size_t this_size = this->size();
 
@@ -1653,7 +1653,7 @@ double Vector<T>::calculate_mean(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Vector Template.\n"
-               << "double calculate_mean(void) const method.\n"
+               << "double calculate_mean() const method.\n"
                << "Size must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -1667,7 +1667,7 @@ double Vector<T>::calculate_mean(void) const
 
 /// Returns the variance of the elements in the vector.
 template<class T>
-double Vector<T>::calculate_variance(void) const
+double Vector<T>::calculate_variance() const
 {
     const size_t this_size = this->size();
 
@@ -1676,7 +1676,7 @@ double Vector<T>::calculate_variance(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Vector Template.\n"
-               << "double calculate_variance(void) const method.\n"
+               << "double calculate_variance() const method.\n"
                << "Size must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -1741,7 +1741,7 @@ double Vector<T>::calculate_covariance(const Vector<double> &other_vector) const
 
 /// Returns the variance of the elements in the vector.
 template<class T>
-double Vector<T>::calculate_standard_deviation(void) const
+double Vector<T>::calculate_standard_deviation() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -1751,7 +1751,7 @@ double Vector<T>::calculate_standard_deviation(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Vector Template.\n"
-               << "double calculate_standard_deviation(void) const method.\n"
+               << "double calculate_standard_deviation() const method.\n"
                << "Size must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -1763,7 +1763,7 @@ double Vector<T>::calculate_standard_deviation(void) const
 
 /// Returns the asymmetry of the elements in the vector
 template<class T>
-double Vector<T>::calculate_asymmetry(void) const
+double Vector<T>::calculate_asymmetry() const
 {
     const size_t this_size = this->size();
 
@@ -1772,7 +1772,7 @@ double Vector<T>::calculate_asymmetry(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Vector Template.\n"
-               << "double calculate_asymmetry(void) const method.\n"
+               << "double calculate_asymmetry() const method.\n"
                << "Size must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -1796,7 +1796,7 @@ double Vector<T>::calculate_asymmetry(void) const
 
 /// Returns the kurtosis value of the elements in the vector.
 template<class T>
-double Vector<T>::calculate_kurtosis(void) const
+double Vector<T>::calculate_kurtosis() const
 {
     const size_t this_size = this->size();
 
@@ -1805,7 +1805,7 @@ double Vector<T>::calculate_kurtosis(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Vector Template.\n"
-               << "double calculate_kurtosis(void) const method.\n"
+               << "double calculate_kurtosis() const method.\n"
                << "Size must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -1829,7 +1829,7 @@ double Vector<T>::calculate_kurtosis(void) const
 
 /// Returns the mean and the standard deviation of the elements in the vector.
 template<class T>
-Vector<double> Vector<T>::calculate_mean_standard_deviation(void) const
+Vector<double> Vector<T>::calculate_mean_standard_deviation() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -1839,7 +1839,7 @@ Vector<double> Vector<T>::calculate_mean_standard_deviation(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Vector Template.\n"
-               << "double calculate_mean_standard_deviation(void).\n"
+               << "double calculate_mean_standard_deviation().\n"
                << "Size must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -1856,7 +1856,7 @@ Vector<double> Vector<T>::calculate_mean_standard_deviation(void) const
 
 /// Returns the median of the elements in the vector
 template<class T>
-double Vector<T>::calculate_median(void) const
+double Vector<T>::calculate_median() const
 {
     const size_t this_size = this->size();
     Vector<T> sorted_vector(*this);
@@ -1873,7 +1873,7 @@ double Vector<T>::calculate_median(void) const
 
 /// Returns the quarters of the elements in the vector.
 template<class T>
-Vector<double> Vector<T>::calculate_quartiles(void) const
+Vector<double> Vector<T>::calculate_quartiles() const
 {
     const size_t this_size = this->size();
     Vector<T> sorted_vector(*this);
@@ -2058,7 +2058,7 @@ double Vector<T>::calculate_kurtosis_missing_values(const Vector<size_t> &missin
 /// Returns the minimum, maximum, mean and standard deviation of the elements in
 /// the vector.
 template<class T>
-Statistics<T> Vector<T>::calculate_statistics(void) const
+Statistics<T> Vector<T>::calculate_statistics() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -2068,7 +2068,7 @@ Statistics<T> Vector<T>::calculate_statistics(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Vector Template.\n"
-               << "double calculate_statistics(void).\n"
+               << "double calculate_statistics().\n"
                << "Size must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -2115,7 +2115,7 @@ Statistics<T> Vector<T>::calculate_statistics_missing_values(const Vector<size_t
 /// Returns a vector with the asymmetry and the kurtosis values of the elements
 /// in the vector.
 template<class T>
-Vector<double> Vector<T>::calculate_shape_parameters(void) const
+Vector<double> Vector<T>::calculate_shape_parameters() const
 {
 
 #ifdef __OPENNN_DEBUG__
@@ -2125,7 +2125,7 @@ Vector<double> Vector<T>::calculate_shape_parameters(void) const
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: Vector Template.\n"
-               << "Vector<double> calculate_shape_parameters(void).\n"
+               << "Vector<double> calculate_shape_parameters().\n"
                << "Size must be greater than zero.\n";
 
         throw std::logic_error(buffer.str());
@@ -2167,7 +2167,7 @@ Vector<double> Vector<T>::calculate_shape_parameters_missing_values(const Vector
 
 /// Returns the box and whispers for a vector.
 template<class T>
-Vector<double> Vector<T>::calculate_box_and_whiskers(void) const
+Vector<double> Vector<T>::calculate_box_and_whiskers() const
 {
     Vector<double> box_and_whispers(5);
     Vector<double> quartiles = calculate_quartiles();
@@ -2181,7 +2181,7 @@ Vector<double> Vector<T>::calculate_box_and_whiskers(void) const
 
 /// Returns the vector norm.
 template<class T>
-double Vector<T>::calculate_norm(void) const
+double Vector<T>::calculate_norm() const
 {
     const size_t this_size = this->size();
     double norm = 0.0;
@@ -2194,7 +2194,7 @@ double Vector<T>::calculate_norm(void) const
 
 /// Returns the gradient of the vector norm.
 template<class T>
-Vector<T> Vector<T>::calculate_norm_gradient(void) const
+Vector<T> Vector<T>::calculate_norm_gradient() const
 {
     const size_t this_size = this->size();
     Vector<T> gradient(this_size);
@@ -2208,7 +2208,7 @@ Vector<T> Vector<T>::calculate_norm_gradient(void) const
 
 /// Returns the Hessian of the vector norm.
 template<class T>
-Matrix<T> Vector<T>::calculate_norm_Hessian(void) const
+Matrix<T> Vector<T>::calculate_norm_Hessian() const
 {
     const size_t this_size = this->size();
     Matrix<T> Hessian(this_size, this_size);
@@ -2278,7 +2278,7 @@ Vector<double> Vector<T>::calculate_p_norm_gradient(const double &p) const
 
 /// Returns this vector divided by its norm.
 template<class T>
-Vector<T> Vector<T>::calculate_normalized(void) const
+Vector<T> Vector<T>::calculate_normalized() const
 {
     const size_t this_size = (*this).size();
     Vector<T> normalized(this_size);
@@ -2652,7 +2652,7 @@ LinearRegressionParameters<T> Vector<T>::calculate_linear_regression_parameters(
 
 /// Returns a vector with the absolute values of the current vector.
 template<class T>
-Vector<T> Vector<T>::calculate_absolute_value(void) const
+Vector<T> Vector<T>::calculate_absolute_value() const
 {
     const size_t this_size = this->size();
     Vector<T> absolute_value(this_size);
@@ -2667,7 +2667,7 @@ Vector<T> Vector<T>::calculate_absolute_value(void) const
 
 /// Sets the elements of the vector to their absolute values.
 template<class T>
-void Vector<T>::apply_absolute_value(void)
+void Vector<T>::apply_absolute_value()
 {
     const size_t this_size = this->size();
     for (size_t i = 0; i < this_size; i++) {
@@ -2924,7 +2924,7 @@ void Vector<T>::apply_lower_upper_bounds(const Vector<T> &lower_bound,
 }
 
 template<class T>
-Vector<size_t> Vector<T>::sort_less_indices(void) const
+Vector<size_t> Vector<T>::sort_less_indices() const
 {
     Vector<size_t> indices(this->size());
 
@@ -2943,7 +2943,7 @@ Vector<size_t> Vector<T>::sort_less_indices(void) const
 }
 
 template<class T>
-Vector<size_t> Vector<T>::sort_greater_indices(void) const
+Vector<size_t> Vector<T>::sort_greater_indices() const
 {
     Vector<size_t> indices(this->size());
 
@@ -2966,7 +2966,7 @@ Vector<size_t> Vector<T>::sort_greater_indices(void) const
 /// size-1.
 /// That is, small values correspond with small ranks.
 template<class T>
-Vector<size_t> Vector<T>::calculate_less_rank(void) const
+Vector<size_t> Vector<T>::calculate_less_rank() const
 {
     const size_t this_size = this->size();
     Vector<size_t> rank(this_size);
@@ -2993,7 +2993,7 @@ Vector<size_t> Vector<T>::calculate_less_rank(void) const
 /// have 0.
 /// That is, small values correspond to big ranks.
 template<class T>
-Vector<size_t> Vector<T>::calculate_greater_rank(void) const
+Vector<size_t> Vector<T>::calculate_greater_rank() const
 {
     const size_t this_size = this->size();
     Vector<size_t> rank(this_size);
@@ -3427,7 +3427,7 @@ void Vector<T>::operator/=(const Vector<T> &other_vector)
 
 /// Sets all the negative elements in the vector to zero.
 template<class T>
-void Vector<T>::filter_positive(void)
+void Vector<T>::filter_positive()
 {
     for (size_t i = 0; i < this->size(); i++) {
         if ((*this)[i] < 0)
@@ -3437,7 +3437,7 @@ void Vector<T>::filter_positive(void)
 
 /// Sets all the positive elements in the vector to zero.
 template<class T>
-void Vector<T>::filter_negative(void)
+void Vector<T>::filter_negative()
 {
     for (size_t i = 0; i < this->size(); i++) {
         if ((*this)[i] > 0)
@@ -3473,7 +3473,7 @@ void Vector<T>::scale_minimum_maximum(const Statistics<T> &statistics)
 /// The minimum and maximum values used are those calculated from the vector.
 /// It also returns the statistics from the vector.
 template<class T>
-Statistics<T> Vector<T>::scale_minimum_maximum(void)
+Statistics<T> Vector<T>::scale_minimum_maximum()
 {
     const Statistics<T> statistics = calculate_statistics();
     scale_minimum_maximum(statistics);
@@ -3512,7 +3512,7 @@ void Vector<T>::scale_mean_standard_deviation(const Statistics<T> &statistics)
 /// The values used are those calculated from the vector.
 /// It also returns the statistics from the vector.
 template<class T>
-Statistics<T> Vector<T>::scale_mean_standard_deviation(void)
+Statistics<T> Vector<T>::scale_mean_standard_deviation()
 {
     const Statistics<T> statistics = calculate_statistics();
     scale_mean_standard_deviation(statistics);
@@ -3942,7 +3942,7 @@ void Vector<T>::unscale_mean_standard_deviation(const Vector<T> &mean,
 /// The elements in the diagonal are the elements in this vector.
 /// @todo
 template<class T>
-Matrix<T> Vector<T>::arrange_diagonal_matrix(void) const
+Matrix<T> Vector<T>::arrange_diagonal_matrix() const
 {
     const size_t this_size = this->size();
     Matrix<T> matrix = new Matrix<T>(this_size, this_size, 0.0);
@@ -4265,7 +4265,7 @@ Vector<T> Vector<T>::assemble(const Vector<T> &other_vector) const
 
 /// Returns a std vector with the size and elements of this OpenNN vector.
 template<class T>
-std::vector<T> Vector<T>::to_std_vector(void) const
+std::vector<T> Vector<T>::to_std_vector() const
 {
     const size_t this_size = this->size();
     std::vector<T> std_vector(this_size);
@@ -4278,7 +4278,7 @@ std::vector<T> Vector<T>::to_std_vector(void) const
 /// Returns a row matrix with number of rows equal to one
 /// and number of columns equal to the size of this vector.
 template<class T>
-Matrix<T> Vector<T>::to_row_matrix(void) const
+Matrix<T> Vector<T>::to_row_matrix() const
 {
     const size_t this_size = this->size();
     Matrix<T> matrix(1, this_size);
@@ -4291,7 +4291,7 @@ Matrix<T> Vector<T>::to_row_matrix(void) const
 /// Returns a column matrix with number of rows equal to the size of this vector
 /// and number of columns equal to one.
 template<class T>
-Matrix<T> Vector<T>::to_column_matrix(void) const
+Matrix<T> Vector<T>::to_column_matrix() const
 {
     const size_t this_size = this->size();
     Matrix<T> matrix(this_size, 1);
@@ -4506,13 +4506,13 @@ T calculate_random_normal(const T &mean, const T &standard_deviation)
 template<class T>
 struct Statistics {
     // Default constructor.
-    Statistics(void);
+    Statistics();
 
     // Values constructor.
     Statistics(const T &, const T &, const T &, const T &);
 
     /// Destructor.
-    virtual ~Statistics(void);
+    virtual ~Statistics();
 
     // METHODS
     void set_minimum(const double &);
@@ -4523,13 +4523,13 @@ struct Statistics {
 
     void set_standard_deviation(const double &);
 
-    Vector<T> to_vector(void) const;
+    Vector<T> to_vector() const;
 
-    void initialize_random(void);
+    void initialize_random();
 
-    bool has_minimum_minus_one_maximum_one(void);
+    bool has_minimum_minus_one_maximum_one();
 
-    bool has_mean_zero_standard_deviation_one(void);
+    bool has_mean_zero_standard_deviation_one();
 
     void save(const std::string &file_name) const;
 
@@ -4547,7 +4547,7 @@ struct Statistics {
 };
 
 template<class T>
-Statistics<T>::Statistics(void)
+Statistics<T>::Statistics()
 {
     minimum = (T) - 1.0;
     maximum = (T) 1.0;
@@ -4568,7 +4568,7 @@ Statistics<T>::Statistics(const T &new_minimum, const T &new_maximum,
 
 /// Destructor.
 template<class T>
-Statistics<T>::~Statistics(void)
+Statistics<T>::~Statistics()
 {
 }
 
@@ -4610,7 +4610,7 @@ Statistics<T>::set_standard_deviation(const double &new_standard_deviation)
 /// The elements correspond to the minimum, maximum, mean and standard deviation
 /// values respectively.
 template<class T>
-Vector<T> Statistics<T>::to_vector(void) const
+Vector<T> Statistics<T>::to_vector() const
 {
     Vector<T> statistics_vector(4);
     statistics_vector[0] = minimum;
@@ -4624,7 +4624,7 @@ Vector<T> Statistics<T>::to_vector(void) const
 /// minimum (between -1 and 1), maximum (between 0 and 1),
 /// mean (between -1 and 1), standard deviation (between 0 and 1).
 template<class T>
-void Statistics<T>::initialize_random(void)
+void Statistics<T>::initialize_random()
 {
     minimum = calculate_random_uniform(-1.0, 0.0);
     maximum = calculate_random_uniform(0.0, 1.0);
@@ -4635,7 +4635,7 @@ void Statistics<T>::initialize_random(void)
 /// Returns true if the minimum value is -1 and the maximum value is +1,
 /// and false otherwise.
 template<class T>
-bool Statistics<T>::has_minimum_minus_one_maximum_one(void)
+bool Statistics<T>::has_minimum_minus_one_maximum_one()
 {
     return -1.000001 < minimum && minimum < -0.999999 && 0.999999 < maximum && maximum < 1.000001;
 }
@@ -4643,7 +4643,7 @@ bool Statistics<T>::has_minimum_minus_one_maximum_one(void)
 /// Returns true if the mean value is 0 and the standard deviation value is 1,
 /// and false otherwise.
 template<class T>
-bool Statistics<T>::has_mean_zero_standard_deviation_one(void)
+bool Statistics<T>::has_mean_zero_standard_deviation_one()
 {
     return -0.000001 < mean && mean < 0.000001 && 0.999999 < standard_deviation && standard_deviation < 1.000001;
 }
@@ -4692,10 +4692,10 @@ std::ostream &operator<<(std::ostream &os, const Statistics<T> &statistics)
 template<class T>
 struct Histogram {
     /// Default constructor.
-    explicit Histogram(void);
+    explicit Histogram();
 
     /// Destructor.
-    virtual ~Histogram(void);
+    virtual ~Histogram();
 
     /// Bins number constructor.
     Histogram(const size_t &);
@@ -4703,19 +4703,19 @@ struct Histogram {
     /// Values constructor.
     Histogram(const Vector<T> &, const Vector<size_t> &);
 
-    size_t get_bins_number(void) const;
+    size_t get_bins_number() const;
 
-    size_t count_empty_bins(void) const;
+    size_t count_empty_bins() const;
 
-    size_t calculate_minimum_frequency(void) const;
+    size_t calculate_minimum_frequency() const;
 
-    size_t calculate_maximum_frequency(void) const;
+    size_t calculate_maximum_frequency() const;
 
-    size_t calculate_most_populated_bin(void) const;
+    size_t calculate_most_populated_bin() const;
 
-    Vector<T> calculate_minimal_centers(void) const;
+    Vector<T> calculate_minimal_centers() const;
 
-    Vector<T> calculate_maximal_centers(void) const;
+    Vector<T> calculate_maximal_centers() const;
 
     size_t calculate_bin(const T &) const;
 
@@ -4729,13 +4729,13 @@ struct Histogram {
 };
 
 template<class T>
-Histogram<T>::Histogram(void)
+Histogram<T>::Histogram()
 {
 }
 
 /// Destructor.
 template<class T>
-Histogram<T>::~Histogram(void)
+Histogram<T>::~Histogram()
 {
 }
 
@@ -4761,42 +4761,42 @@ Histogram<T>::Histogram(const Vector<T> &new_centers,
 
 /// Returns the number of bins in the histogram.
 template<class T>
-size_t Histogram<T>::get_bins_number(void) const
+size_t Histogram<T>::get_bins_number() const
 {
     return centers.size();
 }
 
 /// Returns the number of bins with zero variates.
 template<class T>
-size_t Histogram<T>::count_empty_bins(void) const
+size_t Histogram<T>::count_empty_bins() const
 {
     return frequencies.count_occurrences(0);
 }
 
 /// Returns the number of variates in the less populated bin.
 template<class T>
-size_t Histogram<T>::calculate_minimum_frequency(void) const
+size_t Histogram<T>::calculate_minimum_frequency() const
 {
     return frequencies.calculate_minimum();
 }
 
 /// Returns the number of variates in the most populated bin.
 template<class T>
-size_t Histogram<T>::calculate_maximum_frequency(void) const
+size_t Histogram<T>::calculate_maximum_frequency() const
 {
     return frequencies.calculate_maximum();
 }
 
 /// Retuns the index of the most populated bin.
 template<class T>
-size_t Histogram<T>::calculate_most_populated_bin(void) const
+size_t Histogram<T>::calculate_most_populated_bin() const
 {
     return frequencies.calculate_maximal_index();
 }
 
 /// Returns a vector with the centers of the less populated bins.
 template<class T>
-Vector<T> Histogram<T>::calculate_minimal_centers(void) const
+Vector<T> Histogram<T>::calculate_minimal_centers() const
 {
     const size_t minimum_frequency = calculate_minimum_frequency();
     const Vector<size_t> minimal_indices = frequencies.calculate_occurrence_indices(minimum_frequency);
@@ -4805,7 +4805,7 @@ Vector<T> Histogram<T>::calculate_minimal_centers(void) const
 
 /// Returns a vector with the centers of the most populated bins.
 template<class T>
-Vector<T> Histogram<T>::calculate_maximal_centers(void) const
+Vector<T> Histogram<T>::calculate_maximal_centers() const
 {
     const size_t maximum_frequency = calculate_maximum_frequency();
     const Vector<size_t> maximal_indices = frequencies.calculate_occurrence_indices(maximum_frequency);

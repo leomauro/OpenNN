@@ -15,19 +15,21 @@
 
 #include "training_strategy.h"
 
-namespace OpenNN
-{
 
-// DEFAULT CONSTRUCTOR
+namespace OpenNN {
 
 /// Default constructor.
 /// It creates a training strategy object not associated to any performance functional object.
 /// It also constructs the main training algorithm object.
-
-TrainingStrategy::TrainingStrategy(void)
-    : performance_functional_pointer(NULL), random_search_pointer(NULL), evolutionary_algorithm_pointer(NULL),
-      gradient_descent_pointer(NULL), conjugate_gradient_pointer(NULL), quasi_Newton_method_pointer(NULL),
-      Levenberg_Marquardt_algorithm_pointer(NULL), Newton_method_pointer(NULL)
+TrainingStrategy::TrainingStrategy()
+        : performance_functional_pointer(NULL),
+          random_search_pointer(NULL),
+          evolutionary_algorithm_pointer(NULL),
+          gradient_descent_pointer(NULL),
+          conjugate_gradient_pointer(NULL),
+          quasi_Newton_method_pointer(NULL),
+          Levenberg_Marquardt_algorithm_pointer(NULL),
+          Newton_method_pointer(NULL)
 {
     set_initialization_type(NO_INITIALIZATION);
     set_main_type(QUASI_NEWTON_METHOD);
@@ -35,20 +37,20 @@ TrainingStrategy::TrainingStrategy(void)
 
     set_default();
 }
-
-
-// PERFORMANCE FUNCTIONAL CONSTRUCTOR
 
 /// Performance functional constructor.
 /// It creates a training strategy object associated to a performance functional object.
 /// It also constructs the main training algorithm object.
 /// @param new_performance_functional_pointer Pointer to a performance functional object.
-
 TrainingStrategy::TrainingStrategy(PerformanceFunctional *new_performance_functional_pointer)
-    : performance_functional_pointer(new_performance_functional_pointer), random_search_pointer(NULL),
-      evolutionary_algorithm_pointer(NULL), gradient_descent_pointer(NULL), conjugate_gradient_pointer(NULL),
-      quasi_Newton_method_pointer(NULL), Levenberg_Marquardt_algorithm_pointer(NULL),
-      Newton_method_pointer(NULL)
+        : performance_functional_pointer(new_performance_functional_pointer),
+          random_search_pointer(NULL),
+          evolutionary_algorithm_pointer(NULL),
+          gradient_descent_pointer(NULL),
+          conjugate_gradient_pointer(NULL),
+          quasi_Newton_method_pointer(NULL),
+          Levenberg_Marquardt_algorithm_pointer(NULL),
+          Newton_method_pointer(NULL)
 {
     set_initialization_type(NO_INITIALIZATION);
     set_main_type(QUASI_NEWTON_METHOD);
@@ -57,18 +59,19 @@ TrainingStrategy::TrainingStrategy(PerformanceFunctional *new_performance_functi
     set_default();
 }
 
-
-// XML CONSTRUCTOR
-
 /// XML constructor.
 /// It creates a training strategy object not associated to any performance functional object.
 /// It also loads the members of this object from a XML document.
 /// @param document Document of the TinyXML library.
-
 TrainingStrategy::TrainingStrategy(const tinyxml2::XMLDocument &document)
-    : performance_functional_pointer(NULL), random_search_pointer(NULL), evolutionary_algorithm_pointer(NULL),
-      gradient_descent_pointer(NULL), conjugate_gradient_pointer(NULL), quasi_Newton_method_pointer(NULL),
-      Levenberg_Marquardt_algorithm_pointer(NULL), Newton_method_pointer(NULL)
+        : performance_functional_pointer(NULL),
+          random_search_pointer(NULL),
+          evolutionary_algorithm_pointer(NULL),
+          gradient_descent_pointer(NULL),
+          conjugate_gradient_pointer(NULL),
+          quasi_Newton_method_pointer(NULL),
+          Levenberg_Marquardt_algorithm_pointer(NULL),
+          Newton_method_pointer(NULL)
 {
     set_initialization_type(NO_INITIALIZATION);
     set_main_type(QUASI_NEWTON_METHOD);
@@ -79,18 +82,19 @@ TrainingStrategy::TrainingStrategy(const tinyxml2::XMLDocument &document)
     from_XML(document);
 }
 
-
-// FILE CONSTRUCTOR
-
 /// File constructor.
 /// It creates a training strategy object associated to a performance functional object.
 /// It also loads the members of this object from a XML file.
 /// @param file_name Name of training strategy XML file.
-
 TrainingStrategy::TrainingStrategy(const std::string &file_name)
-    : performance_functional_pointer(NULL), random_search_pointer(NULL), evolutionary_algorithm_pointer(NULL),
-      gradient_descent_pointer(NULL), conjugate_gradient_pointer(NULL), quasi_Newton_method_pointer(NULL),
-      Levenberg_Marquardt_algorithm_pointer(NULL), Newton_method_pointer(NULL)
+        : performance_functional_pointer(NULL),
+          random_search_pointer(NULL),
+          evolutionary_algorithm_pointer(NULL),
+          gradient_descent_pointer(NULL),
+          conjugate_gradient_pointer(NULL),
+          quasi_Newton_method_pointer(NULL),
+          Levenberg_Marquardt_algorithm_pointer(NULL),
+          Newton_method_pointer(NULL)
 {
     set_initialization_type(NO_INITIALIZATION);
     set_main_type(QUASI_NEWTON_METHOD);
@@ -101,517 +105,398 @@ TrainingStrategy::TrainingStrategy(const std::string &file_name)
     load(file_name);
 }
 
-
-// DESTRUCTOR
-
 /// Destructor.
 /// This destructor deletes the initialization, main and refinement training algorithm objects.
-
-TrainingStrategy::~TrainingStrategy(void)
+TrainingStrategy::~TrainingStrategy()
 {
     delete random_search_pointer;
     delete evolutionary_algorithm_pointer;
-
     delete gradient_descent_pointer;
     delete conjugate_gradient_pointer;
     delete quasi_Newton_method_pointer;
     delete Levenberg_Marquardt_algorithm_pointer;
-
     delete Newton_method_pointer;
 }
 
-
-// METHODS
-
-
-// void check_performance_functional(void) const method
-
 /// Throws an exception if the training strategy has not a performance functional associated.
-
-void TrainingStrategy::check_performance_functional(void) const
+void TrainingStrategy::check_performance_functional() const
 {
     if (!performance_functional_pointer) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "void check_performance_functional(void) const.\n"
+               << "void check_performance_functional() const.\n"
                << "Pointer to performance functional is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
 }
 
-
-// void check_training_algorithms(void) const method
-
 /// Throws an exception if the training strategy does not have any
 /// initialization, main or refinement algorithms.
-
-void TrainingStrategy::check_training_algorithms(void) const
+void TrainingStrategy::check_training_algorithms() const
 {
-    if (initialization_type == NO_INITIALIZATION
-            && main_type == NO_MAIN
-            && refinement_type == NO_REFINEMENT) {
+    if (initialization_type == NO_INITIALIZATION &&
+        main_type == NO_MAIN &&
+        refinement_type == NO_REFINEMENT) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "void check_training_algorithms(void) const method.\n"
+               << "void check_training_algorithms() const method.\n"
                << "None initialization, main or refinement terms are used.\n";
 
         throw std::logic_error(buffer.str());
     }
 }
 
-
-// void initialize_random(void) method
-
 /// Initializes the initialization, main and refinement algorithms at random.
 /// @todo
-
-void TrainingStrategy::initialize_random(void)
+void TrainingStrategy::initialize_random()
 {
-    // Initialization training algorithm
-
     switch (rand() % 2) {
-    case 0: {
+    case 0:
+        break;
+
+    case 1:
+        break;
+
+    default:
+        {
+            std::ostringstream buffer;
+
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "void initialize_random() method.\n"
+                   << "Unknown initialization training algorithm.\n";
+
+            throw std::logic_error(buffer.str());
+        }
+        break;
     }
-    break;
-
-    case 1: {
-    }
-    break;
-
-    default: {
-        std::ostringstream buffer;
-
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "void initialize_random(void) method.\n"
-               << "Unknown initialization training algorithm.\n";
-
-        throw std::logic_error(buffer.str());
-    }
-    break;
-    }
-
-    // Main training algorithm
-
-    // Refinement training algorithm
-
 }
 
-
-// PerformanceFunctional* get_performance_functional_pointer(void) const method
-
 /// Returns a pointer to the performance functional object to which the training strategy is associated.
-
-PerformanceFunctional *TrainingStrategy::get_performance_functional_pointer(void) const
+PerformanceFunctional *TrainingStrategy::get_performance_functional_pointer() const
 {
     if (!performance_functional_pointer) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "PerformanceFunctional* get_performance_functional_pointer(void) const method.\n"
+               << "PerformanceFunctional* get_performance_functional_pointer() const method.\n"
                << "Performance functional pointer is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
 
-    return (performance_functional_pointer);
+    return performance_functional_pointer;
 }
-
-
-// bool has_performance_functional(void) const method
 
 /// Returns true if this training strategy has a performance functional associated,
 /// and false otherwise.
-
-bool TrainingStrategy::has_performance_functional(void) const
+bool TrainingStrategy::has_performance_functional() const
 {
-    if (performance_functional_pointer) {
-        return (true);
-    } else {
-        return (false);
-    }
+    return (bool) performance_functional_pointer;
 }
-
-
-// RandomSearch* get_random_search_pointer(void) const method
 
 /// Returns a pointer to the random search initialization algorithm.
 /// It also throws an exception if that pointer is NULL.
-
-RandomSearch *TrainingStrategy::get_random_search_pointer(void) const
+RandomSearch *TrainingStrategy::get_random_search_pointer() const
 {
     if (!random_search_pointer) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "RandomSearch* get_random_search_pointer(void) const method.\n"
+               << "RandomSearch* get_random_search_pointer() const method.\n"
                << "Random search pointer is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
 
-    return (random_search_pointer);
+    return random_search_pointer;
 }
-
-
-// EvolutionaryAlgorithm* get_evolutionary_algorithm_pointer(void) const method
 
 /// Returns a pointer to the evolutionary algorithm initialization algorithm.
 /// It also throws an exception if that pointer is NULL.
-
-EvolutionaryAlgorithm *TrainingStrategy::get_evolutionary_algorithm_pointer(void) const
+EvolutionaryAlgorithm *TrainingStrategy::get_evolutionary_algorithm_pointer() const
 {
     if (!evolutionary_algorithm_pointer) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "EvolutionaryAlgorithm* get_evolutionary_algorithm_pointer(void) const method.\n"
+               << "EvolutionaryAlgorithm* get_evolutionary_algorithm_pointer() const method.\n"
                << "Evolutionary algorithm pointer is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
 
-    return (evolutionary_algorithm_pointer);
+    return evolutionary_algorithm_pointer;
 }
-
-
-// GradientDescent* get_gradient_descent_pointer(void) const method
 
 /// Returns a pointer to the gradient descent main algorithm.
 /// It also throws an exception if that pointer is NULL.
-
-GradientDescent *TrainingStrategy::get_gradient_descent_pointer(void) const
+GradientDescent *TrainingStrategy::get_gradient_descent_pointer() const
 {
     if (!gradient_descent_pointer) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "GradientDescent* get_gradient_descent_pointer(void) const method.\n"
+               << "GradientDescent* get_gradient_descent_pointer() const method.\n"
                << "Gradient descent pointer is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
 
-    return (gradient_descent_pointer);
+    return gradient_descent_pointer;
 }
-
-
-// ConjugateGradient* get_conjugate_gradient_pointer(void) const method
 
 /// Returns a pointer to the conjugate gradient main algorithm.
 /// It also throws an exception if that pointer is NULL.
-
-ConjugateGradient *TrainingStrategy::get_conjugate_gradient_pointer(void) const
+ConjugateGradient *TrainingStrategy::get_conjugate_gradient_pointer() const
 {
     if (!conjugate_gradient_pointer) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "ConjugateGradient* get_conjugate_gradient_pointer(void) const method.\n"
+               << "ConjugateGradient* get_conjugate_gradient_pointer() const method.\n"
                << "Conjugate gradient pointer is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
 
-    return (conjugate_gradient_pointer);
+    return conjugate_gradient_pointer;
 }
-
-
-// QuasiNewtonMethod* get_quasi_Newton_method_pointer(void) const method
 
 /// Returns a pointer to the Newton method main algorithm.
 /// It also throws an exception if that pointer is NULL.
-
-QuasiNewtonMethod *TrainingStrategy::get_quasi_Newton_method_pointer(void) const
+QuasiNewtonMethod *TrainingStrategy::get_quasi_Newton_method_pointer() const
 {
     if (!quasi_Newton_method_pointer) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "QuasiNetwtonMethod* get_quasi_Newton_method_pointer(void) const method.\n"
+               << "QuasiNetwtonMethod* get_quasi_Newton_method_pointer() const method.\n"
                << "Quasi-Newton method pointer is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
 
-    return (quasi_Newton_method_pointer);
+    return quasi_Newton_method_pointer;
 }
-
-
-// LevenbergMarquardtAlgorithm* get_Levenberg_Marquardt_algorithm_pointer(void) const method
 
 /// Returns a pointer to the Levenberg-Marquardt main algorithm.
 /// It also throws an exception if that pointer is NULL.
-
-LevenbergMarquardtAlgorithm *TrainingStrategy::get_Levenberg_Marquardt_algorithm_pointer(void) const
+LevenbergMarquardtAlgorithm *TrainingStrategy::get_Levenberg_Marquardt_algorithm_pointer() const
 {
     if (!Levenberg_Marquardt_algorithm_pointer) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "LevenbergMarquardtAlgorithm* get_Levenberg_Marquardt_algorithm_pointer(void) const method.\n"
+               << "LevenbergMarquardtAlgorithm* get_Levenberg_Marquardt_algorithm_pointer() const method.\n"
                << "Levenberg-Marquardt algorithm pointer is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
 
-    return (Levenberg_Marquardt_algorithm_pointer);
+    return Levenberg_Marquardt_algorithm_pointer;
 }
-
-
-// NewtonMethod* get_Newton_method_pointer(void) const method
 
 /// Returns a pointer to the Newton method refinement algorithm.
 /// It also throws an exception if that pointer is NULL.
-
-NewtonMethod *TrainingStrategy::get_Newton_method_pointer(void) const
+NewtonMethod *TrainingStrategy::get_Newton_method_pointer() const
 {
     if (!Newton_method_pointer) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "NewtonMethod* get_Newton_method_pointer(void) const method.\n"
+               << "NewtonMethod* get_Newton_method_pointer() const method.\n"
                << "Newton method pointer is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
 
-    return (Newton_method_pointer);
+    return Newton_method_pointer;
 }
-
-
-// const TrainingAlgorithmType& get_initialization_type(void) const method
 
 /// Returns the type of the initialization training algorithm composing this training strategy object.
-
-const TrainingStrategy::InitializationType &TrainingStrategy::get_initialization_type(void) const
+const TrainingStrategy::InitializationType &TrainingStrategy::get_initialization_type() const
 {
-    return (initialization_type);
+    return initialization_type;
 }
-
-
-// const MainType& get_main_type(void) const method
 
 /// Returns the type of the main training algorithm composing this training strategy object.
-
-const TrainingStrategy::MainType &TrainingStrategy::get_main_type(void) const
+const TrainingStrategy::MainType &TrainingStrategy::get_main_type() const
 {
-    return (main_type);
+    return main_type;
 }
-
-
-// const RefinementType& get_refinement_type(void) const method
 
 /// Returns the type of the refinement training algorithm composing this training strategy object.
-
-const TrainingStrategy::RefinementType &TrainingStrategy::get_refinement_type(void) const
+const TrainingStrategy::RefinementType &TrainingStrategy::get_refinement_type() const
 {
-    return (refinement_type);
+    return refinement_type;
 }
-
-
-// std::string TrainingStrategy::write_initialization_type(void) const
 
 /// Returns a string with the type of the initialization training algorithm composing this training strategy object.
-
-std::string TrainingStrategy::write_initialization_type(void) const
+std::string TrainingStrategy::write_initialization_type() const
 {
-    if (initialization_type == NO_INITIALIZATION) {
-        return ("NO_INITIALIZATION");
-    } else if (initialization_type == RANDOM_SEARCH) {
-        return ("RANDOM_SEARCH");
-    } else if (initialization_type == EVOLUTIONARY_ALGORITHM) {
-        return ("EVOLUTIONARY_ALGORITHM");
-    } else if (initialization_type == USER_INITIALIZATION) {
-        return ("USER_INITIALIZATION");
-    } else {
+    if (initialization_type == NO_INITIALIZATION)
+        return "NO_INITIALIZATION";
+    else if (initialization_type == RANDOM_SEARCH)
+        return "RANDOM_SEARCH";
+    else if (initialization_type == EVOLUTIONARY_ALGORITHM)
+        return "EVOLUTIONARY_ALGORITHM";
+    else if (initialization_type == USER_INITIALIZATION)
+        return "USER_INITIALIZATION";
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "std::string write_initialization_type(void) const method.\n"
+               << "std::string write_initialization_type() const method.\n"
                << "Unknown training algorithm type.\n";
 
         throw std::logic_error(buffer.str());
     }
 }
-
-
-// std::string TrainingStrategy::write_main_type(void) const
 
 /// Returns a string with the type of the main training algorithm composing this training strategy object.
-
-std::string TrainingStrategy::write_main_type(void) const
+std::string TrainingStrategy::write_main_type() const
 {
-    if (main_type == NO_MAIN) {
-        return ("NO_MAIN");
-    } else if (main_type == GRADIENT_DESCENT) {
-        return ("GRADIENT_DESCENT");
-    } else if (main_type == CONJUGATE_GRADIENT) {
-        return ("CONJUGATE_GRADIENT");
-    } else if (main_type == QUASI_NEWTON_METHOD) {
-        return ("QUASI_NEWTON_METHOD");
-    } else if (main_type == LEVENBERG_MARQUARDT_ALGORITHM) {
-        return ("LEVENBERG_MARQUARDT_ALGORITHM");
-    } else if (main_type == USER_MAIN) {
-        return ("USER_MAIN");
-    } else {
+    if (main_type == NO_MAIN)
+        return "NO_MAIN";
+    else if (main_type == GRADIENT_DESCENT)
+        return "GRADIENT_DESCENT";
+    else if (main_type == CONJUGATE_GRADIENT)
+        return "CONJUGATE_GRADIENT";
+    else if (main_type == QUASI_NEWTON_METHOD)
+        return "QUASI_NEWTON_METHOD";
+    else if (main_type == LEVENBERG_MARQUARDT_ALGORITHM)
+        return "LEVENBERG_MARQUARDT_ALGORITHM";
+    else if (main_type == USER_MAIN)
+        return "USER_MAIN";
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "std::string write_main_type(void) const method.\n"
+               << "std::string write_main_type() const method.\n"
                << "Unknown main type.\n";
 
         throw std::logic_error(buffer.str());
     }
 }
 
-
-// std::string TrainingStrategy::write_refinement_type(void) const
-
 /// Returns a string with the type of the refinement training algorithm composing this training strategy object.
-
-std::string TrainingStrategy::write_refinement_type(void) const
+std::string TrainingStrategy::write_refinement_type() const
 {
-    if (refinement_type == NO_REFINEMENT) {
-        return ("NO_REFINEMENT");
-    } else if (refinement_type == NEWTON_METHOD) {
-        return ("NEWTON_METHOD");
-    } else if (refinement_type == USER_REFINEMENT) {
-        return ("USER_REFINEMENT");
-    } else {
+    if (refinement_type == NO_REFINEMENT)
+        return "NO_REFINEMENT";
+    else if (refinement_type == NEWTON_REFINEMENT)
+        return "NEWTON_REFINEMENT";
+    else if (refinement_type == USER_REFINEMENT)
+        return "USER_REFINEMENT";
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "std::string write_refinement_type(void) const method.\n"
+               << "std::string write_refinement_type() const method.\n"
                << "Unknown refinement type.\n";
 
         throw std::logic_error(buffer.str());
     }
 }
 
-
-// std::string TrainingStrategy::write_initialization_type_text(void) const
-
 /// Returns a string with the initialization type in text format.
-
-std::string TrainingStrategy::write_initialization_type_text(void) const
+std::string TrainingStrategy::write_initialization_type_text() const
 {
-    if (initialization_type == NO_INITIALIZATION) {
-        return ("none");
-    } else if (initialization_type == RANDOM_SEARCH) {
-        return ("random search");
-    } else if (initialization_type == EVOLUTIONARY_ALGORITHM) {
-        return ("evolutionary algorithm");
-    } else if (initialization_type == USER_INITIALIZATION) {
-        return ("user defined");
-    } else {
+    if (initialization_type == NO_INITIALIZATION)
+        return "none";
+    else if (initialization_type == RANDOM_SEARCH)
+        return "random search";
+    else if (initialization_type == EVOLUTIONARY_ALGORITHM)
+        return "evolutionary algorithm";
+    else if (initialization_type == USER_INITIALIZATION)
+        return "user defined";
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "std::string write_initialization_type_text(void) const method.\n"
+               << "std::string write_initialization_type_text() const method.\n"
                << "Unknown training algorithm type.\n";
 
         throw std::logic_error(buffer.str());
     }
 }
 
-
-// std::string TrainingStrategy::write_main_type_text(void) const
-
 /// Returns a string with the main type in text format.
-
-std::string TrainingStrategy::write_main_type_text(void) const
+std::string TrainingStrategy::write_main_type_text() const
 {
-    if (main_type == NO_MAIN) {
-        return ("none");
-    } else if (main_type == GRADIENT_DESCENT) {
-        return ("gradient descent");
-    } else if (main_type == CONJUGATE_GRADIENT) {
-        return ("conjugate gradient");
-    } else if (main_type == QUASI_NEWTON_METHOD) {
-        return ("quasi-Newton method");
-    } else if (main_type == LEVENBERG_MARQUARDT_ALGORITHM) {
-        return ("Levenberg-Marquardt algorithm");
-    } else if (main_type == USER_MAIN) {
-        return ("user defined");
-    } else {
+    if (main_type == NO_MAIN)
+        return "none";
+    else if (main_type == GRADIENT_DESCENT)
+        return "gradient descent";
+    else if (main_type == CONJUGATE_GRADIENT)
+        return "conjugate gradient";
+    else if (main_type == QUASI_NEWTON_METHOD)
+        return "quasi-Newton method";
+    else if (main_type == LEVENBERG_MARQUARDT_ALGORITHM)
+        return "Levenberg-Marquardt algorithm";
+    else if (main_type == USER_MAIN)
+        return "user defined";
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "std::string write_main_type_text(void) const method.\n"
+               << "std::string write_main_type_text() const method.\n"
                << "Unknown main type.\n";
 
         throw std::logic_error(buffer.str());
     }
 }
 
-
-// std::string TrainingStrategy::write_refinement_type(void) const
-
 /// Returns a string with the refinement type in text format.
-
-std::string TrainingStrategy::write_refinement_type_text(void) const
+std::string TrainingStrategy::write_refinement_type_text() const
 {
-    if (refinement_type == NO_REFINEMENT) {
-        return ("none");
-    } else if (refinement_type == NEWTON_METHOD) {
-        return ("Newton method");
-    } else if (refinement_type == USER_REFINEMENT) {
-        return ("user defined");
-    } else {
+    if (refinement_type == NO_REFINEMENT)
+        return "none";
+    else if (refinement_type == NEWTON_REFINEMENT)
+        return "Newton refinement";
+    else if (refinement_type == USER_REFINEMENT)
+        return "user defined";
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "std::string write_refinement_type_text(void) const method.\n"
+               << "std::string write_refinement_type_text() const method.\n"
                << "Unknown refinement type.\n";
 
         throw std::logic_error(buffer.str());
     }
 }
-
-
-// const bool& get_display(void) const method
 
 /// Returns true if messages from this class can be displayed on the screen, or false if messages from
 /// this class can't be displayed on the screen.
-
-const bool &TrainingStrategy::get_display(void) const
+const bool &TrainingStrategy::get_display() const
 {
-    return (display);
+    return display;
 }
-
-
-// void set(void) method
 
 /// Sets the performance functional pointer to NULL.
 /// It also destructs the initialization, main and refinement training algorithms.
 /// Finally, it sets the rest of members to their default values.
-
-void TrainingStrategy::set(void)
+void TrainingStrategy::set()
 {
     performance_functional_pointer = NULL;
-
     set_initialization_type(NO_INITIALIZATION);
     set_main_type(QUASI_NEWTON_METHOD);
     set_refinement_type(NO_REFINEMENT);
 
     set_default();
 }
-
-
-// void set(PerformanceFunctional*) method
 
 /// Sets a new performance functional pointer.
 /// It also destructs the initialization, main and refinement training algorithms.
 /// Finally, it sets the rest of members to their default values.
 /// @param new_performance_functional_pointer Pointer to a performance functional object.
-
 void TrainingStrategy::set(PerformanceFunctional *new_performance_functional_pointer)
 {
     performance_functional_pointer = new_performance_functional_pointer;
-
     set_initialization_type(NO_INITIALIZATION);
     set_main_type(QUASI_NEWTON_METHOD);
     set_refinement_type(NO_REFINEMENT);
@@ -619,172 +504,139 @@ void TrainingStrategy::set(PerformanceFunctional *new_performance_functional_poi
     set_default();
 }
 
-
-// void set_initialization_type(const InitializationType&) method
-
 /// Sets a new type of initialization training algorithm.
 /// @param new_initialization_type Type of initialization training algorithm.
-
 void TrainingStrategy::set_initialization_type(const InitializationType &new_initialization_type)
 {
     destruct_initialization();
 
     initialization_type = new_initialization_type;
-
     switch (initialization_type) {
-    case NO_INITIALIZATION: {
+    case NO_INITIALIZATION:
         // do nothing
-    }
-    break;
+        break;
 
-    case RANDOM_SEARCH: {
+    case RANDOM_SEARCH:
         random_search_pointer = new RandomSearch(performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case EVOLUTIONARY_ALGORITHM: {
+    case EVOLUTIONARY_ALGORITHM:
         evolutionary_algorithm_pointer = new EvolutionaryAlgorithm(performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case USER_INITIALIZATION: {
+    case USER_INITIALIZATION:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "void set_initialization_type(const InitializationType&) method.\n"
-               << "Unknown initialization type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "void set_initialization_type(const InitializationType&) method.\n"
+                   << "Unknown initialization type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 }
 
-
-// void set_main_type(const MainType&) method
-
 /// Sets a new type of main training algorithm.
 /// @param new_main_type Type of main training algorithm.
-
 void TrainingStrategy::set_main_type(const MainType &new_main_type)
 {
     destruct_main();
 
     main_type = new_main_type;
-
     switch (main_type) {
-    case NO_MAIN: {
+    case NO_MAIN:
         // do nothing
-    }
-    break;
+        break;
 
-    case GRADIENT_DESCENT: {
+    case GRADIENT_DESCENT:
         gradient_descent_pointer = new GradientDescent(performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case CONJUGATE_GRADIENT: {
+    case CONJUGATE_GRADIENT:
         conjugate_gradient_pointer = new ConjugateGradient(performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case QUASI_NEWTON_METHOD: {
+    case QUASI_NEWTON_METHOD:
         quasi_Newton_method_pointer = new QuasiNewtonMethod(performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case NEWTON_METHOD: {
+    case NEWTON_METHOD:
         Newton_method_pointer = new NewtonMethod(performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case LEVENBERG_MARQUARDT_ALGORITHM: {
+    case LEVENBERG_MARQUARDT_ALGORITHM:
         Levenberg_Marquardt_algorithm_pointer = new LevenbergMarquardtAlgorithm(performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case USER_MAIN: {
+    case USER_MAIN:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "void set_initialization_type(const MainType&) method.\n"
-               << "Unknown main type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "void set_initialization_type(const MainType&) method.\n"
+                   << "Unknown main type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 }
-
-
-// void set_refinement_type(const RefinementType&) method
 
 /// Sets a new type of refinement algorithm into this training strategy.
 /// Note that it destructs the current refinement algorithm object and constructs a new one.
 /// @param new_refinement_type Type of refinement training algorithm.
-
 void TrainingStrategy::set_refinement_type(const RefinementType &new_refinement_type)
 {
     destruct_refinement();
 
     refinement_type = new_refinement_type;
-
     switch (refinement_type) {
-    case NO_REFINEMENT: {
+    case NO_REFINEMENT:
         // do nothing
-    }
-    break;
+        break;
 
-    case NEWTON_METHOD: {
+    case NEWTON_REFINEMENT:
         Newton_method_pointer = new NewtonMethod(performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case USER_REFINEMENT: {
+    case USER_REFINEMENT:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "void set_refinement_type(const RefinementType&) method.\n"
-               << "Unknown refinement type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "void set_refinement_type(const RefinementType&) method.\n"
+                   << "Unknown refinement type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 }
 
-
-// void set_initialization_type(const std::string&) method
-
 /// Sets a new initialization training algorithm from a string.
 /// @param new_initialization_type String with the initialization type.
-
 void TrainingStrategy::set_initialization_type(const std::string &new_initialization_type)
 {
-    if (new_initialization_type == "NO_INITIALIZATION") {
+    if (new_initialization_type == "NO_INITIALIZATION")
         set_initialization_type(NO_INITIALIZATION);
-    } else if (new_initialization_type == "RANDOM_SEARCH") {
+    else if (new_initialization_type == "RANDOM_SEARCH")
         set_initialization_type(RANDOM_SEARCH);
-    } else if (new_initialization_type == "EVOLUTIONARY_ALGORITHM") {
+    else if (new_initialization_type == "EVOLUTIONARY_ALGORITHM")
         set_initialization_type(EVOLUTIONARY_ALGORITHM);
-    } else if (new_initialization_type == "USER_INITIALIZATION") {
+    else if (new_initialization_type == "USER_INITIALIZATION")
         set_initialization_type(USER_INITIALIZATION);
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
@@ -795,29 +647,25 @@ void TrainingStrategy::set_initialization_type(const std::string &new_initializa
     }
 }
 
-
-// void set_main_type(const std::string&) method
-
 /// Sets a new main training algorithm from a string containing the type.
 /// @param new_main_type String with the type of main training algorithm.
-
 void TrainingStrategy::set_main_type(const std::string &new_main_type)
 {
-    if (new_main_type == "NO_MAIN") {
+    if (new_main_type == "NO_MAIN")
         set_main_type(NO_MAIN);
-    } else if (new_main_type == "GRADIENT_DESCENT") {
+    else if (new_main_type == "GRADIENT_DESCENT")
         set_main_type(GRADIENT_DESCENT);
-    } else if (new_main_type == "CONJUGATE_GRADIENT") {
+    else if (new_main_type == "CONJUGATE_GRADIENT")
         set_main_type(CONJUGATE_GRADIENT);
-    } else if (new_main_type == "QUASI_NEWTON_METHOD") {
+    else if (new_main_type == "QUASI_NEWTON_METHOD")
         set_main_type(QUASI_NEWTON_METHOD);
-    } else if (new_main_type == "NEWTON_METHOD") {
+    else if (new_main_type == "NEWTON_METHOD")
         set_main_type(NEWTON_METHOD);
-    } else if (new_main_type == "LEVENBERG_MARQUARDT_ALGORITHM") {
+    else if (new_main_type == "LEVENBERG_MARQUARDT_ALGORITHM")
         set_main_type(LEVENBERG_MARQUARDT_ALGORITHM);
-    } else if (new_main_type == "USER_MAIN") {
+    else if (new_main_type == "USER_MAIN")
         set_main_type(USER_MAIN);
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
@@ -828,25 +676,18 @@ void TrainingStrategy::set_main_type(const std::string &new_main_type)
     }
 }
 
-
-// void set_refinement_type(const std::string&) method
-
 /// Sets a new refinement algorithm from a string.
 /// It destructs the previous refinement algorithm object and constructs a new object.
 /// @param new_refinement_type String with the refinement training algorithm type.
-
 void TrainingStrategy::set_refinement_type(const std::string &new_refinement_type)
 {
-    if (new_refinement_type == "NO_REFINEMENT") {
+    if (new_refinement_type == "NO_REFINEMENT")
         set_refinement_type(NO_REFINEMENT);
-    }
-//   else if(new_refinement_type == "NEWTON_METHOD")
-//   {
-//      set_refinement_type(NEWTON_METHOD);
-//   }
-    else if (new_refinement_type == "USER_REFINEMENT") {
+    else if (new_refinement_type == "NEWTON_REFINEMENT")
+      set_refinement_type(NEWTON_REFINEMENT);
+    else if (new_refinement_type == "USER_REFINEMENT")
         set_refinement_type(USER_REFINEMENT);
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingStrategy class.\n"
@@ -857,270 +698,219 @@ void TrainingStrategy::set_refinement_type(const std::string &new_refinement_typ
     }
 }
 
-
-// void set_performance_functional_pointer(PerformanceFunctional*) method
-
 /// Sets a pointer to a performance functional object to be associated to the training strategy.
 /// @param new_performance_functional_pointer Pointer to a performance functional object.
-
 void TrainingStrategy::set_performance_functional_pointer(PerformanceFunctional *new_performance_functional_pointer)
 {
     performance_functional_pointer = new_performance_functional_pointer;
 
     // Initialization
-
     switch (initialization_type) {
-    case NO_INITIALIZATION: {
+    case NO_INITIALIZATION:
         // do nothing
-    }
-    break;
+        break;
 
-    case RANDOM_SEARCH: {
+    case RANDOM_SEARCH:
         random_search_pointer->set_performance_functional_pointer(new_performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case EVOLUTIONARY_ALGORITHM: {
+    case EVOLUTIONARY_ALGORITHM:
         evolutionary_algorithm_pointer->set_performance_functional_pointer(new_performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case USER_INITIALIZATION: {
+    case USER_INITIALIZATION:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "void set_performance_functional_pointer(PerformanceFunctional*) method.\n"
-               << "Unknown initialization type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "void set_performance_functional_pointer(PerformanceFunctional*) method.\n"
+                   << "Unknown initialization type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 
     // Main
-
     switch (main_type) {
-    case NO_MAIN: {
+    case NO_MAIN:
         // do nothing
-    }
-    break;
+        break;
 
-    case GRADIENT_DESCENT: {
+    case GRADIENT_DESCENT:
         gradient_descent_pointer->set_performance_functional_pointer(new_performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case CONJUGATE_GRADIENT: {
+    case CONJUGATE_GRADIENT:
         conjugate_gradient_pointer->set_performance_functional_pointer(new_performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case QUASI_NEWTON_METHOD: {
+    case QUASI_NEWTON_METHOD:
         quasi_Newton_method_pointer->set_performance_functional_pointer(new_performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case LEVENBERG_MARQUARDT_ALGORITHM: {
+    case LEVENBERG_MARQUARDT_ALGORITHM:
         Levenberg_Marquardt_algorithm_pointer->set_performance_functional_pointer(new_performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case USER_MAIN: {
+    case USER_MAIN:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "void set_performance_functional_pointer(PerformanceFunctional*) method.\n"
-               << "Unknown main type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "void set_performance_functional_pointer(PerformanceFunctional*) method.\n"
+                   << "Unknown main type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 
     // Refinement
-
     switch (refinement_type) {
-    case NO_REFINEMENT: {
+    case NO_REFINEMENT:
         // do nothing
-    }
-    break;
+        break;
 
-    case NEWTON_METHOD: {
+    case NEWTON_REFINEMENT:
         Newton_method_pointer->set_performance_functional_pointer(new_performance_functional_pointer);
-    }
-    break;
+        break;
 
-    case USER_REFINEMENT: {
+    case USER_REFINEMENT:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "void set_performance_functional_pointer(PerformanceFunctional) method.\n"
-               << "Unknown refinement type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "void set_performance_functional_pointer(PerformanceFunctional) method.\n"
+                   << "Unknown refinement type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 }
-
-
-// void set_display(const bool&) method
 
 /// Sets a new display value.
 /// If it is set to true messages from this class are to be displayed on the screen;
 /// if it is set to false messages from this class are not to be displayed on the screen.
 /// @param new_display Display value.
-
 void TrainingStrategy::set_display(const bool &new_display)
 {
     display = new_display;
-
     switch (initialization_type) {
-    case NO_INITIALIZATION: {
+    case NO_INITIALIZATION:
         // do nothing
-    }
-    break;
+        break;
 
-    case RANDOM_SEARCH: {
+    case RANDOM_SEARCH:
         random_search_pointer->set_display(display);
-    }
-    break;
+        break;
 
-    case EVOLUTIONARY_ALGORITHM: {
+    case EVOLUTIONARY_ALGORITHM:
         evolutionary_algorithm_pointer->set_display(display);
-    }
-    break;
+        break;
 
-    case USER_INITIALIZATION: {
+    case USER_INITIALIZATION:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "Results set_display(void) method.\n"
-               << "Unknown initialization type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "Results set_display() method.\n"
+                   << "Unknown initialization type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 
     // Main
-
     switch (main_type) {
-    case NO_MAIN: {
+    case NO_MAIN:
         // do nothing
-    }
-    break;
+        break;
 
-    case GRADIENT_DESCENT: {
+    case GRADIENT_DESCENT:
         gradient_descent_pointer->set_display(display);
-    }
-    break;
+        break;
 
-    case CONJUGATE_GRADIENT: {
+    case CONJUGATE_GRADIENT:
         conjugate_gradient_pointer->set_display(display);
-    }
-    break;
+        break;
 
-    case QUASI_NEWTON_METHOD: {
+    case QUASI_NEWTON_METHOD:
         quasi_Newton_method_pointer->set_display(display);
-    }
-    break;
+        break;
 
-    case LEVENBERG_MARQUARDT_ALGORITHM: {
+    case LEVENBERG_MARQUARDT_ALGORITHM:
         Levenberg_Marquardt_algorithm_pointer->set_display(display);
-    }
-    break;
+        break;
 
-    case USER_MAIN: {
+    case USER_MAIN:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "Results set_display(void) method.\n"
-               << "Unknown main type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "Results set_display() method.\n"
+                   << "Unknown main type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 
     // Refinement
-
     switch (refinement_type) {
-    case NO_REFINEMENT: {
+    case NO_REFINEMENT:
         // do nothing
-    }
-    break;
+        break;
 
-    case NEWTON_METHOD: {
+    case NEWTON_REFINEMENT:
         Newton_method_pointer->set_display(display);
-    }
-    break;
+        break;
 
-    case USER_REFINEMENT: {
+    case USER_REFINEMENT:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "Results set_display(void) method.\n"
-               << "Unknown refinement type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "Results set_display() method.\n"
+                   << "Unknown refinement type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 }
-
-
-// void set_default(void) method
 
 /// Sets the members of the training strategy object to their default values:
 /// <ul>
 /// <li> Display: true.
 /// </ul>
-
-void TrainingStrategy::set_default(void)
+void TrainingStrategy::set_default()
 {
-
-
     display = true;
 }
 
-
-
-// void destruct_initialization(void) method
-
 /// This method deletes the initialization training algorithm object which composes this training strategy object.
-
-void TrainingStrategy::destruct_initialization(void)
+void TrainingStrategy::destruct_initialization()
 {
     delete random_search_pointer;
     delete evolutionary_algorithm_pointer;
@@ -1131,12 +921,8 @@ void TrainingStrategy::destruct_initialization(void)
     initialization_type = NO_INITIALIZATION;
 }
 
-
-// void destruct_main(void) method
-
 /// This method deletes the main training algorithm object which composes this training strategy object.
-
-void TrainingStrategy::destruct_main(void)
+void TrainingStrategy::destruct_main()
 {
     delete gradient_descent_pointer;
     delete conjugate_gradient_pointer;
@@ -1151,12 +937,8 @@ void TrainingStrategy::destruct_main(void)
     main_type = NO_MAIN;
 }
 
-
-// void destruct_refinement(void) method
-
 /// This method deletes the refinement training algorithm object which composes this training strategy object.
-
-void TrainingStrategy::destruct_refinement(void)
+void TrainingStrategy::destruct_refinement()
 {
     delete Newton_method_pointer;
 
@@ -1165,644 +947,426 @@ void TrainingStrategy::destruct_refinement(void)
     refinement_type = NO_REFINEMENT;
 }
 
-
-// void initialize_layers_autoencoding(void) method
-
-void TrainingStrategy::initialize_layers_autoencoding(void)
+void TrainingStrategy::initialize_layers_autoencoding()
 {
     // Data set
-
     DataSet *data_set_pointer = performance_functional_pointer->get_data_set_pointer();
-
     Instances *instances_pointer = data_set_pointer->get_instances_pointer();
-
     const size_t training_instances_number = instances_pointer->count_training_instances_number();
 
     // Neural network
-
     NeuralNetwork *neural_network_pointer = performance_functional_pointer->get_neural_network_pointer();
-
     MultilayerPerceptron *multilayer_perceptron_pointer = neural_network_pointer->get_multilayer_perceptron_pointer();
-
     const Vector<size_t> architecture = multilayer_perceptron_pointer->arrange_architecture();
 
     // Autoencoding
-
     Matrix<double> input_data;
-
     DataSet data_set;
-
     NeuralNetwork neural_network;
 
     size_t inputs_number;
     size_t layer_size;
 
     Vector<double> parameters;
-
     PerformanceFunctional performance_functional(&neural_network, &data_set);
 
     QuasiNewtonMethod quasi_Newton_method(&performance_functional);
     quasi_Newton_method.set_performance_goal(1.0e-3);
     quasi_Newton_method.set_gradient_norm_goal(1.0e-3);
-
     quasi_Newton_method.set_display_period(1000);
 
     std::cout << "Layers number: " << architecture.size() - 1 << std::endl;
-
     for (size_t i = 1; i < architecture.size() - 1; i++) {
         std::cout << "Layer: " << i - 1 << std::endl;
         std::cout << "Size: " << architecture[i - 1] << std::endl;
 
         // Neural network
-
         inputs_number = architecture[i - 1];
         layer_size = architecture[i];
-
         neural_network.set(inputs_number, layer_size, inputs_number);
 
         // Data set
-
         input_data.set(training_instances_number, inputs_number);
         input_data.randomize_normal();
-
         data_set.set(training_instances_number, inputs_number, inputs_number);
         data_set.set_data(input_data.assemble_columns(input_data));
-
         Vector<Variables::Use> inputs(inputs_number, Variables::Input);
         Vector<Variables::Use> targets(inputs_number, Variables::Target);
-
         data_set.get_variables_pointer()->set_uses(inputs.assemble(targets));
-
         data_set.get_instances_pointer()->set_training();
 
         // Training strategy
-
         quasi_Newton_method.perform_training();
 
         // Set parameters
-
         parameters = neural_network.get_multilayer_perceptron_pointer()->get_layer(0).arrange_parameters();
-
         multilayer_perceptron_pointer->set_layer_parameters(i - 1, parameters);
     }
 }
-
-
-// Results perform_training(void) method
 
 /// This is the most important method of this class.
 /// It optimizes the performance functional of a neural network.
 /// The most general training strategy consists of three steps: initialization, main and refinement training processes.
 /// This method also returns a structure with the results from training.
-
-TrainingStrategy::Results TrainingStrategy::perform_training(void)
+TrainingStrategy::Results TrainingStrategy::perform_training()
 {
-#ifdef __OPENNN_DEBUG__
 
+#ifdef __OPENNN_DEBUG__
     check_performance_functional();
 
     check_training_algorithms();
-
 #endif
 
-//   initialize_layers_autoencoding();
-
+    // initialize_layers_autoencoding();
     Results training_strategy_results;
 
     // Initialization
-
     switch (initialization_type) {
-    case NO_INITIALIZATION: {
+    case NO_INITIALIZATION:
         // do nothing
-    }
-    break;
+        break;
 
-    case RANDOM_SEARCH: {
+    case RANDOM_SEARCH:
         random_search_pointer->set_display(display);
+        training_strategy_results.random_search_results_pointer = random_search_pointer->perform_training();
+        break;
 
-        training_strategy_results.random_search_results_pointer
-            = random_search_pointer->perform_training();
-    }
-    break;
-
-    case EVOLUTIONARY_ALGORITHM: {
+    case EVOLUTIONARY_ALGORITHM:
         evolutionary_algorithm_pointer->set_display(display);
+        training_strategy_results.evolutionary_algorithm_results_pointer = evolutionary_algorithm_pointer->perform_training();
+        break;
 
-        training_strategy_results.evolutionary_algorithm_results_pointer
-            = evolutionary_algorithm_pointer->perform_training();
-    }
-    break;
-
-    case USER_INITIALIZATION: {
+    case USER_INITIALIZATION:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "Results perform_training(void) method.\n"
-               << "Unknown initialization type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "Results perform_training() method.\n"
+                   << "Unknown initialization type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 
     // Main
-
     switch (main_type) {
-    case NO_MAIN: {
+    case NO_MAIN:
         // do nothing
-    }
-    break;
+        break;
 
-    case GRADIENT_DESCENT: {
+    case GRADIENT_DESCENT:
         gradient_descent_pointer->set_display(display);
+        training_strategy_results.gradient_descent_results_pointer = gradient_descent_pointer->perform_training();
+        break;
 
-        training_strategy_results.gradient_descent_results_pointer
-            = gradient_descent_pointer->perform_training();
-
-    }
-    break;
-
-    case CONJUGATE_GRADIENT: {
+    case CONJUGATE_GRADIENT:
         conjugate_gradient_pointer->set_display(display);
+        training_strategy_results.conjugate_gradient_results_pointer = conjugate_gradient_pointer->perform_training();
+        break;
 
-        training_strategy_results.conjugate_gradient_results_pointer
-            = conjugate_gradient_pointer->perform_training();
-    }
-    break;
-
-    case QUASI_NEWTON_METHOD: {
+    case QUASI_NEWTON_METHOD:
         quasi_Newton_method_pointer->set_display(display);
+        training_strategy_results.quasi_Newton_method_results_pointer = quasi_Newton_method_pointer->perform_training();
+        break;
 
-        training_strategy_results.quasi_Newton_method_results_pointer
-            = quasi_Newton_method_pointer->perform_training();
-    }
-    break;
-
-    case NEWTON_METHOD: {
+    case NEWTON_METHOD:
         Newton_method_pointer->set_display(display);
+        training_strategy_results.Newton_method_results_pointer = Newton_method_pointer->perform_training();
+        break;
 
-        training_strategy_results.Newton_method_results_pointer
-            = Newton_method_pointer->perform_training();
-    }
-    break;
-
-    case LEVENBERG_MARQUARDT_ALGORITHM: {
+    case LEVENBERG_MARQUARDT_ALGORITHM:
         Levenberg_Marquardt_algorithm_pointer->set_display(display);
+        training_strategy_results.Levenberg_Marquardt_algorithm_results_pointer = Levenberg_Marquardt_algorithm_pointer->perform_training();
+        break;
 
-        training_strategy_results.Levenberg_Marquardt_algorithm_results_pointer
-            = Levenberg_Marquardt_algorithm_pointer->perform_training();
-    }
-    break;
-
-    case USER_MAIN: {
+    case USER_MAIN:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "Results perform_training(void) method.\n"
-               << "Unknown main type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "Results perform_training() method.\n"
+                   << "Unknown main type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 
     // Refinement
-
     switch (refinement_type) {
-    case NO_REFINEMENT: {
+    case NO_REFINEMENT:
         // do nothing
-    }
-    break;
+        break;
 
-//      case NEWTON_METHOD:
-//      {
-//           Newton_method_pointer->set_display(display);
+    case NEWTON_REFINEMENT:
+        Newton_method_pointer->set_display(display);
+        training_strategy_results.Newton_method_results_pointer = Newton_method_pointer->perform_training();
+        break;
 
-//           training_strategy_results.Newton_method_results_pointer
-//           = Newton_method_pointer->perform_training();
-//      }
-//      break;
-
-    case USER_REFINEMENT: {
+    case USER_REFINEMENT:
         // do nothing
+        break;
+
+    default:
+        {
+            std::ostringstream buffer;
+
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "Results perform_training() method.\n"
+                   << "Unknown refinement type.\n";
+
+            throw std::logic_error(buffer.str());
+        }
     }
-    break;
 
-    default: {
-        std::ostringstream buffer;
-
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "Results perform_training(void) method.\n"
-               << "Unknown refinement type.\n";
-
-        throw std::logic_error(buffer.str());
-    }
-    break;
-    }
-
-    return (training_strategy_results);
+    return training_strategy_results;
 }
 
-
-// std::string to_string(void) const method
-
 /// Returns a string representation of the training strategy.
-
-std::string TrainingStrategy::to_string(void) const
+std::string TrainingStrategy::to_string() const
 {
     std::ostringstream buffer;
-
     buffer << "Training strategy\n";
 
     // Initialization
-
     buffer << "Initialization type: " << write_initialization_type() << "\n";
-
     switch (initialization_type) {
-    case NO_INITIALIZATION: {
+    case NO_INITIALIZATION:
         // do nothing
-    }
-    break;
+        break;
 
-    case RANDOM_SEARCH: {
+    case RANDOM_SEARCH:
         buffer << random_search_pointer->to_string();
+        break;
 
-    }
-    break;
-
-    case EVOLUTIONARY_ALGORITHM: {
+    case EVOLUTIONARY_ALGORITHM:
         buffer << evolutionary_algorithm_pointer->to_string();
-    }
-    break;
+        break;
 
-    case USER_INITIALIZATION: {
+    case USER_INITIALIZATION:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "std::string to_string(void) const method.\n"
-               << "Unknown initialization type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "std::string to_string() const method.\n"
+                   << "Unknown initialization type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 
     // Main
-
     buffer << "Main type: " << write_main_type() << "\n";
-
     switch (main_type) {
-    case NO_MAIN: {
+    case NO_MAIN:
         // do nothing
-    }
-    break;
+        break;
 
-    case GRADIENT_DESCENT: {
+    case GRADIENT_DESCENT:
         buffer << gradient_descent_pointer->to_string();
+        break;
 
-    }
-    break;
-
-    case CONJUGATE_GRADIENT: {
+    case CONJUGATE_GRADIENT:
         buffer << conjugate_gradient_pointer->to_string();
-    }
-    break;
+        break;
 
-    case QUASI_NEWTON_METHOD: {
+    case QUASI_NEWTON_METHOD:
         buffer << quasi_Newton_method_pointer->to_string();
-    }
-    break;
+        break;
 
-    case LEVENBERG_MARQUARDT_ALGORITHM: {
+    case LEVENBERG_MARQUARDT_ALGORITHM:
         buffer << Levenberg_Marquardt_algorithm_pointer->to_string();
-    }
-    break;
+        break;
 
-    case USER_MAIN: {
+    case USER_MAIN:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "std::string to_string(void) const method.\n"
-               << "Unknown main type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "std::string to_string() const method.\n"
+                   << "Unknown main type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 
     // Refinement
-
     buffer << "Refinement type: " << write_refinement_type() << "\n";
-
     switch (refinement_type) {
-    case NO_REFINEMENT: {
+    case NO_REFINEMENT:
         // do nothing
-    }
-    break;
+        break;
 
-    case NEWTON_METHOD: {
+    case NEWTON_REFINEMENT:
         buffer << Newton_method_pointer->to_string();
-    }
-    break;
+        break;
 
-    case USER_REFINEMENT: {
+    case USER_REFINEMENT:
         // do nothing
+        break;
+
+    default:
+        {
+            std::ostringstream buffer;
+
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "std::string to_string() const method.\n"
+                   << "Unknown refinement type.\n";
+
+            throw std::logic_error(buffer.str());
+        }
     }
-    break;
 
-    default: {
-        std::ostringstream buffer;
-
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "std::string to_string(void) const method.\n"
-               << "Unknown refinement type.\n";
-
-        throw std::logic_error(buffer.str());
-    }
-    break;
-    }
-
-    return (buffer.str());
+    return buffer.str();
 }
 
-
-// void print(void) const method
-
 /// Prints to the screen the string representation of the training strategy object.
-
-void TrainingStrategy::print(void) const
+void TrainingStrategy::print() const
 {
     std::cout << to_string();
 }
 
-
-// tinyxml2::XMLDocument* to_XML(void) const method
-
 /// Returns a default string representation in XML-type format of the training algorithm object.
 /// This containts the training operators, the training parameters, stopping criteria and other stuff.
-
-tinyxml2::XMLDocument *TrainingStrategy::to_XML(void) const
+tinyxml2::XMLDocument *TrainingStrategy::to_XML() const
 {
     std::ostringstream buffer;
-
     tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
 
     // Training strategy
-
     tinyxml2::XMLElement *training_strategy_element = document->NewElement("TrainingStrategy");
-
     document->InsertFirstChild(training_strategy_element);
 
-//   tinyxml2::XMLElement* element = NULL;
-//   tinyxml2::XMLText* text = NULL;
-
-    // Initialization
-    /*
-       switch(initialization_type)
-       {
-           case NO_INITIALIZATION:
-           {
-               tinyxml2::XMLElement* initialization_element = document->NewElement("Initialization");
-               training_strategy_element->LinkEndChild(initialization_element);
-
-               initialization_element->SetAttribute("Type", "NO_INITIALIZATION");
-           }
-           break;
-
-          case RANDOM_SEARCH:
-          {
-               tinyxml2::XMLElement* initialization_element = document->NewElement("Initialization");
-               training_strategy_element->LinkEndChild(initialization_element);
-
-               initialization_element->SetAttribute("Type", "RANDOM_SEARCH");
-
-               const tinyxml2::XMLDocument* random_search_document = random_search_pointer->to_XML();
-
-               const tinyxml2::XMLElement* random_search_element = random_search_document->FirstChildElement("RandomSearch");
-
-               DeepClone(initialization_element, random_search_element, document, NULL);
-
-               delete random_search_document;
-          }
-          break;
-
-          case EVOLUTIONARY_ALGORITHM:
-          {
-               tinyxml2::XMLElement* initialization_element = document->NewElement("Initialization");
-               training_strategy_element->LinkEndChild(initialization_element);
-
-               initialization_element->SetAttribute("Type", "EVOLUTIONARY_ALGORITHM");
-
-               const tinyxml2::XMLDocument* evolutionary_algorithm_document = evolutionary_algorithm_pointer->to_XML();
-
-               const tinyxml2::XMLElement* evolutionary_algorithm_element = evolutionary_algorithm_document->FirstChildElement("EvolutionaryAlgorithm");
-
-               DeepClone(initialization_element, evolutionary_algorithm_element, document, NULL);
-
-               delete evolutionary_algorithm_document;
-          }
-          break;
-
-          case USER_INITIALIZATION:
-          {
-             // do nothing
-          }
-          break;
-
-          default:
-          {
-             std::ostringstream buffer;
-
-             buffer << "OpenNN Exception: TrainingStrategy class.\n"
-                    << "tinyxml2::XMLDocument* to_XML(void) const method.\n"
-                    << "Unknown initialization type.\n";
-
-             throw std::logic_error(buffer.str());
-          }
-          break;
-       }
-    */
     // Main
-
     switch (main_type) {
-    case NO_MAIN: {
-        tinyxml2::XMLElement *main_element = document->NewElement("Main");
-        training_strategy_element->LinkEndChild(main_element);
+    case NO_MAIN:
+        {
+            tinyxml2::XMLElement *main_element = document->NewElement("Main");
+            training_strategy_element->LinkEndChild(main_element);
+            main_element->SetAttribute("Type", "NO_MAIN");
+        }
+        break;
 
-        main_element->SetAttribute("Type", "NO_MAIN");
-    }
-    break;
+    case GRADIENT_DESCENT:
+        {
+            tinyxml2::XMLElement *main_element = document->NewElement("Main");
+            training_strategy_element->LinkEndChild(main_element);
+            main_element->SetAttribute("Type", "GRADIENT_DESCENT");
+            const tinyxml2::XMLDocument *gradient_descent_document = gradient_descent_pointer->to_XML();
+            const tinyxml2::XMLElement *gradient_descent_element = gradient_descent_document->FirstChildElement("GradientDescent");
+            DeepClone(main_element, gradient_descent_element, document, NULL);
+            delete gradient_descent_document;
+        }
+        break;
 
-    case GRADIENT_DESCENT: {
-        tinyxml2::XMLElement *main_element = document->NewElement("Main");
-        training_strategy_element->LinkEndChild(main_element);
+    case CONJUGATE_GRADIENT:
+        {
+            tinyxml2::XMLElement *main_element = document->NewElement("Main");
+            training_strategy_element->LinkEndChild(main_element);
+            main_element->SetAttribute("Type", "CONJUGATE_GRADIENT");
+            const tinyxml2::XMLDocument *conjugate_gradient_document = conjugate_gradient_pointer->to_XML();
+            const tinyxml2::XMLElement *conjugate_gradient_element = conjugate_gradient_document->FirstChildElement("ConjugateGradient");
+            DeepClone(main_element, conjugate_gradient_element, document, NULL);
+            delete conjugate_gradient_document;
+        }
+        break;
 
-        main_element->SetAttribute("Type", "GRADIENT_DESCENT");
+    case QUASI_NEWTON_METHOD:
+        {
+            tinyxml2::XMLElement *main_element = document->NewElement("Main");
+            training_strategy_element->LinkEndChild(main_element);
+            main_element->SetAttribute("Type", "QUASI_NEWTON_METHOD");
+            const tinyxml2::XMLDocument *quasi_Newton_method_document = quasi_Newton_method_pointer->to_XML();
+            const tinyxml2::XMLElement *quasi_Newton_method_element = quasi_Newton_method_document->FirstChildElement("QuasiNewtonMethod");
+            DeepClone(main_element, quasi_Newton_method_element, document, NULL);
+            delete quasi_Newton_method_document;
+        }
+        break;
 
-        const tinyxml2::XMLDocument *gradient_descent_document = gradient_descent_pointer->to_XML();
+    case LEVENBERG_MARQUARDT_ALGORITHM:
+        {
+            tinyxml2::XMLElement *main_element = document->NewElement("Main");
+            training_strategy_element->LinkEndChild(main_element);
+            main_element->SetAttribute("Type", "LEVENBERG_MARQUARDT_ALGORITHM");
+            const tinyxml2::XMLDocument *Levenberg_Marquardt_algorithm_document = Levenberg_Marquardt_algorithm_pointer->to_XML();
+            const tinyxml2::XMLElement *Levenberg_Marquardt_algorithm_element = Levenberg_Marquardt_algorithm_document->FirstChildElement("LevenbergMarquardtAlgorithm");
+            DeepClone(main_element, Levenberg_Marquardt_algorithm_element, document, NULL);
+            delete Levenberg_Marquardt_algorithm_document;
+        }
+        break;
 
-        const tinyxml2::XMLElement *gradient_descent_element = gradient_descent_document->FirstChildElement(
-                    "GradientDescent");
-
-        DeepClone(main_element, gradient_descent_element, document, NULL);
-
-        delete gradient_descent_document;
-    }
-    break;
-
-    case CONJUGATE_GRADIENT: {
-        tinyxml2::XMLElement *main_element = document->NewElement("Main");
-        training_strategy_element->LinkEndChild(main_element);
-
-        main_element->SetAttribute("Type", "CONJUGATE_GRADIENT");
-
-        const tinyxml2::XMLDocument *conjugate_gradient_document = conjugate_gradient_pointer->to_XML();
-
-        const tinyxml2::XMLElement *conjugate_gradient_element = conjugate_gradient_document->FirstChildElement(
-                    "ConjugateGradient");
-
-        DeepClone(main_element, conjugate_gradient_element, document, NULL);
-
-        delete conjugate_gradient_document;
-    }
-    break;
-
-    case QUASI_NEWTON_METHOD: {
-        tinyxml2::XMLElement *main_element = document->NewElement("Main");
-        training_strategy_element->LinkEndChild(main_element);
-
-        main_element->SetAttribute("Type", "QUASI_NEWTON_METHOD");
-
-        const tinyxml2::XMLDocument *quasi_Newton_method_document = quasi_Newton_method_pointer->to_XML();
-
-        const tinyxml2::XMLElement *quasi_Newton_method_element = quasi_Newton_method_document->FirstChildElement(
-                    "QuasiNewtonMethod");
-
-        DeepClone(main_element, quasi_Newton_method_element, document, NULL);
-
-        delete quasi_Newton_method_document;
-    }
-    break;
-
-    case LEVENBERG_MARQUARDT_ALGORITHM: {
-        tinyxml2::XMLElement *main_element = document->NewElement("Main");
-        training_strategy_element->LinkEndChild(main_element);
-
-        main_element->SetAttribute("Type", "LEVENBERG_MARQUARDT_ALGORITHM");
-
-        const tinyxml2::XMLDocument *Levenberg_Marquardt_algorithm_document = Levenberg_Marquardt_algorithm_pointer
-                ->to_XML();
-
-        const tinyxml2::XMLElement *Levenberg_Marquardt_algorithm_element = Levenberg_Marquardt_algorithm_document->FirstChildElement(
-                    "LevenbergMarquardtAlgorithm");
-
-        DeepClone(main_element, Levenberg_Marquardt_algorithm_element, document, NULL);
-
-        delete Levenberg_Marquardt_algorithm_document;
-    }
-    break;
-
-    case USER_MAIN: {
+    case USER_MAIN:
         // do nothing
-    }
-    break;
+        break;
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "tinyxml2::XMLDocument* to_XML(void) const method.\n"
-               << "Unknown main type.\n";
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "tinyxml2::XMLDocument* to_XML() const method.\n"
+                   << "Unknown main type.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 
     switch (refinement_type) {
-    case NO_REFINEMENT: {
+    case NO_REFINEMENT:
         // do nothing
-    }
-    break;
+        break;
 
-    case NEWTON_METHOD: {
-        tinyxml2::XMLElement *refinement_element = document->NewElement("Refinement");
-        training_strategy_element->LinkEndChild(refinement_element);
+    case NEWTON_REFINEMENT:
+        {
+            tinyxml2::XMLElement *refinement_element = document->NewElement("Refinement");
+            training_strategy_element->LinkEndChild(refinement_element);
+            refinement_element->SetAttribute("Type", "NEWTON_METHOD");
+            const tinyxml2::XMLDocument *Newton_method_document = Newton_method_pointer->to_XML();
+            const tinyxml2::XMLElement *Newton_method_element = Newton_method_document->FirstChildElement("NewtonMethod");
+            DeepClone(refinement_element, Newton_method_element, document, NULL);
+            delete Newton_method_document;
+        }
+        break;
 
-        refinement_element->SetAttribute("Type", "NEWTON_METHOD");
-
-        const tinyxml2::XMLDocument *Newton_method_document = Newton_method_pointer->to_XML();
-
-        const tinyxml2::XMLElement *Newton_method_element = Newton_method_document->FirstChildElement("NewtonMethod");
-
-        DeepClone(refinement_element, Newton_method_element, document, NULL);
-
-        delete Newton_method_document;
-    }
-    break;
-
-    case USER_REFINEMENT: {
+    case USER_REFINEMENT:
         // do nothing
+        break;
+
+    default:
+        {
+            std::ostringstream buffer;
+
+            buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                   << "tinyxml2::XMLDocument* to_XML() const method.\n"
+                   << "Unknown refinement type.\n";
+
+            throw std::logic_error(buffer.str());
+        }
     }
-    break;
 
-    default: {
-        std::ostringstream buffer;
-
-        buffer << "OpenNN Exception: TrainingStrategy class.\n"
-               << "tinyxml2::XMLDocument* to_XML(void) const method.\n"
-               << "Unknown refinement type.\n";
-
-        throw std::logic_error(buffer.str());
-    }
-    break;
-    }
-
-    // Display
-//   {
-//      element = document->NewElement("Display");
-//      training_strategy_element->LinkEndChild(element);
-
-//      buffer.str("");
-//      buffer << display;
-
-//      text = document->NewText(buffer.str().c_str());
-//      element->LinkEndChild(text);
-//   }
-
-    return (document);
+    return document;
 }
-
-
-// void from_XML(const tinyxml2::XMLDocument&) method
 
 /// Loads the members of this training strategy object from a XML document.
 /// @param document XML document of the TinyXML library.
-
 void TrainingStrategy::from_XML(const tinyxml2::XMLDocument &document)
 {
     const tinyxml2::XMLElement *root_element = document.FirstChildElement("TrainingStrategy");
-
     if (!root_element) {
         std::ostringstream buffer;
 
@@ -1816,139 +1380,117 @@ void TrainingStrategy::from_XML(const tinyxml2::XMLDocument &document)
     // Initialization
     {
         const tinyxml2::XMLElement *element = root_element->FirstChildElement("Initialization");
-
         if (element) {
             const std::string new_initialization_type = element->Attribute("Type");
-
             set_initialization_type(new_initialization_type);
-
             switch (initialization_type) {
-            case NO_INITIALIZATION: {
+            case NO_INITIALIZATION:
                 // do nothing
-            }
-            break;
+                break;
 
-            case RANDOM_SEARCH: {
-                tinyxml2::XMLDocument new_document;
+            case RANDOM_SEARCH:
+                {
+                    tinyxml2::XMLDocument new_document;
+                    tinyxml2::XMLElement *element_clone = new_document.NewElement("RandomSearch");
+                    new_document.InsertFirstChild(element_clone);
+                    DeepClone(element_clone, element, &new_document, NULL);
+                    random_search_pointer->from_XML(new_document);
+                }
+                break;
 
-                tinyxml2::XMLElement *element_clone = new_document.NewElement("RandomSearch");
-                new_document.InsertFirstChild(element_clone);
+            case EVOLUTIONARY_ALGORITHM:
+                {
+                    tinyxml2::XMLDocument new_document;
+                    tinyxml2::XMLElement *element_clone = new_document.NewElement("EvolutionaryAlgorithm");
+                    new_document.InsertFirstChild(element_clone);
+                    DeepClone(element_clone, element, &new_document, NULL);
+                    evolutionary_algorithm_pointer->from_XML(new_document);
+                }
+                break;
 
-                DeepClone(element_clone, element, &new_document, NULL);
-
-                random_search_pointer->from_XML(new_document);
-            }
-            break;
-
-            case EVOLUTIONARY_ALGORITHM: {
-                tinyxml2::XMLDocument new_document;
-
-                tinyxml2::XMLElement *element_clone = new_document.NewElement("EvolutionaryAlgorithm");
-                new_document.InsertFirstChild(element_clone);
-
-                DeepClone(element_clone, element, &new_document, NULL);
-
-                evolutionary_algorithm_pointer->from_XML(new_document);
-            }
-            break;
-
-            case USER_INITIALIZATION: {
+            case USER_INITIALIZATION:
                 // do nothing
+                break;
+
+            default:
+                {
+                    std::ostringstream buffer;
+
+                    buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                           << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
+                           << "Unknown initialization type.\n";
+
+                    throw std::logic_error(buffer.str());
+                }
             }
-            break;
-
-            default: {
-                std::ostringstream buffer;
-
-                buffer << "OpenNN Exception: TrainingStrategy class.\n"
-                       << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
-                       << "Unknown initialization type.\n";
-
-                throw std::logic_error(buffer.str());
-            }
-            break;
-            }// end switch
         }
     }
 
     // Main
     {
         const tinyxml2::XMLElement *element = root_element->FirstChildElement("Main");
-
         if (element) {
             const std::string new_main_type = element->Attribute("Type");
-
             set_main_type(new_main_type);
-
             switch (main_type) {
-            case NO_MAIN: {
+            case NO_MAIN:
                 // do nothing
-            }
-            break;
+                break;
 
-            case GRADIENT_DESCENT: {
-                tinyxml2::XMLDocument new_document;
+            case GRADIENT_DESCENT:
+                {
+                    tinyxml2::XMLDocument new_document;
+                    tinyxml2::XMLElement *element_clone = new_document.NewElement("GradientDescent");
+                    new_document.InsertFirstChild(element_clone);
+                    DeepClone(element_clone, element, &new_document, NULL);
+                    gradient_descent_pointer->from_XML(new_document);
+                }
+                break;
 
-                tinyxml2::XMLElement *element_clone = new_document.NewElement("GradientDescent");
-                new_document.InsertFirstChild(element_clone);
+            case CONJUGATE_GRADIENT:
+                {
+                    tinyxml2::XMLDocument new_document;
+                    tinyxml2::XMLElement *element_clone = new_document.NewElement("ConjugateGradient");
+                    new_document.InsertFirstChild(element_clone);
+                    DeepClone(element_clone, element, &new_document, NULL);
+                    conjugate_gradient_pointer->from_XML(new_document);
+                }
+                break;
 
-                DeepClone(element_clone, element, &new_document, NULL);
+            case QUASI_NEWTON_METHOD:
+                {
+                    tinyxml2::XMLDocument new_document;
+                    tinyxml2::XMLElement *element_clone = new_document.NewElement("QuasiNewtonMethod");
+                    new_document.InsertFirstChild(element_clone);
+                    DeepClone(element_clone, element, &new_document, NULL);
+                    quasi_Newton_method_pointer->from_XML(new_document);
+                }
+                break;
 
-                gradient_descent_pointer->from_XML(new_document);
-            }
-            break;
+            case LEVENBERG_MARQUARDT_ALGORITHM:
+                {
+                    tinyxml2::XMLDocument new_document;
+                    tinyxml2::XMLElement *element_clone = new_document.NewElement("LevenbergMarquardtAlgorithm");
+                    new_document.InsertFirstChild(element_clone);
+                    DeepClone(element_clone, element, &new_document, NULL);
+                    Levenberg_Marquardt_algorithm_pointer->from_XML(new_document);
+                }
+                break;
 
-            case CONJUGATE_GRADIENT: {
-                tinyxml2::XMLDocument new_document;
-
-                tinyxml2::XMLElement *element_clone = new_document.NewElement("ConjugateGradient");
-                new_document.InsertFirstChild(element_clone);
-
-                DeepClone(element_clone, element, &new_document, NULL);
-
-                conjugate_gradient_pointer->from_XML(new_document);
-            }
-            break;
-
-            case QUASI_NEWTON_METHOD: {
-                tinyxml2::XMLDocument new_document;
-
-                tinyxml2::XMLElement *element_clone = new_document.NewElement("QuasiNewtonMethod");
-                new_document.InsertFirstChild(element_clone);
-
-                DeepClone(element_clone, element, &new_document, NULL);
-
-                quasi_Newton_method_pointer->from_XML(new_document);
-            }
-            break;
-
-            case LEVENBERG_MARQUARDT_ALGORITHM: {
-                tinyxml2::XMLDocument new_document;
-
-                tinyxml2::XMLElement *element_clone = new_document.NewElement("LevenbergMarquardtAlgorithm");
-                new_document.InsertFirstChild(element_clone);
-
-                DeepClone(element_clone, element, &new_document, NULL);
-
-                Levenberg_Marquardt_algorithm_pointer->from_XML(new_document);
-            }
-            break;
-
-            case USER_MAIN: {
+            case USER_MAIN:
                 // do nothing
-            }
-            break;
+                break;
 
-            default: {
-                std::ostringstream buffer;
+            default:
+                {
+                    std::ostringstream buffer;
 
-                buffer << "OpenNN Exception: TrainingStrategy class.\n"
-                       << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
-                       << "Unknown main type.\n";
+                    buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                           << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
+                           << "Unknown main type.\n";
 
-                throw std::logic_error(buffer.str());
-            }
-            break;
+                    throw std::logic_error(buffer.str());
+                }
             }
         }
     }
@@ -1956,45 +1498,38 @@ void TrainingStrategy::from_XML(const tinyxml2::XMLDocument &document)
     // Refinement
     {
         const tinyxml2::XMLElement *element = root_element->FirstChildElement("Refinement");
-
         if (element) {
             const std::string new_refinement_type = element->Attribute("Type");
-
             set_refinement_type(new_refinement_type);
-
             switch (refinement_type) {
-            case NO_REFINEMENT: {
+            case NO_REFINEMENT:
                 // do nothing
-            }
-            break;
+                break;
 
-            case NEWTON_METHOD: {
-                tinyxml2::XMLDocument new_document;
+            case NEWTON_REFINEMENT:
+                {
+                    tinyxml2::XMLDocument new_document;
+                    tinyxml2::XMLElement *element_clone = new_document.NewElement("NewtonMethod");
+                    new_document.InsertFirstChild(element_clone);
+                    DeepClone(element_clone, element, &new_document, NULL);
+                    Newton_method_pointer->from_XML(new_document);
+                }
+                break;
 
-                tinyxml2::XMLElement *element_clone = new_document.NewElement("NewtonMethod");
-                new_document.InsertFirstChild(element_clone);
-
-                DeepClone(element_clone, element, &new_document, NULL);
-
-                Newton_method_pointer->from_XML(new_document);
-            }
-            break;
-
-            case USER_REFINEMENT: {
+            case USER_REFINEMENT:
                 // do nothing
-            }
-            break;
+                break;
 
-            default: {
-                std::ostringstream buffer;
+            default:
+                {
+                    std::ostringstream buffer;
 
-                buffer << "OpenNN Exception: TrainingStrategy class.\n"
-                       << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
-                       << "Unknown refinement type.\n";
+                    buffer << "OpenNN Exception: TrainingStrategy class.\n"
+                           << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
+                           << "Unknown refinement type.\n";
 
-                throw std::logic_error(buffer.str());
-            }
-            break;
+                    throw std::logic_error(buffer.str());
+                }
             }
         }
     }
@@ -2002,48 +1537,35 @@ void TrainingStrategy::from_XML(const tinyxml2::XMLDocument &document)
     // Display
     {
         const tinyxml2::XMLElement *element = root_element->FirstChildElement("Display");
-
         if (element) {
             const std::string new_display = element->GetText();
-
             try {
                 set_display(new_display != "0");
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
     }
-
 }
-
-
-// void save(const std::string&) const method
 
 /// Saves to a XML-type file the members of the training algorithm object.
 /// @param file_name Name of training algorithm XML-type file.
-
 void TrainingStrategy::save(const std::string &file_name) const
 {
     tinyxml2::XMLDocument *document = to_XML();
-
     document->SaveFile(file_name.c_str());
-
     delete document;
 }
-
-
-// void load(const std::string&) method
 
 /// Loads a gradient descent object from a XML-type file.
 /// Please mind about the file format, wich is specified in the User's Guide.
 /// @param file_name Name of training algorithm XML-type file.
-
 void TrainingStrategy::load(const std::string &file_name)
 {
     set_default();
 
     tinyxml2::XMLDocument document;
-
     if (document.LoadFile(file_name.c_str())) {
         std::ostringstream buffer;
 
@@ -2057,87 +1579,47 @@ void TrainingStrategy::load(const std::string &file_name)
     from_XML(document);
 }
 
-
 // Results constructor
-
-TrainingStrategy::Results::Results(void)
+TrainingStrategy::Results::Results()
 {
     random_search_results_pointer = NULL;
-
     evolutionary_algorithm_results_pointer = NULL;
-
     gradient_descent_results_pointer = NULL;
-
     conjugate_gradient_results_pointer = NULL;
-
     quasi_Newton_method_results_pointer = NULL;
-
     Levenberg_Marquardt_algorithm_results_pointer = NULL;
-
     Newton_method_results_pointer = NULL;
 }
 
-
 // Results destructor
-
-TrainingStrategy::Results::~Results(void)
+TrainingStrategy::Results::~Results()
 {
-//    delete random_search_results_pointer;
-
-//    delete evolutionary_algorithm_results_pointer;
-
-//    delete gradient_descent_results_pointer;
-
-//    delete conjugate_gradient_results_pointer;
-
-//    delete quasi_Newton_method_results_pointer;
-
-//    delete Levenberg_Marquardt_algorithm_results_pointer;
-
-//    delete Newton_method_results_pointer;
-
 }
-
-
-// void Results::save(const std::string&) const method
 
 /// Saves the results structure to a data file.
 /// @param file_name Name of training strategy results data file.
-
 void TrainingStrategy::Results::save(const std::string &file_name) const
 {
     std::ofstream file(file_name.c_str());
 
-    if (random_search_results_pointer) {
+    if (random_search_results_pointer)
         file << random_search_results_pointer->to_string();
-    }
-
-    if (evolutionary_algorithm_results_pointer) {
+    if (evolutionary_algorithm_results_pointer)
         file << evolutionary_algorithm_results_pointer->to_string();
-    }
-
-    if (gradient_descent_results_pointer) {
+    if (gradient_descent_results_pointer)
         file << gradient_descent_results_pointer->to_string();
-    }
-
-    if (conjugate_gradient_results_pointer) {
+    if (conjugate_gradient_results_pointer)
         file << conjugate_gradient_results_pointer->to_string();
-    }
-
-    if (quasi_Newton_method_results_pointer) {
+    if (quasi_Newton_method_results_pointer)
         file << quasi_Newton_method_results_pointer->to_string();
-    }
-
-    if (Levenberg_Marquardt_algorithm_results_pointer) {
+    if (Levenberg_Marquardt_algorithm_results_pointer)
         file << Levenberg_Marquardt_algorithm_results_pointer->to_string();
-    }
-
-    if (Newton_method_results_pointer) {
+    if (Newton_method_results_pointer)
         file << Newton_method_results_pointer->to_string();
-    }
 
     file.close();
 }
+
 
 }
 

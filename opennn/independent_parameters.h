@@ -42,7 +42,7 @@ class IndependentParameters
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit IndependentParameters(void);
+    explicit IndependentParameters();
 
     // INDEPENDENT PARAMETERS NUMBER CONSTRUCTOR
     explicit IndependentParameters(const size_t &);
@@ -51,7 +51,7 @@ public:
     IndependentParameters(const IndependentParameters &);
 
     // DESTRUCTOR
-    virtual ~IndependentParameters(void);
+    virtual ~IndependentParameters();
 
     // ASSIGNMENT OPERATOR
     IndependentParameters &operator=(const IndependentParameters &);
@@ -71,70 +71,70 @@ public:
 
     /// Returns the number of parameters independent of the multilayer perceptron
     /// Independent parameters can be used in the context of neural netwotks for many purposes.
-    inline size_t get_parameters_number(void) const
+    inline size_t get_parameters_number() const
     {
         return parameters.size();
     }
 
-    const Vector<double> &get_parameters(void) const;
+    const Vector<double> &get_parameters() const;
 
     double get_parameter(const size_t &) const;
 
     // Independent parameters information
-    const Vector<std::string> &get_names(void) const;
+    const Vector<std::string> &get_names() const;
 
     const std::string &get_name(const size_t &) const;
 
-    const Vector<std::string> &get_units(void) const;
+    const Vector<std::string> &get_units() const;
 
     const std::string &get_unit(const size_t &) const;
 
-    const Vector<std::string> &get_descriptions(void) const;
+    const Vector<std::string> &get_descriptions() const;
 
     const std::string &get_description(const size_t &) const;
 
     // Independent parameters statistics
-    const Vector<double> &get_minimums(void) const;
+    const Vector<double> &get_minimums() const;
 
     double get_minimum(const size_t &) const;
 
-    const Vector<double> &get_maximums(void) const;
+    const Vector<double> &get_maximums() const;
 
     double get_maximum(const size_t &) const;
 
-    const Vector<double> &get_means(void) const;
+    const Vector<double> &get_means() const;
 
     double get_mean(const size_t &) const;
 
-    const Vector<double> &get_standard_deviations(void) const;
+    const Vector<double> &get_standard_deviations() const;
 
     double get_standard_deviation(const size_t &) const;
 
     // Independent parameters scaling and unscaling
-    const ScalingMethod &get_scaling_method(void) const;
+    const ScalingMethod &get_scaling_method() const;
 
-    std::string write_scaling_method(void) const;
+    std::string write_scaling_method() const;
 
     // Independent parameters bounds
-    const Vector<double> &get_lower_bounds(void) const;
+    const Vector<double> &get_lower_bounds() const;
 
     double get_lower_bound(const size_t &) const;
 
-    const Vector<double> &get_upper_bounds(void) const;
+    const Vector<double> &get_upper_bounds() const;
 
     double get_upper_bound(const size_t &) const;
 
-    Vector<Vector<double> *> get_bounds(void);
+    Vector<Vector<double> *> get_bounds();
 
-    const BoundingMethod &get_bounding_method(void) const;
+    const BoundingMethod &get_bounding_method() const;
 
-    std::string write_bounding_method(void) const;
+    std::string write_bounding_method() const;
 
     // Display messages
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // SET METHODS
-    void set(void);
+    void set();
 
     void set(const size_t &);
 
@@ -142,7 +142,7 @@ public:
 
     void set(const IndependentParameters &);
 
-    virtual void set_default(void);
+    virtual void set_default();
 
     // Independent parameters
     void set_parameters_number(const size_t &);
@@ -187,19 +187,19 @@ public:
     void set_scaling_method(const std::string &);
 
     // Independent parameters bounds
-    void set_lower_bounds(void);
+    void set_lower_bounds();
 
     void set_lower_bounds(const Vector<double> &);
 
     void set_lower_bound(const size_t &, const double &);
 
-    void set_upper_bounds(void);
+    void set_upper_bounds();
 
     void set_upper_bounds(const Vector<double> &);
 
     void set_upper_bound(const size_t &, const double &);
 
-    void set_bounds(void);
+    void set_bounds();
 
     void set_bounds(const Vector<Vector<double>> &);
 
@@ -211,14 +211,14 @@ public:
     void set_display(const bool &);
 
     // Check methods
-    bool is_empty(void) const;
+    bool is_empty() const;
 
     // Independent parameters initialization methods
-    void initialize_random(void);
+    void initialize_random();
 
     void initialize_parameters(const double &);
 
-    void randomize_parameters_uniform(void);
+    void randomize_parameters_uniform();
 
     void randomize_parameters_uniform(const double &, const double &);
 
@@ -226,7 +226,7 @@ public:
 
     void randomize_parameters_uniform(const Vector<Vector<double>> &);
 
-    void randomize_parameters_normal(void);
+    void randomize_parameters_normal();
 
     void randomize_parameters_normal(const double &, const double &);
 
@@ -235,23 +235,23 @@ public:
     void randomize_parameters_normal(const Vector<Vector<double>> &);
 
     // Independent parameters
-    Vector<double> calculate_scaled_parameters(void) const;
+    Vector<double> calculate_scaled_parameters() const;
 
     void unscale_parameters(const Vector<double> &);
 
-    void bound_parameters(void);
+    void bound_parameters();
 
     void bound_parameter(const size_t &);
 
     // Information
-    Vector<Vector<std::string>> arrange_information(void);
+    Vector<Vector<std::string>> arrange_information();
 
     // Statistics
-    Vector<Vector<double>> arrange_statistics(void);
+    Vector<Vector<double>> arrange_statistics();
 
-    Vector<Vector<double>> arrange_minimums_maximums(void);
+    Vector<Vector<double>> arrange_minimums_maximums();
 
-    Vector<Vector<double>> arrange_means_standard_deviations(void);
+    Vector<Vector<double>> arrange_means_standard_deviations();
 
     void set_statistics(const Vector<Vector<double>> &);
 
@@ -260,9 +260,9 @@ public:
     void set_means_standard_deviations(const Vector<Vector<double>> &);
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

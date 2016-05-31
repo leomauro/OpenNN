@@ -47,7 +47,7 @@ class IncrementalOrder : public OrderSelectionAlgorithm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit IncrementalOrder(void);
+    explicit IncrementalOrder();
 
     // TRAINING STRATEGY CONSTRUCTOR
     explicit IncrementalOrder(TrainingStrategy *);
@@ -59,42 +59,42 @@ public:
     explicit IncrementalOrder(const std::string &);
 
     // DESTRUCTOR
-    virtual ~IncrementalOrder(void);
+    virtual ~IncrementalOrder();
 
     ///
     /// This structure contains the training results for the incremental order method.
     ///
     struct IncrementalOrderResults : public OrderSelectionAlgorithm::OrderSelectionResults {
         /// Default constructor.
-        explicit IncrementalOrderResults(void) : OrderSelectionAlgorithm::OrderSelectionResults()
+        explicit IncrementalOrderResults() : OrderSelectionAlgorithm::OrderSelectionResults()
         {
         }
 
         /// Destructor.
-        virtual ~IncrementalOrderResults(void)
+        virtual ~IncrementalOrderResults()
         {
         }
     };
 
     // Get methods
-    const size_t &get_step(void) const;
+    const size_t &get_step() const;
 
-    const size_t &get_maximum_selection_failures(void) const;
+    const size_t &get_maximum_selection_failures() const;
 
     // Set methods
-    void set_default(void);
+    void set_default();
 
     void set_step(const size_t &);
 
     void set_maximum_selection_failures(const size_t &);
 
     // Order selection methods
-    IncrementalOrderResults *perform_order_selection(void);
+    IncrementalOrderResults *perform_order_selection();
 
     // Serialization methods
-    Matrix<std::string> to_string_matrix(void) const;
+    Matrix<std::string> to_string_matrix() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

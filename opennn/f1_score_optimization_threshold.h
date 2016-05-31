@@ -47,7 +47,7 @@ class F1ScoreOptimizationThreshold : public ThresholdSelectionAlgorithm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit F1ScoreOptimizationThreshold(void);
+    explicit F1ScoreOptimizationThreshold();
 
     // TRAINING STRATEGY CONSTRUCTOR
     explicit F1ScoreOptimizationThreshold(TrainingStrategy *);
@@ -59,33 +59,33 @@ public:
     explicit F1ScoreOptimizationThreshold(const std::string &);
 
     // DESTRUCTOR
-    virtual ~F1ScoreOptimizationThreshold(void);
+    virtual ~F1ScoreOptimizationThreshold();
 
     ///
     /// This structure contains the training results for the incremental order method.
     ///
     struct F1ScoreOptimizationThresholdResults : public ThresholdSelectionAlgorithm::ThresholdSelectionResults {
         /// Default constructor.
-        explicit F1ScoreOptimizationThresholdResults(void)
+        explicit F1ScoreOptimizationThresholdResults()
             : ThresholdSelectionAlgorithm::ThresholdSelectionResults()
         {
         }
 
         /// Destructor.
-        virtual ~F1ScoreOptimizationThresholdResults(void)
+        virtual ~F1ScoreOptimizationThresholdResults()
         {
         }
     };
 
     // Get methods
-    const double &get_minimum_threshold(void) const;
+    const double &get_minimum_threshold() const;
 
-    const double &get_maximum_threshold(void) const;
+    const double &get_maximum_threshold() const;
 
-    const double &get_step(void) const;
+    const double &get_step() const;
 
     // Set methods
-    void set_default(void);
+    void set_default();
 
     void set_minimum_threshold(const double &);
 
@@ -94,12 +94,12 @@ public:
     void set_step(const double &);
 
     // Order selection methods
-    F1ScoreOptimizationThresholdResults *perform_threshold_selection(void);
+    F1ScoreOptimizationThresholdResults *perform_threshold_selection();
 
     // Serialization methods
-    Matrix<std::string> to_string_matrix(void) const;
+    Matrix<std::string> to_string_matrix() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

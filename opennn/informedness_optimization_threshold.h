@@ -49,7 +49,7 @@ class InformednessOptimizationThreshold : public ThresholdSelectionAlgorithm
 public:
     // DEFAULT CONSTRUCTOR
 
-    explicit InformednessOptimizationThreshold(void);
+    explicit InformednessOptimizationThreshold();
 
     // TRAINING STRATEGY CONSTRUCTOR
 
@@ -65,7 +65,7 @@ public:
 
     // DESTRUCTOR
 
-    virtual ~InformednessOptimizationThreshold(void);
+    virtual ~InformednessOptimizationThreshold();
 
 
     // STRUCTURES
@@ -78,14 +78,14 @@ public:
         : public ThresholdSelectionAlgorithm::ThresholdSelectionResults {
         /// Default constructor.
 
-        explicit InformednessOptimizationThresholdResults(void)
+        explicit InformednessOptimizationThresholdResults()
             : ThresholdSelectionAlgorithm::ThresholdSelectionResults()
         {
         }
 
         /// Destructor.
 
-        virtual ~InformednessOptimizationThresholdResults(void)
+        virtual ~InformednessOptimizationThresholdResults()
         {
         }
 
@@ -96,13 +96,13 @@ public:
 
     // Get methods
 
-    const double &get_step(void) const;
+    const double &get_step() const;
 
-    const size_t &get_maximum_selection_failures(void) const;
+    const size_t &get_maximum_selection_failures() const;
 
     // Set methods
 
-    void set_default(void);
+    void set_default();
 
     void set_step(const double &);
 
@@ -110,13 +110,13 @@ public:
 
     // Order selection methods
 
-    InformednessOptimizationThresholdResults *perform_threshold_selection(void);
+    InformednessOptimizationThresholdResults *perform_threshold_selection();
 
     // Serialization methods
 
-    Matrix<std::string> to_string_matrix(void) const;
+    Matrix<std::string> to_string_matrix() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

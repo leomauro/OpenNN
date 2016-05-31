@@ -23,7 +23,7 @@ namespace OpenNN
 
 /// Default constructor.
 
-InformednessOptimizationThreshold::InformednessOptimizationThreshold(void)
+InformednessOptimizationThreshold::InformednessOptimizationThreshold()
     : ThresholdSelectionAlgorithm()
 {
     set_default();
@@ -69,36 +69,36 @@ InformednessOptimizationThreshold::InformednessOptimizationThreshold(const std::
 
 /// Destructor.
 
-InformednessOptimizationThreshold::~InformednessOptimizationThreshold(void)
+InformednessOptimizationThreshold::~InformednessOptimizationThreshold()
 {
 }
 
 // METHODS
 
 
-// const double& get_step(void) const method
+// const double& get_step() const method
 
 /// Returns the step for the sucesive iterations of the algorithm.
 
-const double &InformednessOptimizationThreshold::get_step(void) const
+const double &InformednessOptimizationThreshold::get_step() const
 {
     return (step);
 }
 
-// const size_t& get_maximum_selection_failures(void) const method
+// const size_t& get_maximum_selection_failures() const method
 
 /// Returns the maximum number of selection failures in the model order selection algorithm.
 
-const size_t &InformednessOptimizationThreshold::get_maximum_selection_failures(void) const
+const size_t &InformednessOptimizationThreshold::get_maximum_selection_failures() const
 {
     return (maximum_selection_failures);
 }
 
-// void set_default(void) method
+// void set_default() method
 
 /// Sets the members of the model selection object to their default values:
 
-void InformednessOptimizationThreshold::set_default(void)
+void InformednessOptimizationThreshold::set_default()
 {
     step = 0.001;
 
@@ -154,7 +154,7 @@ void InformednessOptimizationThreshold::set_maximum_selection_failures(const siz
     maximum_selection_failures = new_maximum_performance_failures;
 }
 
-// InformednessOptimizationThresholdResults* perform_order_selection(void) method
+// InformednessOptimizationThresholdResults* perform_order_selection() method
 
 /// Perform the decision threshold selection optimizing the informedness.
 
@@ -268,11 +268,11 @@ InformednessOptimizationThreshold::InformednessOptimizationThresholdResults *Inf
     return (results);
 }
 
-// Matrix<std::string> to_string_matrix(void) const method
+// Matrix<std::string> to_string_matrix() const method
 
 // the most representative
 
-Matrix<std::string> InformednessOptimizationThreshold::to_string_matrix(void) const
+Matrix<std::string> InformednessOptimizationThreshold::to_string_matrix() const
 {
     std::ostringstream buffer;
 
@@ -327,12 +327,12 @@ Matrix<std::string> InformednessOptimizationThreshold::to_string_matrix(void) co
 }
 
 
-// tinyxml2::XMLDocument* to_XML(void) const method
+// tinyxml2::XMLDocument* to_XML() const method
 
 /// Prints to the screen the incremental order parameters, the stopping criteria
 /// and other user stuff concerning the incremental order object.
 
-tinyxml2::XMLDocument *InformednessOptimizationThreshold::to_XML(void) const
+tinyxml2::XMLDocument *InformednessOptimizationThreshold::to_XML() const
 {
     std::ostringstream buffer;
 

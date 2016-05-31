@@ -43,7 +43,7 @@ class UnscalingLayer
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit UnscalingLayer(void);
+    explicit UnscalingLayer();
 
     // UNSCALING NEURONS NUMBER CONSTRUCTOR
     explicit UnscalingLayer(const size_t &);
@@ -58,7 +58,7 @@ public:
     UnscalingLayer(const UnscalingLayer &);
 
     // DESTRUCTOR
-    virtual ~UnscalingLayer(void);
+    virtual ~UnscalingLayer();
 
     // ASSIGNMENT OPERATOR
     UnscalingLayer &operator=(const UnscalingLayer &);
@@ -72,29 +72,29 @@ public:
     };
 
     // Outputs number
-    size_t get_unscaling_neurons_number(void) const;
+    size_t get_unscaling_neurons_number() const;
 
     // Output variables statistics
-    Vector<Statistics<double>> get_statistics(void) const;
+    Vector<Statistics<double>> get_statistics() const;
 
-    Matrix<double> arrange_statistics(void) const;
+    Matrix<double> arrange_statistics() const;
 
-    Vector<double> arrange_minimums(void) const;
+    Vector<double> arrange_minimums() const;
 
-    Vector<double> arrange_maximums(void) const;
+    Vector<double> arrange_maximums() const;
 
     // Outputs unscaling method
-    const UnscalingMethod &get_unscaling_method(void) const;
+    const UnscalingMethod &get_unscaling_method() const;
 
-    std::string write_unscaling_method(void) const;
+    std::string write_unscaling_method() const;
 
-    std::string write_unscaling_method_text(void) const;
+    std::string write_unscaling_method_text() const;
 
     // Display messages
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // SET METHODS
-    void set(void);
+    void set();
 
     void set(const size_t &);
 
@@ -104,7 +104,7 @@ public:
 
     void set(const UnscalingLayer &);
 
-    virtual void set_default(void);
+    virtual void set_default();
 
     // Output variables statistics
     void set_statistics(const Vector<Statistics<double>> &);
@@ -131,10 +131,10 @@ public:
     void prune_unscaling_neuron(const size_t &);
 
     // Check methods
-    bool is_empty(void) const;
+    bool is_empty() const;
 
     // UnscalingLayer and unscaling
-    void initialize_random(void);
+    void initialize_random();
 
     Vector<double> calculate_outputs(const Vector<double> &) const;
 
@@ -161,9 +161,9 @@ public:
     void check_range(const Vector<double> &) const;
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

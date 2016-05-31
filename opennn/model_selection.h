@@ -54,7 +54,7 @@ class ModelSelection
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit ModelSelection(void);
+    explicit ModelSelection();
 
     // TRAINING STRATEGY CONSTRUCTOR
     explicit ModelSelection(TrainingStrategy *);
@@ -66,7 +66,7 @@ public:
     explicit ModelSelection(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~ModelSelection(void);
+    virtual ~ModelSelection();
 
     /// Enumeration of all the available types of inputs selection algorithms.
     enum InputsSelectionType {
@@ -136,40 +136,40 @@ public:
     };
 
     // Get methods
-    TrainingStrategy *get_training_strategy_pointer(void) const;
+    TrainingStrategy *get_training_strategy_pointer() const;
 
-    bool has_training_strategy(void) const;
+    bool has_training_strategy() const;
 
-    const OrderSelectionType &get_order_selection_type(void) const;
+    const OrderSelectionType &get_order_selection_type() const;
 
-    const InputsSelectionType &get_inputs_selection_type(void) const;
+    const InputsSelectionType &get_inputs_selection_type() const;
 
-    const ThresholdSelectionType &get_threshold_selection_type(void) const;
+    const ThresholdSelectionType &get_threshold_selection_type() const;
 
-    IncrementalOrder *get_incremental_order_pointer(void) const;
+    IncrementalOrder *get_incremental_order_pointer() const;
 
-    GoldenSectionOrder *get_golden_section_order_pointer(void) const;
+    GoldenSectionOrder *get_golden_section_order_pointer() const;
 
-    SimulatedAnnealingOrder *get_simulated_annealing_order_pointer(void) const;
+    SimulatedAnnealingOrder *get_simulated_annealing_order_pointer() const;
 
-    GrowingInputs *get_growing_inputs_pointer(void) const;
+    GrowingInputs *get_growing_inputs_pointer() const;
 
-    PruningInputs *get_pruning_inputs_pointer(void) const;
+    PruningInputs *get_pruning_inputs_pointer() const;
 
-    GeneticAlgorithm *get_genetic_algorithm_pointer(void) const;
+    GeneticAlgorithm *get_genetic_algorithm_pointer() const;
 
-    F1ScoreOptimizationThreshold *get_f1_score_optimization_threshold_pointer(void) const;
+    F1ScoreOptimizationThreshold *get_f1_score_optimization_threshold_pointer() const;
 
-    MatthewCorrelationOptimizationThreshold *get_matthew_correlation_optimization_threshold(void) const;
+    MatthewCorrelationOptimizationThreshold *get_matthew_correlation_optimization_threshold() const;
 
-    YoudenIndexOptimizationThreshold *get_youden_index_optimization_threshold(void) const;
+    YoudenIndexOptimizationThreshold *get_youden_index_optimization_threshold() const;
 
-    KappaCoefficientOptimizationThreshold *get_kappa_coefficient_optimization_threshold(void) const;
+    KappaCoefficientOptimizationThreshold *get_kappa_coefficient_optimization_threshold() const;
 
-    ROCCurveOptimizationThreshold *get_roc_curve_optimization_threshold(void) const;
+    ROCCurveOptimizationThreshold *get_roc_curve_optimization_threshold() const;
 
     // Set methods
-    void set_default(void);
+    void set_default();
 
     void set_training_strategy_pointer(TrainingStrategy *);
 
@@ -188,29 +188,29 @@ public:
     void set_function_regression(const bool &);
 
     // Pointer methods
-    void destruct_order_selection(void);
+    void destruct_order_selection();
 
-    void destruct_inputs_selection(void);
+    void destruct_inputs_selection();
 
-    void destruct_threshold_selection(void);
+    void destruct_threshold_selection();
 
     // Model selection methods
-    void check(void) const;
+    void check() const;
 
-    ModelSelectionResults perform_order_selection(void) const;
+    ModelSelectionResults perform_order_selection() const;
 
-    ModelSelectionResults perform_inputs_selection(void) const;
+    ModelSelectionResults perform_inputs_selection() const;
 
-    ModelSelectionResults perform_threshold_selection(void) const;
+    ModelSelectionResults perform_threshold_selection() const;
 
-    ModelSelectionResults perform_model_selection(void) const;
+    ModelSelectionResults perform_model_selection() const;
 
     // Serialization methods
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 
-    void print(void) const;
+    void print() const;
 
     void save(const std::string &) const;
 

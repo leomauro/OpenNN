@@ -48,7 +48,7 @@ class MultilayerPerceptron
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit MultilayerPerceptron(void);
+    explicit MultilayerPerceptron();
 
     // LAYER CONSTRUCTOR
     explicit MultilayerPerceptron(const Vector<PerceptronLayer> &);
@@ -66,7 +66,7 @@ public:
     MultilayerPerceptron(const MultilayerPerceptron &);
 
     // DESTRUCTOR
-    virtual ~MultilayerPerceptron(void);
+    virtual ~MultilayerPerceptron();
 
     // ASSIGNMENT OPERATOR
     MultilayerPerceptron &operator=(const MultilayerPerceptron &);
@@ -82,7 +82,7 @@ public:
     /// <LI> ...</LI>
     /// <LI> Number of output perceptrons.</LI>
     /// </UL>
-    inline Vector<size_t> arrange_architecture(void) const
+    inline Vector<size_t> arrange_architecture() const
     {
         const size_t layers_number = get_layers_number();
         Vector<size_t> architecture;
@@ -99,7 +99,7 @@ public:
     }
 
     /// Returns a vector with the sizes of the hidden layers in the multilayer perceptron.
-    inline Vector<size_t> arrange_complexity(void) const
+    inline Vector<size_t> arrange_complexity() const
     {
         const size_t layers_number = get_layers_number();
         Vector<size_t> complexity;
@@ -114,20 +114,20 @@ public:
     }
 
     /// Returns the number of inputs to the multilayer perceptron.
-    inline size_t get_inputs_number(void) const
+    inline size_t get_inputs_number() const
     {
         const size_t layers_number = get_layers_number();
         return layers_number == 0? 0: layers[0].get_inputs_number();
     }
 
     /// Returns the number of layers in the multilayer perceptron.
-    inline size_t get_layers_number(void) const
+    inline size_t get_layers_number() const
     {
         return layers.size();
     }
 
     /// Returns a vector with the number of inputs of each layer.
-    inline Vector<size_t> get_layers_inputs_number(void) const
+    inline Vector<size_t> get_layers_inputs_number() const
     {
         const size_t layers_number = get_layers_number();
         Vector<size_t> layers_inputs_number(layers_number);
@@ -138,7 +138,7 @@ public:
     }
 
     /// Returns a vector with the size of each layer.
-    inline Vector<size_t> arrange_layers_perceptrons_numbers(void) const
+    inline Vector<size_t> arrange_layers_perceptrons_numbers() const
     {
         const size_t layers_number = get_layers_number();
         Vector<size_t> layers_perceptrons_number(layers_number);
@@ -149,38 +149,38 @@ public:
     }
 
     /// Returns the number of outputs neurons in the multilayer perceptron
-    inline size_t get_outputs_number(void) const
+    inline size_t get_outputs_number() const
     {
         const size_t layers_number = get_layers_number();
         return layers_number == 0? 0: layers[layers_number - 1].get_perceptrons_number();
     }
 
-    const Vector<PerceptronLayer> &get_layers(void) const;
+    const Vector<PerceptronLayer> &get_layers() const;
 
     const PerceptronLayer &get_layer(const size_t &) const;
 
     PerceptronLayer *get_layer_pointer(const size_t &);
 
-    size_t count_perceptrons_number(void) const;
+    size_t count_perceptrons_number() const;
 
-    Vector<size_t> count_cumulative_perceptrons_number(void) const;
+    Vector<size_t> count_cumulative_perceptrons_number() const;
 
     // Parameters
-    Vector<size_t> arrange_layers_parameters_number(void) const;
+    Vector<size_t> arrange_layers_parameters_number() const;
 
-    Vector<size_t> arrange_layers_cumulative_parameters_number(void) const;
+    Vector<size_t> arrange_layers_cumulative_parameters_number() const;
 
-    Vector<Vector<double>> arrange_layers_biases(void) const;
+    Vector<Vector<double>> arrange_layers_biases() const;
 
-    Vector<Matrix<double>> arrange_layers_synaptic_weights(void) const;
+    Vector<Matrix<double>> arrange_layers_synaptic_weights() const;
 
-    Vector<Vector<double>> get_layers_parameters(void) const;
+    Vector<Vector<double>> get_layers_parameters() const;
 
-    size_t count_parameters_number(void) const;
+    size_t count_parameters_number() const;
 
-    Vector<double> arrange_parameters(void) const;
+    Vector<double> arrange_parameters() const;
 
-    Vector<size_t> count_layers_parameters_numbers(void) const;
+    Vector<size_t> count_layers_parameters_numbers() const;
 
     size_t get_layer_index(const size_t &) const;
 
@@ -192,18 +192,18 @@ public:
 
     Vector<size_t> arrange_parameter_indices(const size_t &) const;
 
-    Matrix<size_t> arrange_parameters_indices(void) const;
+    Matrix<size_t> arrange_parameters_indices() const;
 
     // Activation functions
-    Vector<Perceptron::ActivationFunction> get_layers_activation_function(void) const;
+    Vector<Perceptron::ActivationFunction> get_layers_activation_function() const;
 
-    Vector<std::string> write_layers_activation_function(void) const;
+    Vector<std::string> write_layers_activation_function() const;
 
     // Display messages
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // SET METHODS
-    void set(void);
+    void set();
 
     void set(const Vector<PerceptronLayer> &);
 
@@ -215,7 +215,7 @@ public:
 
     void set(const MultilayerPerceptron &);
 
-    virtual void set_default(void);
+    virtual void set_default();
 
     // Architecture
     void set_inputs_number(const size_t &);
@@ -243,7 +243,7 @@ public:
 
     void initialize_parameters(const double &);
 
-    void randomize_parameters_uniform(void);
+    void randomize_parameters_uniform();
 
     void randomize_parameters_uniform(const double &, const double &);
 
@@ -251,7 +251,7 @@ public:
 
     void randomize_parameters_uniform(const Vector<Vector<double>> &);
 
-    void randomize_parameters_normal(void);
+    void randomize_parameters_normal();
 
     void randomize_parameters_normal(const double &, const double &);
 
@@ -259,11 +259,11 @@ public:
 
     void randomize_parameters_normal(const Vector<Vector<double>> &);
 
-    void initialize_parameters(void);
+    void initialize_parameters();
 
     void perturbate_parameters(const double &);
 
-    double calculate_parameters_norm(void) const;
+    double calculate_parameters_norm() const;
 
     // Activation functions
     void set_layers_activation_function(const Vector<Perceptron::ActivationFunction> &);
@@ -276,10 +276,10 @@ public:
     void set_display(const bool &);
 
     // Check methods
-    bool is_empty(void) const;
+    bool is_empty() const;
 
     // Growing and pruning
-    void grow_input(void);
+    void grow_input();
 
     void prune_input(const size_t &);
 
@@ -290,7 +290,7 @@ public:
     void prune_layer_perceptron(const size_t &, const size_t &);
 
     // Multilayer perceptron initialization methods
-    void initialize_random(void);
+    void initialize_random();
 
     // PerceptronLayer combination-combination
     Vector<double> calculate_layer_combination_combination(const size_t &, const Vector<double> &) const;
@@ -368,7 +368,7 @@ public:
     Vector<Matrix<double>> calculate_Hessian_form(const Vector<double> &, const Vector<double> &) const;
 
     // Serialization methods
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 
@@ -378,12 +378,12 @@ public:
     void from_PMML(const tinyxml2::XMLElement *);
 
     // Information
-    Matrix<std::string> write_information(void) const;
+    Matrix<std::string> write_information() const;
 
     // Expression methods
     std::string write_expression(const Vector<std::string> &, const Vector<std::string> &) const;
 
-    std::string to_string(void) const;
+    std::string to_string() const;
 
 protected:
     /// Multilayer perceptron layers. It is built as a vector of vectors of perceptrons.

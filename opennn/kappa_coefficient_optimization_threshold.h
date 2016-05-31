@@ -47,7 +47,7 @@ class KappaCoefficientOptimizationThreshold : public ThresholdSelectionAlgorithm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit KappaCoefficientOptimizationThreshold(void);
+    explicit KappaCoefficientOptimizationThreshold();
 
     // TRAINING STRATEGY CONSTRUCTOR
     explicit KappaCoefficientOptimizationThreshold(TrainingStrategy *);
@@ -59,33 +59,33 @@ public:
     explicit KappaCoefficientOptimizationThreshold(const std::string &);
 
     // DESTRUCTOR
-    virtual ~KappaCoefficientOptimizationThreshold(void);
+    virtual ~KappaCoefficientOptimizationThreshold();
 
     ///
     /// This structure contains the training results for the incremental order method.
     ///
     struct KappaCoefficientOptimizationThresholdResults : public ThresholdSelectionAlgorithm::ThresholdSelectionResults {
         /// Default constructor.
-        explicit KappaCoefficientOptimizationThresholdResults(void)
+        explicit KappaCoefficientOptimizationThresholdResults()
             : ThresholdSelectionAlgorithm::ThresholdSelectionResults()
         {
         }
 
         /// Destructor.
-        virtual ~KappaCoefficientOptimizationThresholdResults(void)
+        virtual ~KappaCoefficientOptimizationThresholdResults()
         {
         }
     };
 
     // Get methods
-    const double &get_minimum_threshold(void) const;
+    const double &get_minimum_threshold() const;
 
-    const double &get_maximum_threshold(void) const;
+    const double &get_maximum_threshold() const;
 
-    const double &get_step(void) const;
+    const double &get_step() const;
 
     // Set methods
-    void set_default(void);
+    void set_default();
 
     void set_minimum_threshold(const double &);
 
@@ -94,12 +94,12 @@ public:
     void set_step(const double &);
 
     // Order selection methods
-    KappaCoefficientOptimizationThresholdResults *perform_threshold_selection(void);
+    KappaCoefficientOptimizationThresholdResults *perform_threshold_selection();
 
     // Serialization methods
-    Matrix<std::string> to_string_matrix(void) const;
+    Matrix<std::string> to_string_matrix() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

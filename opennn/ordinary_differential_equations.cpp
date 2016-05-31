@@ -15,12 +15,12 @@
 
 #include "ordinary_differential_equations.h"
 
-namespace OpenNN
-{
+
+namespace OpenNN {
 
 /// Default constructor.
 /// It constructs a default ordinary differential equations object.
-OrdinaryDifferentialEquations::OrdinaryDifferentialEquations(void)
+OrdinaryDifferentialEquations::OrdinaryDifferentialEquations()
         : MathematicalModel()
 {
     set_default();
@@ -29,7 +29,6 @@ OrdinaryDifferentialEquations::OrdinaryDifferentialEquations(void)
 /// XML constructor.
 /// It creates a ordinary differential equations mathematical modeel and loads its members from a TinyXML document.
 /// @param ordinary_differential_equations_document XML document containing the member data.
-
 OrdinaryDifferentialEquations::OrdinaryDifferentialEquations(const tinyxml2::XMLDocument &ordinary_differential_equations_document)
         : MathematicalModel(ordinary_differential_equations_document)
 {
@@ -56,7 +55,7 @@ OrdinaryDifferentialEquations::OrdinaryDifferentialEquations(const OrdinaryDiffe
 
 /// Destructor.
 /// It does not delete any object.
-OrdinaryDifferentialEquations::~OrdinaryDifferentialEquations(void)
+OrdinaryDifferentialEquations::~OrdinaryDifferentialEquations()
 {
 }
 
@@ -85,19 +84,19 @@ bool OrdinaryDifferentialEquations::operator==(const OrdinaryDifferentialEquatio
 }
 
 /// Returns the initial value of the independent variable.
-const double &OrdinaryDifferentialEquations::get_initial_independent_variable(void) const
+const double &OrdinaryDifferentialEquations::get_initial_independent_variable() const
 {
     return initial_independent_variable;
 }
 
 /// Returns the final value of the independent variable.
-const double &OrdinaryDifferentialEquations::get_final_independent_variable(void) const
+const double &OrdinaryDifferentialEquations::get_final_independent_variable() const
 {
     return final_independent_variable;
 }
 
 /// Returns the initial values of the independent variables.
-const Vector<double> &OrdinaryDifferentialEquations::get_initial_dependent_variables(void) const
+const Vector<double> &OrdinaryDifferentialEquations::get_initial_dependent_variables() const
 {
     return initial_dependent_variables;
 }
@@ -110,23 +109,23 @@ const double &OrdinaryDifferentialEquations::get_initial_dependent_variable(cons
 }
 
 /// Returns the numerical method to be used for integration of the ordinary differential equation.
-const OrdinaryDifferentialEquations::SolutionMethod &OrdinaryDifferentialEquations::get_solution_method(void) const
+const OrdinaryDifferentialEquations::SolutionMethod &OrdinaryDifferentialEquations::get_solution_method() const
 {
     return solution_method;
 }
 
 /// Returns a string with the name of the numerical method to be used for integration of the ordinary differential equation.
-std::string OrdinaryDifferentialEquations::write_solution_method(void) const
+std::string OrdinaryDifferentialEquations::write_solution_method() const
 {
-    if (solution_method == RungeKutta) {
+    if (solution_method == RungeKutta)
         return "RungeKutta";
-    } else if (solution_method == RungeKuttaFehlberg) {
+    else if (solution_method == RungeKuttaFehlberg)
         return "RungeKuttaFehlberg";
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: OrdinaryDifferentialEquations class.\n"
-               << "std::string write_solution_method(void) const method.\n"
+               << "std::string write_solution_method() const method.\n"
                << "Unknown solution method.\n";
 
         throw std::logic_error(buffer.str());
@@ -134,31 +133,31 @@ std::string OrdinaryDifferentialEquations::write_solution_method(void) const
 }
 
 /// Returns the number of integration points in the Runge-Kutta method.
-const size_t &OrdinaryDifferentialEquations::get_points_number(void) const
+const size_t &OrdinaryDifferentialEquations::get_points_number() const
 {
     return points_number;
 }
 
 /// Returns the tolerance in the Runge-Kutta-Fehlberg method.
-const double &OrdinaryDifferentialEquations::get_tolerance(void) const
+const double &OrdinaryDifferentialEquations::get_tolerance() const
 {
     return tolerance;
 }
 
 /// Returns the initial size to be reserved for the solutions in the Runge-Kutta-Fehlberg method.
-const size_t &OrdinaryDifferentialEquations::get_initial_size(void) const
+const size_t &OrdinaryDifferentialEquations::get_initial_size() const
 {
     return initial_size;
 }
 
 /// Returns a warning size for the solutions in the Runge-Kutta-Fehlberg method.
-const size_t &OrdinaryDifferentialEquations::get_warning_size(void) const
+const size_t &OrdinaryDifferentialEquations::get_warning_size() const
 {
     return warning_size;
 }
 
 /// Returns an error size for the solutions in the Runge-Kutta-Fehlberg method.
-const size_t &OrdinaryDifferentialEquations::get_error_size(void) const
+const size_t &OrdinaryDifferentialEquations::get_error_size() const
 {
     return error_size;
 }
@@ -224,11 +223,11 @@ void OrdinaryDifferentialEquations::set_solution_method(const SolutionMethod &ne
 /// @param new_solution_method String with the name of the solution method ("RungeKutta" or "RungeKuttaFehlberg").
 void OrdinaryDifferentialEquations::set_solution_method(const std::string &new_solution_method)
 {
-    if (new_solution_method == "RungeKutta") {
+    if (new_solution_method == "RungeKutta")
         set_solution_method(RungeKutta);
-    } else if (new_solution_method == "RungeKuttaFehlberg") {
+    else if (new_solution_method == "RungeKuttaFehlberg")
         set_solution_method(RungeKuttaFehlberg);
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: OrdinaryDifferentialEquations class.\n"
@@ -286,7 +285,7 @@ void OrdinaryDifferentialEquations::set_error_size(const size_t &new_error_size)
 /// <li> Error size: 1e9.
 /// <li> Display: True.
 /// </ul>
-void OrdinaryDifferentialEquations::set_default(void)
+void OrdinaryDifferentialEquations::set_default()
 {
     independent_variables_number = 1;
     dependent_variables_number = 0;
@@ -336,7 +335,6 @@ Matrix<double> OrdinaryDifferentialEquations::calculate_Runge_Kutta_solution(con
         c[1] = calculate_dependent_variables_dots(neural_network, variables);
 
         // Third coefficient
-
         variables[0] = solution(i, 0) + h / 2.0;
         for (size_t j = 0; j < dependent_variables_number; j++) {
             variables[1 + j] = solution(i, 1 + j) + h * c[1][j] / 2.0;
@@ -463,6 +461,7 @@ Matrix<double> OrdinaryDifferentialEquations::calculate_Runge_Kutta_Fehlberg_sol
     const double d4 = c44 - c54;
     const double d5 = c45 - c55;
     const double d6 = c46 - c56;
+
     const size_t variables_number = count_variables_number();
     size_t size = initial_size;
     Vector<double> errors(dependent_variables_number, 0.0);
@@ -589,7 +588,7 @@ Matrix<double> OrdinaryDifferentialEquations::calculate_Runge_Kutta_Fehlberg_sol
 /// @param neural_network Neural network which represents the external inputs to the mathematical model.
 Vector<double> OrdinaryDifferentialEquations::calculate_Runge_Kutta_Fehlberg_final_solution(const NeuralNetwork &neural_network) const
 {
-    const double epsilon = 1.0e-12;//std::numeric_limits<double>::epsilon();
+    const double epsilon = 1.0e-12;     //std::numeric_limits<double>::epsilon();
     const double a2 = 1.0 / 5.0;
     const double a3 = 3.0 / 10.0;
     const double a4 = 3.0 / 5.0;
@@ -628,6 +627,7 @@ Vector<double> OrdinaryDifferentialEquations::calculate_Runge_Kutta_Fehlberg_fin
     const double d4 = c44 - c54;
     const double d5 = c45 - c55;
     const double d6 = c46 - c56;
+
     const size_t variables_number = count_variables_number();
     Vector<double> errors(dependent_variables_number, 0.0);
     double error = 0.0;
@@ -772,7 +772,7 @@ Vector<double> OrdinaryDifferentialEquations::calculate_final_solutions(const Ne
 }
 
 /// Returns a string representation of the current ordinary differential equations object.
-std::string OrdinaryDifferentialEquations::to_string(void) const
+std::string OrdinaryDifferentialEquations::to_string() const
 {
     std::ostringstream buffer;
     buffer << "Mathematical model\n"
@@ -793,7 +793,7 @@ std::string OrdinaryDifferentialEquations::to_string(void) const
 
 /// Serializes the ordinary differential equations object into a XML document of the TinyXML library.
 /// See the OpenNN manual for more information about the format of this document.
-tinyxml2::XMLDocument *OrdinaryDifferentialEquations::to_XML(void) const
+tinyxml2::XMLDocument *OrdinaryDifferentialEquations::to_XML() const
 {
     tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
     std::ostringstream buffer;
@@ -896,7 +896,8 @@ void OrdinaryDifferentialEquations::from_XML(const tinyxml2::XMLDocument &docume
         if (text) {
             try {
                 set_dependent_variables_number(atoi(text));
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -909,7 +910,8 @@ void OrdinaryDifferentialEquations::from_XML(const tinyxml2::XMLDocument &docume
         if (text) {
             try {
                 set_initial_independent_variable(atof(text));
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -922,7 +924,8 @@ void OrdinaryDifferentialEquations::from_XML(const tinyxml2::XMLDocument &docume
         if (text) {
             try {
                 set_final_independent_variable(atof(text));
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -938,7 +941,8 @@ void OrdinaryDifferentialEquations::from_XML(const tinyxml2::XMLDocument &docume
                 new_initial_dependent_variables.parse(text);
 
                 set_initial_dependent_variables(new_initial_dependent_variables);
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -952,7 +956,8 @@ void OrdinaryDifferentialEquations::from_XML(const tinyxml2::XMLDocument &docume
             try {
                 std::string new_solution_method(text);
                 set_solution_method(new_solution_method);
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -965,7 +970,8 @@ void OrdinaryDifferentialEquations::from_XML(const tinyxml2::XMLDocument &docume
         if (text) {
             try {
                 set_points_number(atoi(text));
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -978,7 +984,8 @@ void OrdinaryDifferentialEquations::from_XML(const tinyxml2::XMLDocument &docume
         if (text) {
             try {
                 set_tolerance(atof(text));
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -991,7 +998,8 @@ void OrdinaryDifferentialEquations::from_XML(const tinyxml2::XMLDocument &docume
         if (text) {
             try {
                 set_initial_size(atoi(text));
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -1004,7 +1012,8 @@ void OrdinaryDifferentialEquations::from_XML(const tinyxml2::XMLDocument &docume
         if (text) {
             try {
                 set_warning_size(atoi(text));
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -1017,7 +1026,8 @@ void OrdinaryDifferentialEquations::from_XML(const tinyxml2::XMLDocument &docume
         if (text) {
             try {
                 set_error_size(atoi(text));
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -1031,7 +1041,8 @@ void OrdinaryDifferentialEquations::from_XML(const tinyxml2::XMLDocument &docume
             try {
                 std::string display_string(display_text);
                 set_display(display_string != "0");
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -1047,6 +1058,7 @@ void OrdinaryDifferentialEquations::save_data(const NeuralNetwork &neural_networ
     const Matrix<double> solution = calculate_Runge_Kutta_solution(neural_network);
     solution.save(file_name);
 }
+
 
 }
 

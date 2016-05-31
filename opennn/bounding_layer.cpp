@@ -18,71 +18,47 @@
 namespace OpenNN
 {
 
-// DEFAULT CONSTRUCTOR
-
 /// Default constructor.
 /// It creates a bounding layer object with zero bounding neurons.
-
-BoundingLayer::BoundingLayer(void)
+BoundingLayer::BoundingLayer()
 {
     set();
 }
 
-
-// BOUNDING NEURONS NUMBER CONSTRUCTOR
-
 /// Bounding neurons number constructor.
 /// It creates a bounding layer with a given size.
 /// @param bounding_neurons_number Number of bounding neurons in the layer.
-
 BoundingLayer::BoundingLayer(const size_t &bounding_neurons_number)
 {
     set(bounding_neurons_number);
-
     set_default();
 }
-
-
-// XML CONSTRUCTOR
 
 /// XML constructor.
 /// It creates a bounding layer and loads its members from a XML document.
 /// @param bounding_layer_document TinyXML document with the member data.
-
 BoundingLayer::BoundingLayer(const tinyxml2::XMLDocument &bounding_layer_document)
 {
     set(bounding_layer_document);
 }
 
-
-// COPY CONSTRUCTOR
-
 /// Copy constructor.
 /// It creates a copy of an existing bounding layer object.
 /// @param other_bounding_layer Bounding layer to be copied.
-
 BoundingLayer::BoundingLayer(const BoundingLayer &other_bounding_layer)
 {
     set(other_bounding_layer);
 }
 
-
-// DESTRUCTOR
-
 /// Destructor.
 /// This destructor does not delete any pointer.
-
-BoundingLayer::~BoundingLayer(void)
+BoundingLayer::~BoundingLayer()
 {
 }
-
-
-// ASSIGNMENT OPERATOR
 
 /// Assignment operator.
 /// It assigns to this object the members of an existing bounding layer object.
 /// @param other_bounding_layer Bounding layer object to be assigned.
-
 BoundingLayer &BoundingLayer::operator=(const BoundingLayer &other_bounding_layer)
 {
     if (this != &other_bounding_layer) {
@@ -90,79 +66,45 @@ BoundingLayer &BoundingLayer::operator=(const BoundingLayer &other_bounding_laye
         upper_bounds = other_bounding_layer.upper_bounds;
         display = other_bounding_layer.display;
     }
-
-    return (*this);
+    return *this;
 }
-
-
-// EQUAL TO OPERATOR
-
-// bool operator == (const BoundingLayer&) const method
 
 /// Equal to operator.
 /// It compares this object with another object of the same class.
 /// It returns true if the members of the two objects have the same values, and false otherwise.
 /// @ param other_bounding_layer Bounding layer to be compared with.
-
 bool BoundingLayer::operator==(const BoundingLayer &other_bounding_layer) const
 {
-    if (lower_bounds == other_bounding_layer.lower_bounds
-            && upper_bounds == other_bounding_layer.upper_bounds
-            && display == other_bounding_layer.display) {
-        return (true);
-    } else {
-        return (false);
-    }
+    return lower_bounds == other_bounding_layer.lower_bounds &&
+           upper_bounds == other_bounding_layer.upper_bounds && display == other_bounding_layer.display;
 }
 
-
-// bool is_empty(void) const method
 
 /// Returns true if the size of the layer is zero, and false otherwise.
-
-bool BoundingLayer::is_empty(void) const
+bool BoundingLayer::is_empty() const
 {
-    if (get_bounding_neurons_number() == 0) {
-        return (true);
-    } else {
-        return (false);
-    }
+    return get_bounding_neurons_number() == 0;
 }
-
-
-// size_t get_bounding_neurons_number(void) const method
 
 /// Returns the number of bounding neurons in the layer.
-
-size_t BoundingLayer::get_bounding_neurons_number(void) const
+size_t BoundingLayer::get_bounding_neurons_number() const
 {
-    return (lower_bounds.size());
+    return lower_bounds.size();
 }
-
-
-// const Vector<double>& get_lower_bounds(void) const method
 
 /// Returns the lower bounds values of all the bounding neurons in the layer.
-
-const Vector<double> &BoundingLayer::get_lower_bounds(void) const
+const Vector<double> &BoundingLayer::get_lower_bounds() const
 {
-    return (lower_bounds);
+    return lower_bounds;
 }
-
-
-// double get_lower_bound(const size_t&) const const method
 
 /// Returns the lower bound value of a single bounding neuron.
 /// @param i Index of bounding neuron.
-
 double BoundingLayer::get_lower_bound(const size_t &i) const
 {
-    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
-
     const size_t bounding_neurons_number = get_bounding_neurons_number();
-
     if (i >= bounding_neurons_number) {
         std::ostringstream buffer;
 
@@ -172,36 +114,24 @@ double BoundingLayer::get_lower_bound(const size_t &i) const
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
 
-    return (lower_bounds[i]);
+    return lower_bounds[i];
 }
-
-
-// const Vector<double>& get_upper_bound(void) const method
 
 /// Returns the upper bounds values of all the bounding neurons in the layer.
-
-const Vector<double> &BoundingLayer::get_upper_bounds(void) const
+const Vector<double> &BoundingLayer::get_upper_bounds() const
 {
-    return (upper_bounds);
+    return upper_bounds;
 }
-
-
-// double get_upper_bound(const size_t&) const method
 
 /// Returns the upper bound value of a single bounding neuron.
 /// @param i Index of bounding neuron.
-
 double BoundingLayer::get_upper_bound(const size_t &i) const
 {
-    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
-
     const size_t bounding_neurons_number = get_bounding_neurons_number();
-
     if (bounding_neurons_number == 0) {
         std::ostringstream buffer;
 
@@ -219,101 +149,66 @@ double BoundingLayer::get_upper_bound(const size_t &i) const
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
 
-    return (upper_bounds[i]);
+    return upper_bounds[i];
 }
-
-
-// Vector< Vector<double>* > get_bounds(void) method
 
 /// Returns the lower bounds and the upper bounds of all the bounding neurons.
 /// The format is a vector of pointers to vectors of size two.
 /// The first element contains the lower bound values.
 /// The second element contains the upper bound values.
-
-Vector<Vector<double> *> BoundingLayer::get_bounds(void)
+Vector<Vector<double> *> BoundingLayer::get_bounds()
 {
     Vector<Vector<double> *> bounds(2);
-
     bounds[0] = &lower_bounds;
     bounds[1] = &upper_bounds;
-
-    return (bounds);
+    return bounds;
 }
-
-
-// void set(void)
 
 /// Sets the number of bounding neurons to be zero.
 /// It also sets the rest of memebers to their default values.
-
-void BoundingLayer::set(void)
+void BoundingLayer::set()
 {
     lower_bounds.set();
     upper_bounds.set();
-
     set_default();
 }
-
-
-// void set(const size_t&)
 
 /// Resizes the bounding layer.
 /// It also sets the rest of memebers to their default values.
 /// @param new_bounding_neurons_number Size of the bounding layer.
-
 void BoundingLayer::set(const size_t &new_bounding_neurons_number)
 {
     lower_bounds.set(new_bounding_neurons_number);
     upper_bounds.set(new_bounding_neurons_number);
-
     set_default();
 }
-
-
-// void set(const tinyxml2::XMLDocument&) method
 
 /// Sets the bounding layer members from a XML document.
 /// @param bounding_layer_document Pointer to a TinyXML document containing the member data.
-
 void BoundingLayer::set(const tinyxml2::XMLDocument &bounding_layer_document)
 {
     set_default();
-
     from_XML(bounding_layer_document);
 }
 
-
-// void set(const BoundingLayer&)
-
 /// Sets the members of this object to be the members of another object of the same class.
 /// @param other_bounding_layer Object to be copied.
-
 void BoundingLayer::set(const BoundingLayer &other_bounding_layer)
 {
     lower_bounds = other_bounding_layer.lower_bounds;
-
     upper_bounds = other_bounding_layer.upper_bounds;
-
     display = other_bounding_layer.display;
 }
 
-
-// void set_lower_bound(const Vector<double>&) method
-
 /// Sets new lower bounds for all the neurons in the layer.
 /// @param new_lower_bounds New set of lower bounds for the bounding neurons.
-
 void BoundingLayer::set_lower_bounds(const Vector<double> &new_lower_bounds)
 {
-    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
-
     const size_t bounding_neurons_number = get_bounding_neurons_number();
-
     if (new_lower_bounds.size() != bounding_neurons_number) {
         std::ostringstream buffer;
 
@@ -323,30 +218,20 @@ void BoundingLayer::set_lower_bounds(const Vector<double> &new_lower_bounds)
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
-
-    // Set lower bound of bounding neurons
 
     lower_bounds = new_lower_bounds;
 }
-
-
-// void set_lower_bound(const size_t&, const double&) method
 
 /// Sets a new lower bound for a single neuron.
 /// This value is used for unscaling that variable so that it is not less than the lower bound.
 /// @param index Index of bounding neuron.
 /// @param new_lower_bound New lower bound for the neuron with index i.
-
 void BoundingLayer::set_lower_bound(const size_t &index, const double &new_lower_bound)
 {
     const size_t bounding_neurons_number = get_bounding_neurons_number();
 
-    // Control sentence (if debug)
-
 #ifdef __OPENNN_DEBUG__
-
     if (index >= bounding_neurons_number) {
         std::ostringstream buffer;
 
@@ -356,33 +241,23 @@ void BoundingLayer::set_lower_bound(const size_t &index, const double &new_lower
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
 
-    if (lower_bounds.size() != bounding_neurons_number) {
+    if (lower_bounds.size() != bounding_neurons_number)
         lower_bounds.set(bounding_neurons_number, -1.0e99);
-    }
 
     // Set lower bound of single neuron
-
     lower_bounds[index] = new_lower_bound;
 }
-
-
-// void set_upper_bounds(const Vector<double>&) method
 
 /// Sets new upper bounds for all the bounding neurons.
 /// These values are used for unscaling variables so that they are not greater than the upper bounds.
 /// @param new_upper_bounds New set of upper bounds for the layer.
-
 void BoundingLayer::set_upper_bounds(const Vector<double> &new_upper_bounds)
 {
-    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
-
     const size_t bounding_neurons_number = get_bounding_neurons_number();
-
     if (new_upper_bounds.size() != bounding_neurons_number) {
         std::ostringstream buffer;
 
@@ -392,30 +267,20 @@ void BoundingLayer::set_upper_bounds(const Vector<double> &new_upper_bounds)
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
-
-    // Set upper bound of neurons
 
     upper_bounds = new_upper_bounds;
 }
-
-
-// void set_upper_bound(const size_t&, const double&) method
 
 /// Sets a new upper bound for a single neuron.
 /// This value is used for unscaling that variable so that it is not greater than the upper bound.
 /// @param index Index of bounding neuron.
 /// @param new_upper_bound New upper bound for the bounding neuron with that index.
-
 void BoundingLayer::set_upper_bound(const size_t &index, const double &new_upper_bound)
 {
     const size_t bounding_neurons_number = get_bounding_neurons_number();
 
-    // Control sentence (if debug)
-
 #ifdef __OPENNN_DEBUG__
-
     if (index >= bounding_neurons_number) {
         std::ostringstream buffer;
 
@@ -425,20 +290,13 @@ void BoundingLayer::set_upper_bound(const size_t &index, const double &new_upper
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
 
-    if (upper_bounds.size() != bounding_neurons_number) {
+    if (upper_bounds.size() != bounding_neurons_number)
         upper_bounds.set(bounding_neurons_number, 1.0e99);
-    }
-
-    // Set upper bound of single bounding neuron
 
     upper_bounds[index] = new_upper_bound;
 }
-
-
-// void set_bounds(const Vector< Vector<double> >&) method
 
 /// Sets both the lower bounds and the upper bounds of all the neurons in the layer.
 /// The format is a vector of two real vectors.
@@ -446,17 +304,12 @@ void BoundingLayer::set_upper_bound(const size_t &index, const double &new_upper
 /// The second element must contain the upper bound values for the bounding neurons.
 /// These values are used for unscaling variables so that they are neither less than the lower bounds nor greater than the upper bounds.
 /// @param new_bounds New set of lower and upper bounds.
-
 void BoundingLayer::set_bounds(const Vector<Vector<double>> &new_bounds)
 {
-    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
-
     const size_t size = new_bounds.size();
-
     const size_t bounding_neurons_number = get_bounding_neurons_number();
-
     if (size != 2) {
         std::ostringstream buffer;
 
@@ -475,55 +328,37 @@ void BoundingLayer::set_bounds(const Vector<Vector<double>> &new_bounds)
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
-
-    // Set lower and upper bounds of bounding neurons
 
     set_lower_bounds(new_bounds[0]);
     set_upper_bounds(new_bounds[1]);
 }
 
-
-// void set_display(const bool&) method
-
 /// Sets a new display value.
 /// If it is set to true messages from this class are to be displayed on the screen;
 /// if it is set to false messages from this class are not to be displayed on the screen.
 /// @param new_display Display value.
-
 void BoundingLayer::set_display(const bool &new_display)
 {
     display = new_display;
 }
 
-
-// void set_default(void) method
-
 /// Sets the members to their default values:
 /// <ul>
 /// <li> Display: True.
 /// </ul>
-
-void BoundingLayer::set_default(void)
+void BoundingLayer::set_default()
 {
     display = true;
 }
 
-
-// void prune_bounding_neuron(const size_t&) method
-
 /// Removes a given bounding neuron from the bounding layer.
 /// @param index Index of neuron to be pruned.
-
 void BoundingLayer::prune_bounding_neuron(const size_t &index)
 {
-    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
-
     const size_t bounding_neurons_number = get_bounding_neurons_number();
-
     if (index >= bounding_neurons_number) {
         std::ostringstream buffer;
 
@@ -533,45 +368,30 @@ void BoundingLayer::prune_bounding_neuron(const size_t &index)
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
 
     lower_bounds.erase(lower_bounds.begin() + index);
     upper_bounds.erase(upper_bounds.begin() + index);
 }
 
-
-// void initialize_random(void) method
-
 /// Initializes the lower and upper bounds of all the bounding neurons with random values.
-
-void BoundingLayer::initialize_random(void)
+void BoundingLayer::initialize_random()
 {
     Vector<double> random_vector(4);
     random_vector.randomize_normal();
-
     std::sort(random_vector.begin(), random_vector.end());
-
     lower_bounds.randomize_uniform(random_vector[0], random_vector[1]);
     upper_bounds.randomize_uniform(random_vector[2], random_vector[3]);
 }
 
-
-// Vector<double> calculate_outputs(const Vector<double>&) const method
-
 /// Calculates the outputs from the bounding layer for a set of inputs to that layer.
 /// @param inputs Set of inputs to the bounding layer.
-
 Vector<double> BoundingLayer::calculate_outputs(const Vector<double> &inputs) const
 {
-    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
-
     const size_t inputs_size = inputs.size();
-
     const size_t bounding_neurons_number = get_bounding_neurons_number();
-
     if (inputs_size != bounding_neurons_number) {
         std::ostringstream buffer;
 
@@ -581,59 +401,46 @@ Vector<double> BoundingLayer::calculate_outputs(const Vector<double> &inputs) co
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
 
-    return (inputs.calculate_lower_upper_bounded(lower_bounds, upper_bounds));
+    return inputs.calculate_lower_upper_bounded(lower_bounds, upper_bounds);
 }
-
-
-// Vector<double> calculate_derivative(const Vector<double>&) const method
 
 /// Returns the derivatives of the outputs with respect to the inputs.
 /// @param inputs Set of input values to the bounding layer.
-
 Vector<double> BoundingLayer::calculate_derivative(const Vector<double> &inputs) const
 {
     const size_t bounding_neurons_number = get_bounding_neurons_number();
-
     const Vector<double> outputs = calculate_outputs(inputs);
-
     Vector<double> derivatives(bounding_neurons_number);
-
     for (size_t i = 0; i < bounding_neurons_number; i++) {
-        if (outputs[i] <= lower_bounds[i] || outputs[i] >= upper_bounds[i]) {
+        if (outputs[i] <= lower_bounds[i] || outputs[i] >= upper_bounds[i])
             derivatives[i] = 0.0;
-        } else {
+        else
             derivatives[i] = 1.0;
-        }
     }
-
-    return (derivatives);
+    return derivatives;
 }
-
-
-// Vector<double> calculate_second_derivative(const Vector<double>&) const method
 
 /// Returns the second derivatives of the outputs with respect to the inputs.
 /// @param inputs Set of input values to the bounding layer.
-
 Vector<double> BoundingLayer::calculate_second_derivative(const Vector<double> &inputs) const
 {
-    std::ostringstream buffer;
-
     const size_t bounding_neurons_number = get_bounding_neurons_number();
-
     const Vector<double> outputs = calculate_outputs(inputs);
-
     for (size_t i = 0; i < bounding_neurons_number; i++) {
         if (outputs[i] == lower_bounds[i]) {
+            std::ostringstream buffer;
+
             buffer << "OpenNN Exception: BoundingLayer class.\n"
                    << "Vector<double> calculate_outputs(const Vector<double>&) const method.\n"
                    << "Output is equal to lower bound. The bounding function is not differentiable at this point.\n";
 
             throw std::logic_error(buffer.str());
-        } else if (outputs[i] == upper_bounds[i]) {
+        }
+        if (outputs[i] == upper_bounds[i]) {
+            std::ostringstream buffer;
+
             buffer << "OpenNN Exception: BoundingLayer class.\n"
                    << "Vector<double> calculate_outputs(const Vector<double>&) const method.\n"
                    << "Output is equal to upper bound. The bounding function is not differentiable at this point.\n";
@@ -643,27 +450,18 @@ Vector<double> BoundingLayer::calculate_second_derivative(const Vector<double> &
     }
 
     Vector<double> second_derivative(bounding_neurons_number, 0.0);
-
-    return (second_derivative);
+    return second_derivative;
 }
-
-
-// Matrix<double> arrange_Jacobian(const Vector<double>&) const method
 
 /// Arranges a "Jacobian matrix" from a vector of derivatives.
 /// The Jacobian matrix is composed of the partial derivatives of the layer outputs with respect to the layer inputs.
 /// @param derivatives Vector of outputs-inputs derivatives of each bounding neuron.
-
 Matrix<double> BoundingLayer::arrange_Jacobian(const Vector<double> &derivatives) const
 {
     const size_t bounding_neurons_number = get_bounding_neurons_number();
 
-    // Control sentence (if debug)
-
 #ifdef __OPENNN_DEBUG__
-
     const size_t derivatives_size = derivatives.size();
-
     if (derivatives_size != bounding_neurons_number) {
         std::ostringstream buffer;
 
@@ -673,109 +471,74 @@ Matrix<double> BoundingLayer::arrange_Jacobian(const Vector<double> &derivatives
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
 
     Matrix<double> Jacobian(bounding_neurons_number, bounding_neurons_number, 0.0);
     Jacobian.set_diagonal(derivatives);
-
-    return (Jacobian);
+    return Jacobian;
 }
-
-
-// Vector< Matrix<double> > arrange_Hessian_form(const Vector<double>&) const method
 
 /// Arranges a "Hessian form" vector of matrices from a vector of derivatives.
 /// The Hessian form is composed of the second partial derivatives of the layer outputs with respect to the layer inputs.
-
 Vector<Matrix<double>> BoundingLayer::arrange_Hessian_form(const Vector<double> &) const
 {
     const size_t bounding_neurons_number = get_bounding_neurons_number();
-
     Vector<Matrix<double>> bounded_Hessian_form(bounding_neurons_number);
-
     for (size_t i = 0; i < bounding_neurons_number; i++) {
         bounded_Hessian_form[i].set(bounding_neurons_number, bounding_neurons_number, 0.0);
     }
-
-    return (bounded_Hessian_form);
+    return bounded_Hessian_form;
 }
 
-
-// std::string write_expression(const Vector<std::string>&, const Vector<std::string>&) const method
-
 /// Returns a string with the expression of the lower and upper bounds functions.
-
 std::string BoundingLayer::write_expression(const Vector<std::string> &inputs_name,
-        const Vector<std::string> &outputs_name) const
+                                            const Vector<std::string> &outputs_name) const
 {
     std::stringstream expression;
-
     const size_t bounding_neurons_number = get_bounding_neurons_number();
-
     for (size_t i = 0; i < bounding_neurons_number; i++) {
         expression << outputs_name[i] << " < " << lower_bounds[i] << " ? " << lower_bounds[i] << " : " << inputs_name[i] << "\n";
         expression << outputs_name[i] << " > " << upper_bounds[i] << " ? " << upper_bounds[i] << " : " << inputs_name[i] << "\n";
     }
-
-    return (expression.str());
+    return expression.str();
 }
 
-
-// std::string to_string(void) const method
-
 /// Returns a string representation of the current bonding layer object.
-
-std::string BoundingLayer::to_string(void) const
+std::string BoundingLayer::to_string() const
 {
     std::ostringstream buffer;
-
     buffer << "Bounding layer\n"
            << "Lower bounds: " << lower_bounds << "\n"
            << "Upper bounds: " << upper_bounds << "\n"
            << "Display: " << display << "\n";
-
-    return (buffer.str());
+    return buffer.str();
 }
-
-
-// tinyxml2::XMLDocument* to_XML(void) const method
 
 /// Serializes the bounding layer object into a XML document of the TinyXML library.
 /// See the OpenNN manual for more information about the format of this document.
-
-tinyxml2::XMLDocument *BoundingLayer::to_XML(void) const
+tinyxml2::XMLDocument *BoundingLayer::to_XML() const
 {
     tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
-
     std::ostringstream buffer;
-
     tinyxml2::XMLElement *bounding_layer_element = document->NewElement("BoundingLayer");
-
     document->InsertFirstChild(bounding_layer_element);
 
     // Lower bounds
-
     {
         tinyxml2::XMLElement *element = document->NewElement("LowerBounds");
         bounding_layer_element->LinkEndChild(element);
-
         buffer.str("");
         buffer << lower_bounds;
-
         tinyxml2::XMLText *text = document->NewText(buffer.str().c_str());
         element->LinkEndChild(text);
     }
 
     // Upper bounds
-
     {
         tinyxml2::XMLElement *element = document->NewElement("UpperBounds");
         bounding_layer_element->LinkEndChild(element);
-
         buffer.str("");
         buffer << upper_bounds;
-
         tinyxml2::XMLText *text = document->NewText(buffer.str().c_str());
         element->LinkEndChild(text);
     }
@@ -784,54 +547,26 @@ tinyxml2::XMLDocument *BoundingLayer::to_XML(void) const
     {
         tinyxml2::XMLElement *display_element = document->NewElement("Display");
         bounding_layer_element->LinkEndChild(display_element);
-
         buffer.str("");
         buffer << display;
-
         tinyxml2::XMLText *display_text = document->NewText(buffer.str().c_str());
         display_element->LinkEndChild(display_text);
     }
-
-    return (document);
+    return document;
 }
-
-
-// void from_XML(const tinyxml2::XMLDocument&) method
 
 /// Deserializes a TinyXML document into this bounding layer object.
 /// @param document TinyXML document containing the member data.
-
 void BoundingLayer::from_XML(const tinyxml2::XMLDocument &document)
 {
-    // Control sentence
-//      {
-//         const char* text = bounding_layer_element->GetText();
-
-//         const std::string string(text);
-
-//         if(string != "BoundingLayer")
-//         {
-//            std::ostringstream buffer;
-
-//            buffer << "OpenNN Exception: BoundingLayer class.\n"
-//                   << "void from_XML(const tinyxml2::XMLDocument&) method.\n"
-//                   << "Unkown root element: " << text << ".\n";
-
-//              throw std::logic_error(buffer.str());
-//         }
-//      }
-
     // Lower bounds
     {
         const tinyxml2::XMLElement *lower_bounds_element = document.FirstChildElement("LowerBounds");
-
         if (lower_bounds_element) {
             const char *lower_bounds_text = lower_bounds_element->GetText();
-
             if (lower_bounds_text) {
                 Vector<double> new_lower_bounds;
                 new_lower_bounds.parse(lower_bounds_text);
-
                 try {
                     set_lower_bounds(new_lower_bounds);
                 } catch (const std::logic_error &e) {
@@ -844,14 +579,11 @@ void BoundingLayer::from_XML(const tinyxml2::XMLDocument &document)
     // Upper bounds
     {
         const tinyxml2::XMLElement *upper_bounds_element = document.FirstChildElement("UpperBounds");
-
         if (upper_bounds_element) {
             const char *upper_bounds_text = upper_bounds_element->GetText();
-
             if (upper_bounds_text) {
                 Vector<double> new_upper_bounds;
                 new_upper_bounds.parse(upper_bounds_text);
-
                 try {
                     set_upper_bounds(new_upper_bounds);
                 } catch (const std::logic_error &e) {
@@ -864,10 +596,8 @@ void BoundingLayer::from_XML(const tinyxml2::XMLDocument &document)
     // Display
     {
         const tinyxml2::XMLElement *display_element = document.FirstChildElement("Display");
-
         if (display_element) {
             std::string new_display_string = display_element->GetText();
-
             try {
                 set_display(new_display_string != "0");
             } catch (const std::logic_error &e) {
@@ -877,7 +607,9 @@ void BoundingLayer::from_XML(const tinyxml2::XMLDocument &document)
     }
 }
 
+
 }
+
 
 // OpenNN: Open Neural Networks Library.
 // Copyright (c) 2005-2016 Roberto Lopez.

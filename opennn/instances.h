@@ -45,7 +45,7 @@ class Instances
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit Instances(void);
+    explicit Instances();
 
     // INSTANCES NUMBER CONSTRUCTOR
     explicit Instances(const size_t &);
@@ -57,7 +57,7 @@ public:
     Instances(const Instances &);
 
     // DESTRUCTOR
-    virtual ~Instances(void);
+    virtual ~Instances();
 
     // ASSIGNMENT OPERATOR
     Instances &operator=(const Instances &);
@@ -83,7 +83,7 @@ public:
     ///
     struct Item {
         /// Default constructor.
-        Item(void)
+        Item()
         {
             use = Training;
         }
@@ -95,7 +95,7 @@ public:
         }
 
         /// Destructor.
-        virtual ~Item(void)
+        virtual ~Item()
         {
         }
 
@@ -106,18 +106,18 @@ public:
     static SplittingMethod get_splitting_method(const std::string &);
 
     /// Returns the number of instances in the data set.
-    inline size_t get_instances_number(void) const
+    inline size_t get_instances_number() const
     {
         return items.size();
     }
 
-    bool empty(void) const;
+    bool empty() const;
 
-    Vector<Use> arrange_uses(void) const;
+    Vector<Use> arrange_uses() const;
 
-    Vector<std::string> write_uses(void) const;
+    Vector<std::string> write_uses() const;
 
-    Vector<std::string> write_abbreviated_uses(void) const;
+    Vector<std::string> write_abbreviated_uses() const;
 
     const Use &get_use(const size_t &) const;
 
@@ -127,38 +127,38 @@ public:
 
     bool is_unused(const size_t &) const;
 
-    size_t count_training_instances_number(void) const;
+    size_t count_training_instances_number() const;
 
-    size_t count_selection_instances_number(void) const;
+    size_t count_selection_instances_number() const;
 
-    size_t count_testing_instances_number(void) const;
+    size_t count_testing_instances_number() const;
 
-    size_t count_unused_instances_number(void) const;
+    size_t count_unused_instances_number() const;
 
-    size_t count_used_instances_number(void) const;
+    size_t count_used_instances_number() const;
 
-    Vector<size_t> count_uses(void) const;
+    Vector<size_t> count_uses() const;
 
-    Vector<size_t> arrange_used_indices(void) const;
+    Vector<size_t> arrange_used_indices() const;
 
-    Vector<size_t> arrange_unused_indices(void) const;
+    Vector<size_t> arrange_unused_indices() const;
 
-    Vector<size_t> arrange_training_indices(void) const;
+    Vector<size_t> arrange_training_indices() const;
 
-    Vector<size_t> arrange_selection_indices(void) const;
+    Vector<size_t> arrange_selection_indices() const;
 
-    Vector<size_t> arrange_testing_indices(void) const;
+    Vector<size_t> arrange_testing_indices() const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // Set methods
-    void set(void);
+    void set();
 
     void set(const size_t &);
 
     void set(const tinyxml2::XMLDocument &);
 
-    void set_default(void);
+    void set_default();
 
     void set_instances_number(const size_t &);
 
@@ -172,11 +172,11 @@ public:
 
     void set_unused(const Vector<size_t> &);
 
-    void set_training(void);
+    void set_training();
 
-    void set_selection(void);
+    void set_selection();
 
-    void set_testing(void);
+    void set_testing();
 
     void set_display(const bool &);
 
@@ -194,16 +194,16 @@ public:
                          const double &selection_ratio = 0.2,
                          const double &testing_ratio = 0.2);
 
-    Vector<double> calculate_uses_percentage(void) const;
+    Vector<double> calculate_uses_percentage() const;
 
     void convert_time_series(const size_t &);
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    void print(void) const;
+    void print() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

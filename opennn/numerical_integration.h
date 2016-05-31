@@ -35,10 +35,10 @@ class NumericalIntegration
 {
 public:
     // CONSTRUCTOR
-    explicit NumericalIntegration(void);
+    explicit NumericalIntegration();
 
     // DESTRUCTOR
-    virtual ~NumericalIntegration(void);
+    virtual ~NumericalIntegration();
 
     /// Enumeration of available methods for numerical integration.
     enum NumericalIntegrationMethod {
@@ -46,11 +46,11 @@ public:
     };
 
     // METHODS
-    const NumericalIntegrationMethod &get_numerical_integration_method(void) const;
+    const NumericalIntegrationMethod &get_numerical_integration_method() const;
 
-    std::string write_numerical_integration_method(void) const;
+    std::string write_numerical_integration_method() const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     void set(const NumericalIntegration &);
 
@@ -60,7 +60,7 @@ public:
 
     void set_display(const bool &);
 
-    void set_default(void);
+    void set_default();
 
     // Integration of pairs of data (x,y)
     double calculate_trapezoid_integral(const Vector<double> &, const Vector<double> &) const;
@@ -70,7 +70,7 @@ public:
     double calculate_integral(const Vector<double> &, const Vector<double> &) const;
 
     // Serialization methods
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

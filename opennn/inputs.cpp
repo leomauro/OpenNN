@@ -23,7 +23,7 @@ namespace OpenNN
 
 /// Default constructor.
 /// It creates an inputs object with zero inputs.
-Inputs::Inputs(void)
+Inputs::Inputs()
 {
     set();
 }
@@ -54,7 +54,7 @@ Inputs::Inputs(const Inputs &other_inputs)
 }
 
 /// Destructor.
-Inputs::~Inputs(void)
+Inputs::~Inputs()
 {
 }
 
@@ -80,14 +80,14 @@ bool Inputs::operator==(const Inputs &other_inputs) const
 }
 
 /// Returns true if the number of inputs is zero, and false otherwise.
-bool Inputs::is_empty(void) const
+bool Inputs::is_empty() const
 {
     return get_inputs_number() == 0;
 }
 
 /// Returns the names of the input variables.
 /// Such names are only used to give the user basic information about the problem at hand.
-Vector<std::string> Inputs::arrange_names(void) const
+Vector<std::string> Inputs::arrange_names() const
 {
     const size_t inputs_number = get_inputs_number();
     Vector<std::string> names(inputs_number);
@@ -121,7 +121,7 @@ const std::string &Inputs::get_name(const size_t &i) const
 
 /// Returns the units of the input variables as strings.
 /// Such units are only used to give the user basic information about the problem at hand.
-Vector<std::string> Inputs::arrange_units(void) const
+Vector<std::string> Inputs::arrange_units() const
 {
     const size_t inputs_number = get_inputs_number();
     Vector<std::string> units(inputs_number);
@@ -155,7 +155,7 @@ const std::string &Inputs::get_unit(const size_t &index) const
 
 /// Returns the description of the input variables as strings.
 /// Such descriptions are only used to give the user basic information about the problem at hand.
-Vector<std::string> Inputs::arrange_descriptions(void) const
+Vector<std::string> Inputs::arrange_descriptions() const
 {
     const size_t inputs_number = get_inputs_number();
     Vector<std::string> descriptions(inputs_number);
@@ -192,7 +192,7 @@ const std::string &Inputs::get_description(const size_t &index) const
 /// The information contains names, inputs and descriptions.
 /// The number of rows in the matris is the number of inputs, and the number of columns is three.
 /// Each row contains the information of a single input variable.
-Matrix<std::string> Inputs::arrange_information(void) const
+Matrix<std::string> Inputs::arrange_information() const
 {
     const size_t inputs_number = get_inputs_number();
     Matrix<std::string> information(inputs_number, 3);
@@ -206,14 +206,14 @@ Matrix<std::string> Inputs::arrange_information(void) const
 
 /// Returns true if messages from this class are to be displayed on the screen, or false if messages
 /// from this class are not to be displayed on the screen.
-const bool &Inputs::get_display(void) const
+const bool &Inputs::get_display() const
 {
     return display;
 }
 
 /// Sets zero inputs.
 /// It also sets the rest of members to their default values.
-void Inputs::set(void)
+void Inputs::set()
 {
     set_inputs_number(0);
     set_default();
@@ -273,7 +273,7 @@ void Inputs::set_inputs_number(const size_t &new_inputs_number)
 }
 
 /// Sets the members of this object to their default values.
-void Inputs::set_default(void)
+void Inputs::set_default()
 {
     const size_t inputs_number = get_inputs_number();
     for (size_t i = 0; i < inputs_number; i++) {
@@ -474,7 +474,7 @@ void Inputs::set_display(const bool &new_display)
 }
 
 /// Appends a new item to the inputs.
-void Inputs::grow_input(void)
+void Inputs::grow_input()
 {
     const Item item;
     items.push_back(item);
@@ -507,7 +507,7 @@ void Inputs::prune_input(const size_t &index)
 /// <li> ...
 /// <li> n
 /// </ul>
-Vector<std::string> Inputs::write_default_names(void) const
+Vector<std::string> Inputs::write_default_names() const
 {
     const size_t inputs_number = get_inputs_number();
     Vector<std::string> default_names(inputs_number);
@@ -520,7 +520,7 @@ Vector<std::string> Inputs::write_default_names(void) const
 }
 
 /// Returns a string representation of the current inputs object.
-std::string Inputs::to_string(void) const
+std::string Inputs::to_string() const
 {
     std::ostringstream buffer;
     const size_t inputs_number = get_inputs_number();
@@ -536,7 +536,7 @@ std::string Inputs::to_string(void) const
 
 /// Serializes the inputs object into a XML document of the TinyXML library.
 /// See the OpenNN manual for more information about the format of this document->
-tinyxml2::XMLDocument *Inputs::to_XML(void) const
+tinyxml2::XMLDocument *Inputs::to_XML() const
 {
     tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
     const size_t inputs_number = get_inputs_number();
@@ -723,6 +723,7 @@ void Inputs::to_PMML(tinyxml2::XMLElement *element,
 
 
 }
+
 
 // OpenNN: Open Neural Networks Library.
 // Copyright (c) 2005-2016 Roberto Lopez.

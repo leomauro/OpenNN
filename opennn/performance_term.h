@@ -41,12 +41,12 @@ namespace OpenNN
 
 /// This class represents the concept of performance term.
 /// A performance term is a summand in the performance functional expression.
-/// Any derived class must implement the calculate_performance(void) method.
+/// Any derived class must implement the calculate_performance() method.
 class PerformanceTerm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit PerformanceTerm(void);
+    explicit PerformanceTerm();
 
     // NEURAL NETWORK CONSTRUCTOR
     explicit PerformanceTerm(NeuralNetwork *);
@@ -73,7 +73,7 @@ public:
     PerformanceTerm(const PerformanceTerm &);
 
     // DESTRUCTOR
-    virtual ~PerformanceTerm(void);
+    virtual ~PerformanceTerm();
 
     // ASSIGNMENT OPERATOR
     virtual PerformanceTerm &operator=(const PerformanceTerm &);
@@ -130,7 +130,7 @@ public:
     };
 
     /// Returns a pointer to the neural network object associated to the performance term.
-    inline NeuralNetwork *get_neural_network_pointer(void) const
+    inline NeuralNetwork *get_neural_network_pointer() const
     {
 
 #ifdef __OPENNN_DEBUG__
@@ -138,7 +138,7 @@ public:
             std::ostringstream buffer;
 
             buffer << "OpenNN Exception: PerformanceTerm class.\n"
-                   << "NeuralNetwork* get_neural_network_pointer(void) const method.\n"
+                   << "NeuralNetwork* get_neural_network_pointer() const method.\n"
                    << "Neural network pointer is NULL.\n";
 
             throw std::logic_error(buffer.str());
@@ -149,7 +149,7 @@ public:
     }
 
     /// Returns a pointer to the mathematical model object associated to the performance term.
-    inline MathematicalModel *get_mathemtaical_model_pointer(void) const
+    inline MathematicalModel *get_mathemtaical_model_pointer() const
     {
 
 #ifdef __OPENNN_DEBUG__
@@ -157,7 +157,7 @@ public:
             std::ostringstream buffer;
 
             buffer << "OpenNN Exception: PerformanceTerm class.\n"
-                   << "MathematicalModel* get_mathematical_model_pointer(void) const method.\n"
+                   << "MathematicalModel* get_mathematical_model_pointer() const method.\n"
                    << "MathematicalModel pointer is NULL.\n";
 
             throw std::logic_error(buffer.str());
@@ -168,7 +168,7 @@ public:
     }
 
     /// Returns a pointer to the data set object associated to the performance term.
-    inline DataSet *get_data_set_pointer(void) const
+    inline DataSet *get_data_set_pointer() const
     {
 
 #ifdef __OPENNN_DEBUG__
@@ -176,7 +176,7 @@ public:
             std::ostringstream buffer;
 
             buffer << "OpenNN Exception: PerformanceTerm class.\n"
-                   << "DataSet* get_data_set_pointer(void) const method.\n"
+                   << "DataSet* get_data_set_pointer() const method.\n"
                    << "DataSet pointer is NULL.\n";
 
             throw std::logic_error(buffer.str());
@@ -187,7 +187,7 @@ public:
     }
 
     /// Returns a pointer to the numerical differentiation object used in this performance term object.
-    inline NumericalDifferentiation *get_numerical_differentiation_pointer(void) const
+    inline NumericalDifferentiation *get_numerical_differentiation_pointer() const
     {
 
 #ifdef __OPENNN_DEBUG__
@@ -195,7 +195,7 @@ public:
             std::ostringstream buffer;
 
             buffer << "OpenNN Exception: PerformanceTerm class.\n"
-                   << "NumericalDifferentiation* get_numerical_differentiation_pointer(void) const method.\n"
+                   << "NumericalDifferentiation* get_numerical_differentiation_pointer() const method.\n"
                    << "Numerical differentiation pointer is NULL.\n";
 
             throw std::logic_error(buffer.str());
@@ -205,18 +205,18 @@ public:
         return numerical_differentiation_pointer;
     }
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
-    bool has_neural_network(void) const;
+    bool has_neural_network() const;
 
-    bool has_mathematical_model(void) const;
+    bool has_mathematical_model() const;
 
-    bool has_data_set(void) const;
+    bool has_data_set() const;
 
-    bool has_numerical_differentiation(void) const;
+    bool has_numerical_differentiation() const;
 
     // Set methods
-    virtual void set(void);
+    virtual void set();
 
     virtual void set(NeuralNetwork *);
 
@@ -240,17 +240,17 @@ public:
 
     void set_numerical_differentiation_pointer(NumericalDifferentiation *);
 
-    virtual void set_default(void);
+    virtual void set_default();
 
     void set_display(const bool &);
 
     // Pointer methods
-    void construct_numerical_differentiation(void);
+    void construct_numerical_differentiation();
 
-    void delete_numerical_differentiation_pointer(void);
+    void delete_numerical_differentiation_pointer();
 
     // Checking methods
-    virtual void check(void) const;
+    virtual void check() const;
 
     // Layers delta methods
     Vector<Vector<double>> calculate_layers_delta(const Vector<Vector<double>> &,
@@ -309,13 +309,13 @@ public:
 
     // Objective methods
     /// Returns the performance value of the performance term.
-    virtual double calculate_performance(void) const = 0;
+    virtual double calculate_performance() const = 0;
 
     /// Returns the default performance of a performance term for a given set of neural network parameters.
     virtual double calculate_performance(const Vector<double> &) const = 0;
 
     /// Returns an performance of the performance term for selection purposes.
-    virtual double calculate_selection_performance(void) const
+    virtual double calculate_selection_performance() const
     {
         return 0.0;
     }
@@ -327,7 +327,7 @@ public:
         return output_gradient;
     }
 
-    virtual Vector<double> calculate_gradient(void) const;
+    virtual Vector<double> calculate_gradient() const;
 
     virtual Vector<double> calculate_gradient(const Vector<double> &) const;
 
@@ -338,26 +338,26 @@ public:
         return output_Hessian;
     }
 
-    virtual Matrix<double> calculate_Hessian(void) const;
+    virtual Matrix<double> calculate_Hessian() const;
 
     virtual Matrix<double> calculate_Hessian(const Vector<double> &) const;
 
-    virtual Vector<double> calculate_terms(void) const;
+    virtual Vector<double> calculate_terms() const;
 
     virtual Vector<double> calculate_terms(const Vector<double> &) const;
 
-    virtual Matrix<double> calculate_terms_Jacobian(void) const;
+    virtual Matrix<double> calculate_terms_Jacobian() const;
 
-    virtual PerformanceTerm::FirstOrderTerms calculate_first_order_terms(void) const;
+    virtual PerformanceTerm::FirstOrderTerms calculate_first_order_terms() const;
 
-    virtual std::string write_performance_term_type(void) const;
+    virtual std::string write_performance_term_type() const;
 
-    virtual std::string write_information(void) const;
+    virtual std::string write_information() const;
 
     // Serialization methods
-    virtual std::string to_string(void) const;
+    virtual std::string to_string() const;
 
-    virtual tinyxml2::XMLDocument *to_XML(void) const;
+    virtual tinyxml2::XMLDocument *to_XML() const;
 
     virtual void from_XML(const tinyxml2::XMLDocument &);
 

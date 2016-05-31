@@ -43,7 +43,7 @@ class TestingAnalysis
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit TestingAnalysis(void);
+    explicit TestingAnalysis();
 
     // NEURAL NETWORK CONSTRUCTOR
     explicit TestingAnalysis(NeuralNetwork *);
@@ -70,7 +70,7 @@ public:
     explicit TestingAnalysis(const std::string &);
 
     // DESTRUCTOR
-    virtual ~TestingAnalysis(void);
+    virtual ~TestingAnalysis();
 
     ///
     /// Structure with the results from a linear regression analysis.
@@ -131,13 +131,13 @@ public:
     };
 
     // Get methods
-    NeuralNetwork *get_neural_network_pointer(void) const;
+    NeuralNetwork *get_neural_network_pointer() const;
 
-    DataSet *get_data_set_pointer(void) const;
+    DataSet *get_data_set_pointer() const;
 
-    MathematicalModel *get_mathematical_model_pointer(void) const;
+    MathematicalModel *get_mathematical_model_pointer() const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // Set methods
     void set_neural_network_pointer(NeuralNetwork *);
@@ -148,28 +148,28 @@ public:
 
     void set_display(const bool &);
 
-    void set_default(void);
+    void set_default();
 
     // Checking methods
-    void check(void) const;
+    void check() const;
 
     // Target and output data methods
-    Vector<Matrix<double>> calculate_target_output_data(void) const;
+    Vector<Matrix<double>> calculate_target_output_data() const;
 
     // Error data methods
-    Vector<Matrix<double>> calculate_error_data(void) const;
+    Vector<Matrix<double>> calculate_error_data() const;
 
-    Vector<Vector<Statistics<double>>> calculate_error_data_statistics(void) const;
+    Vector<Vector<Statistics<double>>> calculate_error_data_statistics() const;
 
-    Vector<Matrix<double>> calculate_error_data_statistics_matrices(void) const;
+    Vector<Matrix<double>> calculate_error_data_statistics_matrices() const;
 
     Vector<Histogram<double>> calculate_error_data_histograms(const size_t & = 10) const;
 
     Vector<Vector<size_t>> calculate_maximal_errors(const size_t & = 10) const;
 
-    Vector<double> calculate_testing_errors(void) const;
+    Vector<double> calculate_testing_errors() const;
 
-    Vector<double> calculate_pattern_recognition_testing_errors(void) const;
+    Vector<double> calculate_pattern_recognition_testing_errors() const;
 
     double calculate_testing_normalized_squared_error(const Matrix<double> &, const Matrix<double> &) const;
 
@@ -178,14 +178,14 @@ public:
     double calculate_testing_weighted_squared_error(const Matrix<double> &, const Matrix<double> &) const;
 
     // Linear regression analysis methods
-    Vector<LinearRegressionParameters<double>> calculate_linear_regression_parameters(void) const;
+    Vector<LinearRegressionParameters<double>> calculate_linear_regression_parameters() const;
 
-    LinearRegressionResults perform_linear_regression_analysis(void) const;
+    LinearRegressionResults perform_linear_regression_analysis() const;
 
     // Binary classifcation methods
-    Vector<double> calculate_binary_classification_tests(void) const;
+    Vector<double> calculate_binary_classification_tests() const;
 
-    double calculate_logloss(void) const;
+    double calculate_logloss() const;
 
     // Confusion methods
     Matrix<size_t> calculate_confusion_binary_classification(const Matrix<double> &,
@@ -197,10 +197,10 @@ public:
 
     Vector<size_t> calculate_positives_negatives_rate(const Matrix<double> &, const Matrix<double> &) const;
 
-    Matrix<size_t> calculate_confusion(void) const;
+    Matrix<size_t> calculate_confusion() const;
 
     // ROC curve
-    RocAnalysisResults perform_roc_analysis(void) const;
+    RocAnalysisResults perform_roc_analysis() const;
 
     double calculate_Wilcoxon_parameter(const double &, const double &) const;
 
@@ -211,22 +211,22 @@ public:
     double calculate_optimal_threshold(const Matrix<double> &, const Matrix<double> &) const;
 
     // Lift Chart
-    Matrix<double> perform_cumulative_gain_analysis(void) const;
+    Matrix<double> perform_cumulative_gain_analysis() const;
 
     Matrix<double> calculate_cumulative_gain(const Matrix<double> &, const Matrix<double> &) const;
 
     Matrix<double> calculate_negative_cumulative_gain(const Matrix<double> &, const Matrix<double> &) const;
 
-    Matrix<double> perform_lift_chart_analysis(void) const;
+    Matrix<double> perform_lift_chart_analysis() const;
 
     Matrix<double> calculate_lift_chart(const Matrix<double> &) const;
 
-    KolmogorovSmirnovResults perform_Kolmogorov_Smirnov_analysis(void) const;
+    KolmogorovSmirnovResults perform_Kolmogorov_Smirnov_analysis() const;
 
     Vector<double> calculate_maximum_gain(const Matrix<double> &, const Matrix<double> &) const;
 
     // Calibration plot
-    Matrix<double> perform_calibration_plot_analysis(void) const;
+    Matrix<double> perform_calibration_plot_analysis() const;
 
     Matrix<double> calculate_calibration_plot(const Matrix<double> &, const Matrix<double> &) const;
 
@@ -234,7 +234,7 @@ public:
     Vector<Histogram<double>> calculate_output_histogram(const Matrix<double> &, const size_t & = 10) const;
 
     // Binary classification rates
-    BinaryClassifcationRates calculate_binary_classification_rates(void) const;
+    BinaryClassifcationRates calculate_binary_classification_rates() const;
 
     Vector<size_t> calculate_true_positive_instances(const Matrix<double> &,
                                                      const Matrix<double> &,
@@ -257,7 +257,7 @@ public:
                                                      const double &) const;
 
     // Multiple classification rates
-    Matrix<Vector<size_t>> calculate_multiple_classification_rates(void) const;
+    Matrix<Vector<size_t>> calculate_multiple_classification_rates() const;
 
     Matrix<Vector<size_t>> calculate_multiple_classification_rates(const Matrix<double> &,
                                                                    const Matrix<double> &,
@@ -269,11 +269,11 @@ public:
     Vector<Vector<double>> calculate_input_error_cross_correlation(const size_t & = 10) const;
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    void print(void) const;
+    void print() const;
 
-    virtual tinyxml2::XMLDocument *to_XML(void) const;
+    virtual tinyxml2::XMLDocument *to_XML() const;
 
     virtual void from_XML(const tinyxml2::XMLDocument &);
 

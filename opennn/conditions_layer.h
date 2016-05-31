@@ -42,7 +42,7 @@ class ConditionsLayer
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit ConditionsLayer(void);
+    explicit ConditionsLayer();
 
     // INPUTS-CONDITIONS NUMBER CONSTRUCTOR
     explicit ConditionsLayer(const size_t &, const size_t &);
@@ -54,7 +54,7 @@ public:
     ConditionsLayer(const ConditionsLayer &);
 
     // DESTRUCTOR
-    virtual ~ConditionsLayer(void);
+    virtual ~ConditionsLayer();
 
     // ASSIGNMENT OPERATOR
     ConditionsLayer &operator=(const ConditionsLayer &);
@@ -68,26 +68,26 @@ public:
     };
 
     // GET METHODS
-    const size_t &get_external_inputs_number(void) const;
+    const size_t &get_external_inputs_number() const;
 
-    const size_t &get_conditions_neurons_number(void) const;
+    const size_t &get_conditions_neurons_number() const;
 
-    const ConditionsMethod &get_conditions_method(void) const;
+    const ConditionsMethod &get_conditions_method() const;
 
-    std::string write_conditions_method(void) const;
+    std::string write_conditions_method() const;
 
-    const Vector<double> &get_external_input_values(void) const;
+    const Vector<double> &get_external_input_values() const;
 
     const double &get_external_input_value(const size_t &) const;
 
-    const Matrix<double> &get_output_values(void) const;
+    const Matrix<double> &get_output_values() const;
 
     const double &get_output_value(const size_t &, const size_t &) const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // SET METHODS
-    void set(void);
+    void set();
 
     void set(const size_t &, const size_t &);
 
@@ -111,12 +111,12 @@ public:
 
     void set_display(const bool &);
 
-    void set_default(void);
+    void set_default();
 
     // Conditions
-    void initialize_random(void);
+    void initialize_random();
 
-    void check(void) const;
+    void check() const;
 
     // Particular solution
     /// Returns the particular solution for applying boundary conditions.
@@ -197,9 +197,9 @@ public:
                                  const Vector<std::string> &) const;
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

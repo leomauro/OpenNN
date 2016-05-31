@@ -39,12 +39,12 @@ namespace OpenNN
 {
 
 /// This abstract class represents the concept of inputs selection algorithm for a neural network.
-/// Any derived class must implement the perform_inputs_selection(void) method.
+/// Any derived class must implement the perform_inputs_selection() method.
 class InputsSelectionAlgorithm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit InputsSelectionAlgorithm(void);
+    explicit InputsSelectionAlgorithm();
 
     // TRAINING STRATEGY CONSTRUCTOR
     explicit InputsSelectionAlgorithm(TrainingStrategy *);
@@ -56,7 +56,7 @@ public:
     explicit InputsSelectionAlgorithm(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~InputsSelectionAlgorithm(void);
+    virtual ~InputsSelectionAlgorithm();
 
     /// Enumeration of available methods for the calculus of the performances.
     enum PerformanceCalculationMethod {
@@ -79,17 +79,17 @@ public:
     /// This structure contains the results from the inputs selection.
     ///
     struct InputsSelectionResults {
-        explicit InputsSelectionResults(void)
+        explicit InputsSelectionResults()
         {
         }
 
-        virtual ~InputsSelectionResults(void)
+        virtual ~InputsSelectionResults()
         {
         }
 
-        std::string write_stopping_condition(void) const;
+        std::string write_stopping_condition() const;
 
-        std::string to_string(void) const;
+        std::string to_string() const;
 
         /// Inputs of the different neural networks.
         Vector<Vector<bool>> inputs_data;
@@ -126,46 +126,46 @@ public:
     };
 
     // Get methods
-    const bool &get_function_regression(void) const;
+    const bool &get_function_regression() const;
 
-    TrainingStrategy *get_training_strategy_pointer(void) const;
+    TrainingStrategy *get_training_strategy_pointer() const;
 
-    bool has_training_strategy(void) const;
+    bool has_training_strategy() const;
 
-    const size_t &get_trials_number(void) const;
+    const size_t &get_trials_number() const;
 
-    const bool &get_reserve_parameters_data(void) const;
+    const bool &get_reserve_parameters_data() const;
 
-    const bool &get_reserve_performance_data(void) const;
+    const bool &get_reserve_performance_data() const;
 
-    const bool &get_reserve_selection_performance_data(void) const;
+    const bool &get_reserve_selection_performance_data() const;
 
-    const bool &get_reserve_minimal_parameters(void) const;
+    const bool &get_reserve_minimal_parameters() const;
 
-    const PerformanceCalculationMethod &get_performance_calculation_method(void) const;
+    const PerformanceCalculationMethod &get_performance_calculation_method() const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
-    const double &get_selection_performance_goal(void) const;
+    const double &get_selection_performance_goal() const;
 
-    const size_t &get_maximum_iterations_number(void) const;
+    const size_t &get_maximum_iterations_number() const;
 
-    const double &get_maximum_time(void) const;
+    const double &get_maximum_time() const;
 
-    const double &get_maximum_correlation(void) const;
+    const double &get_maximum_correlation() const;
 
-    const double &get_minimum_correlation(void) const;
+    const double &get_minimum_correlation() const;
 
-    const double &get_tolerance(void) const;
+    const double &get_tolerance() const;
 
-    std::string write_performance_calculation_method(void) const;
+    std::string write_performance_calculation_method() const;
 
     // Set methods
     void set_function_regression(const bool &);
 
     void set_training_strategy_pointer(TrainingStrategy *);
 
-    void set_default(void);
+    void set_default();
 
     void set_trials_number(const size_t &);
 
@@ -196,9 +196,9 @@ public:
     void set_tolerance(const double &);
 
     // Correlation methods
-    Matrix<double> calculate_logistic_correlations(void) const;
+    Matrix<double> calculate_logistic_correlations() const;
 
-    Vector<double> calculate_final_correlations(void) const;
+    Vector<double> calculate_final_correlations() const;
 
     // Performances calculation methods
     void set_neural_inputs(const Vector<bool> &);
@@ -216,18 +216,18 @@ public:
     Vector<double> get_parameters_inputs(const Vector<bool> &) const;
 
     // inputs selection methods
-    void delete_selection_history(void);
+    void delete_selection_history();
 
-    void delete_performance_history(void);
+    void delete_performance_history();
 
-    void delete_parameters_history(void);
+    void delete_parameters_history();
 
-    void check(void) const;
+    void check() const;
 
     size_t get_input_index(const Vector<Variables::Use>, const size_t);
 
     /// Performs the inputs selection for a neural network.
-    virtual InputsSelectionResults *perform_inputs_selection(void) = 0;
+    virtual InputsSelectionResults *perform_inputs_selection() = 0;
 
 protected:
     /// True if this is a function regression problem.

@@ -52,7 +52,7 @@ class DataSet
 public:
 
     // DEFAULT CONSTRUCTOR
-    explicit DataSet(void);
+    explicit DataSet();
 
     // DATA CONSTRUCTOR
     explicit DataSet(const Matrix<double> &);
@@ -73,7 +73,7 @@ public:
     DataSet(const DataSet &);
 
     // DESTRUCTOR
-    virtual ~DataSet(void);
+    virtual ~DataSet();
 
     // ASSIGNMENT OPERATOR
     DataSet &operator=(const DataSet &);
@@ -107,92 +107,92 @@ public:
     };
 
     // Get methods
-    FileType get_file_type(void) const;
+    FileType get_file_type() const;
 
-    std::string write_file_type(void) const;
+    std::string write_file_type() const;
 
-    std::string write_first_cell(void) const;
+    std::string write_first_cell() const;
 
-    std::string write_last_cell(void) const;
+    std::string write_last_cell() const;
 
-    size_t write_sheet_number(void) const;
+    size_t write_sheet_number() const;
 
-    LearningTask get_learning_task(void) const;
+    LearningTask get_learning_task() const;
 
-    std::string write_learning_task(void) const;
+    std::string write_learning_task() const;
 
-    const std::string &get_data_file_name(void) const;
+    const std::string &get_data_file_name() const;
 
-    const bool &get_header_line(void) const;
+    const bool &get_header_line() const;
 
-    const bool &get_rows_label(void) const;
+    const bool &get_rows_label() const;
 
-    const Separator &get_separator(void) const;
+    const Separator &get_separator() const;
 
-    std::string get_separator_string(void) const;
+    std::string get_separator_string() const;
 
-    std::string write_separator(void) const;
+    std::string write_separator() const;
 
-    const std::string &get_missing_values_label(void) const;
+    const std::string &get_missing_values_label() const;
 
-    const size_t &get_lags_number(void) const;
+    const size_t &get_lags_number() const;
 
-    const size_t &get_steps_ahead(void) const;
+    const size_t &get_steps_ahead() const;
 
-    const bool &get_autoassociation(void) const;
+    const bool &get_autoassociation() const;
 
-    const Vector<size_t> &get_angular_variables(void) const;
+    const Vector<size_t> &get_angular_variables() const;
 
-    const AngularUnits &get_angular_units(void) const;
+    const AngularUnits &get_angular_units() const;
 
     static ScalingUnscalingMethod get_scaling_unscaling_method(const std::string &);
 
-    const MissingValues &get_missing_values(void) const;
+    const MissingValues &get_missing_values() const;
 
-    MissingValues *get_missing_values_pointer(void);
+    MissingValues *get_missing_values_pointer();
 
-    const Variables &get_variables(void) const;
+    const Variables &get_variables() const;
 
-    Variables *get_variables_pointer(void);
+    Variables *get_variables_pointer();
 
-    const Instances &get_instances(void) const;
+    const Instances &get_instances() const;
 
-    Instances *get_instances_pointer(void);
+    Instances *get_instances_pointer();
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
-    bool is_binary_classification(void) const;
+    bool is_binary_classification() const;
 
-    bool is_multiple_classification(void) const;
+    bool is_multiple_classification() const;
 
     bool is_binary_variable(const size_t &) const;
 
     // Data methods
-    bool empty(void) const;
+    bool empty() const;
 
-    const Matrix<double> &get_data(void) const;
+    const Matrix<double> &get_data() const;
 
-    const Matrix<double> &get_time_series_data(void) const;
+    const Matrix<double> &get_time_series_data() const;
 
-    Matrix<double> arrange_training_data(void) const;
+    Matrix<double> arrange_training_data() const;
 
-    Matrix<double> arrange_selection_data(void) const;
+    Matrix<double> arrange_selection_data() const;
 
-    Matrix<double> arrange_testing_data(void) const;
+    Matrix<double> arrange_testing_data() const;
 
-    Matrix<double> arrange_target_data(void) const;
+    Matrix<double> arrange_target_data() const;
 
-    Matrix<double> arrange_training_input_data(void) const;
+    Matrix<double> arrange_training_input_data() const;
 
-    Matrix<double> arrange_training_target_data(void) const;
+    Matrix<double> arrange_training_target_data() const;
 
-    Matrix<double> get_selection_input_data(void) const;
+    Matrix<double> get_selection_input_data() const;
 
-    Matrix<double> get_selection_target_data(void) const;
+    Matrix<double> get_selection_target_data() const;
 
-    Matrix<double> arrange_testing_input_data(void) const;
+    Matrix<double> arrange_testing_input_data() const;
 
-    Matrix<double> arrange_testing_target_data(void) const;
+    Matrix<double> arrange_testing_target_data() const;
 
     // Instance methods
     Vector<double> get_instance(const size_t &) const;
@@ -205,7 +205,7 @@ public:
     Vector<double> get_variable(const size_t &, const Vector<size_t> &) const;
 
     // Set methods
-    void set(void);
+    void set();
 
     void set(const Matrix<double> &);
 
@@ -259,7 +259,7 @@ public:
     // Utilities
     void set_display(const bool &);
 
-    void set_default(void);
+    void set_default();
 
     // Instance methods
     void set_instance(const size_t &, const Vector<double> &);
@@ -273,11 +273,11 @@ public:
 
     void subtract_variable(const size_t &);
 
-    Vector<size_t> unuse_constant_variables(void);
+    Vector<size_t> unuse_constant_variables();
 
-    Vector<size_t> unuse_repeated_instances(void);
+    Vector<size_t> unuse_repeated_instances();
 
-    Vector<size_t> unuse_non_significant_inputs(void);
+    Vector<size_t> unuse_non_significant_inputs();
 
     // Initialization methods
     void initialize_data(const double &);
@@ -287,41 +287,41 @@ public:
     void randomize_data_normal(const double &mean = 0.0, const double &standard_deviation = 1.0);
 
     // Statistics methods
-    Vector<Statistics<double>> calculate_data_statistics(void) const;
+    Vector<Statistics<double>> calculate_data_statistics() const;
 
-    Vector<Vector<double>> calculate_data_shape_parameters(void) const;
+    Vector<Vector<double>> calculate_data_shape_parameters() const;
 
-    Matrix<double> calculate_data_statistics_matrix(void) const;
+    Matrix<double> calculate_data_statistics_matrix() const;
 
-    Matrix<double> calculate_data_shape_parameters_matrix(void) const;
+    Matrix<double> calculate_data_shape_parameters_matrix() const;
 
-    Vector<Statistics<double>> calculate_training_instances_statistics(void) const;
+    Vector<Statistics<double>> calculate_training_instances_statistics() const;
 
-    Vector<Statistics<double>> calculate_selection_instances_statistics(void) const;
+    Vector<Statistics<double>> calculate_selection_instances_statistics() const;
 
-    Vector<Statistics<double>> calculate_testing_instances_statistics(void) const;
+    Vector<Statistics<double>> calculate_testing_instances_statistics() const;
 
-    Vector<Vector<double>> calculate_training_instances_shape_parameters(void) const;
+    Vector<Vector<double>> calculate_training_instances_shape_parameters() const;
 
-    Vector<Vector<double>> calculate_selection_instances_shape_parameters(void) const;
+    Vector<Vector<double>> calculate_selection_instances_shape_parameters() const;
 
-    Vector<Vector<double>> calculate_testing_instances_shape_parameters(void) const;
+    Vector<Vector<double>> calculate_testing_instances_shape_parameters() const;
 
-    Vector<Statistics<double>> calculate_inputs_statistics(void) const;
+    Vector<Statistics<double>> calculate_inputs_statistics() const;
 
-    Vector<Statistics<double>> calculate_targets_statistics(void) const;
+    Vector<Statistics<double>> calculate_targets_statistics() const;
 
-    Vector<double> calculate_training_target_data_mean(void) const;
+    Vector<double> calculate_training_target_data_mean() const;
 
-    Vector<double> calculate_selection_target_data_mean(void) const;
+    Vector<double> calculate_selection_target_data_mean() const;
 
-    Vector<double> calculate_testing_target_data_mean(void) const;
+    Vector<double> calculate_testing_target_data_mean() const;
 
     // Correlation methods
-    Matrix<double> calculate_linear_correlations(void) const;
+    Matrix<double> calculate_linear_correlations() const;
 
     // Principal components mehtod
-    Matrix<double> calculate_covariance_matrix(void) const;
+    Matrix<double> calculate_covariance_matrix() const;
 
     Matrix<double> perform_principal_components_analysis(const double & = 0.0);
 
@@ -331,7 +331,7 @@ public:
     Vector<Histogram<double>> calculate_targets_histograms(const size_t & = 10) const;
 
     // Box and whiskers
-    Vector<Vector<double>> calculate_box_plots(void) const;
+    Vector<Vector<double>> calculate_box_plots() const;
 
     size_t calculate_training_negatives(const size_t &) const;
 
@@ -347,9 +347,9 @@ public:
 
     void scale_data_mean_standard_deviation(const Vector<Statistics<double>> &);
 
-    Vector<Statistics<double>> scale_data_minimum_maximum(void);
+    Vector<Statistics<double>> scale_data_minimum_maximum();
 
-    Vector<Statistics<double>> scale_data_mean_standard_deviation(void);
+    Vector<Statistics<double>> scale_data_mean_standard_deviation();
 
     void scale_data(const std::string &, const Vector<Statistics<double>> &);
 
@@ -358,11 +358,11 @@ public:
     // Input variables scaling
     void scale_inputs_minimum_maximum(const Vector<Statistics<double>> &);
 
-    Vector<Statistics<double>> scale_inputs_minimum_maximum(void);
+    Vector<Statistics<double>> scale_inputs_minimum_maximum();
 
     void scale_inputs_mean_standard_deviation(const Vector<Statistics<double>> &);
 
-    Vector<Statistics<double>> scale_inputs_mean_standard_deviation(void);
+    Vector<Statistics<double>> scale_inputs_mean_standard_deviation();
 
     Vector<Statistics<double>> scale_inputs(const std::string &);
 
@@ -371,11 +371,11 @@ public:
     // Target variables scaling
     void scale_targets_minimum_maximum(const Vector<Statistics<double>> &);
 
-    Vector<Statistics<double>> scale_targets_minimum_maximum(void);
+    Vector<Statistics<double>> scale_targets_minimum_maximum();
 
     void scale_targets_mean_standard_deviation(const Vector<Statistics<double>> &);
 
-    Vector<Statistics<double>> scale_targets_mean_standard_deviation(void);
+    Vector<Statistics<double>> scale_targets_mean_standard_deviation();
 
     Vector<Statistics<double>> scale_targets(const std::string &);
 
@@ -397,23 +397,23 @@ public:
     void unscale_targets_mean_standard_deviation(const Vector<Statistics<double>> &);
 
     // Pattern recognition methods
-    Vector<size_t> calculate_target_distribution(void) const;
+    Vector<size_t> calculate_target_distribution() const;
 
-    Vector<double> calculate_distances(void) const;
+    Vector<double> calculate_distances() const;
 
     Vector<size_t> balance_binary_targets_distribution(const double & = 100.0);
 
-    Vector<size_t> balance_multiple_targets_distribution(void);
+    Vector<size_t> balance_multiple_targets_distribution();
 
     Vector<size_t> unuse_most_populated_target(const size_t &);
 
     Vector<size_t> balance_function_regression_targets_distribution(const double & = 10.0);
 
-    Vector<size_t> arrange_binary_inputs_indices(void) const;
+    Vector<size_t> arrange_binary_inputs_indices() const;
 
-    Vector<size_t> arrange_real_inputs_indices(void) const;
+    Vector<size_t> arrange_real_inputs_indices() const;
 
-    void sum_binary_inputs(void);
+    void sum_binary_inputs();
 
     // Outlier detection
     Matrix<double> calculate_instances_distances(const size_t &) const;
@@ -435,7 +435,7 @@ public:
     // Time series methods
     Matrix<double> calculate_autocorrelation(const size_t & = 10) const;
 
-    Matrix<Vector<double>> calculate_cross_correlation(void) const;
+    Matrix<Vector<double>> calculate_cross_correlation() const;
 
     // Data generation
     void generate_data_function_regression(const size_t &, const size_t &);
@@ -445,13 +445,13 @@ public:
     void generate_data_multiple_classification(const size_t &, const size_t &);
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    void print(void) const;
+    void print() const;
 
-    void print_summary(void) const;
+    void print_summary() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 
@@ -459,28 +459,28 @@ public:
 
     void load(const std::string &);
 
-    void print_data(void) const;
+    void print_data() const;
 
-    void print_data_preview(void) const;
+    void print_data_preview() const;
 
-    void save_data(void) const;
+    void save_data() const;
 
-    bool has_data(void) const;
+    bool has_data() const;
 
     // Data load methods
-    void load_data(void);
+    void load_data();
 
-    void load_data_binary(void);
+    void load_data_binary();
 
-    void load_time_series_data_binary(void);
+    void load_time_series_data_binary();
 
     Vector<std::string> arrange_time_series_names(const Vector<std::string> &) const;
 
     Vector<std::string> arrange_autoassociation_names(const Vector<std::string> &) const;
 
-    void convert_time_series(void);
+    void convert_time_series();
 
-    void convert_autoassociation(void);
+    void convert_autoassociation();
 
     void convert_angular_variable_degrees(const size_t &);
 
@@ -490,16 +490,16 @@ public:
 
     void convert_angular_variables_radians(const Vector<size_t> &);
 
-    void convert_angular_variables(void);
+    void convert_angular_variables();
 
     // Missing values
-    void scrub_missing_values_unuse(void);
+    void scrub_missing_values_unuse();
 
-    void scrub_missing_values_mean(void);
+    void scrub_missing_values_mean();
 
-    void scrub_input_missing_values_mean(void);
+    void scrub_input_missing_values_mean();
 
-    void scrub_missing_values(void);
+    void scrub_missing_values();
 
     // String utilities
     size_t count_tokens(std::string &) const;
@@ -594,15 +594,15 @@ private:
 
     void check_separator(const std::string &) const;
 
-    size_t count_data_file_columns_number(void) const;
+    size_t count_data_file_columns_number() const;
 
-    void check_header_line(void);
+    void check_header_line();
 
-    Vector<std::string> read_header_line(void) const;
+    Vector<std::string> read_header_line() const;
 
     void read_instance(const std::string &, const Vector<Vector<std::string>> &, const size_t &);
 
-    Vector<Vector<std::string>> set_from_data_file(void);
+    Vector<Vector<std::string>> set_from_data_file();
 
     void read_from_data_file(const Vector<Vector<std::string>> &);
 };

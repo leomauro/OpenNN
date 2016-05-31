@@ -38,12 +38,12 @@ namespace OpenNN
 {
 
 /// This abstract class represents the concept of order selection algorithm for a neural network.
-/// Any derived class must implement the perform_order_selection(void) method.
+/// Any derived class must implement the perform_order_selection() method.
 class ThresholdSelectionAlgorithm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit ThresholdSelectionAlgorithm(void);
+    explicit ThresholdSelectionAlgorithm();
 
     // TRAINING STRATEGY CONSTRUCTOR
     explicit ThresholdSelectionAlgorithm(TrainingStrategy *);
@@ -55,7 +55,7 @@ public:
     explicit ThresholdSelectionAlgorithm(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~ThresholdSelectionAlgorithm(void);
+    virtual ~ThresholdSelectionAlgorithm();
 
     /// Enumeration of all possibles condition of stop for the algorithms.
     enum StoppingCondition {
@@ -66,17 +66,17 @@ public:
     /// This structure contains the results from the order selection.
     ///
     struct ThresholdSelectionResults {
-        explicit ThresholdSelectionResults(void)
+        explicit ThresholdSelectionResults()
         {
         }
 
-        virtual ~ThresholdSelectionResults(void)
+        virtual ~ThresholdSelectionResults()
         {
         }
 
-        std::string write_stopping_condition(void) const;
+        std::string write_stopping_condition() const;
 
-        std::string to_string(void) const;
+        std::string to_string() const;
 
         /// Threshold of the different neural networks.
         Vector<double> threshold_data;
@@ -101,20 +101,20 @@ public:
     };
 
     // Get methods
-    TrainingStrategy *get_training_strategy_pointer(void) const;
+    TrainingStrategy *get_training_strategy_pointer() const;
 
-    bool has_training_strategy(void) const;
+    bool has_training_strategy() const;
 
-    const bool &get_reserve_binary_classification_tests_data(void) const;
+    const bool &get_reserve_binary_classification_tests_data() const;
 
-    const bool &get_reserve_function_data(void) const;
+    const bool &get_reserve_function_data() const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // Set methods
     void set_training_strategy_pointer(TrainingStrategy *);
 
-    void set_default(void);
+    void set_default();
 
     void set_reserve_binary_classification_tests_data(const bool &);
 
@@ -128,10 +128,10 @@ public:
     Vector<double> calculate_binary_classification_test(const Matrix<size_t> &) const;
 
     // threshold selection methods
-    void check(void) const;
+    void check() const;
 
     /// Performs the threshold selection for a neural network.
-    virtual ThresholdSelectionResults *perform_threshold_selection(void) = 0;
+    virtual ThresholdSelectionResults *perform_threshold_selection() = 0;
 
 protected:
     /// Pointer to a training strategy object.

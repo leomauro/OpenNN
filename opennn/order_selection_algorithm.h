@@ -38,12 +38,12 @@ namespace OpenNN
 {
 
 /// This abstract class represents the concept of order selection algorithm for a neural network.
-/// Any derived class must implement the perform_order_selection(void) method.
+/// Any derived class must implement the perform_order_selection() method.
 class OrderSelectionAlgorithm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit OrderSelectionAlgorithm(void);
+    explicit OrderSelectionAlgorithm();
 
     // TRAINING STRATEGY CONSTRUCTOR
     explicit OrderSelectionAlgorithm(TrainingStrategy *);
@@ -55,7 +55,7 @@ public:
     explicit OrderSelectionAlgorithm(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~OrderSelectionAlgorithm(void);
+    virtual ~OrderSelectionAlgorithm();
 
     /// Enumeration of available methods for the calculus of the performances.
     enum PerformanceCalculationMethod {
@@ -76,17 +76,17 @@ public:
     /// This structure contains the results from the order selection.
     ///
     struct OrderSelectionResults {
-        explicit OrderSelectionResults(void)
+        explicit OrderSelectionResults()
         {
         }
 
-        virtual ~OrderSelectionResults(void)
+        virtual ~OrderSelectionResults()
         {
         }
 
-        std::string write_stopping_condition(void) const;
+        std::string write_stopping_condition() const;
 
-        std::string to_string(void) const;
+        std::string to_string() const;
 
         /// Order of the diferent neural networks.
         Vector<size_t> order_data;
@@ -123,42 +123,42 @@ public:
     };
 
     // Get methods
-    TrainingStrategy *get_training_strategy_pointer(void) const;
+    TrainingStrategy *get_training_strategy_pointer() const;
 
-    bool has_training_strategy(void) const;
+    bool has_training_strategy() const;
 
-    const size_t &get_maximum_order(void) const;
+    const size_t &get_maximum_order() const;
 
-    const size_t &get_minimum_order(void) const;
+    const size_t &get_minimum_order() const;
 
-    const size_t &get_trials_number(void) const;
+    const size_t &get_trials_number() const;
 
-    const bool &get_reserve_parameters_data(void) const;
+    const bool &get_reserve_parameters_data() const;
 
-    const bool &get_reserve_performance_data(void) const;
+    const bool &get_reserve_performance_data() const;
 
-    const bool &get_reserve_selection_performance_data(void) const;
+    const bool &get_reserve_selection_performance_data() const;
 
-    const bool &get_reserve_minimal_parameters(void) const;
+    const bool &get_reserve_minimal_parameters() const;
 
-    const PerformanceCalculationMethod &get_performance_calculation_method(void) const;
+    const PerformanceCalculationMethod &get_performance_calculation_method() const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
-    const double &get_selection_performance_goal(void) const;
+    const double &get_selection_performance_goal() const;
 
-    const size_t &get_maximum_iterations_number(void) const;
+    const size_t &get_maximum_iterations_number() const;
 
-    const double &get_maximum_time(void) const;
+    const double &get_maximum_time() const;
 
-    const double &get_tolerance(void) const;
+    const double &get_tolerance() const;
 
-    std::string write_performance_calculation_method(void) const;
+    std::string write_performance_calculation_method() const;
 
     // Set methods
     void set_training_strategy_pointer(TrainingStrategy *);
 
-    void set_default(void);
+    void set_default();
 
     void set_maximum_order(const size_t &);
 
@@ -202,16 +202,16 @@ public:
     Vector<double> get_parameters_order(const size_t &) const;
 
     // order order selection methods
-    void delete_selection_history(void);
+    void delete_selection_history();
 
-    void delete_performance_history(void);
+    void delete_performance_history();
 
-    void delete_parameters_history(void);
+    void delete_parameters_history();
 
-    void check(void) const;
+    void check() const;
 
     /// Performs the order selection for a neural network.
-    virtual OrderSelectionResults *perform_order_selection(void) = 0;
+    virtual OrderSelectionResults *perform_order_selection() = 0;
 
 protected:
     /// Pointer to a training strategy object.

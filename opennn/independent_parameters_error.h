@@ -43,7 +43,7 @@ class IndependentParametersError : public PerformanceTerm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit IndependentParametersError(void);
+    explicit IndependentParametersError();
 
     // NEURAL NETWORK CONSTRUCTOR
     explicit IndependentParametersError(NeuralNetwork *);
@@ -52,7 +52,7 @@ public:
     explicit IndependentParametersError(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~IndependentParametersError(void);
+    virtual ~IndependentParametersError();
 
     // ASSIGNMENT OPERATOR
     IndependentParametersError &operator=(const IndependentParametersError &);
@@ -61,11 +61,11 @@ public:
     bool operator==(const IndependentParametersError &) const;
 
     // Get methods
-    const Vector<double> &get_target_independent_parameters(void) const;
+    const Vector<double> &get_target_independent_parameters() const;
 
     const double &get_target_independent_parameter(const size_t &) const;
 
-    const Vector<double> &get_independent_parameters_errors_weights(void) const;
+    const Vector<double> &get_independent_parameters_errors_weights() const;
 
     const double &get_independent_parameter_error_weight(const size_t &) const;
 
@@ -78,26 +78,26 @@ public:
 
     void set_independent_parameter_error_weight(const size_t &, const double &);
 
-    void set_default(void);
+    void set_default();
 
     // Checking methods
-    void check(void) const;
+    void check() const;
 
     // performance methods
-    double calculate_performance(void) const;
+    double calculate_performance() const;
 
     double calculate_performance(const Vector<double> &) const;
 
-    Vector<double> calculate_gradient(void) const;
+    Vector<double> calculate_gradient() const;
 
-    Matrix<double> calculate_Hessian(void) const;
+    Matrix<double> calculate_Hessian() const;
 
-    std::string write_performance_term_type(void) const;
+    std::string write_performance_term_type() const;
 
-    std::string write_information(void) const;
+    std::string write_information() const;
 
     // Serialization methods
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

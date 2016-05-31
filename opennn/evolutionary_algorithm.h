@@ -60,7 +60,7 @@ public:
     };
 
     // DEFAULT CONSTRUCTOR
-    explicit EvolutionaryAlgorithm(void);
+    explicit EvolutionaryAlgorithm();
 
     // GENERAL CONSTRUCTOR
     explicit EvolutionaryAlgorithm(PerformanceFunctional *);
@@ -69,14 +69,14 @@ public:
     explicit EvolutionaryAlgorithm(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~EvolutionaryAlgorithm(void);
+    virtual ~EvolutionaryAlgorithm();
 
     ///
     /// This structure contains the training results for the evolutionary algorithm.
     ///
     struct EvolutionaryAlgorithmResults : public TrainingAlgorithm::TrainingAlgorithmResults {
         /// Default constructor.
-        EvolutionaryAlgorithmResults(void)
+        EvolutionaryAlgorithmResults()
         {
             evolutionary_algorithm_pointer = NULL;
         }
@@ -88,7 +88,7 @@ public:
         }
 
         /// Destructor.
-        virtual ~EvolutionaryAlgorithmResults(void)
+        virtual ~EvolutionaryAlgorithmResults()
         {
         }
 
@@ -159,95 +159,95 @@ public:
 
         void resize_training_history(const size_t &);
 
-        std::string to_string(void) const;
+        std::string to_string() const;
 
         Matrix<std::string> write_final_results(const size_t &precision = 3) const;
     };
 
     // Training parameters
-    const double &get_warning_parameters_norm(void) const;
+    const double &get_warning_parameters_norm() const;
 
-    const double &get_error_parameters_norm(void) const;
+    const double &get_error_parameters_norm() const;
 
     // Stopping criteria
-    const double &get_best_performance_goal(void) const;
+    const double &get_best_performance_goal() const;
 
-    const size_t &get_maximum_selection_performance_decreases(void) const;
+    const size_t &get_maximum_selection_performance_decreases() const;
 
-    const size_t &get_maximum_generations_number(void) const;
+    const size_t &get_maximum_generations_number() const;
 
-    const double &get_maximum_time(void) const;
+    const double &get_maximum_time() const;
 
     // Reserve training history
-    const bool &get_reserve_selection_performance_history(void) const;
+    const bool &get_reserve_selection_performance_history() const;
 
-    const bool &get_reserve_elapsed_time_history(void) const;
+    const bool &get_reserve_elapsed_time_history() const;
 
     // Population methods
-    size_t get_population_size(void) const;
+    size_t get_population_size() const;
 
-    const Matrix<double> &get_population(void) const;
+    const Matrix<double> &get_population() const;
 
     // Training operators
-    const FitnessAssignmentMethod &get_fitness_assignment_method(void) const;
+    const FitnessAssignmentMethod &get_fitness_assignment_method() const;
 
-    std::string write_fitness_assignment_method(void) const;
+    std::string write_fitness_assignment_method() const;
 
-    const SelectionMethod &get_selection_method(void) const;
+    const SelectionMethod &get_selection_method() const;
 
-    std::string write_selection_method(void) const;
+    std::string write_selection_method() const;
 
-    const RecombinationMethod &get_recombination_method(void) const;
+    const RecombinationMethod &get_recombination_method() const;
 
-    std::string write_recombination_method(void) const;
+    std::string write_recombination_method() const;
 
-    const MutationMethod &get_mutation_method(void) const;
+    const MutationMethod &get_mutation_method() const;
 
-    std::string write_mutation_method(void) const;
+    std::string write_mutation_method() const;
 
     // Population values
-    const Vector<double> &get_performance(void) const;
+    const Vector<double> &get_performance() const;
 
-    const Vector<double> &get_fitness(void) const;
+    const Vector<double> &get_fitness() const;
 
-    const Vector<bool> &get_selection(void) const;
+    const Vector<bool> &get_selection() const;
 
-    const size_t &get_elitism_size(void) const;
+    const size_t &get_elitism_size() const;
 
-    const double &get_selective_pressure(void) const;
+    const double &get_selective_pressure() const;
 
-    const double &get_recombination_size(void) const;
+    const double &get_recombination_size() const;
 
-    const double &get_mutation_rate(void) const;
+    const double &get_mutation_rate() const;
 
-    const double &get_mutation_range(void) const;
+    const double &get_mutation_range() const;
 
-    const double &get_mean_performance_goal(void) const;
+    const double &get_mean_performance_goal() const;
 
-    const double &get_standard_deviation_performance_goal(void) const;
+    const double &get_standard_deviation_performance_goal() const;
 
-    const bool &get_reserve_population_history(void) const;
+    const bool &get_reserve_population_history() const;
 
-    const bool &get_reserve_best_individual_history(void) const;
+    const bool &get_reserve_best_individual_history() const;
 
-    const bool &get_reserve_mean_norm_history(void) const;
+    const bool &get_reserve_mean_norm_history() const;
 
-    const bool &get_reserve_standard_deviation_norm_history(void) const;
+    const bool &get_reserve_standard_deviation_norm_history() const;
 
-    const bool &get_reserve_best_norm_history(void) const;
+    const bool &get_reserve_best_norm_history() const;
 
-    const bool &get_reserve_mean_performance_history(void) const;
+    const bool &get_reserve_mean_performance_history() const;
 
-    const bool &get_reserve_standard_deviation_performance_history(void) const;
+    const bool &get_reserve_standard_deviation_performance_history() const;
 
-    const bool &get_reserve_best_performance_history(void) const;
+    const bool &get_reserve_best_performance_history() const;
 
     // Set methods
-    void set(void);
+    void set();
 
     void set(PerformanceFunctional *);
 
-    void set_default(void);
+    void set_default();
 
     void set_fitness_assignment_method(const FitnessAssignmentMethod &);
 
@@ -334,72 +334,72 @@ public:
 
     void set_individual(const size_t &, const Vector<double> &);
 
-    size_t calculate_best_individual_index(void) const;
+    size_t calculate_best_individual_index() const;
 
-    double calculate_mean_performance(void) const;
+    double calculate_mean_performance() const;
 
-    double calculate_standard_deviation_performance(void) const;
+    double calculate_standard_deviation_performance() const;
 
     // Initialization methods
     void initialize_population(const double &);
 
-    void randomize_population_uniform(void);
+    void randomize_population_uniform();
 
     void randomize_population_uniform(const double &, const double &);
 
     void randomize_population_uniform(const Vector<double> &, const Vector<double> &);
 
-    void randomize_population_normal(void);
+    void randomize_population_normal();
 
     void randomize_population_normal(const double &, const double &);
 
     void randomize_population_normal(const Vector<double> &, const Vector<double> &);
 
     // Population norm methods
-    Vector<double> calculate_population_norm(void) const;
+    Vector<double> calculate_population_norm() const;
 
     // Population performance methods
-    void perform_fitness_assignment(void);
+    void perform_fitness_assignment();
 
-    void perform_selection(void);
+    void perform_selection();
 
-    void perform_recombination(void);
+    void perform_recombination();
 
-    void perform_mutation(void);
+    void perform_mutation();
 
-    void evolve_population(void);
+    void evolve_population();
 
-    void evaluate_population(void);
+    void evaluate_population();
 
     // Fitness assignment methods
-    void perform_linear_ranking_fitness_assignment(void);
+    void perform_linear_ranking_fitness_assignment();
 
     // Selection methods
-    void perform_roulette_wheel_selection(void);
+    void perform_roulette_wheel_selection();
 
     // Recombination methods
-    void perform_intermediate_recombination(void);
+    void perform_intermediate_recombination();
 
-    void perform_line_recombination(void);
+    void perform_line_recombination();
 
     // Mutation methods
-    void perform_normal_mutation(void);
+    void perform_normal_mutation();
 
-    void perform_uniform_mutation(void);
+    void perform_uniform_mutation();
 
     // Training methods
-    EvolutionaryAlgorithmResults *perform_training(void);
+    EvolutionaryAlgorithmResults *perform_training();
 
-    std::string write_training_algorithm_type(void) const;
+    std::string write_training_algorithm_type() const;
 
     // Serialization methods
-    Matrix<std::string> to_string_matrix(void) const;
+    Matrix<std::string> to_string_matrix() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 
-    void initialize_random(void);
+    void initialize_random();
 
 private:
     /// Population matrix.

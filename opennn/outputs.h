@@ -41,7 +41,7 @@ class Outputs
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit Outputs(void);
+    explicit Outputs();
 
     // OUTPUTS NUMBER CONSTRUCTOR
     explicit Outputs(const size_t &);
@@ -53,7 +53,7 @@ public:
     Outputs(const Outputs &);
 
     // DESTRUCTOR
-    virtual ~Outputs(void);
+    virtual ~Outputs();
 
     // ASSIGNMENT OPERATOR
     Outputs &operator=(const Outputs &);
@@ -75,41 +75,41 @@ public:
         std::string description;
 
         /// Default constructor.
-        Item(void)
+        Item()
         {
         }
     };
 
     // METHODS
-    bool is_empty(void) const;
+    bool is_empty() const;
 
     /// Returns the number of outputs neurons in the neural network
-    inline size_t get_outputs_number(void) const
+    inline size_t get_outputs_number() const
     {
         return items.size();
     }
 
     // Output variables information
-    Vector<std::string> arrange_names(void) const;
+    Vector<std::string> arrange_names() const;
 
     const std::string &get_name(const size_t &) const;
 
-    Vector<std::string> arrange_units(void) const;
+    Vector<std::string> arrange_units() const;
 
     const std::string &get_unit(const size_t &) const;
 
-    Vector<std::string> arrange_descriptions(void) const;
+    Vector<std::string> arrange_descriptions() const;
 
     const std::string &get_description(const size_t &) const;
 
     // Variables
-    Matrix<std::string> arrange_information(void) const;
+    Matrix<std::string> arrange_information() const;
 
     // Display messages
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // SET METHODS
-    void set(void);
+    void set();
 
     void set(const size_t &);
 
@@ -119,7 +119,7 @@ public:
 
     void set_outputs_number(const size_t &);
 
-    virtual void set_default(void);
+    virtual void set_default();
 
     // Output variables information
     void set_names(const Vector<std::string> &);
@@ -140,17 +140,17 @@ public:
     void set_display(const bool &);
 
     // Growing and pruning
-    void grow_output(void);
+    void grow_output();
 
     void prune_output(const size_t &);
 
     // Default names
-    Vector<std::string> write_default_names(void) const;
+    Vector<std::string> write_default_names() const;
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    virtual tinyxml2::XMLDocument *to_XML(void) const;
+    virtual tinyxml2::XMLDocument *to_XML() const;
 
     virtual void from_XML(const tinyxml2::XMLDocument &);
 

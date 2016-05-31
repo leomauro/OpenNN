@@ -4,8 +4,8 @@
 
 #include <tinyxml2.h>
 
-namespace tinyxml2
-{
+namespace tinyxml2 {
+
 
 void DeepClone(XMLNode *newNode,
                const XMLNode *nodeSrc,
@@ -20,9 +20,8 @@ void DeepClone(XMLNode *newNode,
         for (; ;) {
             XMLNode *lastClone = newNode2;
             const XMLNode *child2 = child->NextSibling();
-            if (!child2) {
+            if (!child2)
                 break;
-            }
 
             newNode2 = child2->ShallowClone(DocDest);
             DeepClone(newNode2, child2, DocDest, nodeSrc);
@@ -31,5 +30,6 @@ void DeepClone(XMLNode *newNode,
         }
     }
 }
+
 
 }

@@ -42,7 +42,7 @@ class ProbabilisticLayer
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit ProbabilisticLayer(void);
+    explicit ProbabilisticLayer();
 
     // PROBABILISTIC NEURONS NUMBER CONSTRUCTOR
     explicit ProbabilisticLayer(const size_t &);
@@ -51,7 +51,7 @@ public:
     ProbabilisticLayer(const ProbabilisticLayer &);
 
     // DESTRUCTOR
-    virtual ~ProbabilisticLayer(void);
+    virtual ~ProbabilisticLayer();
 
     // ASSIGNMENT OPERATOR
     ProbabilisticLayer &operator=(const ProbabilisticLayer &);
@@ -65,20 +65,20 @@ public:
     };
 
     // GET METHODS
-    const size_t &get_probabilistic_neurons_number(void) const;
+    const size_t &get_probabilistic_neurons_number() const;
 
-    const double &get_decision_threshold(void) const;
+    const double &get_decision_threshold() const;
 
-    const ProbabilisticMethod &get_probabilistic_method(void) const;
+    const ProbabilisticMethod &get_probabilistic_method() const;
 
-    std::string write_probabilistic_method(void) const;
+    std::string write_probabilistic_method() const;
 
-    std::string write_probabilistic_method_text(void) const;
+    std::string write_probabilistic_method_text() const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // SET METHODS
-    void set(void);
+    void set();
 
     void set(const size_t &);
 
@@ -92,16 +92,16 @@ public:
 
     void set_probabilistic_method(const std::string &);
 
-    virtual void set_default(void);
+    virtual void set_default();
 
     // Display messages
     void set_display(const bool &);
 
     // Pruning and growing
-    void prune_probabilistic_neuron(void);
+    void prune_probabilistic_neuron();
 
     // Initialization methods
-    void initialize_random(void);
+    void initialize_random();
 
     // Probabilistic post-processing
     Vector<double> calculate_outputs(const Vector<double> &) const;
@@ -154,9 +154,9 @@ public:
     std::string write_expression(const Vector<std::string> &, const Vector<std::string> &) const;
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    virtual tinyxml2::XMLDocument *to_XML(void) const;
+    virtual tinyxml2::XMLDocument *to_XML() const;
 
     virtual void from_XML(const tinyxml2::XMLDocument &);
 

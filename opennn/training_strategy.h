@@ -58,7 +58,7 @@ class TrainingStrategy
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit TrainingStrategy(void);
+    explicit TrainingStrategy();
 
     // GENERAL CONSTRUCTOR
     explicit TrainingStrategy(PerformanceFunctional *);
@@ -70,7 +70,7 @@ public:
     explicit TrainingStrategy(const std::string &);
 
     // DESTRUCTOR
-    virtual ~TrainingStrategy(void);
+    virtual ~TrainingStrategy();
 
     /// Enumeration of all the available types of training algorithms.
     enum InitializationType {
@@ -94,7 +94,7 @@ public:
     /// Enumeration of all the available types of training algorithms.
     enum RefinementType {
         NO_REFINEMENT,
-        //NEWTON_METHOD,
+        NEWTON_REFINEMENT,
         USER_REFINEMENT
     };
 
@@ -102,10 +102,10 @@ public:
     /// They are composed of the initialization, refinement and training algorithms results.
     struct Results {
         /// Default constructor.
-        explicit Results(void);
+        explicit Results();
 
         /// Destructor.
-        virtual ~Results(void);
+        virtual ~Results();
 
         void save(const std::string &) const;
 
@@ -132,58 +132,58 @@ public:
     };
 
     // Checking methods
-    void check_performance_functional(void) const;
+    void check_performance_functional() const;
 
-    void check_training_algorithms(void) const;
+    void check_training_algorithms() const;
 
     // Initialization methods
-    void initialize_random(void);
+    void initialize_random();
 
     // Get methods
-    PerformanceFunctional *get_performance_functional_pointer(void) const;
+    PerformanceFunctional *get_performance_functional_pointer() const;
 
-    bool has_performance_functional(void) const;
+    bool has_performance_functional() const;
 
-    RandomSearch *get_random_search_pointer(void) const;
+    RandomSearch *get_random_search_pointer() const;
 
-    EvolutionaryAlgorithm *get_evolutionary_algorithm_pointer(void) const;
+    EvolutionaryAlgorithm *get_evolutionary_algorithm_pointer() const;
 
-    GradientDescent *get_gradient_descent_pointer(void) const;
+    GradientDescent *get_gradient_descent_pointer() const;
 
-    ConjugateGradient *get_conjugate_gradient_pointer(void) const;
+    ConjugateGradient *get_conjugate_gradient_pointer() const;
 
-    QuasiNewtonMethod *get_quasi_Newton_method_pointer(void) const;
+    QuasiNewtonMethod *get_quasi_Newton_method_pointer() const;
 
-    LevenbergMarquardtAlgorithm *get_Levenberg_Marquardt_algorithm_pointer(void) const;
+    LevenbergMarquardtAlgorithm *get_Levenberg_Marquardt_algorithm_pointer() const;
 
-    NewtonMethod *get_Newton_method_pointer(void) const;
+    NewtonMethod *get_Newton_method_pointer() const;
 
-    const InitializationType &get_initialization_type(void) const;
+    const InitializationType &get_initialization_type() const;
 
-    const MainType &get_main_type(void) const;
+    const MainType &get_main_type() const;
 
-    const RefinementType &get_refinement_type(void) const;
+    const RefinementType &get_refinement_type() const;
 
-    std::string write_initialization_type(void) const;
+    std::string write_initialization_type() const;
 
-    std::string write_main_type(void) const;
+    std::string write_main_type() const;
 
-    std::string write_refinement_type(void) const;
+    std::string write_refinement_type() const;
 
-    std::string write_initialization_type_text(void) const;
+    std::string write_initialization_type_text() const;
 
-    std::string write_main_type_text(void) const;
+    std::string write_main_type_text() const;
 
-    std::string write_refinement_type_text(void) const;
+    std::string write_refinement_type_text() const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // Set methods
-    void set(void);
+    void set();
 
     void set(PerformanceFunctional *);
 
-    virtual void set_default(void);
+    virtual void set_default();
 
     void set_performance_functional_pointer(PerformanceFunctional *);
 
@@ -202,23 +202,23 @@ public:
     void set_display(const bool &);
 
     // Pointer methods
-    void destruct_initialization(void);
+    void destruct_initialization();
 
-    void destruct_main(void);
+    void destruct_main();
 
-    void destruct_refinement(void);
+    void destruct_refinement();
 
     // This method trains a neural network which has a performance functional associated.
-    void initialize_layers_autoencoding(void);
+    void initialize_layers_autoencoding();
 
-    Results perform_training(void);
+    Results perform_training();
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    void print(void) const;
+    void print() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

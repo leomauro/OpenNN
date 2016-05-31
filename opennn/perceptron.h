@@ -36,7 +36,7 @@ class Perceptron
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit Perceptron(void);
+    explicit Perceptron();
 
     // INPUTS NUMBER CONSTRUCTOR
     explicit Perceptron(const size_t &);
@@ -48,7 +48,7 @@ public:
     Perceptron(const Perceptron &);
 
     // DESTRUCTOR
-    virtual ~Perceptron(void);
+    virtual ~Perceptron();
 
     // ASSIGNMENT OPERATOR
     Perceptron &operator=(const Perceptron &);
@@ -62,26 +62,26 @@ public:
     };
 
     // Get methods
-    size_t get_inputs_number(void) const;
+    size_t get_inputs_number() const;
 
-    const ActivationFunction &get_activation_function(void) const;
+    const ActivationFunction &get_activation_function() const;
 
-    std::string write_activation_function(void) const;
+    std::string write_activation_function() const;
 
-    const double &get_bias(void) const;
+    const double &get_bias() const;
 
-    const Vector<double> &arrange_synaptic_weights(void) const;
+    const Vector<double> &arrange_synaptic_weights() const;
 
     const double &get_synaptic_weight(const size_t &) const;
 
-    size_t count_parameters_number(void) const;
+    size_t count_parameters_number() const;
 
-    Vector<double> arrange_parameters(void) const;
+    Vector<double> arrange_parameters() const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // Set methods
-    void set(void);
+    void set();
 
     void set(const size_t &);
 
@@ -106,7 +106,7 @@ public:
     void set_display(const bool &);
 
     // Growing and pruning
-    void grow_input(void);
+    void grow_input();
 
     void prune_input(const size_t &);
 

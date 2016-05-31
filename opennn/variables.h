@@ -49,7 +49,7 @@ class Variables
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit Variables(void);
+    explicit Variables();
 
     // VARIABLES NUMBER CONSTRUCTOR
     explicit Variables(const size_t &);
@@ -64,7 +64,7 @@ public:
     Variables(const Variables &);
 
     // DESTRUCTOR
-    virtual ~Variables(void);
+    virtual ~Variables();
 
     // ASSIGNMENT OPERATOR
     Variables &operator=(const Variables &);
@@ -94,32 +94,32 @@ public:
         Use use;
     };
 
-    const Vector<Item> &get_items(void) const;
+    const Vector<Item> &get_items() const;
 
     const Item &get_item(const size_t &) const;
 
     /// Returns the total number of variables in the data set.
-    inline size_t get_variables_number(void) const
+    inline size_t get_variables_number() const
     {
         return items.size();
     }
 
-    bool empty(void) const;
+    bool empty() const;
 
-    size_t count_used_variables_number(void) const;
+    size_t count_used_variables_number() const;
 
-    size_t count_unused_variables_number(void) const;
+    size_t count_unused_variables_number() const;
 
-    size_t count_inputs_number(void) const;
+    size_t count_inputs_number() const;
 
-    size_t count_targets_number(void) const;
+    size_t count_targets_number() const;
 
-    Vector<size_t> count_uses(void) const;
+    Vector<size_t> count_uses() const;
 
     // Variables methods
-    Vector<Use> arrange_uses(void) const;
+    Vector<Use> arrange_uses() const;
 
-    Vector<std::string> write_uses(void) const;
+    Vector<std::string> write_uses() const;
 
     const Use &get_use(const size_t &) const;
 
@@ -133,35 +133,35 @@ public:
 
     bool is_used(const size_t &) const;
 
-    Vector<size_t> arrange_used_indices(void) const;
+    Vector<size_t> arrange_used_indices() const;
 
-    Vector<size_t> arrange_inputs_indices(void) const;
+    Vector<size_t> arrange_inputs_indices() const;
 
-    Vector<size_t> arrange_targets_indices(void) const;
+    Vector<size_t> arrange_targets_indices() const;
 
-    Vector<size_t> arrange_unused_indices(void) const;
+    Vector<size_t> arrange_unused_indices() const;
 
     // Information methods
-    Vector<std::string> arrange_names(void) const;
+    Vector<std::string> arrange_names() const;
 
-    Vector<std::string> arrange_used_names(void) const;
+    Vector<std::string> arrange_used_names() const;
 
     const std::string &get_name(const size_t &) const;
 
-    bool has_names(void) const;
+    bool has_names() const;
 
-    Vector<std::string> arrange_units(void) const;
+    Vector<std::string> arrange_units() const;
 
     const std::string &get_unit(const size_t &) const;
 
-    Vector<std::string> arrange_descriptions(void) const;
+    Vector<std::string> arrange_descriptions() const;
 
     const std::string &get_description(const size_t &) const;
 
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // Set methods
-    void set(void);
+    void set();
 
     void set(const size_t &);
 
@@ -169,7 +169,7 @@ public:
 
     void set(const tinyxml2::XMLDocument &);
 
-    void set_default(void);
+    void set_default();
 
     // Data methods
     void set_variables_number(const size_t &);
@@ -185,13 +185,13 @@ public:
 
     void set_use(const size_t &, const std::string &);
 
-    void set_input(void);
+    void set_input();
 
-    void set_target(void);
+    void set_target();
 
-    void set_unuse(void);
+    void set_unuse();
 
-    void set_default_uses(void);
+    void set_default_uses();
 
     // Information methods
     void set_names(const Vector<std::string> &);
@@ -210,32 +210,32 @@ public:
 
     void set_display(const bool &);
 
-    Matrix<std::string> arrange_information(void) const;
+    Matrix<std::string> arrange_information() const;
 
-    Vector<std::string> arrange_inputs_units(void) const;
+    Vector<std::string> arrange_inputs_units() const;
 
-    Vector<std::string> arrange_targets_units(void) const;
+    Vector<std::string> arrange_targets_units() const;
 
-    Vector<std::string> arrange_inputs_name(void) const;
+    Vector<std::string> arrange_inputs_name() const;
 
-    Vector<std::string> arrange_targets_name(void) const;
+    Vector<std::string> arrange_targets_name() const;
 
-    Vector<std::string> arrange_inputs_description(void) const;
+    Vector<std::string> arrange_inputs_description() const;
 
-    Vector<std::string> arrange_targets_description(void) const;
+    Vector<std::string> arrange_targets_description() const;
 
-    Matrix<std::string> arrange_inputs_information(void) const;
+    Matrix<std::string> arrange_inputs_information() const;
 
-    Matrix<std::string> arrange_targets_information(void) const;
+    Matrix<std::string> arrange_targets_information() const;
 
     void convert_time_series(const size_t &);
 
-    void convert_autoassociation(void);
+    void convert_autoassociation();
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

@@ -40,13 +40,13 @@ class PlugIn : public MathematicalModel
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit PlugIn(void);
+    explicit PlugIn();
 
     // XML CONSTRUCTOR
     explicit PlugIn(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~PlugIn(void);
+    virtual ~PlugIn();
 
     /// Enumeration of available methods for introducing neural network data into the input file.
     enum InputMethod {
@@ -60,24 +60,24 @@ public:
     bool operator==(const PlugIn &) const;
 
     // Get methods
-    const InputMethod &get_input_method(void) const;
+    const InputMethod &get_input_method() const;
 
-    std::string write_input_method(void) const;
+    std::string write_input_method() const;
 
-    const std::string &get_template_file_name(void) const;
+    const std::string &get_template_file_name() const;
 
-    const std::string &get_input_file_name(void) const;
+    const std::string &get_input_file_name() const;
 
-    const std::string &get_script_file_name(void) const;
+    const std::string &get_script_file_name() const;
 
-    const std::string &get_output_file_name(void) const;
+    const std::string &get_output_file_name() const;
 
-    const Vector<std::string> &get_input_flags(void) const;
+    const Vector<std::string> &get_input_flags() const;
 
     const std::string &get_input_flag(const size_t &) const;
 
     // Set methods
-    void set_default(void);
+    void set_default();
 
     void set_input_method(const InputMethod &);
 
@@ -98,18 +98,18 @@ public:
 
     void write_input_file_independent_parameters(const NeuralNetwork &) const;
 
-    void run_script(void) const;
+    void run_script() const;
 
-    Matrix<double> read_output_file(void) const;
+    Matrix<double> read_output_file() const;
 
-    Matrix<double> read_output_file_header(void) const;
+    Matrix<double> read_output_file_header() const;
 
     Matrix<double> calculate_solutions(const NeuralNetwork &) const;
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

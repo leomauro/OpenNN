@@ -43,7 +43,7 @@ class RocAreaError : public PerformanceTerm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit RocAreaError(void);
+    explicit RocAreaError();
 
     // NEURAL NETWORK CONSTRUCTOR
     explicit RocAreaError(NeuralNetwork *);
@@ -61,17 +61,17 @@ public:
     RocAreaError(const RocAreaError &);
 
     // DESTRUCTOR
-    virtual ~RocAreaError(void);
+    virtual ~RocAreaError();
 
     // Checking methods
-    void check(void) const;
+    void check() const;
 
     // performance methods
-    double calculate_performance(void) const;
+    double calculate_performance() const;
 
     Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
 
-    Vector<double> calculate_gradient(void) const;
+    Vector<double> calculate_gradient() const;
 
     double calculate_performance(const Vector<double> &) const;
 

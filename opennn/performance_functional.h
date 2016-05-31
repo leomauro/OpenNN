@@ -59,12 +59,12 @@ namespace OpenNN
 /// This abstract class represents the concept of performance functional for a neural network.
 /// A performance functional is composed of three terms: An performance term, a regularization functional
 /// and a constraints functional.
-/// Any derived class must implement the calculate_performance(void) method.
+/// Any derived class must implement the calculate_performance() method.
 class PerformanceFunctional
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit PerformanceFunctional(void);
+    explicit PerformanceFunctional();
 
     // OBJECTIVE FUNCTIONAL CONSTRUCTOR
     explicit PerformanceFunctional(PerformanceTerm *);
@@ -91,7 +91,7 @@ public:
     PerformanceFunctional(const PerformanceFunctional &);
 
     // DESTRUCTOR
-    virtual ~PerformanceFunctional(void);
+    virtual ~PerformanceFunctional();
 
     /// performance value of the peformance function.
     /// This is a very simple structure with just one value.
@@ -161,12 +161,12 @@ public:
     };
 
     // Check methods
-    void check_neural_network(void) const;
+    void check_neural_network() const;
 
-    void check_performance_terms(void) const;
+    void check_performance_terms() const;
 
     /// Returns a pointer to the neural network associated to the performance functional.
-    inline NeuralNetwork *get_neural_network_pointer(void) const
+    inline NeuralNetwork *get_neural_network_pointer() const
     {
 
 #ifdef __OPENNN_DEBUG__
@@ -174,7 +174,7 @@ public:
             std::ostringstream buffer;
 
             buffer << "OpenNN Exception: PerformanceFunctional class.\n"
-                   << "NeuralNetwork* get_neural_network_pointer(void) const method.\n"
+                   << "NeuralNetwork* get_neural_network_pointer() const method.\n"
                    << "Neural network pointer is NULL.\n";
 
             throw std::logic_error(buffer.str());
@@ -185,7 +185,7 @@ public:
     }
 
     /// Returns a pointer to the mathematical model associated to the performance functional.
-    inline MathematicalModel *get_mathematical_model_pointer(void) const
+    inline MathematicalModel *get_mathematical_model_pointer() const
     {
 
 #ifdef __OPENNN_DEBUG__
@@ -193,7 +193,7 @@ public:
             std::ostringstream buffer;
 
             buffer << "OpenNN Exception: PerformanceFunctional class.\n"
-                   << "MathematicalModel* get_mathematical_model_pointer(void) const method.\n"
+                   << "MathematicalModel* get_mathematical_model_pointer() const method.\n"
                    << "MathematicalModel pointer is NULL.\n";
 
             throw std::logic_error(buffer.str());
@@ -204,7 +204,7 @@ public:
     }
 
     /// Returns a pointer to the data set associated to the performance functional.
-    inline DataSet *get_data_set_pointer(void) const
+    inline DataSet *get_data_set_pointer() const
     {
 
 #ifdef __OPENNN_DEBUG__
@@ -212,7 +212,7 @@ public:
             std::ostringstream buffer;
 
             buffer << "OpenNN Exception: PerformanceFunctional class.\n"
-                   << "DataSet* get_data_set_pointer(void) const method.\n"
+                   << "DataSet* get_data_set_pointer() const method.\n"
                    << "DataSet pointer is NULL.\n";
 
             throw std::logic_error(buffer.str());
@@ -222,84 +222,84 @@ public:
         return data_set_pointer;
     }
 
-    bool has_neural_network(void) const;
+    bool has_neural_network() const;
 
-    bool has_mathematical_model(void) const;
+    bool has_mathematical_model() const;
 
-    bool has_data_set(void) const;
+    bool has_data_set() const;
 
-    bool has_selection(void) const;
+    bool has_selection() const;
 
-    bool is_sum_squared_terms(void) const;
+    bool is_sum_squared_terms() const;
 
     // Objective terms
-    SumSquaredError *get_sum_squared_error_objective_pointer(void) const;
+    SumSquaredError *get_sum_squared_error_objective_pointer() const;
 
-    MeanSquaredError *get_mean_squared_error_objective_pointer(void) const;
+    MeanSquaredError *get_mean_squared_error_objective_pointer() const;
 
-    RootMeanSquaredError *get_root_mean_squared_error_objective_pointer(void) const;
+    RootMeanSquaredError *get_root_mean_squared_error_objective_pointer() const;
 
-    NormalizedSquaredError *get_normalized_squared_error_objective_pointer(void) const;
+    NormalizedSquaredError *get_normalized_squared_error_objective_pointer() const;
 
-    MinkowskiError *get_Minkowski_error_objective_pointer(void) const;
+    MinkowskiError *get_Minkowski_error_objective_pointer() const;
 
-    CrossEntropyError *get_cross_entropy_error_objective_pointer(void) const;
+    CrossEntropyError *get_cross_entropy_error_objective_pointer() const;
 
-    WeightedSquaredError *get_weighted_squared_error_objective_pointer(void) const;
+    WeightedSquaredError *get_weighted_squared_error_objective_pointer() const;
 
-    RocAreaError *get_roc_area_error_objective_pointer(void) const;
+    RocAreaError *get_roc_area_error_objective_pointer() const;
 
-    OutputsIntegrals *get_outputs_integrals_objective_pointer(void) const;
+    OutputsIntegrals *get_outputs_integrals_objective_pointer() const;
 
-    SolutionsError *get_solutions_error_objective_pointer(void) const;
+    SolutionsError *get_solutions_error_objective_pointer() const;
 
-    FinalSolutionsError *get_final_solutions_error_objective_pointer(void) const;
+    FinalSolutionsError *get_final_solutions_error_objective_pointer() const;
 
-    IndependentParametersError *get_independent_parameters_error_objective_pointer(void) const;
+    IndependentParametersError *get_independent_parameters_error_objective_pointer() const;
 
-    InverseSumSquaredError *get_inverse_sum_squared_error_objective_pointer(void) const;
+    InverseSumSquaredError *get_inverse_sum_squared_error_objective_pointer() const;
 
-    PerformanceTerm *get_user_objective_pointer(void) const;
+    PerformanceTerm *get_user_objective_pointer() const;
 
     // Regularization terms
-    NeuralParametersNorm *get_neural_parameters_norm_regularization_pointer(void) const;
+    NeuralParametersNorm *get_neural_parameters_norm_regularization_pointer() const;
 
-    OutputsIntegrals *get_outputs_integrals_regularization_pointer(void) const;
+    OutputsIntegrals *get_outputs_integrals_regularization_pointer() const;
 
-    PerformanceTerm *get_user_regularization_pointer(void) const;
+    PerformanceTerm *get_user_regularization_pointer() const;
 
     // Constraints terms
-    OutputsIntegrals *get_outputs_integrals_constraints_pointer(void) const;
+    OutputsIntegrals *get_outputs_integrals_constraints_pointer() const;
 
-    SolutionsError *get_solutions_error_constraints_pointer(void) const;
+    SolutionsError *get_solutions_error_constraints_pointer() const;
 
-    FinalSolutionsError *get_final_solutions_error_constraints_pointer(void) const;
+    FinalSolutionsError *get_final_solutions_error_constraints_pointer() const;
 
-    IndependentParametersError *get_independent_parameters_error_constraints_pointer(void) const;
+    IndependentParametersError *get_independent_parameters_error_constraints_pointer() const;
 
-    PerformanceTerm *get_user_constraints_pointer(void) const;
+    PerformanceTerm *get_user_constraints_pointer() const;
 
     // Functional type methods
-    const ObjectiveType &get_objective_type(void) const;
+    const ObjectiveType &get_objective_type() const;
 
-    const RegularizationType &get_regularization_type(void) const;
+    const RegularizationType &get_regularization_type() const;
 
-    const ConstraintsType &get_constraints_type(void) const;
+    const ConstraintsType &get_constraints_type() const;
 
-    std::string write_objective_type(void) const;
+    std::string write_objective_type() const;
 
-    std::string write_regularization_type(void) const;
+    std::string write_regularization_type() const;
 
-    std::string write_constraints_type(void) const;
+    std::string write_constraints_type() const;
 
-    std::string write_objective_type_text(void) const;
+    std::string write_objective_type_text() const;
 
-    std::string write_regularization_type_text(void) const;
+    std::string write_regularization_type_text() const;
 
-    std::string write_constraints_type_text(void) const;
+    std::string write_constraints_type_text() const;
 
     // Serialization methods
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // Set methods
     void set_neural_network_pointer(NeuralNetwork *);
@@ -314,7 +314,7 @@ public:
 
     void set_user_constraints_pointer(PerformanceTerm *);
 
-    void set_default(void);
+    void set_default();
 
     // Functionals methods
     void set_objective_type(const ObjectiveType &);
@@ -329,22 +329,22 @@ public:
 
     void set_constraints_type(const std::string &);
 
-    void destruct_objective(void);
+    void destruct_objective();
 
-    void destruct_regularization(void);
+    void destruct_regularization();
 
-    void destruct_constraints(void);
+    void destruct_constraints();
 
-    void destruct_all_terms(void);
+    void destruct_all_terms();
 
     void set_display(const bool &);
 
     // Performance functional methods
-    double calculate_objective(void) const;
+    double calculate_objective() const;
 
-    double calculate_regularization(void) const;
+    double calculate_regularization() const;
 
-    double calculate_constraints(void) const;
+    double calculate_constraints() const;
 
     double calculate_objective(const Vector<double> &) const;
 
@@ -352,23 +352,23 @@ public:
 
     double calculate_constraints(const Vector<double> &) const;
 
-    Vector<double> calculate_objective_terms(void) const;
+    Vector<double> calculate_objective_terms() const;
 
-    Vector<double> calculate_regularization_terms(void) const;
+    Vector<double> calculate_regularization_terms() const;
 
-    Vector<double> calculate_constraints_terms(void) const;
+    Vector<double> calculate_constraints_terms() const;
 
-    Matrix<double> calculate_objective_terms_Jacobian(void) const;
+    Matrix<double> calculate_objective_terms_Jacobian() const;
 
-    Matrix<double> calculate_regularization_terms_Jacobian(void) const;
+    Matrix<double> calculate_regularization_terms_Jacobian() const;
 
-    Matrix<double> calculate_constraints_terms_Jacobian(void) const;
+    Matrix<double> calculate_constraints_terms_Jacobian() const;
 
-    Vector<double> calculate_objective_gradient(void) const;
+    Vector<double> calculate_objective_gradient() const;
 
-    Vector<double> calculate_regularization_gradient(void) const;
+    Vector<double> calculate_regularization_gradient() const;
 
-    Vector<double> calculate_constraints_gradient(void) const;
+    Vector<double> calculate_constraints_gradient() const;
 
     Vector<double> calculate_objective_gradient(const Vector<double> &) const;
 
@@ -376,11 +376,11 @@ public:
 
     Vector<double> calculate_constraints_gradient(const Vector<double> &) const;
 
-    Matrix<double> calculate_objective_Hessian(void) const;
+    Matrix<double> calculate_objective_Hessian() const;
 
-    Matrix<double> calculate_regularization_Hessian(void) const;
+    Matrix<double> calculate_regularization_Hessian() const;
 
-    Matrix<double> calculate_constraints_Hessian(void) const;
+    Matrix<double> calculate_constraints_Hessian() const;
 
     Matrix<double> calculate_objective_Hessian(const Vector<double> &) const;
 
@@ -388,11 +388,11 @@ public:
 
     Matrix<double> calculate_constraints_Hessian(const Vector<double> &) const;
 
-    double calculate_performance(void) const;
+    double calculate_performance() const;
 
-    Vector<double> calculate_gradient(void) const;
+    Vector<double> calculate_gradient() const;
 
-    Matrix<double> calculate_Hessian(void) const;
+    Matrix<double> calculate_Hessian() const;
 
     double calculate_performance(const Vector<double> &) const;
 
@@ -400,27 +400,27 @@ public:
 
     Matrix<double> calculate_Hessian(const Vector<double> &) const;
 
-    virtual Matrix<double> calculate_inverse_Hessian(void) const;
+    virtual Matrix<double> calculate_inverse_Hessian() const;
 
     virtual Vector<double> calculate_vector_dot_Hessian(const Vector<double> &) const;
 
-    Vector<double> calculate_terms(void) const;
+    Vector<double> calculate_terms() const;
 
-    Matrix<double> calculate_terms_Jacobian(void) const;
+    Matrix<double> calculate_terms_Jacobian() const;
 
-    virtual ZeroOrderperformance calculate_zero_order_performance(void) const;
+    virtual ZeroOrderperformance calculate_zero_order_performance() const;
 
-    virtual FirstOrderperformance calculate_first_order_performance(void) const;
+    virtual FirstOrderperformance calculate_first_order_performance() const;
 
-    virtual SecondOrderperformance calculate_second_order_performance(void) const;
+    virtual SecondOrderperformance calculate_second_order_performance() const;
 
-    double calculate_selection_objective(void) const;
+    double calculate_selection_objective() const;
 
-    double calculate_selection_regularization(void) const;
+    double calculate_selection_regularization() const;
 
-    double calculate_selection_constraints(void) const;
+    double calculate_selection_constraints() const;
 
-    virtual double calculate_selection_performance(void) const;
+    virtual double calculate_selection_performance() const;
 
     // Taylor approximation methods
     double calculate_zero_order_Taylor_approximation(const Vector<double> &) const;
@@ -437,19 +437,19 @@ public:
     double calculate_performance_second_derivative(const Vector<double> &, const double &) const;
 
     // Serialization methods
-    virtual tinyxml2::XMLDocument *to_XML(void) const;
+    virtual tinyxml2::XMLDocument *to_XML() const;
 
     virtual void from_XML(const tinyxml2::XMLDocument &);
 
-    virtual std::string to_string(void) const;
+    virtual std::string to_string() const;
 
     virtual void save(const std::string &) const;
 
     virtual void load(const std::string &);
 
-    virtual std::string write_information(void);
+    virtual std::string write_information();
 
-    void print(void) const;
+    void print() const;
 
 private:
     /// Pointer to a neural network object.

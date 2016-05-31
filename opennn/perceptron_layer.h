@@ -39,7 +39,7 @@ class PerceptronLayer
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit PerceptronLayer(void);
+    explicit PerceptronLayer();
 
     // ARCHITECTURE CONSTRUCTOR
     explicit PerceptronLayer(const size_t &, const size_t &);
@@ -48,7 +48,7 @@ public:
     PerceptronLayer(const PerceptronLayer &);
 
     // DESTRUCTOR
-    virtual ~PerceptronLayer(void);
+    virtual ~PerceptronLayer();
 
     // ASSIGNMENT OPERATOR
     PerceptronLayer &operator=(const PerceptronLayer &);
@@ -57,41 +57,41 @@ public:
     bool operator==(const PerceptronLayer &) const;
 
     // GET METHODS
-    bool is_empty(void) const;
+    bool is_empty() const;
 
-    const Vector<Perceptron> &get_perceptrons(void) const;
+    const Vector<Perceptron> &get_perceptrons() const;
 
     const Perceptron &get_perceptron(const size_t &) const;
 
-    size_t get_inputs_number(void) const;
+    size_t get_inputs_number() const;
 
-    size_t get_perceptrons_number(void) const;
+    size_t get_perceptrons_number() const;
 
     // PerceptronLayer parameters
-    Vector<double> arrange_biases(void) const;
+    Vector<double> arrange_biases() const;
 
-    Matrix<double> arrange_synaptic_weights(void) const;
+    Matrix<double> arrange_synaptic_weights() const;
 
-    size_t count_parameters_number(void) const;
+    size_t count_parameters_number() const;
 
-    Vector<double> arrange_parameters(void) const;
+    Vector<double> arrange_parameters() const;
 
-    size_t count_perceptron_parameters_number(void) const;
+    size_t count_perceptron_parameters_number() const;
 
-    Vector<Vector<double>> arrange_perceptrons_parameters(void) const;
+    Vector<Vector<double>> arrange_perceptrons_parameters() const;
 
-    Vector<size_t> count_cumulative_parameters_number(void) const;
+    Vector<size_t> count_cumulative_parameters_number() const;
 
     // Activation functions
-    const Perceptron::ActivationFunction &get_activation_function(void) const;
+    const Perceptron::ActivationFunction &get_activation_function() const;
 
-    std::string write_activation_function(void) const;
+    std::string write_activation_function() const;
 
     // Display messages
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // SET METHODS
-    void set(void);
+    void set();
 
     void set(const Vector<Perceptron> &);
 
@@ -99,7 +99,7 @@ public:
 
     void set(const PerceptronLayer &);
 
-    void set_default(void);
+    void set_default();
 
     // Architecture
     void set_inputs_number(const size_t &);
@@ -126,9 +126,9 @@ public:
     void set_display(const bool &);
 
     // Growing and pruning
-    void grow_input(void);
+    void grow_input();
 
-    void grow_perceptron(void);
+    void grow_perceptron();
 
     void grow_perceptrons(const size_t &);
 
@@ -137,7 +137,7 @@ public:
     void prune_perceptron(const size_t &);
 
     // PerceptronLayer initialization methods
-    void initialize_random(void);
+    void initialize_random();
 
     // Parameters initialization methods
     void initialize_biases(const double &);
@@ -146,7 +146,7 @@ public:
 
     void initialize_parameters(const double &);
 
-    void randomize_parameters_uniform(void);
+    void randomize_parameters_uniform();
 
     void randomize_parameters_uniform(const double &, const double &);
 
@@ -154,7 +154,7 @@ public:
 
     void randomize_parameters_uniform(const Vector<Vector<double>> &);
 
-    void randomize_parameters_normal(void);
+    void randomize_parameters_normal();
 
     void randomize_parameters_normal(const double &, const double &);
 
@@ -163,7 +163,7 @@ public:
     void randomize_parameters_normal(const Vector<Vector<double>> &);
 
     // Parameters norm
-    double calculate_parameters_norm(void) const;
+    double calculate_parameters_norm() const;
 
     // Perceptron layer combinations
     Vector<double> calculate_combinations(const Vector<double> &) const;

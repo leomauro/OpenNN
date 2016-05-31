@@ -39,7 +39,7 @@ class InverseSumSquaredError : public PerformanceTerm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit InverseSumSquaredError(void);
+    explicit InverseSumSquaredError();
 
     // NEURAL NETWORK CONSTRUCTOR
     explicit InverseSumSquaredError(NeuralNetwork *);
@@ -51,7 +51,7 @@ public:
     explicit InverseSumSquaredError(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~InverseSumSquaredError(void);
+    virtual ~InverseSumSquaredError();
 
     /// Enumeration of the different methods for putting the unknowns into the mathematical model.
     enum UnknownsMethod {
@@ -59,31 +59,31 @@ public:
     };
 
     // Get methods
-    const UnknownsMethod &get_unknowns_method(void) const;
+    const UnknownsMethod &get_unknowns_method() const;
 
-    std::string write_unknowns_method(void) const;
+    std::string write_unknowns_method() const;
 
     // Set methods
     void set_unknowns_method(const UnknownsMethod &);
 
     void set_unknowns_method(const std::string &);
 
-    void set_default(void);
+    void set_default();
 
     // Checking methods
-    void check(void) const;
+    void check() const;
 
     // Objective methods
-    double calculate_performance(void) const;
+    double calculate_performance() const;
 
     double calculate_performance(const Vector<double> &) const;
 
-    double calculate_selection_performance(void) const;
+    double calculate_selection_performance() const;
 
-    std::string write_performance_term_type(void) const;
+    std::string write_performance_term_type() const;
 
     // Serialization methods
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

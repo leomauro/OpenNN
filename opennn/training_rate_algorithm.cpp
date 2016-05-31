@@ -15,288 +15,196 @@
 
 #include "training_rate_algorithm.h"
 
-namespace OpenNN
-{
 
-// DEFAULT CONSTRUCTOR
+namespace OpenNN {
 
 /// Default constructor.
 /// It creates a training rate algorithm object not associated to any performance functional object.
 /// It also initializes the class members to their default values.
-
-TrainingRateAlgorithm::TrainingRateAlgorithm(void)
-    : performance_functional_pointer(NULL)
+TrainingRateAlgorithm::TrainingRateAlgorithm()
+        : performance_functional_pointer(NULL)
 {
     set_default();
 }
-
-
-// GENERAL CONSTRUCTOR
 
 /// General constructor.
 /// It creates a training rate algorithm associated to a performance functional.
 /// It also initializes the class members to their default values.
 /// @param new_performance_functional_pointer Pointer to a performance functional object.
-
 TrainingRateAlgorithm::TrainingRateAlgorithm(PerformanceFunctional *new_performance_functional_pointer)
-    : performance_functional_pointer(new_performance_functional_pointer)
+        : performance_functional_pointer(new_performance_functional_pointer)
 {
     set_default();
 }
-
-
-// XML CONSTRUCTOR
 
 /// XML constructor.
 /// It creates a training rate algorithm object not associated to any performance functional object.
 /// It also loads the class members from a XML document.
 /// @param document Pointer to a TinyXML document->
-
 TrainingRateAlgorithm::TrainingRateAlgorithm(const tinyxml2::XMLDocument &document)
-    : performance_functional_pointer(NULL)
+        : performance_functional_pointer(NULL)
 {
     from_XML(document);
 }
 
-
-// DESTRUCTOR
-
 /// Destructor
-
-TrainingRateAlgorithm::~TrainingRateAlgorithm(void)
+TrainingRateAlgorithm::~TrainingRateAlgorithm()
 {
 }
-
-
-// METHODS
-
-// PerformanceFunctional* get_performance_functional_pointer(void) const method
 
 /// Returns a pointer to the performance functional object
 /// to which the training rate algorithm is associated.
 /// If the performance functional pointer is NULL, this method throws an exception.
-
-PerformanceFunctional *TrainingRateAlgorithm::get_performance_functional_pointer(void) const
+PerformanceFunctional *TrainingRateAlgorithm::get_performance_functional_pointer() const
 {
-#ifdef __OPENNN_DEBUG__
 
+#ifdef __OPENNN_DEBUG__
     if (!performance_functional_pointer) {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
-               << "PerformanceFunctional* get_performance_functional_pointer(void) const method.\n"
+               << "PerformanceFunctional* get_performance_functional_pointer() const method.\n"
                << "Performance functional pointer is NULL.\n";
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
 
-    return (performance_functional_pointer);
+    return performance_functional_pointer;
 }
-
-
-// bool has_performance_functional(void) const method
 
 /// Returns true if this training rate algorithm has an associated performance functional,
 /// and false otherwise.
-
-bool TrainingRateAlgorithm::has_performance_functional(void) const
+bool TrainingRateAlgorithm::has_performance_functional() const
 {
-    if (performance_functional_pointer) {
-        return (true);
-    } else {
-        return (false);
-    }
+    return (bool) performance_functional_pointer;
 }
-
-
-// const TrainingRateMethod& get_training_rate_method(void) const method
 
 /// Returns the training rate method used for training.
-
-const TrainingRateAlgorithm::TrainingRateMethod &TrainingRateAlgorithm::get_training_rate_method(void) const
+const TrainingRateAlgorithm::TrainingRateMethod &TrainingRateAlgorithm::get_training_rate_method() const
 {
-    return (training_rate_method);
+    return training_rate_method;
 }
-
-
-// std::string write_training_rate_method(void) const method
 
 /// Returns a string with the name of the training rate method to be used.
-
-std::string TrainingRateAlgorithm::write_training_rate_method(void) const
+std::string TrainingRateAlgorithm::write_training_rate_method() const
 {
     switch (training_rate_method) {
-    case Fixed: {
-        return ("Fixed");
-    }
-    break;
+    case Fixed:
+        return "Fixed";
 
-    case GoldenSection: {
-        return ("GoldenSection");
-    }
-    break;
+    case GoldenSection:
+        return "GoldenSection";
 
-    case BrentMethod: {
-        return ("BrentMethod");
-    }
-    break;
+    case BrentMethod:
+        return "BrentMethod";
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
-               << "std::string get_training_rate_method(void) const method.\n"
-               << "Unknown training rate method.\n";
+            buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
+                   << "std::string get_training_rate_method() const method.\n"
+                   << "Unknown training rate method.\n";
 
-        throw std::logic_error(buffer.str());
-    }
-    break;
+            throw std::logic_error(buffer.str());
+        }
     }
 }
-
-
-// const double& get_bracketing_factor(void) const method
 
 /// Returns the increase factor when bracketing a minimum in line minimization.
-
-const double &TrainingRateAlgorithm::get_bracketing_factor(void) const
+const double &TrainingRateAlgorithm::get_bracketing_factor() const
 {
-    return (bracketing_factor);
+    return bracketing_factor;
 }
-
-
-// const double& get_training_rate_tolerance(void) const method
 
 /// Returns the tolerance value in line minimization.
-
-const double &TrainingRateAlgorithm::get_training_rate_tolerance(void) const
+const double &TrainingRateAlgorithm::get_training_rate_tolerance() const
 {
-    return (training_rate_tolerance);
+    return training_rate_tolerance;
 }
-
-
-// const double& get_warning_training_rate(void) const method
 
 /// Returns the training rate value at wich a warning message is written to the screen during line
 /// minimization.
-
-const double &TrainingRateAlgorithm::get_warning_training_rate(void) const
+const double &TrainingRateAlgorithm::get_warning_training_rate() const
 {
-    return (warning_training_rate);
+    return warning_training_rate;
 }
-
-
-// const double& get_error_training_rate(void) const method
 
 /// Returns the training rate value at wich the line minimization algorithm is assumed to fail when
 /// bracketing a minimum.
-
-const double &TrainingRateAlgorithm::get_error_training_rate(void) const
+const double &TrainingRateAlgorithm::get_error_training_rate() const
 {
-    return (error_training_rate);
+    return error_training_rate;
 }
-
-
-// const bool& get_display(void) const method
 
 /// Returns true if messages from this class can be displayed on the screen, or false if messages from
 /// this class can't be displayed on the screen.
-
-const bool &TrainingRateAlgorithm::get_display(void) const
+const bool &TrainingRateAlgorithm::get_display() const
 {
-    return (display);
+    return display;
 }
-
-
-// void set(void) method
 
 /// Sets the performance functional pointer to NULL.
 /// It also sets the rest of members to their default values.
-
-void TrainingRateAlgorithm::set(void)
+void TrainingRateAlgorithm::set()
 {
     performance_functional_pointer = NULL;
+
     set_default();
 }
-
-
-// void set(PerformanceFunctional*) method
 
 /// Sets a new performance functional pointer.
 /// It also sets the rest of members to their default values.
 /// @param new_performance_functional_pointer Pointer to a performance functional object.
-
 void TrainingRateAlgorithm::set(PerformanceFunctional *new_performance_functional_pointer)
 {
     performance_functional_pointer = new_performance_functional_pointer;
+
     set_default();
 }
 
-
-// void set_default(void) method
-
 /// Sets the members of the training rate algorithm to their default values.
-
-void TrainingRateAlgorithm::set_default(void)
+void TrainingRateAlgorithm::set_default()
 {
     // TRAINING OPERATORS
-
     training_rate_method = BrentMethod;
 
     // TRAINING PARAMETERS
-
     bracketing_factor = 1.5;
-
     training_rate_tolerance = 1.0e-6;
-
     warning_training_rate = 1.0e3;
-
     error_training_rate = 1.0e6;
 
     // UTILITIES
-
     display = true;
 }
 
-
-// void set_performance_functional_pointer(PerformanceFunctional*) method
-
 /// Sets a pointer to a performance functional object to be associated to the training algorithm.
 /// @param new_performance_functional_pointer Pointer to a performance functional object.
-
 void TrainingRateAlgorithm::set_performance_functional_pointer(PerformanceFunctional *new_performance_functional_pointer)
 {
     performance_functional_pointer = new_performance_functional_pointer;
 }
 
-
-// void set_training_rate_method(const TrainingRateMethod&) method
-
 /// Sets a new training rate method to be used for training.
 /// @param new_training_rate_method Training rate method.
-
 void TrainingRateAlgorithm::set_training_rate_method(const TrainingRateAlgorithm::TrainingRateMethod &new_training_rate_method)
 {
     training_rate_method = new_training_rate_method;
 }
 
-
-// void set_training_rate_method(const std::string&) method
-
 /// Sets the method for obtaining the training rate from a string with the name of the method.
 /// @param new_training_rate_method Name of training rate method ("Fixed", "GoldenSection", "BrentMethod" or "UserTrainingRate").
-
 void TrainingRateAlgorithm::set_training_rate_method(const std::string &new_training_rate_method)
 {
-    if (new_training_rate_method == "Fixed") {
+    if (new_training_rate_method == "Fixed")
         training_rate_method = Fixed;
-    } else if (new_training_rate_method == "GoldenSection") {
+    else if (new_training_rate_method == "GoldenSection")
         training_rate_method = GoldenSection;
-    } else if (new_training_rate_method == "BrentMethod") {
+    else if (new_training_rate_method == "BrentMethod")
         training_rate_method = BrentMethod;
-    } else {
+    else {
         std::ostringstream buffer;
 
         buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
@@ -307,18 +215,12 @@ void TrainingRateAlgorithm::set_training_rate_method(const std::string &new_trai
     }
 }
 
-
-// void set_bracketing_factor(const double&) method
-
 /// Sets a new increase factor value to be used for line minimization when bracketing a minimum.
 /// @param new_bracketing_factor Bracketing factor value.
-
 void TrainingRateAlgorithm::set_bracketing_factor(const double &new_bracketing_factor)
 {
-    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
-
     if (new_bracketing_factor < 0.0) {
         std::ostringstream buffer;
 
@@ -328,24 +230,17 @@ void TrainingRateAlgorithm::set_bracketing_factor(const double &new_bracketing_f
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
 
     bracketing_factor = new_bracketing_factor;
 }
 
-
-// void set_training_rate_tolerance(const double&) method
-
 /// Sets a new tolerance value to be used in line minimization.
 /// @param new_training_rate_tolerance Tolerance value in line minimization.
-
 void TrainingRateAlgorithm::set_training_rate_tolerance(const double &new_training_rate_tolerance)
 {
-    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
-
     if (new_training_rate_tolerance < 0.0) {
         std::ostringstream buffer;
 
@@ -355,27 +250,18 @@ void TrainingRateAlgorithm::set_training_rate_tolerance(const double &new_traini
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
-
-    // Set training rate tolerance
 
     training_rate_tolerance = new_training_rate_tolerance;
 }
 
-
-// void set_warning_training_rate(const double&) method
-
 /// Sets a new training rate value at wich a warning message is written to the screen during line
 /// minimization.
 /// @param new_warning_training_rate Warning training rate value.
-
 void TrainingRateAlgorithm::set_warning_training_rate(const double &new_warning_training_rate)
 {
-    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
-
     if (new_warning_training_rate < 0.0) {
         std::ostringstream buffer;
 
@@ -385,25 +271,18 @@ void TrainingRateAlgorithm::set_warning_training_rate(const double &new_warning_
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
 
     warning_training_rate = new_warning_training_rate;
 }
 
-
-// void set_error_training_rate(const double&) method
-
 /// Sets a new training rate value at wich a the line minimization algorithm is assumed to fail when
 /// bracketing a minimum.
 /// @param new_error_training_rate Error training rate value.
-
 void TrainingRateAlgorithm::set_error_training_rate(const double &new_error_training_rate)
 {
-    // Control sentence (if debug)
 
 #ifdef __OPENNN_DEBUG__
-
     if (new_error_training_rate < 0.0) {
         std::ostringstream buffer;
 
@@ -413,29 +292,19 @@ void TrainingRateAlgorithm::set_error_training_rate(const double &new_error_trai
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
-
-    // Set error training rate
 
     error_training_rate = new_error_training_rate;
 }
-
-
-// void set_display(const bool&) method
 
 /// Sets a new display value.
 /// If it is set to true messages from this class are to be displayed on the screen;
 /// if it is set to false messages from this class are not to be displayed on the screen.
 /// @param new_display Display value.
-
 void TrainingRateAlgorithm::set_display(const bool &new_display)
 {
     display = new_display;
 }
-
-
-// Vector<double> calculate_directional_point(const double&, const Vector<double>&, const double&) const method
 
 /// Returns a vector with two elements:
 /// (i) the training rate calculated by means of the corresponding algorithm, and
@@ -443,13 +312,12 @@ void TrainingRateAlgorithm::set_display(const bool &new_display)
 /// @param performance Initial performance function performance.
 /// @param training_direction Initial training direction.
 /// @param initial_training_rate Initial training rate to start the algorithm.
-
 Vector<double> TrainingRateAlgorithm::calculate_directional_point(const double &performance,
-        const Vector<double> &training_direction,
-        const double &initial_training_rate) const
+                                                                  const Vector<double> &training_direction,
+                                                                  const double &initial_training_rate) const
 {
-#ifdef __OPENNN_DEBUG__
 
+#ifdef __OPENNN_DEBUG__
     if (performance_functional_pointer == NULL) {
         std::ostringstream buffer;
 
@@ -459,10 +327,6 @@ Vector<double> TrainingRateAlgorithm::calculate_directional_point(const double &
 
         throw std::logic_error(buffer.str());
     }
-
-#endif
-
-#ifdef __OPENNN_DEBUG__
 
     const NeuralNetwork *neural_network_pointer = performance_functional_pointer->get_neural_network_pointer();
 
@@ -475,91 +339,68 @@ Vector<double> TrainingRateAlgorithm::calculate_directional_point(const double &
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
 
     switch (training_rate_method) {
-    case TrainingRateAlgorithm::Fixed: {
-        return (calculate_fixed_directional_point(performance, training_direction, initial_training_rate));
-    }
-    break;
+    case TrainingRateAlgorithm::Fixed:
+        return calculate_fixed_directional_point(performance, training_direction, initial_training_rate);
 
-    case TrainingRateAlgorithm::GoldenSection: {
-        return (calculate_golden_section_directional_point(performance, training_direction, initial_training_rate));
-    }
-    break;
+    case TrainingRateAlgorithm::GoldenSection:
+        return calculate_golden_section_directional_point(performance, training_direction, initial_training_rate);
 
-    case TrainingRateAlgorithm::BrentMethod: {
-        return (calculate_Brent_method_directional_point(performance, training_direction, initial_training_rate));
-    }
-    break;
+    case TrainingRateAlgorithm::BrentMethod:
+        return calculate_Brent_method_directional_point(performance, training_direction, initial_training_rate);
 
-    default: {
-        std::ostringstream buffer;
+    default:
+        {
+            std::ostringstream buffer;
 
-        buffer << "OpenNN Exception: TrainingRateAlgorithm class\n"
-               << "Vector<double> calculate_directional_point(const double&, const Vector<double>&, const double&) const method.\n"
-               << "Unknown training rate method.\n";
+            buffer << "OpenNN Exception: TrainingRateAlgorithm class\n"
+                   << "Vector<double> calculate_directional_point(const double&, const Vector<double>&, const double&) const method.\n"
+                   << "Unknown training rate method.\n";
 
-        throw std::logic_error(buffer.str());
-    }
+            throw std::logic_error(buffer.str());
+        }
     }
 }
-
-
-// Triplet calculate_bracketing_triplet(const double&, const Vector<double>&, const double&) const method
 
 /// Returns bracketing triplet.
 /// This algorithm is used by line minimization algorithms.
 /// @param performance Initial performance function performance.
 /// @param training_direction Initial training direction.
 /// @param initial_training_rate Initial training rate to start the algorithm.
-
-TrainingRateAlgorithm::Triplet TrainingRateAlgorithm::calculate_bracketing_triplet(
-    const double &performance,
-    const Vector<double> &training_direction,
-    const double &initial_training_rate) const
+TrainingRateAlgorithm::Triplet TrainingRateAlgorithm::calculate_bracketing_triplet(const double &performance,
+                                                                                   const Vector<double> &training_direction,
+                                                                                   const double &initial_training_rate) const
 {
     Triplet triplet;
-
     if (training_direction == 0.0) {
         triplet.A[0] = 0.0;
         triplet.A[1] = performance;
-
         triplet.U = triplet.A;
-
         triplet.B = triplet.A;
-
-        return (triplet);
+        return triplet;
     }
-
     if (initial_training_rate == 0.0) {
         triplet.A[0] = 0.0;
         triplet.A[1] = performance;
-
         triplet.U = triplet.A;
-
         triplet.B = triplet.A;
-
-        return (triplet);
+        return triplet;
     }
 
     // Left point
-
     triplet.A[0] = 0.0;
     triplet.A[1] = performance;
 
     // Right point
-
     triplet.B[0] = initial_training_rate;
     triplet.B[1] = performance_functional_pointer->calculate_performance(training_direction, triplet.B[0]);
 
     while (triplet.A[1] > triplet.B[1]) {
         triplet.A = triplet.B;
-
         triplet.B[0] *= bracketing_factor;
         triplet.B[1] = performance_functional_pointer->calculate_performance(training_direction, triplet.B[0]);
-
         if (triplet.B[0] > error_training_rate) {
             std::ostringstream buffer;
 
@@ -573,91 +414,65 @@ TrainingRateAlgorithm::Triplet TrainingRateAlgorithm::calculate_bracketing_tripl
 
             throw std::logic_error(buffer.str());
 
-            return (triplet);
+            return triplet;
         }
     }
 
     // Interior point
-
     triplet.U[0] = triplet.A[0] + (triplet.B[0] - triplet.A[0]) / 2.0;
     triplet.U[1] = performance_functional_pointer->calculate_performance(training_direction, triplet.U[0]);
 
     while (triplet.A[1] < triplet.U[1]) {
         triplet.U[0] = triplet.A[0] + (triplet.U[0] - triplet.A[0]) / bracketing_factor;
         triplet.U[1] = performance_functional_pointer->calculate_performance(training_direction, triplet.U[0]);
-
         if (triplet.U[0] - triplet.A[0] <= training_rate_tolerance) {
             triplet.U = triplet.A;
             triplet.B = triplet.A;
-
             triplet.check();
-
-            return (triplet);
+            return triplet;
         }
     }
 
     triplet.check();
-
-    return (triplet);
+    return triplet;
 }
-
-
-// Vector<double> calculate_fixed_directional_point(const double&, const Vector<double>&, const double&) const method
 
 /// Returns a vector with two elements, a fixed training rate,
 /// and the performance for that training rate.
 /// @param training_direction Training direction for the directional point.
 /// @param initial_training_rate Training rate for the directional point.
-
-
 Vector<double> TrainingRateAlgorithm::calculate_fixed_directional_point(const double &,
-        const Vector<double> &training_direction,
-        const double &initial_training_rate) const
+                                                                        const Vector<double> &training_direction,
+                                                                        const double &initial_training_rate) const
 {
     Vector<double> directional_point(2);
-
     directional_point[0] = initial_training_rate;
     directional_point[1] = performance_functional_pointer->calculate_performance(training_direction,
-                           initial_training_rate);
-
-    return (directional_point);
+                                                                                 initial_training_rate);
+    return directional_point;
 }
-
-
-// Vector<double> calculate_golden_section_directional_point(double, Vector<double>, double) const method
 
 /// Returns the training rate by searching in a given direction to locate the minimum of the objective
 /// function in that direction. It uses the golden section method.
 /// @param performance Neural multilayer_perceptron_pointer's performance value.
 /// @param training_direction Training direction vector.
 /// @param initial_training_rate Initial training rate in line minimization.
-
-Vector<double> TrainingRateAlgorithm::calculate_golden_section_directional_point
-(const double &performance,
- const Vector<double> &training_direction,
- const double &initial_training_rate) const
+Vector<double> TrainingRateAlgorithm::calculate_golden_section_directional_point(const double &performance,
+                                                                                 const Vector<double> &training_direction,
+                                                                                 const double &initial_training_rate) const
 {
-    std::ostringstream buffer;
-
-    // Bracket minimum
-
     try {
         Triplet triplet = calculate_bracketing_triplet(performance, training_direction, initial_training_rate);
-
-        if (triplet.has_length_zero()) {
-            return (triplet.A);
-        }
-
-        Vector<double> V(2);
+        if (triplet.has_length_zero())
+            return triplet.A;
 
         // Reduce the interval
-
+        Vector<double> V(2);
         do {
             V[0] = calculate_golden_section_training_rate(triplet);
             V[1] = performance_functional_pointer->calculate_performance(training_direction, V[0]);
 
             // Update points
-
             if (V[0] < triplet.U[0] && V[1] >= triplet.U[1]) {
                 triplet.A = V;
                 //U = U;
@@ -675,14 +490,17 @@ Vector<double> TrainingRateAlgorithm::calculate_golden_section_directional_point
                 triplet.U = V;
                 //B = B;
             } else if (V[0] == triplet.U[0]) {
+                std::ostringstream buffer;
+
                 buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
                        << "Vector<double> calculate_golden_section_directional_point(double, const Vector<double>, double) const method.\n"
                        << "Both interior points have the same ordinate.\n";
 
                 std::cout << buffer.str() << std::endl;
-
                 break;
             } else {
+                std::ostringstream buffer;
+
                 buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
                        << "Vector<double> calculate_golden_section_directional_point(double, const Vector<double>, double) const method.\n"
                        << "Unknown set:\n"
@@ -695,70 +513,54 @@ Vector<double> TrainingRateAlgorithm::calculate_golden_section_directional_point
             }
 
             // Check triplet
-
             triplet.check();
-
         } while (triplet.B[0] - triplet.A[0] > training_rate_tolerance);
-
-        return (triplet.U);
-    } catch (const std::logic_error &e) {
+        return triplet.U;
+    }
+    catch (const std::logic_error &e) {
         std::cerr << e.what() << std::endl;
 
         Vector<double> X(2);
         X[0] = initial_training_rate;
         X[1] = performance_functional_pointer->calculate_performance(training_direction, X[0]);
-
         if (X[1] > performance) {
             X[0] = 0.0;
             X[1] = 0.0;
         }
-
-        return (X);
+        return X;
     }
 }
-
-
-// Vector<double> calculate_Brent_method_directional_point(const double&, const Vector<double>, const double&) const method
 
 /// Returns the training rate by searching in a given direction to locate the minimum of the performance
 /// function in that direction. It uses the Brent's method.
 /// @param performance Neural network performance value.
 /// @param training_direction Training direction vector.
 /// @param initial_training_rate Initial training rate in line minimization.
-
-Vector<double> TrainingRateAlgorithm::calculate_Brent_method_directional_point
-(const double &performance,
- const Vector<double> &training_direction,
- const double &initial_training_rate) const
+Vector<double> TrainingRateAlgorithm::calculate_Brent_method_directional_point(const double &performance,
+                                                                               const Vector<double> &training_direction,
+                                                                               const double &initial_training_rate) const
 {
-    std::ostringstream buffer;
-
     // Bracket minimum
 
     try {
         Triplet triplet = calculate_bracketing_triplet(performance, training_direction, initial_training_rate);
-
-        if (triplet.A == triplet.B) {
-            return (triplet.A);
-        }
-
-        Vector<double> V(2);
+        if (triplet.A == triplet.B)
+            return triplet.A;
 
         // Reduce the interval
-
+        Vector<double> V(2);
         while (triplet.B[0] - triplet.A[0] > training_rate_tolerance) {
             try {
                 V[0] = calculate_Brent_method_training_rate(triplet);
-            } catch (const std::logic_error &) {
+            }
+            catch (const std::logic_error &) {
                 V[0] = calculate_golden_section_training_rate(triplet);
             }
 
             // Calculate performance for V
-
             V[1] = performance_functional_pointer->calculate_performance(training_direction, V[0]);
 
             // Update points
-
             if (V[0] < triplet.U[0] && V[1] >= triplet.U[1]) {
                 triplet.A = V;
                 //B = B;
@@ -776,12 +578,15 @@ Vector<double> TrainingRateAlgorithm::calculate_Brent_method_directional_point
                 //B = B;
                 triplet.U = V;
             } else if (V[0] == triplet.U[0]) {
+                std::ostringstream buffer;
+
                 buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
                        << "Vector<double> calculate_Brent_method_directional_point(double, const Vector<double>, double) const method.\n"
                        << "Both interior points have the same ordinate.\n";
-
                 break;
             } else {
+                std::ostringstream buffer;
+
                 buffer << "OpenNN Exception: TrainingRateAlgorithm class.\n"
                        << "Vector<double> calculate_Brent_method_directional_point(double, const Vector<double>, double) const method.\n"
                        << "Unknown set:\n"
@@ -794,55 +599,44 @@ Vector<double> TrainingRateAlgorithm::calculate_Brent_method_directional_point
             }
 
             // Check triplet
-
             triplet.check();
         }
-
-        return (triplet.U);
-    } catch (std::range_error &e) { // Interval is of length 0
+        return triplet.U;
+    }
+    catch (std::range_error &e) {
+        // Interval is of length 0
         std::cerr << e.what() << std::endl;
 
         Vector<double> A(2);
         A[0] = 0.0;
         A[1] = performance;
-
-        return (A);
-    } catch (const std::logic_error &e) {
+        return A;
+    }
+    catch (const std::logic_error &e) {
         std::cerr << e.what() << std::endl;
 
         Vector<double> X(2);
         X[0] = initial_training_rate;
         X[1] = performance_functional_pointer->calculate_performance(training_direction, X[0]);
-
         if (X[1] > performance) {
             X[0] = 0.0;
             X[1] = 0.0;
         }
-
-        return (X);
+        return X;
     }
 }
 
-
-// double calculate_golden_section_training_rate(const Triplet&) const method
-
 /// Calculates the golden section point within a minimum interval defined by three points.
 /// @param triplet Triplet containing a minimum.
-
 double TrainingRateAlgorithm::calculate_golden_section_training_rate(const Triplet &triplet) const
 {
-//   const double tau = 0.382; // (3.0-sqrt(5.0))/2.0
-
     double training_rate;
-
-    if (triplet.U[0] < triplet.A[0] + 0.5 * (triplet.B[0] - triplet.A[0])) {
+    if (triplet.U[0] < triplet.A[0] + 0.5 * (triplet.B[0] - triplet.A[0]))
         training_rate = triplet.A[0] + 0.618 * (triplet.B[0] - triplet.A[0]);
-    } else {
+    else
         training_rate = triplet.A[0] + 0.382 * (triplet.B[0] - triplet.A[0]);
-    }
 
 #ifdef __OPENNN_DEBUG__
-
     if (training_rate < triplet.A[0]) {
         std::ostringstream buffer;
 
@@ -862,25 +656,19 @@ double TrainingRateAlgorithm::calculate_golden_section_training_rate(const Tripl
 
         throw std::logic_error(buffer.str());
     }
-
 #endif
 
-    return (training_rate);
+    return training_rate;
 }
-
-
-// double calculate_Brent_method_training_rate(const Triplet&) const method
 
 /// Returns the minimimal training rate of a parabola defined by three directional points.
 /// @param triplet Triplet containing a minimum.
-
 double TrainingRateAlgorithm::calculate_Brent_method_training_rate(const Triplet &triplet) const
 {
-    const double c = -(triplet.A[1] * (triplet.U[0] - triplet.B[0])
-                       + triplet.U[1] * (triplet.B[0] - triplet.A[0])
-                       + triplet.B[1] * (triplet.A[0] - triplet.U[0])) / ((triplet.A[0] - triplet.U[0]) * (triplet.U[0] - triplet
-                               .B[0]) * (triplet.B[0] - triplet.A[0]));
-
+    const double c = -(triplet.A[1] * (triplet.U[0] - triplet.B[0]) +
+                       triplet.U[1] * (triplet.B[0] - triplet.A[0]) +
+                       triplet.B[1] * (triplet.A[0] - triplet.U[0])) /
+                      ((triplet.A[0] - triplet.U[0]) * (triplet.U[0] - triplet.B[0]) * (triplet.B[0] - triplet.A[0]));
     if (c == 0) {
         std::ostringstream buffer;
 
@@ -899,11 +687,10 @@ double TrainingRateAlgorithm::calculate_Brent_method_training_rate(const Triplet
         throw std::logic_error(buffer.str());
     }
 
-    const double b = (triplet.A[1] * (triplet.U[0] * triplet.U[0] - triplet.B[0] * triplet.B[0])
-                      + triplet.U[1] * (triplet.B[0] * triplet.B[0] - triplet.A[0] * triplet.A[0])
-                      + triplet.B[1] * (triplet.A[0] * triplet.A[0] - triplet.U[0] * triplet.U[0])) / ((triplet.A[0] - triplet
-                              .U[0]) * (triplet.U[0] - triplet.B[0]) * (triplet.B[0] - triplet.A[0]));
-
+    const double b = (triplet.A[1] * (triplet.U[0] * triplet.U[0] - triplet.B[0] * triplet.B[0]) +
+                      triplet.U[1] * (triplet.B[0] * triplet.B[0] - triplet.A[0] * triplet.A[0]) +
+                      triplet.B[1] * (triplet.A[0] * triplet.A[0] - triplet.U[0] * triplet.U[0])) /
+                     ((triplet.A[0] - triplet.U[0]) * (triplet.U[0] - triplet.B[0]) * (triplet.B[0] - triplet.A[0]));
     const double Brent_method_training_rate = -b / (2.0 * c);
 
     if (Brent_method_training_rate <= triplet.A[0] || Brent_method_training_rate >= triplet.B[0]) {
@@ -918,27 +705,19 @@ double TrainingRateAlgorithm::calculate_Brent_method_training_rate(const Triplet
         throw std::logic_error(buffer.str());
     }
 
-    return (Brent_method_training_rate);
+    return Brent_method_training_rate;
 }
-
-
-// tinyxml2::XMLDocument* to_XML(void) const method
 
 /// Returns a default string representation in XML-type format of the training algorithm object.
 /// This containts the training operators, the training parameters, stopping criteria and other stuff.
-
-tinyxml2::XMLDocument *TrainingRateAlgorithm::to_XML(void) const
+tinyxml2::XMLDocument *TrainingRateAlgorithm::to_XML() const
 {
     std::ostringstream buffer;
-
     tinyxml2::XMLDocument *document = new tinyxml2::XMLDocument;
 
     // Training algorithm
-
     tinyxml2::XMLElement *root_element = document->NewElement("TrainingRateAlgorithm");
-
     document->InsertFirstChild(root_element);
-
     tinyxml2::XMLElement *element = NULL;
     tinyxml2::XMLText *text = NULL;
 
@@ -946,85 +725,29 @@ tinyxml2::XMLDocument *TrainingRateAlgorithm::to_XML(void) const
     {
         element = document->NewElement("TrainingRateMethod");
         root_element->LinkEndChild(element);
-
         text = document->NewText(write_training_rate_method().c_str());
         element->LinkEndChild(text);
     }
-
-    // Bracketing factor
-//   {
-//   element = document->NewElement("BracketingFactor");
-//   root_element->LinkEndChild(element);
-
-//   buffer.str("");
-//   buffer << bracketing_factor;
-
-//   text = document->NewText(buffer.str().c_str());
-//   element->LinkEndChild(text);
-//   }
 
     // Training rate tolerance
     {
         element = document->NewElement("TrainingRateTolerance");
         root_element->LinkEndChild(element);
-
         buffer.str("");
         buffer << training_rate_tolerance;
-
         text = document->NewText(buffer.str().c_str());
         element->LinkEndChild(text);
     }
 
-    // Warning training rate
-//   {
-//   element = document->NewElement("WarningTrainingRate");
-//   root_element->LinkEndChild(element);
-
-//   buffer.str("");
-//   buffer << warning_training_rate;
-
-//   text = document->NewText(buffer.str().c_str());
-//   element->LinkEndChild(text);
-//   }
-
-    // Error training rate
-//   {
-//   element = document->NewElement("ErrorTrainingRate");
-//   root_element->LinkEndChild(element);
-
-//   buffer.str("");
-//   buffer << error_training_rate;
-
-//   text = document->NewText(buffer.str().c_str());
-//   element->LinkEndChild(text);
-//   }
-
-    // Display warnings
-//   {
-//   element = document->NewElement("Display");
-//   root_element->LinkEndChild(element);
-
-//   buffer.str("");
-//   buffer << display;
-
-//   text = document->NewText(buffer.str().c_str());
-//   element->LinkEndChild(text);
-//   }
-
-    return (document);
+    return document;
 }
-
-
-// virtual void from_XML(const tinyxml2::XMLDocument&) method
 
 /// Loads a training rate algorithm object from a XML-type file.
 /// Please mind about the file format, wich is specified in the manual.
 /// @param document TinyXML document with the training rate algorithm members.
-
 void TrainingRateAlgorithm::from_XML(const tinyxml2::XMLDocument &document)
 {
     const tinyxml2::XMLElement *root_element = document.FirstChildElement("TrainingRateAlgorithm");
-
     if (!root_element) {
         std::ostringstream buffer;
 
@@ -1038,13 +761,12 @@ void TrainingRateAlgorithm::from_XML(const tinyxml2::XMLDocument &document)
     // Training rate method
     {
         const tinyxml2::XMLElement *element = root_element->FirstChildElement("TrainingRateMethod");
-
         if (element) {
             std::string new_training_rate_method = element->GetText();
-
             try {
                 set_training_rate_method(new_training_rate_method);
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -1053,47 +775,26 @@ void TrainingRateAlgorithm::from_XML(const tinyxml2::XMLDocument &document)
     // Bracketing factor
     {
         const tinyxml2::XMLElement *element = root_element->FirstChildElement("BracketingFactor");
-
         if (element) {
             const double new_bracketing_factor = atof(element->GetText());
-
             try {
                 set_bracketing_factor(new_bracketing_factor);
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
     }
-    /*
-       // First training rate
-       {
-           const tinyxml2::XMLElement* element = root_element->FirstChildElement("FirstTrainingRate");
 
-           if(element)
-           {
-              const double new_first_training_rate = atof(element->GetText());
-
-              try
-              {
-                 set_first_training_rate(new_first_training_rate);
-              }
-              catch(const std::logic_error& e)
-              {
-                 std::cout << e.what() << std::endl;
-              }
-           }
-       }
-    */
     // Training rate tolerance
     {
         const tinyxml2::XMLElement *element = root_element->FirstChildElement("TrainingRateTolerance");
-
         if (element) {
             const double new_training_rate_tolerance = atof(element->GetText());
-
             try {
                 set_training_rate_tolerance(new_training_rate_tolerance);
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -1102,13 +803,12 @@ void TrainingRateAlgorithm::from_XML(const tinyxml2::XMLDocument &document)
     // Warning training rate
     {
         const tinyxml2::XMLElement *element = root_element->FirstChildElement("WarningTrainingRate");
-
         if (element) {
             const double new_warning_training_rate = atof(element->GetText());
-
             try {
                 set_warning_training_rate(new_warning_training_rate);
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -1117,13 +817,12 @@ void TrainingRateAlgorithm::from_XML(const tinyxml2::XMLDocument &document)
     // Error training rate
     {
         const tinyxml2::XMLElement *element = root_element->FirstChildElement("ErrorTrainingRate");
-
         if (element) {
             const double new_error_training_rate = atof(element->GetText());
-
             try {
                 set_error_training_rate(new_error_training_rate);
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
@@ -1132,18 +831,18 @@ void TrainingRateAlgorithm::from_XML(const tinyxml2::XMLDocument &document)
     // Display warnings
     {
         const tinyxml2::XMLElement *element = root_element->FirstChildElement("Display");
-
         if (element) {
             const std::string new_display = element->GetText();
-
             try {
                 set_display(new_display != "0");
-            } catch (const std::logic_error &e) {
+            }
+            catch (const std::logic_error &e) {
                 std::cout << e.what() << std::endl;
             }
         }
     }
 }
+
 
 }
 

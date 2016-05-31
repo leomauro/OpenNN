@@ -41,7 +41,7 @@ class Inputs
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit Inputs(void);
+    explicit Inputs();
 
     // INPUTS NUMBER CONSTRUCTOR
     explicit Inputs(const size_t &);
@@ -53,7 +53,7 @@ public:
     Inputs(const Inputs &);
 
     // DESTRUCTOR
-    virtual ~Inputs(void);
+    virtual ~Inputs();
 
     // ASSIGNMENT OPERATOR
     Inputs &operator=(const Inputs &);
@@ -75,40 +75,40 @@ public:
         std::string description;
 
         /// Default constructor.
-        Item(void)
+        Item()
         {
         }
     };
 
-    bool is_empty(void) const;
+    bool is_empty() const;
 
     /// Returns the number of inputs in the multilayer perceptron
-    inline size_t get_inputs_number(void) const
+    inline size_t get_inputs_number() const
     {
         return items.size();
     }
 
     // Inputs information
-    Vector<std::string> arrange_names(void) const;
+    Vector<std::string> arrange_names() const;
 
     const std::string &get_name(const size_t &) const;
 
-    Vector<std::string> arrange_units(void) const;
+    Vector<std::string> arrange_units() const;
 
     const std::string &get_unit(const size_t &) const;
 
-    Vector<std::string> arrange_descriptions(void) const;
+    Vector<std::string> arrange_descriptions() const;
 
     const std::string &get_description(const size_t &) const;
 
     // Variables
-    Matrix<std::string> arrange_information(void) const;
+    Matrix<std::string> arrange_information() const;
 
     // Display messages
-    const bool &get_display(void) const;
+    const bool &get_display() const;
 
     // SET METHODS
-    void set(void);
+    void set();
 
     void set(const size_t &);
 
@@ -118,7 +118,7 @@ public:
 
     void set_inputs_number(const size_t &);
 
-    virtual void set_default(void);
+    virtual void set_default();
 
     // Input variables information
     void set_names(const Vector<std::string> &);
@@ -139,17 +139,17 @@ public:
     void set_display(const bool &);
 
     // Growing and pruning
-    void grow_input(void);
+    void grow_input();
 
     void prune_input(const size_t &);
 
     // Default names
-    Vector<std::string> write_default_names(void) const;
+    Vector<std::string> write_default_names() const;
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    virtual tinyxml2::XMLDocument *to_XML(void) const;
+    virtual tinyxml2::XMLDocument *to_XML() const;
 
     virtual void from_XML(const tinyxml2::XMLDocument &);
 

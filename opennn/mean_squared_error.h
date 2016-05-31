@@ -43,7 +43,7 @@ class MeanSquaredError : public PerformanceTerm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit MeanSquaredError(void);
+    explicit MeanSquaredError();
 
     // NEURAL NETWORK CONSTRUCTOR
     explicit MeanSquaredError(NeuralNetwork *);
@@ -61,43 +61,43 @@ public:
     MeanSquaredError(const MeanSquaredError &);
 
     // DESTRUCTOR
-    virtual ~MeanSquaredError(void);
+    virtual ~MeanSquaredError();
 
     // Checking methods
-    void check(void) const;
+    void check() const;
 
     // Objective methods
-    double calculate_performance(void) const;
+    double calculate_performance() const;
 
     double calculate_performance(const Vector<double> &) const;
 
-    double calculate_selection_performance(void) const;
+    double calculate_selection_performance() const;
 
     Vector<double> calculate_output_gradient(const Vector<double> &, const Vector<double> &) const;
 
-    Vector<double> calculate_gradient(void) const;
+    Vector<double> calculate_gradient() const;
 
     Matrix<double> calculate_output_Hessian(const Vector<double> &, const Vector<double> &) const;
 
-    Matrix<double> calculate_Hessian(void) const;
+    Matrix<double> calculate_Hessian() const;
 
-    FirstOrderPerformance calculate_first_order_performance(void) const;
+    FirstOrderPerformance calculate_first_order_performance() const;
 
-    SecondOrderPerformance calculate_second_order_performance(void) const;
+    SecondOrderPerformance calculate_second_order_performance() const;
 
     // Objective terms methods
-    Vector<double> calculate_terms(void) const;
+    Vector<double> calculate_terms() const;
 
     Vector<double> calculate_terms(const Vector<double> &) const;
 
-    Matrix<double> calculate_terms_Jacobian(void) const;
+    Matrix<double> calculate_terms_Jacobian() const;
 
-    FirstOrderTerms calculate_first_order_terms(void) const;
+    FirstOrderTerms calculate_first_order_terms() const;
 
-    std::string write_performance_term_type(void) const;
+    std::string write_performance_term_type() const;
 
     // Serialization methods
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 };
 
 

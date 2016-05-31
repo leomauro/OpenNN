@@ -41,7 +41,7 @@ class BoundingLayer
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit BoundingLayer(void);
+    explicit BoundingLayer();
 
     // BOUNDING NEURONS NUMBER CONSTRUCTOR
     explicit BoundingLayer(const size_t &);
@@ -53,7 +53,7 @@ public:
     BoundingLayer(const BoundingLayer &);
 
     // DESTRUCTOR
-    virtual ~BoundingLayer(void);
+    virtual ~BoundingLayer();
 
     // ASSIGNMENT OPERATOR
     BoundingLayer &operator=(const BoundingLayer &);
@@ -67,23 +67,23 @@ public:
     };
 
     // METHODS
-    bool is_empty(void) const;
+    bool is_empty() const;
 
-    size_t get_bounding_neurons_number(void) const;
+    size_t get_bounding_neurons_number() const;
 
     // Variables bounds
-    const Vector<double> &get_lower_bounds(void) const;
+    const Vector<double> &get_lower_bounds() const;
 
     double get_lower_bound(const size_t &) const;
 
-    const Vector<double> &get_upper_bounds(void) const;
+    const Vector<double> &get_upper_bounds() const;
 
     double get_upper_bound(const size_t &) const;
 
-    Vector<Vector<double> *> get_bounds(void);
+    Vector<Vector<double> *> get_bounds();
 
     // Variables bounds
-    void set(void);
+    void set();
 
     void set(const size_t &);
 
@@ -103,13 +103,13 @@ public:
 
     void set_display(const bool &);
 
-    void set_default(void);
+    void set_default();
 
     // Pruning and growing
     void prune_bounding_neuron(const size_t &);
 
     // Initialization
-    void initialize_random(void);
+    void initialize_random();
 
     // Lower and upper bounds
     Vector<double> calculate_outputs(const Vector<double> &) const;
@@ -126,9 +126,9 @@ public:
     std::string write_expression(const Vector<std::string> &, const Vector<std::string> &) const;
 
     // Serialization methods
-    std::string to_string(void) const;
+    std::string to_string() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 

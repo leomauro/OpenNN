@@ -45,7 +45,7 @@ class NewtonMethod : public TrainingAlgorithm
 {
 public:
     // DEFAULT CONSTRUCTOR
-    explicit NewtonMethod(void);
+    explicit NewtonMethod();
 
     // PERFORMANCE FUNCTIONAL CONSTRUCTOR
     explicit NewtonMethod(PerformanceFunctional *);
@@ -54,14 +54,14 @@ public:
     explicit NewtonMethod(const tinyxml2::XMLDocument &);
 
     // DESTRUCTOR
-    virtual ~NewtonMethod(void);
+    virtual ~NewtonMethod();
 
     ///
     /// This structure contains the training results for the Newton method.
     ///
     struct NewtonMethodResults : public TrainingAlgorithm::TrainingAlgorithmResults {
         /// Default constructor.
-        NewtonMethodResults(void)
+        NewtonMethodResults()
         {
             Newton_method_pointer = NULL;
         }
@@ -73,7 +73,7 @@ public:
         }
 
         /// Destructor.
-        virtual ~NewtonMethodResults(void)
+        virtual ~NewtonMethodResults()
         {
         }
 
@@ -144,70 +144,70 @@ public:
 
         void resize_training_history(const size_t &);
 
-        std::string to_string(void) const;
+        std::string to_string() const;
 
         Matrix<std::string> write_final_results(const size_t &precision = 3) const;
     };
 
 
     // METHODS
-    const TrainingRateAlgorithm &get_training_rate_algorithm(void) const;
+    const TrainingRateAlgorithm &get_training_rate_algorithm() const;
 
-    TrainingRateAlgorithm *get_training_rate_algorithm_pointer(void);
+    TrainingRateAlgorithm *get_training_rate_algorithm_pointer();
 
     // Training parameters
-    const double &get_warning_parameters_norm(void) const;
+    const double &get_warning_parameters_norm() const;
 
-    const double &get_warning_gradient_norm(void) const;
+    const double &get_warning_gradient_norm() const;
 
-    const double &get_warning_training_rate(void) const;
+    const double &get_warning_training_rate() const;
 
-    const double &get_error_parameters_norm(void) const;
+    const double &get_error_parameters_norm() const;
 
-    const double &get_error_gradient_norm(void) const;
+    const double &get_error_gradient_norm() const;
 
-    const double &get_error_training_rate(void) const;
+    const double &get_error_training_rate() const;
 
     // Stopping criteria
-    const double &get_minimum_parameters_increment_norm(void) const;
+    const double &get_minimum_parameters_increment_norm() const;
 
-    const double &get_minimum_performance_increase(void) const;
+    const double &get_minimum_performance_increase() const;
 
-    const double &get_performance_goal(void) const;
+    const double &get_performance_goal() const;
 
-    const double &get_gradient_norm_goal(void) const;
+    const double &get_gradient_norm_goal() const;
 
-    const size_t &get_maximum_selection_performance_decreases(void) const;
+    const size_t &get_maximum_selection_performance_decreases() const;
 
-    const size_t &get_maximum_iterations_number(void) const;
+    const size_t &get_maximum_iterations_number() const;
 
-    const double &get_maximum_time(void) const;
+    const double &get_maximum_time() const;
 
     // Reserve training history
-    const bool &get_reserve_parameters_history(void) const;
+    const bool &get_reserve_parameters_history() const;
 
-    const bool &get_reserve_parameters_norm_history(void) const;
+    const bool &get_reserve_parameters_norm_history() const;
 
-    const bool &get_reserve_performance_history(void) const;
+    const bool &get_reserve_performance_history() const;
 
-    const bool &get_reserve_gradient_history(void) const;
+    const bool &get_reserve_gradient_history() const;
 
-    const bool &get_reserve_gradient_norm_history(void) const;
+    const bool &get_reserve_gradient_norm_history() const;
 
-    const bool &get_reserve_inverse_Hessian_history(void) const;
+    const bool &get_reserve_inverse_Hessian_history() const;
 
-    const bool &get_reserve_selection_performance_history(void) const;
+    const bool &get_reserve_selection_performance_history() const;
 
-    const bool &get_reserve_training_direction_history(void) const;
+    const bool &get_reserve_training_direction_history() const;
 
-    const bool &get_reserve_training_rate_history(void) const;
+    const bool &get_reserve_training_rate_history() const;
 
-    const bool &get_reserve_elapsed_time_history(void) const;
+    const bool &get_reserve_elapsed_time_history() const;
 
     // Utilities
     void set_performance_functional_pointer(PerformanceFunctional *);
 
-    void set_default(void);
+    void set_default();
 
     // Training parameters
     void set_warning_parameters_norm(const double &);
@@ -269,14 +269,14 @@ public:
 
     Vector<double> calculate_training_direction(const Vector<double> &, const Matrix<double> &) const;
 
-    NewtonMethodResults *perform_training(void);
+    NewtonMethodResults *perform_training();
 
-    std::string write_training_algorithm_type(void) const;
+    std::string write_training_algorithm_type() const;
 
     // Serialization methods
-    Matrix<std::string> to_string_matrix(void) const;
+    Matrix<std::string> to_string_matrix() const;
 
-    tinyxml2::XMLDocument *to_XML(void) const;
+    tinyxml2::XMLDocument *to_XML() const;
 
     void from_XML(const tinyxml2::XMLDocument &);
 
